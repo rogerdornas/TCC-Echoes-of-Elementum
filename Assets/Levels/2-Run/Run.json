@@ -1820,12 +1820,12 @@
                         {
                          "name":"PlayerStartPositionId",
                          "type":"int",
-                         "value":3
+                         "value":1
                         }, 
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room0"
+                         "value":"Level1"
                         }, 
                         {
                          "name":"Target",
@@ -3503,9 +3503,57 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":13,
+         "name":"Light",
+         "objects":[
+                {
+                 "height":32,
+                 "id":244,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Intensity",
+                         "type":"float",
+                         "value":0.6
+                        }, 
+                        {
+                         "name":"Radius",
+                         "type":"float",
+                         "value":300
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":256,
+                 "y":3072
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":13,
- "nextobjectid":244,
+ "nextlayerid":14,
+ "nextobjectid":245,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -28,6 +28,7 @@ Player::Player(Game* game)
     ,mHeight(75 * mGame->GetScale())
 
     ,mIsOnGround(false)
+    ,mIsOnSpike(false)
     ,mIsOnMovingGround(false)
     ,mMovingGroundVelocity(Vector2::Zero)
     ,mMoveSpeed(700 * mGame->GetScale())
@@ -76,7 +77,7 @@ Player::Player(Game* game)
     ,mMaxMana(90.0f)
     ,mMana(90.0f)
     ,mManaIncreaseRate(6.0f)
-    ,mFireballManaCost(30.0f)
+    ,mFireballManaCost(0.0f)
     ,mFireballAnimationDuration(0.2f)
     ,mFireballAnimationTimer(mFireballAnimationDuration)
 
@@ -86,7 +87,7 @@ Player::Player(Game* game)
     ,mIsFreezingDown(false)
     ,mIntervalBetweenFreezeEmitDuration(0.1f)
     ,mIntervalBetweenFreezeEmitTimer(0.0f)
-    ,mFreezeManaCost(2.0f)
+    ,mFreezeManaCost(0.0f)
 
     ,mCanWallSlide(true)
     ,mIsWallSliding(false)
@@ -580,7 +581,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     if (jump && !mIsFireAttacking) {
         if (!mDashComponent->GetIsDashing()) {
             // Pulo do chao
-            if ((mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump) && !mIsJumping && mCanJump && (mWallJumpTimer >= mWallJumpMaxTime)) {
+            if ((mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump || mIsOnSpike) && !mIsJumping && mCanJump && (mWallJumpTimer >= mWallJumpMaxTime)) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce)
                                                  + mMovingGroundVelocity);
                 mIsJumping = true;
@@ -738,7 +739,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
                 snowBalls->SetEnemyCollision(true);
                 snowBalls->SetApplyFreeze(true);
                 snowBalls->SetFreezeDamage(0.05f);
-                snowBalls->SetFreezeIntensity(1.0f);
+                snowBalls->SetFreezeIntensity(2.0f);
                 snowBalls->SetParticleDrawOrder(4999);
                 freezeEffect.system = snowBalls;
                 mSnowBallsParticleSystems.emplace_back(freezeEffect);
@@ -967,6 +968,7 @@ void Player::OnUpdate(float deltaTime) {
     }
 
     mIsOnGround = false;
+    mIsOnSpike = false;
     mIsOnMovingGround = false;
     mMovingGroundVelocity = Vector2::Zero;
     mIsWallSliding = false;
@@ -1420,16 +1422,12 @@ void Player::ResolveGroundCollision() {
             }
             else if (g->GetIsSpike()) { // Colisão com spikes
                 if (mAABBComponent->Intersect(*g->GetComponent<ColliderComponent>())) {
-                    // SetPosition(mStartingPosition);
-
-                    // mGame->mResetLevel = true;
-
-                    // mRigidBodyComponent->SetVelocity(Vector2::Zero);
-                    // SetPosition(g->GetRespawPosition());
-                    // ReceiveHit(10, Vector2::Zero);
-
                     collisionNormal = mAABBComponent->ResolveCollision(*g->GetComponent<ColliderComponent>());
 
+                    // colidiu top
+                    if (collisionNormal == Vector2::NegUnitY) {
+                        mIsOnSpike = true;
+                    }
                     mDashComponent->StopDash();
 
                     ReceiveHit(10, collisionNormal);

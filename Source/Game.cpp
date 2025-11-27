@@ -39,6 +39,7 @@
 #include "Actors/HookEnemy.h"
 #include "Actors/HookPoint.h"
 #include "Actors/Lava.h"
+#include "Actors/Light.h"
 #include "Actors/LittleBat.h"
 #include "Actors/Mantis.h"
 #include "Actors/MirrorBoss.h"
@@ -831,7 +832,8 @@ void Game::LoadMainMenu() {
     mMainMenu->AddButton(name, buttonPos + Vector2(0, 3 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
     [this]() {
         // mMainMenu->SetIsVisible(false);
-        LoadConfirmQuitGameMenu();
+        // LoadConfirmQuitGameMenu();
+        Quit();
     });
 }
 
@@ -1230,7 +1232,7 @@ void Game::LoadOptionsMenu() {
             // int w, h;
             // SDL_GL_GetDrawableSize(mWindow, &w, &h);
             // mRenderer->OnWindowResize(static_cast<float>(w), static_cast<float>(h));
-            
+
             mOptionsMenu->Close();
             LoadOptionsMenu();
         }, textPos);
@@ -1700,6 +1702,42 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
                 auto* decoration = new Decorations(this, width, height, imagePath);
                 decoration->SetPosition(Vector2(x + width / 2, y + height / 2));
+            }
+        }
+        if (layer["name"] == "Light") {
+            for (const auto &obj: layer["objects"]) {
+                float x = static_cast<float>(obj["x"]) * mScale;
+                float y = static_cast<float>(obj["y"]) * mScale;
+                float intensity = 0.0f;
+                float radius = 0.0f;
+                Vector3 color = Vector3::One;
+
+                if (obj.contains("properties")) {
+                    for (const auto &prop: obj["properties"]) {
+                        std::string propName = prop["name"];
+                        if (propName == "Radius") {
+                            radius = prop["value"];
+                        }
+                        else if (propName == "Intensity") {
+                            intensity = prop["value"];
+                        }
+                        else if (propName == "ColorR") {
+                            color.x = prop["value"];
+                        }
+                        else if (propName == "ColorG") {
+                            color.y = prop["value"];
+                        }
+                        else if (propName == "ColorB") {
+                            color.z = prop["value"];
+                        }
+                    }
+                }
+                auto* light = new Light(this);
+                light->SetPosition(Vector2(x, y));
+                light->SetRadius(radius);
+                light->SetMaxIntensity(intensity);
+                light->SetColor(color);
+                light->Activate();
             }
         }
         if (layer["name"] == "Brazier") {

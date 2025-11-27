@@ -141,7 +141,7 @@ void Store::OpenStore() {
     std::string cost = std::to_string(mSwordRangeUpgradeCost);
     text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
     text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
 
     if (mManaUpgrade) {
         mTextColor = Color::Red;
@@ -166,7 +166,7 @@ void Store::OpenStore() {
     cost = std::to_string(mManaUpgradeCost);
     text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
     text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
 
     if (mHealthPointsUpgrade) {
         mTextColor = Color::Red;
@@ -191,7 +191,7 @@ void Store::OpenStore() {
     cost = std::to_string(mHealthPointsUpgradeCost);
     text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
     text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
 
     if (mHealCountUpgrade) {
         mTextColor = Color::Red;
@@ -215,7 +215,7 @@ void Store::OpenStore() {
     cost = std::to_string(mHealCountUpgradeCost);
     text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
     text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
 
     if (mSwordSpeedUpgrade) {
         mTextColor = Color::Red;
@@ -239,7 +239,7 @@ void Store::OpenStore() {
     cost = std::to_string(mSwordSpeedUpgradeCost);
     text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
     text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
 
     if (mSwordDamageUpgrade) {
         mTextColor = Color::Red;
@@ -263,7 +263,7 @@ void Store::OpenStore() {
     cost = std::to_string(mSwordDamageUpgradeCost);
     text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
     text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+    mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
 
     if (mFireballUpgrade) {
         mTextColor = Color::Red;
@@ -288,7 +288,7 @@ void Store::OpenStore() {
         cost = std::to_string(mFireballUpgradeCost);
         text = mStoreMenu->AddText(cost, Vector2::Zero, Vector2::Zero, buttonPointSize, mTextColor);
         text->SetPosition(Vector2(costPosX + text->GetSize().x / 2, button->GetPosition().y + button->GetSize().y / 2));
-        mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(20, 35));
+        mStoreMenu->AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(moneyImgX, button->GetPosition().y + button->GetSize().y / 2), Vector2(18.0f, 31.5f));
     }
 
     name = "FECHAR LOJA";

@@ -127,6 +127,7 @@ private:
     float mHeight;
 
     bool mIsOnGround;
+    bool mIsOnSpike;
     bool mIsOnMovingGround;
     Vector2 mMovingGroundVelocity;
     float mMoveSpeed;    // Velocidade de movimento

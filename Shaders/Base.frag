@@ -87,6 +87,13 @@ void main()
         lighting += uLights[i].color * uLights[i].intensity * attenuation;
     }
 
-    lighting = clamp(lighting, vec3(0.0), vec3(1.3));
+    // Encontra o valor mais alto entre R, G e B
+    float maxChannel = max(lighting.r, max(lighting.g, lighting.b));
+    float limit = 1.3;
+
+    // Se o canal mais forte ultrapassar o limite, escala tudo para baixo
+    if (maxChannel > limit) {
+        lighting *= (limit / maxChannel);
+    }
     outColor = vec4(baseColor * lighting, finalAlpha);
 }
