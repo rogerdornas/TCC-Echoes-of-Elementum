@@ -65,7 +65,7 @@ Fox::Fox(Game* game)
     mWidth = 100 * mGame->GetScale();
     mHeight = 170 * mGame->GetScale();
     mMoveSpeed = 300 * mGame->GetScale();
-    mHealthPoints = 700;
+    mHealthPoints = 450;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 150;

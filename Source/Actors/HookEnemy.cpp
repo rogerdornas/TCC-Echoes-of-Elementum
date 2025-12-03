@@ -61,7 +61,7 @@ HookEnemy::HookEnemy(Game *game)
     mWidth = 220 * mGame->GetScale();
     mHeight = 100 * mGame->GetScale();
     mMoveSpeed = 500 * mGame->GetScale();
-    mHealthPoints = 750;
+    mHealthPoints = 600;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 50;

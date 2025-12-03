@@ -125,10 +125,6 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mIsPlayingFinalCutscene(false)
     ,mCurrentCutscene(nullptr)
     ,mBackGroundTexture(nullptr)
-    ,mBackGroundTextureMainMenu(nullptr)
-    ,mBackGroundTextureLevel1(nullptr)
-    ,mBackGroundTextureLevel3(nullptr)
-    ,mBackGroundTextureLevel4(nullptr)
     ,mUseParallaxBackground(false)
     ,mAudio(nullptr)
     ,mHUD(nullptr)
@@ -250,58 +246,6 @@ bool Game::Initialize()
     mEvilCutscenes = {};
     mCutsceneIndex = 0;
 
-    // Load Background Images
-    const std::string backgroundAssets = "../Assets/Sprites/Background/";
-
-    // mBackGroundTextureMainMenu = LoadTexture(backgroundAssets + "Menu6.png");
-    //
-    // mBackGroundTextureLevel1 = LoadTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
-    // mBackGroundTextureLevel3 = LoadTexture(backgroundAssets + "fundoCortadoEspichado.png");
-    // mBackGroundTextureLevel4 = LoadTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art4.png");
-
-    // mRenderer->GetTexture(backgroundAssets + "Level2/6.png");
-    // mRenderer->GetTexture(backgroundAssets + "Level2/5.png");
-    // mRenderer->GetTexture(backgroundAssets + "Level2/4.png");
-    // mRenderer->GetTexture(backgroundAssets + "Level2/3.png");
-    // mRenderer->GetTexture(backgroundAssets + "Level2/2.png");
-    // mRenderer->GetTexture(backgroundAssets + "Level2/1.png");
-
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-    // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
-
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/7.png"));
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/6.png"));
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/5.png"));
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/4.png"));
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/3.png"));
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/2.png"));
-    // mBackgroundLayersLevel2.emplace_back(LoadTexture(backgroundAssets + "Level2/1.png"));
-    //
-    // mBackgroundLayersLevel3.emplace_back(LoadTexture(backgroundAssets + "Level3/1.png"));
-    // mBackgroundLayersLevel3.emplace_back(LoadTexture(backgroundAssets + "Level3/2.png"));
-    // mBackgroundLayersLevel3.emplace_back(LoadTexture(backgroundAssets + "Level3/3.png"));
-    // mBackgroundLayersLevel3.emplace_back(LoadTexture(backgroundAssets + "Level3/4.png"));
-    // mBackgroundLayersLevel3.emplace_back(LoadTexture(backgroundAssets + "Level3/5.png"));
-
-    // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
-    // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
-    // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
-    // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
-    // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
-
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/1.png"));
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/2.png"));
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/3.png"));
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/4.png"));
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/5.png"));
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/6.png"));
-    // mBackgroundLayersLevel4.emplace_back(LoadTexture(backgroundAssets + "Level4/7.png"));
-
     mTicksCount = SDL_GetTicks();
 
     SetGameScene(GameScene::MainMenu);
@@ -310,15 +254,6 @@ bool Game::Initialize()
 
     mSaveData = new SaveData(this);
     mSaveManager = new SaveManager(this);
-
-    // const std::string backgroundAssets = "../Assets/Sprites/Background/";
-    // mBackGroundTexture = LoadTexture(backgroundAssets + "fundoCortadoEspichado.png");
-    // mBackGroundTexture = LoadTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
-    // mBackGroundTexture = LoadTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art4.png");
-    // mSky = LoadTexture(backgroundAssets + "sky_cloud.png");
-    // mMountains = LoadTexture(backgroundAssets + "mountain2.png");
-    // mTreesBack = LoadTexture(backgroundAssets + "pine1.png");
-    // mTreesFront = LoadTexture(backgroundAssets + "pine2.png");
 
     return true;
 }
@@ -423,7 +358,11 @@ void Game::ChangeScene()
 
         // não carrega companheiro na última fase
         if (mNextScene != GameScene::Level5) {
-            // auto* fairy = new Fairy(this, 40, 40);
+            // auto* fairy = new Fairy(this);
+        }
+        // carrega companheiro só no prólogo
+        if (mNextScene == GameScene::Prologue) {
+            auto* fairy = new Fairy(this);
         }
 
         // Volta player
@@ -483,11 +422,11 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::LevelTeste) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
-        // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
+        // mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
 
         LoadLevel(levelsAssets + "Forest/Forest.json");
 
@@ -505,10 +444,10 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Coliseu) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
 
         // mUseParallaxBackground = false;
         // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Coliseu2.png");
@@ -527,9 +466,10 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Prologue) {
-        mUseParallaxBackground = false;
-        // mUseParallaxBackground = true;
-        mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
+
         LoadLevel(levelsAssets + "0-Prologue/Prologue.json");
 
         mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
@@ -546,12 +486,10 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level1) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
-
-        // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "BG_1.png");
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
 
         LoadLevel(levelsAssets + "1-Musgo/Musgo.json");
 
@@ -568,22 +506,14 @@ void Game::ChangeScene()
 
     else if (mNextScene == GameScene::Level2) {
         mUseParallaxBackground = true;
-        // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Level2/7.png");
 
-        // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "RedCave/6.png"));
-        // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "RedCave/5.png"));
-        // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "RedCave/4.png"));
-        // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "RedCave/3.png"));
-        // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "RedCave/2.png"));
-        // mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "RedCave/1.png"));
-
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
 
         LoadLevel(levelsAssets + "2-Run/Run.json");
 
@@ -601,11 +531,11 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level3) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
-        // mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
-        mBackgroundLayersLevel3.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
+        // mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
 
         LoadLevel(levelsAssets + "3-Swamp/Swamp.json");
 
@@ -623,15 +553,15 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level4) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/2.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/3.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/4.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/5.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/6.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/7.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/8.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/9.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/8.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/9.png"));
 
         // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/7.png"));
         // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/6.png"));
@@ -657,21 +587,13 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level5) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/2.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/3.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/4.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/5.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/6.png"));
-        mBackgroundLayersLevel4.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/7.png"));
-
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/7.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/6.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/5.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/4.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/3.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/2.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/7.png"));
 
         LoadLevel(levelsAssets + "5-FinalLevel/Level5.json");
 
@@ -687,15 +609,14 @@ void Game::ChangeScene()
     }
     else if (mNextScene == GameScene::Room0) {
         mUseParallaxBackground = true;
-        // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
 
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
 
         LoadLevel(levelsAssets + "Room0/Room0.json");
 
@@ -711,15 +632,14 @@ void Game::ChangeScene()
     }
     else if (mNextScene == GameScene::Room1) {
         mUseParallaxBackground = true;
-        // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
 
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
 
         LoadLevel(levelsAssets + "Room1/Room1.json");
 
@@ -734,10 +654,9 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Room2) {
-        mUseParallaxBackground = false;
-        // mUseParallaxBackground = true;
-        mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
-        // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Level2/4.png");
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
 
         LoadLevel(levelsAssets + "Room2/Room2.json");
 
@@ -754,15 +673,15 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::MirrorBoss) {
         mUseParallaxBackground = true;
 
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/2.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/3.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/4.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/5.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/6.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/7.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/8.png"));
-        mBackgroundLayersLevel2.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/9.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/8.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/9.png"));
 
         LoadLevel(levelsAssets + "MirrorBoss/MirrorBoss.json");
 
@@ -3628,50 +3547,7 @@ void Game::GenerateOutput()
 
     if (mCamera) {
         if (mUseParallaxBackground) {
-            switch (mGameScene) {
-                case GameScene::LevelTeste:
-                    DrawParallaxLayers(mBackgroundLayersLevel3);
-                break;
-
-                case GameScene::Coliseu:
-                    DrawParallaxLayers(mBackgroundLayersLevel2);
-                break;
-
-                case GameScene::Level1:
-                    DrawParallaxLayers(mBackgroundLayersLevel3);
-                    break;
-
-                case GameScene::Level2:
-                    DrawParallaxLayers(mBackgroundLayersLevel2);
-                    break;
-
-                case GameScene::Level3:
-                    DrawParallaxLayers(mBackgroundLayersLevel3);
-                    break;
-
-                case GameScene::Level4:
-                    DrawParallaxLayers(mBackgroundLayersLevel4);
-                    break;
-
-                case GameScene::Level5:
-                    DrawParallaxLayers(mBackgroundLayersLevel4);
-                    break;
-
-                case GameScene::Room0:
-                    DrawParallaxLayers(mBackgroundLayersLevel2);
-                    break;
-
-                case GameScene::Room1:
-                    DrawParallaxLayers(mBackgroundLayersLevel2);
-                    break;
-
-                case GameScene::MirrorBoss:
-                    DrawParallaxLayers(mBackgroundLayersLevel2);
-                    break;
-
-                default:
-                    break;
-            }
+            DrawParallaxLayers(mBackgroundLayers);
         }
         else {
             // Vector2 size(3858, 800);
@@ -3824,22 +3700,14 @@ void Game::UnloadScene()
 
     mSpawnPoints.clear();
 
-    // if (mBackGroundTexture) {
-    //     SDL_DestroyTexture(mBackGroundTexture);
-    //     mBackGroundTexture = nullptr;
-    // }
     if (mBackGroundTexture) {
-        // mBackGroundTexture->Unload();
-        // delete mBackGroundTexture;
         mBackGroundTexture = nullptr;
     }
 
     mRenderer->UnloadAllTextures();
     mRenderer->ClearLights();
 
-    mBackgroundLayersLevel2.clear();
-    mBackgroundLayersLevel3.clear();
-    mBackgroundLayersLevel4.clear();
+    mBackgroundLayers.clear();
 
     delete mCamera;
     mCamera = nullptr;
@@ -3874,48 +3742,6 @@ void Game::Shutdown()
     }
 
     mFonts.clear();
-
-    // Destroi textures
-    if (mBackGroundTextureMainMenu) {
-        SDL_DestroyTexture(mBackGroundTextureMainMenu);
-        mBackGroundTextureMainMenu = nullptr;
-    }
-    if (mBackGroundTextureLevel1) {
-        SDL_DestroyTexture(mBackGroundTextureLevel1);
-        mBackGroundTextureLevel1 = nullptr;
-    }
-    // for (SDL_Texture*& t : mBackgroundLayersLevel2) {
-    //     if (t) {
-    //         SDL_DestroyTexture(t);
-    //         t = nullptr;
-    //     }
-    // }
-    mBackgroundLayersLevel2.clear();
-
-    // for (SDL_Texture*& t : mBackgroundLayersLevel3) {
-    //     if (t) {
-    //         SDL_DestroyTexture(t);
-    //         t = nullptr;
-    //     }
-    // }
-    mBackgroundLayersLevel3.clear();
-
-    // for (SDL_Texture*& t : mBackgroundLayersLevel4) {
-    //     if (t) {
-    //         SDL_DestroyTexture(t);
-    //         t = nullptr;
-    //     }
-    // }
-    mBackgroundLayersLevel4.clear();
-
-    if (mBackGroundTextureLevel3) {
-        SDL_DestroyTexture(mBackGroundTextureLevel3);
-        mBackGroundTextureLevel3 = nullptr;
-    }
-    if (mBackGroundTextureLevel4) {
-        SDL_DestroyTexture(mBackGroundTextureLevel4);
-        mBackGroundTextureLevel4 = nullptr;
-    }
 
     // Destroi audio
     delete mAudio;

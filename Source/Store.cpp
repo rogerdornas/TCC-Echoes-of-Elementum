@@ -338,7 +338,7 @@ void Store::LoadStoreMessage() {
         text = mStoreMessage->AddText("PRESSIONE [ESPAÇO] PARA ABRIR A LOJA", Vector2::Zero, Vector2::Zero, static_cast<int>(30));
     }
     else {
-        text = mStoreMessage->AddText("PRESSIONE [Y] PARA ABRIR A LOJA", Vector2::Zero, Vector2::Zero, static_cast<int>(30));
+        text = mStoreMessage->AddText("PRESSIONE [LS] PARA ABRIR A LOJA", Vector2::Zero, Vector2::Zero, static_cast<int>(30));
     }
     text->SetPosition(Vector2(mStoreMessage->GetSize().x / 2, 35.0f));
     mStoreMessageOpened = true;

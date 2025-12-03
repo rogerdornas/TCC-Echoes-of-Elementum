@@ -9,7 +9,7 @@
 class Fairy : public  Actor
 {
 public:
-    Fairy(Game *game, float width, float height);
+    Fairy(Game *game);
 
     void OnUpdate(float deltaTime) override;
     void ChangeResolution(float oldScale, float newScale) override;

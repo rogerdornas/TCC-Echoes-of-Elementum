@@ -9,10 +9,10 @@
 #include "../Components/Drawing/RectComponent.h"
 #include "../Components/AABBComponent.h"
 
-Fairy::Fairy(Game *game, float width, float height)
+Fairy::Fairy(Game *game)
     :Actor(game)
-    ,mWidth(width * mGame->GetScale())
-    ,mHeight(height * mGame->GetScale())
+    ,mWidth(40)
+    ,mHeight(40)
     ,mSpeed(400.0f * mGame->GetScale())
     ,mLerpSpeed(2.0f * mGame->GetScale())
     ,mOffsetPosition(Vector2(-70, -70) * mGame->GetScale())

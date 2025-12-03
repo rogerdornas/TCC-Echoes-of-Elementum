@@ -40,8 +40,8 @@ Money::Money(class Game *game, MoneyType type)
 
         case MoneyType::Medium:
             mValue = 5;
-            mWidth = 26.0f * mGame->GetScale();
-            mHeight = 45.5f * mGame->GetScale();
+            mWidth = 25.0f * mGame->GetScale();
+            mHeight = 43.75f * mGame->GetScale();
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Money/CristalMedium.png", "",
                                                             mWidth, mHeight, 5000);
             break;

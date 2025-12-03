@@ -41,7 +41,7 @@ Mushroom::Mushroom(Game *game)
     mWidth = 80 * mGame->GetScale();
     mHeight = 110 * mGame->GetScale();
     mMoveSpeed = 300 * mGame->GetScale();
-    mHealthPoints = 90;
+    mHealthPoints = 55;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 20;

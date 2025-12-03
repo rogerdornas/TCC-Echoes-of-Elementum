@@ -90,7 +90,7 @@ void Skill::LoadSkillMessage() {
     mSkillMessage->SetSize(Vector2(mGame->GetLogicalWindowWidth() / 2, mGame->GetLogicalWindowHeight() / 2));
     mSkillMessage->SetPosition(Vector2(mGame->GetLogicalWindowWidth() / 4, mGame->GetLogicalWindowHeight() / 4));
 
-    mSkillMessage->AddImage("../Assets/Sprites/Background/Store.png", Vector2::Zero, mSkillMessage->GetSize());
+    mSkillMessage->AddImage("../Assets/Sprites/Background/Store.png", mSkillMessage->GetSize() / 2, mSkillMessage->GetSize());
 
     UIText* text;
     UIText* skillText;

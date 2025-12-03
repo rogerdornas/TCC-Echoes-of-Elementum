@@ -443,17 +443,6 @@ private:
     void DrawParallaxLayers(std::vector<Texture*> backgroundLayers);
 
     bool mUseParallaxBackground;
-    SDL_Texture* mBackGroundTextureMainMenu;
-    SDL_Texture* mBackGroundTextureLevel1;
-    std::vector<Texture*> mBackgroundLayersLevel2;
-    std::vector<Texture*> mBackgroundLayersLevel3;
-    std::vector<Texture*> mBackgroundLayersLevel4;
-    SDL_Texture* mBackGroundTextureLevel3;
-    SDL_Texture* mBackGroundTextureLevel4;
+    std::vector<Texture*> mBackgroundLayers;
     Texture* mBackGroundTexture;
-
-    // SDL_Texture *mSky;
-    // SDL_Texture *mMountains;
-    // SDL_Texture *mTreesBack;
-    // SDL_Texture *mTreesFront;
 };

@@ -45,9 +45,11 @@ void Action::Start() {
 
         if (direction == "right") {
             player->SetRotation(0);
+            player->SetScale(Vector2(1, 1));
             // mMoveDirection = Vector2(1.0f, 0.0f);
         } else if (direction == "left") {
             player->SetRotation(Math::Pi);
+            player->SetScale(Vector2(-1, 1));
         }
             // mMoveDirection = Vector2(-1.0f, 0.0f);
         // } else if (direction == "up") {
@@ -63,12 +65,14 @@ void Action::Start() {
         mDuration = mParams["duration"];
         mTimer = 0.0f;
         mGame->GetPlayer()->SetRotation(Math::Pi);
+        mGame->GetPlayer()->SetScale(Vector2(-1, 1));
     }
 
     else if (mType == "playerLookRight") {
         mDuration = mParams["duration"];
         mTimer = 0.0f;
         mGame->GetPlayer()->SetRotation(0);
+        mGame->GetPlayer()->SetScale(Vector2(1, 1));
     }
 
     else if (mType == "wait" || mType == "playerStop") {

@@ -27,7 +27,7 @@ Snake::Snake(Game *game)
     mWidth = 100 * mGame->GetScale();
     mHeight = 42 * mGame->GetScale();
     mMoveSpeed = 300 * mGame->GetScale();
-    mHealthPoints = 60;
+    mHealthPoints = 40;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 7;

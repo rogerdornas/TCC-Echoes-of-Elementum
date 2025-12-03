@@ -65,7 +65,7 @@ Moth::Moth(Game *game)
     mWidth = 200 * mGame->GetScale();
     mHeight = 200 * mGame->GetScale();
     mMoveSpeed = 500 * mGame->GetScale();
-    mHealthPoints = 1000;
+    mHealthPoints = 700;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 20;
     mMoneyDrop = 200;

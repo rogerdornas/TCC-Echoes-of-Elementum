@@ -55,7 +55,7 @@ Frog::Frog(Game* game)
     mWidth = 165 * mGame->GetScale();
     mHeight = 165 * mGame->GetScale();
     mMoveSpeed = 300 * mGame->GetScale();
-    mHealthPoints = 500;
+    mHealthPoints = 400;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 100;

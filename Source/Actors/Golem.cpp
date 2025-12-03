@@ -183,7 +183,7 @@ void Golem::OnUpdate(float deltaTime) {
     if (mHealthPoints <= 0.65f * mMaxHealthPoints) {
         mStopDuration = 1.0f;
         mFireballDuration = 0.7f;
-        mMoveSpeedIncrease = 2;
+        mMoveSpeedIncrease = 1.6f;
         mRunningSoundIntervalDuration = 0.2;
         FireballRain(deltaTime);
     }

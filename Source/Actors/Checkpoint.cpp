@@ -49,7 +49,7 @@ Checkpoint::Checkpoint(class Game *game, float width, float height, Vector2 posi
 void Checkpoint::OnProcessInput(const Uint8 *keyState, SDL_GameController &controller) {
     Player* player = mGame->GetPlayer();
     if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
-        if (keyState[SDL_SCANCODE_SPACE] || SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_Y)) {
+        if (keyState[SDL_SCANCODE_SPACE] || SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_LEFTSTICK)) {
             if (mGame->GetStore()->StoreMessageOpened() && player->GetIsOnGround()) {
                 mGame->GetStore()->CloseStoreMessage();
                 mStoreMessageOpened = false;
