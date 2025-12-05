@@ -24,7 +24,7 @@
 Player::Player(Game* game)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
-    ,mElementalMode(ElementalMode::Lightning)
+    ,mElementalMode(ElementalMode::Earth)
     ,mWidth(45 * mGame->GetScale())
     ,mHeight(75 * mGame->GetScale())
 
@@ -58,6 +58,13 @@ Player::Player(Game* game)
     ,mLightningDashDuration(0.2f)
     ,mLightningDashCooldown(0.5f)
     ,mLightningDashDamage(5.0f)
+
+    ,mCanGroundSlam(true)
+    ,mIsDiving(false)
+    ,mGroundSlamSpeed(2000)
+    ,mGroundSlamDamage(15)
+    ,mGroundSlamCameraShakeStrength(70.0f)
+    ,mGroundSlamCameraShakeDuration(0.2f)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
@@ -224,13 +231,16 @@ Player::Player(Game* game)
     std::vector dash = {6, 7, 7, 7, 8};
     mDrawComponent->AddAnimation("dash", dash);
 
-    std::vector run = {34, 35, 36, 37, 38, 39};
+    std::vector lightningDash = {7, 34, 35, 35, 36, 36, 37, 37, 8};
+    mDrawComponent->AddAnimation("lightningDash", lightningDash);
+
+    std::vector run = {38, 39, 40, 41, 42, 43};
     mDrawComponent->AddAnimation("run", run);
 
     std::vector heal = {20, 21, 22, 23, 24, 24, 23, 22, 21, 20};
     mDrawComponent->AddAnimation("heal", heal);
 
-    std::vector wallSlide = {40};
+    std::vector wallSlide = {44};
     mDrawComponent->AddAnimation("wallSlide", wallSlide);
 
     std::vector hurt = {25, 26};
@@ -259,7 +269,7 @@ Player::Player(Game* game)
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1600 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 2000 * mGame->GetScale());
     mAABBComponent = new AABBComponent(this, v1, v3);
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
@@ -367,12 +377,12 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         mIsGoingLeft = true;
     }
 
-    if (!left && !leftSlow && !right && !rightSlow && !mDashComponent->GetIsDashing() && !mIsFireAttacking &&
+    if (!left && !leftSlow && !right && !rightSlow && !mDashComponent->GetIsDashing() && !mIsDiving && !mIsFireAttacking &&
         !mIsOnMovingGround && (mWallJumpTimer >= mWallJumpMaxTime) && (mKnockBackTimer >= mKnockBackDuration) && (!mIsHooking)) {
         mRigidBodyComponent->SetVelocity(Vector2(0.0f, mRigidBodyComponent->GetVelocity().y));
     }
     else {
-        if (left && !mDashComponent->GetIsDashing() && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime) &&
+        if (left && !mDashComponent->GetIsDashing() && !mIsDiving && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime) &&
             (mKnockBackTimer >= mKnockBackDuration) && (!mIsHooking)) {
             SetRotation(Math::Pi);
             SetScale(Vector2(-1.0f, 1.0f));
@@ -395,7 +405,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             }
         }
 
-        if (leftSlow && !mDashComponent->GetIsDashing() && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime) &&
+        if (leftSlow && !mDashComponent->GetIsDashing() && !mIsDiving && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime) &&
             (mKnockBackTimer >= mKnockBackDuration) && (!mIsHooking)) {
             SetRotation(Math::Pi);
             SetScale(Vector2(-1.0f, 1.0f));
@@ -418,7 +428,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             }
         }
 
-        if (right && !mDashComponent->GetIsDashing() && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime)
+        if (right && !mDashComponent->GetIsDashing() && !mIsDiving && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime)
             && (mKnockBackTimer >= mKnockBackDuration) && (!mIsHooking)) {
             SetRotation(0);
             SetScale(Vector2(1.0f, 1.0f));
@@ -441,7 +451,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             }
         }
 
-        if (rightSlow && !mDashComponent->GetIsDashing() && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime)
+        if (rightSlow && !mDashComponent->GetIsDashing() && !mIsDiving && !mIsFireAttacking && (mWallJumpTimer >= mWallJumpMaxTime)
             && (mKnockBackTimer >= mKnockBackDuration) && (!mIsHooking)) {
             SetRotation(0);
             SetScale(Vector2(1.0f, 1.0f));
@@ -486,8 +496,18 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     }
 
     // Dash
-    if (dash) {
-        UseDash();
+    if (mElementalMode == ElementalMode::Earth) {
+        if (dash && !down) {
+            UseDash();
+        }
+        if (dash && down) {
+            UseGroundSlam();
+        }
+    }
+    else {
+        if (dash) {
+            UseDash();
+        }
     }
 
     // Jump
@@ -911,6 +931,10 @@ void Player::ResolveGroundCollision() {
 
                 // colidiu top
                 if (collisionNormal == Vector2::NegUnitY) {
+                    if (mIsDiving) {
+                        mIsDiving = false;
+                        mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
+                    }
                     mIsOnGround = true;
                     mIsJumping = false;
                     // Resetar dash no ar
@@ -1092,6 +1116,10 @@ void Player::ResolveGroundCollision() {
                     if (collisionNormal == Vector2::NegUnitY) {
                         mIsOnSpike = true;
                     }
+                    if (mIsDiving) {
+                        mIsDiving = false;
+                        mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
+                    }
                     mDashComponent->StopDash();
 
                     ReceiveHit(10, collisionNormal);
@@ -1172,9 +1200,25 @@ void Player::ResolveEnemyCollision() {
                         ReceiveHit(e->GetContactDamage(), collisionNormal);
                     }
                 }
-                else if (!mIsInvulnerable && !e->IsFrozen()) {
-                    collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
-                    ReceiveHit(e->GetContactDamage(), collisionNormal);
+                else {
+                    if (mIsDiving) {
+                        float dist = GetPosition().x - e->GetPosition().x;
+
+                        auto it = std::find(mEnemiesHitByGroundSlam.begin(), mEnemiesHitByGroundSlam.end(), e);
+                        if (it == mEnemiesHitByGroundSlam.end()) {
+                            if (dist < 0) {
+                                e->ReceiveHit(mGroundSlamDamage, Vector2::UnitX);
+                            }
+                            else {
+                                e->ReceiveHit(mGroundSlamDamage, Vector2::NegUnitX);
+                            }
+                            mEnemiesHitByGroundSlam.push_back(e);
+                        }
+                    }
+                    else if (!mIsInvulnerable && !e->IsFrozen()) {
+                        collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
+                        ReceiveHit(e->GetContactDamage(), collisionNormal);
+                    }
                 }
             }
 
@@ -1210,7 +1254,7 @@ void Player::ResolveEnemyCollision() {
 
 void Player::UseDash() {
     if (mCanDash) {
-        if (!mIsFireAttacking) {
+        if (!mIsFireAttacking && !mIsDiving) {
             if (mDashComponent->UseDash(mIsOnGround)) {
                 mEnemiesHitByCurrentDash.clear();
                 if (mIsOnGround) {
@@ -1235,10 +1279,29 @@ void Player::UseDash() {
     }
 }
 
+void Player::UseGroundSlam() {
+    if (mElementalMode == ElementalMode::Earth) {
+        if (!mIsDiving && !mDashComponent->GetIsDashing() && !mIsWallSliding) {
+            mEnemiesHitByGroundSlam.clear();
+            mIsDiving = true;
+            mRigidBodyComponent->SetVelocity(Vector2(0, mGroundSlamSpeed));
+
+            mIsHooking = false;
+            mIsHookThrowing = false;
+            mHookAnimProgress = 1.0f;
+            mIsHookAnimating = false;
+            mHookPoint = nullptr;
+            if (mDrawRopeComponent) {
+                mDrawRopeComponent->SetVisible(false);
+            }
+        }
+    }
+}
+
 void Player::UseJump() {
     //Início do pulo
     if (!mIsFireAttacking) {
-        if (!mDashComponent->GetIsDashing()) {
+        if (!mDashComponent->GetIsDashing() && !mIsDiving) {
             // Pulo do chao
             if ((mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump || mIsOnSpike) && !mIsJumping && mCanJump && (mWallJumpTimer >= mWallJumpMaxTime)) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce)
@@ -1303,7 +1366,9 @@ void Player::UseJump() {
 }
 
 void Player::UseSword() {
-    if (!mPrevSwordPressed && mSwordCooldownTimer >= mSwordCooldownDuration) {
+    if (!mPrevSwordPressed && mSwordCooldownTimer >= mSwordCooldownDuration &&
+        !mDashComponent->GetIsDashing() && !mIsDiving)
+    {
         mGame->GetAudio()->PlayVariantSound("SwordSlash/SwordSlash.wav", 11);
         // Ativa a espada
         mSword->SetState(ActorState::Active);
@@ -1330,7 +1395,8 @@ void Player::UseFireBall() {
     if (mCanFireBall) {
         if (!mPrevFireBallPressed &&
             mFireBallCooldownTimer >= mFireBallCooldownDuration &&
-            mMana >= mFireballManaCost)
+            mMana >= mFireballManaCost &&
+            !mDashComponent->GetIsDashing() && !mIsDiving)
         {
             std::vector<FireBall* > fireBalls = mGame->GetFireBalls();
             for (FireBall* f: fireBalls) {
@@ -1359,7 +1425,7 @@ void Player::UseFireBall() {
 
 void Player::UseFreeze(bool up, bool down) {
     if (mCanFreeze) {
-        if (mMana >= mFreezeManaCost) {
+        if (mMana >= mFreezeManaCost && !mDashComponent->GetIsDashing() && !mIsDiving) {
             AttachedEffect freezeEffect;
             if (mIntervalBetweenFreezeEmitTimer >= mIntervalBetweenFreezeEmitDuration) {
                 mIsFreezingDown = false;
@@ -1480,6 +1546,7 @@ void Player::UseHook() {
         if (nearestHookPoint &&
             !mPrevHookPressed &&
             !mDashComponent->GetIsDashing() &&
+            !mIsDiving &&
             mHookCooldownTimer >= mHookCooldownDuration)
         {
             mHookPoint = nearestHookPoint;
@@ -1529,7 +1596,13 @@ void Player::ManageAnimations() {
         mDrawComponent->SetAnimation("hurt");
     }
     else if (mDashComponent->GetIsDashing()) {
-        mDrawComponent->SetAnimation("dash");
+        if (mElementalMode == ElementalMode::Lightning) {
+            mDrawComponent->SetAnimation("lightningDash");
+            mDrawComponent->SetAnimFPS(9.0f / mLightningDashDuration);
+        }
+        else {
+            mDrawComponent->SetAnimation("dash");
+        }
     }
     else if (mSword->GetState() == ActorState::Active) {
         if (mSword->GetRotation() == 3 * Math::Pi / 2) {
@@ -1626,6 +1699,7 @@ void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType dam
 
     if (!mIsInvulnerable && mGame->GetGamePlayState() == Game::GamePlayState::Playing) {
         mHealthPoints -= damage;
+        mIsDiving = false;
         mIsInvulnerable = true;
         mHurtTimer = 0;
 

@@ -5,16 +5,16 @@
             "y": 3104.0
         },
         "scene": "Coliseu",
-        "total_play_time": 67059.4453125
+        "total_play_time": 68788.046875
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 284,
+        "death_counter": 292,
         "max_jumps_in_air": 1,
-        "money": 1984
+        "money": 2762
     },
     "upgrades": {
         "fireball": true,
@@ -28,7 +28,7 @@
     "world_state": {
         "BushMonsterDefeated": true,
         "FoxDefeated": true,
-        "FrogDefeated": false,
+        "FrogDefeated": true,
         "GolemDefeated": true,
         "HookEnemyDefeated": false,
         "Level1ArenaDone": true,

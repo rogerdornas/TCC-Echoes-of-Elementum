@@ -128,6 +128,7 @@ private:
     void ResolveEnemyCollision();
 
     void UseDash();
+    void UseGroundSlam();
     void UseJump();
     void UseSword();
     void UseFireBall();
@@ -175,6 +176,14 @@ private:
     float mLightningDashCooldown;
     bool mLightningDashDamage;
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
+
+    bool mCanGroundSlam;
+    bool mIsDiving;
+    float mGroundSlamSpeed;
+    float mGroundSlamDamage;
+    float mGroundSlamCameraShakeStrength;
+    float mGroundSlamCameraShakeDuration;
+    std::vector<class Enemy*> mEnemiesHitByGroundSlam;
 
     Sword* mSword;
     bool mPrevSwordPressed;             // Se apertou botão de espada no último frame
