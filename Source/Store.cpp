@@ -312,6 +312,7 @@ void Store::OpenStore() {
 void Store::CloseStore() {
     if (mStoreMenu != nullptr) {
         mStoreMenu->Close();
+        mStoreMenu = nullptr;
         mStoreOpened = false;
         mGame->TogglePause();
     }
@@ -347,6 +348,7 @@ void Store::LoadStoreMessage() {
 void Store::CloseStoreMessage() {
     if (mStoreMessage != nullptr) {
         mStoreMessage->Close();
+        mStoreMessage = nullptr;
     }
     mStoreMessageOpened = false;
 }

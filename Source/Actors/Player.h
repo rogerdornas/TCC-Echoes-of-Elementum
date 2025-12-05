@@ -16,12 +16,10 @@ class Player : public Actor
 {
 public:
     enum class ElementalMode {
-        Neutral,
         Fire,
         Ice,
-        Lightning,
         Earth,
-        Plant,
+        Lightning
     };
     enum class WallSlideSide { notSliding, left, right };
     enum class EffectDir { Front, Up, Down };
@@ -40,6 +38,9 @@ public:
     float GetHeight() override { return mHeight; }
 
     void SetJumpEffects();
+
+    void SetElementalMode(ElementalMode mode);
+    ElementalMode GetElementalMode() { return mElementalMode; }
 
     bool GetIsOnGround() const { return mIsOnGround; }
     void SetMaxJumpsInAir(int jumps) { mMaxJumpsInAir = jumps; }
@@ -136,6 +137,8 @@ private:
     void UseHeal();
     void UseHook();
 
+    void OpenElementalMenu();
+
     void ManageAnimations();
 
     Vector2 mStartingPosition;
@@ -171,10 +174,13 @@ private:
     float mDashSpeed;
     float mDashDuration;
     float mDashCooldown;
+
+    bool mIsLightningDashing;
     float mLightningDashSpeed;
     float mLightningDashDuration;
     float mLightningDashCooldown;
-    bool mLightningDashDamage;
+    float mLightningDashDamage;
+    float mLightningDashManaCost;
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
 
     bool mCanGroundSlam;
@@ -183,6 +189,7 @@ private:
     float mGroundSlamDamage;
     float mGroundSlamCameraShakeStrength;
     float mGroundSlamCameraShakeDuration;
+    float mGroundSlamManaCost;
     std::vector<class Enemy*> mEnemiesHitByGroundSlam;
 
     Sword* mSword;
@@ -284,6 +291,8 @@ private:
     bool mIsHookThrowing;      // Se a corda está viajando pelo ar
     Vector2 mCurrentRopeTip;   // Onde está a ponta da corda agora
     float mRopeThrowSpeed;     // Velocidade visual da corda (deve ser rápida)
+
+    class RadialMenu* mRadialMenu;
 
     // Atributos para animar sprites
     bool mIsRunning;

@@ -230,7 +230,7 @@ void CloneEnemy::OnProcessInput(const uint8_t* state, SDL_GameController &contro
 
     inputCommand.sword = mGame->IsActionPressed(Game::Action::Attack, state, &controller);
 
-    inputCommand.fireBall = mGame->IsActionPressed(Game::Action::FireBall, state, &controller);
+    inputCommand.fireBall = mGame->IsActionPressed(Game::Action::Skill1, state, &controller);
 
 
     inputCommand.heal = mGame->IsActionPressed(Game::Action::Heal, state, &controller) ||

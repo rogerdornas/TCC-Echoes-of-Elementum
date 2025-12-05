@@ -9,6 +9,7 @@
 #include "HookPoint.h"
 #include "Mushroom.h"
 #include "../Game.h"
+#include "../RadialMenu.h"
 #include "../Actors/Sword.h"
 #include "../Actors/JumpEffect.h"
 #include "../Actors/FireBall.h"
@@ -24,7 +25,7 @@
 Player::Player(Game* game)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
-    ,mElementalMode(ElementalMode::Earth)
+    ,mElementalMode(ElementalMode::Fire)
     ,mWidth(45 * mGame->GetScale())
     ,mHeight(75 * mGame->GetScale())
 
@@ -54,10 +55,12 @@ Player::Player(Game* game)
     ,mDashSpeed(1500)
     ,mDashDuration(0.2f)
     ,mDashCooldown(0.5f)
+    ,mIsLightningDashing(false)
     ,mLightningDashSpeed(1800)
     ,mLightningDashDuration(0.2f)
     ,mLightningDashCooldown(0.5f)
     ,mLightningDashDamage(5.0f)
+    ,mLightningDashManaCost(15.0f)
 
     ,mCanGroundSlam(true)
     ,mIsDiving(false)
@@ -65,6 +68,7 @@ Player::Player(Game* game)
     ,mGroundSlamDamage(15)
     ,mGroundSlamCameraShakeStrength(70.0f)
     ,mGroundSlamCameraShakeDuration(0.2f)
+    ,mGroundSlamManaCost(30.0f)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
@@ -161,6 +165,8 @@ Player::Player(Game* game)
     ,mIsHookThrowing(false)
     ,mCurrentRopeTip(Vector2::Zero)
     ,mRopeThrowSpeed(3000.0f)
+
+    ,mRadialMenu(nullptr)
 
     ,mIsRunning(false)
     ,mHurtDuration(0.2f)
@@ -269,7 +275,7 @@ Player::Player(Game* game)
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 2000 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1800 * mGame->GetScale());
     mAABBComponent = new AABBComponent(this, v1, v3);
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
@@ -356,14 +362,17 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
 
     bool sword = mGame->IsActionPressed(Game::Action::Attack, state, &controller);
 
-    bool fireBall = mGame->IsActionPressed(Game::Action::FireBall, state, &controller);
+    bool skill1 = mGame->IsActionPressed(Game::Action::Skill1, state, &controller);
 
-    bool freeze = mGame->IsActionPressed(Game::Action::Freeze, state, &controller);
+    bool skill2 = mGame->IsActionPressed(Game::Action::Skill2, state, &controller);
 
     bool heal = mGame->IsActionPressed(Game::Action::Heal, state, &controller) ||
-                SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) > 10000;
+                SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERRIGHT) > 10000;
 
     bool hook = mGame->IsActionPressed(Game::Action::Hook, state, &controller);
+
+    bool radialMenu = SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) > 10000;
+
 
     if (mInvertControls) {
         std::swap(left, right);
@@ -475,11 +484,11 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         }
     }
 
-    if (lookUp) {
+    if (lookUp && !radialMenu) {
         mGame->GetCamera()->SetLookUp();
     }
 
-    if (lookDown) {
+    if (lookDown && !radialMenu) {
         mGame->GetCamera()->SetLookDown();
     }
 
@@ -495,19 +504,17 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         }
     }
 
-    // Dash
-    if (mElementalMode == ElementalMode::Earth) {
-        if (dash && !down) {
-            UseDash();
-        }
-        if (dash && down) {
-            UseGroundSlam();
-        }
+    if (radialMenu) {
+        OpenElementalMenu();
     }
-    else {
-        if (dash) {
-            UseDash();
-        }
+    else if (mRadialMenu) {
+        mRadialMenu->Close();
+        mRadialMenu = nullptr;
+    }
+
+    // Dash
+    if (dash) {
+        UseDash();
     }
 
     // Jump
@@ -525,24 +532,29 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     }
     mPrevSwordPressed = sword;
 
-    // FireBall
-    if (fireBall) {
-        UseFireBall();
-    }
-    mPrevFireBallPressed = fireBall;
-
-    // Freeze
-    if (freeze) {
-        UseFreeze(up, down);
+    // Skill1
+    if (skill1) {
+        if (mElementalMode == ElementalMode::Fire) {
+            UseFireBall();
+        }
+        if (mElementalMode == ElementalMode::Ice) {
+            UseFreeze(up, down);
+        }
+        if (mElementalMode == ElementalMode::Earth) {
+            if (down && !mIsOnGround) {
+                UseGroundSlam();
+            }
+        }
     }
     else {
         mIsFreezingDown = false;
         mIsFreezingUp = false;
         mIsFreezingFront = false;
     }
+    mPrevFireBallPressed = skill1;
 
     // Heal
-    if (heal && !left && !leftSlow && !right && !rightSlow && !jump && !dash && !sword && !fireBall) {
+    if (heal && !left && !leftSlow && !right && !rightSlow && !jump && !dash && !sword && !skill1) {
         UseHeal();
     }
     else {
@@ -661,6 +673,19 @@ void Player::OnUpdate(float deltaTime) {
         mWallSlideSide = WallSlideSide::notSliding;
     }
 
+    if (mIsDiving) {
+        mRigidBodyComponent->SetMaxSpeedY(2500);
+    }
+    else {
+        mRigidBodyComponent->SetMaxSpeedY(1800);
+    }
+
+    if (mIsLightningDashing) {
+        if (!mDashComponent->GetIsDashing()) {
+            mIsLightningDashing = false;
+        }
+    }
+
     if (mIsFireAttacking) {
         mRigidBodyComponent->SetVelocity(Vector2(-GetForward().x * mFireballRecoil, 0.0f) + mMovingGroundVelocity);
     }
@@ -710,6 +735,7 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mIsWallSliding) {
         mTimerOutOfWallToJump = 0;
+        mIsDiving = false;
     }
     else {
         mTimerOutOfWallToJump += deltaTime;
@@ -1187,7 +1213,7 @@ void Player::ResolveEnemyCollision() {
         for (Enemy* e: enemies) {
             if (mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
                 if (mDashComponent->GetIsDashing()) {
-                    if (mElementalMode == ElementalMode::Lightning) {
+                    if (mIsLightningDashing) {
                         auto it = std::find(mEnemiesHitByCurrentDash.begin(), mEnemiesHitByCurrentDash.end(), e);
                         if (it == mEnemiesHitByCurrentDash.end()) {
                             e->ReceiveHit(mLightningDashDamage, GetForward(), false);
@@ -1256,7 +1282,11 @@ void Player::UseDash() {
     if (mCanDash) {
         if (!mIsFireAttacking && !mIsDiving) {
             if (mDashComponent->UseDash(mIsOnGround)) {
-                mEnemiesHitByCurrentDash.clear();
+                if (mElementalMode == ElementalMode::Lightning && mMana >= mLightningDashManaCost) {
+                    mIsLightningDashing = true;
+                    mEnemiesHitByCurrentDash.clear();
+                    mMana -= mLightningDashManaCost;
+                }
                 if (mIsOnGround) {
                     for (JumpEffect* j: mJumpEffects) {
                         if (j->GetState() == ActorState::Paused) {
@@ -1281,11 +1311,16 @@ void Player::UseDash() {
 
 void Player::UseGroundSlam() {
     if (mElementalMode == ElementalMode::Earth) {
-        if (!mIsDiving && !mDashComponent->GetIsDashing() && !mIsWallSliding) {
+        if (!mIsDiving &&
+            !mDashComponent->GetIsDashing() &&
+            !mIsWallSliding &&
+            mMana >= mGroundSlamManaCost)
+        {
             mEnemiesHitByGroundSlam.clear();
             mIsDiving = true;
             mRigidBodyComponent->SetVelocity(Vector2(0, mGroundSlamSpeed));
 
+            mMana -= mGroundSlamManaCost;
             mIsHooking = false;
             mIsHookThrowing = false;
             mHookAnimProgress = 1.0f;
@@ -1586,6 +1621,35 @@ void Player::UseHook() {
     }
 }
 
+void Player::SetElementalMode(ElementalMode mode) {
+    mElementalMode = mode;
+    if (mElementalMode == ElementalMode::Lightning) {
+        mDashComponent->SetDashSpeed(mLightningDashSpeed);
+        mDashComponent->SetDashDuration(mLightningDashDuration);
+        mDashComponent->SetDashCooldown(mLightningDashCooldown);
+    }
+    else {
+        mDashComponent->SetDashSpeed(mDashSpeed);
+        mDashComponent->SetDashDuration(mDashDuration);
+        mDashComponent->SetDashCooldown(mDashCooldown);
+    }
+}
+
+
+void Player::OpenElementalMenu() {
+    if (!mRadialMenu) {
+        mRadialMenu = new RadialMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", 250.0f);
+
+        // Adiciona os elementos
+        mRadialMenu->AddRadialOption("FOGO", [this]() { SetElementalMode(ElementalMode::Fire); });
+        mRadialMenu->AddRadialOption("GELO", [this]() { SetElementalMode(ElementalMode::Ice); });
+        mRadialMenu->AddRadialOption("TERRA", [this]() { SetElementalMode(ElementalMode::Earth); });
+        mRadialMenu->AddRadialOption("RAIO", [this]() { SetElementalMode(ElementalMode::Lightning); });
+
+        mRadialMenu->SetSelectedOption(static_cast<int>(mElementalMode));
+    }
+}
+
 void Player::ManageAnimations() {
     mDrawComponent->SetAnimFPS(10.0f);
     if (mIsDead) {
@@ -1596,7 +1660,7 @@ void Player::ManageAnimations() {
         mDrawComponent->SetAnimation("hurt");
     }
     else if (mDashComponent->GetIsDashing()) {
-        if (mElementalMode == ElementalMode::Lightning) {
+        if (mIsLightningDashing) {
             mDrawComponent->SetAnimation("lightningDash");
             mDrawComponent->SetAnimFPS(9.0f / mLightningDashDuration);
         }
@@ -1691,7 +1755,7 @@ void Player::ManageAnimations() {
 
 
 void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType damageType) {
-    if (mElementalMode == ElementalMode::Lightning && mDashComponent->GetIsDashing()) {
+    if (mIsLightningDashing && mDashComponent->GetIsDashing()) {
         if (damageType == DamageType::Projectile || damageType == DamageType::Normal) {
             return; // Ignora o dano completamente
         }

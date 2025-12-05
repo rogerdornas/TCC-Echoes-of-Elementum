@@ -39,8 +39,11 @@ public:
     void SetHasDashedInAir(bool hasDashedInAir) { mHasDashedInAir = hasDashedInAir; }
 
     void StopDash();
+
     void SetDashSpeed(float dashSpeed) { mDashSpeed = dashSpeed; }
     float GetDashSpeed() const { return mDashSpeed; }
+    void SetDashDuration(float dashDuration) { mDashDuration = dashDuration; }
+    void SetDashCooldown(float dashCooldown) { mDashCooldown = dashCooldown; }
 
     void Update(float deltaTime) override;
 

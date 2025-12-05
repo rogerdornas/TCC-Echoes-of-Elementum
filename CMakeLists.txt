@@ -172,6 +172,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Brazier.h
         Source/Components/Drawing/DrawRopeComponent.cpp
         Source/Components/Drawing/DrawRopeComponent.h
+        Source/RadialMenu.cpp
+        Source/RadialMenu.h
 )
 
 

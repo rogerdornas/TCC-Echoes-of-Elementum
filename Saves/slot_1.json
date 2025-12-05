@@ -5,16 +5,16 @@
             "y": 3104.0
         },
         "scene": "Coliseu",
-        "total_play_time": 68788.046875
+        "total_play_time": 71173.2265625
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 292,
+        "death_counter": 296,
         "max_jumps_in_air": 1,
-        "money": 2762
+        "money": 4404
     },
     "upgrades": {
         "fireball": true,
@@ -34,7 +34,7 @@
         "Level1ArenaDone": true,
         "Level1Puzzle1Done": true,
         "Level2Lever2Activated": true,
-        "Level4ArenaDone": false,
+        "Level4ArenaDone": true,
         "MirrorBossDefeated": false
     }
 }

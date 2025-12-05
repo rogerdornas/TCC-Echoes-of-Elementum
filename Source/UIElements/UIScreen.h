@@ -26,10 +26,10 @@ public:
 	virtual void Update(float deltaTime);
 	virtual void Draw(class Renderer *renderer);
 	virtual void ProcessInput(const uint8_t* keys);
-	virtual void HandleKeyPress(int key, int controllerButton, int controllerAxisY, int controllerAxisX);
+	virtual void HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX);
 	virtual void HandleMouse(const SDL_Event& event);
-	void HandleMousePress(const Vector2& virtualMousePos);
-	void HandleMouseMotion(const Vector2& virtualMousePos);
+	virtual void HandleMousePress(const Vector2& virtualMousePos);
+	virtual void HandleMouseMotion(const Vector2& virtualMousePos);
 
 	void SetPosition(Vector2 position) { mPos = position; }
 	void SetSize(Vector2 size) { mSize = size; }
@@ -37,7 +37,7 @@ public:
 	Vector2 GetSize() const { return mSize; }
 
     // Set state to closing
-	void Close();
+	virtual void Close();
 
     // Get state of UI screen
 	UIState GetState() const { return mState; }

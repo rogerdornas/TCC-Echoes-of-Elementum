@@ -75,8 +75,8 @@ public:
         Jump,
         Dash,
         Attack,
-        FireBall,
-        Freeze,
+        Skill1,
+        Skill2,
         Heal,
         Hook,
         Pause,
@@ -390,6 +390,8 @@ private:
 
     StickState mLeftStickStateY;
     StickState mLeftStickStateX;
+    StickState mRightStickStateY;
+    StickState mRightStickStateX;
 
     SoundHandle mMusicHandle;
     SoundHandle mBossMusic;

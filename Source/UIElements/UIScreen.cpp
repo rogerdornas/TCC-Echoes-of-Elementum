@@ -62,7 +62,7 @@ void UIScreen::ProcessInput(const uint8_t* keys)
 
 }
 
-void UIScreen::HandleKeyPress(int key, int controllerButton, int controllerAxisY, int controllerAxisX)
+void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX)
 {
     if (mButtons.empty()) {
         return;
@@ -75,28 +75,32 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int controllerAxisY
     if (key == SDLK_UP ||
         key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Up].key) ||
         controllerButton == SDL_CONTROLLER_BUTTON_DPAD_UP ||
-        controllerAxisY < 0)
+        leftControllerAxisY < 0 ||
+        rightControllerAxisY < 0)
     {
         next = FindNeighbor(current, Vector2(0, -1));
     }
     else if (key == SDLK_DOWN ||
              key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Down].key) ||
              controllerButton == SDL_CONTROLLER_BUTTON_DPAD_DOWN ||
-             controllerAxisY > 0)
+             leftControllerAxisY > 0 ||
+             rightControllerAxisY > 0)
     {
         next = FindNeighbor(current, Vector2(0, 1));
     }
     else if (key == SDLK_LEFT ||
              key == SDL_GetKeyFromScancode(inputBinding[Game::Action::MoveLeft].key) ||
              controllerButton == SDL_CONTROLLER_BUTTON_DPAD_LEFT ||
-             controllerAxisX < 0)
+             leftControllerAxisX < 0 ||
+             rightControllerAxisX < 0)
     {
         next = FindNeighbor(current, Vector2(-1, 0));
     }
     else if (key == SDLK_RIGHT ||
              key == SDL_GetKeyFromScancode(inputBinding[Game::Action::MoveRight].key) ||
              controllerButton == SDL_CONTROLLER_BUTTON_DPAD_RIGHT ||
-             controllerAxisX > 0)
+             leftControllerAxisX > 0 ||
+             rightControllerAxisX > 0)
     {
         next = FindNeighbor(current, Vector2(1, 0));
     }

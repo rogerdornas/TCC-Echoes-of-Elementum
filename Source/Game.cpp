@@ -119,6 +119,8 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mIsPlayingOnKeyboard(true)
     ,mLeftStickStateY(StickState::Neutral)
     ,mLeftStickStateX(StickState::Neutral)
+    ,mRightStickStateY(StickState::Neutral)
+    ,mRightStickStateX(StickState::Neutral)
     ,mWaveManager(nullptr)
     ,mNewButtonText(nullptr)
     ,mWaitingForKey(false)
@@ -1336,7 +1338,7 @@ void Game::LoadKeyBoardMenu2() {
     text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Dash].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 4 * distanceBetweenButtons + text->GetSize().y / 2));
 
-    name = "ATAQUE A DISTÂNCIA";
+    name = "HABILIDADE 1";
     mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 5 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
     [this]() {
         mKeyboardMenu2->GetTexts()[6]->SetPointSize(25);
@@ -1344,10 +1346,10 @@ void Game::LoadKeyBoardMenu2() {
         mKeyboardMenu2->GetTexts()[6]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[6]->GetSize().x / 2, 25 + 10 * 40));
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[6];
-        mBindingAction = Action::FireBall;
+        mBindingAction = Action::Skill1;
     }, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::FireBall].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill1].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 5 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "CURA";
@@ -1448,7 +1450,7 @@ void Game::LoadKeyBoardMenu2() {
     text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Look].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 5 * distanceBetweenButtons + text->GetSize().y / 2));
 
-    name = "CONGELAR";
+    name = "HABILIDADE 2";
     mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 6 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
     [this]() {
         mKeyboardMenu2->GetTexts()[14]->SetPointSize(25);
@@ -1456,10 +1458,10 @@ void Game::LoadKeyBoardMenu2() {
         mKeyboardMenu2->GetTexts()[14]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[14]->GetSize().x / 2, 25 + 12 * 40));
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[14];
-        mBindingAction = Action::Freeze;
+        mBindingAction = Action::Skill2;
     }, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Freeze].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill2].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 6 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "VOLTAR";
@@ -2558,7 +2560,7 @@ void Game::ProcessInput()
                     mIsPlayingOnKeyboard = true;
                     // Handle key press for UI screens
                     if (!mUIStack.empty()) {
-                        mUIStack.back()->HandleKeyPress(event.key.keysym.sym, SDL_CONTROLLER_BUTTON_INVALID, 0, 0);
+                        mUIStack.back()->HandleKeyPress(event.key.keysym.sym, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, 0);
                     }
 
                     // if (event.key.keysym.sym == SDLK_ESCAPE) {
@@ -2658,7 +2660,7 @@ void Game::ProcessInput()
 
                     // Handle key press for UI screens
                     if (!mUIStack.empty()) {
-                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, event.cbutton.button, 0, 0);
+                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, event.cbutton.button, 0, 0, 0, 0);
                     }
 
                     // if (event.cbutton.button == SDL_CONTROLLER_BUTTON_START) {
@@ -2771,7 +2773,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateY != StickState::Up) {
                                     mLeftStickStateY = StickState::Up;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0);
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0, 0, 0);
                                     }
                                 }
                             }
@@ -2779,7 +2781,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateY != StickState::Down) {
                                     mLeftStickStateY = StickState::Down;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0);
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0, 0, 0);
                                     }
                                 }
                             }
@@ -2796,7 +2798,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateX != StickState::Left) {
                                     mLeftStickStateX = StickState::Left;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX);
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX, 0, 0);
                                     }
                                 }
                             }
@@ -2804,13 +2806,62 @@ void Game::ProcessInput()
                                 if (mLeftStickStateX != StickState::Right) {
                                     mLeftStickStateX = StickState::Right;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX);
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX, 0, 0);
                                     }
                                 }
                             }
                             else {
                                 // Voltou à zona morta
                                 mLeftStickStateX = StickState::Neutral;
+                            }
+                        }
+                        if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTY) {
+                            int valueY = event.caxis.value;
+
+                            if (valueY < -DEAD_ZONE) {
+                                if (mRightStickStateY != StickState::Up) {
+                                    mRightStickStateY = StickState::Up;
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, valueY, 0);
+                                    }
+                                }
+                            }
+                            else if (valueY > DEAD_ZONE) {
+                                if (mRightStickStateY != StickState::Down) {
+                                    mRightStickStateY = StickState::Down;
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, valueY, 0);
+                                    }
+                                }
+                            }
+                            else {
+                                // Voltou à zona morta
+                                mRightStickStateY = StickState::Neutral;
+                            }
+                        }
+
+                        if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTX) {
+                            int valueX = event.caxis.value;
+
+                            if (valueX < -DEAD_ZONE) {
+                                if (mRightStickStateX != StickState::Left) {
+                                    mRightStickStateX = StickState::Left;
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, valueX);
+                                    }
+                                }
+                            }
+                            else if (valueX > DEAD_ZONE) {
+                                if (mRightStickStateX != StickState::Right) {
+                                    mRightStickStateX = StickState::Right;
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, valueX);
+                                    }
+                                }
+                            }
+                            else {
+                                // Voltou à zona morta
+                                mRightStickStateX = StickState::Neutral;
                             }
                         }
                     }
@@ -3416,8 +3467,8 @@ std::string Game::ActionToString(Action action) {
         case Action::Jump:      return "Jump";
         case Action::Dash:      return "Dash";
         case Action::Attack:    return "Attack";
-        case Action::FireBall:  return "FireBall";
-        case Action::Freeze:    return "Freeze";
+        case Action::Skill1:    return "Skill1";
+        case Action::Skill2:    return "Skill2";
         case Action::Heal:      return "Heal";
         case Action::Hook:      return "Hook";
         case Action::Pause:     return "Pause";
@@ -3437,8 +3488,8 @@ Game::Action Game::StringToAction(const std::string &str) {
     if (str == "Jump")      return Action::Jump;
     if (str == "Dash")      return Action::Dash;
     if (str == "Attack")    return Action::Attack;
-    if (str == "FireBall")  return Action::FireBall;
-    if (str == "Freeze")    return Action::Freeze;
+    if (str == "Skill1")    return Action::Skill1;
+    if (str == "Skill2")    return Action::Skill2;
     if (str == "Heal")      return Action::Heal;
     if (str == "Hook")      return Action::Hook;
     if (str == "Pause")     return Action::Pause;

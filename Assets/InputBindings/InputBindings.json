@@ -4,7 +4,7 @@
         "key": 27
     },
     "Confirm": {
-        "btn": 0,
+        "btn": 3,
         "key": 9
     },
     "Dash": {
@@ -14,14 +14,6 @@
     "Down": {
         "btn": 12,
         "key": 81
-    },
-    "FireBall": {
-        "btn": 1,
-        "key": 4
-    },
-    "Freeze": {
-        "btn": 3,
-        "key": 9
     },
     "Heal": {
         "btn": 8,
@@ -54,6 +46,14 @@
     "OpenStore": {
         "btn": 3,
         "key": 44
+    },
+    "Skill1": {
+        "btn": 1,
+        "key": 4
+    },
+    "Skill2": {
+        "btn": 3,
+        "key": 9
     },
     "Up": {
         "btn": 11,
