@@ -26,7 +26,7 @@ public:
 
     void SetIsVulnerable() { mIsInvulnerable = false; }
 
-    void ReceiveHit(float damage, Vector2 knockBackDirection) override;
+    void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true) override;
 
     void ChangeResolution(float oldScale, float newScale) override;
 

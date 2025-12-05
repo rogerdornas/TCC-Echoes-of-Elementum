@@ -82,7 +82,7 @@ void Lava::ResolvePlayerCollision() {
     Player* player = mGame->GetPlayer();
     if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
         player->SetIsInvulnerable(false);
-        player->ReceiveHit(mDamage, Vector2::UnitY);
+        player->ReceiveHit(mDamage, Vector2::UnitY, DamageType::Environment);
         if (!player->Died()) {
             player->GetComponent<AABBComponent>()->SetActive(false);
             player->SetInvulnerableTimer(-1.0f);

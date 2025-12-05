@@ -7,6 +7,13 @@
 
 enum class ActorState { Active, Paused, Destroy };
 
+enum class DamageType {
+    Normal,         // Contato simples, espada
+    Projectile,     // Projéteis e bola de fogo
+    Environment,    // Lava, Espinhos
+    Explosion       // Exemplo de outro tipo futuro
+};
+
 class Actor
 {
 public:

@@ -468,7 +468,7 @@ void Golem::TriggerBossDefeat() {
     mGame->StopBossMusic();
 }
 
-void Golem::ReceiveHit(float damage, Vector2 knockBackDirection) {
+void Golem::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {
     if (knockBackDirection.y == 1) {
         if (IsOnScreen()) {
             mGame->GetAudio()->PlaySound("HitSpike/HitSpike1.wav");
@@ -530,8 +530,10 @@ void Golem::ReceiveHit(float damage, Vector2 knockBackDirection) {
     }
 
     mHealthPoints -= damage;
-    mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
-    mKnockBackTimer = 0;
+    if (knockBack) {
+        mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
+        mKnockBackTimer = 0;
+    }
     mIsFlashing = true;
     mFlashTimer = 0;
     mPlayerSpotted = true;

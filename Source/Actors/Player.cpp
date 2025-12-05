@@ -24,6 +24,7 @@
 Player::Player(Game* game)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
+    ,mElementalMode(ElementalMode::Lightning)
     ,mWidth(45 * mGame->GetScale())
     ,mHeight(75 * mGame->GetScale())
 
@@ -50,15 +51,22 @@ Player::Player(Game* game)
     ,mHighGravity(4500.0f * mGame->GetScale())
 
     ,mCanDash(true)
+    ,mDashSpeed(1500)
+    ,mDashDuration(0.2f)
+    ,mDashCooldown(0.5f)
+    ,mLightningDashSpeed(1800)
+    ,mLightningDashDuration(0.2f)
+    ,mLightningDashCooldown(0.5f)
+    ,mLightningDashDamage(5.0f)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
     ,mSwordCooldownDuration(0.4f)
     ,mSwordWidth(mWidth * 3.0f)
     ,mSwordHeight(mHeight * 1.3f)
+    ,mSwordDuration(0.15f)
     ,mSwordDamage(10.0f)
     ,mSwordDirection(0)
-    ,mSwordHitEnemy(false)
     ,mSwordHitGround(false)
     ,mSwordHitSpike(false)
 
@@ -184,34 +192,6 @@ Player::Player(Game* game)
     vertices.emplace_back(v3);
     vertices.emplace_back(v4);
 
-    // Esquilo estático
-    // mDrawSpriteComponent = new DrawSpriteComponent(this, "../Assets/Sprites/Esquilo/zenzen.png", 100, 100, 1000);
-
-    // Raposa animada
-    // mDrawAnimatedComponent = new DrawAnimatedComponent(this, mWidth * 2.3, 0.91 * mWidth * 2.3, "../Assets/Sprites/Raposa 2/Raposa.png", "../Assets/Sprites/Raposa 2/Raposa.json", 1000);
-    //
-    // std::vector<int> idle = {2};
-    // mDrawAnimatedComponent->AddAnimation("idle", idle);
-    //
-    // std::vector<int> run = {3, 4, 5, 6, 7};
-    // mDrawAnimatedComponent->AddAnimation("run", run);
-    //
-    // std::vector<int> hitted = {1};
-    // mDrawAnimatedComponent->AddAnimation("hitted", hitted);
-    //
-    // std::vector<int> dash = {0};
-    // mDrawAnimatedComponent->AddAnimation("dash", dash);
-    //
-    //
-    // mDrawAnimatedComponent->SetAnimation("idle");
-    // mDrawAnimatedComponent->SetAnimFPS(16.0f);
-
-    // Esquilo animado
-    // mDrawAnimatedComponent = new DrawAnimatedComponent(this, 120, 120, "../Assets/Sprites/Esquilo/Esquilo.png", "../Assets/Sprites/Esquilo/Esquilo.json", 1000);
-    // mDrawAnimatedComponent = new DrawAnimatedComponent(this, mWidth * 2.5, mWidth * 2.5,
-    //                                                    "../Assets/Sprites/Esquilo/Esquilo.png",
-    //                                                    "../Assets/Sprites/Esquilo/Esquilo.json", 1000);
-
     mDrawComponent = new AnimatorComponent(this,
                                            "../Assets/Sprites/Esquilo5/Esquilo.png",
                                            "../Assets/Sprites/Esquilo5/Esquilo.json",
@@ -279,12 +259,11 @@ Player::Player(Game* game)
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
 
-    // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, {255, 255, 0, 255});
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1600 * mGame->GetScale());
     mAABBComponent = new AABBComponent(this, v1, v3);
-    mDashComponent = new DashComponent(this, 1500 * mGame->GetScale(), 0.2f, 0.5f);
+    mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
-    mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, 0.15f, mSwordDamage);
+    mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, mSwordDuration, mSwordDamage);
 
     InitLight();
 
@@ -325,17 +304,9 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         return;
     }
 
-    // bool left = (state[SDL_SCANCODE_LEFT] && !state[SDL_SCANCODE_LCTRL]) ||
-    //             SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_DPAD_LEFT) ||
-    //             SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < -20000;
-
     bool left = (mGame->IsActionPressed(Game::Action::MoveLeft, state, &controller) &&
                 !mGame->IsActionPressed(Game::Action::Look, state, &controller)) ||
                 SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < -10000;
-
-    // bool leftSlow = (state[SDL_SCANCODE_LEFT] && state[SDL_SCANCODE_LCTRL]) ||
-    //                 (SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < -10000 &&
-    //                  SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > -20000);
 
     bool leftSlow = false;
     // bool leftSlow = (mGame->IsActionPressed(Game::Action::MoveLeft, state, &controller) &&
@@ -343,17 +314,9 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     //                 (SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < -10000 &&
     //                 SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > -20000);
 
-    // bool right = (state[SDL_SCANCODE_RIGHT] && !state[SDL_SCANCODE_LCTRL]) ||
-    //              SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_DPAD_RIGHT) ||
-    //              SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > 20000;
-
     bool right = (mGame->IsActionPressed(Game::Action::MoveRight, state, &controller) &&
                  !mGame->IsActionPressed(Game::Action::Look, state, &controller)) ||
                  SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > 10000;
-
-    // bool rightSlow = (state[SDL_SCANCODE_RIGHT] && state[SDL_SCANCODE_LCTRL]) ||
-    //                  (SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > 10000 &&
-    //                   SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < 20000);
 
     bool rightSlow = false;
     // bool rightSlow = (mGame->IsActionPressed(Game::Action::MoveRight, state, &controller) &&
@@ -361,66 +324,34 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     //                  (SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > 10000 &&
     //                  SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < 20000);
 
-    // bool lookUp = (state[SDL_SCANCODE_UP] && state[SDL_SCANCODE_LCTRL]) ||
-    //                SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_RIGHTY) < -28000;
-
     bool lookUp = (!right && !rightSlow && !left && !leftSlow && mIsOnGround) &&
                   ((mGame->IsActionPressed(Game::Action::Up, state, &controller) &&
                   mGame->IsActionPressed(Game::Action::Look, state, &controller)) ||
                   SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_RIGHTY) < -28000);
-
-    // bool lodDown = (state[SDL_SCANCODE_DOWN] && state[SDL_SCANCODE_LCTRL]) ||
-    //                 SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_RIGHTY) > 28000;
 
     bool lookDown = (!right && !rightSlow && !left && !leftSlow && mIsOnGround) &&
                    ((mGame->IsActionPressed(Game::Action::Down, state, &controller) &&
                    mGame->IsActionPressed(Game::Action::Look, state, &controller)) ||
                    SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_RIGHTY) > 28000);
 
-    // bool up = state[SDL_SCANCODE_UP] ||
-    //           SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_DPAD_UP) ||
-    //           SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTY) < -22000;
-
     bool up = mGame->IsActionPressed(Game::Action::Up, state, &controller) ||
               SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTY) < -22000;
-
-    // bool down = state[SDL_SCANCODE_DOWN] ||
-    //             SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_DPAD_DOWN) ||
-    //             SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTY) > 22000;
 
     bool down = mGame->IsActionPressed(Game::Action::Down, state, &controller) ||
           SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTY) > 22000;
 
-    // bool jump = state[SDL_SCANCODE_Z] ||
-    //             SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_A);
-
     bool jump = mGame->IsActionPressed(Game::Action::Jump, state, &controller);
-
-    // bool dash = state[SDL_SCANCODE_C] ||
-    //             SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_RIGHTSHOULDER);
 
     bool dash = mGame->IsActionPressed(Game::Action::Dash, state, &controller);
 
-    // bool sword = state[SDL_SCANCODE_X] ||
-    //              SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_X);
-
     bool sword = mGame->IsActionPressed(Game::Action::Attack, state, &controller);
 
-    // bool fireBall = state[SDL_SCANCODE_A] ||
-    //                 SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_B);
-
     bool fireBall = mGame->IsActionPressed(Game::Action::FireBall, state, &controller);
-
-    // bool heal = state[SDL_SCANCODE_V] ||
-    //             SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) > 10000;
 
     bool freeze = mGame->IsActionPressed(Game::Action::Freeze, state, &controller);
 
     bool heal = mGame->IsActionPressed(Game::Action::Heal, state, &controller) ||
                 SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) > 10000;
-
-    // bool hook = state[SDL_SCANCODE_S] ||
-    //         SDL_GameControllerGetButton(&controller, SDL_CONTROLLER_BUTTON_LEFTSHOULDER);
 
     bool hook = mGame->IsActionPressed(Game::Action::Hook, state, &controller);
 
@@ -555,247 +486,44 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     }
 
     // Dash
-    if (mCanDash) {
-        if (dash && !mIsFireAttacking) {
-            if (mDashComponent->UseDash(mIsOnGround) && mIsOnGround) {
-                for (JumpEffect* j: mJumpEffects) {
-                    if (j->GetState() == ActorState::Paused) {
-                        j->SetState(ActorState::Active);
-                        j->StartEffect(JumpEffect::EffectType::TakeOff);
-                        break;
-                    }
-                }
-            }
-            mIsHooking = false;
-            mIsHookThrowing = false;
-            mHookAnimProgress = 1.0f;
-            mIsHookAnimating = false;
-            mHookPoint = nullptr;
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetVisible(false);
-            }
-        }
+    if (dash) {
+        UseDash();
     }
 
-    //Início do pulo
-    if (jump && !mIsFireAttacking) {
-        if (!mDashComponent->GetIsDashing()) {
-            // Pulo do chao
-            if ((mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump || mIsOnSpike) && !mIsJumping && mCanJump && (mWallJumpTimer >= mWallJumpMaxTime)) {
-                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce)
-                                                 + mMovingGroundVelocity);
-                mIsJumping = true;
-                mCanJump = false;
-                mJumpTimer = 0.0f;
-                mTimerOutOfGroundToJump = mMaxTimeOutOfGroundToJump;
-                mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
-                for (JumpEffect* j: mJumpEffects) {
-                    if (j->GetState() == ActorState::Paused) {
-                        j->SetState(ActorState::Active);
-                        j->StartEffect(JumpEffect::EffectType::TakeOff);
-                        break;
-                    }
-                }
-            }
-            // Wall jumping
-            if ((mTimerOutOfWallToJump < mMaxTimeOutOfWallToJump) && !mIsJumping && mCanJump) {
-                if (mWallSlideSide == WallSlideSide::left) {
-                    mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed, mJumpForce) + mMovingGroundVelocity);
-                    SetRotation(Math::Pi);
-                    SetScale(Vector2(-1, 1));
-                }
-                else if (mWallSlideSide == WallSlideSide::right) {
-                    mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed, mJumpForce) + mMovingGroundVelocity);
-                    SetRotation(0);
-                    SetScale(Vector2(1, 1));
-                }
-
-                mIsJumping = true;
-                mCanJump = false;
-                mJumpTimer = 0.0f;
-                mWallJumpTimer = 0;
-                mTimerOutOfWallToJump = mMaxTimeOutOfWallToJump;
-                mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
-            }
-            // Pulo no ar
-            if (!(mIsOnGround || mIsWallSliding) && mJumpCountInAir < mMaxJumpsInAir && mCanJump
-                && (mWallJumpTimer >= mWallJumpMaxTime)) {
-                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce * 0.8f)
-                                                 + mMovingGroundVelocity);
-                mIsJumping = true;
-                mCanJump = false;
-                mJumpTimer = mMaxJumpTime * 0.4f;
-                mJumpCountInAir++; // Incrementa número de pulos
-                mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
-                for (JumpEffect* j: mJumpEffects) {
-                    if (j->GetState() == ActorState::Paused) {
-                        j->SetState(ActorState::Active);
-                        j->StartEffect(JumpEffect::EffectType::DoubleJump);
-                        break;
-                    }
-                }
-            }
-        }
+    // Jump
+    if (jump) {
+        UseJump();
     }
     else {
-        mIsJumping = false; // jogador soltou o W
+        mIsJumping = false;
         mCanJump = true;
     }
 
     // Sword
-    // Detecta borda de descida da tecla K e cooldown pronto
-    if (sword && !mPrevSwordPressed && mSwordCooldownTimer >= mSwordCooldownDuration) {
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
-        mGame->GetAudio()->PlayVariantSound("SwordSlash/SwordSlash.wav", 11);
-        // Ativa a espada
-        mSword->SetState(ActorState::Active);
-        mSword->SetRotation(mSwordDirection);
-        if (mSwordDirection == Math::Pi) {
-            mSword->SetTransformRotation(0.0f);
-            mSword->SetScale(Vector2(-1, 1));
-        }
-        else {
-            mSword->SetTransformRotation(mSwordDirection);
-            mSword->SetScale(Vector2(1, 1));
-        }
-        mSword->SetPosition(GetPosition());
-        mSwordHitEnemy = false;
-        mSwordHitGround = false;
-        mSwordHitSpike = false;
-
-        // Inicia cooldown
-        mSwordCooldownTimer = 0;
+    if (sword) {
+        UseSword();
     }
     mPrevSwordPressed = sword;
 
     // FireBall
-    if (mCanFireBall) {
-        if (fireBall &&
-            !mPrevFireBallPressed &&
-            mFireBallCooldownTimer >= mFireBallCooldownDuration &&
-            mMana >= mFireballManaCost)
-        {
-            std::vector<FireBall* > fireBalls = mGame->GetFireBalls();
-            for (FireBall* f: fireBalls) {
-                if (f->GetState() == ActorState::Paused) {
-                    f->SetState(ActorState::Active);
-                    f->SetRotation(GetRotation());
-                    f->SetTransformRotation(0.0f);
-                    f->SetScale(Vector2(GetForward().x, 1));
-                    f->SetWidth(mFireballWidth);
-                    f->SetHeight(mFireBallHeight);
-                    f->SetSpeed(mFireballSpeed);
-                    f->SetDamage(mFireballDamage);
-                    f->SetPosition(GetPosition() + f->GetForward() * (f->GetWidth() / 2));
-                    mIsFireAttacking = true;
-                    mStopInAirFireBallTimer = 0;
-                    mFireballAnimationTimer = 0;
-                    // if (mDrawAnimatedComponent) {
-                    //     mDrawAnimatedComponent->ResetAnimationTimer();
-                    // }
-                    mMana -= mFireballManaCost;
-                    break;
-                }
-            }
-            // Inicia cooldown
-            mFireBallCooldownTimer = 0;
-        }
-        mPrevFireBallPressed = fireBall;
+    if (fireBall) {
+        UseFireBall();
     }
+    mPrevFireBallPressed = fireBall;
 
-    if (mCanFreeze) {
-        if (freeze && mMana >= mFreezeManaCost) {
-            AttachedEffect freezeEffect;
-            if (mIntervalBetweenFreezeEmitTimer >= mIntervalBetweenFreezeEmitDuration) {
-                mIsFreezingDown = false;
-                mIsFreezingUp = false;
-                mIsFreezingFront = false;
-
-                auto* snowBalls = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 13.0f, 100.0f, 0.45f, 0.15f);
-                snowBalls->SetParticleColor(SDL_Color{255, 255, 255, 180});
-                snowBalls->SetParticleGravity(false);
-                if (down) {
-                    mIsFreezingDown = true;
-                    snowBalls->SetEmitDirection(Vector2::UnitY);
-                    snowBalls->SetPosition(GetPosition() + Vector2(-10 * GetForward().x, mHeight * 0.3f));
-                    freezeEffect.direction = EffectDir::Down;
-                }
-                else if (up) {
-                    mIsFreezingUp = true;
-                    snowBalls->SetEmitDirection(Vector2::NegUnitY);
-                    snowBalls->SetPosition(GetPosition() - Vector2(10 * GetForward().x, mHeight * 0.3f));
-                    freezeEffect.direction = EffectDir::Up;
-                }
-                else {
-                    mIsFreezingFront = true;
-                    snowBalls->SetEmitDirection(GetForward());
-                    snowBalls->SetPosition(GetPosition() + Vector2(mWidth * 0.45f * GetForward().x, 11));
-                    freezeEffect.direction = EffectDir::Front;
-                }
-                snowBalls->SetConeSpread(35.0f);
-                snowBalls->SetParticleSpeedScale(1.1f);
-                snowBalls->SetEnemyCollision(true);
-                snowBalls->SetApplyFreeze(true);
-                snowBalls->SetFreezeDamage(0.05f);
-                snowBalls->SetFreezeIntensity(2.0f);
-                snowBalls->SetParticleDrawOrder(4999);
-                freezeEffect.system = snowBalls;
-                mSnowBallsParticleSystems.emplace_back(freezeEffect);
-
-                auto* iceCloud = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 60.0f, 0.55f, 0.2f);
-                iceCloud->SetParticleColor(SDL_Color{100, 200, 255, 50});
-                iceCloud->SetConeSpread(40.0f);
-                iceCloud->SetParticleSpeedScale(0.9f);
-                iceCloud->SetParticleGravity(false);
-                if (down) {
-                    iceCloud->SetEmitDirection(Vector2::UnitY);
-                    iceCloud->SetPosition(GetPosition() + Vector2(-10 * GetForward().x, mHeight * 0.3f));
-                    freezeEffect.direction = EffectDir::Down;
-                }
-                else if (up) {
-                    iceCloud->SetEmitDirection(Vector2::NegUnitY);
-                    iceCloud->SetPosition(GetPosition() - Vector2(10 * GetForward().x, mHeight * 0.3f));
-                    freezeEffect.direction = EffectDir::Up;
-                }
-                else {
-                    iceCloud->SetEmitDirection(GetForward());
-                    iceCloud->SetPosition(GetPosition() + Vector2(mWidth * 0.45f * GetForward().x, 11));
-                    freezeEffect.direction = EffectDir::Front;
-                }
-                iceCloud->SetGroundCollision(false);
-                freezeEffect.system = iceCloud;
-                mIceCloudParticleSystems.emplace_back(freezeEffect);
-
-                mMana -= mFreezeManaCost;
-                mIntervalBetweenFreezeEmitTimer = 0;
-            }
-        }
-        else {
-            mIsFreezingDown = false;
-            mIsFreezingUp = false;
-            mIsFreezingFront = false;
-        }
+    // Freeze
+    if (freeze) {
+        UseFreeze(up, down);
+    }
+    else {
+        mIsFreezingDown = false;
+        mIsFreezingUp = false;
+        mIsFreezingFront = false;
     }
 
     // Heal
-    if (heal && mHealCount > 0 && mHealthPoints < mMaxHealthPoints && mIsOnGround) {
-        if (left || leftSlow || right || rightSlow || jump || dash || sword || fireBall) {
-            mHealAnimationTimer = 0;
-            mIsHealing = false;
-        }
-        else {
-            mIsHealing = true;
-            if (mHealAnimationTimer >= mHealAnimationDuration) {
-                mHealAnimationTimer = 0;
-                mHealthPoints += mHealAmount;
-                mHealCount--;
-                if (mHealthPoints > mMaxHealthPoints) {
-                    mHealthPoints = mMaxHealthPoints;
-                }
-            }
-        }
+    if (heal && !left && !leftSlow && !right && !rightSlow && !jump && !dash && !sword && !fireBall) {
+        UseHeal();
     }
     else {
         mIsHealing = false;
@@ -803,73 +531,10 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     }
 
     // Hook
-    if (mCanHook) {
-        std::vector<HookPoint* > hookPoints = mGame->GetHookPoints();
-
-        HookPoint* nearestHookPoint = nullptr;
-        float nearestDistance = FLT_MAX;
-
-        for (HookPoint* hp: hookPoints) {
-            float dist = (GetPosition() - hp->GetPosition()).Length();
-            if (dist < hp->GetRadius()) {
-                float distX = GetPosition().x - hp->GetPosition().x;
-
-                // Verifica se o jogador está olhando para a direção do hookPoint
-                bool lookingRight = GetRotation() == 0 && distX < 0;
-                bool lookingLeft = GetRotation() == Math::Pi && distX > 0;
-
-                if ((lookingRight || lookingLeft) && dist < nearestDistance) {
-                    nearestDistance = dist;
-                    nearestHookPoint = hp;
-                }
-            }
-        }
-        if (nearestHookPoint && (nearestHookPoint != mHookPoint)) {
-            nearestHookPoint->SetHookPointState(HookPoint::HookPointState::InRange);
-        }
-
-        if (nearestHookPoint &&
-            hook &&
-            !mPrevHookPressed &&
-            !mDashComponent->GetIsDashing() &&
-            mHookCooldownTimer >= mHookCooldownDuration)
-        {
-            mHookPoint = nearestHookPoint;
-            Vector2 dir = (nearestHookPoint->GetPosition() - GetPosition());
-            if (dir.Length() > 0) {
-                dir.Normalize();
-            }
-
-            mHookDirection = dir;
-
-            // Configura o alvo final
-            mHookEnd = nearestHookPoint->GetPosition();
-
-            // A ponta da corda começa na posição do jogador
-            mCurrentRopeTip = GetPosition();
-
-            // Ativa o estado de ARREMESSO (Throwing), mas NÃO o de puxar (Hooking)
-            mIsHookThrowing = true;
-            mIsHooking = false; // Garante que não puxa ainda
-
-            mHookCooldownTimer = 0.0f;
-
-            // Inicia a animação visual (o componente precisa ficar visível)
-            mIsHookAnimating = true;
-            mHookAnimProgress = 0.0f; // Reseta a ondulação da corda
-
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetVisible(true);
-                mDrawRopeComponent->SetEndpoints(GetPosition(), mCurrentRopeTip);
-            }
-
-            // Resetar dash no ar
-            mDashComponent->SetHasDashedInAir(false);
-            // RESET DO CONTADOR DE PULO
-            mJumpCountInAir = 0;
-        }
-        mPrevHookPressed = hook;
+    if (hook) {
+        UseHook();
     }
+    mPrevHookPressed = hook;
 }
 
 void Player::OnUpdate(float deltaTime) {
@@ -1128,7 +793,6 @@ void Player::OnUpdate(float deltaTime) {
         }
     }
     for (auto it = mIceCloudParticleSystems.begin(); it != mIceCloudParticleSystems.end(); ) {
-        // Acessamos os dados da struct usando 'it->'
         ParticleSystem* ps = it->system;
         EffectDir dir = it->direction;
 
@@ -1492,20 +1156,32 @@ void Player::ResolveEnemyCollision() {
     Vector2 collisionNormal(Vector2::Zero);
     std::vector<Enemy* > enemies = mGame->GetEnemies();
     if (!enemies.empty()) {
-        bool swordHitEnemy = false;
         for (Enemy* e: enemies) {
-            if (!mIsInvulnerable && !e->IsFrozen() && mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
-                collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
-
-                mDashComponent->StopDash();
-
-                ReceiveHit(e->GetContactDamage(), collisionNormal);
+            if (mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
+                if (mDashComponent->GetIsDashing()) {
+                    if (mElementalMode == ElementalMode::Lightning) {
+                        auto it = std::find(mEnemiesHitByCurrentDash.begin(), mEnemiesHitByCurrentDash.end(), e);
+                        if (it == mEnemiesHitByCurrentDash.end()) {
+                            e->ReceiveHit(mLightningDashDamage, GetForward(), false);
+                            mEnemiesHitByCurrentDash.push_back(e);
+                        }
+                    }
+                    else if (!mIsInvulnerable && !e->IsFrozen()) {
+                        collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
+                        mDashComponent->StopDash();
+                        ReceiveHit(e->GetContactDamage(), collisionNormal);
+                    }
+                }
+                else if (!mIsInvulnerable && !e->IsFrozen()) {
+                    collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
+                    ReceiveHit(e->GetContactDamage(), collisionNormal);
+                }
             }
 
             if (mSword->GetComponent<ColliderComponent>()->Intersect(*e->GetComponent<ColliderComponent>())) { // Colisão da sword com enemies
-                if (!mSwordHitEnemy) {
+                auto it = std::find(mEnemiesHitBySword.begin(), mEnemiesHitBySword.end(), e);
+                if (it == mEnemiesHitBySword.end()) {
                     e->ReceiveHit(mSword->GetDamage(), mSword->GetForward());
-                    swordHitEnemy = true;
                     if (mSword->GetRotation() == Math::Pi / 2) {
                         if (!mDashComponent->GetIsDashing()) {
                             if (auto* mushroom = dynamic_cast<Mushroom*>(e)) {
@@ -1525,11 +1201,320 @@ void Player::ResolveEnemyCollision() {
                         // RESET DO CONTADOR DE PULO
                         mJumpCountInAir = 0;
                     }
+                    mEnemiesHitBySword.push_back(e);
                 }
             }
         }
-        if (swordHitEnemy) {
-            mSwordHitEnemy = true;
+    }
+}
+
+void Player::UseDash() {
+    if (mCanDash) {
+        if (!mIsFireAttacking) {
+            if (mDashComponent->UseDash(mIsOnGround)) {
+                mEnemiesHitByCurrentDash.clear();
+                if (mIsOnGround) {
+                    for (JumpEffect* j: mJumpEffects) {
+                        if (j->GetState() == ActorState::Paused) {
+                            j->SetState(ActorState::Active);
+                            j->StartEffect(JumpEffect::EffectType::TakeOff);
+                            break;
+                        }
+                    }
+                }
+            }
+            mIsHooking = false;
+            mIsHookThrowing = false;
+            mHookAnimProgress = 1.0f;
+            mIsHookAnimating = false;
+            mHookPoint = nullptr;
+            if (mDrawRopeComponent) {
+                mDrawRopeComponent->SetVisible(false);
+            }
+        }
+    }
+}
+
+void Player::UseJump() {
+    //Início do pulo
+    if (!mIsFireAttacking) {
+        if (!mDashComponent->GetIsDashing()) {
+            // Pulo do chao
+            if ((mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump || mIsOnSpike) && !mIsJumping && mCanJump && (mWallJumpTimer >= mWallJumpMaxTime)) {
+                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce)
+                                                 + mMovingGroundVelocity);
+                mIsJumping = true;
+                mCanJump = false;
+                mJumpTimer = 0.0f;
+                mTimerOutOfGroundToJump = mMaxTimeOutOfGroundToJump;
+                mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
+                for (JumpEffect* j: mJumpEffects) {
+                    if (j->GetState() == ActorState::Paused) {
+                        j->SetState(ActorState::Active);
+                        j->StartEffect(JumpEffect::EffectType::TakeOff);
+                        break;
+                    }
+                }
+            }
+            // Wall jumping
+            if ((mTimerOutOfWallToJump < mMaxTimeOutOfWallToJump) && !mIsJumping && mCanJump) {
+                if (mWallSlideSide == WallSlideSide::left) {
+                    mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed, mJumpForce) + mMovingGroundVelocity);
+                    SetRotation(Math::Pi);
+                    SetScale(Vector2(-1, 1));
+                }
+                else if (mWallSlideSide == WallSlideSide::right) {
+                    mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed, mJumpForce) + mMovingGroundVelocity);
+                    SetRotation(0);
+                    SetScale(Vector2(1, 1));
+                }
+
+                mIsJumping = true;
+                mCanJump = false;
+                mJumpTimer = 0.0f;
+                mWallJumpTimer = 0;
+                mTimerOutOfWallToJump = mMaxTimeOutOfWallToJump;
+                mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
+            }
+            // Pulo no ar
+            if (!(mIsOnGround || mIsWallSliding) && mJumpCountInAir < mMaxJumpsInAir && mCanJump
+                && (mWallJumpTimer >= mWallJumpMaxTime)) {
+                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce * 0.8f)
+                                                 + mMovingGroundVelocity);
+                mIsJumping = true;
+                mCanJump = false;
+                mJumpTimer = mMaxJumpTime * 0.4f;
+                mJumpCountInAir++; // Incrementa número de pulos
+                mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
+                for (JumpEffect* j: mJumpEffects) {
+                    if (j->GetState() == ActorState::Paused) {
+                        j->SetState(ActorState::Active);
+                        j->StartEffect(JumpEffect::EffectType::DoubleJump);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+    else {
+        mIsJumping = false;
+        mCanJump = true;
+    }
+}
+
+void Player::UseSword() {
+    if (!mPrevSwordPressed && mSwordCooldownTimer >= mSwordCooldownDuration) {
+        mGame->GetAudio()->PlayVariantSound("SwordSlash/SwordSlash.wav", 11);
+        // Ativa a espada
+        mSword->SetState(ActorState::Active);
+        mSword->SetRotation(mSwordDirection);
+        if (mSwordDirection == Math::Pi) {
+            mSword->SetTransformRotation(0.0f);
+            mSword->SetScale(Vector2(-1, 1));
+        }
+        else {
+            mSword->SetTransformRotation(mSwordDirection);
+            mSword->SetScale(Vector2(1, 1));
+        }
+        mSword->SetPosition(GetPosition());
+        mEnemiesHitBySword.clear();
+        mSwordHitGround = false;
+        mSwordHitSpike = false;
+
+        // Inicia cooldown
+        mSwordCooldownTimer = 0;
+    }
+}
+
+void Player::UseFireBall() {
+    if (mCanFireBall) {
+        if (!mPrevFireBallPressed &&
+            mFireBallCooldownTimer >= mFireBallCooldownDuration &&
+            mMana >= mFireballManaCost)
+        {
+            std::vector<FireBall* > fireBalls = mGame->GetFireBalls();
+            for (FireBall* f: fireBalls) {
+                if (f->GetState() == ActorState::Paused) {
+                    f->SetState(ActorState::Active);
+                    f->SetRotation(GetRotation());
+                    f->SetTransformRotation(0.0f);
+                    f->SetScale(Vector2(GetForward().x, 1));
+                    f->SetWidth(mFireballWidth);
+                    f->SetHeight(mFireBallHeight);
+                    f->SetSpeed(mFireballSpeed);
+                    f->SetDamage(mFireballDamage);
+                    f->SetPosition(GetPosition() + f->GetForward() * (f->GetWidth() / 2));
+                    mIsFireAttacking = true;
+                    mStopInAirFireBallTimer = 0;
+                    mFireballAnimationTimer = 0;
+                    mMana -= mFireballManaCost;
+                    break;
+                }
+            }
+            // Inicia cooldown
+            mFireBallCooldownTimer = 0;
+        }
+    }
+}
+
+void Player::UseFreeze(bool up, bool down) {
+    if (mCanFreeze) {
+        if (mMana >= mFreezeManaCost) {
+            AttachedEffect freezeEffect;
+            if (mIntervalBetweenFreezeEmitTimer >= mIntervalBetweenFreezeEmitDuration) {
+                mIsFreezingDown = false;
+                mIsFreezingUp = false;
+                mIsFreezingFront = false;
+
+                auto* snowBalls = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 13.0f, 100.0f, 0.45f, 0.15f);
+                snowBalls->SetParticleColor(SDL_Color{255, 255, 255, 180});
+                snowBalls->SetParticleGravity(false);
+                if (down) {
+                    mIsFreezingDown = true;
+                    snowBalls->SetEmitDirection(Vector2::UnitY);
+                    snowBalls->SetPosition(GetPosition() + Vector2(-10 * GetForward().x, mHeight * 0.3f));
+                    freezeEffect.direction = EffectDir::Down;
+                }
+                else if (up) {
+                    mIsFreezingUp = true;
+                    snowBalls->SetEmitDirection(Vector2::NegUnitY);
+                    snowBalls->SetPosition(GetPosition() - Vector2(10 * GetForward().x, mHeight * 0.3f));
+                    freezeEffect.direction = EffectDir::Up;
+                }
+                else {
+                    mIsFreezingFront = true;
+                    snowBalls->SetEmitDirection(GetForward());
+                    snowBalls->SetPosition(GetPosition() + Vector2(mWidth * 0.45f * GetForward().x, 11));
+                    freezeEffect.direction = EffectDir::Front;
+                }
+                snowBalls->SetConeSpread(35.0f);
+                snowBalls->SetParticleSpeedScale(1.1f);
+                snowBalls->SetEnemyCollision(true);
+                snowBalls->SetApplyFreeze(true);
+                snowBalls->SetFreezeDamage(0.05f);
+                snowBalls->SetFreezeIntensity(2.0f);
+                snowBalls->SetParticleDrawOrder(4999);
+                freezeEffect.system = snowBalls;
+                mSnowBallsParticleSystems.emplace_back(freezeEffect);
+
+                auto* iceCloud = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 60.0f, 0.55f, 0.2f);
+                iceCloud->SetParticleColor(SDL_Color{100, 200, 255, 50});
+                iceCloud->SetConeSpread(40.0f);
+                iceCloud->SetParticleSpeedScale(0.9f);
+                iceCloud->SetParticleGravity(false);
+                if (down) {
+                    iceCloud->SetEmitDirection(Vector2::UnitY);
+                    iceCloud->SetPosition(GetPosition() + Vector2(-10 * GetForward().x, mHeight * 0.3f));
+                    freezeEffect.direction = EffectDir::Down;
+                }
+                else if (up) {
+                    iceCloud->SetEmitDirection(Vector2::NegUnitY);
+                    iceCloud->SetPosition(GetPosition() - Vector2(10 * GetForward().x, mHeight * 0.3f));
+                    freezeEffect.direction = EffectDir::Up;
+                }
+                else {
+                    iceCloud->SetEmitDirection(GetForward());
+                    iceCloud->SetPosition(GetPosition() + Vector2(mWidth * 0.45f * GetForward().x, 11));
+                    freezeEffect.direction = EffectDir::Front;
+                }
+                iceCloud->SetGroundCollision(false);
+                freezeEffect.system = iceCloud;
+                mIceCloudParticleSystems.emplace_back(freezeEffect);
+
+                mMana -= mFreezeManaCost;
+                mIntervalBetweenFreezeEmitTimer = 0;
+            }
+        }
+        else {
+            mIsFreezingDown = false;
+            mIsFreezingUp = false;
+            mIsFreezingFront = false;
+        }
+    }
+}
+
+void Player::UseHeal() {
+    if (mHealCount > 0 && mHealthPoints < mMaxHealthPoints && mIsOnGround) {
+        mIsHealing = true;
+        if (mHealAnimationTimer >= mHealAnimationDuration) {
+            mHealAnimationTimer = 0;
+            mHealthPoints += mHealAmount;
+            mHealCount--;
+            if (mHealthPoints > mMaxHealthPoints) {
+                mHealthPoints = mMaxHealthPoints;
+            }
+        }
+    }
+    else {
+        mIsHealing = false;
+        mHealAnimationTimer = 0;
+    }
+}
+
+void Player::UseHook() {
+    if (mCanHook) {
+        std::vector<HookPoint* > hookPoints = mGame->GetHookPoints();
+
+        HookPoint* nearestHookPoint = nullptr;
+        float nearestDistance = FLT_MAX;
+
+        for (HookPoint* hp: hookPoints) {
+            float dist = (GetPosition() - hp->GetPosition()).Length();
+            if (dist < hp->GetRadius()) {
+                float distX = GetPosition().x - hp->GetPosition().x;
+
+                // Verifica se o jogador está olhando para a direção do hookPoint
+                bool lookingRight = GetRotation() == 0 && distX < 0;
+                bool lookingLeft = GetRotation() == Math::Pi && distX > 0;
+
+                if ((lookingRight || lookingLeft) && dist < nearestDistance) {
+                    nearestDistance = dist;
+                    nearestHookPoint = hp;
+                }
+            }
+        }
+        if (nearestHookPoint && (nearestHookPoint != mHookPoint)) {
+            nearestHookPoint->SetHookPointState(HookPoint::HookPointState::InRange);
+        }
+
+        if (nearestHookPoint &&
+            !mPrevHookPressed &&
+            !mDashComponent->GetIsDashing() &&
+            mHookCooldownTimer >= mHookCooldownDuration)
+        {
+            mHookPoint = nearestHookPoint;
+            Vector2 dir = (nearestHookPoint->GetPosition() - GetPosition());
+            if (dir.Length() > 0) {
+                dir.Normalize();
+            }
+
+            mHookDirection = dir;
+
+            // Configura o alvo final
+            mHookEnd = nearestHookPoint->GetPosition();
+
+            // A ponta da corda começa na posição do jogador
+            mCurrentRopeTip = GetPosition();
+
+            // Ativa o estado de ARREMESSO (Throwing), mas NÃO o de puxar (Hooking)
+            mIsHookThrowing = true;
+            mIsHooking = false; // Garante que não puxa ainda
+
+            mHookCooldownTimer = 0.0f;
+
+            // Inicia a animação visual (o componente precisa ficar visível)
+            mIsHookAnimating = true;
+            mHookAnimProgress = 0.0f; // Reseta a ondulação da corda
+
+            if (mDrawRopeComponent) {
+                mDrawRopeComponent->SetVisible(true);
+                mDrawRopeComponent->SetEndpoints(GetPosition(), mCurrentRopeTip);
+            }
+
+            // Resetar dash no ar
+            mDashComponent->SetHasDashedInAir(false);
+            // RESET DO CONTADOR DE PULO
+            mJumpCountInAir = 0;
         }
     }
 }
@@ -1632,43 +1617,22 @@ void Player::ManageAnimations() {
 }
 
 
-void Player::ReceiveHit(float damage, Vector2 knockBackDirection) {
+void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType damageType) {
+    if (mElementalMode == ElementalMode::Lightning && mDashComponent->GetIsDashing()) {
+        if (damageType == DamageType::Projectile || damageType == DamageType::Normal) {
+            return; // Ignora o dano completamente
+        }
+    }
+
     if (!mIsInvulnerable && mGame->GetGamePlayState() == Game::GamePlayState::Playing) {
         mHealthPoints -= damage;
         mIsInvulnerable = true;
         mHurtTimer = 0;
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
 
         Vector2 vel = mRigidBodyComponent->GetVelocity();
         if (vel.Length() > 0) {
             vel.Normalize();
         }
-
-        // ParticleSystem* blood = new ParticleSystem(mGame, 10, 170.0, 3.0, 0.07f);
-        // blood->SetEmitDirection(knockBackDirection);
-        // blood->SetPosition(GetPosition());
-        // blood->SetParticleColor(SDL_Color{170, 113, 84, 255});
-
-        // Uint8 color1 = 10;
-        // Uint8 color2 = 200;
-        // SDL_Color color{color2, color2, color2, 255};
-
-        // for (int i = 0; i < 3; i++) {
-        //     if (color.r == color1) {
-        //         color = {color2, color2, color2, 255};
-        //     }
-        //     else {
-        //         color = {color1, color1, color1, 255};
-        //     }
-        //     auto* effect = new Effect(mGame);
-        //     effect->SetDuration(0.3f);
-        //     effect->SetPosition(GetPosition());
-        //     effect->SetSize(320);
-        //     effect->SetColor(color);
-        //     effect->SetEffect(TargetEffect::swordHit);
-        // }
 
         Vector2 knockBack = knockBackDirection * mKnockBackSpeed + vel * (mKnockBackSpeed / 3);
         knockBack.Normalize();
@@ -1687,9 +1651,6 @@ bool Player::Died() {
     if (mHealthPoints <= 0) {
         if (mIsDead == false) {
             mIsDead = true;
-            // if (mDrawAnimatedComponent) {
-            //     mDrawAnimatedComponent->ResetAnimationTimer();
-            // }
         }
         return true;
     }

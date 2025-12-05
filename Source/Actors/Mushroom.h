@@ -26,7 +26,7 @@ public:
     void ChangeResolution(float oldScale, float newScale) override;
 
 private:
-    void ReceiveHit(float damage, Vector2 knockBackDirection) override;
+    void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true) override;
 
     void MovementAfterPlayerSpotted(float deltaTime);
     void MovementBeforePlayerSpotted(float deltaTime);

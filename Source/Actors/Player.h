@@ -15,6 +15,14 @@ class ParticleSystem;
 class Player : public Actor
 {
 public:
+    enum class ElementalMode {
+        Neutral,
+        Fire,
+        Ice,
+        Lightning,
+        Earth,
+        Plant,
+    };
     enum class WallSlideSide { notSliding, left, right };
     enum class EffectDir { Front, Up, Down };
 
@@ -40,7 +48,7 @@ public:
     void SetStartingPosition(Vector2 pos) { mStartingPosition = pos; }
     Vector2 GetStartingPosition() const { return mStartingPosition; }
 
-    void ReceiveHit(float damage, Vector2 knockBackDirection);
+    void ReceiveHit(float damage, Vector2 knockBackDirection, DamageType damageType = DamageType::Normal);
     void SetCanFireBall(bool canFireBall) { mCanFireBall = canFireBall; }
     bool GetCanFireBall() const { return mCanFireBall; }
 
@@ -48,7 +56,7 @@ public:
     bool GetCanWallSlide() const { return mCanWallSlide; }
 
     class Sword* GetSword() const { return mSword; }
-    void SetSword() { mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, 0.15f, mSwordDamage); }
+    void SetSword() { mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, mSwordDuration, mSwordDamage); }
     void SetSwordWidth(float width) { mSwordWidth = width; }
     void SetSwordHeight(float height) { mSwordHeight = height; }
     void SetSwordDamage(float damage) { mSwordDamage = damage; }
@@ -119,10 +127,19 @@ private:
     void ResolveGroundCollision();
     void ResolveEnemyCollision();
 
+    void UseDash();
+    void UseJump();
+    void UseSword();
+    void UseFireBall();
+    void UseFreeze(bool up, bool down);
+    void UseHeal();
+    void UseHook();
+
     void ManageAnimations();
 
     Vector2 mStartingPosition;
 
+    ElementalMode mElementalMode;
     float mWidth;
     float mHeight;
 
@@ -150,6 +167,14 @@ private:
     std::vector<JumpEffect*> mJumpEffects;
 
     bool mCanDash;
+    float mDashSpeed;
+    float mDashDuration;
+    float mDashCooldown;
+    float mLightningDashSpeed;
+    float mLightningDashDuration;
+    float mLightningDashCooldown;
+    bool mLightningDashDamage;
+    std::vector<class Enemy*> mEnemiesHitByCurrentDash;
 
     Sword* mSword;
     bool mPrevSwordPressed;             // Se apertou botão de espada no último frame
@@ -157,11 +182,12 @@ private:
     float mSwordCooldownDuration;       // Cooldown da espada
     float mSwordWidth;
     float mSwordHeight;
+    float mSwordDuration;
     float mSwordDamage;
     float mSwordDirection;              // Director da espada(esquerda, direita, cima, baixo)
-    bool mSwordHitEnemy;
     bool mSwordHitGround;
     bool mSwordHitSpike;
+    std::vector<class Enemy*> mEnemiesHitBySword;
 
     bool mCanFireBall;
     bool mPrevFireBallPressed; // Se apertou botão de fireball no último frame

@@ -64,10 +64,12 @@ void Enemy::SetSize(float width, float height) {
     mColliderComponent = new AABBComponent(this, v1, v3);
 }
 
-void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection) {
+void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {
     mHealthPoints -= damage;
-    mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
-    mKnockBackTimer = 0;
+    if (knockBack) {
+        mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
+        mKnockBackTimer = 0;
+    }
     mIsFlashing = true;
     mFlashTimer = 0;
     mPlayerSpotted = true;

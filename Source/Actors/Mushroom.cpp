@@ -118,7 +118,7 @@ void Mushroom::OnUpdate(float deltaTime) {
     }
 }
 
-void Mushroom::ReceiveHit(float damage, Vector2 knockBackDirection) {
+void Mushroom::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {
     if (knockBackDirection.y == 1 && mMushroomState != State::Attack) {
         if (IsOnScreen()) {
             mGame->GetAudio()->PlaySound("Boing/Boing.wav");
@@ -127,8 +127,10 @@ void Mushroom::ReceiveHit(float damage, Vector2 knockBackDirection) {
     }
 
     mHealthPoints -= damage;
-    mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
-    mKnockBackTimer = 0;
+    if (knockBack) {
+        mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
+        mKnockBackTimer = 0;
+    }
     mIsFlashing = true;
     mFlashTimer = 0;
     mPlayerSpotted = true;

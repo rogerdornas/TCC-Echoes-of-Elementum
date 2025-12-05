@@ -198,7 +198,7 @@ void Projectile::ResolveGroundCollision() {
 void Projectile::ResolvePlayerCollision() {
     Player* player = mGame->GetPlayer();
     if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
-        player->ReceiveHit(mDamage, GetForward());
+        player->ReceiveHit(mDamage, GetForward(), DamageType::Projectile);
         Deactivate();
     }
 }

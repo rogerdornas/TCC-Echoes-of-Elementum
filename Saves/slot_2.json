@@ -1,37 +1,29 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 848.0,
-            "y": 5856.0
+            "x": 1328.0,
+            "y": 5312.0
         },
-        "scene": "Level4",
-        "total_play_time": 546.197998046875
+        "scene": "Room0",
+        "total_play_time": 11.712019920349121
     },
     "player": {
-        "can_dash": true,
-        "can_fireball": true,
-        "can_hook": true,
-        "can_wallslide": true,
+        "can_dash": false,
+        "can_fireball": false,
+        "can_hook": false,
+        "can_wallslide": false,
         "death_counter": 0,
-        "max_jumps_in_air": 1,
-        "money": 395
+        "max_jumps_in_air": 0,
+        "money": 0
     },
     "upgrades": {
         "fireball": false,
         "heal_count": false,
         "health_points": false,
         "mana": false,
-        "sword_damage": true,
+        "sword_damage": false,
         "sword_range": false,
-        "sword_speed": true
+        "sword_speed": false
     },
-    "world_state": {
-        "FoxDefeated": false,
-        "FrogDefeated": true,
-        "GolemDefeated": true,
-        "Level1ArenaDone": true,
-        "Level1Puzzle1Done": true,
-        "Level2Lever2Activated": true,
-        "Level4ArenaDone": false
-    }
+    "world_state": {}
 }

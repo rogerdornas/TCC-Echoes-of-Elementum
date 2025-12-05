@@ -303,7 +303,7 @@ void FireBall::ResolvePlayerCollision() {
     if (mIsFromEnemy) {
         Player* player = mGame->GetPlayer();
         if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
-            player->ReceiveHit(mDamage, GetForward());
+            player->ReceiveHit(mDamage, GetForward(), DamageType::Projectile);
             if (mSound.IsValid()) {
                 if (mGame->GetAudio()->GetSoundState(mSound) == SoundState::Playing) {
                     mGame->GetAudio()->StopSound(mSound);

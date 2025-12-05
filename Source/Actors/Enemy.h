@@ -15,7 +15,7 @@ public:
     void SetHealthPoints(float hp) { mHealthPoints = hp; }
     float GetHealthPoints() const { return mHealthPoints; }
     float GetMaxHealthPoints() const { return mMaxHealthPoints; }
-    virtual void ReceiveHit(float damage, Vector2 knockBackDirection);
+    virtual void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true);
     float GetContactDamage() const { return mContactDamage; }
     float GetKnockBack() const { return mKnockBackSpeed; }
     float GetWidth() override { return mWidth; }
