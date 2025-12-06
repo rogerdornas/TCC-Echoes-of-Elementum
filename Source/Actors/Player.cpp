@@ -60,9 +60,10 @@ Player::Player(Game* game)
     ,mLightningDashDuration(0.2f)
     ,mLightningDashCooldown(0.5f)
     ,mLightningDashDamage(5.0f)
-    ,mLightningDashManaCost(15.0f)
+    ,mLightningDashManaCost(10.0f)
 
     ,mCanGroundSlam(true)
+    ,mPrevGroundSlamPressed(false)
     ,mIsDiving(false)
     ,mGroundSlamSpeed(2000)
     ,mGroundSlamDamage(15)
@@ -552,6 +553,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         mIsFreezingFront = false;
     }
     mPrevFireBallPressed = skill1;
+    mPrevGroundSlamPressed = skill1;
 
     // Heal
     if (heal && !left && !leftSlow && !right && !rightSlow && !jump && !dash && !sword && !skill1) {
@@ -960,6 +962,10 @@ void Player::ResolveGroundCollision() {
                     if (mIsDiving) {
                         mIsDiving = false;
                         mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
+                        mRigidBodyComponent->SetVelocity(Vector2::Zero);
+                        if (g->GetIsBreakable()) {
+                            delete g;
+                        }
                     }
                     mIsOnGround = true;
                     mIsJumping = false;
@@ -1311,7 +1317,8 @@ void Player::UseDash() {
 
 void Player::UseGroundSlam() {
     if (mElementalMode == ElementalMode::Earth) {
-        if (!mIsDiving &&
+        if (!mPrevFireBallPressed &&
+            !mIsDiving &&
             !mDashComponent->GetIsDashing() &&
             !mIsWallSliding &&
             mMana >= mGroundSlamManaCost)

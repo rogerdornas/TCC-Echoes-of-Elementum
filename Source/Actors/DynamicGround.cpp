@@ -224,7 +224,7 @@ void DynamicGround::ChangeResolution(float oldScale, float newScale) {
     mWidth = mWidth / oldScale * newScale;
     mHeight = mHeight / oldScale * newScale;
     SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    SetRespawPosition(Vector2(mRespawnPosition.x / oldScale * newScale, mRespawnPosition.y / oldScale * newScale));
+    SetRespawnPosition(Vector2(mRespawnPosition.x / oldScale * newScale, mRespawnPosition.y / oldScale * newScale));
     mStartingPosition.x = mStartingPosition.x / oldScale * newScale;
     mStartingPosition.y = mStartingPosition.y / oldScale * newScale;
     mVelocity.x = mVelocity.x / oldScale * newScale;

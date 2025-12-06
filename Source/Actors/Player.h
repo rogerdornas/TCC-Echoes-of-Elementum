@@ -184,6 +184,7 @@ private:
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
 
     bool mCanGroundSlam;
+    bool mPrevGroundSlamPressed;
     bool mIsDiving;
     float mGroundSlamSpeed;
     float mGroundSlamDamage;

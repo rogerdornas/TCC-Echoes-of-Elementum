@@ -19,11 +19,14 @@ public:
     bool GetIsMoving() const { return mIsMoving; }
     void SetIsMoving(bool isMoving);
 
+    void SetIsBreakable(bool breakable) { mIsBreakable = breakable; }
+    bool GetIsBreakable() { return mIsBreakable; }
+
     float GetWidth() override { return mWidth; }
     float GetHeight() override { return mHeight; }
 
-    void SetRespawPosition(Vector2 pos) { mRespawnPosition = pos; }
-    Vector2 GetRespawPosition() { return mRespawnPosition; }
+    void SetRespawnPosition(Vector2 pos) { mRespawnPosition = pos; }
+    Vector2 GetRespawnPosition() { return mRespawnPosition; }
 
     virtual void SetSprites();
     virtual void SetTilesIndex(float width, float height, float x, float y);
@@ -42,6 +45,7 @@ protected:
     float mWidth;
     bool mIsSpike;
     bool mIsMoving;
+    bool mIsBreakable;
     float mMovingTimer;
     float mMovingDuration;
     Vector2 mStartingPosition;

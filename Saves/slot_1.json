@@ -1,11 +1,11 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 688.0,
-            "y": 3104.0
+            "x": 1328.0,
+            "y": 5312.0
         },
-        "scene": "Coliseu",
-        "total_play_time": 71173.2265625
+        "scene": "Room0",
+        "total_play_time": 72061.625
     },
     "player": {
         "can_dash": true,
@@ -14,7 +14,7 @@
         "can_wallslide": true,
         "death_counter": 296,
         "max_jumps_in_air": 1,
-        "money": 4404
+        "money": 4855
     },
     "upgrades": {
         "fireball": true,

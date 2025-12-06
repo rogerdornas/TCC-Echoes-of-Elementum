@@ -1496,6 +1496,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 int id = obj["id"];
                 bool isSpike = false;
                 bool isMoving = false;
+                bool isBreakable = false;
                 float respawnPositionX = 0.0f;
                 float respawnPositionY = 0.0f;
                 float movingDuration = 0.0f;
@@ -1517,6 +1518,9 @@ void Game::LoadObjects(const std::string &fileName) {
                         }
                         else if (propName == "Moving") {
                             isMoving = prop["value"];
+                        }
+                        else if (propName == "Breakable") {
+                            isBreakable = prop["value"];
                         }
                         else if (propName == "RespawnPositionX") {
                             respawnPositionX = static_cast<float>(prop["value"]) * mScale;
@@ -1564,7 +1568,8 @@ void Game::LoadObjects(const std::string &fileName) {
                 if (name == "DynamicGround") {
                     auto* dynamicGround = new DynamicGround(this, minWidth, minHeight, isSpike, isMoving, movingDuration, Vector2(speedX, speedY));
                     dynamicGround->SetId(id);
-                    dynamicGround->SetRespawPosition(Vector2(respawnPositionX, respawnPositionY));
+                    dynamicGround->SetIsBreakable(isBreakable);
+                    dynamicGround->SetRespawnPosition(Vector2(respawnPositionX, respawnPositionY));
                     dynamicGround->SetIsOscillating(isOscillating);
                     dynamicGround->SetMaxWidth(width);
                     dynamicGround->SetMaxHeight(height);
@@ -1598,8 +1603,9 @@ void Game::LoadObjects(const std::string &fileName) {
                 else {
                     auto* ground = new Ground(this, width, height, isSpike, isMoving, movingDuration, Vector2(speedX, speedY));
                     ground->SetId(id);
+                    ground->SetIsBreakable(isBreakable);
                     ground->SetPosition(Vector2(x + width / 2, y + height / 2));
-                    ground->SetRespawPosition(Vector2(respawnPositionX, respawnPositionY));
+                    ground->SetRespawnPosition(Vector2(respawnPositionX, respawnPositionY));
                     ground->SetStartingPosition(Vector2(x + width / 2, y + height / 2));
                     ground->SetTilesIndex(widthOriginal, heightOriginal, xOriginal, yOriginal);
                 }
