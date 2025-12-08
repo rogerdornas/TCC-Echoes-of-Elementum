@@ -130,12 +130,15 @@ private:
 
     void UseDash();
     void UseGroundSlam();
+    void GroundSlamImpact();
+    void GroundSlamEffects();
     void UseJump();
     void UseSword();
     void UseFireBall();
     void UseFreeze(bool up, bool down);
+    void UsePillar();
     void UseHeal();
-    void UseHook();
+    void UseHook(HookPoint* nearestHookPoint);
 
     void OpenElementalMenu();
 
@@ -181,13 +184,23 @@ private:
     float mLightningDashCooldown;
     float mLightningDashDamage;
     float mLightningDashManaCost;
+    float mLightningDashIFramesDuration;
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
 
     bool mCanGroundSlam;
     bool mPrevGroundSlamPressed;
+    bool mIsGroundSlamStarting;
+    bool mIsGroundSlamRecovering;
     bool mIsDiving;
+    float mGroundSlamStartDuration;
+    float mGroundSlamRecoveryDuration;
+    float mGroundSlamTimer;
     float mGroundSlamSpeed;
     float mGroundSlamDamage;
+    float mGroundSlamImpactDist;
+    float mGroundSlamImpactHeightRange;
+    float mGroundSlamImpactDamage;
+    float mGroundSlamIFramesDuration;
     float mGroundSlamCameraShakeStrength;
     float mGroundSlamCameraShakeDuration;
     float mGroundSlamManaCost;
@@ -235,6 +248,14 @@ private:
     float mIntervalBetweenFreezeEmitTimer;
     float mFreezeManaCost;
 
+    bool mCanCreatePillar;
+    bool mPrevCreatePillarPressed;
+    float mPillarDistanceFromPlayer;
+    float mPillarManaCost;
+    float mPillarAnimationDuration;
+    float mPillarAnimationTimer;
+    bool mAlreadyCreatedPillar;
+
     bool mCanWallSlide;                  // Habilidade de agarrar na parede
     bool mIsWallSliding;                 // Se esta deslizando
     WallSlideSide mWallSlideSide;        // Lado que esta deslizando
@@ -267,6 +288,8 @@ private:
     bool mIsHealing;
     float mHealAnimationDuration;
     float mHealAnimationTimer;
+
+    float mIFramesTimer;
 
     int mMoney;
     int mStartMoney;

@@ -8,6 +8,7 @@
 #include "Effect.h"
 #include "HookPoint.h"
 #include "Mushroom.h"
+#include "PillarGround.h"
 #include "../Game.h"
 #include "../RadialMenu.h"
 #include "../Actors/Sword.h"
@@ -25,7 +26,7 @@
 Player::Player(Game* game)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
-    ,mElementalMode(ElementalMode::Fire)
+    ,mElementalMode(ElementalMode::Earth)
     ,mWidth(45 * mGame->GetScale())
     ,mHeight(75 * mGame->GetScale())
 
@@ -61,15 +62,25 @@ Player::Player(Game* game)
     ,mLightningDashCooldown(0.5f)
     ,mLightningDashDamage(5.0f)
     ,mLightningDashManaCost(10.0f)
+    ,mLightningDashIFramesDuration(mLightningDashDuration + 0.1f)
 
     ,mCanGroundSlam(true)
     ,mPrevGroundSlamPressed(false)
+    ,mIsGroundSlamStarting(false)
+    ,mIsGroundSlamRecovering(false)
     ,mIsDiving(false)
+    ,mGroundSlamStartDuration(0.15f)
+    ,mGroundSlamRecoveryDuration(0.45f)
+    ,mGroundSlamTimer(0.0f)
     ,mGroundSlamSpeed(2000)
     ,mGroundSlamDamage(15)
-    ,mGroundSlamCameraShakeStrength(70.0f)
+    ,mGroundSlamImpactDist(300.0f)
+    ,mGroundSlamImpactHeightRange(mHeight * 1.8f)
+    ,mGroundSlamImpactDamage(10)
+    ,mGroundSlamIFramesDuration(0.3f)
+    ,mGroundSlamCameraShakeStrength(80.0f)
     ,mGroundSlamCameraShakeDuration(0.2f)
-    ,mGroundSlamManaCost(30.0f)
+    ,mGroundSlamManaCost(20.0f)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
@@ -109,6 +120,14 @@ Player::Player(Game* game)
     ,mIntervalBetweenFreezeEmitTimer(0.0f)
     ,mFreezeManaCost(2.0f)
 
+    ,mCanCreatePillar(true)
+    ,mPrevCreatePillarPressed(false)
+    ,mPillarDistanceFromPlayer(100.0f)
+    ,mPillarManaCost(20.0f)
+    ,mPillarAnimationDuration(0.5f)
+    ,mPillarAnimationTimer(mPillarAnimationDuration)
+    ,mAlreadyCreatedPillar(false)
+
     ,mCanWallSlide(true)
     ,mIsWallSliding(false)
     ,mWallSlideSide(WallSlideSide::notSliding)
@@ -141,6 +160,8 @@ Player::Player(Game* game)
     ,mIsHealing(false)
     ,mHealAnimationDuration(0.8f)
     ,mHealAnimationTimer(0.0f)
+
+    ,mIFramesTimer(0.0f)
 
     ,mMoney(1000)
     ,mStartMoney(0)
@@ -211,16 +232,16 @@ Player::Player(Game* game)
                                            "../Assets/Sprites/Esquilo5/Esquilo.json",
                                            mWidth * 4.93f, mWidth * 4.93f * 1.11f, 1002);
 
-    std::vector idle = {27, 28, 29, 30};
+    std::vector idle = {32, 33, 34, 35};
     mDrawComponent->AddAnimation("idle", idle);
 
-    std::vector attackFront = {27, 2, 3};
+    std::vector attackFront = {32, 2, 3};
     mDrawComponent->AddAnimation("attackFront", attackFront);
 
-    std::vector attackUp = {27, 4, 5};
+    std::vector attackUp = {32, 4, 5};
     mDrawComponent->AddAnimation("attackUp", attackUp);
 
-    std::vector attackDown = {27, 0, 1};
+    std::vector attackDown = {32, 0, 1};
     mDrawComponent->AddAnimation("attackDown", attackDown);
 
     std::vector fireball = {12, 13};
@@ -235,34 +256,40 @@ Player::Player(Game* game)
     std::vector freezeUp = {18, 19};
     mDrawComponent->AddAnimation("freezeUp", freezeUp);
 
+    std::vector groundSlam = {20, 21, 22, 23, 24, 24, 24};
+    mDrawComponent->AddAnimation("groundSlam", groundSlam);
+
+    std::vector pillar = {43, 44, 45, 45, 45, 45, 45, 45, 45, 45};
+    mDrawComponent->AddAnimation("pillar", pillar);
+
     std::vector dash = {6, 7, 7, 7, 8};
     mDrawComponent->AddAnimation("dash", dash);
 
-    std::vector lightningDash = {7, 34, 35, 35, 36, 36, 37, 37, 8};
+    std::vector lightningDash = {7, 39, 40, 40, 41, 41, 42, 42, 8};
     mDrawComponent->AddAnimation("lightningDash", lightningDash);
 
-    std::vector run = {38, 39, 40, 41, 42, 43};
+    std::vector run = {46, 47, 48, 49, 50, 51};
     mDrawComponent->AddAnimation("run", run);
 
-    std::vector heal = {20, 21, 22, 23, 24, 24, 23, 22, 21, 20};
+    std::vector heal = {25, 26, 27, 28, 29, 29, 28, 27, 26, 25};
     mDrawComponent->AddAnimation("heal", heal);
 
-    std::vector wallSlide = {44};
+    std::vector wallSlide = {52};
     mDrawComponent->AddAnimation("wallSlide", wallSlide);
 
-    std::vector hurt = {25, 26};
+    std::vector hurt = {30, 31};
     mDrawComponent->AddAnimation("hurt", hurt);
 
-    std::vector die = {25, 9, 10, 11, 11, 11};
+    std::vector die = {30, 9, 10, 11, 11, 11};
     mDrawComponent->AddAnimation("die", die);
 
-    std::vector jumpUp = {31};
+    std::vector jumpUp = {36};
     mDrawComponent->AddAnimation("jumpUp", jumpUp);
 
-    std::vector jumpApex = {32};
+    std::vector jumpApex = {37};
     mDrawComponent->AddAnimation("jumpApex", jumpApex);
 
-    std::vector falling = {33};
+    std::vector falling = {38};
     mDrawComponent->AddAnimation("falling", falling);
 
     mDrawComponent->SetAnimation("idle");
@@ -276,7 +303,7 @@ Player::Player(Game* game)
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1800 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1600 * mGame->GetScale());
     mAABBComponent = new AABBComponent(this, v1, v3);
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
@@ -318,6 +345,16 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             SetRotation(Math::Pi);
             SetScale(Vector2(-1, 1));
         }
+        return;
+    }
+
+    // Trava enquando Ground Slam
+    if (mIsGroundSlamStarting || mIsGroundSlamRecovering || mIsDiving) {
+        return;
+    }
+
+    // Trava enquanto criando pilar
+    if (mPillarAnimationTimer < mPillarAnimationDuration) {
         return;
     }
 
@@ -555,6 +592,14 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     mPrevFireBallPressed = skill1;
     mPrevGroundSlamPressed = skill1;
 
+    // Skill2
+    if (skill2) {
+        if (mElementalMode == ElementalMode::Earth) {
+            UsePillar();
+        }
+    }
+    mPrevCreatePillarPressed = skill2;
+
     // Heal
     if (heal && !left && !leftSlow && !right && !rightSlow && !jump && !dash && !sword && !skill1) {
         UseHeal();
@@ -565,10 +610,37 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     }
 
     // Hook
-    if (hook) {
-        UseHook();
+    if (mCanHook) {
+        std::vector<HookPoint* > hookPoints = mGame->GetHookPoints();
+
+        HookPoint* nearestHookPoint = nullptr;
+
+        float nearestDistance = FLT_MAX;
+
+        for (HookPoint* hp: hookPoints) {
+            float dist = (GetPosition() - hp->GetPosition()).Length();
+            if (dist < hp->GetRadius()) {
+                float distX = GetPosition().x - hp->GetPosition().x;
+
+                // Verifica se o jogador está olhando para a direção do hookPoint
+                bool lookingRight = GetRotation() == 0 && distX < 0;
+                bool lookingLeft = GetRotation() == Math::Pi && distX > 0;
+
+                if ((lookingRight || lookingLeft) && dist < nearestDistance) {
+                    nearestDistance = dist;
+                    nearestHookPoint = hp;
+                }
+            }
+        }
+        if (nearestHookPoint && (nearestHookPoint != mHookPoint)) {
+            nearestHookPoint->SetHookPointState(HookPoint::HookPointState::InRange);
+        }
+
+        if (hook) {
+            UseHook(nearestHookPoint);
+        }
+        mPrevHookPressed = hook;
     }
-    mPrevHookPressed = hook;
 }
 
 void Player::OnUpdate(float deltaTime) {
@@ -593,6 +665,15 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mFireballAnimationTimer < mFireballAnimationDuration) {
         mFireballAnimationTimer += deltaTime;
+    }
+
+    if (mPillarAnimationTimer < mPillarAnimationDuration) {
+        mPillarAnimationTimer += deltaTime;
+        if (!mAlreadyCreatedPillar && mPillarAnimationTimer >= mPillarAnimationDuration * 0.3f) {
+            auto* pillar = new PillarGround(mGame);
+            pillar->SetPosition(GetPosition() + Vector2(mPillarDistanceFromPlayer * GetForward().x, mHeight * 0.6f));
+            mAlreadyCreatedPillar = true;
+        }
     }
 
     if (mHookCooldownTimer < mHookCooldownDuration) {
@@ -634,6 +715,10 @@ void Player::OnUpdate(float deltaTime) {
         if (mGame->GetGamePlayState() != Game::GamePlayState::Cutscene) {
             mIsInvulnerable = false;
         }
+    }
+
+    if (mIFramesTimer > 0) {
+        mIFramesTimer -= deltaTime;
     }
 
     if (mMana < mMaxMana) {
@@ -679,7 +764,7 @@ void Player::OnUpdate(float deltaTime) {
         mRigidBodyComponent->SetMaxSpeedY(2500);
     }
     else {
-        mRigidBodyComponent->SetMaxSpeedY(1800);
+        mRigidBodyComponent->SetMaxSpeedY(1600);
     }
 
     if (mIsLightningDashing) {
@@ -743,6 +828,29 @@ void Player::OnUpdate(float deltaTime) {
         mTimerOutOfWallToJump += deltaTime;
     }
 
+    // Ground Slam
+    if (mIsGroundSlamStarting) {
+        mGroundSlamTimer += deltaTime;
+
+        mRigidBodyComponent->SetVelocity(Vector2::Zero);
+
+        if (mGroundSlamTimer >= mGroundSlamStartDuration) {
+            mIsGroundSlamStarting = false;
+            mIsDiving = true;
+            mRigidBodyComponent->SetVelocity(Vector2(0, mGroundSlamSpeed));
+        }
+    }
+
+    if (mIsGroundSlamRecovering) {
+        mGroundSlamTimer += deltaTime;
+
+        if (mGroundSlamTimer >= mGroundSlamRecoveryDuration) {
+            mIsGroundSlamRecovering = false;
+            mIFramesTimer = mGroundSlamIFramesDuration;
+        }
+    }
+
+    // Hook
     if (mIsHookThrowing) {
         // Calcula a distância até o alvo
         float distanceToTarget = (mHookEnd - mCurrentRopeTip).Length();
@@ -919,6 +1027,18 @@ void Player::OnUpdate(float deltaTime) {
         mKnockBackTimer = mKnockBackDuration;
         mInvulnerableTimer = mInvulnerableDuration;
         mIsHealing = false;
+        if (mRadialMenu) {
+            mRadialMenu->Close();
+            mRadialMenu = nullptr;
+        }
+        mIsHooking = false;
+        mIsHookThrowing = false;
+        mHookAnimProgress = 1.0f;
+        mIsHookAnimating = false;
+        mHookPoint = nullptr;
+        if (mDrawRopeComponent) {
+            mDrawRopeComponent->SetVisible(false);
+        }
         // mGame->GetAudio()->StopAllSounds();
         mGame->GetAudio()->StopSound(mGame->GetMusicHandle());
         mGame->GetAudio()->StopSound(mGame->GetBossMusicHandle());
@@ -959,20 +1079,28 @@ void Player::ResolveGroundCollision() {
 
                 // colidiu top
                 if (collisionNormal == Vector2::NegUnitY) {
-                    if (mIsDiving) {
-                        mIsDiving = false;
-                        mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
-                        mRigidBodyComponent->SetVelocity(Vector2::Zero);
-                        if (g->GetIsBreakable()) {
-                            delete g;
-                        }
-                    }
                     mIsOnGround = true;
                     mIsJumping = false;
                     // Resetar dash no ar
                     mDashComponent->SetHasDashedInAir(false);
                     // RESET DO CONTADOR DE PULO
                     mJumpCountInAir = 0;
+
+                    if (mIsDiving) {
+                        mIsDiving = false;
+                        GroundSlamImpact();
+                        GroundSlamEffects();
+                        mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
+                        mIsGroundSlamRecovering = true;
+                        mGroundSlamTimer = 0;
+                        mRigidBodyComponent->SetVelocity(Vector2::Zero);
+                        if (g->GetIsBreakable()) {
+                            g->DestroyEffects();
+                            delete g;
+                            continue;
+                        }
+                    }
+
                     // Move o player junto ao ground em movimento
                     if (g->GetIsMoving()) {
                         mIsOnMovingGround = true;
@@ -1154,7 +1282,7 @@ void Player::ResolveGroundCollision() {
                     }
                     mDashComponent->StopDash();
 
-                    ReceiveHit(10, collisionNormal);
+                    ReceiveHit(10, collisionNormal, DamageType::Environment);
                 }
                 if (mSword->GetComponent<ColliderComponent>()->Intersect(*g->GetComponent<ColliderComponent>())) { // Colisão da sword com spikes
                     if (!mSwordHitSpike) {
@@ -1226,7 +1354,7 @@ void Player::ResolveEnemyCollision() {
                             mEnemiesHitByCurrentDash.push_back(e);
                         }
                     }
-                    else if (!mIsInvulnerable && !e->IsFrozen()) {
+                    else if (!mIsInvulnerable && mIFramesTimer <= 0 && !e->IsFrozen()) {
                         collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
                         mDashComponent->StopDash();
                         ReceiveHit(e->GetContactDamage(), collisionNormal);
@@ -1247,7 +1375,7 @@ void Player::ResolveEnemyCollision() {
                             mEnemiesHitByGroundSlam.push_back(e);
                         }
                     }
-                    else if (!mIsInvulnerable && !e->IsFrozen()) {
+                    else if (!mIsInvulnerable && mIFramesTimer <= 0 && !e->IsFrozen()) {
                         collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
                         ReceiveHit(e->GetContactDamage(), collisionNormal);
                     }
@@ -1290,6 +1418,7 @@ void Player::UseDash() {
             if (mDashComponent->UseDash(mIsOnGround)) {
                 if (mElementalMode == ElementalMode::Lightning && mMana >= mLightningDashManaCost) {
                     mIsLightningDashing = true;
+                    mIFramesTimer = mLightningDashIFramesDuration;
                     mEnemiesHitByCurrentDash.clear();
                     mMana -= mLightningDashManaCost;
                 }
@@ -1317,17 +1446,20 @@ void Player::UseDash() {
 
 void Player::UseGroundSlam() {
     if (mElementalMode == ElementalMode::Earth) {
-        if (!mPrevFireBallPressed &&
+        if (!mPrevGroundSlamPressed &&
+            !mIsGroundSlamStarting &&
+            !mIsGroundSlamRecovering &&
             !mIsDiving &&
             !mDashComponent->GetIsDashing() &&
             !mIsWallSliding &&
             mMana >= mGroundSlamManaCost)
         {
             mEnemiesHitByGroundSlam.clear();
-            mIsDiving = true;
-            mRigidBodyComponent->SetVelocity(Vector2(0, mGroundSlamSpeed));
-
+            mIsGroundSlamStarting = true;
+            mRigidBodyComponent->SetVelocity(Vector2::Zero);
+            mGroundSlamTimer = 0;
             mMana -= mGroundSlamManaCost;
+
             mIsHooking = false;
             mIsHookThrowing = false;
             mHookAnimProgress = 1.0f;
@@ -1338,6 +1470,65 @@ void Player::UseGroundSlam() {
             }
         }
     }
+}
+
+void Player::GroundSlamImpact() {
+    std::vector<Enemy* > enemies = mGame->GetEnemies();
+    if (enemies.empty()) {
+        return;
+    }
+
+    float slamMinY = GetPosition().y - mGroundSlamImpactHeightRange / 2.0f;
+    float slamMaxY = GetPosition().y + mGroundSlamImpactHeightRange / 2.0f;
+
+    for (Enemy* e: enemies) {
+        auto it = std::find(mEnemiesHitByGroundSlam.begin(), mEnemiesHitByGroundSlam.end(), e);
+        if (it == mEnemiesHitByGroundSlam.end()) {
+            float enemyHeight = e->GetHeight();
+            float enemyMinY = e->GetPosition().y - enemyHeight / 2.0f;
+            float enemyMaxY = e->GetPosition().y + enemyHeight / 2.0f;
+
+            bool verticalOverlap = (slamMinY <= enemyMaxY) && (slamMaxY >= enemyMinY);
+
+            if (verticalOverlap) {
+                float xDist = std::abs(e->GetPosition().x - GetPosition().x);
+
+                if (xDist <= mGroundSlamImpactDist) {
+
+                    // Calcula a direção do empurrão (Knockback)
+                    Vector2 direction = e->GetPosition() - GetPosition();
+                    if (direction.LengthSq() > 0) {
+                        direction.Normalize();
+                    } else {
+                        // Se estiverem na mesma posição exata, empurra para a direita por padrão
+                        direction = Vector2(1.0f, 0.0f);
+                    }
+
+                    e->ReceiveHit(mGroundSlamImpactDamage, direction);
+                    mEnemiesHitByGroundSlam.push_back(e);
+                }
+            }
+        }
+    }
+}
+
+void Player::GroundSlamEffects() {
+    auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 25.0f, 0.35f, 0.3f);
+    smoke->SetParticleColor(SDL_Color{130, 130, 130, 80});
+    smoke->SetConeSpread(360.0f);
+    smoke->SetParticleSpeedScale(0.2f);
+    smoke->SetParticleGravity(false);
+    smoke->SetEmitDirection(Vector2::Zero);
+    smoke->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
+    smoke->SetGroundCollision(false);
+
+    // auto* miniGrounds = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 400.0, 3.0, 0.07f);
+    // miniGrounds->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
+    // miniGrounds->SetEmitDirection(Vector2::NegUnitY);
+    // miniGrounds->SetParticleSpeedScale(0.6);
+    // miniGrounds->SetParticleColor(SDL_Color{55, 27, 7, 255});
+    // miniGrounds->SetParticleGravity(true);
+    // miniGrounds->SetConeSpread(180.0f);
 }
 
 void Player::UseJump() {
@@ -1541,6 +1732,23 @@ void Player::UseFreeze(bool up, bool down) {
     }
 }
 
+void Player::UsePillar() {
+    if (mCanCreatePillar) {
+        if (!mPrevCreatePillarPressed &&
+            mMana >= mPillarManaCost &&
+            mPillarAnimationTimer >= mPillarAnimationDuration &&
+            mIsOnGround &&
+            !mIsOnMovingGround &&
+            !mDashComponent->GetIsDashing() && !mIsDiving)
+        {
+            mRigidBodyComponent->SetVelocity(Vector2::Zero);
+            mAlreadyCreatedPillar = false;
+            mPillarAnimationTimer = 0;
+            mMana -= mPillarManaCost;
+        }
+    }
+}
+
 void Player::UseHeal() {
     if (mHealCount > 0 && mHealthPoints < mMaxHealthPoints && mIsOnGround) {
         mIsHealing = true;
@@ -1559,32 +1767,8 @@ void Player::UseHeal() {
     }
 }
 
-void Player::UseHook() {
+void Player::UseHook(HookPoint* nearestHookPoint) {
     if (mCanHook) {
-        std::vector<HookPoint* > hookPoints = mGame->GetHookPoints();
-
-        HookPoint* nearestHookPoint = nullptr;
-        float nearestDistance = FLT_MAX;
-
-        for (HookPoint* hp: hookPoints) {
-            float dist = (GetPosition() - hp->GetPosition()).Length();
-            if (dist < hp->GetRadius()) {
-                float distX = GetPosition().x - hp->GetPosition().x;
-
-                // Verifica se o jogador está olhando para a direção do hookPoint
-                bool lookingRight = GetRotation() == 0 && distX < 0;
-                bool lookingLeft = GetRotation() == Math::Pi && distX > 0;
-
-                if ((lookingRight || lookingLeft) && dist < nearestDistance) {
-                    nearestDistance = dist;
-                    nearestHookPoint = hp;
-                }
-            }
-        }
-        if (nearestHookPoint && (nearestHookPoint != mHookPoint)) {
-            nearestHookPoint->SetHookPointState(HookPoint::HookPointState::InRange);
-        }
-
         if (nearestHookPoint &&
             !mPrevHookPressed &&
             !mDashComponent->GetIsDashing() &&
@@ -1665,6 +1849,14 @@ void Player::ManageAnimations() {
     }
     else if (mHurtTimer < mHurtDuration) {
         mDrawComponent->SetAnimation("hurt");
+    }
+    else if (mIsGroundSlamRecovering) {
+        mDrawComponent->SetAnimation("groundSlam");
+        mDrawComponent->SetAnimFPS(7.0f / mGroundSlamRecoveryDuration);
+    }
+    else if (mPillarAnimationTimer < mPillarAnimationDuration) {
+        mDrawComponent->SetAnimation("pillar");
+        mDrawComponent->SetAnimFPS(10.0f / mPillarAnimationDuration);
     }
     else if (mDashComponent->GetIsDashing()) {
         if (mIsLightningDashing) {
@@ -1762,7 +1954,19 @@ void Player::ManageAnimations() {
 
 
 void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType damageType) {
+    if (mIFramesTimer > 0) {
+        if (damageType == DamageType::Projectile || damageType == DamageType::Normal) {
+            return; // Ignora o dano completamente
+        }
+    }
+
     if (mIsLightningDashing && mDashComponent->GetIsDashing()) {
+        if (damageType == DamageType::Projectile || damageType == DamageType::Normal) {
+            return; // Ignora o dano completamente
+        }
+    }
+
+    if (mIsDiving || mIsGroundSlamRecovering) {
         if (damageType == DamageType::Projectile || damageType == DamageType::Normal) {
             return; // Ignora o dano completamente
         }

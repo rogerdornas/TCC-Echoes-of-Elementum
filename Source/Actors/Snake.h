@@ -50,5 +50,6 @@ private:
     float mIdleWidth;
     float mAttackSpriteWidth;
     float mAttackOffsetHitBox;
+    float mGrowthSpeed;
 };
 

@@ -3324,9 +3324,9 @@
   <object id="244" x="17568" y="16032" width="32" height="32"/>
   <object id="245" x="16064" y="16128" width="32" height="32"/>
   <object id="246" x="18016" y="15264" width="32" height="32"/>
-  <object id="247" x="18848" y="14304" width="32" height="32"/>
-  <object id="248" x="19744" y="14304" width="32" height="32"/>
-  <object id="249" x="20576" y="14272" width="32" height="32"/>
+  <object id="247" x="19104" y="14304" width="32" height="32"/>
+  <object id="248" x="20000" y="14304" width="32" height="32"/>
+  <object id="249" x="20832" y="14272" width="32" height="32"/>
   <object id="250" x="18368" y="14784" width="32" height="32"/>
   <object id="252" x="22176" y="18656" width="32" height="32"/>
   <object id="253" x="21120" y="18656" width="32" height="32"/>

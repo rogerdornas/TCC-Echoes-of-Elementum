@@ -9,6 +9,8 @@
 #include "../Components/Drawing/RectComponent.h"
 #include "../Components/Drawing/TileMapComponent.h"
 #include <unordered_map>
+
+#include "ParticleSystem.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 
 Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMoving, float movingDuration, Vector2 velocity)
@@ -151,6 +153,16 @@ void Ground::SetTilesIndex(float width, float height, float x, float y) {
     }
 }
 
+void Ground::DestroyEffects() {
+    auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 25.0f, 0.35f, 0.3f);
+    smoke->SetParticleColor(SDL_Color{130, 130, 130, 50});
+    smoke->SetConeSpread(360.0f);
+    smoke->SetParticleSpeedScale(0.2f);
+    smoke->SetParticleGravity(false);
+    smoke->SetEmitDirection(Vector2::Zero);
+    smoke->SetPosition(GetPosition());
+    smoke->SetGroundCollision(false);
+}
 
 void Ground::ChangeResolution(float oldScale, float newScale) {
     mWidth = mWidth / oldScale * newScale;

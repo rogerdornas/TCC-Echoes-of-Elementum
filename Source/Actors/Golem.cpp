@@ -218,7 +218,7 @@ void Golem::MovementAfterPlayerSpotted(float deltaTime) {
 }
 
 void Golem::Stop(float deltaTime) {
-    mRigidBodyComponent->SetVelocity(Vector2(0, 0));
+    mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
     mStopTimer += deltaTime;
     if (mStopTimer >= mStopDuration) {
         mStopTimer = 0;

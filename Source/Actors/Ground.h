@@ -31,6 +31,8 @@ public:
     virtual void SetSprites();
     virtual void SetTilesIndex(float width, float height, float x, float y);
 
+    void DestroyEffects();
+
     void SetStartingPosition(Vector2 pos) { mStartingPosition = pos; }
     Vector2 GetStartingPosition() { return mStartingPosition; }
 

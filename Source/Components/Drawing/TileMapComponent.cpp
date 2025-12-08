@@ -10,13 +10,14 @@
 
 TileMapComponent::TileMapComponent(Actor* owner, int drawOrder)
     :DrawComponent(owner, drawOrder)
-    , mBakedTexture(nullptr)
-    , mBakedWidth(0.0f)
-    , mBakedHeight(0.0f)
-    , mCurrentWidth(0.0f)
-    , mCurrentHeight(0.0f)
-    , mGrowthDirection(GrowthDirection::Right)
-    , mIsBaked(false)
+    ,mOwnsTexture(true)
+    ,mBakedTexture(nullptr)
+    ,mBakedWidth(0.0f)
+    ,mBakedHeight(0.0f)
+    ,mCurrentWidth(0.0f)
+    ,mCurrentHeight(0.0f)
+    ,mGrowthDirection(GrowthDirection::Right)
+    ,mIsBaked(false)
 {
 }
 
@@ -24,12 +25,12 @@ TileMapComponent::~TileMapComponent()
 {
     mTilesIndex.clear();
 
-    if (mBakedTexture)
+    if (mBakedTexture && mOwnsTexture)
     {
         mBakedTexture->Unload();
         delete mBakedTexture;
-        mBakedTexture = nullptr;
     }
+    mBakedTexture = nullptr;
 }
 
 void TileMapComponent::SetTilesIndex(const std::vector<std::vector<int>>& tiles)
@@ -37,6 +38,19 @@ void TileMapComponent::SetTilesIndex(const std::vector<std::vector<int>>& tiles)
     mTilesIndex = tiles;
 }
 
+void TileMapComponent::SetTexture(Texture* texture, float textureWidth, float textureHeight)
+{
+    if (mBakedTexture && mOwnsTexture) {
+        delete mBakedTexture;
+    }
+
+    mBakedTexture = texture;
+    mOwnsTexture = false;
+    mIsBaked = true;
+
+    mBakedWidth = textureWidth;
+    mBakedHeight = textureHeight;
+}
 
 void TileMapComponent::BakeTilesToTexture(Renderer* renderer)
 {

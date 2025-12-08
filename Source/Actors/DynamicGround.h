@@ -43,7 +43,7 @@ public:
 
     void ChangeResolution(float oldScale, float newScale) override;
 
-private:
+protected:
     float mMaxWidth;
     float mMaxHeight;
     float mMinWidth;

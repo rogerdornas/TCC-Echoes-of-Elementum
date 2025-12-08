@@ -174,6 +174,8 @@ add_executable(${PROJECT_NAME}
         Source/Components/Drawing/DrawRopeComponent.h
         Source/RadialMenu.cpp
         Source/RadialMenu.h
+        Source/Actors/PillarGround.cpp
+        Source/Actors/PillarGround.h
 )
 
 

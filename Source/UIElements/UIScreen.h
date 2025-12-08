@@ -3,7 +3,6 @@
 #include <cstdint>
 #include <string>
 #include <vector>
-
 #include "../Math.h"
 #include "UIText.h"
 #include "UIButton.h"

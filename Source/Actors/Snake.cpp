@@ -25,7 +25,7 @@ Snake::Snake(Game *game)
     ,mAttackTimer(0.0f)
 {
     mWidth = 100 * mGame->GetScale();
-    mHeight = 42 * mGame->GetScale();
+    mHeight = 25 * mGame->GetScale();
     mMoveSpeed = 300 * mGame->GetScale();
     mHealthPoints = 40;
     mMaxHealthPoints = mHealthPoints;
@@ -35,15 +35,16 @@ Snake::Snake(Game *game)
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
-    mAttackSpriteWidth = mWidth * 1.8f;
-    mAttackOffsetHitBox = mWidth * 0.4f;
+    mAttackSpriteWidth = mWidth * 1.6f;
+    mAttackOffsetHitBox = mWidth * 0.6f;
+    mGrowthSpeed = 700.0f;
     mEnemyCollision = false;
 
     SetSize(mWidth, mHeight);
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Snake/Snake.png",
                                                         "../Assets/Sprites/Snake/Snake.json",
-                                                        mWidth * 3.0f, mWidth * 3.0f * 0.36f, 998);
+                                                        mWidth * 2.5f, mWidth * 2.5f * 0.36f, 998);
     std::vector walk = {14, 10, 11, 12};
     mDrawComponent->AddAnimation("walk", walk);
 
@@ -189,25 +190,15 @@ void Snake::Stop(float deltaTime) {
 
 
 void Snake::Attack(float deltaTime) {
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
     mAttackTimer += deltaTime;
+
     if (mAttackTimer >= mAttackDuration) {
         mWidth = mIdleWidth;
 
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-
-        std::vector<Vector2> vertices;
-        vertices.emplace_back(v1);
-        vertices.emplace_back(v2);
-        vertices.emplace_back(v3);
-        vertices.emplace_back(v4);
+        Vector2 v1 = Vector2(-mWidth / 2, -mHeight / 2);
+        Vector2 v2 = Vector2(mWidth / 2, -mHeight / 2);
+        Vector2 v3 = Vector2(mWidth / 2, mHeight / 2);
+        Vector2 v4 = Vector2(-mWidth / 2, mHeight / 2);
 
         if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
             aabb->SetMin(v1);
@@ -215,7 +206,6 @@ void Snake::Attack(float deltaTime) {
         }
 
         if (mRectComponent) {
-            // mDrawPolygonComponent->SetVertices(vertices);
             mRectComponent->SetWidth(mWidth);
             mRectComponent->SetHeight(mHeight);
         }
@@ -229,36 +219,43 @@ void Snake::Attack(float deltaTime) {
         mRigidBodyComponent->SetVelocity(Vector2(GetForward().x * mMoveSpeed * 2.0f, mRigidBodyComponent->GetVelocity().y));
     }
 
-    if (mAttackTimer > 0.45f * mAttackDuration && mAttackTimer < 0.9f * mAttackDuration) {
-        mWidth = mAttackSpriteWidth;
+    float targetWidth = mIdleWidth;
 
-        if (GetRotation() == 0) {
-            v1 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-        }
-        else if (GetRotation() == Math::Pi) {
-            v1 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-        }
-    }
-    else {
-        mWidth = mIdleWidth;
-
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
+    if (mAttackTimer > 0.45f * mAttackDuration && mAttackTimer < 0.8f * mAttackDuration) {
+        targetWidth = mAttackSpriteWidth;
     }
 
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
+    // 4. Aplicar Crescimento/Encolhimento Suave usando mGrowthSpeed
+    if (mWidth < targetWidth) {
+        mWidth += mGrowthSpeed * deltaTime;
+        if (mWidth > targetWidth) mWidth = targetWidth; // Clamp para não passar
+    }
+    else if (mWidth > targetWidth) {
+        mWidth -= mGrowthSpeed * deltaTime;
+        if (mWidth < targetWidth) mWidth = targetWidth; // Clamp
+    }
+
+    // 5. Calcular Offset Dinâmico
+    // Calculamos uma porcentagem de quanto a cobra cresceu (0.0 a 1.0) para aplicar o offset proporcionalmente.
+    // Isso impede que a hitbox "pule" de posição.
+    float growthRatio = 0.0f;
+    if (mAttackSpriteWidth - mIdleWidth > 0.001f) {
+        growthRatio = (mWidth - mIdleWidth) / (mAttackSpriteWidth - mIdleWidth);
+    }
+
+    // O offset atual é baseado no quanto ela já cresceu
+    float currentOffset = mAttackOffsetHitBox * growthRatio;
+
+    // Inverter offset se estiver virado para a esquerda (rotação Pi)
+    if (GetRotation() == Math::Pi) {
+        currentOffset = -currentOffset;
+    }
+
+    // 6. Atualizar Vértices e Hitbox
+    Vector2 v1(-mWidth / 2 + currentOffset, -mHeight / 2);
+    Vector2 v2(mWidth / 2 + currentOffset, -mHeight / 2);
+    Vector2 v3(mWidth / 2 + currentOffset, mHeight / 2);
+    Vector2 v4(-mWidth / 2 + currentOffset, mHeight / 2);
 
     if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
         aabb->SetMin(v1);
@@ -266,7 +263,6 @@ void Snake::Attack(float deltaTime) {
     }
 
     if (mRectComponent) {
-        // mDrawPolygonComponent->SetVertices(vertices);
         mRectComponent->SetWidth(mWidth);
         mRectComponent->SetHeight(mHeight);
     }

@@ -25,11 +25,6 @@ DynamicGround::DynamicGround(Game* game, float width, float height, bool isSpike
     if (mDrawComponent) {
         mDrawComponent->SetDrawOrder(100);
     }
-    // RemoveComponent(mDrawGroundSpritesComponent);
-    // delete mDrawGroundSpritesComponent;
-    // mDrawGroundSpritesComponent = nullptr;
-    //
-    // mDrawDynamicGroundSpritesComponent = new DrawDynamicGroundSpritesComponent(this, mGame->GetTileSize(), mGame->GetTileSize(), 100);
 }
 
 void DynamicGround::OnUpdate(float deltaTime) {

@@ -29,8 +29,11 @@ public:
     // === Bake (gera textura única a partir dos tiles) ===
     void BakeTilesToTexture(Renderer* renderer);
 
+    void SetTexture(class Texture* texture, float textureWidth, float textureHeight);
+
 protected:
     std::vector<std::vector<int>> mTilesIndex;
+    bool mOwnsTexture;
     class Texture* mBakedTexture; // textura única gerada
     float mBakedWidth;
     float mBakedHeight;
