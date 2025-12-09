@@ -14,11 +14,17 @@ RigidBodyComponent::RigidBodyComponent(class Actor* owner, float mass, float max
     ,mMaxSpeedY(maxSpeedY)
     ,mVelocity(Vector2::Zero)
     ,mAcceleration(Vector2::Zero)
+    ,mKnockBackVelocity(Vector2::Zero)
+    ,mKnockBackFriction(15.0f)
 {
 }
 
 void RigidBodyComponent::ApplyForce(const Vector2 &force) {
     mAcceleration += force * (1.0f / mMass);
+}
+
+void RigidBodyComponent::ApplyKnockBack(const Vector2 &force) {
+    mKnockBackVelocity = force;
 }
 
 void RigidBodyComponent::Update(float deltaTime) {
@@ -44,7 +50,16 @@ void RigidBodyComponent::Update(float deltaTime) {
         }
     }
 
-    position += mVelocity * deltaTime;
+    if (mKnockBackVelocity.LengthSq() > 0.001f) {
+        mKnockBackVelocity -= mKnockBackVelocity * mKnockBackFriction * deltaTime;
+        if (mKnockBackVelocity.LengthSq() < 1.0f) {
+            mKnockBackVelocity = Vector2::Zero;
+        }
+    }
+
+    Vector2 finalVelocity = mVelocity + mKnockBackVelocity;
+
+    position += finalVelocity * deltaTime;
 
     mOwner->SetPosition(position);
 

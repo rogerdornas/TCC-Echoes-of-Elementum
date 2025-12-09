@@ -527,6 +527,7 @@ void Golem::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
             }
             return;
         }
+        return;
     }
 
     mHealthPoints -= damage;

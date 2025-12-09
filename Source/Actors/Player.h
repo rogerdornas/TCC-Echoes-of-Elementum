@@ -217,6 +217,7 @@ private:
     float mSwordDirection;              // Director da espada(esquerda, direita, cima, baixo)
     bool mSwordHitGround;
     bool mSwordHitSpike;
+    float mSwordHitKnockBack;
     std::vector<class Enemy*> mEnemiesHitBySword;
 
     bool mCanFireBall;

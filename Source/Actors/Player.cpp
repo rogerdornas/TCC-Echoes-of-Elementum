@@ -78,7 +78,7 @@ Player::Player(Game* game)
     ,mGroundSlamImpactHeightRange(mHeight * 1.8f)
     ,mGroundSlamImpactDamage(10)
     ,mGroundSlamIFramesDuration(0.3f)
-    ,mGroundSlamCameraShakeStrength(80.0f)
+    ,mGroundSlamCameraShakeStrength(90.0f)
     ,mGroundSlamCameraShakeDuration(0.2f)
     ,mGroundSlamManaCost(20.0f)
 
@@ -92,6 +92,7 @@ Player::Player(Game* game)
     ,mSwordDirection(0)
     ,mSwordHitGround(false)
     ,mSwordHitSpike(false)
+    ,mSwordHitKnockBack(750.0f)
 
     ,mCanFireBall(true)
     ,mPrevFireBallPressed(false)
@@ -438,16 +439,28 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
                 mTryingLeavingWallSlideLeft = 1;
                 if (mTimerToLeaveWallSlidingLeft >= mMaxTimerToLiveWallSliding) {
                     mIsRunning = true;
-                    mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed + mMovingGroundVelocity.x,
+                    if (mRigidBodyComponent->GetKnockBackVelocity().x > 150) {
+                        mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                              mRigidBodyComponent->GetVelocity().y));
+                    }
+                    else {
+                        mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed + mMovingGroundVelocity.x,
+                                                                 mRigidBodyComponent->GetVelocity().y));
+                    }
                     mTryingLeavingWallSlideLeft = 0;
                     mTimerToLeaveWallSlidingLeft = 0;
                 }
             }
             else {
                 mIsRunning = true;
-                mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed + mMovingGroundVelocity.x,
+                if (mRigidBodyComponent->GetKnockBackVelocity().x > 150) {
+                    mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                          mRigidBodyComponent->GetVelocity().y));
+                }
+                else {
+                    mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed + mMovingGroundVelocity.x,
+                                                             mRigidBodyComponent->GetVelocity().y));
+                }
                 mTimerToLeaveWallSlidingLeft = 0;
             }
         }
@@ -484,16 +497,28 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
                 mTryingLeavingWallSlideRight = 1;
                 if (mTimerToLeaveWallSlidingRight >= mMaxTimerToLiveWallSliding) {
                     mIsRunning = true;
-                    mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed + mMovingGroundVelocity.x,
+                    if (mRigidBodyComponent->GetKnockBackVelocity().x < -150) {
+                        mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                              mRigidBodyComponent->GetVelocity().y));
+                    }
+                    else {
+                        mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed + mMovingGroundVelocity.x,
+                                                                 mRigidBodyComponent->GetVelocity().y));
+                    }
                     mTryingLeavingWallSlideRight = 0;
                     mTimerToLeaveWallSlidingRight = 0;
                 }
             }
             else {
                 mIsRunning = true;
-                mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed + mMovingGroundVelocity.x,
+                if (mRigidBodyComponent->GetKnockBackVelocity().x < -150) {
+                    mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                          mRigidBodyComponent->GetVelocity().y));
+                }
+                else {
+                    mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed + mMovingGroundVelocity.x,
+                                                             mRigidBodyComponent->GetVelocity().y));
+                }
                 mTimerToLeaveWallSlidingRight = 0;
             }
         }
@@ -1209,6 +1234,10 @@ void Player::ResolveGroundCollision() {
                             (collisionNormal == Vector2::NegUnitX && Math::Abs(mSword->GetForward().x) == 1) ||
                             (collisionNormal == Vector2::UnitX && Math::Abs(mSword->GetForward().x) == 1) )
                         {
+                            Vector2 knockBackForce;
+                            knockBackForce.x = -mSword->GetForward().x * mSwordHitKnockBack;
+                            mRigidBodyComponent->ApplyKnockBack(knockBackForce);
+
                             auto* grass = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 6, 150.0, 0.30, 0.05f);
                             if (collisionNormal == Vector2::NegUnitY) {
                                 grass->SetPosition(Vector2(mSword->GetPosition().x, g->GetPosition().y - g->GetHeight() / 2));
@@ -1284,7 +1313,8 @@ void Player::ResolveGroundCollision() {
 
                     ReceiveHit(10, collisionNormal, DamageType::Environment);
                 }
-                if (mSword->GetComponent<ColliderComponent>()->Intersect(*g->GetComponent<ColliderComponent>())) { // Colisão da sword com spikes
+                // Colisão da sword com spikes
+                if (mSword->GetComponent<ColliderComponent>()->Intersect(*g->GetComponent<ColliderComponent>())) {
                     if (!mSwordHitSpike) {
                         collisionNormal = mSword->GetComponent<ColliderComponent>()->CollisionSide(*g->GetComponent<ColliderComponent>());
                         if ((collisionNormal == Vector2::NegUnitY && Math::Abs(mSword->GetForward().y) == 1) ||
@@ -1292,6 +1322,9 @@ void Player::ResolveGroundCollision() {
                             (collisionNormal == Vector2::NegUnitX && Math::Abs(mSword->GetForward().x) == 1) ||
                             (collisionNormal == Vector2::UnitX && Math::Abs(mSword->GetForward().x) == 1) )
                         {
+                            Vector2 knockBackForce;
+                            knockBackForce.x = -mSword->GetForward().x * mSwordHitKnockBack;
+                            mRigidBodyComponent->ApplyKnockBack(knockBackForce);
                             mGame->GetAudio()->PlaySound("HitSpike/HitSpike1.wav");
                             for (int i = 0; i < 3; i++) {
                                 auto* sparkEffect = new Effect(mGame);
@@ -1381,8 +1414,8 @@ void Player::ResolveEnemyCollision() {
                     }
                 }
             }
-
-            if (mSword->GetComponent<ColliderComponent>()->Intersect(*e->GetComponent<ColliderComponent>())) { // Colisão da sword com enemies
+            // Colisão da sword com enemies
+            if (mSword->GetComponent<ColliderComponent>()->Intersect(*e->GetComponent<ColliderComponent>())) {
                 auto it = std::find(mEnemiesHitBySword.begin(), mEnemiesHitBySword.end(), e);
                 if (it == mEnemiesHitBySword.end()) {
                     e->ReceiveHit(mSword->GetDamage(), mSword->GetForward());
@@ -1405,6 +1438,11 @@ void Player::ResolveEnemyCollision() {
                         // RESET DO CONTADOR DE PULO
                         mJumpCountInAir = 0;
                     }
+
+                    Vector2 knockBackForce;
+                    knockBackForce.x = -mSword->GetForward().x * mSwordHitKnockBack;
+                    mRigidBodyComponent->ApplyKnockBack(knockBackForce);
+
                     mEnemiesHitBySword.push_back(e);
                 }
             }

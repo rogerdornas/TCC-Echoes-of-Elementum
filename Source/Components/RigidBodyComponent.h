@@ -18,6 +18,10 @@ public:
     const Vector2 &GetVelocity() const { return mVelocity; }
     void SetVelocity(const Vector2 &velocity) { mVelocity = velocity; }
 
+    void ApplyKnockBack(const Vector2 &force);
+    void SetKnockBackFriction(float friction) { mKnockBackFriction = friction; }
+    Vector2 GetKnockBackVelocity() { return mKnockBackVelocity; }
+
     const Vector2 &GetAcceleration() const { return mAcceleration; }
     void SetAcceleration(const Vector2 &acceleration) { mAcceleration = acceleration; }
 
@@ -40,4 +44,7 @@ private:
 
     Vector2 mVelocity;
     Vector2 mAcceleration;
+
+    Vector2 mKnockBackVelocity;
+    float mKnockBackFriction;
 };
