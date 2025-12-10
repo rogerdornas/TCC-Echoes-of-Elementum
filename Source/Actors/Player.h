@@ -110,7 +110,7 @@ public:
 
     // Funções para sair da pausa com o controle sem pular ou atirar bola de fogo
     void SetCanJump(bool j) { mCanJump = j; }
-    void SetPrevFireBallPressed(bool f) { mPrevFireBallPressed = f; }
+    void SetPrevSkill1Pressed(bool f) { mPrevSkill1Pressed = f; }
     void SetPrevSwordPressed(bool s) { mPrevSwordPressed = s; }
 
     void SetIsEnteringLevel(Vector2 velocity);
@@ -187,8 +187,9 @@ private:
     float mLightningDashIFramesDuration;
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
 
+    bool mPrevSkill1Pressed;
+
     bool mCanGroundSlam;
-    bool mPrevGroundSlamPressed;
     bool mIsGroundSlamStarting;
     bool mIsGroundSlamRecovering;
     bool mIsDiving;
@@ -221,7 +222,6 @@ private:
     std::vector<class Enemy*> mEnemiesHitBySword;
 
     bool mCanFireBall;
-    bool mPrevFireBallPressed; // Se apertou botão de fireball no último frame
     float mFireBallCooldownTimer; // Timer de cooldown da fireball
     const float mFireBallCooldownDuration; // Cooldown da fireball
     bool mIsFireAttacking; // As seguintes variáveis são para a feature de ficar parado ao atirar e dar um recoil

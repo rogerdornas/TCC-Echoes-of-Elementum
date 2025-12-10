@@ -64,8 +64,9 @@ Player::Player(Game* game)
     ,mLightningDashManaCost(10.0f)
     ,mLightningDashIFramesDuration(mLightningDashDuration + 0.1f)
 
+    ,mPrevSkill1Pressed(false)
+
     ,mCanGroundSlam(true)
-    ,mPrevGroundSlamPressed(false)
     ,mIsGroundSlamStarting(false)
     ,mIsGroundSlamRecovering(false)
     ,mIsDiving(false)
@@ -95,7 +96,6 @@ Player::Player(Game* game)
     ,mSwordHitKnockBack(750.0f)
 
     ,mCanFireBall(true)
-    ,mPrevFireBallPressed(false)
     ,mFireBallCooldownDuration(0.1f)
     ,mFireBallCooldownTimer(0.0f)
     ,mIsFireAttacking(false)
@@ -439,7 +439,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
                 mTryingLeavingWallSlideLeft = 1;
                 if (mTimerToLeaveWallSlidingLeft >= mMaxTimerToLiveWallSliding) {
                     mIsRunning = true;
-                    if (mRigidBodyComponent->GetKnockBackVelocity().x > 150) {
+                    if (mRigidBodyComponent->GetKnockBackVelocity().x > 180) {
                         mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                              mRigidBodyComponent->GetVelocity().y));
                     }
@@ -453,7 +453,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             }
             else {
                 mIsRunning = true;
-                if (mRigidBodyComponent->GetKnockBackVelocity().x > 150) {
+                if (mRigidBodyComponent->GetKnockBackVelocity().x > 180) {
                     mRigidBodyComponent->SetVelocity(Vector2(-mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                          mRigidBodyComponent->GetVelocity().y));
                 }
@@ -497,7 +497,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
                 mTryingLeavingWallSlideRight = 1;
                 if (mTimerToLeaveWallSlidingRight >= mMaxTimerToLiveWallSliding) {
                     mIsRunning = true;
-                    if (mRigidBodyComponent->GetKnockBackVelocity().x < -150) {
+                    if (mRigidBodyComponent->GetKnockBackVelocity().x < -180) {
                         mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                              mRigidBodyComponent->GetVelocity().y));
                     }
@@ -511,7 +511,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             }
             else {
                 mIsRunning = true;
-                if (mRigidBodyComponent->GetKnockBackVelocity().x < -150) {
+                if (mRigidBodyComponent->GetKnockBackVelocity().x < -180) {
                     mRigidBodyComponent->SetVelocity(Vector2(mMoveSpeed * 0.0f + mMovingGroundVelocity.x,
                                                          mRigidBodyComponent->GetVelocity().y));
                 }
@@ -614,8 +614,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         mIsFreezingUp = false;
         mIsFreezingFront = false;
     }
-    mPrevFireBallPressed = skill1;
-    mPrevGroundSlamPressed = skill1;
+    mPrevSkill1Pressed = skill1;
 
     // Skill2
     if (skill2) {
@@ -848,6 +847,16 @@ void Player::OnUpdate(float deltaTime) {
     if (mIsWallSliding) {
         mTimerOutOfWallToJump = 0;
         mIsDiving = false;
+        if (mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+            if (mWallSlideSide == WallSlideSide::left) {
+                SetRotation(Math::Pi);
+                SetScale(Vector2(-1, 1));
+            }
+            if (mWallSlideSide == WallSlideSide::right) {
+                SetRotation(0);
+                SetScale(Vector2(1, 1));
+            }
+        }
     }
     else {
         mTimerOutOfWallToJump += deltaTime;
@@ -1165,8 +1174,10 @@ void Player::ResolveGroundCollision() {
                                 mIsOnMovingGround = true;
                                 mMovingGroundVelocity = g->GetComponent<RigidBodyComponent>()->GetVelocity();
                             }
-                            mIsWallSliding = true;
-                            mWallSlideSide = WallSlideSide::left;
+                            if (!mIsOnGround) {
+                                mIsWallSliding = true;
+                                mWallSlideSide = WallSlideSide::left;
+                            }
                             if (!mIsOnGround) {
                                 // SetRotation(Math::Pi);
                             }
@@ -1189,8 +1200,10 @@ void Player::ResolveGroundCollision() {
                                 mIsOnMovingGround = true;
                                 mMovingGroundVelocity = g->GetComponent<RigidBodyComponent>()->GetVelocity();
                             }
-                            mIsWallSliding = true;
-                            mWallSlideSide = WallSlideSide::right;
+                            if (!mIsOnGround) {
+                                mIsWallSliding = true;
+                                mWallSlideSide = WallSlideSide::right;
+                            }
                             if (!mIsOnGround) {
                                 // SetRotation(0);
                             }
@@ -1453,6 +1466,16 @@ void Player::ResolveEnemyCollision() {
 void Player::UseDash() {
     if (mCanDash) {
         if (!mIsFireAttacking && !mIsDiving) {
+            if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+                if (mWallSlideSide == WallSlideSide::left) {
+                    SetRotation(Math::Pi);
+                    SetScale(Vector2(-1, 1));
+                }
+                if (mWallSlideSide == WallSlideSide::right) {
+                    SetRotation(0);
+                    SetScale(Vector2(1, 1));
+                }
+            }
             if (mDashComponent->UseDash(mIsOnGround)) {
                 if (mElementalMode == ElementalMode::Lightning && mMana >= mLightningDashManaCost) {
                     mIsLightningDashing = true;
@@ -1484,7 +1507,7 @@ void Player::UseDash() {
 
 void Player::UseGroundSlam() {
     if (mElementalMode == ElementalMode::Earth) {
-        if (!mPrevGroundSlamPressed &&
+        if (!mPrevSkill1Pressed &&
             !mIsGroundSlamStarting &&
             !mIsGroundSlamRecovering &&
             !mIsDiving &&
@@ -1642,6 +1665,14 @@ void Player::UseSword() {
     {
         mGame->GetAudio()->PlayVariantSound("SwordSlash/SwordSlash.wav", 11);
         // Ativa a espada
+        if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+            if (mWallSlideSide == WallSlideSide::left) {
+                mSwordDirection = Math::Pi;
+            }
+            if (mWallSlideSide == WallSlideSide::right) {
+                mSwordDirection = 0;
+            }
+        }
         mSword->SetState(ActorState::Active);
         mSword->SetRotation(mSwordDirection);
         if (mSwordDirection == Math::Pi) {
@@ -1664,7 +1695,7 @@ void Player::UseSword() {
 
 void Player::UseFireBall() {
     if (mCanFireBall) {
-        if (!mPrevFireBallPressed &&
+        if (!mPrevSkill1Pressed &&
             mFireBallCooldownTimer >= mFireBallCooldownDuration &&
             mMana >= mFireballManaCost &&
             !mDashComponent->GetIsDashing() && !mIsDiving)
@@ -1673,6 +1704,16 @@ void Player::UseFireBall() {
             for (FireBall* f: fireBalls) {
                 if (f->GetState() == ActorState::Paused) {
                     f->SetState(ActorState::Active);
+                    if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+                        if (mWallSlideSide == WallSlideSide::left) {
+                            SetRotation(Math::Pi);
+                            SetScale(Vector2(-1, 1));
+                        }
+                        if (mWallSlideSide == WallSlideSide::right) {
+                            SetRotation(0);
+                            SetScale(Vector2(1, 1));
+                        }
+                    }
                     f->SetRotation(GetRotation());
                     f->SetTransformRotation(0.0f);
                     f->SetScale(Vector2(GetForward().x, 1));
@@ -1719,6 +1760,16 @@ void Player::UseFreeze(bool up, bool down) {
                     freezeEffect.direction = EffectDir::Up;
                 }
                 else {
+                    if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+                        if (mWallSlideSide == WallSlideSide::left) {
+                            SetRotation(Math::Pi);
+                            SetScale(Vector2(-1, 1));
+                        }
+                        if (mWallSlideSide == WallSlideSide::right) {
+                            SetRotation(0);
+                            SetScale(Vector2(1, 1));
+                        }
+                    }
                     mIsFreezingFront = true;
                     snowBalls->SetEmitDirection(GetForward());
                     snowBalls->SetPosition(GetPosition() + Vector2(mWidth * 0.45f * GetForward().x, 11));
@@ -1750,6 +1801,16 @@ void Player::UseFreeze(bool up, bool down) {
                     freezeEffect.direction = EffectDir::Up;
                 }
                 else {
+                    if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+                        if (mWallSlideSide == WallSlideSide::left) {
+                            SetRotation(Math::Pi);
+                            SetScale(Vector2(-1, 1));
+                        }
+                        if (mWallSlideSide == WallSlideSide::right) {
+                            SetRotation(0);
+                            SetScale(Vector2(1, 1));
+                        }
+                    }
                     iceCloud->SetEmitDirection(GetForward());
                     iceCloud->SetPosition(GetPosition() + Vector2(mWidth * 0.45f * GetForward().x, 11));
                     freezeEffect.direction = EffectDir::Front;
@@ -1947,6 +2008,7 @@ void Player::ManageAnimations() {
         else if (mWallSlideSide == WallSlideSide::right) {
             // mDrawAnimatedComponent->SetFlip(SDL_FLIP_HORIZONTAL);
         }
+        // SetScale(Vector2(-1, 1));
         mDrawComponent->SetAnimation("wallSlide");
     }
     else if (mIsRunning && mIsOnGround) {

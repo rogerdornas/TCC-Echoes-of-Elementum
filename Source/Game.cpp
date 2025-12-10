@@ -2976,7 +2976,7 @@ void Game::TogglePause() {
             mGamePlayState = GamePlayState::Playing;
         }
         mPlayer->SetCanJump(false);
-        mPlayer->SetPrevFireBallPressed(true);
+        mPlayer->SetPrevSkill1Pressed(true);
     }
 }
 
