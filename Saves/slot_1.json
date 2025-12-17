@@ -1,20 +1,20 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 688.0,
-            "y": 3104.0
+            "x": 7920.0,
+            "y": 4256.0
         },
-        "scene": "Coliseu",
-        "total_play_time": 88667.1640625
+        "scene": "Level1",
+        "total_play_time": 93485.9296875
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 319,
+        "death_counter": 324,
         "max_jumps_in_air": 1,
-        "money": 10732
+        "money": 12932
     },
     "upgrades": {
         "fireball": true,
@@ -30,11 +30,11 @@
         "FoxDefeated": true,
         "FrogDefeated": true,
         "GolemDefeated": true,
-        "HookEnemyDefeated": false,
+        "HookEnemyDefeated": true,
         "Level1ArenaDone": true,
         "Level1Puzzle1Done": true,
         "Level2Lever2Activated": true,
         "Level4ArenaDone": false,
-        "MirrorBossDefeated": false
+        "MirrorBossDefeated": true
     }
 }

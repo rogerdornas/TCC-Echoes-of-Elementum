@@ -59,11 +59,11 @@ int RadialMenu::GetIndexFromInput(float x, float y) {
     // Calcula o ângulo do input: atan2 retorna entre -PI e +PI
     float angle = std::atan2(y, x);
 
-    float shiftedAngle = angle + (Math::PiOver2);
+    float shiftedAngle = angle + Math::PiOver2;
     if (shiftedAngle < 0) shiftedAngle += Math::TwoPi;
 
     // Divide pelo tamanho da fatia
-    float sliceSize = (Math::TwoPi) / mButtons.size();
+    float sliceSize = Math::TwoPi / mButtons.size();
 
     // Opcional: Rotacionar meia fatia para trás para que o ícone fique no CENTRO da fatia de seleção
     // em vez de a fatia começar no ícone.

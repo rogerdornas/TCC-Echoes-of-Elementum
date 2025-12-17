@@ -35,11 +35,20 @@ Player::Player(Game* game)
     ,mIsOnMovingGround(false)
     ,mMovingGroundVelocity(Vector2::Zero)
     ,mMoveSpeed(700 * mGame->GetScale())
+    ,mMaxSpeedYNormal(1600)
 
     ,mMaxTimeOutOfGroundToJump(0.07)
     ,mTimerOutOfGroundToJump(0.0f)
     ,mMaxTimeOutOfWallToJump(0.07)
     ,mTimerOutOfWallToJump(0.0f)
+
+    ,mCanGlide(true)
+    ,mIsGliding(false)
+    ,mGlideCooldownDuration(0.15f)
+    ,mGlideCooldownTimer(0.0f)
+    ,mGlideInitialSpeedY(30)
+    ,mMaxSpeedYGlide(300)
+    ,mGlideGravity(1300)
 
     ,mIsJumping(false)
     ,mJumpTimer(0.0f)
@@ -65,6 +74,7 @@ Player::Player(Game* game)
     ,mLightningDashIFramesDuration(mLightningDashDuration + 0.1f)
 
     ,mPrevSkill1Pressed(false)
+    ,mPrevSkill2Pressed(false)
 
     ,mCanGroundSlam(true)
     ,mIsGroundSlamStarting(false)
@@ -74,6 +84,7 @@ Player::Player(Game* game)
     ,mGroundSlamRecoveryDuration(0.45f)
     ,mGroundSlamTimer(0.0f)
     ,mGroundSlamSpeed(2000)
+    ,mMaxSpeedYGroundSlam(2500)
     ,mGroundSlamDamage(15)
     ,mGroundSlamImpactDist(300.0f)
     ,mGroundSlamImpactHeightRange(mHeight * 1.8f)
@@ -122,7 +133,6 @@ Player::Player(Game* game)
     ,mFreezeManaCost(2.0f)
 
     ,mCanCreatePillar(true)
-    ,mPrevCreatePillarPressed(false)
     ,mPillarDistanceFromPlayer(100.0f)
     ,mPillarManaCost(20.0f)
     ,mPillarAnimationDuration(0.5f)
@@ -229,68 +239,71 @@ Player::Player(Game* game)
     vertices.emplace_back(v4);
 
     mDrawComponent = new AnimatorComponent(this,
-                                           "../Assets/Sprites/Esquilo5/Esquilo.png",
-                                           "../Assets/Sprites/Esquilo5/Esquilo.json",
+                                           "../Assets/Sprites/EsquiloFire/Esquilo.png",
+                                           "../Assets/Sprites/EsquiloFire/Esquilo.json",
                                            mWidth * 4.93f, mWidth * 4.93f * 1.11f, 1002);
 
-    std::vector idle = {32, 33, 34, 35};
+    std::vector idle = {33, 34, 35, 36};
     mDrawComponent->AddAnimation("idle", idle);
 
-    std::vector attackFront = {32, 2, 3};
+    std::vector attackFront = {33, 2, 3};
     mDrawComponent->AddAnimation("attackFront", attackFront);
 
-    std::vector attackUp = {32, 4, 5};
+    std::vector attackUp = {33, 4, 5};
     mDrawComponent->AddAnimation("attackUp", attackUp);
 
-    std::vector attackDown = {32, 0, 1};
+    std::vector attackDown = {33, 0, 1};
     mDrawComponent->AddAnimation("attackDown", attackDown);
 
-    std::vector fireball = {12, 13};
+    std::vector fireball = {13, 14};
     mDrawComponent->AddAnimation("fireball", fireball);
 
-    std::vector freezeFront = {16, 17};
+    std::vector freezeFront = {17, 18};
     mDrawComponent->AddAnimation("freezeFront", freezeFront);
 
-    std::vector freezeDown = {14, 15};
+    std::vector freezeDown = {15, 16};
     mDrawComponent->AddAnimation("freezeDown", freezeDown);
 
-    std::vector freezeUp = {18, 19};
+    std::vector freezeUp = {19, 20};
     mDrawComponent->AddAnimation("freezeUp", freezeUp);
 
-    std::vector groundSlam = {20, 21, 22, 23, 24, 24, 24};
+    std::vector dive = {12};
+    mDrawComponent->AddAnimation("dive", dive);
+
+    std::vector groundSlam = {21, 22, 23, 24, 25, 25, 25};
     mDrawComponent->AddAnimation("groundSlam", groundSlam);
 
-    std::vector pillar = {43, 44, 45, 45, 45, 45, 45, 45, 45, 45};
+    std::vector pillar = {44, 45, 46, 46, 46, 46, 46, 46, 46, 46};
     mDrawComponent->AddAnimation("pillar", pillar);
 
     std::vector dash = {6, 7, 7, 7, 8};
     mDrawComponent->AddAnimation("dash", dash);
 
-    std::vector lightningDash = {7, 39, 40, 40, 41, 41, 42, 42, 8};
+    std::vector lightningDash = {7, 40, 41, 41, 42, 42, 43, 43, 8};
     mDrawComponent->AddAnimation("lightningDash", lightningDash);
 
-    std::vector run = {46, 47, 48, 49, 50, 51};
+    std::vector run = {47, 48, 49, 50, 51, 52};
     mDrawComponent->AddAnimation("run", run);
 
-    std::vector heal = {25, 26, 27, 28, 29, 29, 28, 27, 26, 25};
+    std::vector heal = {26, 27, 28, 29, 30, 30, 29, 28, 27, 26};
     mDrawComponent->AddAnimation("heal", heal);
 
-    std::vector wallSlide = {52};
+    std::vector wallSlide = {53};
     mDrawComponent->AddAnimation("wallSlide", wallSlide);
 
-    std::vector hurt = {30, 31};
+    std::vector hurt = {31, 32};
     mDrawComponent->AddAnimation("hurt", hurt);
 
     std::vector die = {30, 9, 10, 11, 11, 11};
     mDrawComponent->AddAnimation("die", die);
 
-    std::vector jumpUp = {36};
+    std::vector jumpUp = {37};
     mDrawComponent->AddAnimation("jumpUp", jumpUp);
 
-    std::vector jumpApex = {37};
+    std::vector jumpApex = {38};
     mDrawComponent->AddAnimation("jumpApex", jumpApex);
 
-    std::vector falling = {38};
+    std::vector falling = {39};
     mDrawComponent->AddAnimation("falling", falling);
 
     mDrawComponent->SetAnimation("idle");
@@ -304,7 +317,7 @@ Player::Player(Game* game)
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1600 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), mMaxSpeedYNormal * mGame->GetScale());
     mAABBComponent = new AABBComponent(this, v1, v3);
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
@@ -621,8 +634,17 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         if (mElementalMode == ElementalMode::Earth) {
             UsePillar();
         }
+        if (mElementalMode == ElementalMode::Fire) {
+            Glide();
+        }
     }
-    mPrevCreatePillarPressed = skill2;
+    else {
+        mIsGliding = false;
+        if (mPrevSkill2Pressed) {
+            mGlideCooldownTimer = 0;
+        }
+    }
+    mPrevSkill2Pressed = skill2;
 
     // Heal
     if (heal && !left && !leftSlow && !right && !rightSlow && !jump && !dash && !sword && !skill1) {
@@ -681,6 +703,10 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mFireBallCooldownTimer < mFireBallCooldownDuration) {
         mFireBallCooldownTimer += deltaTime;
+    }
+
+    if (mGlideCooldownTimer < mGlideCooldownDuration) {
+        mGlideCooldownTimer += deltaTime;
     }
 
     if (mIntervalBetweenFreezeEmitTimer < mIntervalBetweenFreezeEmitDuration) {
@@ -784,13 +810,6 @@ void Player::OnUpdate(float deltaTime) {
         mWallSlideSide = WallSlideSide::notSliding;
     }
 
-    if (mIsDiving) {
-        mRigidBodyComponent->SetMaxSpeedY(2500);
-    }
-    else {
-        mRigidBodyComponent->SetMaxSpeedY(1600);
-    }
-
     if (mIsLightningDashing) {
         if (!mDashComponent->GetIsDashing()) {
             mIsLightningDashing = false;
@@ -818,7 +837,7 @@ void Player::OnUpdate(float deltaTime) {
     }
     else {
         // So aplica gravidade se nao estiver dashando e nao estiver tacando fireball
-        if (!mDashComponent->GetIsDashing() && !mIsFireAttacking && !mIsOnMovingGround && !mIsOnGround && !mIsHooking) {
+        if (!mDashComponent->GetIsDashing() && !mIsFireAttacking && !mIsOnMovingGround && !mIsOnGround && !mIsHooking && !mIsGliding) {
             if (mRigidBodyComponent->GetVelocity().y < 0) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
                                                          mRigidBodyComponent->GetVelocity().y
@@ -830,14 +849,34 @@ void Player::OnUpdate(float deltaTime) {
                                                          + mHighGravity * deltaTime));
             }
         }
+        if (mIsGliding) {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
+                                                         mRigidBodyComponent->GetVelocity().y
+                                                         + mGlideGravity * deltaTime));
+        }
     }
 
     ResolveEnemyCollision();
     ResolveGroundCollision();
 
+    if (mRigidBodyComponent->GetVelocity().y <= 0) {
+        mIsGliding = false;
+    }
+
+    if (mIsDiving) {
+        mRigidBodyComponent->SetMaxSpeedY(mMaxSpeedYGroundSlam);
+    }
+    else if (mIsGliding) {
+        mRigidBodyComponent->SetMaxSpeedY(mMaxSpeedYGlide);
+    }
+    else {
+        mRigidBodyComponent->SetMaxSpeedY(mMaxSpeedYNormal);
+    }
+
     if (mIsOnGround) {
         mIsGoingRight = false;
         mIsGoingLeft = false;
+        mIsGliding = false;
         mTimerOutOfGroundToJump = 0;
     }
     else {
@@ -1507,7 +1546,8 @@ void Player::UseDash() {
 
 void Player::UseGroundSlam() {
     if (mElementalMode == ElementalMode::Earth) {
-        if (!mPrevSkill1Pressed &&
+        if (mCanGroundSlam &&
+            !mPrevSkill1Pressed &&
             !mIsGroundSlamStarting &&
             !mIsGroundSlamRecovering &&
             !mIsDiving &&
@@ -1592,6 +1632,25 @@ void Player::GroundSlamEffects() {
     // miniGrounds->SetConeSpread(180.0f);
 }
 
+void Player::Glide() {
+    if (mCanGlide &&
+        mGlideCooldownTimer >= mGlideCooldownDuration &&
+        !mIsOnGround &&
+        !mIsJumping &&
+        !mIsHooking &&
+        !mIsHookThrowing &&
+        mRigidBodyComponent->GetVelocity().y > 0)
+    {
+        if (!mIsGliding) {
+            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mGlideInitialSpeedY));
+        }
+        mIsGliding = true;
+    }
+    else {
+        mIsGliding = false;
+    }
+}
+
 void Player::UseJump() {
     //Início do pulo
     if (!mIsFireAttacking) {
@@ -1635,7 +1694,7 @@ void Player::UseJump() {
             }
             // Pulo no ar
             if (!(mIsOnGround || mIsWallSliding) && mJumpCountInAir < mMaxJumpsInAir && mCanJump
-                && (mWallJumpTimer >= mWallJumpMaxTime)) {
+                && (mWallJumpTimer >= mWallJumpMaxTime) && !mIsGliding) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce * 0.8f)
                                                  + mMovingGroundVelocity);
                 mIsJumping = true;
@@ -1833,7 +1892,7 @@ void Player::UseFreeze(bool up, bool down) {
 
 void Player::UsePillar() {
     if (mCanCreatePillar) {
-        if (!mPrevCreatePillarPressed &&
+        if (!mPrevSkill2Pressed &&
             mMana >= mPillarManaCost &&
             mPillarAnimationTimer >= mPillarAnimationDuration &&
             mIsOnGround &&
@@ -1948,6 +2007,10 @@ void Player::ManageAnimations() {
     }
     else if (mHurtTimer < mHurtDuration) {
         mDrawComponent->SetAnimation("hurt");
+    }
+    else if (mIsDiving) {
+        mDrawComponent->SetAnimation("dive");
+        mDrawComponent->SetAnimFPS(2);
     }
     else if (mIsGroundSlamRecovering) {
         mDrawComponent->SetAnimation("groundSlam");

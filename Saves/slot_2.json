@@ -1,11 +1,11 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 1328.0,
-            "y": 5312.0
+            "x": 25296.0,
+            "y": 6080.0
         },
-        "scene": "Room0",
-        "total_play_time": 11.712019920349121
+        "scene": "Level1",
+        "total_play_time": 250.8787841796875
     },
     "player": {
         "can_dash": false,
@@ -14,7 +14,7 @@
         "can_wallslide": false,
         "death_counter": 0,
         "max_jumps_in_air": 0,
-        "money": 0
+        "money": 131
     },
     "upgrades": {
         "fireball": false,
@@ -25,5 +25,8 @@
         "sword_range": false,
         "sword_speed": false
     },
-    "world_state": {}
+    "world_state": {
+        "Level1ArenaDone": true,
+        "Level1Puzzle1Done": true
+    }
 }

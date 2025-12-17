@@ -145,7 +145,7 @@ void Renderer::UnloadAllTextures()
 {
     for (auto it = mTextures.begin(); it != mTextures.end(); )
     {
-        if (it->first != "../Assets/Sprites/Esquilo5/Esquilo.png" &&
+        if (it->first != "../Assets/Sprites/EsquiloFire/Esquilo.png" &&
             it->first != "../Assets/Sprites/Rope/Rope2.png")
         {
             it->second->Unload();

@@ -132,6 +132,7 @@ private:
     void UseGroundSlam();
     void GroundSlamImpact();
     void GroundSlamEffects();
+    void Glide();
     void UseJump();
     void UseSword();
     void UseFireBall();
@@ -155,11 +156,20 @@ private:
     bool mIsOnMovingGround;
     Vector2 mMovingGroundVelocity;
     float mMoveSpeed;    // Velocidade de movimento
+    float mMaxSpeedYNormal;
 
     float mMaxTimeOutOfGroundToJump;  // Variáveis para dar um intervalo para pular quando sair do chão ou parede
     float mTimerOutOfGroundToJump;
     float mMaxTimeOutOfWallToJump;
     float mTimerOutOfWallToJump;
+
+    bool mCanGlide;
+    bool mIsGliding;
+    float mGlideCooldownDuration;
+    float mGlideCooldownTimer;
+    float mGlideInitialSpeedY;
+    float mMaxSpeedYGlide;
+    float mGlideGravity;
 
     bool mIsJumping;     // Está no meio de um pulo sustentado?
     float mJumpTimer;    // Quanto tempo já pulou
@@ -188,6 +198,7 @@ private:
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
 
     bool mPrevSkill1Pressed;
+    bool mPrevSkill2Pressed;
 
     bool mCanGroundSlam;
     bool mIsGroundSlamStarting;
@@ -197,6 +208,7 @@ private:
     float mGroundSlamRecoveryDuration;
     float mGroundSlamTimer;
     float mGroundSlamSpeed;
+    float mMaxSpeedYGroundSlam;
     float mGroundSlamDamage;
     float mGroundSlamImpactDist;
     float mGroundSlamImpactHeightRange;
@@ -250,7 +262,6 @@ private:
     float mFreezeManaCost;
 
     bool mCanCreatePillar;
-    bool mPrevCreatePillarPressed;
     float mPillarDistanceFromPlayer;
     float mPillarManaCost;
     float mPillarAnimationDuration;
