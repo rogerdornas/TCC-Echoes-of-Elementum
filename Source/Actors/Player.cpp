@@ -44,11 +44,13 @@ Player::Player(Game* game)
 
     ,mCanGlide(true)
     ,mIsGliding(false)
-    ,mGlideCooldownDuration(0.15f)
+    ,mGlideCooldownDuration(0.2f)
     ,mGlideCooldownTimer(0.0f)
     ,mGlideInitialSpeedY(30)
     ,mMaxSpeedYGlide(300)
     ,mGlideGravity(1300)
+    ,mGlideManaCost(50)
+    ,mIsGlideManaOver(false)
 
     ,mIsJumping(false)
     ,mJumpTimer(0.0f)
@@ -873,6 +875,21 @@ void Player::OnUpdate(float deltaTime) {
         mRigidBodyComponent->SetMaxSpeedY(mMaxSpeedYNormal);
     }
 
+    if (mIsGliding) {
+        mMana -= mGlideManaCost * deltaTime;
+        if (mMana <= 0) {
+            mMana = 0;
+            mIsGlideManaOver = true;
+            mIsGliding = false;
+        }
+    }
+
+    if (mIsGlideManaOver) {
+        if (mMana >= mMaxMana * 0.25f) {
+            mIsGlideManaOver = false;
+        }
+    }
+
     if (mIsOnGround) {
         mIsGoingRight = false;
         mIsGoingLeft = false;
@@ -886,6 +903,7 @@ void Player::OnUpdate(float deltaTime) {
     if (mIsWallSliding) {
         mTimerOutOfWallToJump = 0;
         mIsDiving = false;
+        mIsGliding = false;
         if (mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
             if (mWallSlideSide == WallSlideSide::left) {
                 SetRotation(Math::Pi);
@@ -1636,10 +1654,13 @@ void Player::Glide() {
     if (mCanGlide &&
         mGlideCooldownTimer >= mGlideCooldownDuration &&
         !mIsOnGround &&
+        !mIsWallSliding &&
         !mIsJumping &&
         !mIsHooking &&
         !mIsHookThrowing &&
-        mRigidBodyComponent->GetVelocity().y > 0)
+        mRigidBodyComponent->GetVelocity().y > 0 &&
+        mMana > 0 &&
+        !mIsGlideManaOver)
     {
         if (!mIsGliding) {
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mGlideInitialSpeedY));

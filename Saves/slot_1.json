@@ -1,11 +1,11 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 1328.0,
-            "y": 5312.0
+            "x": 14640.0,
+            "y": 11552.0
         },
-        "scene": "Room0",
-        "total_play_time": 94828.9375
+        "scene": "LevelTeste",
+        "total_play_time": 95295.5078125
     },
     "player": {
         "can_dash": true,
@@ -15,7 +15,7 @@
         "death_counter": 324,
         "elemental_mode": "Fire",
         "max_jumps_in_air": 1,
-        "money": 13894
+        "money": 14025
     },
     "upgrades": {
         "fireball": true,

@@ -170,6 +170,8 @@ private:
     float mGlideInitialSpeedY;
     float mMaxSpeedYGlide;
     float mGlideGravity;
+    float mGlideManaCost;
+    bool mIsGlideManaOver;
 
     bool mIsJumping;     // Está no meio de um pulo sustentado?
     float mJumpTimer;    // Quanto tempo já pulou
