@@ -176,6 +176,10 @@ add_executable(${PROJECT_NAME}
         Source/RadialMenu.h
         Source/Actors/PillarGround.cpp
         Source/Actors/PillarGround.h
+        Source/Actors/LightningBarrier.cpp
+        Source/Actors/LightningBarrier.h
+        Source/Actors/DashEffect.cpp
+        Source/Actors/DashEffect.h
 )
 
 

@@ -40,6 +40,7 @@
 #include "Actors/HookPoint.h"
 #include "Actors/Lava.h"
 #include "Actors/Light.h"
+#include "Actors/LightningBarrier.h"
 #include "Actors/LittleBat.h"
 #include "Actors/Mantis.h"
 #include "Actors/MirrorBoss.h"
@@ -1717,6 +1718,38 @@ void Game::LoadObjects(const std::string &fileName) {
                 auto* lava = new Lava(this, width, height, isMoving, movingDuration, Vector2(speedX, speedY));
                 lava->SetPosition(Vector2(x + width / 2, y + height / 2));
                 lava->SetRespawPosition(Vector2(respawnPositionX, respawnPositionY));
+            }
+        }
+        if (layer["name"] == "LightningBarrier") {
+            for (const auto &obj: layer["objects"]) {
+                float x = static_cast<float>(obj["x"]);
+                float y = static_cast<float>(obj["y"]);
+                float width = static_cast<float>(obj["width"]);
+                float height = static_cast<float>(obj["height"]);
+                bool isMoving = false;
+                float movingDuration = 0.0f;
+                float speedX = 0.0f;
+                float speedY = 0.0f;
+
+                if (obj.contains("properties")) {
+                    for (const auto &prop: obj["properties"]) {
+                        std::string propName = prop["name"];
+                        if (propName == "Moving") {
+                            isMoving = prop["value"];
+                        }
+                        else if (propName == "MovingDuration") {
+                            movingDuration = prop["value"];
+                        }
+                        else if (propName == "SpeedX") {
+                            speedX = prop["value"];
+                        }
+                        else if (propName == "SpeedY") {
+                            speedY = prop["value"];
+                        }
+                    }
+                }
+                auto* lightningBarrier = new LightningBarrier(this, width, height, isMoving, movingDuration, Vector2(speedX, speedY));
+                lightningBarrier->SetPosition(Vector2(x + width / 2, y + height / 2));
             }
         }
         if (layer["name"] == "Triggers") {

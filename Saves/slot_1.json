@@ -1,21 +1,21 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 14640.0,
-            "y": 11552.0
+            "x": 17968.0,
+            "y": 16608.0
         },
         "scene": "LevelTeste",
-        "total_play_time": 95295.5078125
+        "total_play_time": 97162.0625
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 324,
-        "elemental_mode": "Fire",
+        "death_counter": 336,
+        "elemental_mode": "Lightning",
         "max_jumps_in_air": 1,
-        "money": 14025
+        "money": 14424
     },
     "upgrades": {
         "fireball": true,

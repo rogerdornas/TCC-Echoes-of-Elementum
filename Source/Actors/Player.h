@@ -64,6 +64,9 @@ public:
 
     void SetCanDash(bool canDash) { mCanDash = canDash; }
     bool GetCanDash() const { return mCanDash; }
+    bool IsLightningDashing() { return mIsLightningDashing; }
+
+    void Stop();
 
     void SetCanHook(bool canHook) { mCanHook = canHook; }
     bool GetCanHook() const { return mCanHook; }
@@ -219,6 +222,7 @@ private:
     float mGroundSlamCameraShakeStrength;
     float mGroundSlamCameraShakeDuration;
     float mGroundSlamManaCost;
+    class DashEffect* mDiveEffect;
     std::vector<class Enemy*> mEnemiesHitByGroundSlam;
 
     Sword* mSword;

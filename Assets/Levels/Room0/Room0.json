@@ -1021,6 +1021,28 @@
         }, 
         {
          "draworder":"topdown",
+         "id":16,
+         "name":"LightningBarrier",
+         "objects":[
+                {
+                 "height":640,
+                 "id":75,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":160,
+                 "x":4064,
+                 "y":3648
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":4,
          "name":"SpawnPoint",
          "objects":[],
@@ -1633,8 +1655,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":16,
- "nextobjectid":75,
+ "nextlayerid":17,
+ "nextobjectid":76,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

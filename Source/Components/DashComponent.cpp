@@ -6,67 +6,7 @@
 #include "../Actors/Actor.h"
 #include "RigidBodyComponent.h"
 #include "../Game.h"
-#include "../Components/Drawing/AnimatorComponent.h"
-
-DashEffectActor::DashEffectActor(Game *game, Actor* owner, float duration)
-    :Actor(game)
-    ,mWidth(195 * mGame->GetScale())
-    ,mHeight(159 * mGame->GetScale())
-    ,mEffectDuration(duration)
-    ,mEffectTimer(mEffectDuration)
-    ,mOwner(owner)
-    ,mDrawComponent(nullptr)
-{
-    mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Dash5/Dash.png",
-                                               "../Assets/Sprites/Dash5/Dash.json",
-                                               mWidth, mHeight, 1002);
-
-    std::vector idle = {0, 1, 2, 3, 4, 5};
-    mDrawComponent->AddAnimation("idle", idle);
-
-    mDrawComponent->SetAnimation("idle");
-    mDrawComponent->SetAnimFPS(30);
-
-    // mDrawAnimatedComponent->SetTransparency(150);
-    mDrawComponent->SetAlpha(0.6f);
-}
-
-void DashEffectActor::OnUpdate(float deltaTime) {
-    mEffectTimer += deltaTime;
-    if (mEffectTimer >= mEffectDuration) {
-        if (mDrawComponent) {
-            mDrawComponent->SetVisible(false);
-        }
-    }
-    else if (mOwner->GetState() == ActorState::Active) {
-        if (mDrawComponent) {
-            mDrawComponent->SetVisible(true);
-        }
-        SetPosition(mOwner->GetPosition() - (Vector2(mOwner->GetWidth() * 1.5f, 0.0f) * GetForward().x));
-    }
-}
-
-void DashEffectActor::StartDashEffect() {
-    mEffectTimer = 0;
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->ResetAnimationTimer();
-    // }
-}
-
-
-void DashEffectActor::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth);
-    //     mDrawAnimatedComponent->SetHeight(mHeight);
-    // }
-}
-
-
-
+#include "../Actors/DashEffect.h"
 
 DashComponent::DashComponent(class Actor* owner, float dashSpeed, float dashDuration, float dashCooldown)
     :Component(owner)
@@ -82,7 +22,7 @@ DashComponent::DashComponent(class Actor* owner, float dashSpeed, float dashDura
 }
 
 void DashComponent::InitDashEffect() {
-    mDashEffect = new DashEffectActor(mOwner->GetGame(), mOwner, mDashDuration);
+    mDashEffect = new DashEffect(mOwner->GetGame(), mOwner, mDashDuration);
 }
 
 
@@ -97,7 +37,8 @@ bool DashComponent::UseDash(bool isOnGround) {
         mDashCooldownTimer = mDashCooldown;
         // inicia animação do dash
         mDashEffect->SetRotation(mOwner->GetRotation());
-        mDashEffect->SetPosition(mOwner->GetPosition() - (Vector2(mOwner->GetWidth() * 1.5f, 0.0f) * mDashEffect->GetForward().x));
+        mDashEffect->SetPosition(mOwner->GetPosition());
+        mDashEffect->SetOffsetPosition(-1 * Vector2(mOwner->GetWidth() * 1.5f, 0.0f) * mOwner->GetForward().x);
         mDashEffect->StartDashEffect();
 
         // Se estiver no ar, define a velocidade y para 0

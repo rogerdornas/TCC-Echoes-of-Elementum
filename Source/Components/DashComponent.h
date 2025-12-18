@@ -5,29 +5,6 @@
 #pragma once
 
 #include "Component.h"
-#include "../Actors/Actor.h"
-
-class DashEffectActor : public Actor
-{
-public:
-    DashEffectActor(Game* game, Actor* owner, float duration);
-
-    void OnUpdate(float deltaTime) override;
-    void StartDashEffect();
-    void StopDash() { mEffectTimer = mEffectDuration; }
-
-    void ChangeResolution(float oldScale, float newScale) override;
-
-private:
-    float mWidth;
-    float mHeight;
-    float mEffectDuration;
-    float mEffectTimer;
-    Actor* mOwner;
-
-    class AnimatorComponent* mDrawComponent;
-};
-
 
 class DashComponent : public Component
 {
@@ -58,5 +35,5 @@ private:
     float mDashCooldownTimer;
     bool mHasDashedInAir;
 
-    DashEffectActor* mDashEffect;
+    class DashEffect* mDashEffect;
 };

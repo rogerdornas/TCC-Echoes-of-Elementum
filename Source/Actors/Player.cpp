@@ -5,6 +5,7 @@
 #include "Player.h"
 #include <cfloat>
 #include "Checkpoint.h"
+#include "DashEffect.h"
 #include "Effect.h"
 #include "HookPoint.h"
 #include "Mushroom.h"
@@ -49,7 +50,7 @@ Player::Player(Game* game)
     ,mGlideInitialSpeedY(30)
     ,mMaxSpeedYGlide(300)
     ,mGlideGravity(1300)
-    ,mGlideManaCost(50)
+    ,mGlideManaCost(35)
     ,mIsGlideManaOver(false)
 
     ,mIsJumping(false)
@@ -95,6 +96,7 @@ Player::Player(Game* game)
     ,mGroundSlamCameraShakeStrength(90.0f)
     ,mGroundSlamCameraShakeDuration(0.2f)
     ,mGroundSlamManaCost(20.0f)
+    ,mDiveEffect(nullptr)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
@@ -296,7 +298,7 @@ Player::Player(Game* game)
     std::vector hurt = {31, 32};
     mDrawComponent->AddAnimation("hurt", hurt);
 
-    std::vector die = {30, 9, 10, 11, 11, 11};
+    std::vector die = {31, 9, 10, 11, 11, 11};
     mDrawComponent->AddAnimation("die", die);
 
     std::vector jumpUp = {37};
@@ -336,6 +338,9 @@ void Player::SetJumpEffects() {
         auto* jumpEffect = new JumpEffect(mGame, this, 0.3f);
         mJumpEffects.emplace_back(jumpEffect);
     }
+
+    // Dive Effect
+    mDiveEffect = new DashEffect(GetGame(), this, 1000);
 }
 
 void Player::InitLight() {
@@ -903,6 +908,7 @@ void Player::OnUpdate(float deltaTime) {
     if (mIsWallSliding) {
         mTimerOutOfWallToJump = 0;
         mIsDiving = false;
+        mDiveEffect->StopDash();
         mIsGliding = false;
         if (mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
             if (mWallSlideSide == WallSlideSide::left) {
@@ -928,6 +934,12 @@ void Player::OnUpdate(float deltaTime) {
         if (mGroundSlamTimer >= mGroundSlamStartDuration) {
             mIsGroundSlamStarting = false;
             mIsDiving = true;
+            // inicia animação do dive
+            mDiveEffect->SetRotation(Math::PiOver2);
+            mDiveEffect->SetTransformRotation(Math::PiOver2);
+            mDiveEffect->SetPosition(GetPosition());
+            mDiveEffect->SetOffsetPosition(-1 * Vector2(0, mHeight * 1.25f));
+            mDiveEffect->StartDashEffect();
             mRigidBodyComponent->SetVelocity(Vector2(0, mGroundSlamSpeed));
         }
     }
@@ -1179,6 +1191,7 @@ void Player::ResolveGroundCollision() {
 
                     if (mIsDiving) {
                         mIsDiving = false;
+                        mDiveEffect->StopDash();
                         GroundSlamImpact();
                         GroundSlamEffects();
                         mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
@@ -1377,6 +1390,7 @@ void Player::ResolveGroundCollision() {
                     }
                     if (mIsDiving) {
                         mIsDiving = false;
+                        mDiveEffect->StopDash();
                         mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
                     }
                     mDashComponent->StopDash();
@@ -1518,6 +1532,13 @@ void Player::ResolveEnemyCollision() {
             }
         }
     }
+}
+
+void Player::Stop() {
+    mIsJumping = false;
+    mIsHooking = false;
+    mDashComponent->StopDash();
+    mRigidBodyComponent->SetVelocity(Vector2::Zero);
 }
 
 void Player::UseDash() {
@@ -2159,6 +2180,7 @@ void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType dam
     if (!mIsInvulnerable && mGame->GetGamePlayState() == Game::GamePlayState::Playing) {
         mHealthPoints -= damage;
         mIsDiving = false;
+        mDiveEffect->StopDash();
         mIsInvulnerable = true;
         mHurtTimer = 0;
 

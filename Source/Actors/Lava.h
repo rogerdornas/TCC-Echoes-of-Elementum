@@ -5,10 +5,11 @@
 #pragma once
 
 #include "Actor.h"
+
 class Lava : public Actor
 {
 public:
-    Lava(class Game* game, float width, float height, bool isMoving = false, float movingDuration = 0.0f, Vector2 velocity = Vector2::Zero);
+    Lava(Game* game, float width, float height, bool isMoving = false, float movingDuration = 0.0f, Vector2 velocity = Vector2::Zero);
 
     void OnUpdate(float deltaTime) override;
 

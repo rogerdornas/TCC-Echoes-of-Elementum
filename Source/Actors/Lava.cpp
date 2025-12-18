@@ -10,7 +10,7 @@
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
-Lava::Lava(class Game *game, float width, float height, bool isMoving, float movingDuration, Vector2 velocity)
+Lava::Lava(Game *game, float width, float height, bool isMoving, float movingDuration, Vector2 velocity)
     :Actor(game)
     ,mWidth(width)
     ,mHeight(height)
@@ -34,7 +34,8 @@ Lava::Lava(class Game *game, float width, float height, bool isMoving, float mov
     vertices.emplace_back(v3);
     vertices.emplace_back(v4);
 
-    // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, {255, 0, 0, 255});
+    // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
+    // mRectComponent->SetColor(Vector3(255, 0, 0));
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Lava/Lava.png",
                                                     "../Assets/Sprites/Lava/Lava.json",
