@@ -9,8 +9,10 @@
 SaveData::SaveData(class Game *game)
     :mGame(game)
     ,mGameScene(Game::GameScene::Prologue)
-    ,mLastCheckpointPosition(Vector2(1952, 4352))
     ,mTotalPlayTime(0.0f)
+
+    ,mLastCheckpointPosition(Vector2(1952, 4352))
+    ,mElementalMode(Player::ElementalMode::Fire)
     ,mMoney(0)
     ,mCanDash(false)
     ,mCanFireBall(false)
@@ -18,6 +20,7 @@ SaveData::SaveData(class Game *game)
     ,mMaxJumpsInAir(0)
     ,mCanHook(false)
     ,mDeathCounter(0)
+
     ,mSwordRangeUpgrade(false)
     ,mSwordDamageUpgrade(false)
     ,mSwordSpeedUpgrade(false)
@@ -38,6 +41,7 @@ void SaveData::Save(const std::string &filename) {
     j["world_state"] = mWorldState;
 
     j["player"] = {
+        {"elemental_mode", ElementalModeToString(mElementalMode)},
         {"can_dash", mCanDash},
         {"money", mMoney},
         {"max_jumps_in_air", mMaxJumpsInAir},
@@ -77,6 +81,7 @@ bool SaveData::Load(const std::string &filename) {
 
     mWorldState = j["world_state"];
 
+    mElementalMode = StringToElementalMode(j["player"]["elemental_mode"]);
     mMoney = j["player"]["money"];
     mCanDash = j["player"]["can_dash"];
     mMaxJumpsInAir = j["player"]["max_jumps_in_air"];
@@ -128,6 +133,24 @@ Game::GameScene SaveData::StringToGameScene(const std::string &str) {
     return Game::GameScene::Level1; // fallback
 }
 
+std::string SaveData::ElementalModeToString(Player::ElementalMode elementalMode) {
+    switch (elementalMode) {
+        case Player::ElementalMode::Fire: return "Fire";
+        case Player::ElementalMode::Ice: return "Ice";
+        case Player::ElementalMode::Lightning: return "Lightning";
+        case Player::ElementalMode::Earth: return "Earth";
+        default: return "Unknown";
+    }
+}
+
+Player::ElementalMode SaveData::StringToElementalMode(const std::string &str) {
+    if (str == "Fire") return Player::ElementalMode::Fire;
+    if (str == "Ice") return Player::ElementalMode::Ice;
+    if (str == "Lightning") return Player::ElementalMode::Lightning;
+    if (str == "Earth") return Player::ElementalMode::Earth;
+    return Player::ElementalMode::Fire; // fallback
+}
+
 void SaveData::ApplyToGame() {
     mGame->SetGameScene(mGameScene, 0.5f);
     mGame->SetTotalPlayTime(mTotalPlayTime);
@@ -137,6 +160,7 @@ void SaveData::ApplyToPlayer() {
     Player* player = mGame->GetPlayer();
     player->SetPosition(mLastCheckpointPosition * mGame->GetScale());
     player->SetStartingPosition(mLastCheckpointPosition * mGame->GetScale());
+    player->SetElementalMode(mElementalMode);
     player->SetMoney(mMoney);
     player->SetCanDash(mCanDash);
     player->SetMaxJumpsInAir(mMaxJumpsInAir);
@@ -183,6 +207,7 @@ void SaveData::CaptureFromGame() {
 
     mWorldState = mGame->GetWorldState();
 
+    mElementalMode = player->GetElementalMode();
     mMoney = player->GetMoney();
     mCanDash = player->GetCanDash();
     mMaxJumpsInAir = player->GetMaxJumpsInAir();

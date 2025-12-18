@@ -26,6 +26,9 @@ private:
     std::string GameSceneToString(Game::GameScene scene);
     Game::GameScene StringToGameScene(const std::string& str);
 
+    std::string ElementalModeToString(Player::ElementalMode elementalMode);
+    Player::ElementalMode StringToElementalMode(const std::string& str);
+
     std::unordered_map<std::string, bool> mWorldState;
 
     class Game* mGame;
@@ -33,6 +36,7 @@ private:
     float mTotalPlayTime;
 
     Vector2 mLastCheckpointPosition;
+    Player::ElementalMode mElementalMode;
     int mMoney;
     bool mCanDash;
     bool mCanFireBall;

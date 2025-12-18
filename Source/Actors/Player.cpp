@@ -26,7 +26,7 @@
 Player::Player(Game* game)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
-    ,mElementalMode(ElementalMode::Earth)
+    ,mElementalMode(ElementalMode::Fire)
     ,mWidth(45 * mGame->GetScale())
     ,mHeight(75 * mGame->GetScale())
 
