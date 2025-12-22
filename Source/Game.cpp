@@ -2360,6 +2360,7 @@ void Game::LoadObjects(const std::string &fileName) {
                     mPlayer->SetIsDead(false);
                     mPlayer->SetState(ActorState::Active);
                     mPlayer->SetInvertControls(false);
+                    mPlayer->Stop();
                     mPlayer->GetComponent<AABBComponent>()->SetActive(true);
                     if (mGoingToNextLevel) {
                         mPlayer->SetPosition(Vector2(x, y));

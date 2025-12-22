@@ -6,6 +6,7 @@
 #include <cfloat>
 #include "Checkpoint.h"
 #include "DashEffect.h"
+#include "GroundSlamImpactEffect.h"
 #include "Effect.h"
 #include "HookPoint.h"
 #include "Mushroom.h"
@@ -91,12 +92,13 @@ Player::Player(Game* game)
     ,mGroundSlamDamage(15)
     ,mGroundSlamImpactDist(300.0f)
     ,mGroundSlamImpactHeightRange(mHeight * 1.8f)
-    ,mGroundSlamImpactDamage(10)
+    ,mGroundSlamImpactDamage(15)
     ,mGroundSlamIFramesDuration(0.3f)
     ,mGroundSlamCameraShakeStrength(90.0f)
     ,mGroundSlamCameraShakeDuration(0.2f)
-    ,mGroundSlamManaCost(20.0f)
+    ,mGroundSlamManaCost(2.0f)
     ,mDiveEffect(nullptr)
+    ,mGroundSlamImpactEffect(nullptr)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
@@ -340,7 +342,10 @@ void Player::SetJumpEffects() {
     }
 
     // Dive Effect
-    mDiveEffect = new DashEffect(GetGame(), this, 1000);
+    mDiveEffect = new DashEffect(mGame, this, 1000);
+
+    // Ground Slam Impact Effect
+    mGroundSlamImpactEffect = new GroundSlamImpactEffect(mGame, mGroundSlamRecoveryDuration * 1.8f);
 }
 
 void Player::InitLight() {
@@ -1192,7 +1197,7 @@ void Player::ResolveGroundCollision() {
                     if (mIsDiving) {
                         mIsDiving = false;
                         mDiveEffect->StopDash();
-                        GroundSlamImpact();
+                        // GroundSlamImpact();
                         GroundSlamEffects();
                         mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
                         mIsGroundSlamRecovering = true;
@@ -1537,6 +1542,12 @@ void Player::ResolveEnemyCollision() {
 void Player::Stop() {
     mIsJumping = false;
     mIsHooking = false;
+    mIsHookAnimating = false;
+    mIsHookThrowing = false;
+    mHookPoint = nullptr;
+    if (mDrawRopeComponent) {
+        mDrawRopeComponent->SetVisible(false);
+    }
     mDashComponent->StopDash();
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
 }
@@ -1661,6 +1672,9 @@ void Player::GroundSlamEffects() {
     smoke->SetEmitDirection(Vector2::Zero);
     smoke->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
     smoke->SetGroundCollision(false);
+
+    mGroundSlamImpactEffect->Start(GetPosition() + Vector2(0, 5));
+    mGroundSlamImpactEffect->SetScale(Vector2(GetForward().x, 1));
 
     // auto* miniGrounds = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 400.0, 3.0, 0.07f);
     // miniGrounds->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));

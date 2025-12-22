@@ -1,21 +1,21 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 17968.0,
-            "y": 16608.0
+            "x": 7920.0,
+            "y": 4256.0
         },
-        "scene": "LevelTeste",
-        "total_play_time": 97162.0625
+        "scene": "Level1",
+        "total_play_time": 103422.328125
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 336,
-        "elemental_mode": "Lightning",
+        "death_counter": 348,
+        "elemental_mode": "Earth",
         "max_jumps_in_air": 1,
-        "money": 14424
+        "money": 16966
     },
     "upgrades": {
         "fireball": true,
@@ -35,7 +35,7 @@
         "Level1ArenaDone": true,
         "Level1Puzzle1Done": true,
         "Level2Lever2Activated": true,
-        "Level4ArenaDone": false,
+        "Level4ArenaDone": true,
         "MirrorBossDefeated": true
     }
 }

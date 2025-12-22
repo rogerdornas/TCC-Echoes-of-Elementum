@@ -180,6 +180,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/LightningBarrier.h
         Source/Actors/DashEffect.cpp
         Source/Actors/DashEffect.h
+        Source/Actors/GroundSlamImpactEffect.cpp
+        Source/Actors/GroundSlamImpactEffect.h
 )
 
 

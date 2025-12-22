@@ -223,6 +223,7 @@ private:
     float mGroundSlamCameraShakeDuration;
     float mGroundSlamManaCost;
     class DashEffect* mDiveEffect;
+    class GroundSlamImpactEffect* mGroundSlamImpactEffect;
     std::vector<class Enemy*> mEnemiesHitByGroundSlam;
 
     Sword* mSword;

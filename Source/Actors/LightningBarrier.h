@@ -13,6 +13,8 @@ public:
 
     void OnUpdate(float deltaTime) override;
 
+    void SetIsMoving(bool isMoving);
+
 private:
     void ResolveEnemyCollision();
     void ResolvePlayerCollision();

@@ -51,18 +51,34 @@ LightningBarrier::LightningBarrier(Game *game, float width, float height, bool i
 
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 40000);
     mAABBComponent = new AABBComponent(this, v1, v3);
+
+    if (mIsMoving) {
+        mRigidBodyComponent->SetVelocity(mVelocity);
+    }
 }
 
 void LightningBarrier::OnUpdate(float deltaTime) {
     if (mIsMoving) {
         mMovingTimer += deltaTime;
         if (mMovingTimer > mMovingDuration) {
-            mRigidBodyComponent->SetVelocity(Vector2::Zero);
+            mVelocity *= -1;
+            mRigidBodyComponent->SetVelocity(mVelocity);
+            mMovingTimer = 0;
         }
     }
 
     ResolveEnemyCollision();
     ResolvePlayerCollision();
+}
+
+void LightningBarrier::SetIsMoving(bool isMoving) {
+    mIsMoving = isMoving;
+    if (mIsMoving == true) {
+        mRigidBodyComponent->SetVelocity(mVelocity);
+    }
+    else {
+        mRigidBodyComponent->SetVelocity(Vector2::Zero);
+    }
 }
 
 void LightningBarrier::ResolveEnemyCollision() {

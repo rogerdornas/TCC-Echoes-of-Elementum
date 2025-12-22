@@ -7415,8 +7415,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":15648,
-                 "y":15968
+                 "x":10528,
+                 "y":18976
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -8221,6 +8221,70 @@
                  "width":128,
                  "x":17152,
                  "y":13824
+                }, 
+                {
+                 "height":768,
+                 "id":492,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Moving",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"MovingDuration",
+                         "type":"float",
+                         "value":4
+                        }, 
+                        {
+                         "name":"SpeedX",
+                         "type":"float",
+                         "value":-400
+                        }, 
+                        {
+                         "name":"SpeedY",
+                         "type":"float",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":160,
+                 "x":11232,
+                 "y":18240
+                }, 
+                {
+                 "height":768,
+                 "id":493,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Moving",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"MovingDuration",
+                         "type":"float",
+                         "value":4
+                        }, 
+                        {
+                         "name":"SpeedX",
+                         "type":"float",
+                         "value":400
+                        }, 
+                        {
+                         "name":"SpeedY",
+                         "type":"float",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":160,
+                 "x":9440,
+                 "y":18240
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -8871,7 +8935,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":492,
+ "nextobjectid":494,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

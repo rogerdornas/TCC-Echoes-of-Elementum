@@ -15,7 +15,7 @@ public:
         DoubleJump
     };
 
-    JumpEffect(class Game* game, Actor* owner, float duration);
+    JumpEffect(Game* game, Actor* owner, float duration);
 
     void OnUpdate(float deltaTime) override;
     void StartEffect(EffectType type);

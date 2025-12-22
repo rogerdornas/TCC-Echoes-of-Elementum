@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="1000" height="1000" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="492">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="1000" height="1000" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="494">
  <editorsettings>
   <export target="Forest.json" format="json"/>
  </editorsettings>
@@ -3157,7 +3157,7 @@
     <property name="StartPositionId" type="int" value="1"/>
    </properties>
   </object>
-  <object id="458" x="15648" y="15968" width="32" height="32">
+  <object id="458" x="10528" y="18976" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
@@ -3363,6 +3363,22 @@
    </properties>
   </object>
   <object id="491" x="17152" y="13824" width="128" height="288"/>
+  <object id="492" x="11232" y="18240" width="160" height="768">
+   <properties>
+    <property name="Moving" type="bool" value="true"/>
+    <property name="MovingDuration" type="float" value="4"/>
+    <property name="SpeedX" type="float" value="-400"/>
+    <property name="SpeedY" type="float" value="0"/>
+   </properties>
+  </object>
+  <object id="493" x="9440" y="18240" width="160" height="768">
+   <properties>
+    <property name="Moving" type="bool" value="true"/>
+    <property name="MovingDuration" type="float" value="4"/>
+    <property name="SpeedX" type="float" value="400"/>
+    <property name="SpeedY" type="float" value="0"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="12" name="SpawnPoint"/>
  <objectgroup id="4" name="Enemies">
