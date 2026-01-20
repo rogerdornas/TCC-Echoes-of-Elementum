@@ -4,6 +4,8 @@
 
 #include "Player.h"
 #include <cfloat>
+
+#include "AirGlideEffect.h"
 #include "Checkpoint.h"
 #include "DashEffect.h"
 #include "GroundSlamImpactEffect.h"
@@ -46,13 +48,16 @@ Player::Player(Game* game)
 
     ,mCanGlide(true)
     ,mIsGliding(false)
-    ,mGlideCooldownDuration(0.2f)
+    ,mMinGlideDuration(0.25f)
+    ,mGlideTimer(0.0f)
+    ,mGlideCooldownDuration(0.4f)
     ,mGlideCooldownTimer(0.0f)
     ,mGlideInitialSpeedY(30)
     ,mMaxSpeedYGlide(300)
     ,mGlideGravity(1300)
-    ,mGlideManaCost(35)
+    ,mGlideManaCost(15)
     ,mIsGlideManaOver(false)
+    ,mGlideEffect(nullptr)
 
     ,mIsJumping(false)
     ,mJumpTimer(0.0f)
@@ -346,6 +351,9 @@ void Player::SetJumpEffects() {
 
     // Ground Slam Impact Effect
     mGroundSlamImpactEffect = new GroundSlamImpactEffect(mGame, mGroundSlamRecoveryDuration * 1.8f);
+
+    // Glide Effect
+    mGlideEffect = new AirGlideEffect(mGame, this);
 }
 
 void Player::InitLight() {
@@ -651,9 +659,11 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         }
     }
     else {
-        mIsGliding = false;
-        if (mPrevSkill2Pressed) {
+        if (mPrevSkill2Pressed && mIsGliding) {
             mGlideCooldownTimer = 0;
+        }
+        if (mGlideTimer >= mMinGlideDuration) {
+            mIsGliding = false;
         }
     }
     mPrevSkill2Pressed = skill2;
@@ -886,12 +896,20 @@ void Player::OnUpdate(float deltaTime) {
     }
 
     if (mIsGliding) {
+        mGlideTimer += deltaTime;
+        mGlideEffect->SetState(ActorState::Active);
+        mGlideEffect->Activate();
+        mGlideEffect->SetPosition(GetPosition() + Vector2(-10 * GetForward().x, 0));
         mMana -= mGlideManaCost * deltaTime;
         if (mMana <= 0) {
             mMana = 0;
             mIsGlideManaOver = true;
             mIsGliding = false;
         }
+    }
+    else {
+        mGlideTimer = 0;
+        mGlideEffect->Deactivate();
     }
 
     if (mIsGlideManaOver) {
@@ -1701,6 +1719,7 @@ void Player::Glide() {
             mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mGlideInitialSpeedY));
         }
         mIsGliding = true;
+        mGlideEffect->SetState(ActorState::Active);
     }
     else {
         mIsGliding = false;
@@ -2134,13 +2153,16 @@ void Player::ManageAnimations() {
         mDrawComponent->SetAnimation("run");
     }
     else if (!mIsOnGround) {
-        if (mRigidBodyComponent->GetVelocity().y < -200 * mGame->GetScale()) {
+        if (mIsGliding) {
             mDrawComponent->SetAnimation("jumpUp");
         }
-        if (mRigidBodyComponent->GetVelocity().y > 200 * mGame->GetScale()) {
+        else if (mRigidBodyComponent->GetVelocity().y < -200 * mGame->GetScale()) {
+            mDrawComponent->SetAnimation("jumpUp");
+        }
+        else if (mRigidBodyComponent->GetVelocity().y > 200 * mGame->GetScale()) {
             mDrawComponent->SetAnimation("falling");
         }
-        if (mRigidBodyComponent->GetVelocity().y > -200 * mGame->GetScale() &&
+        else if (mRigidBodyComponent->GetVelocity().y > -200 * mGame->GetScale() &&
             mRigidBodyComponent->GetVelocity().y < 200 * mGame->GetScale())
         {
             mDrawComponent->SetAnimation("jumpApex");

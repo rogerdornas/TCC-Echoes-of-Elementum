@@ -168,6 +168,8 @@ private:
 
     bool mCanGlide;
     bool mIsGliding;
+    float mMinGlideDuration;
+    float mGlideTimer;
     float mGlideCooldownDuration;
     float mGlideCooldownTimer;
     float mGlideInitialSpeedY;
@@ -175,6 +177,7 @@ private:
     float mGlideGravity;
     float mGlideManaCost;
     bool mIsGlideManaOver;
+    class AirGlideEffect* mGlideEffect;
 
     bool mIsJumping;     // Está no meio de um pulo sustentado?
     float mJumpTimer;    // Quanto tempo já pulou

@@ -91,6 +91,7 @@ void Lava::ResolvePlayerCollision() {
                 player->GetComponent<AnimatorComponent>()->SetAnimation("hurt");
             }
             player->SetState(ActorState::Paused);
+            player->Stop();
             mGame->InitCrossFade(1.5f);
             mGame->SetHitByLava();
             mGame->SetLavaRespawnPosition(mRespawnPosition);

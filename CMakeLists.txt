@@ -182,6 +182,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/DashEffect.h
         Source/Actors/GroundSlamImpactEffect.cpp
         Source/Actors/GroundSlamImpactEffect.h
+        Source/Actors/AirGlideEffect.cpp
+        Source/Actors/AirGlideEffect.h
 )
 
 

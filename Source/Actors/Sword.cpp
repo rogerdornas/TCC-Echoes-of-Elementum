@@ -32,8 +32,9 @@ Sword::Sword(class Game *game, Actor *owner, float width, float height, float du
     vertices.emplace_back(v4);
 
     const std::string swordAssets = "../Assets/Sprites/Sword Slash/";
-    // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, {37, 218, 255, 255});
-    // mDrawSpriteComponent = new DrawSpriteComponent(this, swordAssets + "4.png", mWidth, mHeight);
+
+    // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
+    // mRectComponent->SetColor(Vector3(37, 218, 255));
 
     mDrawComponent = new AnimatorComponent(this, swordAssets + "SwordSlash.png",
                                                        swordAssets + "SwordSlash.json",
@@ -119,8 +120,8 @@ void Sword::OnUpdate(float deltaTime) {
 
             if (mRectComponent) {
                 // mDrawPolygonComponent->SetVertices(vertices);
-                mRectComponent->SetWidth(mHeight);
-                mRectComponent->SetHeight(mWidth);
+                mRectComponent->SetWidth(mWidth);
+                mRectComponent->SetHeight(mHeight);
             }
 
             if (mDrawComponent) {
