@@ -1012,17 +1012,6 @@
          "objects":[
                 {
                  "height":32,
-                 "id":83,
-                 "name":"Mushroom",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":2944,
-                 "y":4288
-                }, 
-                {
-                 "height":32,
                  "id":84,
                  "name":"Enemy Simple",
                  "rotation":0,

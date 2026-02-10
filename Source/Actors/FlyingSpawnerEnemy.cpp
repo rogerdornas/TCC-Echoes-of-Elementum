@@ -10,6 +10,7 @@
 #include "../Random.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/AABBComponent.h"
+#include "../Components/CombatBoxComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
@@ -125,6 +126,10 @@ void FlyingSpawnerEnemy::OnUpdate(float deltaTime) {
         else {
             MovementBeforePlayerSpotted();
         }
+    }
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
     }
 
     // Se morreu
@@ -328,9 +333,6 @@ void FlyingSpawnerEnemy::SmashAttackCharge(float deltaTime) {
     mSmashAttackChargeTimer += deltaTime;
     if (mSmashAttackChargeTimer >= mSmashAttachChargeDuration) {
         mSmashAttackChargeTimer = 0;
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
         mEnemyState = State::SmashAttack;
     }
 
@@ -484,6 +486,19 @@ void FlyingSpawnerEnemy::ManageAnimations() {
     }
     else if (mEnemyState == State::Fly || mEnemyState == State::FlyAway) {
         mDrawComponent->SetAnimation("fly");
+    }
+}
+
+void FlyingSpawnerEnemy::ManageCombatBox() {
+    if (mEnemyState == State::SmashAttackCharge) {
+        mHeight = mSmashHeight;
+        mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+        mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+    }
+    if (mEnemyState == State::SmashAttackRecovery) {
+        mHeight = mOriginalHeight;
+        mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+        mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
     }
 }
 

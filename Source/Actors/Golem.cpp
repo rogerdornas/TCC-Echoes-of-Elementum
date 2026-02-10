@@ -13,6 +13,7 @@
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
+#include "../Components/CombatBoxComponent.h"
 #include "../Actors/FireBall.h"
 #include "../Random.h"
 
@@ -22,7 +23,6 @@ Golem::Golem(Game *game)
 
     ,mIsRunning(false)
     ,mGravity(3000 * mGame->GetScale())
-    ,mPunchProbability(0.5f)
 
     ,mIsInvulnerable(false)
     ,mAlreadySpawnedCrystal(false)
@@ -39,6 +39,7 @@ Golem::Golem(Game *game)
     ,mRunAwayTimer(0.0f)
     ,mMoveSpeedIncrease(1.0f)
 
+    ,mPunchProbability(0.5f)
     ,mPunchDuration(0.4f)
     ,mPunchTimer(0.0f)
     ,mDistToPunch(200 * mGame->GetScale())
@@ -76,6 +77,7 @@ Golem::Golem(Game *game)
     mIdleWidth = mWidth;
     mPunchSpriteWidth = mWidth * 1.5f;
     mPunchOffsetHitBox = mWidth * 0.8f;
+    mPunchOffset = Vector2(mWidth * 0.8f, 0);
     mFreezeMax = 1000;
     mFrozenDecayRate = mFreezeMax / 3.0f;
 
@@ -108,6 +110,9 @@ Golem::Golem(Game *game)
     mDrawComponent->SetAnimation("idle");
     mDrawComponent->SetAnimFPS(10.0f);
 
+    mCombatBoxComponent->AddAABBBox("punch", true, Vector2(-80, -40), Vector2(80, 40));
+    mCombatBoxComponent->SetBoxActive("punch", false);
+    // mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void Golem::OnUpdate(float deltaTime) {
@@ -178,6 +183,10 @@ void Golem::OnUpdate(float deltaTime) {
         if (mDrawComponent) {
             ManageAnimations();
         }
+    }
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
     }
 
     if (mHealthPoints <= 0.65f * mMaxHealthPoints) {
@@ -300,45 +309,6 @@ void Golem::Punch(float deltaTime) {
     if (mPunchTimer >= mPunchDuration) {
         mPunchTimer = 0;
         mGolemState = State::Stop;
-    }
-
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
-    if (mPunchTimer > 0.41f * mPunchDuration && mPunchTimer < 0.78f * mPunchDuration) {
-        mWidth = mPunchSpriteWidth;
-
-        v1 = Vector2(-mWidth / 2 + mPunchOffsetHitBox * GetForward().x, -mHeight / 2);
-        v2 = Vector2(mWidth / 2 + mPunchOffsetHitBox * GetForward().x, -mHeight / 2);
-        v3 = Vector2(mWidth / 2 + mPunchOffsetHitBox * GetForward().x, mHeight / 2);
-        v4 = Vector2(-mWidth / 2 + mPunchOffsetHitBox * GetForward().x, mHeight / 2);
-    }
-    else {
-        mWidth = mIdleWidth;
-
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-    }
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    if (mRectComponent) {
-        // mDrawPolygonComponent->SetVertices(vertices);
-        mRectComponent->SetWidth(mWidth);
-        mRectComponent->SetHeight(mHeight);
     }
 }
 
@@ -593,6 +563,23 @@ void Golem::ManageAnimations() {
             mDrawComponent->SetAnimation("idle");
         }
         mDrawComponent->SetAnimFPS(10.0f);
+    }
+}
+
+void Golem::ManageCombatBox() {
+    if (mGolemState == State::Punch) {
+        if (mPunchTimer > 0.41f * mPunchDuration && mPunchTimer < 0.78f * mPunchDuration) {
+            mCombatBoxComponent->SetBoxActive("punch", true);
+            mCombatBoxComponent->SetBoxOffset("punch", mPunchOffset * Vector2(GetForward().x, 1));
+            mCombatBoxComponent->SetBoxOffset("hitbox", (mPunchOffset * 0.6f) * Vector2(GetForward().x, 1));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", (mPunchOffset * 0.6f) * Vector2(GetForward().x, 1));
+        }
+        else {
+            mCombatBoxComponent->SetBoxActive("punch", false);
+            mCombatBoxComponent->SetBoxOffset("punch", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
     }
 }
 

@@ -9,8 +9,8 @@
 #include "../Math.h"
 #include "RigidBodyComponent.h"
 
-OBBComponent::OBBComponent(class Actor *owner, Vector2 halfSize)
-    :ColliderComponent(owner, ColliderType::OBB)
+OBBComponent::OBBComponent(class Actor *owner, Vector2 halfSize, Vector2 offset, bool autoRegister)
+    :ColliderComponent(owner, ColliderType::OBB, offset, autoRegister)
     ,mHalfSize(halfSize)
 {
     float c = cosf(mOwner->GetRotation());
@@ -25,6 +25,30 @@ void OBBComponent::Update(float deltaTime) {
     float s = sinf(mOwner->GetRotation());
     mAxis[0] = Vector2(c, s);
     mAxis[1] = Vector2(-s, c);
+}
+
+void OBBComponent::Draw(Renderer* renderer) {
+    if (!mDebugDraw || !mIsActive) {
+        return;
+    }
+
+    // 1. Calcula o tamanho do retângulo
+    float width = mHalfSize.x * 2.0f;
+    float height = mHalfSize.y * 2.0f;
+    Vector2 size(width, height);
+
+    // 2. Calcula o deslocamento do centro da caixa em relação ao Actor
+    Vector2 drawPos = GetOwner()->GetPosition() + mOffset;
+
+    // 3. Desenha
+    GetGame()->GetRenderer()->DrawRect(
+        drawPos,
+        size,
+        mOwner->GetRotation(),
+        mColor,
+        GetGame()->GetCamera()->GetPosCamera(),
+        RendererMode::LINES
+    );
 }
 
 std::vector<Vector2> OBBComponent::GetVertices() {
@@ -59,7 +83,7 @@ bool OBBComponent::Intersect(ColliderComponent &other) {
 
 bool OBBComponent::IntersectWithAABB(AABBComponent& other) {
     // Obtém vértices do AABB
-    Vector2 AABBPosition = other.GetOwner()->GetPosition();
+    Vector2 AABBPosition = other.GetOwner()->GetPosition() + other.GetOffset();
     std::vector<Vector2> vertsAABB = {
         Vector2(other.GetMin().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
         Vector2(other.GetMax().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
@@ -70,7 +94,7 @@ bool OBBComponent::IntersectWithAABB(AABBComponent& other) {
     // Obtém vértices do OBB
     auto vertsOBB = GetVertices();
     for (int i = 0; i < vertsOBB.size(); i++) {
-        vertsOBB[i] +=GetOwner()->GetPosition();
+        vertsOBB[i] += GetOwner()->GetPosition() + mOffset;
     }
 
     // Eixos para testar (SAT)
@@ -109,13 +133,13 @@ bool OBBComponent::IntersectWithOBB(OBBComponent &other) {
     // Obtém vértices do OBB1
     auto vertsOBB1 = GetVertices();
     for (int i = 0; i < vertsOBB1.size(); i++) {
-        vertsOBB1[i] += GetOwner()->GetPosition();
+        vertsOBB1[i] += GetOwner()->GetPosition() + mOffset;
     }
 
     // Obtém vértices do OBB2
     auto vertsOBB2 = other.GetVertices();
     for (int i = 0; i < vertsOBB2.size(); i++) {
-        vertsOBB2[i] += other.GetOwner()->GetPosition();
+        vertsOBB2[i] += other.GetOwner()->GetPosition() + other.GetOffset();
     }
 
     // Eixos para testar (SAT)
@@ -164,7 +188,7 @@ Vector2 OBBComponent::ResolveCollision(ColliderComponent &other) {
 
 Vector2 OBBComponent::ResolveCollisionWithAABB(AABBComponent &other) {
     // Obtém vértices do AABB
-    Vector2 AABBPosition = other.GetOwner()->GetPosition();
+    Vector2 AABBPosition = other.GetOwner()->GetPosition() + other.GetOffset();
     std::vector<Vector2> vertsAABB = {
         Vector2(other.GetMin().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
         Vector2(other.GetMax().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
@@ -175,7 +199,7 @@ Vector2 OBBComponent::ResolveCollisionWithAABB(AABBComponent &other) {
     // Obtém vértices do OBB
     auto vertsOBB = GetVertices();
     for (int i = 0; i < vertsOBB.size(); i++) {
-        vertsOBB[i] += GetOwner()->GetPosition();
+        vertsOBB[i] += GetOwner()->GetPosition() + mOffset;
     }
 
     // Eixos para testar (SAT)
@@ -217,8 +241,8 @@ Vector2 OBBComponent::ResolveCollisionWithAABB(AABBComponent &other) {
     }
 
     // Decide direção correta do vetor normal
-    Vector2 centerA = GetOwner()->GetPosition();
-    Vector2 dir = other.GetOwner()->GetPosition() - centerA;
+    Vector2 centerA = GetOwner()->GetPosition() + mOffset;
+    Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }
@@ -236,13 +260,13 @@ Vector2 OBBComponent::ResolveCollisionWithOBB(OBBComponent &other) {
      // Obtém vértices do OBB1
     auto vertsOBB1 = GetVertices();
     for (int i = 0; i < vertsOBB1.size(); i++) {
-        vertsOBB1[i] += GetOwner()->GetPosition();
+        vertsOBB1[i] += GetOwner()->GetPosition() + mOffset;
     }
 
     // Obtém vértices do OBB2
     auto vertsOBB2 = other.GetVertices();
     for (int i = 0; i < vertsOBB2.size(); i++) {
-        vertsOBB2[i] += other.GetOwner()->GetPosition();
+        vertsOBB2[i] += other.GetOwner()->GetPosition() + other.GetOffset();
     }
 
     // Eixos para testar (SAT)
@@ -284,8 +308,8 @@ Vector2 OBBComponent::ResolveCollisionWithOBB(OBBComponent &other) {
     }
 
     // Decide direção correta do vetor normal
-    Vector2 centerA = GetOwner()->GetPosition();
-    Vector2 dir = other.GetOwner()->GetPosition() - centerA;
+    Vector2 centerA = GetOwner()->GetPosition() + mOffset;
+    Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }
@@ -313,7 +337,7 @@ Vector2 OBBComponent::CollisionSide(ColliderComponent &other) {
 
 Vector2 OBBComponent::CollisionSideWithAABB(AABBComponent &other) {
     // Obtém vértices do AABB
-    Vector2 AABBPosition = other.GetOwner()->GetPosition();
+    Vector2 AABBPosition = other.GetOwner()->GetPosition() + other.GetOffset();
     std::vector<Vector2> vertsAABB = {
         Vector2(other.GetMin().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
         Vector2(other.GetMax().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
@@ -324,7 +348,7 @@ Vector2 OBBComponent::CollisionSideWithAABB(AABBComponent &other) {
     // Obtém vértices do OBB
     auto vertsOBB = GetVertices();
     for (int i = 0; i < vertsOBB.size(); i++) {
-        vertsOBB[i] += GetOwner()->GetPosition();
+        vertsOBB[i] += GetOwner()->GetPosition() + mOffset;
     }
 
     // Eixos para testar (SAT)
@@ -366,8 +390,8 @@ Vector2 OBBComponent::CollisionSideWithAABB(AABBComponent &other) {
     }
 
     // Decide direção correta do vetor normal
-    Vector2 centerA = GetOwner()->GetPosition();
-    Vector2 dir = other.GetOwner()->GetPosition() - centerA;
+    Vector2 centerA = GetOwner()->GetPosition() + mOffset;
+    Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }
@@ -379,13 +403,13 @@ Vector2 OBBComponent::CollisionSideWithOBB(OBBComponent &other) {
      // Obtém vértices do OBB1
     auto vertsOBB1 = GetVertices();
     for (int i = 0; i < vertsOBB1.size(); i++) {
-        vertsOBB1[i] += GetOwner()->GetPosition();
+        vertsOBB1[i] += GetOwner()->GetPosition() + mOffset;
     }
 
     // Obtém vértices do OBB2
     auto vertsOBB2 = other.GetVertices();
     for (int i = 0; i < vertsOBB2.size(); i++) {
-        vertsOBB2[i] += other.GetOwner()->GetPosition();
+        vertsOBB2[i] += other.GetOwner()->GetPosition() + other.GetOffset();
     }
 
     // Eixos para testar (SAT)
@@ -427,8 +451,8 @@ Vector2 OBBComponent::CollisionSideWithOBB(OBBComponent &other) {
     }
 
     // Decide direção correta do vetor normal
-    Vector2 centerA = GetOwner()->GetPosition();
-    Vector2 dir = other.GetOwner()->GetPosition() - centerA;
+    Vector2 centerA = GetOwner()->GetPosition() + mOffset;
+    Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }

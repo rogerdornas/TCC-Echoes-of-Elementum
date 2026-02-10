@@ -30,6 +30,7 @@ private:
     void MovementBeforePlayerSpotted();
 
     void ManageAnimations();
+    void ManageCombatBox();
 
     void FlyingAround(float deltaTime);
     void Stop(float deltaTime);

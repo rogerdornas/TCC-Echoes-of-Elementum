@@ -13,7 +13,9 @@
 class OBBComponent : public ColliderComponent
 {
 public:
-    OBBComponent(class Actor* owner, Vector2 halfSize);
+    OBBComponent(class Actor* owner, Vector2 halfSize, Vector2 offset = Vector2::Zero, bool autoRegister = true);
+
+    void Draw(class Renderer* renderer) override;
 
     void Update(float deltaTime) override;
 

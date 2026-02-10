@@ -1,12 +1,14 @@
 #include "Component.h"
 #include "../Actors/Actor.h"
 
-Component::Component(Actor* owner, int updateOrder)
+Component::Component(Actor* owner, int updateOrder, bool autoRegister)
     :mOwner(owner)
     ,mUpdateOrder(updateOrder)
 {
     // Add to actor's vector of components
-    mOwner->AddComponent(this);
+    if (autoRegister) {
+        mOwner->AddComponent(this);
+    }
 }
 
 Component::~Component() {}

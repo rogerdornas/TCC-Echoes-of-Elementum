@@ -11,6 +11,7 @@
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
+#include "../Components/CombatBoxComponent.h"
 
 Mushroom::Mushroom(Game *game)
     :Enemy(game)
@@ -48,7 +49,11 @@ Mushroom::Mushroom(Game *game)
     mKnockBackSpeed = 700.0f * mGame->GetScale();
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
-    mAttackOffsetHitBox = mWidth * 0.8f;
+    mIdleWidth = mWidth;
+    mIdleHeight = mHeight;
+    mAttackWidth = 110;
+    mAttackHeight = 80;
+    mAttackOffset = Vector2(60, 15);
 
     SetSize(mWidth, mHeight);
 
@@ -106,6 +111,10 @@ void Mushroom::OnUpdate(float deltaTime) {
     mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
                                              mRigidBodyComponent->GetVelocity().y
                                              + mGravity * deltaTime));
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
+    }
 
     // Se morreu
     if (Died()) {
@@ -241,9 +250,6 @@ void Mushroom::WalkForward(float deltaTime) {
     if (Math::Abs(dist) < mDistToAttack) {
         mRigidBodyComponent->SetVelocity(Vector2(GetForward().x * mMoveSpeed * 2.5f, mJumpForce));
         mMushroomState = State::Attack;
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
     }
 }
 
@@ -272,11 +278,6 @@ void Mushroom::WalkAway(float deltaTime) {
 }
 
 void Mushroom::Attack(float deltaTime) {
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
     mAttackTimer += deltaTime;
     if (mAttackTimer >= mAttackDuration) {
         mAttackTimer = 0;
@@ -291,58 +292,6 @@ void Mushroom::Attack(float deltaTime) {
         else {
             mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
         }
-    }
-
-    if (mAttackTimer > 0.2f * mAttackDuration && mAttackTimer < 0.4f * mAttackDuration) {
-        if (GetRotation() == 0) {
-            v1 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-        }
-        else if (GetRotation() == Math::Pi) {
-            v1 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-        }
-    }
-    else if (mAttackTimer > 0.5f * mAttackDuration && mAttackTimer < 0.9f * mAttackDuration) {
-        if (GetRotation() == 0) {
-            v1 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-        }
-        else if (GetRotation() == Math::Pi) {
-            v1 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-        }
-    }
-    else {
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-    }
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    if (mRectComponent) {
-        // mDrawPolygonComponent->SetVertices(vertices);
-        mRectComponent->SetWidth(mWidth);
-        mRectComponent->SetHeight(mHeight);
     }
 }
 
@@ -386,6 +335,51 @@ void Mushroom::ManageAnimations() {
     }
 }
 
+void Mushroom::ManageCombatBox() {
+    if (mMushroomState == State::Attack) {
+        if (mAttackTimer < 0.2f * mAttackDuration) {
+            mWidth = mIdleWidth;
+            mHeight = mIdleHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+        if (mAttackTimer > 0.2f * mAttackDuration && mAttackTimer < 0.4f * mAttackDuration) {
+            mWidth = mAttackWidth;
+            mHeight = mAttackHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", mAttackOffset * Vector2(-GetForward().x, 1));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", mAttackOffset * Vector2(-GetForward().x, 1));
+        }
+        if (mAttackTimer > 0.4f * mAttackDuration && mAttackTimer < 0.5f * mAttackDuration) {
+            mWidth = mIdleWidth;
+            mHeight = mIdleHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+        if (mAttackTimer > 0.5f * mAttackDuration && mAttackTimer < 0.85f * mAttackDuration) {
+            mWidth = mAttackWidth;
+            mHeight = mAttackHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", mAttackOffset * Vector2(GetForward().x, 1));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", mAttackOffset * Vector2(GetForward().x, 1));
+        }
+        if (mAttackTimer > 0.85f * mAttackDuration) {
+            mWidth = mIdleWidth;
+            mHeight = mIdleHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+    }
+}
+
 void Mushroom::ChangeResolution(float oldScale, float newScale) {
     mWidth = mWidth / oldScale * newScale;
     mHeight = mHeight / oldScale * newScale;
@@ -397,7 +391,6 @@ void Mushroom::ChangeResolution(float oldScale, float newScale) {
     mGravity = mGravity / oldScale * newScale;
     mDistToAttack = mDistToAttack / oldScale * newScale;
     mJumpForce = mJumpForce / oldScale * newScale;
-    mAttackOffsetHitBox = mAttackOffsetHitBox / oldScale * newScale;
 
     mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
 

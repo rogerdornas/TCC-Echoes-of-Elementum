@@ -10,6 +10,7 @@
 #include "../Random.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/AABBComponent.h"
+#include "../Components/CombatBoxComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
@@ -121,6 +122,10 @@ void FlyingGolem::OnUpdate(float deltaTime) {
                 // }
             }
         }
+    }
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
     }
 
     // Se morreu
@@ -266,56 +271,6 @@ void FlyingGolem::Attack(float deltaTime) {
     if (mAttackTimer >= mAttackDuration) {
         mAttackTimer = 0;
         mFlyingGolemState = State::TeleportIn;
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
-    }
-
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
-    if (mAttackTimer > 0.35f * mAttackDuration && mAttackTimer < 0.82 * mAttackDuration) {
-        mWidth = mAttackSpriteWidth;
-
-        if (mAttackDirectionRight) {
-            v1 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-        }
-        else {
-            v1 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-        }
-    }
-    else {
-        mWidth = mIdleWidth;
-
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-    }
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    if (mRectComponent) {
-        // mDrawPolygonComponent->SetVertices(vertices);
-        mRectComponent->SetWidth(mWidth);
-        mRectComponent->SetHeight(mHeight);
     }
 }
 
@@ -332,14 +287,7 @@ void FlyingGolem::TeleportIn(float deltaTime) {
 
         mTeleportInTimer = 0;
         mFlyingGolemState = State::TeleportOut;
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
         return;
-    }
-
-    if (mTeleportInTimer > 0.5f * mTeleportDuration) {
-        mColliderComponent->SetActive(false);
     }
 }
 
@@ -351,10 +299,6 @@ void FlyingGolem::TeleportOut(float deltaTime) {
         mTeleportOutTimer = 0;
         mFlyingGolemState = State::Stop;
         return;
-    }
-
-    if (mTeleportOutTimer > 0.1f * mTeleportDuration) {
-        mColliderComponent->SetActive(true);
     }
 }
 
@@ -395,6 +339,46 @@ void FlyingGolem::ManageAnimations() {
     }
     else if (mFlyingGolemState == State::FlyingAround) {
         mDrawComponent->SetAnimation("fly");
+    }
+}
+
+void FlyingGolem::ManageCombatBox() {
+    if (mFlyingGolemState == State::Attack) {
+        if (mAttackTimer > 0.35f * mAttackDuration && mAttackTimer < 0.82f * mAttackDuration) {
+            mWidth = mAttackSpriteWidth;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+
+            if (mAttackDirectionRight) {
+                mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(mAttackOffsetHitBox, 0));
+                mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(mAttackOffsetHitBox, 0));
+            }
+            else {
+                mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(-mAttackOffsetHitBox, 0));
+                mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(-mAttackOffsetHitBox, 0));
+            }
+        }
+        else {
+            mWidth = mIdleWidth;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+    }
+
+    if (mFlyingGolemState == State::TeleportIn) {
+        if (mTeleportInTimer > 0.5f * mTeleportDuration) {
+            mCombatBoxComponent->GetBox("hitbox").collider->SetActive(false);
+            mCombatBoxComponent->GetBox("hurtbox").collider->SetActive(false);
+        }
+    }
+
+    if (mFlyingGolemState == State::TeleportOut) {
+        if (mTeleportOutTimer > 0.1f * mTeleportDuration) {
+            mCombatBoxComponent->GetBox("hitbox").collider->SetActive(true);
+            mCombatBoxComponent->GetBox("hurtbox").collider->SetActive(true);
+        }
     }
 }
 

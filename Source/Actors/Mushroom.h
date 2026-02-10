@@ -38,6 +38,7 @@ private:
     void Stun(float deltaTime);
 
     void ManageAnimations();
+    void ManageCombatBox();
 
     State mMushroomState;
 
@@ -59,7 +60,11 @@ private:
     float mJumpForce;
     float mAttackDuration;
     float mAttackTimer;
-    float mAttackOffsetHitBox;
+    float mAttackWidth;
+    float mAttackHeight;
+    float mIdleWidth;
+    float mIdleHeight;
+    Vector2 mAttackOffset;
 
     float mStumDuration;
     float mStumTimer;

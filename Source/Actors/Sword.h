@@ -20,7 +20,6 @@ public:
     void SetWidth(float width) { mWidth = width; }
     void SetHeight(float height) { mHeight = height; }
 
-
     void ChangeResolution(float oldScale, float newScale) override;
 
 private:
@@ -29,6 +28,7 @@ private:
 
     float mWidth;
     float mHeight;
+    float mHurtSizeScale;
     float mDuration;
     float mDurationTimer;
     float mDamage;
@@ -40,4 +40,5 @@ private:
 
     class RigidBodyComponent *mRigidBodyComponent;
     class ColliderComponent *mAABBComponent;
+    class CombatBoxComponent* mCombatBoxComponent;
 };

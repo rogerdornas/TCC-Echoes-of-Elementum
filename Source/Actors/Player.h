@@ -146,6 +146,7 @@ private:
 
     void OpenElementalMenu();
 
+    void ManageCombatBoxes(float deltaTime);
     void ManageAnimations();
 
     Vector2 mStartingPosition;
@@ -374,5 +375,6 @@ private:
 
     class RigidBodyComponent* mRigidBodyComponent;
     class ColliderComponent* mAABBComponent;
+    class CombatBoxComponent* mCombatBoxComponent;
     class DashComponent* mDashComponent;
 };

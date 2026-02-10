@@ -80,4 +80,5 @@ protected:
 
     class RigidBodyComponent* mRigidBodyComponent;
     class ColliderComponent* mColliderComponent;
+    class CombatBoxComponent* mCombatBoxComponent;
 };

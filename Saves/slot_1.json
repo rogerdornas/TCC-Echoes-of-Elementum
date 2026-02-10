@@ -1,21 +1,21 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 13744.0,
-            "y": 4256.0
+            "x": 848.0,
+            "y": 5856.0
         },
-        "scene": "Level1",
-        "total_play_time": 107773.234375
+        "scene": "Level4",
+        "total_play_time": 114986.6328125
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 353,
+        "death_counter": 383,
         "elemental_mode": "Earth",
         "max_jumps_in_air": 1,
-        "money": 18253
+        "money": 21505
     },
     "upgrades": {
         "fireball": true,
@@ -36,6 +36,7 @@
         "Level1Puzzle1Done": true,
         "Level2Lever2Activated": true,
         "Level4ArenaDone": true,
-        "MirrorBossDefeated": true
+        "MirrorBossDefeated": true,
+        "MothDefeated": true
     }
 }

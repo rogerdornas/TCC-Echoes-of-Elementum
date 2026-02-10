@@ -26,6 +26,7 @@
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 #include "../Components/Drawing/DrawRopeComponent.h"
+#include "../Components/CombatBoxComponent.h"
 
 Player::Player(Game* game)
     :Actor(game)
@@ -237,6 +238,7 @@ Player::Player(Game* game)
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
     ,mDrawRopeComponent(nullptr)
+    ,mCombatBoxComponent(nullptr)
 {
     Vector2 v1(-mWidth / 2, -mHeight / 2);
     Vector2 v2(mWidth / 2, -mHeight / 2);
@@ -331,6 +333,12 @@ Player::Player(Game* game)
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), mMaxSpeedYNormal * mGame->GetScale());
     mAABBComponent = new AABBComponent(this, v1, v3);
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
+
+    mCombatBoxComponent = new CombatBoxComponent(this);
+    mCombatBoxComponent->AddAABBBox("body", false, v1, v3);
+    mCombatBoxComponent->AddAABBBox("lightningDash", true, Vector2(-80, -40), Vector2(80, 40));
+    mCombatBoxComponent->AddAABBBox("groundSlam", true, Vector2(-35, -60), Vector2(35, 60));
+    // mCombatBoxComponent->SetDebugDraw(true);
 
     mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, mSwordDuration, mSwordDamage);
 
@@ -1024,6 +1032,11 @@ void Player::OnUpdate(float deltaTime) {
             mIsHookAnimating = false; // Para de desenhar
             mHookPoint = nullptr;
 
+            // Resetar dash no ar
+            mDashComponent->SetHasDashedInAir(false);
+            // RESET DO CONTADOR DE PULO
+            mJumpCountInAir = 0;
+
             if (mDrawRopeComponent) {
                 mDrawRopeComponent->SetVisible(false);
             }
@@ -1149,6 +1162,7 @@ void Player::OnUpdate(float deltaTime) {
     if (Died()) {
         mGame->SetGamePlayState(Game::GamePlayState::GameOver);
         mAABBComponent->SetActive(false);
+        mCombatBoxComponent->SetAllBoxesActive(false);
         mRigidBodyComponent->SetVelocity(Vector2::Zero);
         mKnockBackTimer = mKnockBackDuration;
         mInvulnerableTimer = mInvulnerableDuration;
@@ -1178,6 +1192,10 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mGame->GetGoingToNextLevel()) {
         mRigidBodyComponent->SetVelocity(Vector2::Zero);
+    }
+
+    if (mCombatBoxComponent) {
+        ManageCombatBoxes(deltaTime);
     }
 
     if (mDrawComponent) {
@@ -1330,11 +1348,10 @@ void Player::ResolveGroundCollision() {
                         }
                     }
                 }
-
-                if (mSword->GetComponent<ColliderComponent>()->Intersect(*g->GetComponent<ColliderComponent>())) {
+                if (mSword->GetComponent<CombatBoxComponent>()->GetBox("ground").collider->Intersect(*g->GetComponent<ColliderComponent>())) {
                     // Colisão da sword com grounds
                     if (!mSwordHitGround) {
-                        collisionNormal = mSword->GetComponent<ColliderComponent>()->CollisionSide(*g->GetComponent<ColliderComponent>());
+                        collisionNormal = mSword->GetComponent<CombatBoxComponent>()->GetBox("ground").collider->CollisionSide(*g->GetComponent<ColliderComponent>());
                         if ((collisionNormal == Vector2::NegUnitY && Math::Abs(mSword->GetForward().y) == 1) ||
                             (collisionNormal == Vector2::UnitY && Math::Abs(mSword->GetForward().y) == 1) ||
                             (collisionNormal == Vector2::NegUnitX && Math::Abs(mSword->GetForward().x) == 1) ||
@@ -1485,44 +1502,45 @@ void Player::ResolveEnemyCollision() {
     std::vector<Enemy* > enemies = mGame->GetEnemies();
     if (!enemies.empty()) {
         for (Enemy* e: enemies) {
-            if (mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
-                if (mDashComponent->GetIsDashing()) {
-                    if (mIsLightningDashing) {
-                        auto it = std::find(mEnemiesHitByCurrentDash.begin(), mEnemiesHitByCurrentDash.end(), e);
-                        if (it == mEnemiesHitByCurrentDash.end()) {
-                            e->ReceiveHit(mLightningDashDamage, GetForward(), false);
-                            mEnemiesHitByCurrentDash.push_back(e);
-                        }
-                    }
-                    else if (!mIsInvulnerable && mIFramesTimer <= 0 && !e->IsFrozen()) {
-                        collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
-                        mDashComponent->StopDash();
-                        ReceiveHit(e->GetContactDamage(), collisionNormal);
+            // Receber dano
+            HitResult hitResult = mCombatBoxComponent->CheckReceiveAttack(e->GetComponent<CombatBoxComponent>());
+            if (hitResult.isValid && !e->IsFrozen()) {
+                Vector2 knockBackDirection = GetPosition() - e->GetPosition();
+                if (knockBackDirection.Length() > 0) {
+                    knockBackDirection.Normalize();
+                }
+                mDashComponent->StopDash();
+                ReceiveHit(e->GetContactDamage(), knockBackDirection);
+            }
+
+            // Aplicar dano
+            hitResult = mCombatBoxComponent->CheckAttackAgainst(e->GetComponent<CombatBoxComponent>());
+            if (hitResult.isValid) {
+                if (hitResult.hitTag == "lightningDash") {
+                    auto it = std::find(mEnemiesHitByCurrentDash.begin(), mEnemiesHitByCurrentDash.end(), e);
+                    if (it == mEnemiesHitByCurrentDash.end()) {
+                        e->ReceiveHit(mLightningDashDamage, GetForward(), false);
+                        mEnemiesHitByCurrentDash.push_back(e);
                     }
                 }
-                else {
-                    if (mIsDiving) {
-                        float dist = GetPosition().x - e->GetPosition().x;
-
-                        auto it = std::find(mEnemiesHitByGroundSlam.begin(), mEnemiesHitByGroundSlam.end(), e);
-                        if (it == mEnemiesHitByGroundSlam.end()) {
-                            if (dist < 0) {
-                                e->ReceiveHit(mGroundSlamDamage, Vector2::UnitX);
-                            }
-                            else {
-                                e->ReceiveHit(mGroundSlamDamage, Vector2::NegUnitX);
-                            }
-                            mEnemiesHitByGroundSlam.push_back(e);
+                if (hitResult.hitTag == "groundSlam") {
+                    float dist = GetPosition().x - e->GetPosition().x;
+                    auto it = std::find(mEnemiesHitByGroundSlam.begin(), mEnemiesHitByGroundSlam.end(), e);
+                    if (it == mEnemiesHitByGroundSlam.end()) {
+                        if (dist < 0) {
+                            e->ReceiveHit(mGroundSlamDamage, Vector2::UnitX);
                         }
-                    }
-                    else if (!mIsInvulnerable && mIFramesTimer <= 0 && !e->IsFrozen()) {
-                        collisionNormal = mAABBComponent->ResolveCollision(*e->GetComponent<ColliderComponent>());
-                        ReceiveHit(e->GetContactDamage(), collisionNormal);
+                        else {
+                            e->ReceiveHit(mGroundSlamDamage, Vector2::NegUnitX);
+                        }
+                        mEnemiesHitByGroundSlam.push_back(e);
                     }
                 }
             }
-            // Colisão da sword com enemies
-            if (mSword->GetComponent<ColliderComponent>()->Intersect(*e->GetComponent<ColliderComponent>())) {
+
+            // Colisão da espada com inimigos
+            hitResult = mSword->GetComponent<CombatBoxComponent>()->CheckAttackAgainst(e->GetComponent<CombatBoxComponent>());
+            if (hitResult.isValid) {
                 auto it = std::find(mEnemiesHitBySword.begin(), mEnemiesHitBySword.end(), e);
                 if (it == mEnemiesHitBySword.end()) {
                     e->ReceiveHit(mSword->GetDamage(), mSword->GetForward());
@@ -1572,7 +1590,7 @@ void Player::Stop() {
 
 void Player::UseDash() {
     if (mCanDash) {
-        if (!mIsFireAttacking && !mIsDiving) {
+        if (!mIsFireAttacking && !mIsDiving && !mIsHookThrowing && !mIsHooking) {
             if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
                 if (mWallSlideSide == WallSlideSide::left) {
                     SetRotation(Math::Pi);
@@ -1584,6 +1602,15 @@ void Player::UseDash() {
                 }
             }
             if (mDashComponent->UseDash(mIsOnGround)) {
+                mIsHooking = false;
+                mIsHookThrowing = false;
+                mHookAnimProgress = 1.0f;
+                mIsHookAnimating = false;
+                mHookPoint = nullptr;
+                if (mDrawRopeComponent) {
+                    mDrawRopeComponent->SetVisible(false);
+                }
+
                 if (mElementalMode == ElementalMode::Lightning && mMana >= mLightningDashManaCost) {
                     mIsLightningDashing = true;
                     mIFramesTimer = mLightningDashIFramesDuration;
@@ -1600,14 +1627,6 @@ void Player::UseDash() {
                     }
                 }
             }
-            mIsHooking = false;
-            mIsHookThrowing = false;
-            mHookAnimProgress = 1.0f;
-            mIsHookAnimating = false;
-            mHookPoint = nullptr;
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetVisible(false);
-            }
         }
     }
 }
@@ -1619,6 +1638,8 @@ void Player::UseGroundSlam() {
             !mIsGroundSlamStarting &&
             !mIsGroundSlamRecovering &&
             !mIsDiving &&
+            !mIsHookThrowing &&
+            !mIsHooking &&
             !mDashComponent->GetIsDashing() &&
             !mIsWallSliding &&
             mMana >= mGroundSlamManaCost)
@@ -1729,7 +1750,7 @@ void Player::Glide() {
 void Player::UseJump() {
     //Início do pulo
     if (!mIsFireAttacking) {
-        if (!mDashComponent->GetIsDashing() && !mIsDiving) {
+        if (!mDashComponent->GetIsDashing() && !mIsDiving && !mIsHooking) {
             // Pulo do chao
             if ((mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump || mIsOnSpike) && !mIsJumping && mCanJump && (mWallJumpTimer >= mWallJumpMaxTime)) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce)
@@ -2036,11 +2057,6 @@ void Player::UseHook(HookPoint* nearestHookPoint) {
                 mDrawRopeComponent->SetVisible(true);
                 mDrawRopeComponent->SetEndpoints(GetPosition(), mCurrentRopeTip);
             }
-
-            // Resetar dash no ar
-            mDashComponent->SetHasDashedInAir(false);
-            // RESET DO CONTADOR DE PULO
-            mJumpCountInAir = 0;
         }
     }
 }
@@ -2071,6 +2087,25 @@ void Player::OpenElementalMenu() {
         mRadialMenu->AddRadialOption("RAIO", [this]() { SetElementalMode(ElementalMode::Lightning); });
 
         mRadialMenu->SetSelectedOption(static_cast<int>(mElementalMode));
+    }
+}
+
+void Player::ManageCombatBoxes(float deltaTime) {
+    mCombatBoxComponent->SetBoxActive("body", true);
+    if (mIsLightningDashing) {
+        mCombatBoxComponent->SetBoxActive("lightningDash", true);
+        mCombatBoxComponent->SetBoxActive("body", false);
+    }
+    else {
+        mCombatBoxComponent->SetBoxActive("lightningDash", false);
+    }
+
+    if (mIsDiving || mIsGroundSlamRecovering) {
+        mCombatBoxComponent->SetBoxActive("groundSlam", true);
+        mCombatBoxComponent->SetBoxActive("body", false);
+    }
+    else {
+        mCombatBoxComponent->SetBoxActive("groundSlam", false);
     }
 }
 

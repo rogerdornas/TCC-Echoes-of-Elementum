@@ -13,7 +13,9 @@
 class AABBComponent : public ColliderComponent
 {
 public:
-    AABBComponent(class Actor* owner, Vector2 min, Vector2 max);
+    AABBComponent(class Actor* owner, Vector2 min, Vector2 max, Vector2 offset = Vector2::Zero, bool autoRegister = true);
+
+    void Draw(class Renderer* renderer) override;
 
     void SetMin(Vector2 min) { mMin = min; }
     void SetMax(Vector2 max) { mMax = max; }

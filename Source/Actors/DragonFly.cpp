@@ -12,6 +12,7 @@
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
+#include "../Components/CombatBoxComponent.h"
 
 DragonFly::DragonFly(Game *game)
     :Enemy(game)
@@ -101,12 +102,14 @@ DragonFly::DragonFly(Game *game)
 
     mColliderComponent = new OBBComponent(this, Vector2(mWidth / 2, mHeight / 2));
 
-    // if (mDrawPolygonComponent) {
-    //     if (auto* obb = dynamic_cast<OBBComponent*>(mColliderComponent)) {
-    //         auto verts = obb->GetVertices();
-    //         mDrawPolygonComponent->SetVertices(verts);
-    //     }
-    // }
+    RemoveComponent(mCombatBoxComponent);
+    delete mCombatBoxComponent;
+    mCombatBoxComponent = nullptr;
+
+    mCombatBoxComponent = new CombatBoxComponent(this);
+    mCombatBoxComponent->AddOBBBox("hitbox", true, Vector2(mWidth / 2, mHeight / 2));
+    mCombatBoxComponent->AddOBBBox("hurtbox", false, Vector2(mWidth / 2, mHeight / 2));
+    // mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void DragonFly::OnUpdate(float deltaTime) {

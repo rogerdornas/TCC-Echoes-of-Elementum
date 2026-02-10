@@ -31,6 +31,7 @@ private:
     void Attack(float deltaTime);
 
     void ManageAnimations();
+    void ManageCombatBox();
 
     State mSnakeState;
 
@@ -48,8 +49,10 @@ private:
     float mAttackDuration;
     float mAttackTimer;
     float mIdleWidth;
+    float mIdleHeight;
     float mAttackSpriteWidth;
-    float mAttackOffsetHitBox;
+    float mAttackSpriteHeight;
+    Vector2 mAttackOffsetHitBox;
     float mGrowthSpeed;
 };
 

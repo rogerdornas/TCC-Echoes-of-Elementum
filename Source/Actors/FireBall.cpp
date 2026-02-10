@@ -9,6 +9,7 @@
 #include "../Game.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/AABBComponent.h"
+#include "../Components/CombatBoxComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
@@ -66,6 +67,10 @@ FireBall::FireBall(class Game* game)
 
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 1800);
     mAABBComponent = new AABBComponent(this, v1, v3);
+
+    mCombatBoxComponent = new CombatBoxComponent(this);
+    mCombatBoxComponent->AddAABBBox("hitbox", true, v1, v3);
+    // mCombatBoxComponent->SetDebugDraw(true);
 
     // mLight = new Light(mGame);
     // mLight->SetRadius(100.0f);
@@ -132,6 +137,7 @@ void FireBall::OnUpdate(float deltaTime) {
         case State::Exploding:
             mRigidBodyComponent->SetVelocity(Vector2::Zero);
             mAABBComponent->SetActive(false); // desativa colisão
+            mCombatBoxComponent->SetAllBoxesActive(false);
             mDeactivateTimer += deltaTime;
             if (mDeactivateTimer >= mDeactivateDuration) {
                 Deactivate();
@@ -181,8 +187,10 @@ void FireBall::Activate() {
         aabb->SetMin(v1);
         aabb->SetMax(v3);
     }
+    mCombatBoxComponent->SetBoxHalfSize("hitbox", v3);
 
     mAABBComponent->SetActive(true); // reativa colisão
+    mCombatBoxComponent->SetAllBoxesActive(true);
     if (mRectComponent) {
         // mDrawPolygonComponent->SetVertices(vertices);
         mRectComponent->SetWidth(mWidth);
@@ -216,6 +224,7 @@ void FireBall::Deactivate() {
     mIsFromEnemy = false;
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
     mAABBComponent->SetActive(false); // desativa colisão
+    mCombatBoxComponent->SetAllBoxesActive(false);
     mFireballState = State::Deactivate;
     mDurationTimer = 0;
     mDeactivateTimer = 0;
@@ -270,7 +279,8 @@ void FireBall::ResolveEnemyCollision() {
         std::vector<Enemy*> enemies = mGame->GetEnemies();
         if (!enemies.empty()) {
             for (Enemy* e : enemies) {
-                if (mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
+                HitResult hitResult = mCombatBoxComponent->CheckAttackAgainst(e->GetComponent<CombatBoxComponent>());
+                if (hitResult.isValid) {
                     e->ReceiveHit(mDamage, GetForward());
                     e->Unfreeze();
                     if (mSound.IsValid()) {
@@ -302,7 +312,8 @@ void FireBall::ResolveEnemyCollision() {
 void FireBall::ResolvePlayerCollision() {
     if (mIsFromEnemy) {
         Player* player = mGame->GetPlayer();
-        if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
+        HitResult hitResult = mCombatBoxComponent->CheckAttackAgainst(player->GetComponent<CombatBoxComponent>());
+        if (hitResult.isValid) {
             player->ReceiveHit(mDamage, GetForward(), DamageType::Projectile);
             if (mSound.IsValid()) {
                 if (mGame->GetAudio()->GetSoundState(mSound) == SoundState::Playing) {

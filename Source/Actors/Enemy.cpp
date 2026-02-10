@@ -13,6 +13,7 @@
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
+#include "../Components/CombatBoxComponent.h"
 
 Enemy::Enemy(Game* game)
     :Actor(game)
@@ -37,6 +38,7 @@ Enemy::Enemy(Game* game)
     ,mFreezeEffect(nullptr)
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
+    ,mCombatBoxComponent(nullptr)
 {
     game->AddEnemy(this);
 }
@@ -62,6 +64,11 @@ void Enemy::SetSize(float width, float height) {
 
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 40000 * mGame->GetScale());
     mColliderComponent = new AABBComponent(this, v1, v3);
+
+    mCombatBoxComponent = new CombatBoxComponent(this);
+    mCombatBoxComponent->AddAABBBox("hitbox", true, v1, v3);
+    mCombatBoxComponent->AddAABBBox("hurtbox", false, v1, v3);
+    // mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {

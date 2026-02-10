@@ -50,6 +50,7 @@
 #include "Actors/Projectile.h"
 #include "Actors/Snake.h"
 #include "Components/AABBComponent.h"
+#include "Components/CombatBoxComponent.h"
 #include "Components/DashComponent.h"
 #include "Components/Drawing/AnimatorComponent.h"
 #include "Components/Drawing/DrawRopeComponent.h"
@@ -2362,6 +2363,7 @@ void Game::LoadObjects(const std::string &fileName) {
                     mPlayer->SetInvertControls(false);
                     mPlayer->Stop();
                     mPlayer->GetComponent<AABBComponent>()->SetActive(true);
+                    mPlayer->GetComponent<CombatBoxComponent>()->SetAllBoxesActive(true);
                     if (mGoingToNextLevel) {
                         mPlayer->SetPosition(Vector2(x, y));
                         mPlayer->SetIsEnteringLevel(enteringLevelVelocity);
@@ -3151,6 +3153,7 @@ void Game::UpdateGame()
                     mPlayer->SetPosition(mLavaRespawnPosition);
                     mPlayer->SetState(ActorState::Active);
                     mPlayer->GetComponent<AABBComponent>()->SetActive(true);
+                    mPlayer->GetComponent<CombatBoxComponent>()->SetAllBoxesActive(true);
                 }
             }
             else if (mCrossFadeTimer >= mCrossFadeDuration * 0.6f) {
@@ -3428,6 +3431,16 @@ void Game::SortDrawables() {
     });
 }
 
+void Game::AddCollider(class ColliderComponent *collider)
+{
+    mColliders.emplace_back(collider);
+}
+
+void Game::RemoveCollider(class ColliderComponent *collider) {
+    auto iter = std::find(mColliders.begin(), mColliders.end(), collider);
+    mColliders.erase(iter);
+}
+
 void Game::InitCrossFade(float duration) {
     mIsCrossFading = true;
     mCrossFadeTimer = 0;
@@ -3666,6 +3679,13 @@ void Game::GenerateOutput()
 
     for (auto drawable: mDrawables) {
         drawable->Draw(mRenderer);
+    }
+
+    //Desenha Debug de colliders
+    if (mCamera) {
+        for (auto collider: mColliders) {
+            collider->Draw(mRenderer);
+        }
     }
 
     // Draw all UI screens

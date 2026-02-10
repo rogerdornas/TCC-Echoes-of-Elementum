@@ -73,4 +73,5 @@ private:
 
     class RigidBodyComponent *mRigidBodyComponent;
     class ColliderComponent *mAABBComponent;
+    class CombatBoxComponent* mCombatBoxComponent;
 };

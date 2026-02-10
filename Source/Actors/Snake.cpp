@@ -9,6 +9,7 @@
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
+#include "../Components/CombatBoxComponent.h"
 
 Snake::Snake(Game *game)
     :Enemy(game)
@@ -35,8 +36,10 @@ Snake::Snake(Game *game)
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
+    mIdleHeight = mHeight;
     mAttackSpriteWidth = mWidth * 1.6f;
-    mAttackOffsetHitBox = mWidth * 0.6f;
+    mAttackSpriteHeight = mHeight * 0.5f;
+    mAttackOffsetHitBox = Vector2(mWidth * 0.4f, mHeight * 0.4f);
     mGrowthSpeed = 700.0f;
     mEnemyCollision = false;
 
@@ -92,6 +95,10 @@ void Snake::OnUpdate(float deltaTime) {
     mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
                                              mRigidBodyComponent->GetVelocity().y
                                              + mGravity * deltaTime));
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
+    }
 
     // Se morreu
     if (Died()) {
@@ -193,23 +200,6 @@ void Snake::Attack(float deltaTime) {
     mAttackTimer += deltaTime;
 
     if (mAttackTimer >= mAttackDuration) {
-        mWidth = mIdleWidth;
-
-        Vector2 v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        Vector2 v2 = Vector2(mWidth / 2, -mHeight / 2);
-        Vector2 v3 = Vector2(mWidth / 2, mHeight / 2);
-        Vector2 v4 = Vector2(-mWidth / 2, mHeight / 2);
-
-        if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-            aabb->SetMin(v1);
-            aabb->SetMax(v3);
-        }
-
-        if (mRectComponent) {
-            mRectComponent->SetWidth(mWidth);
-            mRectComponent->SetHeight(mHeight);
-        }
-
         mAttackTimer = 0;
         mSnakeState = State::Stop;
         return;
@@ -217,54 +207,6 @@ void Snake::Attack(float deltaTime) {
 
     if (mKnockBackTimer >= mKnockBackDuration) {
         mRigidBodyComponent->SetVelocity(Vector2(GetForward().x * mMoveSpeed * 2.0f, mRigidBodyComponent->GetVelocity().y));
-    }
-
-    float targetWidth = mIdleWidth;
-
-    if (mAttackTimer > 0.45f * mAttackDuration && mAttackTimer < 0.8f * mAttackDuration) {
-        targetWidth = mAttackSpriteWidth;
-    }
-
-    // 4. Aplicar Crescimento/Encolhimento Suave usando mGrowthSpeed
-    if (mWidth < targetWidth) {
-        mWidth += mGrowthSpeed * deltaTime;
-        if (mWidth > targetWidth) mWidth = targetWidth; // Clamp para não passar
-    }
-    else if (mWidth > targetWidth) {
-        mWidth -= mGrowthSpeed * deltaTime;
-        if (mWidth < targetWidth) mWidth = targetWidth; // Clamp
-    }
-
-    // 5. Calcular Offset Dinâmico
-    // Calculamos uma porcentagem de quanto a cobra cresceu (0.0 a 1.0) para aplicar o offset proporcionalmente.
-    // Isso impede que a hitbox "pule" de posição.
-    float growthRatio = 0.0f;
-    if (mAttackSpriteWidth - mIdleWidth > 0.001f) {
-        growthRatio = (mWidth - mIdleWidth) / (mAttackSpriteWidth - mIdleWidth);
-    }
-
-    // O offset atual é baseado no quanto ela já cresceu
-    float currentOffset = mAttackOffsetHitBox * growthRatio;
-
-    // Inverter offset se estiver virado para a esquerda (rotação Pi)
-    if (GetRotation() == Math::Pi) {
-        currentOffset = -currentOffset;
-    }
-
-    // 6. Atualizar Vértices e Hitbox
-    Vector2 v1(-mWidth / 2 + currentOffset, -mHeight / 2);
-    Vector2 v2(mWidth / 2 + currentOffset, -mHeight / 2);
-    Vector2 v3(mWidth / 2 + currentOffset, mHeight / 2);
-    Vector2 v4(-mWidth / 2 + currentOffset, mHeight / 2);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    if (mRectComponent) {
-        mRectComponent->SetWidth(mWidth);
-        mRectComponent->SetHeight(mHeight);
     }
 }
 
@@ -283,66 +225,27 @@ void Snake::ManageAnimations() {
     }
 }
 
+void Snake::ManageCombatBox() {
+    if (mSnakeState == State::Attack) {
+        if (mAttackTimer > 0.45f * mAttackDuration && mAttackTimer < 0.8f * mAttackDuration) {
+            mWidth = mAttackSpriteWidth;
+            mHeight = mAttackSpriteHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", mAttackOffsetHitBox * Vector2(GetForward().x, 1));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", mAttackOffsetHitBox * Vector2(GetForward().x, 1));
+        }
+        else {
+            mWidth = mIdleWidth;
+            mHeight = mIdleHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+    }
+}
+
 void Snake::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mWalkingAroundMoveSpeed = mWalkingAroundMoveSpeed / oldScale * newScale;
-    mGravity = mGravity / oldScale * newScale;
-    mDistToAttack = mDistToAttack / oldScale * newScale;
-    mIdleWidth = mIdleWidth / oldScale * newScale;
-    mAttackSpriteWidth = mAttackSpriteWidth / oldScale * newScale;
-    mAttackOffsetHitBox = mAttackOffsetHitBox / oldScale * newScale;
 
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 3.0f);
-    //     mDrawAnimatedComponent->SetHeight(mWidth * 3.0f * 0.36f);
-    // }
-
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
-    if (mWidth == mAttackSpriteWidth) {
-        if (GetRotation() == 0) {
-            v1 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-        }
-        else if (GetRotation() == Math::Pi) {
-            v1 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-        }
-    }
-    else {
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-    }
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

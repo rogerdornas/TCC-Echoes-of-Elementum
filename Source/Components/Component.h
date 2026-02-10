@@ -7,7 +7,7 @@ class Component
 public:
     // Constructor
     // (the lower the update order, the earlier the component updates)
-    Component(class Actor* owner, int updateOrder = 100);
+    Component(class Actor* owner, int updateOrder = 100, bool autoRegister = true);
     virtual ~Component();
 
     virtual void Update(float deltaTime);

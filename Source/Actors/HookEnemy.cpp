@@ -11,6 +11,7 @@
 #include "../HUD.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/AABBComponent.h"
+#include "../Components/CombatBoxComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 #include "../Components/Drawing/DrawRopeComponent.h"
@@ -99,6 +100,15 @@ HookEnemy::HookEnemy(Game *game)
     mColliderComponent = nullptr;
 
     mColliderComponent = new OBBComponent(this, Vector2(mWidth / 2, mHeight / 2));
+
+    RemoveComponent(mCombatBoxComponent);
+    delete mCombatBoxComponent;
+    mCombatBoxComponent = nullptr;
+
+    mCombatBoxComponent = new CombatBoxComponent(this);
+    mCombatBoxComponent->AddOBBBox("hitbox", true, Vector2(mWidth / 2, mHeight / 2));
+    mCombatBoxComponent->AddOBBBox("hurtbox", false, Vector2(mWidth / 2, mHeight / 2));
+    // mCombatBoxComponent->SetDebugDraw(true);
 
     SetRotation(3 * Math::Pi / 2);
     SetTransformRotation(3 * Math::Pi / 2);

@@ -9,11 +9,35 @@
 #include "../Math.h"
 #include "RigidBodyComponent.h"
 
-AABBComponent::AABBComponent(class Actor* owner, Vector2 min, Vector2 max)
-    :ColliderComponent(owner, ColliderType::AABB)
+AABBComponent::AABBComponent(class Actor* owner, Vector2 min, Vector2 max, Vector2 offset, bool autoRegister)
+    :ColliderComponent(owner, ColliderType::AABB, offset, autoRegister)
     ,mMin(min)
     ,mMax(max)
 {
+}
+
+void AABBComponent::Draw(Renderer* renderer) {
+    if (!mDebugDraw || !mIsActive) {
+        return;
+    }
+
+    // 1. Calcula o tamanho do retângulo
+    float width = mMax.x - mMin.x;
+    float height = mMax.y - mMin.y;
+    Vector2 size(width, height);
+
+    // 2. Calcula o deslocamento do centro da caixa em relação ao Actor
+    Vector2 drawPos = GetOwner()->GetPosition() + mOffset;
+
+    // 3. Desenha
+    GetGame()->GetRenderer()->DrawRect(
+        drawPos,
+        size,
+        0.0f, // Rotação fixa em 0 para AABB
+        mColor,
+        GetGame()->GetCamera()->GetPosCamera(),
+        RendererMode::LINES
+    );
 }
 
 bool AABBComponent::Intersect(ColliderComponent& other) {
@@ -33,8 +57,8 @@ bool AABBComponent::Intersect(ColliderComponent& other) {
 }
 
 bool AABBComponent::IntersectWithAABB(AABBComponent& other) {
-    Vector2 posA = GetOwner()->GetPosition();
-    Vector2 posB = other.GetOwner()->GetPosition();
+    Vector2 posA = GetOwner()->GetPosition() + mOffset;
+    Vector2 posB = other.GetOwner()->GetPosition() + other.GetOffset();
     bool notColliding = (mMax.x + posA.x < other.mMin.x + posB.x) || (other.mMax.x + posB.x < mMin.x + posA.x) ||
                         (mMax.y + posA.y < other.mMin.y + posB.y) || (other.mMax.y + posB.y < mMin.y + posA.y);
     return !notColliding;
@@ -42,7 +66,7 @@ bool AABBComponent::IntersectWithAABB(AABBComponent& other) {
 
 bool AABBComponent::IntersectWithOBB(OBBComponent &other) {
     // Obtém vértices do AABB
-    Vector2 AABBPosition = GetOwner()->GetPosition();
+    Vector2 AABBPosition = GetOwner()->GetPosition() + mOffset;
     std::vector<Vector2> vertsAABB = {
         Vector2(mMin.x + AABBPosition.x, mMin.y + AABBPosition.y),
         Vector2(mMax.x + AABBPosition.x, mMin.y + AABBPosition.y),
@@ -53,7 +77,7 @@ bool AABBComponent::IntersectWithOBB(OBBComponent &other) {
     // Obtém vértices do OBB
     auto vertsOBB = other.GetVertices();
     for (int i = 0; i < vertsOBB.size(); i++) {
-        vertsOBB[i] += other.GetOwner()->GetPosition();
+        vertsOBB[i] += other.GetOwner()->GetPosition() + other.GetOffset();
     }
 
     // Eixos para testar (SAT)
@@ -101,8 +125,8 @@ Vector2 AABBComponent::ResolveCollision(ColliderComponent &other) {
 }
 
 Vector2 AABBComponent::ResolveCollisionWithAABB(AABBComponent &other) {
-    Vector2 posA = GetOwner()->GetPosition();
-    Vector2 posB = other.GetOwner()->GetPosition();
+    Vector2 posA = GetOwner()->GetPosition() + mOffset;
+    Vector2 posB = other.GetOwner()->GetPosition() + other.GetOffset();
     Vector2 vel = Vector2::Zero;
 
     if (GetOwner()->GetComponent<RigidBodyComponent>() != nullptr) {
@@ -319,7 +343,7 @@ Vector2 AABBComponent::ResolveCollisionWithAABB(AABBComponent &other) {
 
 Vector2 AABBComponent::ResolveCollisionWithOBB(OBBComponent &other) {
     // Obtém vértices do AABB
-    Vector2 AABBPosition = GetOwner()->GetPosition();
+    Vector2 AABBPosition = GetOwner()->GetPosition() + mOffset;
     std::vector<Vector2> vertsAABB = {
         Vector2(mMin.x + AABBPosition.x, mMin.y + AABBPosition.y),
         Vector2(mMax.x + AABBPosition.x, mMin.y + AABBPosition.y),
@@ -330,7 +354,7 @@ Vector2 AABBComponent::ResolveCollisionWithOBB(OBBComponent &other) {
     // Obtém vértices do OBB
     auto vertsOBB = other.GetVertices();
     for (int i = 0; i < vertsOBB.size(); i++) {
-        vertsOBB[i] += other.GetOwner()->GetPosition();
+        vertsOBB[i] += other.GetOwner()->GetPosition() + other.GetOffset();
     }
 
     // Eixos para testar (SAT)
@@ -372,8 +396,8 @@ Vector2 AABBComponent::ResolveCollisionWithOBB(OBBComponent &other) {
     }
 
     // Decide direção correta do vetor normal
-    Vector2 centerA = GetOwner()->GetPosition();
-    Vector2 dir = other.GetOwner()->GetPosition() - centerA;
+    Vector2 centerA = GetOwner()->GetPosition() + mOffset;
+    Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }
@@ -400,8 +424,8 @@ Vector2 AABBComponent::CollisionSide(ColliderComponent &other) {
 }
 
 Vector2 AABBComponent::CollisionSideWithAABB(AABBComponent &other) {
-    Vector2 posA = GetOwner()->GetPosition();
-    Vector2 posB = other.GetOwner()->GetPosition();
+    Vector2 posA = GetOwner()->GetPosition() + mOffset;
+    Vector2 posB = other.GetOwner()->GetPosition() + other.GetOffset();
 
     Vector2 normal(Vector2::Zero);
 
@@ -441,7 +465,7 @@ Vector2 AABBComponent::CollisionSideWithAABB(AABBComponent &other) {
 
 Vector2 AABBComponent::CollisionSideWithOBB(OBBComponent &other) {
     // Obtém vértices do AABB
-    Vector2 AABBPosition = GetOwner()->GetPosition();
+    Vector2 AABBPosition = GetOwner()->GetPosition() + mOffset;
     std::vector<Vector2> vertsAABB = {
         Vector2(mMin.x + AABBPosition.x, mMin.y + AABBPosition.y),
         Vector2(mMax.x + AABBPosition.x, mMin.y + AABBPosition.y),
@@ -452,7 +476,7 @@ Vector2 AABBComponent::CollisionSideWithOBB(OBBComponent &other) {
     // Obtém vértices do OBB
     auto vertsOBB = other.GetVertices();
     for (int i = 0; i < vertsOBB.size(); i++) {
-        vertsOBB[i] += other.GetOwner()->GetPosition();
+        vertsOBB[i] += other.GetOwner()->GetPosition() + other.GetOffset();
     }
 
     // Eixos para testar (SAT)
@@ -494,8 +518,8 @@ Vector2 AABBComponent::CollisionSideWithOBB(OBBComponent &other) {
     }
 
     // Decide direção correta do vetor normal
-    Vector2 centerA = GetOwner()->GetPosition();
-    Vector2 dir = other.GetOwner()->GetPosition() - centerA;
+    Vector2 centerA = GetOwner()->GetPosition() + mOffset;
+    Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }

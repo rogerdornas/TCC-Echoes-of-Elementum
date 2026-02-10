@@ -6,6 +6,7 @@
 #include "../Game.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/AABBComponent.h"
+#include "../Components/CombatBoxComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
@@ -13,12 +14,14 @@ Sword::Sword(class Game *game, Actor *owner, float width, float height, float du
     :Actor(game)
     ,mWidth(width)
     ,mHeight(height)
+    ,mHurtSizeScale(0.3f)
     ,mDuration(duration)
     ,mDurationTimer(mDuration)
     ,mDamage(damage)
     ,mOwner(owner)
     ,mDrawComponent(nullptr)
     ,mRectComponent(nullptr)
+    ,mCombatBoxComponent(nullptr)
 {
     Vector2 v1(-mWidth / 2, -mHeight / 2);
     Vector2 v2(mWidth / 2, -mHeight / 2);
@@ -53,6 +56,11 @@ Sword::Sword(class Game *game, Actor *owner, float width, float height, float du
 
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 1800);
     mAABBComponent = new AABBComponent(this, v1, v3);
+
+    mCombatBoxComponent = new CombatBoxComponent(this);
+    mCombatBoxComponent->AddAABBBox("sword", true, v1, v3);
+    mCombatBoxComponent->AddAABBBox("ground", false, v1 * Vector2(1, mHurtSizeScale), v3 * Vector2(1, mHurtSizeScale));
+    // mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void Sword::OnUpdate(float deltaTime) {
@@ -89,6 +97,11 @@ void Sword::OnUpdate(float deltaTime) {
                 aabb->SetMax(v3);
             }
 
+            if (mCombatBoxComponent) {
+                mCombatBoxComponent->SetBoxHalfSize("sword", Vector2(mWidth / 2, mHeight / 2));
+                mCombatBoxComponent->SetBoxHalfSize("ground", Vector2(mWidth / 2, (mHeight / 2) * mHurtSizeScale));
+            }
+
             if (mRectComponent) {
                 // mDrawPolygonComponent->SetVertices(vertices);
                 mRectComponent->SetWidth(mWidth);
@@ -100,7 +113,7 @@ void Sword::OnUpdate(float deltaTime) {
                 mDrawComponent->SetHeight(mHeight);
                 // mDrawAnimatedComponent->UseRotation(false);
             }
-            offset = mWidth * 0.35;
+            offset = mWidth * 0.35f;
         }
         else {
             Vector2 v1(-mHeight / 2, -mWidth / 2);
@@ -118,6 +131,11 @@ void Sword::OnUpdate(float deltaTime) {
                 aabb->SetMax(v3);
             }
 
+            if (mCombatBoxComponent) {
+                mCombatBoxComponent->SetBoxHalfSize("sword", Vector2(mHeight / 2, mWidth / 2));
+                mCombatBoxComponent->SetBoxHalfSize("ground", Vector2((mHeight / 2) * mHurtSizeScale, mWidth / 2));
+            }
+
             if (mRectComponent) {
                 // mDrawPolygonComponent->SetVertices(vertices);
                 mRectComponent->SetWidth(mWidth);
@@ -129,7 +147,7 @@ void Sword::OnUpdate(float deltaTime) {
                 mDrawComponent->SetHeight(mHeight);
                 // mDrawAnimatedComponent->UseRotation(true);
             }
-            offset = mWidth * 0.35;
+            offset = mWidth * 0.35f;
         }
         SetPosition(Vector2(mOwner->GetPosition() + GetForward() * offset));
     }
@@ -138,6 +156,7 @@ void Sword::OnUpdate(float deltaTime) {
 void Sword::Activate()
 {
     mAABBComponent->SetActive(true); // reativa colisão
+    mCombatBoxComponent->SetAllBoxesActive(true);
     if (mRectComponent) {
         mRectComponent->SetVisible(true);
     }
@@ -152,6 +171,7 @@ void Sword::Deactivate()
 {
     SetState(ActorState::Paused);
     mAABBComponent->SetActive(false); // desativa colisão
+    mCombatBoxComponent->SetAllBoxesActive(false);
     if (mRectComponent) {
         mRectComponent->SetVisible(false);
     }

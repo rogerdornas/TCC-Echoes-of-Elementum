@@ -353,7 +353,6 @@
   <object id="24" x="0" y="1632" width="224" height="2048"/>
  </objectgroup>
  <objectgroup id="8" name="Enemies">
-  <object id="83" name="Mushroom" x="2944" y="4288" width="32" height="32"/>
   <object id="84" name="Enemy Simple" x="2112" y="4288" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="4" name="Triggers">

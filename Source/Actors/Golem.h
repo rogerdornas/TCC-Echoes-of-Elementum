@@ -37,6 +37,7 @@ private:
     void TriggerBossDefeat();
 
     void ManageAnimations();
+    void ManageCombatBox();
 
     void Stop(float deltaTime);
     void RunAway(float deltaTime);
@@ -52,7 +53,6 @@ private:
 
     bool mIsRunning;
     float mGravity;
-    float mPunchProbability;
 
     bool mIsInvulnerable;
     bool mAlreadySpawnedCrystal;
@@ -71,12 +71,14 @@ private:
     float mRunAwayTimer;
     float mMoveSpeedIncrease;
 
+    float mPunchProbability;
     float mPunchDuration;
     float mPunchTimer;
     float mDistToPunch;
     float mIdleWidth;
     float mPunchSpriteWidth;
     float mPunchOffsetHitBox;
+    Vector2 mPunchOffset;
     bool mPunchDirectionRight;
 
     float mFireballDuration;

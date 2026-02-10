@@ -31,6 +31,7 @@ private:
     void MovementBeforePlayerSpotted();
 
     void ManageAnimations();
+    void ManageCombatBox();
 
     void Stop(float deltaTime);
     void Fly(float deltaTime);

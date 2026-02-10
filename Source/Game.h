@@ -126,6 +126,9 @@ public:
 
     class Player* GetPlayer() const { return mPlayer; }
 
+    void AddCollider(class ColliderComponent* collider);
+    void RemoveCollider(class ColliderComponent *collider);
+
     void UpdateCamera(float deltaTime);
     class Camera* GetCamera() const { return mCamera; }
 
@@ -325,6 +328,7 @@ private:
 
     // Game-specific
     class Player *mPlayer;
+    std::vector<class ColliderComponent*> mColliders;
     std::vector<class Ground*> mGrounds;
     std::vector<class FireBall*> mFireBalls;
     std::vector<class Particle*> mParticles;
