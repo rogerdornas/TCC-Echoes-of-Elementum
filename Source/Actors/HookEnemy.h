@@ -43,7 +43,6 @@ private:
     State mHookEnemyState;
 
     float mGravity;
-    bool mIsOnGround;
 
     float mStopDuration;
     float mStopTimer;

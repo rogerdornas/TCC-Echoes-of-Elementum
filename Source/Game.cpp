@@ -47,6 +47,7 @@
 #include "Actors/Money.h"
 #include "Actors/Moth.h"
 #include "Actors/Mushroom.h"
+#include "Actors/OrangeSlime.h"
 #include "Actors/Projectile.h"
 #include "Actors/Snake.h"
 #include "Components/AABBComponent.h"
@@ -278,6 +279,7 @@ void Game::SetGameScene(Game::GameScene scene, float transitionTime) {
             scene == GameScene::Room0 ||
             scene == GameScene::Room1 ||
             scene == GameScene::Room2 ||
+            scene == GameScene::Desafios ||
             scene == GameScene::MirrorBoss)
         {
             mNextScene = scene;
@@ -663,6 +665,29 @@ void Game::ChangeScene()
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
 
         LoadLevel(levelsAssets + "Room2/Room2.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+        }
+        mBossMusic.Reset();
+    }
+    else if (mNextScene == GameScene::Desafios) {
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+
+        LoadLevel(levelsAssets + "Desafios/Desafios.json");
 
         mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
                                            mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
@@ -2120,6 +2145,11 @@ void Game::LoadObjects(const std::string &fileName) {
                     mushroom->SetPosition(Vector2(x, y));
                     mushroom->SetId(id);
                 }
+                else if (name == "OrangeSlime") {
+                    auto* orangeSlime = new OrangeSlime(this);
+                    orangeSlime->SetPosition(Vector2(x, y));
+                    orangeSlime->SetId(id);
+                }
                 else if (name == "CloneEnemy") {
                     auto* cloneEnemy = new CloneEnemy(this);
                     cloneEnemy->SetPosition(Vector2(x, y));
@@ -3039,7 +3069,7 @@ void Game::UpdateGame()
 
     // testes para alterar velocidade do jogo
     if (mIsSlowMotion) {
-        deltaTime *= 0.5;
+        deltaTime *= 0.3;
     }
     if (mIsAccelerated) {
         deltaTime *= 1.5;

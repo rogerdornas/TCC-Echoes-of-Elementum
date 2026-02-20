@@ -7,6 +7,12 @@
           "type": "FlyingSpawnerEnemy", 
           "id": "LeftMid", 
           "delay": 2.0
+        },
+		{
+          "actionType": "SpawnEnemy", 
+          "type": "OrangeSlime", 
+          "id": "RightBot", 
+          "delay": 4.0
         }
       ]
     },

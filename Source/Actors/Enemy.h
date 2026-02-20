@@ -42,6 +42,7 @@ protected:
     int mId;
     float mWidth;
     float mHeight;
+    bool mIsOnGround;
 
     int mMoneyDrop;
 
@@ -60,6 +61,8 @@ protected:
     float mFreezeDecayRate;
     class ParticleSystem* mFreezeEffect;
 
+    bool mKnockBackXActive;
+    bool mKnockBackYActive;
     float mKnockBackSpeed;
     float mKnockBackTimer;
     float mKnockBackDuration;

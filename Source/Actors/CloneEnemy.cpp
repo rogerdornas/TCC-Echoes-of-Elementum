@@ -15,7 +15,6 @@
 
 CloneEnemy::CloneEnemy(Game *game)
     :Enemy(game)
-    ,mIsOnGround(false)
     ,mIsOnMovingGround(false)
     ,mMovingGroundVelocity(Vector2::Zero)
 

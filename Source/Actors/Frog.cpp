@@ -32,7 +32,6 @@ Frog::Frog(Game* game)
     ,mStopDuration(1.5f)
     ,mStopTimer(0.0f)
 
-    ,mIsOnGround(true)
     ,mMaxJumps(6)
     ,mJumpCount(0)
     ,mJumpForce(1500.0f * mGame->GetScale())

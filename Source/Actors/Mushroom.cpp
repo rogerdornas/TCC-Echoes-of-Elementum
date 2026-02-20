@@ -22,31 +22,31 @@ Mushroom::Mushroom(Game *game)
 
     ,mHitDuration(0.3f)
 
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mLookingAroundDuration(2.5f)
     ,mLookingAroundTimer(0.0f)
 
     ,mWalkAwayDuration(0.4f)
     ,mWalkAwayTimer(0.0f)
 
-    ,mGravity(3000 * mGame->GetScale())
+    ,mGravity(3000)
 
-    ,mDistToAttack(300.0f * mGame->GetScale())
-    ,mJumpForce(-600.0f * mGame->GetScale())
+    ,mDistToAttack(300.0f)
+    ,mJumpForce(-600.0f)
     ,mAttackDuration(0.7f)
     ,mAttackTimer(0.0f)
 
     ,mStumDuration(1.2f)
     ,mStumTimer(0.0f)
 {
-    mWidth = 80 * mGame->GetScale();
-    mHeight = 110 * mGame->GetScale();
-    mMoveSpeed = 300 * mGame->GetScale();
+    mWidth = 80;
+    mHeight = 110;
+    mMoveSpeed = 300;
     mHealthPoints = 55;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 20;
-    mKnockBackSpeed = 700.0f * mGame->GetScale();
+    mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
@@ -60,6 +60,7 @@ Mushroom::Mushroom(Game *game)
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Mushroom/Mushroom.png",
                                                     "../Assets/Sprites/Mushroom/Mushroom.json",
                                                     mWidth * 3.7f, mWidth * 3.7f, 998);
+
     std::vector run = {18, 19, 20, 21, 22, 23, 24, 25, };
     mDrawComponent->AddAnimation("run", run);
 
@@ -116,7 +117,6 @@ void Mushroom::OnUpdate(float deltaTime) {
         ManageCombatBox();
     }
 
-    // Se morreu
     if (Died()) {
     }
 
@@ -175,7 +175,7 @@ void Mushroom::MovementBeforePlayerSpotted(float deltaTime) {
 
     // Testa se spottou player
     Player* player = GetGame()->GetPlayer();
-    if (Math::Abs(GetPosition().y - player->GetPosition().y) < 40 * mGame->GetScale()) { // Se está no mesmo nível verticalmente
+    if (Math::Abs(GetPosition().y - player->GetPosition().y) < 40) { // Se está no mesmo nível verticalmente
         if (player->GetPosition().x < GetPosition().x && GetForward().x < 0 && Math::Abs(player->GetPosition().x - GetPosition().x) < mDistToSpotPlayer) {
             mPlayerSpotted = true;
         }

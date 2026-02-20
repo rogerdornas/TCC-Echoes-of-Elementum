@@ -46,7 +46,6 @@ private:
 
     std::vector<InputCommand> mInputCommands;
 
-    bool mIsOnGround;
     bool mIsOnMovingGround;
     Vector2 mMovingGroundVelocity;
 

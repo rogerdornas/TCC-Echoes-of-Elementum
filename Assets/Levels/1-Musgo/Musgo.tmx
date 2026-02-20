@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="1080" height="280" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="269">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="1080" height="280" tilewidth="32" tileheight="32" infinite="0" nextlayerid="14" nextobjectid="271">
  <editorsettings>
   <export target="Musgo.json" format="json"/>
  </editorsettings>
@@ -1124,6 +1124,8 @@
   <object id="134" name="Flying Enemy" x="20288" y="2656" width="32" height="32"/>
   <object id="152" name="Mantis" x="10528" y="4320" width="32" height="32"/>
   <object id="221" name="FlyingSpawnerEnemy" x="22944" y="4896" width="32" height="32"/>
+  <object id="269" name="OrangeSlime" x="3584" y="4320" width="32" height="32"/>
+  <object id="270" name="OrangeSlime" x="3776" y="4320" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="13" name="Light">
   <object id="264" x="31680" y="6048" width="32" height="32">

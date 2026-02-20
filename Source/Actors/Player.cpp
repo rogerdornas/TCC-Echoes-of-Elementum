@@ -154,7 +154,7 @@ Player::Player(Game* game)
     ,mCanWallSlide(true)
     ,mIsWallSliding(false)
     ,mWallSlideSide(WallSlideSide::notSliding)
-    ,mWallSlideSpeed(300 * mGame->GetScale())
+    ,mWallSlideSpeed(350)
     ,mTryingLeavingWallSlideLeft(0)
     ,mTryingLeavingWallSlideRight(0)
     ,mTimerToLeaveWallSlidingLeft(0.0f)
@@ -1726,6 +1726,7 @@ void Player::GroundSlamEffects() {
 
 void Player::Glide() {
     if (mCanGlide &&
+        mElementalMode == ElementalMode::Fire &&
         mGlideCooldownTimer >= mGlideCooldownDuration &&
         !mIsOnGround &&
         !mIsWallSliding &&
@@ -1849,7 +1850,7 @@ void Player::UseSword() {
 }
 
 void Player::UseFireBall() {
-    if (mCanFireBall) {
+    if (mCanFireBall && mElementalMode == ElementalMode::Fire) {
         if (!mPrevSkill1Pressed &&
             mFireBallCooldownTimer >= mFireBallCooldownDuration &&
             mMana >= mFireballManaCost &&
@@ -1891,7 +1892,7 @@ void Player::UseFireBall() {
 }
 
 void Player::UseFreeze(bool up, bool down) {
-    if (mCanFreeze) {
+    if (mCanFreeze && mElementalMode == ElementalMode::Ice) {
         if (mMana >= mFreezeManaCost && !mDashComponent->GetIsDashing() && !mIsDiving) {
             AttachedEffect freezeEffect;
             if (mIntervalBetweenFreezeEmitTimer >= mIntervalBetweenFreezeEmitDuration) {
@@ -1987,7 +1988,7 @@ void Player::UseFreeze(bool up, bool down) {
 }
 
 void Player::UsePillar() {
-    if (mCanCreatePillar) {
+    if (mCanCreatePillar && mElementalMode == ElementalMode::Earth) {
         if (!mPrevSkill2Pressed &&
             mMana >= mPillarManaCost &&
             mPillarAnimationTimer >= mPillarAnimationDuration &&

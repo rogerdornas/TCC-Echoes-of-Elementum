@@ -1493,6 +1493,17 @@
                  "width":32,
                  "x":1696,
                  "y":4992
+                }, 
+                {
+                 "height":32,
+                 "id":78,
+                 "name":"OrangeSlime",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2304,
+                 "y":4256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1667,7 +1678,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":78,
+ "nextobjectid":79,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

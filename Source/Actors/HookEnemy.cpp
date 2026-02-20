@@ -22,7 +22,6 @@ HookEnemy::HookEnemy(Game *game)
     ,mHookEnemyState(State::Stop)
 
     ,mGravity(3000 * mGame->GetScale())
-    ,mIsOnGround(true)
 
     ,mStopDuration(1.2f)
     ,mStopTimer(0.0f)

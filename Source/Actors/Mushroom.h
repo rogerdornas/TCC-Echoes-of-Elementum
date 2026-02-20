@@ -28,8 +28,8 @@ public:
 private:
     void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true) override;
 
-    void MovementAfterPlayerSpotted(float deltaTime);
     void MovementBeforePlayerSpotted(float deltaTime);
+    void MovementAfterPlayerSpotted(float deltaTime);
 
     void Stop(float deltaTime);
     void WalkForward(float deltaTime);

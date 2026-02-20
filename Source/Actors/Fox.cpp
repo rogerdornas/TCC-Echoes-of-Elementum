@@ -49,7 +49,6 @@ Fox::Fox(Game* game)
     ,mFireBallHeight(100 * mGame->GetScale())
     ,mFireballSpeed(1400 * mGame->GetScale())
 
-    ,mIsOnGround(true)
     ,mMaxJumps(3)
     ,mJumpCount(0)
     ,mJumpForce(-1300.0f * mGame->GetScale())

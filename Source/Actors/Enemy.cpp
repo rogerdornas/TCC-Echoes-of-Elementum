@@ -17,7 +17,10 @@
 
 Enemy::Enemy(Game* game)
     :Actor(game)
+    ,mIsOnGround(true)
     ,mMoneyDrop(0)
+    ,mKnockBackXActive(true)
+    ,mKnockBackYActive(true)
     ,mKnockBackSpeed(0.0f)
     ,mKnockBackTimer(0.0f)
     ,mKnockBackDuration(0.0f)
@@ -74,7 +77,13 @@ void Enemy::SetSize(float width, float height) {
 void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {
     mHealthPoints -= damage;
     if (knockBack) {
-        mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
+        Vector2 knockBackSpeed(knockBackDirection * mKnockBackSpeed);
+        if (mKnockBackXActive) {
+            mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + Vector2(knockBackSpeed.x, 0));
+        }
+        if (mKnockBackYActive) {
+            mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + Vector2(0, knockBackSpeed.y));
+        }
         mKnockBackTimer = 0;
     }
     mIsFlashing = true;
@@ -309,17 +318,26 @@ void Enemy::ResolveEnemyCollision() {
 }
 
 void Enemy::ResolveGroundCollision() {
+    mIsOnGround = false;
+    Vector2 collisionNormal(Vector2::Zero);
     std::vector<Ground*> grounds = GetGame()->GetGrounds();
     if (!grounds.empty()) {
         for (Ground* g : grounds) {
             if (!g->GetIsSpike()) { // Colisão com ground
                 if (mColliderComponent->Intersect(*g->GetComponent<ColliderComponent>())) {
-                    mColliderComponent->ResolveCollision(*g->GetComponent<ColliderComponent>());
+                    collisionNormal = mColliderComponent->ResolveCollision(*g->GetComponent<ColliderComponent>());
+                }
+                else {
+                    collisionNormal = Vector2::Zero;
+                }
+
+                // colidiu top
+                if (collisionNormal == Vector2::NegUnitY) {
+                    mIsOnGround = true;
                 }
             }
             else if (g->GetIsSpike()) { // Colisão com spikes
                 if (mColliderComponent->Intersect(*g->GetComponent<ColliderComponent>())) {
-                    Vector2 collisionNormal;
                     collisionNormal = mColliderComponent->ResolveCollision(*g->GetComponent<ColliderComponent>());
                     // Colidiu top
                     if (collisionNormal == Vector2::NegUnitY) {

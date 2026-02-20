@@ -53,6 +53,5 @@ private:
     float mAttackSpriteWidth;
     float mAttackSpriteHeight;
     Vector2 mAttackOffsetHitBox;
-    float mGrowthSpeed;
 };
 

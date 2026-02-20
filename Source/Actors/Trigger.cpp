@@ -214,6 +214,10 @@ void Trigger::SetScene(std::string scene) {
         mScene = Game::GameScene::Room2;
         return;
     }
+    if (scene == "Desafios") {
+        mScene = Game::GameScene::Desafios;
+        return;
+    }
     if (scene == "MirrorBoss") {
         mScene = Game::GameScene::MirrorBoss;
         return;

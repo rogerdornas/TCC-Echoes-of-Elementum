@@ -68,7 +68,6 @@ private:
     float mFireBallHeight;
     float mFireballSpeed;
 
-    bool mIsOnGround;
     int mMaxJumps;
     int mJumpCount;
     float mJumpForce;

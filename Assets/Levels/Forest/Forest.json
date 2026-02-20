@@ -7415,8 +7415,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":10528,
-                 "y":18976
+                 "x":16480,
+                 "y":16192
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -8597,6 +8597,17 @@
                  "width":32,
                  "x":9728,
                  "y":18528
+                }, 
+                {
+                 "height":32,
+                 "id":494,
+                 "name":"OrangeSlime",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":15968,
+                 "y":16672
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -8935,7 +8946,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":494,
+ "nextobjectid":495,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

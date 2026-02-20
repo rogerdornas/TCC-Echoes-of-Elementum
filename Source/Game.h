@@ -46,6 +46,7 @@ public:
         Room0,
         Room1,
         Room2,
+        Desafios,
         MirrorBoss
     };
 

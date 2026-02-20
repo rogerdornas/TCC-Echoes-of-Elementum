@@ -475,7 +475,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Level3"/>
+    <property name="Scene" value="Desafios"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>

@@ -40,7 +40,6 @@ Snake::Snake(Game *game)
     mAttackSpriteWidth = mWidth * 1.6f;
     mAttackSpriteHeight = mHeight * 0.5f;
     mAttackOffsetHitBox = Vector2(mWidth * 0.4f, mHeight * 0.4f);
-    mGrowthSpeed = 700.0f;
     mEnemyCollision = false;
 
     SetSize(mWidth, mHeight);
@@ -167,9 +166,6 @@ void Snake::WalkForward(float deltaTime) {
 
     if (Math::Abs(dist) < mDistToAttack) {
         mSnakeState = State::Attack;
-        // if (mDrawAnimatedComponent) {
-        //     mDrawAnimatedComponent->ResetAnimationTimer();
-        // }
     }
 }
 

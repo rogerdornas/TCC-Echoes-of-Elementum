@@ -58,7 +58,6 @@ private:
     float mStopDuration;
     float mStopTimer;
 
-    bool mIsOnGround;
     int mMaxJumps;
     int mJumpCount;
     float mJumpForce;

@@ -61,6 +61,7 @@ void CombatBoxComponent::AddAABBBox(const std::string &tag, bool isHitbox, Vecto
     else {
         box.collider->SetColor(Vector3(0, 0, 1));
     }
+    box.collider->SetDebugDraw(mDebugDraw);
 
     mBoxes.push_back(std::move(box));
 }
@@ -79,6 +80,7 @@ void CombatBoxComponent::AddOBBBox(const std::string& tag, bool isHitbox, Vector
     else {
         box.collider->SetColor(Vector3(0, 0, 1));
     }
+    box.collider->SetDebugDraw(mDebugDraw);
 
     mBoxes.push_back(std::move(box));
 }
