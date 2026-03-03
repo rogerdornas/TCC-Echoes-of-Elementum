@@ -5,7 +5,7 @@
             "y": 5312.0
         },
         "scene": "Room0",
-        "total_play_time": 26.03915023803711
+        "total_play_time": 9.392970085144043
     },
     "player": {
         "can_dash": false,
@@ -13,7 +13,7 @@
         "can_hook": false,
         "can_wallslide": false,
         "death_counter": 0,
-        "elemental_mode": "Lightning",
+        "elemental_mode": "Fire",
         "max_jumps_in_air": 0,
         "money": 0
     },

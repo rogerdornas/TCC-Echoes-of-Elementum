@@ -15,7 +15,7 @@ public:
         LightOff
     };
 
-    Brazier(Game* game);
+    Brazier(Game* game, BrazierState state = BrazierState::LightOff);
 
     void OnUpdate(float deltaTime) override;
 

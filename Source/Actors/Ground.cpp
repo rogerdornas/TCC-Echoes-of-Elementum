@@ -21,9 +21,9 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     ,mWidth(width)
     ,mIsSpike(isSpike)
     ,mIsMoving(isMoving)
-    ,mIsBreakable(false)
-    ,mMovingTimer(movingDuration)
     ,mMovingDuration(movingDuration)
+    ,mMovingTimer(movingDuration)
+    ,mIsBreakable(false)
     ,mVelocity(velocity * mGame->GetScale())
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
@@ -151,6 +151,11 @@ void Ground::SetTilesIndex(float width, float height, float x, float y) {
         mDrawComponent->SetTilesIndex(mTilesIndex);
         mDrawComponent->BakeTilesToTexture(GetGame()->GetRenderer());
     }
+}
+
+void Ground::DestroyGround() {
+    DestroyEffects();
+    SetState(ActorState::Destroy);
 }
 
 void Ground::DestroyEffects() {

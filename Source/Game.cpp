@@ -280,6 +280,7 @@ void Game::SetGameScene(Game::GameScene scene, float transitionTime) {
             scene == GameScene::Room1 ||
             scene == GameScene::Room2 ||
             scene == GameScene::Desafios ||
+            scene == GameScene::Cave ||
             scene == GameScene::MirrorBoss)
         {
             mNextScene = scene;
@@ -688,6 +689,26 @@ void Game::ChangeScene()
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
 
         LoadLevel(levelsAssets + "Desafios/Desafios.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+        }
+        mBossMusic.Reset();
+    }
+    else if (mNextScene == GameScene::Cave) {
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
+
+        LoadLevel(levelsAssets + "Cave/Cave.json");
 
         mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
                                            mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
@@ -1700,9 +1721,24 @@ void Game::LoadObjects(const std::string &fileName) {
                 float y = static_cast<float>(obj["y"]) * mScale;
                 float width = static_cast<float>(obj["width"]) * mScale;
                 float height = static_cast<float>(obj["height"]) * mScale;
+                bool brazierOn = false;
 
-                auto* brazier = new Brazier(this);
-                brazier->SetPosition(Vector2(x + width / 2, y + height / 2));
+                if (obj.contains("properties")) {
+                    for (const auto &prop: obj["properties"]) {
+                        std::string propName = prop["name"];
+                        if (propName == "BrazierOn") {
+                            brazierOn = prop["value"];
+                        }
+                    }
+                }
+                if (brazierOn) {
+                    auto* brazier = new Brazier(this, Brazier::BrazierState::LightOn);
+                    brazier->SetPosition(Vector2(x + width / 2, y + height / 2));
+                }
+                else {
+                    auto* brazier = new Brazier(this, Brazier::BrazierState::LightOff);
+                    brazier->SetPosition(Vector2(x + width / 2, y + height / 2));
+                }
             }
         }
         if (layer["name"] == "Lava") {
@@ -2489,7 +2525,6 @@ void Game::LoadLevel(const std::string &fileName) {
     std::string tileSheetTexturePath = fileName.substr(0, pos) + ".png";
     // mTileSheet = LoadTexture(tileSheetTexturePath);
     mTileSheet = mRenderer->GetTexture(tileSheetTexturePath);
-
 
     // Load tilesheet data
     std::string tileSheetDataPath = fileName.substr(0, pos) + "TileSet.json";

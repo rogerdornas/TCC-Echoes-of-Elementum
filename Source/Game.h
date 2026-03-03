@@ -47,6 +47,7 @@ public:
         Room1,
         Room2,
         Desafios,
+        Cave,
         MirrorBoss
     };
 
@@ -182,11 +183,12 @@ public:
 
     int GetFPS() const { return mFPS; }
 
-    void ActiveHitStop()
+    void ActiveHitStop(float duration = 0.15f)
     {
         mHitstopDelayActive = true;
         mHitstopDelayTimer = 0;
         mHitstopTimer = 0;
+        mHitstopTimer = mHitstopDuration - duration;
     }
 
     void SetIsSlowMotion(bool slowMotion) { mIsSlowMotion = slowMotion; }

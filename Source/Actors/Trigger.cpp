@@ -218,6 +218,10 @@ void Trigger::SetScene(std::string scene) {
         mScene = Game::GameScene::Desafios;
         return;
     }
+    if (scene == "Cave") {
+        mScene = Game::GameScene::Cave;
+        return;
+    }
     if (scene == "MirrorBoss") {
         mScene = Game::GameScene::MirrorBoss;
         return;

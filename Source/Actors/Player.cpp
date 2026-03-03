@@ -366,8 +366,8 @@ void Player::SetJumpEffects() {
 
 void Player::InitLight() {
     mLight = new Light(mGame);
-    mLight->SetRadius(300.0f);
-    mLight->SetMaxIntensity(0.65f);
+    mLight->SetRadius(200.0f);
+    mLight->SetMaxIntensity(0.45f);
     mLight->Activate();
 }
 
@@ -1231,18 +1231,18 @@ void Player::ResolveGroundCollision() {
                     mJumpCountInAir = 0;
 
                     if (mIsDiving) {
-                        mIsDiving = false;
-                        mDiveEffect->StopDash();
-                        // GroundSlamImpact();
-                        GroundSlamEffects();
                         mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
-                        mIsGroundSlamRecovering = true;
-                        mGroundSlamTimer = 0;
-                        mRigidBodyComponent->SetVelocity(Vector2::Zero);
                         if (g->GetIsBreakable()) {
-                            g->DestroyEffects();
-                            delete g;
-                            continue;
+                            mRigidBodyComponent->SetVelocity(Vector2(0, mGroundSlamSpeed));
+                            g->DestroyGround();
+                            mGame->ActiveHitStop(0.01f);
+                        }
+                        else {
+                            mIsDiving = false;
+                            mDiveEffect->StopDash();
+                            mIsGroundSlamRecovering = true;
+                            mGroundSlamTimer = 0;
+                            GroundSlamEffects();
                         }
                     }
 
@@ -1509,7 +1509,6 @@ void Player::ResolveEnemyCollision() {
                 if (knockBackDirection.Length() > 0) {
                     knockBackDirection.Normalize();
                 }
-                mDashComponent->StopDash();
                 ReceiveHit(e->GetContactDamage(), knockBackDirection);
             }
 
@@ -2253,6 +2252,7 @@ void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType dam
         mHealthPoints -= damage;
         mIsDiving = false;
         mDiveEffect->StopDash();
+        mDashComponent->StopDash();
         mIsInvulnerable = true;
         mHurtTimer = 0;
 

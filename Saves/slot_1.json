@@ -1,21 +1,21 @@
 {
     "game": {
         "last_checkpoint": {
-            "x": 688.0,
-            "y": 3104.0
+            "x": 1168.0,
+            "y": 1152.0
         },
-        "scene": "Coliseu",
-        "total_play_time": 120226.5078125
+        "scene": "Cave",
+        "total_play_time": 125032.9296875
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 389,
-        "elemental_mode": "Earth",
+        "death_counter": 394,
+        "elemental_mode": "Fire",
         "max_jumps_in_air": 1,
-        "money": 24754
+        "money": 27554
     },
     "upgrades": {
         "fireball": true,

@@ -31,6 +31,7 @@ public:
     virtual void SetSprites();
     virtual void SetTilesIndex(float width, float height, float x, float y);
 
+    void DestroyGround();
     void DestroyEffects();
 
     void SetStartingPosition(Vector2 pos) { mStartingPosition = pos; }
@@ -47,9 +48,9 @@ protected:
     float mWidth;
     bool mIsSpike;
     bool mIsMoving;
-    bool mIsBreakable;
-    float mMovingTimer;
     float mMovingDuration;
+    float mMovingTimer;
+    bool mIsBreakable;
     Vector2 mStartingPosition;
     Vector2 mRespawnPosition;
     Vector2 mVelocity;

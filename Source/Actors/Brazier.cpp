@@ -11,13 +11,13 @@
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
-Brazier::Brazier(Game *game)
+Brazier::Brazier(Game *game, BrazierState state)
     :Actor(game)
     ,mWidth(100)
     ,mHeight(100)
     ,mLight(nullptr)
     ,mRedLight(nullptr)
-    ,mBrazierState(BrazierState::LightOff)
+    ,mBrazierState(state)
     ,mFreezeMax(120.0f)
     ,mFreezeCount(0.0f)
     ,mIntervalBetweenSmokeEmitDuration(0.1f)
@@ -45,7 +45,7 @@ Brazier::Brazier(Game *game)
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Brazier/Brazier.png",
                                                 "../Assets/Sprites/Brazier/Brazier.json",
-                                                mWidth * 1.5f, mWidth * 1.82f * 1.5f);
+                                                mWidth * 1.5f, mWidth * 1.82f * 1.5f, 90);
 
     std::vector lightOff = {8};
     mDrawComponent->AddAnimation("lightOff", lightOff);
@@ -54,7 +54,7 @@ Brazier::Brazier(Game *game)
     mDrawComponent->AddAnimation("lightOn", lightOn);
 
     mDrawComponent->SetAnimation("lightOff");
-    mDrawComponent->SetAnimFPS(16.0f);
+    mDrawComponent->SetAnimFPS(20.0f);
 
     InitLight();
 }
@@ -110,13 +110,23 @@ void Brazier::InitLight() {
     mLight->SetRadius(1000.0f);
     mLight->SetMaxIntensity(0.7f);
     mLight->SetColor(Vector3(1.0f, 1.0f, 1.0f));
-    mLight->Deactivate();
+    if (mBrazierState == BrazierState::LightOff) {
+        mLight->Deactivate();
+    }
+    else {
+        mLight->Activate();
+    }
 
     mRedLight = new Light(mGame);
     mRedLight->SetRadius(200.0f);
     mRedLight->SetMaxIntensity(0.85f);
     mRedLight->SetColor(Vector3(0.92f, 0.37f, 0.37f));
-    mRedLight->Deactivate();
+    if (mBrazierState == BrazierState::LightOff) {
+        mRedLight->Deactivate();
+    }
+    else {
+        mRedLight->Activate();
+    }
 }
 
 void Brazier::ResolveFreezeParticleCollision() {
