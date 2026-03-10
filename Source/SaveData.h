@@ -18,6 +18,7 @@ public:
     void ApplyToGame();
     void ApplyToPlayer();
     void ApplyWorldState();
+    void ApplyConfigs();
 
     // captura dados atuais do jogo para o save
     void CaptureFromGame();
@@ -34,6 +35,10 @@ private:
     class Game* mGame;
     Game::GameScene mGameScene;
     float mTotalPlayTime;
+
+    float mMasterAudio;
+    float mMusicAudio;
+    float mSFXAudio;
 
     Vector2 mLastCheckpointPosition;
     Player::ElementalMode mElementalMode;

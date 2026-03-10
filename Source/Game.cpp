@@ -124,6 +124,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mLeftStickStateX(StickState::Neutral)
     ,mRightStickStateY(StickState::Neutral)
     ,mRightStickStateX(StickState::Neutral)
+    ,mPauseMusicVolumeScale(0.45f)
     ,mWaveManager(nullptr)
     ,mNewButtonText(nullptr)
     ,mWaitingForKey(false)
@@ -140,6 +141,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mControlMenu(nullptr)
     ,mKeyboardMenu(nullptr)
     ,mKeyboardMenu2(nullptr)
+    ,mAudioMenu(nullptr)
     ,mConfirmBackToMenu(nullptr)
     ,mConfirmQuitGameMenu(nullptr)
     ,mLoadGameMenu(nullptr)
@@ -421,7 +423,7 @@ void Game::ChangeScene()
         LoadMainMenu();
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("HollowKnight.wav", true);
+            mMusicHandle = mAudio->PlaySound("HollowKnight.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -443,7 +445,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -467,7 +469,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -485,7 +487,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -506,7 +508,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -530,7 +532,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -552,7 +554,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -586,7 +588,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -610,7 +612,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -633,7 +635,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -656,7 +658,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -673,7 +675,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -696,7 +698,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -716,7 +718,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -743,7 +745,7 @@ void Game::ChangeScene()
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true);
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
         }
         mBossMusic.Reset();
     }
@@ -1241,6 +1243,12 @@ void Game::LoadOptionsMenu() {
         LoadControlMenu();
     }, textPos);
 
+    name = "AUDIO";
+    button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 6.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
+    [this]() {
+        LoadAudioMenu();
+    }, textPos);
+
     name = "VOLTAR";
     mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, mOptionsMenu->GetSize().y - buttonSize.y * 1.2f), buttonSize, buttonPointSize, UIButton::TextPos::Center,
     [this]() {
@@ -1517,9 +1525,52 @@ void Game::LoadKeyBoardMenu2() {
     [this]() {
         mKeyboardMenu2->Close();
     });
-
 }
 
+void Game::LoadAudioMenu() {
+    float virtualWidth = mRenderer->GetVirtualWidth();
+    float virtualHeight = mRenderer->GetVirtualHeight();
+
+    mAudioMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
+    mAudioMenu->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
+    mAudioMenu->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
+
+    Vector2 buttonSize(1200, 100);
+    Vector2 buttonPos(150, 200);
+    Vector2 sliderSize(400, 40);
+    Vector2 sliderPos(550, 30);
+    int pointSize = static_cast<int>(40);
+    float distanceBetweenButtons = 185;
+
+    mAudioMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mAudioMenu->GetSize() / 2, mAudioMenu->GetSize());
+
+    UIText* text = mAudioMenu->AddText("AUDIO", Vector2::Zero, Vector2::Zero, 50);
+    text->SetPosition(Vector2(mAudioMenu->GetSize().x / 2, 50));
+
+    std::string name = "GERAL";
+    UISlider* slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 0 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Master),
+    [this](float valor) {
+        mAudio->SetCategoryVolume(SoundCategory::Master, valor);
+    });
+
+    name = "MUSICA";
+    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Music),
+    [this](float valor) {
+        mAudio->SetCategoryVolume(SoundCategory::Music, valor);
+    });
+
+    name = "EFEITOS";
+    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::SFX),
+    [this](float valor) {
+        mAudio->SetCategoryVolume(SoundCategory::SFX, valor);
+    });
+
+    name = "VOLTAR";
+    mAudioMenu->AddButton(name, Vector2(mAudioMenu->GetSize().x * 0.375f, mAudioMenu->GetSize().y * 0.9f), Vector2(mAudioMenu->GetSize().x * 0.25f, 40), 40, UIButton::TextPos::Center,
+    [this]() {
+        mAudioMenu->Close();
+    });
+}
 
 void Game::LoadObjects(const std::string &fileName) {
     std::ifstream file(fileName);
@@ -3059,21 +3110,23 @@ void Game::TogglePause() {
     {
         mIsPaused = !mIsPaused;
         if (mIsPaused) {
-            if (mAudio->GetSoundState(mMusicHandle) == SoundState::Playing) {
-                mAudio->PauseSound(mMusicHandle);
-            }
-            if (mAudio->GetSoundState(mBossMusic) == SoundState::Playing) {
-                mAudio->PauseSound(mBossMusic);
-            }
+            // if (mAudio->GetSoundState(mMusicHandle) == SoundState::Playing) {
+            //     mAudio->PauseSound(mMusicHandle);
+            // }
+            // if (mAudio->GetSoundState(mBossMusic) == SoundState::Playing) {
+            //     mAudio->PauseSound(mBossMusic);
+            // }
+            mAudio->SetCategoryModifier(SoundCategory::Music, mPauseMusicVolumeScale);
             mGamePlayState = GamePlayState::Paused;
         }
         else {
-            if (mAudio->GetSoundState(mBossMusic) == SoundState::Paused) {
-                mAudio->ResumeSound(mBossMusic);
-            }
-            else if (mAudio->GetSoundState(mMusicHandle) == SoundState::Paused) {
-                mAudio->ResumeSound(mMusicHandle);
-            }
+            // if (mAudio->GetSoundState(mBossMusic) == SoundState::Paused) {
+            //     mAudio->ResumeSound(mBossMusic);
+            // }
+            // else if (mAudio->GetSoundState(mMusicHandle) == SoundState::Paused) {
+            //     mAudio->ResumeSound(mMusicHandle);
+            // }
+            mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);
             mGamePlayState = GamePlayState::Playing;
         }
         mPlayer->SetCanJump(false);
@@ -3533,6 +3586,7 @@ void Game::LoadGame() {
     mSaveData = mSaveManager->LoadGame(mSaveSlot);
     mSaveData->ApplyToGame();
     mSaveData->ApplyWorldState();
+    mSaveData->ApplyConfigs();
 }
 
 void Game::SetWorldFlag(const std::string &key, bool value) {

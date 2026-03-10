@@ -188,6 +188,8 @@ add_executable(${PROJECT_NAME}
         Source/Components/CombatBoxComponent.h
         Source/Actors/OrangeSlime.cpp
         Source/Actors/OrangeSlime.h
+        Source/UIElements/UISlider.cpp
+        Source/UIElements/UISlider.h
 )
 
 

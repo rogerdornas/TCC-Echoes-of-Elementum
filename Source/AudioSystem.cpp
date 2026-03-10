@@ -26,6 +26,18 @@ AudioSystem::AudioSystem(int numChannels)
 
     // TODO 3.: Redimensione o vetor mChannels para o número de canais especificado.
 	mChannels.resize(numChannels);
+
+	// Inicializa todos os volumes no máximo (1.0f)
+	mCategoryVolumes[SoundCategory::Master] = 1.0f;
+	mCategoryVolumes[SoundCategory::Music]  = 1.0f;
+	mCategoryVolumes[SoundCategory::SFX]    = 1.0f;
+	mCategoryVolumes[SoundCategory::Voice]  = 1.0f;
+
+	// Inicializa todos os modificadores em 1.0f
+	mCategoryModifiers[SoundCategory::Master] = 1.0f;
+	mCategoryModifiers[SoundCategory::Music]  = 1.0f;
+	mCategoryModifiers[SoundCategory::SFX]    = 1.0f;
+	mCategoryModifiers[SoundCategory::Voice]  = 1.0f;
 }
 
 // Destroy the AudioSystem
@@ -82,7 +94,7 @@ void AudioSystem::Update(float deltaTime)
 // NOTE: The soundName is without the "Assets/Sounds/" part of the file
 //       For example, pass in "ChompLoop.wav" rather than
 //       "Assets/Sounds/ChompLoop.wav".
-SoundHandle AudioSystem::PlaySound(const std::string& soundName, bool looping)
+SoundHandle AudioSystem::PlaySound(const std::string& soundName, bool looping, SoundCategory category)
 {
     // Get the sound with the given name
     Mix_Chunk *sound = GetSound(soundName);
@@ -168,6 +180,7 @@ SoundHandle AudioSystem::PlaySound(const std::string& soundName, bool looping)
 	info.mChannel = availableChannel;
 	info.mIsLooping = looping;
 	info.mIsPaused = false;
+	info.mCategory = category;
 
 	mHandleMap.emplace(mLastHandle, info);
 	mChannels[availableChannel] = mLastHandle;
@@ -175,18 +188,68 @@ SoundHandle AudioSystem::PlaySound(const std::string& soundName, bool looping)
     // TODO 8.: Use Mix_PlayChannel para tocar o som no canal disponível. Não se esqueça de passar -1
     //  para o parâmetro de loop se looping for true, ou 0 se não for.
 	int loopCount = looping ? -1 : 0;
+
+	Mix_Volume(availableChannel, GetMixVolume(category));
 	Mix_PlayChannel(availableChannel, sound, loopCount);
 
     return mLastHandle;
 }
 
-SoundHandle AudioSystem::PlayVariantSound(const std::string &soundName, int numVariants, bool looping) {
+SoundHandle AudioSystem::PlayVariantSound(const std::string &soundName, int numVariants, bool looping, SoundCategory category) {
 	int variant = Random::GetIntRange(1, numVariants);
 	size_t dotPos = soundName.rfind('.');
 	std::string variantFile = soundName.substr(0, dotPos) + std::to_string(variant) + soundName.substr(dotPos);
-	return PlaySound(variantFile, looping);
+	return PlaySound(variantFile, looping, category);
 }
 
+// Calcula o volume final combinando a categoria e o Master
+int AudioSystem::GetMixVolume(SoundCategory category) const
+{
+	float masterVol = mCategoryVolumes.at(SoundCategory::Master) * mCategoryModifiers.at(SoundCategory::Master);
+	float catVol = mCategoryVolumes.at(category) * mCategoryModifiers.at(category);
+
+	// Multiplica o master pelo volume da categoria e converte para a escala da SDL_mixer (0 a 128)
+	return static_cast<int>(masterVol * catVol * MIX_MAX_VOLUME);
+}
+
+// Altera o volume e atualiza os sons que já estão tocando
+void AudioSystem::SetCategoryVolume(SoundCategory category, float volume)
+{
+	// Limita o volume entre 0.0f e 1.0f
+	if (volume < 0.0f) volume = 0.0f;
+	if (volume > 1.0f) volume = 1.0f;
+
+	mCategoryVolumes[category] = volume;
+
+	// Atualiza o volume de todos os canais que estão ativos e pertencem a essa categoria
+	for (auto& pair : mHandleMap) {
+		// Se a categoria alterada for a do som, ou se alteramos o Master (que afeta todos)
+		if (pair.second.mCategory == category || category == SoundCategory::Master) {
+			Mix_Volume(pair.second.mChannel, GetMixVolume(pair.second.mCategory));
+		}
+	}
+}
+
+// Retorna o volume atual
+float AudioSystem::GetCategoryVolume(SoundCategory category) const
+{
+	return mCategoryVolumes.at(category);
+}
+
+void AudioSystem::SetCategoryModifier(SoundCategory category, float modifier)
+{
+	// Limita o modificador para não termos valores negativos
+	if (modifier < 0.0f) modifier = 0.0f;
+
+	mCategoryModifiers[category] = modifier;
+
+	// Atualiza o volume de todos os canais que estão ativos e pertencem a essa categoria
+	for (auto& pair : mHandleMap) {
+		if (pair.second.mCategory == category || category == SoundCategory::Master) {
+			Mix_Volume(pair.second.mChannel, GetMixVolume(pair.second.mCategory));
+		}
+	}
+}
 
 // Stops the sound if it is currently playing
 void AudioSystem::StopSound(SoundHandle sound)

@@ -27,7 +27,7 @@ UIButton::~UIButton()
 void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
 {
     // Desenhar o retângulo do botão
-    Vector2 drawPos = screenPos + mPosition + mSize / 2;
+    Vector2 drawPos = screenPos + mPosition + mSize / 2.0f;
 
     if (mHighlighted) {
         Vector3 drawColor = Vector3(0.78f, 0.39f, 0.0f);

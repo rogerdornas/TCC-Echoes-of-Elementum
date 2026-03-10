@@ -59,6 +59,14 @@ enum class SoundState
 	Paused
 };
 
+enum class SoundCategory
+{
+	Master, // Volume global que afeta todos
+	Music,
+	SFX,    // Sound Effects
+	Voice
+};
+
 // Manages playing audio through SDL_mixer
 class AudioSystem
 {
@@ -80,10 +88,16 @@ public:
     // NOTE: The soundName is without the "Assets/Sounds/" part of the file
     //       For example, pass in "ChompLoop.wav" rather than
     //       "Assets/Sounds/ChompLoop.wav".
-    SoundHandle PlaySound(const std::string& soundName, bool looping = false);
+    SoundHandle PlaySound(const std::string& soundName, bool looping = false, SoundCategory category = SoundCategory::SFX);
 
 	// Play a variant of a sound randomly
-	SoundHandle PlayVariantSound(const std::string& soundName, int numVariants, bool looping = false);
+	SoundHandle PlayVariantSound(const std::string& soundName, int numVariants, bool looping = false, SoundCategory category = SoundCategory::SFX);
+
+	// Controle de volume
+	// O volume deve ser um valor entre 0.0f (mudo) e 1.0f (máximo)
+	void SetCategoryVolume(SoundCategory category, float volume);
+	float GetCategoryVolume(SoundCategory category) const;
+	void SetCategoryModifier(SoundCategory category, float modifier);
 
     // Stops the sound if it is currently playing
     void StopSound(SoundHandle sound);
@@ -125,7 +139,15 @@ private:
 		int mChannel = -1;
 		bool mIsLooping = false;
 		bool mIsPaused = false;
+		SoundCategory mCategory = SoundCategory::SFX;
 	};
+
+	// Mapa para armazenar o volume de cada categoria
+	std::map<SoundCategory, float> mCategoryVolumes;
+	std::map<SoundCategory, float> mCategoryModifiers;
+
+	// Função auxiliar para calcular o volume final (0 a 128 para SDL_mixer)
+	int GetMixVolume(SoundCategory category) const;
 
 	// Tracks the active SoundHandle for each channel
 	// An Invalid SoundHandle means the channel is free, otherwise

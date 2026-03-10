@@ -282,6 +282,7 @@ private:
     void LoadControlMenu();
     void LoadKeyBoardMenu();
     void LoadKeyBoardMenu2();
+    void LoadAudioMenu();
     void LoadConfirmBackToMenu();
     void LoadConfirmQuitGameMenu();
     void LoadLoadGameMenu();
@@ -402,6 +403,7 @@ private:
 
     SoundHandle mMusicHandle;
     SoundHandle mBossMusic;
+    float mPauseMusicVolumeScale;
 
     // Scene management
     void UpdateSceneManager(float deltaTime);
@@ -421,6 +423,7 @@ private:
     UIScreen* mControlMenu;
     UIScreen* mKeyboardMenu;
     UIScreen* mKeyboardMenu2;
+    UIScreen* mAudioMenu;
     UIScreen* mConfirmBackToMenu;
     UIScreen* mConfirmQuitGameMenu;
     UIScreen* mLoadGameMenu;

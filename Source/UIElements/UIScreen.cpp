@@ -72,6 +72,8 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerA
     UIButton* next = nullptr;
     auto inputBinding = mGame->GetInputBinding();
 
+    UISlider* slider = dynamic_cast<UISlider*>(current);
+
     if (key == SDLK_UP ||
         key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Up].key) ||
         controllerButton == SDL_CONTROLLER_BUTTON_DPAD_UP ||
@@ -94,6 +96,10 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerA
              leftControllerAxisX < 0 ||
              rightControllerAxisX < 0)
     {
+        if (slider) {
+            slider->Decrease();
+            return;
+        }
         next = FindNeighbor(current, Vector2(-1, 0));
     }
     else if (key == SDLK_RIGHT ||
@@ -102,6 +108,10 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerA
              leftControllerAxisX > 0 ||
              rightControllerAxisX > 0)
     {
+        if (slider) {
+            slider->Increase();
+            return;
+        }
         next = FindNeighbor(current, Vector2(1, 0));
     }
 
@@ -140,8 +150,9 @@ void UIScreen::HandleMouse(const SDL_Event &event) {
             int x = event.button.x;
             int y = event.button.y;
             for (UIButton* button : mButtons) {
-                if (button->ContainsPoint(Vector2(x, y) - GetPosition())) {
-                    button->OnClick();
+                Vector2 relativePos = Vector2(x, y) - GetPosition();
+                if (button->ContainsPoint(relativePos)) {
+                    button->OnMouseClick(relativePos);
                 }
             }
         }
@@ -150,13 +161,20 @@ void UIScreen::HandleMouse(const SDL_Event &event) {
     if (event.type == SDL_MOUSEMOTION) {
         int x = event.motion.x;
         int y = event.motion.y;
+        Vector2 relativePos = Vector2(x, y) - GetPosition();
 
         int index = -1;
 
         for (size_t i = 0; i < mButtons.size(); ++i) {
-            if (mButtons[i]->ContainsPoint(Vector2(x, y) - GetPosition())) {
+            if (mButtons[i]->ContainsPoint(relativePos)) {
                 index = i;
                 mSelectedButtonIndex = i;
+            }
+        }
+
+        if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+            if (index != -1) {
+                mButtons[index]->OnMouseClick(relativePos);
             }
         }
 
@@ -177,7 +195,7 @@ void UIScreen::HandleMousePress(const Vector2& virtualMousePos)
 
     for (UIButton* button : mButtons) {
         if (button->ContainsPoint(uiScreenRelativePos)) {
-            button->OnClick();
+            button->OnMouseClick(uiScreenRelativePos);
         }
     }
 }
@@ -191,6 +209,10 @@ void UIScreen::HandleMouseMotion(const Vector2& virtualMousePos)
         if (mButtons[i]->ContainsPoint(uiScreenRelativePos)) {
             index = i;
             mSelectedButtonIndex = i;
+
+            if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
+                mButtons[i]->OnMouseClick(uiScreenRelativePos);
+            }
         }
     }
 
@@ -238,6 +260,17 @@ UIImage* UIScreen::AddImage(const std::string &imagePath, const Vector2 &pos, co
     mImages.emplace_back(img);
 
     return img;
+}
+
+UISlider* UIScreen::AddSlider(const std::string& name, const Vector2& pos, const Vector2& dims, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, std::function<void(float)> onValueChanged) {
+    UISlider* slider = new UISlider(name, mFont, pos, dims, sliderOffset, sliderSize, minVal, maxVal, initialVal, onValueChanged);
+    mButtons.emplace_back(slider);
+
+    if (mButtons.size() == 1) {
+        mSelectedButtonIndex = 0;
+        slider->SetHighlighted(true);
+    }
+    return slider;
 }
 
 // Retorna true se há interseção no eixo perpendicular

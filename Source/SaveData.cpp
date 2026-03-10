@@ -11,6 +11,10 @@ SaveData::SaveData(class Game *game)
     ,mGameScene(Game::GameScene::Prologue)
     ,mTotalPlayTime(0.0f)
 
+    ,mMasterAudio(1.0f)
+    ,mMusicAudio(1.0f)
+    ,mSFXAudio(1.0f)
+
     ,mLastCheckpointPosition(Vector2(1952, 4352))
     ,mElementalMode(Player::ElementalMode::Fire)
     ,mMoney(0)
@@ -37,6 +41,10 @@ void SaveData::Save(const std::string &filename) {
     j["game"]["scene"] = GameSceneToString(mGameScene);
     j["game"]["last_checkpoint"] = { {"x", mLastCheckpointPosition.x}, {"y", mLastCheckpointPosition.y} };
     j["game"]["total_play_time"] = mTotalPlayTime;
+
+    j["configs"]["master_audio"] = mMasterAudio;
+    j["configs"]["music_audio"] = mMusicAudio;
+    j["configs"]["sfx_audio"] = mSFXAudio;
 
     j["world_state"] = mWorldState;
 
@@ -78,6 +86,10 @@ bool SaveData::Load(const std::string &filename) {
     mLastCheckpointPosition.x = j["game"]["last_checkpoint"]["x"];
     mLastCheckpointPosition.y = j["game"]["last_checkpoint"]["y"];
     mTotalPlayTime = j["game"]["total_play_time"];
+
+    mMasterAudio = j["configs"]["master_audio"];
+    mMusicAudio = j["configs"]["music_audio"];
+    mSFXAudio = j["configs"]["sfx_audio"];
 
     mWorldState = j["world_state"];
 
@@ -201,6 +213,12 @@ void SaveData::ApplyWorldState() {
     mGame->SetWorldState(mWorldState);
 }
 
+void SaveData::ApplyConfigs() {
+    // Audio
+    mGame->GetAudio()->SetCategoryVolume(SoundCategory::Master, mMasterAudio);
+    mGame->GetAudio()->SetCategoryVolume(SoundCategory::Music, mMusicAudio);
+    mGame->GetAudio()->SetCategoryVolume(SoundCategory::SFX, mSFXAudio);
+}
 
 void SaveData::CaptureFromGame() {
     Player* player = mGame->GetPlayer();
@@ -208,6 +226,10 @@ void SaveData::CaptureFromGame() {
     mLastCheckpointPosition.x = mGame->GetCheckPointPosition().x / mGame->GetScale();
     mLastCheckpointPosition.y = mGame->GetCheckPointPosition().y / mGame->GetScale();
     mTotalPlayTime = mGame->GetTotalPlayTime();
+
+    mMasterAudio = mGame->GetAudio()->GetCategoryVolume(SoundCategory::Master);
+    mMusicAudio = mGame->GetAudio()->GetCategoryVolume(SoundCategory::Music);
+    mSFXAudio = mGame->GetAudio()->GetCategoryVolume(SoundCategory::SFX);
 
     mWorldState = mGame->GetWorldState();
 

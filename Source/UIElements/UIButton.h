@@ -43,10 +43,11 @@ public:
 
     // Called when button is clicked
     void OnClick();
+    virtual void OnMouseClick(const Vector2& mousePos) { OnClick(); }
 
     void ChangeResolution(float oldScale, float newScale) override;
 
-private:
+protected:
     // Callback function
     std::function<void()> mOnClick;
 

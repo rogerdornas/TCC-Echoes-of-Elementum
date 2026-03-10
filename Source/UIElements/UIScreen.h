@@ -7,6 +7,7 @@
 #include "UIText.h"
 #include "UIButton.h"
 #include "UIImage.h"
+#include "UISlider.h"
 
 class UIScreen
 {
@@ -56,6 +57,7 @@ public:
 	UIButton* AddButton(const std::string& name, const Vector2& pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, Vector2 textPos = Vector2::Zero, Vector3 textColor = Color::White);
     UIText* AddText(const std::string& name, const Vector2& pos = Vector2::Zero, const Vector2& dims = Vector2::Zero, const int pointSize = 40, Vector3 color = Color::White, const int unsigned wrapLength = 1024);
     UIImage* AddImage(const std::string& imagePath, const Vector2& pos, const Vector2& dims, const Vector3& color = Color::White);
+	class UISlider* AddSlider(const std::string& name, const Vector2& pos, const Vector2& size, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, std::function<void(float)> onValueChanged);
 
 	UIButton* FindNeighbor(UIButton* current, const Vector2& dir);
 

@@ -1,11 +1,16 @@
 {
+    "configs": {
+        "master_audio": 0.19999992847442627,
+        "music_audio": 0.5999999046325684,
+        "sfx_audio": 0.8999999761581421
+    },
     "game": {
         "last_checkpoint": {
             "x": 1328.0,
             "y": 5312.0
         },
         "scene": "Room0",
-        "total_play_time": 36.528263092041016
+        "total_play_time": 40.38533020019531
     },
     "player": {
         "can_dash": false,

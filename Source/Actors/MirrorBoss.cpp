@@ -136,7 +136,7 @@ void MirrorBoss::OnUpdate(float deltaTime) {
         if (mPlayerSpotted) {
             mGame->GetHUD()->StartBossFight(this);
             if (!mGame->GetBossMusicHandle().IsValid()) {
-                mGame->StartBossMusic(mGame->GetAudio()->PlaySound("MantisLords.wav", true));
+                mGame->StartBossMusic(mGame->GetAudio()->PlaySound("MantisLords.wav", true, SoundCategory::Music));
             }
             MovementAfterPlayerSpotted(deltaTime);
         }
