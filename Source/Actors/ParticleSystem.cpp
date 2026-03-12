@@ -28,6 +28,7 @@ ParticleSystem::ParticleSystem(Game* game, Particle::ParticleType particleType, 
     ,mFreezeDamage(1.0f)
     ,mFreezeIntensity(1.0f)
     ,mParticleDrawOrder(5000)
+    ,mAdditiveBlending(false)
 {
 }
 
@@ -53,7 +54,6 @@ void ParticleSystem::SetParticleSpeedScale(float speedScale) {
     mParticleSpeedScale = speedScale * mGame->GetScale();
 }
 
-
 void ParticleSystem::EmitParticle() {
     std::vector<Particle* > particles = mGame->GetParticles();
     for (Particle* p: particles) {
@@ -70,6 +70,7 @@ void ParticleSystem::EmitParticle() {
             p->SetGravity(mParticleGravity);
             p->SetSpeedScale(mParticleSpeedScale);
             p->GetComponent<AnimatorComponent>()->SetDrawOrder(mParticleDrawOrder);
+            p->GetComponent<AnimatorComponent>()->SetAdditiveBlending(mAdditiveBlending);
 
             // 1. Pegar o ângulo base da direção (ex: Right (1,0) = 0 graus)
             float baseAngle = Math::Atan2(mEmitDirection.y, mEmitDirection.x);

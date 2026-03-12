@@ -342,7 +342,7 @@ void Game::ChangeScene()
         for (int i = 0; i < 150; i++) {
             new Particle(this, Particle::ParticleType::SolidParticle);
         }
-        for (int i = 0; i < 250; i++) {
+        for (int i = 0; i < 300; i++) {
             new Particle(this, Particle::ParticleType::BlurParticle);
         }
 
@@ -400,6 +400,7 @@ void Game::ChangeScene()
                 mPlayer->GetComponent<DrawRopeComponent>()->SetVisible(false);
             }
         }
+        mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);
         // Delete map
         // if (mMap) {
         //     delete mMap;
@@ -977,7 +978,7 @@ void Game::LoadPauseMenu() {
     float distanceBetweenButtons = 0.064f * virtualHeight;
 
     auto* background = mPauseMenu->AddImage("../Assets/Sprites/Menus/FundoPreto.png", mPauseMenu->GetSize() / 2, Vector2(virtualWidth, virtualHeight) * 1.5f);
-    background->SetAlpha(0.5f);
+    background->SetAlpha(0.7f);
 
     std::string name = "CONTINUAR";
     int buttonPointSize = static_cast<int>(0.031f * virtualHeight);
@@ -2479,6 +2480,7 @@ void Game::LoadObjects(const std::string &fileName) {
                     mPlayer->SetState(ActorState::Active);
                     mPlayer->SetInvertControls(false);
                     mPlayer->Stop();
+                    mPlayer->ResetCooldown();
                     mPlayer->GetComponent<AABBComponent>()->SetActive(true);
                     mPlayer->GetComponent<CombatBoxComponent>()->SetAllBoxesActive(true);
                     if (mGoingToNextLevel) {

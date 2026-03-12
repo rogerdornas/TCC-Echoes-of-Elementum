@@ -7,6 +7,7 @@
 #include "Particle.h"
 #include "ParticleSystem.h"
 #include "../Game.h"
+#include "../Random.h"
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
@@ -17,6 +18,11 @@ Brazier::Brazier(Game *game, BrazierState state)
     ,mHeight(100)
     ,mLight(nullptr)
     ,mRedLight(nullptr)
+    ,mLightTimer(0.0f)
+    ,mLightRadius(1000.0f)
+    ,mLightIntensity(0.7f)
+    ,mRedLightRadius(200.0f)
+    ,mRedLightIntensity(0.85f)
     ,mBrazierState(state)
     ,mFreezeMax(120.0f)
     ,mFreezeCount(0.0f)
@@ -60,21 +66,20 @@ Brazier::Brazier(Game *game, BrazierState state)
 }
 
 void Brazier::OnUpdate(float deltaTime) {
-    if (mBrazierState == BrazierState::LightOff) {
-        std::vector<FireBall* > fireBalls = mGame->GetFireBalls();
-        for (FireBall* f: fireBalls) {
-            if (!f->GetIsFromEnemy()) {
-                if (mAABBComponent->Intersect(*f->GetComponent<ColliderComponent>())) {
-                    mBrazierState = BrazierState::LightOn;
-                    mRedLight->Activate(0.4f);
-                    mLight->Activate(0.4f);
-                    f->ExplodeFireball();
-                    break;
-                }
+    std::vector<FireBall* > fireBalls = mGame->GetFireBalls();
+    for (FireBall* f: fireBalls) {
+        if (mAABBComponent->Intersect(*f->GetComponent<ColliderComponent>())) {
+            f->ExplodeFireball();
+            if (mBrazierState == BrazierState::LightOff) {
+                mBrazierState = BrazierState::LightOn;
+                mRedLight->Activate(0.4f);
+                mLight->Activate(0.4f);
             }
+            break;
         }
     }
-    else if (mBrazierState == BrazierState::LightOn) {
+
+    if (mBrazierState == BrazierState::LightOn) {
         if (mIntervalBetweenSmokeEmitTimer >= mIntervalBetweenSmokeEmitDuration) {
             auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 25.0f, 0.65f, 0.2f);
             smoke->SetParticleColor(SDL_Color{130, 130, 130, 50});
@@ -97,6 +102,21 @@ void Brazier::OnUpdate(float deltaTime) {
 
     if (mLight) {
         mLight->SetPosition(GetPosition() - Vector2(0, mHeight / 2));
+
+        mLightTimer += deltaTime;
+        if (mLightTimer > Math::TwoPi * 100.0f) {
+            mLightTimer -= Math::TwoPi * 100.0f;
+        }
+
+        float pulse = sinf(mLightTimer * 6.0f) * 40.0f;
+        float flicker = Random::GetFloatRange(0, 10);
+        float intensityPulse = sinf(mLightTimer * 4.5f) * 0.2f;
+
+        float currentRadius = mLightRadius + pulse + flicker;
+        float intensity = mLightIntensity + intensityPulse;
+
+        mLight->SetRadius(currentRadius);
+        mLight->SetMaxIntensity(intensity);
     }
     if (mRedLight) {
         mRedLight->SetPosition(GetPosition() - Vector2(0, mHeight / 2));
@@ -107,8 +127,8 @@ void Brazier::OnUpdate(float deltaTime) {
 
 void Brazier::InitLight() {
     mLight = new Light(mGame);
-    mLight->SetRadius(1000.0f);
-    mLight->SetMaxIntensity(0.7f);
+    mLight->SetRadius(mLightRadius);
+    mLight->SetMaxIntensity(mLightIntensity);
     mLight->SetColor(Vector3(1.0f, 1.0f, 1.0f));
     if (mBrazierState == BrazierState::LightOff) {
         mLight->Deactivate();
@@ -118,8 +138,8 @@ void Brazier::InitLight() {
     }
 
     mRedLight = new Light(mGame);
-    mRedLight->SetRadius(200.0f);
-    mRedLight->SetMaxIntensity(0.85f);
+    mRedLight->SetRadius(mRedLightRadius);
+    mRedLight->SetMaxIntensity(mRedLightIntensity);
     mRedLight->SetColor(Vector3(0.92f, 0.37f, 0.37f));
     if (mBrazierState == BrazierState::LightOff) {
         mRedLight->Deactivate();

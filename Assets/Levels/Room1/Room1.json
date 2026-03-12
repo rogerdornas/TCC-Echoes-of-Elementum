@@ -1020,6 +1020,39 @@
                  "width":32,
                  "x":2112,
                  "y":4288
+                }, 
+                {
+                 "height":32,
+                 "id":85,
+                 "name":"Enemy Simple",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2816,
+                 "y":5024
+                }, 
+                {
+                 "height":32,
+                 "id":86,
+                 "name":"Enemy Simple",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":4352,
+                 "y":4288
+                }, 
+                {
+                 "height":32,
+                 "id":87,
+                 "name":"Enemy Simple",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2176,
+                 "y":3360
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1055,7 +1088,7 @@
                         {
                          "name":"AmbientIntensity",
                          "type":"float",
-                         "value":0.05
+                         "value":0
                         }, 
                         {
                          "name":"Destroy",
@@ -1114,7 +1147,7 @@
          "y":0
         }],
  "nextlayerid":9,
- "nextobjectid":85,
+ "nextobjectid":88,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

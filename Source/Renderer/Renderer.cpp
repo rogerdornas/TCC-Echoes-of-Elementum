@@ -219,6 +219,7 @@ void Renderer::Draw(RendererMode mode, const Matrix4 &modelMatrix, const Vector2
 void Renderer::DrawRect(const Vector2 &position, const Vector2 &size, float rotation, const Vector3 &color,
                         const Vector2 &cameraPos, RendererMode mode, float alpha)
 {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Matrix4 model = Matrix4::CreateScale(Vector3(size.x, size.y, 1.0f)) *
                     Matrix4::CreateRotationZ(rotation) *
                     Matrix4::CreateTranslation(Vector3(position.x, position.y, 0.0f));
@@ -228,8 +229,14 @@ void Renderer::DrawRect(const Vector2 &position, const Vector2 &size, float rota
 
 void Renderer::DrawTexture(const Vector2 &position, const Vector2 &size, float rotation, const Vector3 &color,
                            Texture *texture, const Vector4 &textureRect, const Vector2 &cameraPos, Vector2 scale,
-                           float textureFactor, float alpha, float freezeLevel)
+                           float textureFactor, float alpha, float freezeLevel, bool additiveBlending)
 {
+    if (additiveBlending) {
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    }
+    else {
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    }
     // Transforma para int a posição para não ter tremor
     Vector3 pos(std::floor(position.x), std::floor(position.y), std::floor(0.0f));
 
@@ -245,6 +252,7 @@ void Renderer::DrawTexture(const Vector2 &position, const Vector2 &size, float r
 void Renderer::DrawGeometry(const Vector2 &position, const Vector2 &size, float rotation, const Vector3 &color,
                             const Vector2 &cameraPos, VertexArray *vertexArray, RendererMode mode)
 {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Matrix4 model = Matrix4::CreateScale(Vector3(size.x, size.y, 1.0f)) *
                     Matrix4::CreateRotationZ(rotation) *
                     Matrix4::CreateTranslation(Vector3(position.x, position.y, 0.0f));
@@ -255,6 +263,7 @@ void Renderer::DrawGeometry(const Vector2 &position, const Vector2 &size, float 
 void Renderer::DrawLine(const Vector2 &start, const Vector2 &end, const Vector3 &color,
                         float thickness, const Vector2 &cameraPos, float alpha)
 {
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
     Vector2 lineVector = end - start;
     float lineLength = lineVector.Length();
 
@@ -309,6 +318,13 @@ void Renderer::AddLight(Light* light)
 {
     if (mLights.size() < 80) // mesmo limite que o shader
         mLights.push_back(light);
+}
+
+void Renderer::RemoveLight(Light* light) {
+    auto iter = std::find(mLights.begin(), mLights.end(), light);
+    if (iter != mLights.end()) {
+        mLights.erase(iter);
+    }
 }
 
 void Renderer::ClearLights()

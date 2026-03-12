@@ -268,6 +268,7 @@ void Particle::Deactivate() {
     mLifeTimer = 0;
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
     mAABBComponent->SetActive(false); // desativa colisão
+    mDrawComponent->SetAdditiveBlending(false);
     if (mRectComponent) {
         mRectComponent->SetVisible(false);
     }

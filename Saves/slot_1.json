@@ -1,6 +1,6 @@
 {
     "configs": {
-        "master_audio": 0.49999991059303284,
+        "master_audio": 0.6450000405311584,
         "music_audio": 1.0,
         "sfx_audio": 1.0
     },
@@ -10,17 +10,17 @@
             "y": 1152.0
         },
         "scene": "Cave",
-        "total_play_time": 126276.3203125
+        "total_play_time": 135579.765625
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 394,
+        "death_counter": 397,
         "elemental_mode": "Fire",
         "max_jumps_in_air": 1,
-        "money": 28384
+        "money": 31469
     },
     "upgrades": {
         "fireball": true,

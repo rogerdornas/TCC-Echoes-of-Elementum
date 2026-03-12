@@ -18,6 +18,7 @@ AnimatorComponent::AnimatorComponent(class Actor* owner, const std::string &texP
     ,mWidth(width)
     ,mHeight(height)
     ,mTextureFactor(1.0f)
+    ,mAdditiveBlending(false)
     ,mFreezeLevel(0.0f)
 {
     // Load texture
@@ -87,7 +88,7 @@ void AnimatorComponent::Draw(Renderer* renderer)
         }
 
         renderer->DrawTexture(mOwner->GetPosition(), Vector2(mWidth, mHeight), mOwner->GetTransformRotation(),
-                              mColor, mSpriteTexture, texRect, GetGame()->GetCamera()->GetPosCamera(), mOwner->GetScale(), mTextureFactor, mAlpha, mFreezeLevel);
+                              mColor, mSpriteTexture, texRect, GetGame()->GetCamera()->GetPosCamera(), mOwner->GetScale(), mTextureFactor, mAlpha, mFreezeLevel, mAdditiveBlending);
     }
 }
 

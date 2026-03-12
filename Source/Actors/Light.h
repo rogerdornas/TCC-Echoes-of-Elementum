@@ -16,6 +16,7 @@ class Light : public Actor
 {
 public:
     Light(class Game* game);
+    ~Light();
     void OnUpdate(float deltaTime) override;
 
     void SetType(LightType type) { mType = type; }

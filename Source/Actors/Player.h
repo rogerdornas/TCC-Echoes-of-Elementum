@@ -68,6 +68,8 @@ public:
 
     void Stop();
 
+    void ResetCooldown();
+
     void SetCanHook(bool canHook) { mCanHook = canHook; }
     bool GetCanHook() const { return mCanHook; }
 
@@ -139,6 +141,7 @@ private:
     void UseJump();
     void UseSword();
     void UseFireBall();
+    void UseFireWisp();
     void UseFreeze(bool up, bool down);
     void UsePillar();
     void UseHeal();
@@ -261,6 +264,11 @@ private:
     float mFireballManaCost;
     float mFireballAnimationDuration;
     float mFireballAnimationTimer;
+
+    bool mCanFireWisp;
+    float mFireWispCooldownDuration;
+    float mFireWispCooldownTimer;
+    float mFireWispManaCost;
 
     bool mCanFreeze;
     bool mIsFreezingFront;

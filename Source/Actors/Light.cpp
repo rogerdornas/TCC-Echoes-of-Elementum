@@ -23,6 +23,10 @@ Light::Light(Game* game)
     mGame->GetRenderer()->AddLight(this);
 }
 
+Light::~Light() {
+    mGame->GetRenderer()->RemoveLight(this);
+}
+
 void Light::OnUpdate(float deltaTime)
 {
     if (mIsActivating) {

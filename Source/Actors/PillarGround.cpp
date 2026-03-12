@@ -22,6 +22,10 @@ PillarGround::PillarGround(Game *game, float width, float height)
     mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar/1.png"),
                     mMaxWidth, mMaxHeight);
 
+    if (mDrawComponent) {
+        mDrawComponent->SetDrawOrder(101);
+    }
+
     SetIsGrowing(true);
 }
 

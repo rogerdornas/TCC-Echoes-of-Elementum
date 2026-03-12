@@ -35,6 +35,8 @@ public:
 
     void SetTextureFactor(float textureFactor) { mTextureFactor = textureFactor; }
 
+    void SetAdditiveBlending(bool additiveBlending) { mAdditiveBlending = additiveBlending; }
+
     void SetFreezeLevel(float freezeLevel) { mFreezeLevel = freezeLevel; }
 
 private:
@@ -66,6 +68,8 @@ private:
     int mHeight;
 
     float mTextureFactor;
+
+    bool mAdditiveBlending;
 
     // Congelamento
     float mFreezeLevel;

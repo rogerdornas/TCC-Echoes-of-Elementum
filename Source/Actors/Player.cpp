@@ -10,6 +10,7 @@
 #include "DashEffect.h"
 #include "GroundSlamImpactEffect.h"
 #include "Effect.h"
+#include "FireWisp.h"
 #include "HookPoint.h"
 #include "Mushroom.h"
 #include "PillarGround.h"
@@ -135,6 +136,11 @@ Player::Player(Game* game)
     ,mFireballManaCost(30.0f)
     ,mFireballAnimationDuration(0.2f)
     ,mFireballAnimationTimer(mFireballAnimationDuration)
+
+    ,mCanFireWisp(true)
+    ,mFireWispCooldownDuration(10.0f)
+    ,mFireWispCooldownTimer(mFireWispCooldownDuration)
+    ,mFireWispManaCost(45.0f)
 
     ,mCanFreeze(true)
     ,mIsFreezingFront(false)
@@ -663,7 +669,8 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             UsePillar();
         }
         if (mElementalMode == ElementalMode::Fire) {
-            Glide();
+            // Glide();
+            UseFireWisp();
         }
     }
     else {
@@ -733,6 +740,10 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mFireBallCooldownTimer < mFireBallCooldownDuration) {
         mFireBallCooldownTimer += deltaTime;
+    }
+
+    if (mFireWispCooldownTimer < mFireWispCooldownDuration) {
+        mFireWispCooldownTimer += deltaTime;
     }
 
     if (mGlideCooldownTimer < mGlideCooldownDuration) {
@@ -1587,6 +1598,13 @@ void Player::Stop() {
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
 }
 
+void Player::ResetCooldown() {
+    mGlideCooldownTimer = mGlideCooldownDuration;
+    mSwordCooldownTimer = mSwordCooldownDuration;
+    mFireBallCooldownTimer = mFireBallCooldownDuration;
+    mFireWispCooldownTimer = mFireWispCooldownDuration;
+}
+
 void Player::UseDash() {
     if (mCanDash) {
         if (!mIsFireAttacking && !mIsDiving && !mIsHookThrowing && !mIsHooking) {
@@ -1886,6 +1904,20 @@ void Player::UseFireBall() {
             }
             // Inicia cooldown
             mFireBallCooldownTimer = 0;
+        }
+    }
+}
+
+void Player::UseFireWisp() {
+    if (mCanFireBall && mElementalMode == ElementalMode::Fire) {
+        if (!mPrevSkill2Pressed &&
+            mFireWispCooldownTimer >= mFireWispCooldownDuration &&
+            mMana >= mFireWispManaCost &&
+            !mDashComponent->GetIsDashing() && !mIsDiving)
+        {
+            new FireWisp(mGame);
+            mMana -= mFireWispManaCost;
+            mFireWispCooldownTimer = 0;
         }
     }
 }

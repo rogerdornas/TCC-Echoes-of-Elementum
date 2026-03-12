@@ -190,6 +190,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/OrangeSlime.h
         Source/UIElements/UISlider.cpp
         Source/UIElements/UISlider.h
+        Source/Actors/FireWisp.cpp
+        Source/Actors/FireWisp.h
 )
 
 

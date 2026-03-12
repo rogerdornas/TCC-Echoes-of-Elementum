@@ -5,8 +5,6 @@
 #pragma once
 #include "Actor.h"
 
-
-
 class Brazier : public  Actor
 {
 public:
@@ -28,6 +26,11 @@ private:
     float mHeight;
     class Light* mLight;
     class Light* mRedLight;
+    float mLightTimer;
+    float mLightRadius;
+    float mLightIntensity;
+    float mRedLightRadius;
+    float mRedLightIntensity;
     BrazierState mBrazierState;
     float mFreezeMax;
     float mFreezeCount;
