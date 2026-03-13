@@ -1,16 +1,16 @@
 {
     "configs": {
-        "master_audio": 0.6450000405311584,
+        "master_audio": 1.0,
         "music_audio": 1.0,
         "sfx_audio": 1.0
     },
     "game": {
         "last_checkpoint": {
-            "x": 1168.0,
-            "y": 1152.0
+            "x": 8336.0,
+            "y": 2272.0
         },
-        "scene": "Cave",
-        "total_play_time": 135579.765625
+        "scene": "Level2",
+        "total_play_time": 136961.796875
     },
     "player": {
         "can_dash": true,
@@ -20,7 +20,7 @@
         "death_counter": 397,
         "elemental_mode": "Fire",
         "max_jumps_in_air": 1,
-        "money": 31469
+        "money": 32308
     },
     "upgrades": {
         "fireball": true,

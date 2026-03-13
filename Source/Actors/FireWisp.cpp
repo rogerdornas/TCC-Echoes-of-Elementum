@@ -252,23 +252,28 @@ void FireWisp::AttackEnemies(float deltaTime) {
         }
     }
     if (mFireWispState == State::Attacking) {
-        HitResult hitResult = mCombatBoxComponent->CheckAttackAgainst(mTargetEnemy->GetComponent<CombatBoxComponent>());
-        if (hitResult.isValid) {
-            Vector2 knockBackDirection = mTargetEnemy->GetPosition() - GetPosition();
-            if (knockBackDirection.Length() > 0) {
-                knockBackDirection.Normalize();
+        std::vector<Enemy*> enemies = mGame->GetEnemies();
+        if (!enemies.empty()) {
+            for (Enemy* e : enemies) {
+                HitResult hitResult = mCombatBoxComponent->CheckAttackAgainst(e->GetComponent<CombatBoxComponent>());
+                if (hitResult.isValid) {
+                    Vector2 knockBackDirection = e->GetPosition() - GetPosition();
+                    if (knockBackDirection.Length() > 0) {
+                        knockBackDirection.Normalize();
+                    }
+                    e->ReceiveHit(mDamage, knockBackDirection);
+                    e->Unfreeze();
+                    mGame->GetCamera()->StartCameraShake(0.2f, 90.0f);
+
+                    // DISPARA O EFEITO DE EXPLOSÃO DA LUZ
+                    mExplosionTimer = mExplosionDuration;
+
+                    mFireWispState = State::Idle;
+                    mAttackTimer = 0.0f;
+                    mAttackIntervalTimer = 0.0f;
+                    mTargetEnemy = nullptr;
+                }
             }
-            mTargetEnemy->ReceiveHit(mDamage, knockBackDirection);
-            mTargetEnemy->Unfreeze();
-            mGame->GetCamera()->StartCameraShake(0.2f, 90.0f);
-
-            // DISPARA O EFEITO DE EXPLOSÃO DA LUZ
-            mExplosionTimer = mExplosionDuration;
-
-            mFireWispState = State::Idle;
-            mAttackTimer = 0.0f;
-            mAttackIntervalTimer = 0.0f;
-            mTargetEnemy = nullptr;
         }
     }
 }

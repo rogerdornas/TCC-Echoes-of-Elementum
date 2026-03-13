@@ -7,7 +7,7 @@
 #include "UIElements/UIText.h"
 
 HUD::HUD(class Game* game, const std::string& fontName)
-    :UIScreen(game, fontName)
+    :UIScreen(game, fontName, false)
     ,mSpeedHPDecrease(200.0f)
     ,mSpeedHPIncrease(200.0f)
     ,mNumOfSubManaBars(mGame->GetPlayer()->GetMaxMana() / mGame->GetPlayer()->GetFireballManaCost())

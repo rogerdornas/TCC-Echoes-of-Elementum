@@ -1,8 +1,8 @@
 {
     "configs": {
-        "master_audio": 0.19999992847442627,
-        "music_audio": 0.5999999046325684,
-        "sfx_audio": 0.8999999761581421
+        "master_audio": 0.49999991059303284,
+        "music_audio": 1.0,
+        "sfx_audio": 1.0
     },
     "game": {
         "last_checkpoint": {
@@ -10,7 +10,7 @@
             "y": 5312.0
         },
         "scene": "Room0",
-        "total_play_time": 120.07856750488281
+        "total_play_time": 97.47781372070313
     },
     "player": {
         "can_dash": false,
@@ -20,7 +20,7 @@
         "death_counter": 0,
         "elemental_mode": "Fire",
         "max_jumps_in_air": 0,
-        "money": 20
+        "money": 44
     },
     "upgrades": {
         "fireball": false,
@@ -28,7 +28,7 @@
         "health_points": false,
         "mana": false,
         "sword_damage": false,
-        "sword_range": false,
+        "sword_range": true,
         "sword_speed": false
     },
     "world_state": {}

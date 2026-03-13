@@ -3,12 +3,13 @@
 #include "UIFont.h"
 #include <cfloat>
 
-UIScreen::UIScreen(Game* game, const std::string& fontName)
+UIScreen::UIScreen(Game* game, const std::string& fontName, bool isClosable)
 	:mGame(game)
 	,mPos(0.f, 0.f)
 	,mSize(0.f, 0.f)
 	,mState(UIState::Active)
     ,mIsVisible(true)
+    ,mIsClosable(isClosable)
     ,mSelectedButtonIndex(-1)
 {
     mGame->PushUI(this);

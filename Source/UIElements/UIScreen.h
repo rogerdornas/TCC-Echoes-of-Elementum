@@ -19,7 +19,7 @@ public:
         Closing
     };
 
-	UIScreen(class Game* game, const std::string& fontName);
+	UIScreen(class Game* game, const std::string& fontName, bool isClosable = true);
 	virtual ~UIScreen();
 
 	// UIScreen subclasses can override these
@@ -59,6 +59,8 @@ public:
     UIImage* AddImage(const std::string& imagePath, const Vector2& pos, const Vector2& dims, const Vector3& color = Color::White);
 	class UISlider* AddSlider(const std::string& name, const Vector2& pos, const Vector2& size, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, std::function<void(float)> onValueChanged);
 
+	bool IsClosable() { return mIsClosable; }
+
 	UIButton* FindNeighbor(UIButton* current, const Vector2& dir);
 
 	virtual void ChangeResolution(float oldScale, float newScale);
@@ -75,6 +77,7 @@ protected:
 	UIState mState;
 
 	bool mIsVisible;
+	bool mIsClosable;
 
 	// List of buttons, texts, and images
     int mSelectedButtonIndex;

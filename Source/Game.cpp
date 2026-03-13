@@ -778,7 +778,7 @@ void Game::LoadMainMenu() {
     float virtualWidth = mRenderer->GetVirtualWidth();
     float virtualHeight = mRenderer->GetVirtualHeight();
 
-    mMainMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
+    mMainMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
     const Vector2 buttonSize = Vector2(virtualWidth / 5, 0.046f * virtualHeight);
     // mMainMenu->SetSize(Vector2(virtualWidth / 3, virtualHeight / 3));
     // mMainMenu->SetPosition(Vector2(virtualWidth / 3, 2 * virtualHeight / 3));
@@ -2743,19 +2743,17 @@ void Game::ProcessInput()
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
-                                for (auto iter = mUIStack.rbegin(); *iter != mHUD; ++iter) {
-                                    if ((*iter)->GetState() != UIScreen::UIState::Closing) {
+                                for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
+                                    if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
                                         (*iter)->Close();
+                                        break;
                                     }
                                 }
-                                if (mStore->StoreMessageOpened()) {
-                                    mStore->CloseStoreMessage();
+                                if (mPauseMenu->GetState() == UIScreen::UIState::Closing) {
+                                    TogglePause();
                                 }
                                 if (mStore->StoreOpened()) {
                                     mStore->CloseStore();
-                                }
-                                else {
-                                    TogglePause();
                                 }
                             }
                             else {
@@ -2764,9 +2762,10 @@ void Game::ProcessInput()
                             }
                         }
                         else if (mGameScene == GameScene::MainMenu) {
-                            for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend() - 1; ++iter) {
-                                if ((*iter)->GetState() != UIScreen::UIState::Closing) {
+                            for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
+                                if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
                                     (*iter)->Close();
+                                    break;
                                 }
                             }
                         }
@@ -2843,31 +2842,14 @@ void Game::ProcessInput()
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
-                                for (auto iter = mUIStack.rbegin(); *iter != mHUD; ++iter) {
-                                    if ((*iter)->GetState() != UIScreen::UIState::Closing) {
-                                        (*iter)->Close();
-                                    }
-                                }
-                                if (mStore->StoreMessageOpened()) {
-                                    mStore->CloseStoreMessage();
-                                }
-                                if (mStore->StoreOpened()) {
-                                    mStore->CloseStore();
-                                }
-                                else {
+                                if (mUIStack.back() == mPauseMenu) {
+                                    mPauseMenu->Close();
                                     TogglePause();
                                 }
                             }
                             else {
                                 TogglePause();
                                 LoadPauseMenu();
-                            }
-                        }
-                        else if (mGameScene == GameScene::MainMenu) {
-                            for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend() - 1; ++iter) {
-                                if ((*iter)->GetState() != UIScreen::UIState::Closing) {
-                                    (*iter)->Close();
-                                }
                             }
                         }
                     }
@@ -2879,26 +2861,25 @@ void Game::ProcessInput()
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
-                                for (auto iter = mUIStack.rbegin(); *iter != mHUD; ++iter) {
-                                    if ((*iter)->GetState() != UIScreen::UIState::Closing) {
+                                for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
+                                    if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
                                         (*iter)->Close();
+                                        break;
                                     }
                                 }
-                                if (mStore->StoreMessageOpened()) {
-                                    mStore->CloseStoreMessage();
+                                if (mPauseMenu->GetState() == UIScreen::UIState::Closing) {
+                                    TogglePause();
                                 }
                                 if (mStore->StoreOpened()) {
                                     mStore->CloseStore();
                                 }
-                                else {
-                                    TogglePause();
-                                }
                             }
                         }
                         else if (mGameScene == GameScene::MainMenu) {
-                            for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend() - 1; ++iter) {
-                                if ((*iter)->GetState() != UIScreen::UIState::Closing) {
+                            for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
+                                if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
                                     (*iter)->Close();
+                                    break;
                                 }
                             }
                         }
@@ -3236,6 +3217,11 @@ void Game::UpdateGame()
                 ui->Update(deltaTime);
             }
         // }
+    }
+
+    // Garante que a UI screen do topo esteja visível
+    if (!mUIStack.empty()) {
+        mUIStack.back()->SetIsVisible(true);
     }
 
     // Delete any UIElements that are closed

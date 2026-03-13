@@ -330,7 +330,7 @@ void Store::LoadStoreMessage() {
     float virtualWidth = mGame->GetRenderer()->GetVirtualWidth();
     float virtualHeight = mGame->GetRenderer()->GetVirtualHeight();
 
-    mStoreMessage = new UIScreen(mGame, "../Assets/Fonts/K2D-Bold.ttf");
+    mStoreMessage = new UIScreen(mGame, "../Assets/Fonts/K2D-Bold.ttf", false);
     mStoreMessage->SetSize(Vector2(virtualWidth / 3, 2 * virtualHeight / 6));
     mStoreMessage->SetPosition(Vector2(virtualWidth / 3, 7 * virtualHeight / 8));
 
