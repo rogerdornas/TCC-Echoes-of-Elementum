@@ -96,7 +96,7 @@ void Skill::LoadSkillMessage() {
     UIText* skillText;
     int textPointSize = 34;
 
-    text = mSkillMessage->AddText("NOVA HABILIDADE ADQUIRIDA!", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+    text = mSkillMessage->AddText("NOVA HABILIDADE ADQUIRIDA!", Vector2::Zero, textPointSize * mGame->GetScale());
     if (mSkill == SkillType::TimeControl) {
         text->SetPosition(Vector2((mSkillMessage->GetSize().x - text->GetSize().x) / 2, (mSkillMessage->GetSize().y - text->GetSize().y) * 0.1f));
     }
@@ -107,48 +107,48 @@ void Skill::LoadSkillMessage() {
     switch (mSkill) {
         case SkillType::Dash:
             if (mGame->GetIsPlayingOnKeyboard()) {
-                skillText = mSkillMessage->AddText("PRESSIONE [C] PARA USAR DASH", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+                skillText = mSkillMessage->AddText("PRESSIONE [C] PARA USAR DASH", Vector2::Zero, textPointSize * mGame->GetScale());
             }
             else {
-                skillText = mSkillMessage->AddText("PRESSIONE [RB] PARA USAR DASH", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+                skillText = mSkillMessage->AddText("PRESSIONE [RB] PARA USAR DASH", Vector2::Zero, textPointSize * mGame->GetScale());
             }
             skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 1.2f));
             break;
 
         case SkillType::FireBall:
             if (mGame->GetIsPlayingOnKeyboard()) {
-                skillText = mSkillMessage->AddText("PRESSIONE [A] PARA ATIRAR UMA BOLA DE FOGO", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+                skillText = mSkillMessage->AddText("PRESSIONE [A] PARA ATIRAR UMA BOLA DE FOGO", Vector2::Zero, textPointSize * mGame->GetScale());
             }
             else {
-                skillText = mSkillMessage->AddText("PRESSIONE [B] PARA ATIRAR UMA BOLA DE FOGO", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+                skillText = mSkillMessage->AddText("PRESSIONE [B] PARA ATIRAR UMA BOLA DE FOGO", Vector2::Zero, textPointSize * mGame->GetScale());
             }
                 skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 1.2f));
             break;
 
         case SkillType::WallSlide:
-            skillText = mSkillMessage->AddText("AGORA VOCÊ PODE SE AGARRAR NA PAREDE", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+            skillText = mSkillMessage->AddText("AGORA VOCÊ PODE SE AGARRAR NA PAREDE", Vector2::Zero, textPointSize * mGame->GetScale());
             skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 1.2f));
             break;
 
         case SkillType::DoubleJump:
-            skillText = mSkillMessage->AddText("GANHOU UM PULO EXTRA NO AR", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+            skillText = mSkillMessage->AddText("GANHOU UM PULO EXTRA NO AR", Vector2::Zero, textPointSize * mGame->GetScale());
             skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 1.2f));
             break;
 
         case SkillType::Hook:
             if (mGame->GetIsPlayingOnKeyboard()) {
-                skillText = mSkillMessage->AddText("PRESSIONE [S] PARA JOGAR UMA CORDA E SE IMPULSIONAR", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+                skillText = mSkillMessage->AddText("PRESSIONE [S] PARA JOGAR UMA CORDA E SE IMPULSIONAR", Vector2::Zero, textPointSize * mGame->GetScale());
             }
             else {
-                skillText = mSkillMessage->AddText("PRESSIONE [LB] PARA JOGAR UMA CORDA E SE IMPULSIONAR", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+                skillText = mSkillMessage->AddText("PRESSIONE [LB] PARA JOGAR UMA CORDA E SE IMPULSIONAR", Vector2::Zero, textPointSize * mGame->GetScale());
             }
             skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 1.2f));
             break;
 
         case SkillType::TimeControl:
-            skillText = mSkillMessage->AddText("GANHOU CONTROLE SOBRE O TEMPO", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale());
+            skillText = mSkillMessage->AddText("GANHOU CONTROLE SOBRE O TEMPO", Vector2::Zero, textPointSize * mGame->GetScale());
             skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 2.4f));
-            skillText = mSkillMessage->AddText("DESEJA VOLTAR NO TEMPO PARA RESTAURAR O EQUILÍBRIO DOS BIOMAS?", Vector2::Zero, Vector2::Zero, textPointSize * mGame->GetScale(), Color::White, mSkillMessage->GetSize().x * 0.8f);
+            skillText = mSkillMessage->AddText("DESEJA VOLTAR NO TEMPO PARA RESTAURAR O EQUILÍBRIO DOS BIOMAS?", Vector2::Zero, textPointSize * mGame->GetScale(), Color::White, mSkillMessage->GetSize().x * 0.8f);
             skillText->SetPosition(Vector2((mSkillMessage->GetSize().x - skillText->GetSize().x) / 2, text->GetPosition().y + text->GetSize().y * 4.2f));
             break;
     }

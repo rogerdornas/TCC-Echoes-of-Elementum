@@ -10,6 +10,7 @@ UIScreen::UIScreen(Game* game, const std::string& fontName, bool isClosable)
 	,mState(UIState::Active)
     ,mIsVisible(true)
     ,mIsClosable(isClosable)
+    ,mDraggedButton(nullptr)
     ,mSelectedButtonIndex(-1)
 {
     mGame->PushUI(this);
@@ -190,30 +191,40 @@ void UIScreen::HandleMouse(const SDL_Event &event) {
 
 void UIScreen::HandleMousePress(const Vector2& virtualMousePos)
 {
-    // Coordenadas já estão no espaço virtual,
-    // mas a lógica do botão espera coordenadas relativas ao UIScreen
     Vector2 uiScreenRelativePos = virtualMousePos - GetPosition();
 
     for (UIButton* button : mButtons) {
         if (button->ContainsPoint(uiScreenRelativePos)) {
             button->OnMouseClick(uiScreenRelativePos);
+
+            if (button->IsDraggable()) {
+                mDraggedButton = button;
+            }
+            return;
         }
     }
+}
+
+void UIScreen::HandleMouseRelease(const Vector2& virtualMousePos)
+{
+    mDraggedButton = nullptr;
 }
 
 void UIScreen::HandleMouseMotion(const Vector2& virtualMousePos)
 {
     Vector2 uiScreenRelativePos = virtualMousePos - GetPosition();
+
+    if (mDraggedButton != nullptr) {
+        mDraggedButton->OnMouseClick(uiScreenRelativePos);
+        return;
+    }
+
     int index = -1;
 
     for (size_t i = 0; i < mButtons.size(); ++i) {
         if (mButtons[i]->ContainsPoint(uiScreenRelativePos)) {
             index = i;
             mSelectedButtonIndex = i;
-
-            if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-                mButtons[i]->OnMouseClick(uiScreenRelativePos);
-            }
         }
     }
 
@@ -232,18 +243,18 @@ void UIScreen::Close()
 	mState = UIState::Closing;
 }
 
-UIText* UIScreen::AddText(const std::string &name, const Vector2 &pos, const Vector2 &dims, const int pointSize, Vector3 color, const int unsigned wrapLength)
+UIText* UIScreen::AddText(const std::string &name, const Vector2 &pos, const int pointSize, Vector3 color, const int unsigned wrapLength)
 {
-    UIText* t = new UIText(name, mFont, pointSize, wrapLength, pos, dims, color);
+    UIText* t = new UIText(name, mFont, pointSize, wrapLength, pos, color);
 
     mTexts.emplace_back(t);
 
     return t;
 }
 
-UIButton* UIScreen::AddButton(const std::string& name, const Vector2 &pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, Vector2 textPos, Vector3 textColor)
+UIButton* UIScreen::AddButton(const std::string& name, const Vector2 &pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, bool useTextSize, Vector2 textPos, Vector3 textColor)
 {
-    UIButton* b = new UIButton(name, mFont, onClick, pos, dims, Vector3{1.0f, 0.5f, 0.0f}, pointSize, 1024, textPos, alignText, textColor);
+    UIButton* b = new UIButton(name, mFont, onClick, pos, dims, useTextSize, Vector3{1.0f, 0.5f, 0.0f}, pointSize, 1024, textPos, alignText, textColor, mGame->GetRenderer());
     mButtons.emplace_back(b);
 
     if (mButtons.size() == 1) {
@@ -263,8 +274,8 @@ UIImage* UIScreen::AddImage(const std::string &imagePath, const Vector2 &pos, co
     return img;
 }
 
-UISlider* UIScreen::AddSlider(const std::string& name, const Vector2& pos, const Vector2& dims, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, std::function<void(float)> onValueChanged) {
-    UISlider* slider = new UISlider(name, mFont, pos, dims, sliderOffset, sliderSize, minVal, maxVal, initialVal, onValueChanged);
+UISlider* UIScreen::AddSlider(const std::string& name, const Vector2& pos, const Vector2& dims, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, int textPointSize, int valuePointSize, std::function<void(float)> onValueChanged) {
+    UISlider* slider = new UISlider(name, mFont, pos, dims, sliderOffset, sliderSize, minVal, maxVal, initialVal, textPointSize, valuePointSize, onValueChanged, mGame->GetRenderer());
     mButtons.emplace_back(slider);
 
     if (mButtons.size() == 1) {

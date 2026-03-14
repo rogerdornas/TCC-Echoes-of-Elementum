@@ -56,6 +56,8 @@
 #include "Components/Drawing/AnimatorComponent.h"
 #include "Components/Drawing/DrawRopeComponent.h"
 #include "Components/Drawing/RectComponent.h"
+#include "UIScreens/MainMenu.h"
+#include "UIScreens/PauseMenu.h"
 
 std::vector<int> ParseIntList(const std::string& str) {
     std::vector<int> result;
@@ -421,7 +423,9 @@ void Game::ChangeScene()
         mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Menu6.png");
 
         // Initialize main menu actors
-        LoadMainMenu();
+        auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
+        background->AddImage("../Assets/Sprites/Background/Menu6.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
+        new MainMenu(this, "../Assets/Fonts/K2D-Bold.ttf", false);
 
         if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
             mMusicHandle = mAudio->PlaySound("HollowKnight.wav", true, SoundCategory::Music);
@@ -820,7 +824,7 @@ void Game::LoadConfirmQuitGameMenu() {
     Vector2 buttonPos = Vector2((mConfirmQuitGameMenu->GetSize().x - buttonSize.x) / 2, mConfirmQuitGameMenu->GetSize().y * 0.30f);
     float distanceBetweenButtons = 0.064f * virtualHeight;
 
-    UIText* text = mConfirmQuitGameMenu->AddText("SAIR DO JOGO?", Vector2::Zero, Vector2::Zero, 0.035f * mWindowHeight);
+    UIText* text = mConfirmQuitGameMenu->AddText("SAIR DO JOGO?", Vector2::Zero, 0.035f * mWindowHeight);
     text->SetPosition(Vector2(mConfirmQuitGameMenu->GetSize().x / 2, 0.0f));
 
     std::string name = "SIM";
@@ -853,7 +857,7 @@ void Game::LoadLoadGameMenu() {
 
     mLoadGameMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mLoadGameMenu->GetSize() / 2, mLoadGameMenu->GetSize());
 
-    UIText* text = mLoadGameMenu->AddText("SELECIONAR PERFIL", Vector2::Zero, Vector2::Zero, 0.046f * virtualHeight);
+    UIText* text = mLoadGameMenu->AddText("SELECIONAR PERFIL", Vector2::Zero,  0.046f * virtualHeight);
     text->SetPosition(Vector2(mLoadGameMenu->GetSize().x / 2, mLoadGameMenu->GetSize().y * 0.05f));
 
     std::string name = "   SLOT 1";
@@ -1028,7 +1032,7 @@ void Game::LoadConfirmBackToMenu() {
     auto* background = mConfirmBackToMenu->AddImage("../Assets/Sprites/Menus/FundoPreto.png", mConfirmBackToMenu->GetSize() / 2, Vector2(virtualWidth, virtualHeight) * 1.5f);
     background->SetAlpha(0.5f);
 
-    UIText* text = mConfirmBackToMenu->AddText("VOLTAR AO MENU?", Vector2::Zero, Vector2::Zero, 38 * mScale);
+    UIText* text = mConfirmBackToMenu->AddText("VOLTAR AO MENU?", Vector2::Zero, 38 * mScale);
     text->SetPosition(Vector2(mConfirmBackToMenu->GetSize().x / 2, 0.0f));
 
     std::string name = "SIM";
@@ -1180,10 +1184,10 @@ void Game::LoadOptionsMenu() {
             SDL_SetWindowFullscreen(mWindow, 0);
             mOptionsMenu->Close();
             LoadOptionsMenu();
-        }, textPos);
+        }, false, textPos);
 
         optionValue = "< ON >";
-        text = mOptionsMenu->AddText(optionValue, Vector2::Zero, Vector2::Zero, buttonPointSize);
+        text = mOptionsMenu->AddText(optionValue, Vector2::Zero, buttonPointSize);
         text->SetPosition(Vector2(optionPosX, button->GetPosition().y + text->GetSize().y / 2));
     }
     else {
@@ -1207,9 +1211,9 @@ void Game::LoadOptionsMenu() {
 
             mOptionsMenu->Close();
             LoadOptionsMenu();
-        }, textPos);
+        }, false, textPos);
         optionValue = "< OFF >";
-        text = mOptionsMenu->AddText(optionValue, Vector2::Zero, Vector2::Zero, buttonPointSize);
+        text = mOptionsMenu->AddText(optionValue, Vector2::Zero, buttonPointSize);
         text->SetPosition(Vector2(optionPosX, button->GetPosition().y + text->GetSize().y / 2));
     }
 
@@ -1236,19 +1240,19 @@ void Game::LoadOptionsMenu() {
     button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 3.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
     [this]() {
         LoadKeyBoardMenu2();
-    }, textPos);
+    }, false, textPos);
 
     name = "CONTROLE";
     button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 4.5f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
     [this]() {
         LoadControlMenu();
-    }, textPos);
+    }, false, textPos);
 
     name = "AUDIO";
     button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 6.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
     [this]() {
         LoadAudioMenu();
-    }, textPos);
+    }, false, textPos);
 
     name = "VOLTAR";
     mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, mOptionsMenu->GetSize().y - buttonSize.y * 1.2f), buttonSize, buttonPointSize, UIButton::TextPos::Center,
@@ -1320,7 +1324,7 @@ void Game::LoadKeyBoardMenu2() {
 
     mKeyboardMenu2->AddImage("../Assets/Sprites/Menus/Fundo2.png", mKeyboardMenu2->GetSize() / 2, mKeyboardMenu2->GetSize());
 
-    UIText* text = mKeyboardMenu2->AddText("TECLADO", Vector2::Zero, Vector2::Zero, 50);
+    UIText* text = mKeyboardMenu2->AddText("TECLADO", Vector2::Zero, 50);
     text->SetPosition(Vector2(mKeyboardMenu2->GetSize().x / 2, 50));
 
     std::string name;
@@ -1334,9 +1338,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[1];
         mBindingAction = Action::Up;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Up].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Up].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, text->GetSize().y / 2));
 
     name = "BAIXO";
@@ -1348,9 +1352,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[2];
         mBindingAction = Action::Down;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Down].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Down].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 1 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "PULO";
@@ -1362,9 +1366,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[3];
         mBindingAction = Action::Jump;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Jump].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Jump].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 2 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "ATAQUE";
@@ -1376,9 +1380,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[4];
         mBindingAction = Action::Attack;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Attack].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Attack].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 3 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "AVANÇO";
@@ -1390,9 +1394,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[5];
         mBindingAction = Action::Dash;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Dash].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Dash].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 4 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "HABILIDADE 1";
@@ -1404,9 +1408,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[6];
         mBindingAction = Action::Skill1;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill1].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill1].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 5 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "CURA";
@@ -1418,9 +1422,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[7];
         mBindingAction = Action::Heal;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Heal].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Heal].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 6 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "ESQUERDA";
@@ -1432,9 +1436,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[8];
         mBindingAction = Action::MoveLeft;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::MoveLeft].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::MoveLeft].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 0 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "DIREITA";
@@ -1446,9 +1450,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[9];
         mBindingAction = Action::MoveRight;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::MoveRight].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::MoveRight].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 1 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "GANCHO";
@@ -1460,9 +1464,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[10];
         mBindingAction = Action::Hook;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Hook].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Hook].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 2 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "ABRIR LOJA";
@@ -1474,9 +1478,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[11];
         mBindingAction = Action::OpenStore;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::OpenStore].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::OpenStore].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 3 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "MAPA";
@@ -1488,9 +1492,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[12];
         mBindingAction = Action::Map;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Map].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Map].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 4 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "CAMINHAR / OLHAR";
@@ -1502,9 +1506,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[13];
         mBindingAction = Action::Look;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Look].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Look].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 5 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "HABILIDADE 2";
@@ -1516,9 +1520,9 @@ void Game::LoadKeyBoardMenu2() {
         mWaitingForKey = true;
         mNewButtonText = mKeyboardMenu2->GetTexts()[14];
         mBindingAction = Action::Skill2;
-    }, textPos);
+    }, false, textPos);
 
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill2].key), Vector2::Zero, Vector2::Zero, buttonPointSize);
+    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill2].key), Vector2::Zero, buttonPointSize);
     text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 6 * distanceBetweenButtons + text->GetSize().y / 2));
 
     name = "VOLTAR";
@@ -1545,23 +1549,23 @@ void Game::LoadAudioMenu() {
 
     mAudioMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mAudioMenu->GetSize() / 2, mAudioMenu->GetSize());
 
-    UIText* text = mAudioMenu->AddText("AUDIO", Vector2::Zero, Vector2::Zero, 50);
+    UIText* text = mAudioMenu->AddText("AUDIO", Vector2::Zero, 50);
     text->SetPosition(Vector2(mAudioMenu->GetSize().x / 2, 50));
 
     std::string name = "GERAL";
-    UISlider* slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 0 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Master),
+    UISlider* slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 0 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Master), 34, 20,
     [this](float valor) {
         mAudio->SetCategoryVolume(SoundCategory::Master, valor);
     });
 
     name = "MUSICA";
-    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Music),
+    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Music), 34, 20,
     [this](float valor) {
         mAudio->SetCategoryVolume(SoundCategory::Music, valor);
     });
 
     name = "EFEITOS";
-    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::SFX),
+    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::SFX), 34, 20,
     [this](float valor) {
         mAudio->SetCategoryVolume(SoundCategory::SFX, valor);
     });
@@ -1571,6 +1575,30 @@ void Game::LoadAudioMenu() {
     [this]() {
         mAudioMenu->Close();
     });
+}
+
+void Game::BackToMenu() {
+    SaveGame();
+    SetGameScene(GameScene::MainMenu, 0.5f);
+    mPauseMenu->Close();
+    if (mStore->StoreOpened()) {
+        mStore->CloseStore();
+    }
+}
+
+void Game::ResetPlayerAndStore() {
+    delete mPlayer;
+    mPlayer = nullptr;
+    mPlayerDeathCounter = 0;
+    delete mStore;
+    mStore = nullptr;
+    mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
+}
+
+void Game::RebindKeyboard(UIText *text, Action action) {
+    mWaitingForKey = true;
+    mNewButtonText = text;
+    mBindingAction = action;
 }
 
 void Game::LoadObjects(const std::string &fileName) {
@@ -2702,9 +2730,8 @@ void Game::ProcessInput()
 
                     // atualiza o texto do botão
                     if (mNewButtonText) {
-                        mNewButtonText->SetPointSize(40 * mScale);
+                        mNewButtonText->SetPointSize(34);
                         mNewButtonText->SetText(keyName);
-                        mNewButtonText->SetPosition(mNewButtonText->GetPosition() + Vector2(12 + mNewButtonText->GetSize().x / 2, 0) * mScale);
                     }
 
                     mInputBindings[mBindingAction].key = sc;
@@ -2758,7 +2785,10 @@ void Game::ProcessInput()
                             }
                             else {
                                 TogglePause();
-                                LoadPauseMenu();
+                                auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                auto* backgroundImage = background->AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
+                                backgroundImage->SetAlpha(0.6f);
+                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf", background);
                             }
                         }
                         else if (mGameScene == GameScene::MainMenu) {
@@ -2849,7 +2879,10 @@ void Game::ProcessInput()
                             }
                             else {
                                 TogglePause();
-                                LoadPauseMenu();
+                                auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                auto* backgroundImage = background->AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
+                                backgroundImage->SetAlpha(0.6f);
+                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf", background);
                             }
                         }
                     }
@@ -3027,6 +3060,19 @@ void Game::ProcessInput()
 
                         // 3. Passar as coordenadas limpas para a UI
                         mUIStack.back()->HandleMousePress(virtualPos);
+                    }
+                }
+                break;
+
+            case SDL_MOUSEBUTTONUP:
+                if (mGamePlayState != GamePlayState::GameOver) {
+                    // Handle mouse release for UI screens
+                    if (!mUIStack.empty()) {
+                        Vector2 screenPos(static_cast<float>(event.button.x), static_cast<float>(event.button.y));
+                        Vector2 virtualPos = mRenderer->ScreenToVirtual(screenPos);
+
+                        // Avisa a tela atual que o mouse foi solto
+                        mUIStack.back()->HandleMouseRelease(virtualPos);
                     }
                 }
                 break;
@@ -3210,6 +3256,11 @@ void Game::UpdateGame()
 
     mAudio->Update(deltaTime);
 
+    // Garante que a UI screen do topo esteja visível
+    if (!mUIStack.empty()) {
+        mUIStack.back()->SetIsVisible(true);
+    }
+
     // Reinsert UI screens
     for (auto ui : mUIStack) {
         // if (ui != mHUD) {
@@ -3217,11 +3268,6 @@ void Game::UpdateGame()
                 ui->Update(deltaTime);
             }
         // }
-    }
-
-    // Garante que a UI screen do topo esteja visível
-    if (!mUIStack.empty()) {
-        mUIStack.back()->SetIsVisible(true);
     }
 
     // Delete any UIElements that are closed

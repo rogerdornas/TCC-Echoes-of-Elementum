@@ -192,6 +192,28 @@ add_executable(${PROJECT_NAME}
         Source/UIElements/UISlider.h
         Source/Actors/FireWisp.cpp
         Source/Actors/FireWisp.h
+        Source/UIScreens/PauseMenu.cpp
+        Source/UIScreens/PauseMenu.h
+        Source/UIScreens/MainMenu.cpp
+        Source/UIScreens/MainMenu.h
+        Source/UIScreens/SelectProfileMenu.cpp
+        Source/UIScreens/SelectProfileMenu.h
+        Source/UIScreens/OptionsMenu.cpp
+        Source/UIScreens/OptionsMenu.h
+        Source/UIScreens/VideoMenu.cpp
+        Source/UIScreens/VideoMenu.h
+        Source/UIScreens/ConfirmBackToMenu.cpp
+        Source/UIScreens/ConfirmBackToMenu.h
+        Source/UIScreens/ConfirmQuitGame.cpp
+        Source/UIScreens/ConfirmQuitGame.h
+        Source/UIScreens/KeyboardMenu.cpp
+        Source/UIScreens/KeyboardMenu.h
+        Source/UIScreens/AudioMenu.cpp
+        Source/UIScreens/AudioMenu.h
+        Source/UIScreens/ControlMenu.cpp
+        Source/UIScreens/ControlMenu.h
+        Source/UIScreens/DeleteProfileMenu.cpp
+        Source/UIScreens/DeleteProfileMenu.h
 )
 
 

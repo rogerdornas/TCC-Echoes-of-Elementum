@@ -21,25 +21,28 @@ public:
     };
 
     UIButton(const std::string& text, class UIFont* font, std::function<void()> onClick,
-             const Vector2& pos, const Vector2& size, const Vector3& color = Vector3(30, 30, 30),
+             const Vector2& pos, const Vector2& size, bool useTextSize, const Vector3& color = Vector3(30, 30, 30),
              int pointSize = 72, const unsigned wrapLength = 1024,
              const Vector2& textPos = Vector2::Zero,
              const TextPos textAlign = TextPos::Center,
              const Vector3& textColor = Color::White,
-             const Vector2& textSize = Vector2(140.f, 20.0f));
+             Renderer* renderer = nullptr);
 
     ~UIButton();
 
     // Set the name of the button
-    void SetText(const std::string& text);
     UIText* GetText() const { return mText; }
     void Draw(Renderer* renderer, const Vector2 &screenPos) override;
 
     void SetHighlighted(bool sel) { mHighlighted = sel; }
     bool GetHighlighted() const { return mHighlighted; }
 
+    void UseBackGroundColor() { mUseBackGroundColor = true; }
+
     // Returns true if the point is within the button's bounds
     bool ContainsPoint(const Vector2& pt) const;
+
+    virtual bool IsDraggable() const { return false; }
 
     // Called when button is clicked
     void OnClick();
@@ -59,4 +62,9 @@ protected:
 
     // Check if the button is highlighted
     bool mHighlighted;
+
+    bool mUseBackGroundColor;
+
+    Renderer* mRenderer;
+    Texture* mSelectorTexture;
 };

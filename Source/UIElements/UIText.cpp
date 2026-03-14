@@ -8,8 +8,8 @@
 #include "../Renderer/Texture.h"
 
 UIText::UIText(const std::string &text, class UIFont* font, int pointSize, const unsigned wrapLength,
-               const Vector2 &pos, const Vector2 &size, const Vector3 &color)
-    :UIElement(pos, size, color)
+               const Vector2 &pos, const Vector3 &color)
+    :UIElement(pos, Vector2::Zero, color)
     ,mFont(font)
     ,mPointSize(pointSize)
     ,mWrapLength(wrapLength)
@@ -45,6 +45,11 @@ void UIText::SetText(const std::string &text)
         SetSize(Vector2(static_cast<float>(mTextTexture->GetWidth()),
                         static_cast<float>(mTextTexture->GetHeight())));
     }
+}
+
+void UIText::SetColor(const Vector3 &color) {
+    mColor = color;
+    SetText(mText);;
 }
 
 void UIText::Draw(Renderer *renderer, const Vector2 &screenPos)

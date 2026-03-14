@@ -113,6 +113,7 @@ public:
     void SortDrawables();
 
     // Window functions
+    SDL_Window* GetWindow() const { return mWindow; }
     int GetWindowWidth() const { return mWindowWidth; }
     int GetWindowHeight() const { return mWindowHeight; }
     float GetLogicalWindowWidth() const { return mLogicalWindowWidth; }
@@ -181,6 +182,10 @@ public:
     class UIFont* LoadFont(const std::string& fileName);
     SDL_Texture *LoadTexture(const std::string &texturePath);
 
+    void BackToMenu();
+    void ResetPlayerAndStore();
+    void RebindKeyboard(UIText* text, Action action);
+
     int GetFPS() const { return mFPS; }
 
     void ActiveHitStop(float duration = 0.15f)
@@ -247,6 +252,9 @@ public:
     void SetTotalPlayTime(float totalPlayTime) { mTotalPlayTime = totalPlayTime; }
     float GetTotalPlayTime() const { return mTotalPlayTime; }
 
+    void SetSaveSlot(int saveSlot) { mSaveSlot = saveSlot; }
+    SaveManager* GetSaveManager() { return mSaveManager; }
+
     void SaveGame();
     void LoadGame();
     void SetWorldState(const std::unordered_map<std::string, bool> &worldState) { mWorldState = worldState; }
@@ -265,6 +273,8 @@ public:
     bool IsActionPressed(Action action, const Uint8* keyboardState, SDL_GameController* controller);
     std::unordered_map<Action, InputBinding> GetInputBinding() { return mInputBindings; }
 
+    void LoadLevelSelectMenu();
+
 private:
     void ProcessInput();
     void UpdateGame();
@@ -277,7 +287,6 @@ private:
 
     void LoadMainMenu();
     void LoadPauseMenu();
-    void LoadLevelSelectMenu();
     void LoadOptionsMenu();
     void LoadControlMenu();
     void LoadKeyBoardMenu();
@@ -297,7 +306,7 @@ private:
     std::vector<class DrawComponent *> mDrawables;
 
     // SDL stuff
-    SDL_Window *mWindow;
+    SDL_Window* mWindow;
     AudioSystem* mAudio;
     class Renderer* mRenderer;
 

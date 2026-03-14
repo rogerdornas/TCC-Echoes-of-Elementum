@@ -21,7 +21,7 @@ public:
     void SetSize(const Vector2 &size) { mSize = size; }
 
     const Vector3& GetColor() const { return mColor; }
-    void SetColor(const Vector3 &color) { mColor = color; }
+    virtual void SetColor(const Vector3 &color) { mColor = color; }
 
     virtual void Draw(Renderer* renderer, const Vector2 &screenPos) {};
 

@@ -6,15 +6,23 @@
 #include "../Renderer/Renderer.h"
 
 UIButton::UIButton(const std::string& text, class UIFont* font, std::function<void()> onClick,
-                   const Vector2& pos, const Vector2& size, const Vector3& color,
+                   const Vector2& pos, const Vector2& size, bool useTextSize, const Vector3& color,
                    int pointSize , unsigned wrapLength,
-                   const Vector2 &textPos, TextPos textAlign, const Vector3& textColor, const Vector2 &textSize)
-        :UIElement(pos, size, color)
-        ,mOnClick(onClick)
-        ,mHighlighted(false)
-        ,mTextAlign(textAlign)
+                   const Vector2 &textPos, TextPos textAlign, const Vector3& textColor,
+                   Renderer* renderer)
+    :UIElement(pos, size, color)
+    ,mOnClick(onClick)
+    ,mHighlighted(false)
+    ,mTextAlign(textAlign)
+    ,mUseBackGroundColor(false)
+    ,mRenderer(renderer)
 {
-    mText = new UIText(text, font, pointSize, wrapLength, textPos, textSize, textColor);
+    mText = new UIText(text, font, pointSize, wrapLength, textPos, textColor);
+    if (useTextSize) {
+        mSize = mText->GetSize() * Vector2(1.1f, 1.0f);
+    }
+    std::string texPath = "../Assets/Sprites/Menus/select.png";
+    mSelectorTexture = mRenderer->GetTexture(texPath);
 }
 
 UIButton::~UIButton()
@@ -30,9 +38,23 @@ void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
     Vector2 drawPos = screenPos + mPosition + mSize / 2.0f;
 
     if (mHighlighted) {
-        Vector3 drawColor = Vector3(0.78f, 0.39f, 0.0f);
-        renderer->DrawRect(drawPos, mSize, 0.0f, drawColor, Vector2::Zero, RendererMode::TRIANGLES);
+        renderer->DrawTexture(mPosition + Vector2(-16, mSize.y * 0.5f), Vector2(26, 26), Math::Pi, Color::White,
+                              mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
+
+        renderer->DrawTexture(mPosition + Vector2(mSize.x + 16, mSize.y * 0.5f), Vector2(26, 26), 0.0f, Color::White,
+                      mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
+
+        mText->SetColor(Color::White);
+
+        if (mUseBackGroundColor) {
+            Vector3 drawColor = Color::Black;
+            renderer->DrawRect(drawPos, mSize, 0.0f, drawColor, Vector2::Zero, RendererMode::TRIANGLES, 0.5f);
+        }
     }
+    else {
+        mText->SetColor(Vector3(0.5f, 0.5f, 0.5f));
+    }
+
     // Calcular posição do texto
     Vector2 textDrawPos = drawPos;
     switch (mTextAlign) {

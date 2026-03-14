@@ -1909,7 +1909,7 @@ void Player::UseFireBall() {
 }
 
 void Player::UseFireWisp() {
-    if (mCanFireBall && mElementalMode == ElementalMode::Fire) {
+    if (mCanFireWisp && mElementalMode == ElementalMode::Fire) {
         if (!mPrevSkill2Pressed &&
             mFireWispCooldownTimer >= mFireWispCooldownDuration &&
             mMana >= mFireWispManaCost &&

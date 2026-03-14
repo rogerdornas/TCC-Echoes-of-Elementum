@@ -29,6 +29,7 @@ public:
 	virtual void HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX);
 	virtual void HandleMouse(const SDL_Event& event);
 	virtual void HandleMousePress(const Vector2& virtualMousePos);
+	virtual void HandleMouseRelease(const Vector2& virtualMousePos);
 	virtual void HandleMouseMotion(const Vector2& virtualMousePos);
 
 	void SetPosition(Vector2 position) { mPos = position; }
@@ -54,10 +55,10 @@ public:
 	std::vector<UIText *> GetTexts() { return mTexts; }
 
     // Add a button to this screen
-	UIButton* AddButton(const std::string& name, const Vector2& pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, Vector2 textPos = Vector2::Zero, Vector3 textColor = Color::White);
-    UIText* AddText(const std::string& name, const Vector2& pos = Vector2::Zero, const Vector2& dims = Vector2::Zero, const int pointSize = 40, Vector3 color = Color::White, const int unsigned wrapLength = 1024);
+	UIButton* AddButton(const std::string& name, const Vector2& pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, bool useTextSize = false, Vector2 textPos = Vector2::Zero, Vector3 textColor = Color::White);
+    UIText* AddText(const std::string& name, const Vector2& pos = Vector2::Zero, const int pointSize = 40, Vector3 color = Color::White, const int unsigned wrapLength = 1024);
     UIImage* AddImage(const std::string& imagePath, const Vector2& pos, const Vector2& dims, const Vector3& color = Color::White);
-	class UISlider* AddSlider(const std::string& name, const Vector2& pos, const Vector2& size, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, std::function<void(float)> onValueChanged);
+	class UISlider* AddSlider(const std::string& name, const Vector2& pos, const Vector2& size, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, int textPointSize, int valuePointSize, std::function<void(float)> onValueChanged);
 
 	bool IsClosable() { return mIsClosable; }
 
@@ -78,6 +79,8 @@ protected:
 
 	bool mIsVisible;
 	bool mIsClosable;
+
+	UIButton* mDraggedButton;
 
 	// List of buttons, texts, and images
     int mSelectedButtonIndex;

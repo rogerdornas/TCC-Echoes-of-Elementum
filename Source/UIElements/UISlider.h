@@ -12,11 +12,15 @@ public:
              const Vector2& pos, const Vector2& size,
              const Vector2& sliderOffset, const Vector2& sliderSize,
              float minValue, float maxValue, float initialValue,
-             std::function<void(float)> onValueChanged);
+             int textPointSize, int valuePointSize,
+             std::function<void(float)> onValueChanged,
+             Renderer* renderer = nullptr);
 
     ~UISlider();
 
     void Draw(Renderer* renderer, const Vector2& screenPos) override;
+
+    bool IsDraggable() const override { return true; }
 
     //Calcula o clique baseado apenas na área da barra interna
     void OnMouseClick(const Vector2& mousePos) override;

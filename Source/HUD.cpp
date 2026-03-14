@@ -50,7 +50,6 @@ HUD::HUD(class Game* game, const std::string& fontName)
 
     mPlayerHealCount = AddText(std::to_string(mGame->GetPlayer()->GetHealCount()),
                                 Vector2(65, 138),
-                               Vector2(CHAR_WIDTH, WORD_HEIGHT),
                                 POINT_SIZE);
 
     if (mGame->GetPlayer()->GetHealCount() == 0) {
@@ -70,7 +69,6 @@ HUD::HUD(class Game* game, const std::string& fontName)
 
     mPlayerMoney = AddText(std::to_string(mGame->GetPlayer()->GetMoney()),
                                 Vector2::Zero,
-                               Vector2(CHAR_WIDTH, WORD_HEIGHT),
                                 POINT_SIZE);
     mPlayerMoney->SetPosition(Vector2(1790 + mPlayerMoney->GetSize().x / 2, 65));
 }

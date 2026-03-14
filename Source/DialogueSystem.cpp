@@ -26,7 +26,7 @@ DialogueSystem::DialogueSystem(class Game *game, const std::string &fontName, st
         Vector3 color = mLines[mCurrentLine].color;
         int wrapLength = GetSize().x * 0.9;
 
-        mDialogueText = AddText(text, Vector2::Zero,Vector2::Zero,
+        mDialogueText = AddText(text, Vector2::Zero,
                                 textPointSize, color, wrapLength);
         mDialogueText->SetPosition(GetSize() * 0.05f + mDialogueText->GetSize() / 2);
 
@@ -44,11 +44,11 @@ DialogueSystem::DialogueSystem(class Game *game, const std::string &fontName, st
         });
 
     if (mGame->GetIsPlayingOnKeyboard()) {
-        UIText* text = AddText("[ENTER]", Vector2::Zero, Vector2::Zero, static_cast<int>(20 * mGame->GetScale()));
+        UIText* text = AddText("[ENTER]", Vector2::Zero, static_cast<int>(20 * mGame->GetScale()));
         text->SetPosition(Vector2(GetSize().x * 0.953f + text->GetSize().x / 2, GetSize().y * 0.80f + text->GetSize().y / 2));
     }
     else {
-        UIText* text = AddText("[A]", Vector2::Zero, Vector2::Zero, static_cast<int>(20 * mGame->GetScale()));
+        UIText* text = AddText("[A]", Vector2::Zero, static_cast<int>(20 * mGame->GetScale()));
         text->SetPosition(Vector2(GetSize().x * 0.953f + text->GetSize().x / 2, GetSize().y * 0.80f + text->GetSize().y / 2));
     }
 
