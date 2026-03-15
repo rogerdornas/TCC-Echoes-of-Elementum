@@ -2,15 +2,15 @@
     "configs": {
         "master_audio": 0.5999999046325684,
         "music_audio": 0.5999999046325684,
-        "sfx_audio": 1.0
+        "sfx_audio": 0.5999999046325684
     },
     "game": {
         "last_checkpoint": {
-            "x": 1328.0,
-            "y": 5312.0
+            "x": 25296.0,
+            "y": 6080.0
         },
-        "scene": "Room0",
-        "total_play_time": 139842.65625
+        "scene": "Level1",
+        "total_play_time": 140482.546875
     },
     "player": {
         "can_dash": true,
@@ -20,7 +20,7 @@
         "death_counter": 399,
         "elemental_mode": "Fire",
         "max_jumps_in_air": 1,
-        "money": 34504
+        "money": 34861
     },
     "upgrades": {
         "fireball": true,

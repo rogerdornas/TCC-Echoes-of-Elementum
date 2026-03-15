@@ -70,18 +70,19 @@ void Ground::OnUpdate(float deltaTime) {
     if (mIsMoving) {
         mMovingTimer += deltaTime;
         if (mMovingTimer > mMovingDuration) {
-            mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() * -1);
-            mMovingTimer = 0;
+            mVelocity = mVelocity * -1.0f;
+            mMovingTimer -= mMovingDuration;
         }
+        float progress = mMovingTimer / mMovingDuration;
+        float smoothMultiplier = Math::PiOver2 * sinf(Math::Pi * progress);
+
+        mRigidBodyComponent->SetVelocity(mVelocity * smoothMultiplier);
     }
 }
 
 void Ground::SetIsMoving(bool isMoving) {
     mIsMoving = isMoving;
-    if (mIsMoving == true) {
-        mRigidBodyComponent->SetVelocity(mVelocity);
-    }
-    else {
+    if (!mIsMoving) {
         mRigidBodyComponent->SetVelocity(Vector2::Zero);
     }
 }
