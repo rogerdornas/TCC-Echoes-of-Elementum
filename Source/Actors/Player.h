@@ -39,7 +39,7 @@ public:
 
     void SetJumpEffects();
 
-    void SetElementalMode(ElementalMode mode);
+    void SetElementalMode(ElementalMode mode) { mElementalMode = mode; }
     ElementalMode GetElementalMode() { return mElementalMode; }
 
     bool GetIsOnGround() const { return mIsOnGround; }
@@ -134,6 +134,8 @@ private:
     void ResolveEnemyCollision();
 
     void UseDash();
+    void UseFrenzyMode();
+    void StopFrenzyMode();
     void UseGroundSlam();
     void GroundSlamImpact();
     void GroundSlamEffects();
@@ -208,6 +210,18 @@ private:
     float mLightningDashManaCost;
     float mLightningDashIFramesDuration;
     std::vector<class Enemy*> mEnemiesHitByCurrentDash;
+    class LightningEffect* mLightningDashEffect;
+    Vector2 mStartLightningDashPosition;
+
+    bool mCanFrenzyMode;
+    bool mIsOnFrenzyMode;
+    float mFrenzyModeDuration;
+    float mFrenzyModeTimer;
+    float mNormalSpeed;
+    float mFrenzyModeSpeed;
+    class LightningEffect* mFrenzyAuraEffect;
+    float mFrenzyAuraTimer;
+    float mFrenzyModeManaCost;
 
     bool mPrevSkill1Pressed;
     bool mPrevSkill2Pressed;
@@ -385,4 +399,5 @@ private:
     class ColliderComponent* mAABBComponent;
     class CombatBoxComponent* mCombatBoxComponent;
     class DashComponent* mDashComponent;
+    class GhostTrailComponent* mGhostTrailComponent;
 };

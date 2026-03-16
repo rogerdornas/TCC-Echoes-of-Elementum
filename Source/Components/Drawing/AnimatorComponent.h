@@ -27,6 +27,11 @@ public:
     void SetAnimation(const std::string& name);
     void ResetAnimationTimer() { mAnimTimer = 0; }
 
+    Vector4 GetCurrentTexRect();
+    class Texture* GetTexture() const { return mSpriteTexture; }
+    int GetWidth() const { return mWidth; }
+    int GetHeight() const { return mHeight; }
+
     // Use to pause/unpause the animation
     void SetIsPaused(bool pause) { mIsPaused = pause; }
 

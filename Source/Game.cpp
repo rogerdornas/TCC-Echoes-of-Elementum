@@ -55,6 +55,7 @@
 #include "Components/DashComponent.h"
 #include "Components/Drawing/AnimatorComponent.h"
 #include "Components/Drawing/DrawRopeComponent.h"
+#include "Components/Drawing/GhostTrailComponent.h"
 #include "Components/Drawing/RectComponent.h"
 #include "UIScreens/MainMenu.h"
 #include "UIScreens/PauseMenu.h"
@@ -384,6 +385,9 @@ void Game::ChangeScene()
             if (mPlayer->GetComponent<RectComponent>()) {
                 mPlayer->GetComponent<RectComponent>()->SetVisible(true);
             }
+            if (mPlayer->GetComponent<GhostTrailComponent>()) {
+                mPlayer->GetComponent<GhostTrailComponent>()->SetVisible(true);
+            }
         }
 
         // Guarda último level que o player estava
@@ -400,6 +404,9 @@ void Game::ChangeScene()
             }
             if (mPlayer->GetComponent<DrawRopeComponent>()) {
                 mPlayer->GetComponent<DrawRopeComponent>()->SetVisible(false);
+            }
+            if (mPlayer->GetComponent<GhostTrailComponent>()) {
+                mPlayer->GetComponent<GhostTrailComponent>()->SetVisible(false);
             }
         }
         mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);

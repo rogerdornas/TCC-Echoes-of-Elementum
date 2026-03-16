@@ -73,6 +73,14 @@ bool AnimatorComponent::LoadSpriteSheetData(const std::string& dataPath)
     return true;
 }
 
+Vector4 AnimatorComponent::GetCurrentTexRect() {
+    if (mAnimations.find(mAnimName) != mAnimations.end()) {
+        int spriteIdx = mAnimations.at(mAnimName)[static_cast<int>(mAnimTimer)];
+        return mSpriteSheetData[spriteIdx];
+    }
+    return Vector4::UnitRect;
+}
+
 void AnimatorComponent::Draw(Renderer* renderer)
 {
     if (mIsVisible)

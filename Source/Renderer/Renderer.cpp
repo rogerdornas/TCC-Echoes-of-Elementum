@@ -261,9 +261,14 @@ void Renderer::DrawGeometry(const Vector2 &position, const Vector2 &size, float 
 }
 
 void Renderer::DrawLine(const Vector2 &start, const Vector2 &end, const Vector3 &color,
-                        float thickness, const Vector2 &cameraPos, float alpha)
+                        float thickness, const Vector2 &cameraPos, float alpha, bool additiveBlending)
 {
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    if (additiveBlending) {
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE);
+    }
+    else {
+        glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    }
     Vector2 lineVector = end - start;
     float lineLength = lineVector.Length();
 

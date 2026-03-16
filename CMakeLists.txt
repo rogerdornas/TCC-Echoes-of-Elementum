@@ -214,6 +214,12 @@ add_executable(${PROJECT_NAME}
         Source/UIScreens/ControlMenu.h
         Source/UIScreens/DeleteProfileMenu.cpp
         Source/UIScreens/DeleteProfileMenu.h
+        Source/Components/Drawing/LightningDrawComponent.cpp
+        Source/Components/Drawing/LightningDrawComponent.h
+        Source/Actors/LightningEffect.cpp
+        Source/Actors/LightningEffect.h
+        Source/Components/Drawing/GhostTrailComponent.cpp
+        Source/Components/Drawing/GhostTrailComponent.h
 )
 
 

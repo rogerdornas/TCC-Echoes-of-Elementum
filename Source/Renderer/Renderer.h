@@ -38,7 +38,7 @@ public:
                       const Vector3 &color, const Vector2 &cameraPos, VertexArray *vertexArray, RendererMode mode);
 
 	void DrawLine(const Vector2 &start, const Vector2 &end, const Vector3 &color,
-						float thickness, const Vector2 &cameraPos, float alpha);
+						float thickness, const Vector2 &cameraPos, float alpha, bool additiveBlending = false);
 
 	void DrawFade(float alpha);
 

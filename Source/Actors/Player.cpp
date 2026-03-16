@@ -4,7 +4,6 @@
 
 #include "Player.h"
 #include <cfloat>
-
 #include "AirGlideEffect.h"
 #include "Checkpoint.h"
 #include "DashEffect.h"
@@ -12,10 +11,12 @@
 #include "Effect.h"
 #include "FireWisp.h"
 #include "HookPoint.h"
+#include "LightningEffect.h"
 #include "Mushroom.h"
 #include "PillarGround.h"
 #include "../Game.h"
 #include "../RadialMenu.h"
+#include "../Random.h"
 #include "../Actors/Sword.h"
 #include "../Actors/JumpEffect.h"
 #include "../Actors/FireBall.h"
@@ -28,6 +29,7 @@
 #include "../Components/Drawing/RectComponent.h"
 #include "../Components/Drawing/DrawRopeComponent.h"
 #include "../Components/CombatBoxComponent.h"
+#include "../Components/Drawing/GhostTrailComponent.h"
 
 Player::Player(Game* game)
     :Actor(game)
@@ -40,7 +42,7 @@ Player::Player(Game* game)
     ,mIsOnSpike(false)
     ,mIsOnMovingGround(false)
     ,mMovingGroundVelocity(Vector2::Zero)
-    ,mMoveSpeed(700 * mGame->GetScale())
+    ,mMoveSpeed(700)
     ,mMaxSpeedYNormal(1600)
 
     ,mMaxTimeOutOfGroundToJump(0.07)
@@ -81,8 +83,19 @@ Player::Player(Game* game)
     ,mLightningDashDuration(0.2f)
     ,mLightningDashCooldown(0.5f)
     ,mLightningDashDamage(5.0f)
-    ,mLightningDashManaCost(10.0f)
-    ,mLightningDashIFramesDuration(mLightningDashDuration + 0.1f)
+    ,mLightningDashManaCost(0.0f)
+    ,mLightningDashIFramesDuration(mLightningDashDuration + 0.2f)
+    ,mLightningDashEffect(nullptr)
+
+    ,mCanFrenzyMode(true)
+    ,mIsOnFrenzyMode(false)
+    ,mFrenzyModeDuration(10.0f)
+    ,mFrenzyModeTimer(0.0f)
+    ,mNormalSpeed(700.0f)
+    ,mFrenzyModeSpeed(850.0f)
+    ,mFrenzyAuraEffect(nullptr)
+    ,mFrenzyAuraTimer(0.2f)
+    ,mFrenzyModeManaCost(90.0f)
 
     ,mPrevSkill1Pressed(false)
     ,mPrevSkill2Pressed(false)
@@ -245,6 +258,7 @@ Player::Player(Game* game)
     ,mDrawComponent(nullptr)
     ,mDrawRopeComponent(nullptr)
     ,mCombatBoxComponent(nullptr)
+    ,mGhostTrailComponent(nullptr)
 {
     Vector2 v1(-mWidth / 2, -mHeight / 2);
     Vector2 v2(mWidth / 2, -mHeight / 2);
@@ -328,6 +342,8 @@ Player::Player(Game* game)
     mDrawComponent->SetAnimation("idle");
     mDrawComponent->SetAnimFPS(10.0f);
 
+    mGhostTrailComponent = new GhostTrailComponent(this, mDrawComponent);
+
     mDrawRopeComponent = new DrawRopeComponent(this, "../Assets/Sprites/Rope/Rope2.png");
     mDrawRopeComponent->SetNumSegments(mHookSegments);
     mDrawRopeComponent->SetAmplitude(mHookAmplitude);
@@ -362,6 +378,25 @@ void Player::SetJumpEffects() {
 
     // Dive Effect
     mDiveEffect = new DashEffect(mGame, this, 1000);
+
+    // LightningEffect
+    mLightningDashEffect = new LightningEffect(mGame, this, mDashDuration);
+    mLightningDashEffect->SetNumBolts(6);
+    mLightningDashEffect->SetSpeadRadius(30.0f);
+    mLightningDashEffect->SetGenerations(3);
+    mLightningDashEffect->SetMaxOffset(40.0f);
+    mLightningDashEffect->SetGlowThickness(10.0f);
+    mLightningDashEffect->SetCoreThickness(2.0f);
+
+    // Frenzy Aura Effect
+    mFrenzyAuraEffect = new LightningEffect(mGame, this, 0.06f);
+    mFrenzyAuraEffect->SetNumBolts(1);
+    mFrenzyAuraEffect->SetSpeadRadius(0);
+    mFrenzyAuraEffect->SetGenerations(3);
+    mFrenzyAuraEffect->SetMaxOffset(25.0f);
+    mFrenzyAuraEffect->SetDrawOrder(1003);
+    mFrenzyAuraEffect->SetGlowThickness(5.0f);
+    mFrenzyAuraEffect->SetCoreThickness(1.0f);
 
     // Ground Slam Impact Effect
     mGroundSlamImpactEffect = new GroundSlamImpactEffect(mGame, mGroundSlamRecoveryDuration * 1.8f);
@@ -672,6 +707,9 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             // Glide();
             UseFireWisp();
         }
+        if (mElementalMode == ElementalMode::Lightning) {
+            UseFrenzyMode();
+        }
     }
     else {
         if (mPrevSkill2Pressed && mIsGliding) {
@@ -854,6 +892,35 @@ void Player::OnUpdate(float deltaTime) {
     if (mIsLightningDashing) {
         if (!mDashComponent->GetIsDashing()) {
             mIsLightningDashing = false;
+        }
+        mLightningDashEffect->SetStartPosition(mStartLightningDashPosition);
+        mLightningDashEffect->SetEndPosition(GetPosition());
+    }
+
+    if (mIsOnFrenzyMode) {
+        mFrenzyModeTimer += deltaTime;
+
+        mDashComponent->SetDashSpeed(mLightningDashSpeed);
+        mDashComponent->SetDashDuration(mLightningDashDuration);
+        mDashComponent->SetDashCooldown(mLightningDashCooldown);
+
+        mFrenzyAuraTimer -= deltaTime;
+        if (mFrenzyAuraTimer <= 0.0f) {
+            mFrenzyAuraTimer = Random::GetFloatRange(0.04f, 0.08f);
+
+            // Sorteia dois pontos aleatórios ao redor do jogador
+            float angle1 = Random::GetFloatRange(0, Math::TwoPi);
+            float angle2 = Random::GetFloatRange(0, Math::TwoPi);
+            float radius = 35.0f; // Tamanho da aura
+
+            Vector2 p1 = GetPosition() + Vector2(cosf(angle1) * radius, sinf(angle1) * radius);
+            Vector2 p2 = GetPosition() + Vector2(cosf(angle2) * radius, sinf(angle2) * radius);
+
+            mFrenzyAuraEffect->StartEffect(p1, p2);
+        }
+
+        if (mFrenzyModeTimer >= mFrenzyModeDuration) {
+            StopFrenzyMode();
         }
     }
 
@@ -1175,6 +1242,7 @@ void Player::OnUpdate(float deltaTime) {
         mAABBComponent->SetActive(false);
         mCombatBoxComponent->SetAllBoxesActive(false);
         mRigidBodyComponent->SetVelocity(Vector2::Zero);
+        StopFrenzyMode();
         mKnockBackTimer = mKnockBackDuration;
         mInvulnerableTimer = mInvulnerableDuration;
         mIsHealing = false;
@@ -1445,6 +1513,7 @@ void Player::ResolveGroundCollision() {
                         mGame->GetCamera()->StartCameraShake(mGroundSlamCameraShakeDuration, mGroundSlamCameraShakeStrength);
                     }
                     mDashComponent->StopDash();
+                    mLightningDashEffect->StopEffect();
 
                     ReceiveHit(10, collisionNormal, DamageType::Environment);
                 }
@@ -1595,6 +1664,7 @@ void Player::Stop() {
         mDrawRopeComponent->SetVisible(false);
     }
     mDashComponent->StopDash();
+    mLightningDashEffect->StopEffect();
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
 }
 
@@ -1628,8 +1698,10 @@ void Player::UseDash() {
                     mDrawRopeComponent->SetVisible(false);
                 }
 
-                if (mElementalMode == ElementalMode::Lightning && mMana >= mLightningDashManaCost) {
+                if (mIsOnFrenzyMode && mMana >= mLightningDashManaCost) {
                     mIsLightningDashing = true;
+                    mStartLightningDashPosition = GetPosition();
+                    mLightningDashEffect->StartEffect(mStartLightningDashPosition, GetPosition());
                     mIFramesTimer = mLightningDashIFramesDuration;
                     mEnemiesHitByCurrentDash.clear();
                     mMana -= mLightningDashManaCost;
@@ -1646,6 +1718,36 @@ void Player::UseDash() {
             }
         }
     }
+}
+
+void Player::UseFrenzyMode() {
+    if (mElementalMode == ElementalMode::Lightning) {
+        if (mCanFrenzyMode &&
+            !mIsOnFrenzyMode &&
+            !mIsGroundSlamStarting &&
+            !mIsGroundSlamRecovering &&
+            !mIsDiving &&
+            !mIsHookThrowing &&
+            !mIsHooking &&
+            !mDashComponent->GetIsDashing() &&
+            mMana >= mFrenzyModeManaCost)
+        {
+            mGhostTrailComponent->SetIsEmitting(true);
+            mIsOnFrenzyMode = true;
+            mMoveSpeed = mFrenzyModeSpeed;
+            mFrenzyModeTimer = 0;
+            mMana -= mFrenzyModeManaCost;
+        }
+    }
+}
+
+void Player::StopFrenzyMode() {
+    mGhostTrailComponent->SetIsEmitting(false);
+    mMoveSpeed = mNormalSpeed;
+    mDashComponent->SetDashSpeed(mDashSpeed);
+    mDashComponent->SetDashDuration(mDashDuration);
+    mDashComponent->SetDashCooldown(mDashCooldown);
+    mIsOnFrenzyMode = false;
 }
 
 void Player::UseGroundSlam() {
@@ -2093,21 +2195,6 @@ void Player::UseHook(HookPoint* nearestHookPoint) {
     }
 }
 
-void Player::SetElementalMode(ElementalMode mode) {
-    mElementalMode = mode;
-    if (mElementalMode == ElementalMode::Lightning) {
-        mDashComponent->SetDashSpeed(mLightningDashSpeed);
-        mDashComponent->SetDashDuration(mLightningDashDuration);
-        mDashComponent->SetDashCooldown(mLightningDashCooldown);
-    }
-    else {
-        mDashComponent->SetDashSpeed(mDashSpeed);
-        mDashComponent->SetDashDuration(mDashDuration);
-        mDashComponent->SetDashCooldown(mDashCooldown);
-    }
-}
-
-
 void Player::OpenElementalMenu() {
     if (!mRadialMenu) {
         mRadialMenu = new RadialMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", 250.0f);
@@ -2285,6 +2372,7 @@ void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType dam
         mIsDiving = false;
         mDiveEffect->StopDash();
         mDashComponent->StopDash();
+        mLightningDashEffect->StopEffect();
         mIsInvulnerable = true;
         mHurtTimer = 0;
 
