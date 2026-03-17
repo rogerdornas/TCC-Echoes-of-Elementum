@@ -12,6 +12,7 @@
 #include "FireWisp.h"
 #include "HookPoint.h"
 #include "LightningEffect.h"
+#include "LightningSpear.h"
 #include "Mushroom.h"
 #include "PillarGround.h"
 #include "../Game.h"
@@ -96,6 +97,12 @@ Player::Player(Game* game)
     ,mFrenzyAuraEffect(nullptr)
     ,mFrenzyAuraTimer(0.2f)
     ,mFrenzyModeManaCost(90.0f)
+
+    ,mCanLightningSpear(true)
+    ,mLightningSpearCooldownDuration(1.0f)
+    ,mLightningSpearCooldownTimer(mLightningSpearCooldownDuration)
+    ,mLightningSpearManaCost(20.0f)
+    ,mLightningSpear(nullptr)
 
     ,mPrevSkill1Pressed(false)
     ,mPrevSkill2Pressed(false)
@@ -401,6 +408,8 @@ void Player::SetJumpEffects() {
     // Ground Slam Impact Effect
     mGroundSlamImpactEffect = new GroundSlamImpactEffect(mGame, mGroundSlamRecoveryDuration * 1.8f);
 
+    // LightningSpear
+    mLightningSpear = new LightningSpear(mGame);
     // Glide Effect
     mGlideEffect = new AirGlideEffect(mGame, this);
 }
@@ -685,6 +694,9 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         if (mElementalMode == ElementalMode::Ice) {
             UseFreeze(up, down);
         }
+        if (mElementalMode == ElementalMode::Lightning) {
+            UseLightningSpear();
+        }
         if (mElementalMode == ElementalMode::Earth) {
             if (down && !mIsOnGround) {
                 UseGroundSlam();
@@ -782,6 +794,10 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mFireWispCooldownTimer < mFireWispCooldownDuration) {
         mFireWispCooldownTimer += deltaTime;
+    }
+
+    if (mLightningSpearCooldownTimer < mLightningSpearCooldownDuration) {
+        mLightningSpearCooldownTimer += deltaTime;
     }
 
     if (mGlideCooldownTimer < mGlideCooldownDuration) {
@@ -1673,6 +1689,7 @@ void Player::ResetCooldown() {
     mSwordCooldownTimer = mSwordCooldownDuration;
     mFireBallCooldownTimer = mFireBallCooldownDuration;
     mFireWispCooldownTimer = mFireWispCooldownDuration;
+    mLightningSpearCooldownTimer = mLightningSpearCooldownDuration;
 }
 
 void Player::UseDash() {
@@ -1748,6 +1765,23 @@ void Player::StopFrenzyMode() {
     mDashComponent->SetDashDuration(mDashDuration);
     mDashComponent->SetDashCooldown(mDashCooldown);
     mIsOnFrenzyMode = false;
+}
+
+void Player::UseLightningSpear() {
+    if (mCanLightningSpear && mElementalMode == ElementalMode::Lightning) {
+        if (!mPrevSkill1Pressed &&
+            mLightningSpearCooldownTimer >= mLightningSpearCooldownDuration &&
+            mMana >= mLightningSpearManaCost &&
+            !mDashComponent->GetIsDashing() && !mIsDiving)
+        {
+            mLightningSpear->SetPosition(GetPosition());
+            mLightningSpear->SetRotation(GetRotation());
+            mLightningSpear->SetTransformRotation(GetRotation());
+            mLightningSpear->Activate();
+            mMana -= mLightningSpearManaCost;;
+            mLightningSpearCooldownTimer = 0;
+        }
+    }
 }
 
 void Player::UseGroundSlam() {

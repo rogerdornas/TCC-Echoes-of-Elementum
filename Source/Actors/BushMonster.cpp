@@ -70,12 +70,13 @@ void BushMonster::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
     // Gravidade
     mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
                                              mRigidBodyComponent->GetVelocity().y + mGravity * deltaTime));
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             mGame->GetHUD()->StartBossFight(this);
             if (!mGame->GetBossMusicHandle().IsValid()) {
@@ -97,7 +98,7 @@ void BushMonster::OnUpdate(float deltaTime) {
         mIdleDuration = 0.8f;
         mDashSpeed = 2000 * mGame->GetScale();
     }
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

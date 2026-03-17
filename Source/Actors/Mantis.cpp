@@ -72,8 +72,9 @@ void Mantis::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             if (mDrawComponent) {
                 mDrawComponent->SetAnimFPS(10.0f);
@@ -94,7 +95,7 @@ void Mantis::OnUpdate(float deltaTime) {
     if (Died()) {
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

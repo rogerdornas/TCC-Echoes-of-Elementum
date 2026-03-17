@@ -17,7 +17,7 @@ public:
         Exploding
     };
 
-    FireBall(class Game *game);
+    FireBall(Game* game);
     ~FireBall() override;
 
     void OnUpdate(float deltaTime) override;

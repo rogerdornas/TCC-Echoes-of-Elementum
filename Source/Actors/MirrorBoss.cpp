@@ -123,6 +123,7 @@ void MirrorBoss::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
     if (mCloneEnemy && mCloneEnemy->GetState() == ActorState::Destroy && mAlreadySpawnedEnemy) {
         mSpawnPortalTimer = 0;
@@ -132,7 +133,7 @@ void MirrorBoss::OnUpdate(float deltaTime) {
         mBossState = State::Stop;
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             mGame->GetHUD()->StartBossFight(this);
             if (!mGame->GetBossMusicHandle().IsValid()) {
@@ -161,7 +162,7 @@ void MirrorBoss::OnUpdate(float deltaTime) {
         TriggerBossDefeat();
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

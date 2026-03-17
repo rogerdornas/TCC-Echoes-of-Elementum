@@ -62,8 +62,9 @@ void EnemySimple::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             if (mDrawComponent) {
                 mDrawComponent->SetAnimFPS(15.0f);
@@ -84,7 +85,7 @@ void EnemySimple::OnUpdate(float deltaTime) {
     if (Died()) {
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

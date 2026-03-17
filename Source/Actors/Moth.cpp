@@ -129,8 +129,9 @@ void Moth::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             mGame->GetHUD()->StartBossFight(this);
             if (!mGame->GetBossMusicHandle().IsValid()) {
@@ -150,7 +151,7 @@ void Moth::OnUpdate(float deltaTime) {
 
     ChangeGround(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

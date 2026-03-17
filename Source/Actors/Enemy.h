@@ -27,12 +27,15 @@ public:
 
     bool GetEnemyCollision() const { return mEnemyCollision; }
 
+    void Stun(float duration = 0.2f);
+
     void ReceiveFreeze(float freezeDamage, float freezeIntensity);
-    bool IsFrozen() { return mIsFrozen; }
+    bool IsFrozen() const { return mIsFrozen; }
     void Unfreeze();
 
 protected:
     void SetSize(float width, float height);
+    void ManageStun(float deltaTime);
     void ManageFreezing(float deltaTime);
     bool Died();
     virtual void ResolveEnemyCollision();
@@ -51,6 +54,11 @@ protected:
     float mMaxHealthPoints;
     float mHealthPoints;
     float mContactDamage;
+
+    bool mIsStunned;
+    float mStunDuration;
+    float mStunTimer;
+    class LightningEffect* mStunEffect;
 
     bool mIsFrozen;
     float mFreezeMax;

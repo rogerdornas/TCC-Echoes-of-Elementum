@@ -6,8 +6,9 @@
 #include "../Game.h"
 #include "../Components/Drawing/LightningDrawComponent.h"
 
-LightningEffect::LightningEffect(Game *game, Actor *owner, float duration)
+LightningEffect::LightningEffect(Game *game, Actor *owner, float duration, bool destroyAfterEffect)
     :Actor(game)
+    ,mDestroyAfterEffect(destroyAfterEffect)
     ,mEffectDuration(duration)
     ,mEffectTimer(mEffectDuration)
     ,mNumBolts(1)
@@ -25,19 +26,21 @@ LightningEffect::LightningEffect(Game *game, Actor *owner, float duration)
 void LightningEffect::OnUpdate(float deltaTime) {
     mEffectTimer += deltaTime;
     if (mEffectTimer >= mEffectDuration) {
-        if (mDrawComponent) {
+        if (mDestroyAfterEffect) {
+            SetState(ActorState::Destroy);
+        }
+        else if (mDrawComponent) {
             mDrawComponent->SetVisible(false);
         }
+        return;
     }
-    else if (mOwner->GetState() == ActorState::Active) {
-        if (mDrawComponent) {
-            mDrawComponent->SetVisible(true);
-            mLightningGenerationIntervalTimer += deltaTime;
-            if (mLightningGenerationIntervalTimer >= mLightningGenerationIntervalDuration) {
-                mDrawComponent->SetPositions(mStartPos, mEndPos);
-                mDrawComponent->GenerateLightningBolts(mStartPos, mEndPos, mNumBolts, mSpreadRadius, mGenerations, mMaxOffset);
-                mLightningGenerationIntervalTimer -= mLightningGenerationIntervalDuration;
-            }
+    if (mDrawComponent) {
+        mDrawComponent->SetVisible(true);
+        mLightningGenerationIntervalTimer += deltaTime;
+        if (mLightningGenerationIntervalTimer >= mLightningGenerationIntervalDuration) {
+            mDrawComponent->SetPositions(mStartPos, mEndPos);
+            mDrawComponent->GenerateLightningBolts(mStartPos, mEndPos, mNumBolts, mSpreadRadius, mGenerations, mMaxOffset);
+            mLightningGenerationIntervalTimer -= mLightningGenerationIntervalDuration;
         }
     }
 }

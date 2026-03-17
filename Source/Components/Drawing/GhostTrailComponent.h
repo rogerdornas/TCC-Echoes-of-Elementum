@@ -24,6 +24,8 @@ public:
     void Draw(class Renderer* renderer) override;
 
     void SetIsEmitting(bool emitting) { mIsEmitting = emitting; }
+    void SetSpawnInterval(float spawnInterval) { mSpawnInterval = spawnInterval; }
+    void SetGhostDuration(float ghostDuration) { mGhostDuration = ghostDuration; }
 
 private:
     class AnimatorComponent* mTargetAnimator;
@@ -32,6 +34,7 @@ private:
     bool mIsEmitting;
     float mSpawnTimer;
     float mSpawnInterval; // Tempo entre gerar um fantasma e outro
+    float mGhostDuration;
 
     Vector3 mGhostColor;
 

@@ -220,6 +220,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/LightningEffect.h
         Source/Components/Drawing/GhostTrailComponent.cpp
         Source/Components/Drawing/GhostTrailComponent.h
+        Source/Actors/LightningSpear.cpp
+        Source/Actors/LightningSpear.h
 )
 
 

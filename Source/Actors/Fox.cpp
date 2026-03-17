@@ -116,6 +116,7 @@ void Fox::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
     // Gravidade
     if (!mIsOnGround) {
@@ -124,7 +125,7 @@ void Fox::OnUpdate(float deltaTime) {
                                                  + mGravity * deltaTime));
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             mGame->GetHUD()->StartBossFight(this);
             if (!mGame->GetBossMusicHandle().IsValid()) {
@@ -142,7 +143,7 @@ void Fox::OnUpdate(float deltaTime) {
         TriggerBossDefeat();
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

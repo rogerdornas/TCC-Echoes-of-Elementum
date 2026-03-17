@@ -134,8 +134,9 @@ void DragonFly::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         MovementAfterPlayerSpotted(deltaTime);
     }
 
@@ -143,7 +144,7 @@ void DragonFly::OnUpdate(float deltaTime) {
     if (Died()) {
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

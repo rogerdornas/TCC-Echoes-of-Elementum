@@ -136,6 +136,7 @@ private:
     void UseDash();
     void UseFrenzyMode();
     void StopFrenzyMode();
+    void UseLightningSpear();
     void UseGroundSlam();
     void GroundSlamImpact();
     void GroundSlamEffects();
@@ -222,6 +223,12 @@ private:
     class LightningEffect* mFrenzyAuraEffect;
     float mFrenzyAuraTimer;
     float mFrenzyModeManaCost;
+
+    bool mCanLightningSpear;
+    float mLightningSpearCooldownDuration;
+    float mLightningSpearCooldownTimer;
+    float mLightningSpearManaCost;
+    class LightningSpear* mLightningSpear;
 
     bool mPrevSkill1Pressed;
     bool mPrevSkill2Pressed;

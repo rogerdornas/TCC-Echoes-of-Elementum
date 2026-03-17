@@ -5,6 +5,7 @@
 #include "Enemy.h"
 #include "Effect.h"
 #include "Light.h"
+#include "LightningEffect.h"
 #include "Money.h"
 #include "ParticleSystem.h"
 #include "../Game.h"
@@ -31,6 +32,10 @@ Enemy::Enemy(Game* game)
     ,mPlayerSpotted(false)
     ,mOffscreenLimit(0.2f)
     ,mEnemyCollision(true)
+    ,mIsStunned(false)
+    ,mStunDuration(0.3f)
+    ,mStunTimer(0.0f)
+    ,mStunEffect(nullptr)
     ,mIsFrozen(false)
     ,mFreezeMax(50.0f)
     ,mFreezeCount(0)
@@ -107,6 +112,48 @@ void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
 
     if (IsOnScreen()) {
         mGame->GetAudio()->PlayVariantSound("HitEnemy/HitEnemy.wav", 4);
+    }
+}
+
+void Enemy::Stun(float duration) {
+    if (mIsStunned) {
+        return;
+    }
+
+    mRigidBodyComponent->SetVelocity(Vector2::Zero);
+    mStunDuration = duration;
+    mStunTimer = 0;
+    mIsStunned = true;
+
+    Vector2 startPosition(GetPosition() - Vector2(mWidth * 0.5f, 0.0f));
+    Vector2 endPosition(GetPosition() + Vector2(mWidth * 0.5f, 0.0f));
+    mStunEffect = new LightningEffect(mGame, this, mStunDuration);
+    mStunEffect->StartEffect(startPosition, endPosition);
+    mStunEffect->SetLightningGenerationIntervalDuration(0.05f);
+    mStunEffect->SetNumBolts(4);
+    mStunEffect->SetSpeadRadius(5.0f);
+    mStunEffect->SetGenerations(4);
+    mStunEffect->SetMaxOffset(mHeight * 0.8f);
+    mStunEffect->SetGlowThickness(5.0f);
+    mStunEffect->SetCoreThickness(1.0f);
+}
+
+void Enemy::ManageStun(float deltaTime) {
+    if (mIsStunned) {
+        mStunTimer += deltaTime;
+        mRigidBodyComponent->SetVelocity(Vector2::Zero);
+        if (mDrawComponent) {
+            mDrawComponent->SetAnimFPS(0);
+        }
+        if (mStunEffect) {
+            Vector2 startPosition(GetPosition() - Vector2(mWidth * 0.5f, 0.0f));
+            Vector2 endPosition(GetPosition() + Vector2(mWidth * 0.5f, 0.0f));
+            mStunEffect->SetStartPosition(startPosition);
+            mStunEffect->SetEndPosition(endPosition);
+        }
+        if (mStunTimer >= mStunDuration) {
+            mIsStunned = false;
+        }
     }
 }
 
@@ -201,6 +248,9 @@ bool Enemy::Died() {
     }
     if (mHealthPoints <= 0) {
         SetState(ActorState::Destroy);
+        if (mStunEffect) {
+            mStunEffect->StopEffect();
+        }
 
         if (IsOnScreen()) {
             mGame->GetAudio()->PlaySound("KillEnemy/KillEnemy1.wav");

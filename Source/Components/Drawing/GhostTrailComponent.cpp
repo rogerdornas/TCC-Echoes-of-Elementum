@@ -8,12 +8,13 @@
 #include "AnimatorComponent.h"
 
 GhostTrailComponent::GhostTrailComponent(Actor* owner, AnimatorComponent* animator, int drawOrder)
-    : DrawComponent(owner, drawOrder)
-    , mTargetAnimator(animator)
-    , mIsEmitting(false)
-    , mSpawnTimer(0.0f)
-    , mSpawnInterval(0.04f)
-    , mGhostColor(Vector3(0.0f, 0.8f, 1.0f))
+    :DrawComponent(owner, drawOrder)
+    ,mTargetAnimator(animator)
+    ,mIsEmitting(false)
+    ,mSpawnTimer(0.0f)
+    ,mSpawnInterval(0.04f)
+    ,mGhostDuration(0.2f)
+    ,mGhostColor(Vector3(0.0f, 0.8f, 1.0f))
     ,mAdditiveBlending(true)
 {
 }
@@ -42,7 +43,7 @@ void GhostTrailComponent::Update(float deltaTime) {
             newGhost.rotation = mOwner->GetTransformRotation();
             newGhost.texRect = mTargetAnimator->GetCurrentTexRect();
             newGhost.lifeTimer = 0.0f;
-            newGhost.maxLifetime = 0.2f;
+            newGhost.maxLifetime = mGhostDuration;
 
             mSnapshots.push_back(newGhost);
         }

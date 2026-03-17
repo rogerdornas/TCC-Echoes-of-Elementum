@@ -121,6 +121,7 @@ void Frog::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
     Vector2 v1;
     Vector2 v2;
@@ -176,7 +177,7 @@ void Frog::OnUpdate(float deltaTime) {
         mDrawComponent->SetHeight(mHeight * 1.5f / 1.2f);
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             mGame->GetHUD()->StartBossFight(this);
             if (!mGame->GetBossMusicHandle().IsValid()) {
@@ -194,7 +195,7 @@ void Frog::OnUpdate(float deltaTime) {
         TriggerBossDefeat();
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

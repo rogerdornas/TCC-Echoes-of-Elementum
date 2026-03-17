@@ -3,7 +3,6 @@
 //
 
 #include "FireBall.h"
-
 #include "Light.h"
 #include "ParticleSystem.h"
 #include "../Game.h"
@@ -223,7 +222,7 @@ void FireBall::Activate() {
 void FireBall::Deactivate() {
     mIsFromEnemy = false;
     mRigidBodyComponent->SetVelocity(Vector2::Zero);
-    mAABBComponent->SetActive(false); // desativa colisão
+    mAABBComponent->SetActive(false);
     mCombatBoxComponent->SetAllBoxesActive(false);
     mFireballState = State::Deactivate;
     mDurationTimer = 0;

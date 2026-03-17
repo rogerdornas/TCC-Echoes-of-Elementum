@@ -60,8 +60,9 @@ void LittleBat::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             if (mDrawComponent) {
                 mDrawComponent->SetAnimFPS(14.0f);
@@ -77,7 +78,7 @@ void LittleBat::OnUpdate(float deltaTime) {
     if (Died()) {
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }

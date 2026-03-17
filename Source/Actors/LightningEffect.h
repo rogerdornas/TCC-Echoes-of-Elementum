@@ -9,7 +9,7 @@
 class LightningEffect : public Actor
 {
 public:
-    LightningEffect(Game* game, Actor* owner, float duration);
+    LightningEffect(Game* game, Actor* owner, float duration, bool destroyAfterEffect = false);
 
     void OnUpdate(float deltaTime) override;
     void SetStartPosition(Vector2 startPos) { mStartPos = startPos; }
@@ -19,12 +19,14 @@ public:
     void SetDrawOrder(int drawOrder) const;
     void SetGlowThickness(float thickness) const;
     void SetCoreThickness(float thickness) const;
+    void SetLightningGenerationIntervalDuration(float duration) { mLightningGenerationIntervalDuration = duration; }
     void SetNumBolts(int numBolts) { mNumBolts = numBolts; }
     void SetSpeadRadius (float  spreadRadius) { mSpreadRadius = spreadRadius; }
     void SetGenerations (int generations) { mGenerations = generations; }
     void SetMaxOffset(float maxOffset) { mMaxOffset = maxOffset; }
 
 private:
+    bool mDestroyAfterEffect;
     Vector2 mStartPos;
     Vector2 mEndPos;
     float mEffectDuration;

@@ -1,26 +1,26 @@
 {
     "configs": {
-        "master_audio": 1.0,
-        "music_audio": 1.0,
+        "master_audio": 0.8999999761581421,
+        "music_audio": 0.8999999761581421,
         "sfx_audio": 1.0
     },
     "game": {
         "last_checkpoint": {
-            "x": 1904.0,
-            "y": 1728.0
+            "x": 848.0,
+            "y": 4672.0
         },
-        "scene": "Level3",
-        "total_play_time": 147586.6875
+        "scene": "Level5",
+        "total_play_time": 151075.265625
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 416,
+        "death_counter": 421,
         "elemental_mode": "Lightning",
         "max_jumps_in_air": 1,
-        "money": 38593
+        "money": 40397
     },
     "upgrades": {
         "fireball": true,

@@ -98,8 +98,9 @@ void Mushroom::OnUpdate(float deltaTime) {
     ResolveGroundCollision();
     ResolveEnemyCollision();
     ManageFreezing(deltaTime);
+    ManageStun(deltaTime);
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mPlayerSpotted) {
             MovementAfterPlayerSpotted(deltaTime);
         }
@@ -120,7 +121,7 @@ void Mushroom::OnUpdate(float deltaTime) {
     if (Died()) {
     }
 
-    if (!mIsFrozen) {
+    if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
             ManageAnimations();
         }
@@ -203,8 +204,8 @@ void Mushroom::MovementAfterPlayerSpotted(float deltaTime) {
             Attack(deltaTime);
         break;
 
-        case State::Stun:
-            Stun(deltaTime);
+        case State::StunState:
+            StunState(deltaTime);
         break;
     }
 }
@@ -281,7 +282,7 @@ void Mushroom::Attack(float deltaTime) {
     mAttackTimer += deltaTime;
     if (mAttackTimer >= mAttackDuration) {
         mAttackTimer = 0;
-        mMushroomState = State::Stun;
+        mMushroomState = State::StunState;
         return;
     }
 
@@ -295,7 +296,7 @@ void Mushroom::Attack(float deltaTime) {
     }
 }
 
-void Mushroom::Stun(float deltaTime) {
+void Mushroom::StunState(float deltaTime) {
     mStumTimer += deltaTime;
     if (mStumTimer >= mStumDuration) {
         mStumTimer = 0;
@@ -325,7 +326,7 @@ void Mushroom::ManageAnimations() {
         mDrawComponent->SetAnimation("run");
         mDrawComponent->SetAnimFPS(8);
     }
-    else if (mMushroomState == State::Stun) {
+    else if (mMushroomState == State::StunState) {
         mDrawComponent->SetAnimation("stun");
         mDrawComponent->SetAnimFPS(12);
     }
