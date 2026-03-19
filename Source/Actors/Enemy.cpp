@@ -130,7 +130,7 @@ void Enemy::Stun(float duration) {
     mStunEffect = new LightningEffect(mGame, this, mStunDuration);
     mStunEffect->StartEffect(startPosition, endPosition);
     mStunEffect->SetLightningGenerationIntervalDuration(0.05f);
-    mStunEffect->SetNumBolts(4);
+    mStunEffect->SetNumBolts(6);
     mStunEffect->SetSpeadRadius(5.0f);
     mStunEffect->SetGenerations(4);
     mStunEffect->SetMaxOffset(mHeight * 0.8f);

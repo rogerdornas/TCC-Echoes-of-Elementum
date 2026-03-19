@@ -25,7 +25,7 @@ LightningSpear::LightningSpear(Game *game)
     ,mLightningEffectWidth(250.0f)
     ,mNumEnemiesHit(0)
     ,mMaxNumEnemiesHit(6)
-    ,mShockChainRange(600.0f)
+    ,mShockChainRange(500.0f)
     ,mDrawComponent(nullptr)
     ,mRigidBodyComponent(nullptr)
     ,mAABBComponent(nullptr)
@@ -121,10 +121,10 @@ void LightningSpear::ResolveGroundCollision() {
                 auto* explosion = new LightningEffect(mGame, this, 0.2f);
                 explosion->StartEffect(startPosition, endPosition);
                 explosion->SetLightningGenerationIntervalDuration(0.05f);
-                explosion->SetNumBolts(4);
+                explosion->SetNumBolts(8);
                 explosion->SetSpeadRadius(5.0f);
                 explosion->SetGenerations(4);
-                explosion->SetMaxOffset(60.0f);
+                explosion->SetMaxOffset(50.0f);
                 explosion->SetGlowThickness(5.0f);
                 explosion->SetCoreThickness(1.0f);
                 Deactivate();

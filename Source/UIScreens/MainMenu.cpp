@@ -14,8 +14,6 @@ MainMenu::MainMenu(class Game *game, const std::string &fontName, bool isClosabl
     SetSize(Vector2(1920, 1080));
     SetPosition(Vector2::Zero);
 
-    // AddImage("../Assets/Sprites/Background/Menu6.png", GetSize() / 2, GetSize());
-
     AddButton("INICIAR JOGO", Vector2(846, 639), Vector2::Zero, 34, UIButton::TextPos::Center,
         [this]() {
             new SelectProfileMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");

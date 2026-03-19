@@ -131,6 +131,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mWaveManager(nullptr)
     ,mNewButtonText(nullptr)
     ,mWaitingForKey(false)
+    ,mWaitingForButton(false)
     ,mIsPlayingFinalCutscene(false)
     ,mCurrentCutscene(nullptr)
     ,mBackGroundTexture(nullptr)
@@ -430,7 +431,7 @@ void Game::ChangeScene()
         mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Menu6.png");
 
         // Initialize main menu actors
-        auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
+        auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
         background->AddImage("../Assets/Sprites/Background/Menu6.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
         new MainMenu(this, "../Assets/Fonts/K2D-Bold.ttf", false);
 
@@ -1608,6 +1609,142 @@ void Game::RebindKeyboard(UIText *text, Action action) {
     mBindingAction = action;
 }
 
+void Game::RebindController(UIText *text, Action action) {
+    mWaitingForButton = true;
+    mNewButtonText = text;
+    mBindingAction = action;
+}
+
+void Game::CancelRebind() {
+    if (mNewButtonText) {
+        std::string oldName = "N/A";
+
+        if (mWaitingForKey) {
+            oldName = SDL_GetScancodeName(mInputBindings[mBindingAction].key);
+        }
+        else if (mWaitingForButton) {
+            auto binding = mInputBindings[mBindingAction];
+            if (binding.btn != SDL_CONTROLLER_BUTTON_INVALID) {
+                const char* name = SDL_GameControllerGetStringForButton(binding.btn);
+                if (name) oldName = name;
+            }
+            else if (binding.axis != SDL_CONTROLLER_AXIS_INVALID) {
+                const char* name = SDL_GameControllerGetStringForAxis(binding.axis);
+                if (name) oldName = name;
+            }
+        }
+
+        mNewButtonText->SetPointSize(34);
+        mNewButtonText->SetText(oldName);
+        mNewButtonText = nullptr;
+    }
+
+    mWaitingForKey = false;
+    mWaitingForButton = false;
+}
+
+void Game::ResetKeyboardToDefault() {
+    mInputBindings[Action::Up].key        = SDL_SCANCODE_UP;
+    mInputBindings[Action::Down].key      = SDL_SCANCODE_DOWN;
+    mInputBindings[Action::MoveLeft].key  = SDL_SCANCODE_LEFT;
+    mInputBindings[Action::MoveRight].key = SDL_SCANCODE_RIGHT;
+    mInputBindings[Action::Jump].key      = SDL_SCANCODE_Z;
+    mInputBindings[Action::Attack].key    = SDL_SCANCODE_X;
+    mInputBindings[Action::Dash].key      = SDL_SCANCODE_C;
+    mInputBindings[Action::Skill1].key    = SDL_SCANCODE_A;
+    mInputBindings[Action::Skill2].key    = SDL_SCANCODE_F;
+    mInputBindings[Action::Heal].key      = SDL_SCANCODE_V;
+    mInputBindings[Action::Hook].key      = SDL_SCANCODE_S;
+    mInputBindings[Action::OpenStore].key = SDL_SCANCODE_SPACE;
+    mInputBindings[Action::Map].key       = SDL_SCANCODE_M;
+    mInputBindings[Action::Look].key      = SDL_SCANCODE_LCTRL;
+
+    SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+}
+
+void Game::ResetControllerToDefault() {
+    mInputBindings[Action::Jump].btn  = SDL_CONTROLLER_BUTTON_A;
+    mInputBindings[Action::Jump].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Attack].btn  = SDL_CONTROLLER_BUTTON_X;
+    mInputBindings[Action::Attack].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Dash].btn  = SDL_CONTROLLER_BUTTON_RIGHTSHOULDER;
+    mInputBindings[Action::Dash].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Skill1].btn  = SDL_CONTROLLER_BUTTON_B;
+    mInputBindings[Action::Skill1].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Skill2].btn  = SDL_CONTROLLER_BUTTON_Y;
+    mInputBindings[Action::Skill2].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Heal].btn  = SDL_CONTROLLER_BUTTON_INVALID;
+    mInputBindings[Action::Heal].axis = SDL_CONTROLLER_AXIS_TRIGGERRIGHT;
+
+    mInputBindings[Action::Hook].btn  = SDL_CONTROLLER_BUTTON_LEFTSHOULDER;
+    mInputBindings[Action::Hook].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::OpenStore].btn  = SDL_CONTROLLER_BUTTON_RIGHTSTICK;
+    mInputBindings[Action::OpenStore].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Map].btn  = SDL_CONTROLLER_BUTTON_BACK;
+    mInputBindings[Action::Map].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Look].btn  = SDL_CONTROLLER_BUTTON_INVALID;
+    mInputBindings[Action::Look].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+}
+
+void Game::SwapKeyboardBinding(SDL_Scancode newKey) {
+    SDL_Scancode oldKey = mInputBindings[mBindingAction].key;
+
+    // Procura se alguma outra ação já usa essa tecla
+    for (auto& pair : mInputBindings) {
+        if (pair.first != mBindingAction && pair.second.key == newKey) {
+            // A ação antiga recebe a tecla que estávamos usando
+            pair.second.key = oldKey;
+            break;
+        }
+    }
+
+    // Define a nova tecla para a ação atual
+    mInputBindings[mBindingAction].key = newKey;
+    SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+}
+
+void Game::SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameControllerAxis newAxis) {
+    auto oldBinding = mInputBindings[mBindingAction];
+
+    // Procura se alguma outra ação já usa esse botão ou eixo
+    for (auto& pair : mInputBindings) {
+        if (pair.first != mBindingAction) {
+            bool conflict = false;
+
+            // Checa conflito de botão
+            if (newBtn != SDL_CONTROLLER_BUTTON_INVALID && pair.second.btn == newBtn) {
+                conflict = true;
+            }
+            // Checa conflito de eixo (gatilhos)
+            if (newAxis != SDL_CONTROLLER_AXIS_INVALID && pair.second.axis == newAxis) {
+                conflict = true;
+            }
+
+            if (conflict) {
+                // Passa o mapeamento antigo completo para a ação conflitante
+                pair.second.btn = oldBinding.btn;
+                pair.second.axis = oldBinding.axis;
+                break;
+            }
+        }
+    }
+
+    // Define o novo mapeamento para a ação atual
+    mInputBindings[mBindingAction].btn = newBtn;
+    mInputBindings[mBindingAction].axis = newAxis;
+    SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+}
+
 void Game::LoadObjects(const std::string &fileName) {
     std::ifstream file(fileName);
     if (!file.is_open()) {
@@ -2732,22 +2869,24 @@ void Game::ProcessInput()
                 if (mWaitingForKey) {
                     SDL_Scancode sc = event.key.keysym.scancode;
 
-                    // converte scancode para string legível
-                    std::string keyName = SDL_GetScancodeName(sc);
-
-                    // atualiza o texto do botão
-                    if (mNewButtonText) {
-                        mNewButtonText->SetPointSize(34);
-                        mNewButtonText->SetText(keyName);
+                    if (sc == SDL_SCANCODE_ESCAPE) {
+                        CancelRebind();
+                        break;
                     }
 
-                    mInputBindings[mBindingAction].key = sc;
+                    SwapKeyboardBinding(sc);
 
-                    SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+                    if (!mUIStack.empty()) {
+                        mUIStack.back()->RefreshTexts();
+                    }
 
                     // sai do modo de captura
                     mWaitingForKey = false;
                     mNewButtonText = nullptr;
+                }
+                else if (mWaitingForButton) {
+                    CancelRebind();
+                    break;
                 }
 
                 else if (mGamePlayState != GamePlayState::GameOver) {
@@ -2792,10 +2931,7 @@ void Game::ProcessInput()
                             }
                             else {
                                 TogglePause();
-                                auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-                                auto* backgroundImage = background->AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
-                                backgroundImage->SetAlpha(0.6f);
-                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf", background);
+                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
                             }
                         }
                         else if (mGameScene == GameScene::MainMenu) {
@@ -2847,11 +2983,34 @@ void Game::ProcessInput()
                 break;
 
             case SDL_CONTROLLERBUTTONDOWN:
-                if (mWaitingForKey) {
+                if (mWaitingForButton) {
+                    auto button = event.cbutton.button;
+                    if (!(button == SDL_CONTROLLER_BUTTON_A ||
+                        button == SDL_CONTROLLER_BUTTON_B ||
+                        button == SDL_CONTROLLER_BUTTON_X ||
+                        button == SDL_CONTROLLER_BUTTON_Y ||
+                        button == SDL_CONTROLLER_BUTTON_LEFTSHOULDER ||
+                        button == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER))
+                    {
+                        CancelRebind();
+                        break;
+                    }
+
+                    SwapControllerBinding(static_cast<SDL_GameControllerButton>(button), SDL_CONTROLLER_AXIS_INVALID);
+
+                    if (!mUIStack.empty()) {
+                        mUIStack.back()->RefreshTexts();
+                    }
+
+                    mWaitingForButton = false;
+                    mNewButtonText = nullptr;
+                }
+                else if (mWaitingForKey) {
+                    CancelRebind();
                     break;
                 }
 
-                if (mGamePlayState != GamePlayState::GameOver) {
+                else if (mGamePlayState != GamePlayState::GameOver) {
                     mIsPlayingOnKeyboard = false;
 
                     // Handle key press for UI screens
@@ -2886,10 +3045,7 @@ void Game::ProcessInput()
                             }
                             else {
                                 TogglePause();
-                                auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-                                auto* backgroundImage = background->AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
-                                backgroundImage->SetAlpha(0.6f);
-                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf", background);
+                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
                             }
                         }
                     }
@@ -2937,11 +3093,31 @@ void Game::ProcessInput()
                 break;
 
             case SDL_CONTROLLERAXISMOTION:
-                if (mWaitingForKey) {
+                if (mWaitingForButton) {
+                    // Verifica se é o gatilho esquerdo ou direito
+                    if (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
+                        event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT)
+                    {
+                        if (event.caxis.value > DEAD_ZONE) {
+                            SwapControllerBinding(SDL_CONTROLLER_BUTTON_INVALID, static_cast<SDL_GameControllerAxis>(event.caxis.axis));
+
+                            if (!mUIStack.empty()) {
+                                mUIStack.back()->RefreshTexts();
+                            }
+
+                            mWaitingForButton = false;
+                            mNewButtonText = nullptr;
+                        }
+                    }
+                }
+                else if (mWaitingForKey) {
+                    if (Math::Abs(event.caxis.value) > DEAD_ZONE) {
+                        CancelRebind();
+                    }
                     break;
                 }
 
-                if (mGamePlayState != GamePlayState::GameOver) {
+                else if (mGamePlayState != GamePlayState::GameOver) {
                     if (Math::Abs(event.caxis.value) > DEAD_ZONE) {
                         mIsPlayingOnKeyboard = false;
                     }
@@ -3050,7 +3226,7 @@ void Game::ProcessInput()
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
-                if (mWaitingForKey) {
+                if (mWaitingForKey || mWaitingForButton) {
                     break;
                 }
 
@@ -3085,7 +3261,7 @@ void Game::ProcessInput()
                 break;
 
             case SDL_MOUSEMOTION:
-                if (mWaitingForKey) {
+                if (mWaitingForKey || mWaitingForButton) {
                     break;
                 }
                 mIsPlayingOnKeyboard = true;
@@ -3263,11 +3439,6 @@ void Game::UpdateGame()
 
     mAudio->Update(deltaTime);
 
-    // Garante que a UI screen do topo esteja visível
-    if (!mUIStack.empty()) {
-        mUIStack.back()->SetIsVisible(true);
-    }
-
     // Reinsert UI screens
     for (auto ui : mUIStack) {
         // if (ui != mHUD) {
@@ -3287,6 +3458,11 @@ void Game::UpdateGame()
         } else {
             ++iter;
         }
+    }
+
+    // Garante que a UI screen do topo esteja visível
+    if (!mUIStack.empty()) {
+        mUIStack.back()->SetIsVisible(true);
     }
 
     if (mGamePlayState == GamePlayState::Playing ||
@@ -3686,7 +3862,6 @@ std::string Game::ActionToString(Action action) {
         case Action::Hook:      return "Hook";
         case Action::Pause:     return "Pause";
         case Action::OpenStore: return "OpenStore";
-        case Action::Confirm:   return "Confirm";
         case Action::Map:       return "Map";
         default:                return "Unknown";
     }
@@ -3707,10 +3882,9 @@ Game::Action Game::StringToAction(const std::string &str) {
     if (str == "Hook")      return Action::Hook;
     if (str == "Pause")     return Action::Pause;
     if (str == "OpenStore") return Action::OpenStore;
-    if (str == "Confirm")   return Action::Confirm;
     if (str == "Map")       return Action::Map;
 
-    return Action::Confirm;
+    return Action::Invalid;
 }
 
 void Game::SaveBindingsToFile(const std::string &filename) {
@@ -3724,6 +3898,7 @@ void Game::SaveBindingsToFile(const std::string &filename) {
         nlohmann::json bindingJson;
         bindingJson["key"] = static_cast<int>(binding.key);
         bindingJson["btn"] = static_cast<int>(binding.btn);
+        bindingJson["axis"] = static_cast<int>(binding.axis);
 
         // Usa a string da Action como chave no JSON principal
         j[ActionToString(action)] = bindingJson;
@@ -3747,10 +3922,10 @@ void Game::LoadBindingsFromFile(const std::string &filename) {
         std::cerr << "Arquivo de controles '" << filename << "' nao encontrado. Criando controles padrao." << std::endl;
 
         // --- Crie aqui seus controles padrão ---
-        mInputBindings[Action::MoveLeft]  = {SDL_SCANCODE_A, SDL_CONTROLLER_BUTTON_DPAD_LEFT};
-        mInputBindings[Action::MoveRight] = {SDL_SCANCODE_D, SDL_CONTROLLER_BUTTON_DPAD_RIGHT};
-        mInputBindings[Action::Jump]      = {SDL_SCANCODE_SPACE, SDL_CONTROLLER_BUTTON_A};
-        mInputBindings[Action::Attack]    = {SDL_SCANCODE_J, SDL_CONTROLLER_BUTTON_X};
+        mInputBindings[Action::MoveLeft]  = {SDL_SCANCODE_A, SDL_CONTROLLER_BUTTON_DPAD_LEFT, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::MoveRight] = {SDL_SCANCODE_D, SDL_CONTROLLER_BUTTON_DPAD_RIGHT, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::Jump]      = {SDL_SCANCODE_SPACE, SDL_CONTROLLER_BUTTON_A, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::Attack]    = {SDL_SCANCODE_J, SDL_CONTROLLER_BUTTON_X, SDL_CONTROLLER_AXIS_INVALID};
         // ... adicione todos os outros padrões
 
         // Salva os padrões para que o arquivo exista na próxima vez
@@ -3770,6 +3945,7 @@ void Game::LoadBindingsFromFile(const std::string &filename) {
 
             SDL_Scancode scancode = SDL_SCANCODE_UNKNOWN;
             SDL_GameControllerButton button = SDL_CONTROLLER_BUTTON_INVALID;
+            SDL_GameControllerAxis axis = SDL_CONTROLLER_AXIS_INVALID;
 
             // Verifica se as chaves "key" e "btn" existem antes de tentar acessá-las
             if (value.contains("key") && value["key"].is_number()) {
@@ -3778,8 +3954,11 @@ void Game::LoadBindingsFromFile(const std::string &filename) {
             if (value.contains("btn") && value["btn"].is_number()) {
                 button = static_cast<SDL_GameControllerButton>(value["btn"].get<int>());
             }
+            if (value.contains("axis") && value["axis"].is_number()) {
+                axis = static_cast<SDL_GameControllerAxis>(value["axis"].get<int>());
+            }
 
-            mInputBindings[action] = {scancode, button};
+            mInputBindings[action] = {scancode, button, axis};
         }
 
     } catch (nlohmann::json::parse_error& e) {
@@ -3793,14 +3972,25 @@ bool Game::IsActionPressed(Action action, const Uint8 *keyboardState, SDL_GameCo
     auto& binding = mInputBindings[action];
 
     // Teclado
-    if (keyboardState[binding.key]) return true;
+    if (binding.key != SDL_SCANCODE_UNKNOWN && keyboardState[binding.key]) return true;
 
     // Controle
-    if (controller && SDL_GameControllerGetButton(controller, binding.btn)) return true;
+    if (controller) {
+        // Checa Botão Tradicional
+        if (binding.btn != SDL_CONTROLLER_BUTTON_INVALID) {
+            if (SDL_GameControllerGetButton(controller, binding.btn)) return true;
+        }
+
+        // Checa Gatilho (Eixo)
+        if (binding.axis != SDL_CONTROLLER_AXIS_INVALID) {
+            Sint16 axisValue = SDL_GameControllerGetAxis(controller, binding.axis);
+            // Se o gatilho for pressionado mais que o threshold
+            if (axisValue > DEAD_ZONE) return true;
+        }
+    }
 
     return false;
 }
-
 
 void Game::GenerateOutput()
 {

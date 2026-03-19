@@ -1,61 +1,71 @@
 {
     "Attack": {
+        "axis": -1,
         "btn": 2,
         "key": 27
     },
-    "Confirm": {
-        "btn": 3,
-        "key": 9
-    },
     "Dash": {
+        "axis": -1,
         "btn": 10,
         "key": 6
     },
     "Down": {
+        "axis": -1,
         "btn": 12,
         "key": 81
     },
     "Heal": {
-        "btn": 8,
+        "axis": 5,
+        "btn": -1,
         "key": 25
     },
     "Hook": {
+        "axis": -1,
         "btn": 9,
         "key": 22
     },
     "Jump": {
+        "axis": -1,
         "btn": 0,
         "key": 29
     },
     "Look": {
+        "axis": -1,
         "btn": -1,
         "key": 224
     },
     "Map": {
+        "axis": -1,
         "btn": 4,
-        "key": 43
+        "key": 16
     },
     "MoveLeft": {
+        "axis": -1,
         "btn": 13,
         "key": 80
     },
     "MoveRight": {
+        "axis": -1,
         "btn": 14,
         "key": 79
     },
     "OpenStore": {
-        "btn": 3,
+        "axis": -1,
+        "btn": 8,
         "key": 44
     },
     "Skill1": {
+        "axis": -1,
         "btn": 1,
         "key": 4
     },
     "Skill2": {
+        "axis": -1,
         "btn": 3,
         "key": 9
     },
     "Up": {
+        "axis": -1,
         "btn": 11,
         "key": 82
     }

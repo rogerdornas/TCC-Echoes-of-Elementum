@@ -15,33 +15,36 @@ OptionsMenu::OptionsMenu(class Game *game, const std::string &fontName, bool isC
     SetSize(Vector2(1920, 1080));
     SetPosition(Vector2::Zero);
 
+    auto* background = AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(1920, 1080) * 0.5f, Vector2(1920, 1080));
+    background->SetAlpha(0.6f);
+
     auto* text = AddText("OPÇÕES", Vector2::Zero,  34);
-    text->SetPosition(Vector2(960, 368));
+    text->SetPosition(Vector2(960, 290));
 
-    AddImage("../Assets/Sprites/Menus/titulo_sublinhado.png", Vector2(960, 400), Vector2(360, 30));
+    AddImage("../Assets/Sprites/Menus/titulo_sublinhado.png", Vector2(960, 322), Vector2(360, 30));
 
-    AddButton("VÍDEO", Vector2(901, 438), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("VÍDEO", Vector2(901, 360), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         new VideoMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         mIsVisible = false;
     }
     , true);
 
-    AddButton("TECLADO", Vector2(869, 510), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("TECLADO", Vector2(869, 432), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         new KeyboardMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         mIsVisible = false;
     }
     , true);
 
-    AddButton("CONTROLE", Vector2(860, 577), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("CONTROLE", Vector2(860, 499), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         new ControlMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         mIsVisible = false;
     }
     , true);
 
-    AddButton("ÁUDIO", Vector2(898, 654), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("ÁUDIO", Vector2(898, 576), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         new AudioMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         mIsVisible = false;

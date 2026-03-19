@@ -8,12 +8,14 @@
 #include "OptionsMenu.h"
 #include "../Game.h"
 
-PauseMenu::PauseMenu(class Game *game, const std::string &fontName, UIScreen* background, bool isClosable)
+PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosable)
     :UIScreen(game, fontName, isClosable)
-    ,mBackGround(background)
 {
     SetSize(Vector2(1920, 1080));
     SetPosition(Vector2::Zero);
+
+    auto* background = AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(1920, 1080) * 0.5f, Vector2(1920, 1080));
+    background->SetAlpha(0.6f);
 
     AddButton("CONTINUAR", Vector2(856, 445), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
@@ -42,9 +44,4 @@ PauseMenu::PauseMenu(class Game *game, const std::string &fontName, UIScreen* ba
         mIsVisible = false;
     }
     , true);
-}
-
-void PauseMenu::Close() {
-    UIScreen::Close();
-    mBackGround->Close();
 }

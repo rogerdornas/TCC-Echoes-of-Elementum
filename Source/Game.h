@@ -83,13 +83,14 @@ public:
         Hook,
         Pause,
         OpenStore,
-        Confirm,
-        Map
+        Map,
+        Invalid
     };
 
     struct InputBinding {
-        SDL_Scancode key;              // Teclado
-        SDL_GameControllerButton btn;  // Controle
+        SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
+        SDL_GameControllerButton btn = SDL_CONTROLLER_BUTTON_INVALID;
+        SDL_GameControllerAxis axis = SDL_CONTROLLER_AXIS_INVALID;
     };
 
     Game(int windowWidth, int windowHeight, int FPS);
@@ -185,6 +186,10 @@ public:
     void BackToMenu();
     void ResetPlayerAndStore();
     void RebindKeyboard(UIText* text, Action action);
+    void RebindController(UIText* text, Action action);
+    void CancelRebind();
+    void ResetKeyboardToDefault();
+    void ResetControllerToDefault();
 
     int GetFPS() const { return mFPS; }
 
@@ -296,6 +301,9 @@ private:
     void LoadConfirmQuitGameMenu();
     void LoadLoadGameMenu();
 
+    void SwapKeyboardBinding(SDL_Scancode newKey);
+    void SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameControllerAxis newAxis);
+
     void ChangeResolution(float oldScale);
 
     // All the actors in the game
@@ -359,6 +367,7 @@ private:
     UIText* mNewButtonText;
     bool mWaitingForKey;
     Action mBindingAction;
+    bool mWaitingForButton;
 
     std::unordered_map<Action, InputBinding> mInputBindings;
 

@@ -11,6 +11,9 @@ ConfirmBackToMenu::ConfirmBackToMenu(class Game *game, const std::string &fontNa
     SetSize(Vector2(1920, 1080));
     SetPosition(Vector2::Zero);
 
+    auto* background = AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(1920, 1080) * 0.5f, Vector2(1920, 1080));
+    background->SetAlpha(0.6f);
+
     auto* text = AddText("VOLTAR AO MENU?", Vector2::Zero,  34);
     text->SetPosition(Vector2(960, 463));
 

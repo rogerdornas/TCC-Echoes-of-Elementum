@@ -222,6 +222,8 @@ add_executable(${PROJECT_NAME}
         Source/Components/Drawing/GhostTrailComponent.h
         Source/Actors/LightningSpear.cpp
         Source/Actors/LightningSpear.h
+        Source/UIScreens/RemapControllerMenu.cpp
+        Source/UIScreens/RemapControllerMenu.h
 )
 
 

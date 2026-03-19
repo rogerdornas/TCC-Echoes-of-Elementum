@@ -53,6 +53,7 @@ public:
 
 	// Texts getter
 	std::vector<UIText *> GetTexts() { return mTexts; }
+	virtual void RefreshTexts() {}
 
     // Add a button to this screen
 	UIButton* AddButton(const std::string& name, const Vector2& pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, bool useTextSize = false, Vector2 textPos = Vector2::Zero, Vector3 textColor = Color::White);

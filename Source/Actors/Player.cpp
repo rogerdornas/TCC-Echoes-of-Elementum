@@ -388,7 +388,7 @@ void Player::SetJumpEffects() {
 
     // LightningEffect
     mLightningDashEffect = new LightningEffect(mGame, this, mDashDuration);
-    mLightningDashEffect->SetNumBolts(6);
+    mLightningDashEffect->SetNumBolts(7);
     mLightningDashEffect->SetSpeadRadius(30.0f);
     mLightningDashEffect->SetGenerations(3);
     mLightningDashEffect->SetMaxOffset(40.0f);
@@ -397,6 +397,7 @@ void Player::SetJumpEffects() {
 
     // Frenzy Aura Effect
     mFrenzyAuraEffect = new LightningEffect(mGame, this, 0.06f);
+    mFrenzyAuraEffect->SetLightningGenerationIntervalDuration(0.02f);
     mFrenzyAuraEffect->SetNumBolts(1);
     mFrenzyAuraEffect->SetSpeadRadius(0);
     mFrenzyAuraEffect->SetGenerations(3);
@@ -496,8 +497,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
 
     bool skill2 = mGame->IsActionPressed(Game::Action::Skill2, state, &controller);
 
-    bool heal = mGame->IsActionPressed(Game::Action::Heal, state, &controller) ||
-                SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERRIGHT) > 10000;
+    bool heal = mGame->IsActionPressed(Game::Action::Heal, state, &controller);
 
     bool hook = mGame->IsActionPressed(Game::Action::Hook, state, &controller);
 

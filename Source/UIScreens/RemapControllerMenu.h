@@ -1,18 +1,20 @@
 //
-// Created by roger on 13/03/2026.
+// Created by roger on 17/03/2026.
 //
 
 #pragma once
 
+#include "../Game.h"
 #include "../UIElements/UIScreen.h"
 
-class KeyboardMenu : public UIScreen
+class RemapControllerMenu : public UIScreen
 {
 public:
-    KeyboardMenu(class Game* game, const std::string& fontName, bool isClosable = true);
+    RemapControllerMenu(class Game* game, const std::string& fontName, bool isClosable = true);
     void Draw(class Renderer *renderer) override;
-
+    void Close() override;
 private:
+    std::string GetBindingText(Game::Action action) const;
     void RefreshTexts() override;
 
     Vector2 mButtonSize;
@@ -22,5 +24,4 @@ private:
     Vector2 mTextPos;
     Vector2 mTextPos2;
 };
-
 
