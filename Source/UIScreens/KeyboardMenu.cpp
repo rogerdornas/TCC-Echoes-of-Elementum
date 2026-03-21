@@ -195,16 +195,16 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 5);
 
 
-    button = AddButton("OLHAR", mButtonPos2 + Vector2(0, mButtonSize.y * 6), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("TROCAR MODO", mButtonPos2 + Vector2(0, mButtonSize.y * 6), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
         GetTexts()[14]->SetText("...");
         GetTexts()[14]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 6);
-        mGame->RebindKeyboard(GetTexts()[14], Game::Action::Look);
+        mGame->RebindKeyboard(GetTexts()[14], Game::Action::ChangeMode);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Look].key), Vector2::Zero, 34);
+    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::ChangeMode].key), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 6);
 
 
@@ -261,5 +261,5 @@ void KeyboardMenu::RefreshTexts() {
     GetTexts()[11]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Hook].key));
     GetTexts()[12]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::OpenStore].key));
     GetTexts()[13]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Map].key));
-    GetTexts()[14]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Look].key));
+    GetTexts()[14]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::ChangeMode].key));
 }

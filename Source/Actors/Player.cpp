@@ -501,7 +501,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
 
     bool hook = mGame->IsActionPressed(Game::Action::Hook, state, &controller);
 
-    bool radialMenu = SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_TRIGGERLEFT) > 10000;
+    bool radialMenu = mGame->IsActionPressed(Game::Action::ChangeMode, state, &controller);
 
 
     if (mInvertControls) {
@@ -716,11 +716,13 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             UsePillar();
         }
         if (mElementalMode == ElementalMode::Fire) {
-            // Glide();
             UseFireWisp();
         }
         if (mElementalMode == ElementalMode::Lightning) {
             UseFrenzyMode();
+        }
+        if (mElementalMode == ElementalMode::Ice) {
+            Glide();
         }
     }
     else {
@@ -1774,6 +1776,16 @@ void Player::UseLightningSpear() {
             mMana >= mLightningSpearManaCost &&
             !mDashComponent->GetIsDashing() && !mIsDiving)
         {
+            if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
+                if (mWallSlideSide == WallSlideSide::left) {
+                    SetRotation(Math::Pi);
+                    SetScale(Vector2(-1, 1));
+                }
+                if (mWallSlideSide == WallSlideSide::right) {
+                    SetRotation(0);
+                    SetScale(Vector2(1, 1));
+                }
+            }
             mLightningSpear->SetPosition(GetPosition());
             mLightningSpear->SetRotation(GetRotation());
             mLightningSpear->SetTransformRotation(GetRotation());
@@ -1879,7 +1891,7 @@ void Player::GroundSlamEffects() {
 
 void Player::Glide() {
     if (mCanGlide &&
-        mElementalMode == ElementalMode::Fire &&
+        mElementalMode == ElementalMode::Ice &&
         mGlideCooldownTimer >= mGlideCooldownDuration &&
         !mIsOnGround &&
         !mIsWallSliding &&

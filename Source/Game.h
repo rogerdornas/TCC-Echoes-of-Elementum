@@ -69,21 +69,21 @@ public:
     };
 
     enum class Action {
-        MoveLeft,
-        MoveRight,
         Up,
         Down,
-        Look,
+        MoveLeft,
+        MoveRight,
         Jump,
-        Dash,
         Attack,
+        Dash,
         Skill1,
         Skill2,
         Heal,
         Hook,
-        Pause,
         OpenStore,
         Map,
+        Look,
+        ChangeMode,
         Invalid
     };
 

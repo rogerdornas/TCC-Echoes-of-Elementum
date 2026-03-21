@@ -336,10 +336,10 @@ void Store::LoadStoreMessage() {
 
     UIText* text;
     if (mGame->GetIsPlayingOnKeyboard()) {
-        text = mStoreMessage->AddText("PRESSIONE [ESPAÇO] PARA ABRIR A LOJA", Vector2::Zero, static_cast<int>(30));
+        text = mStoreMessage->AddText(std::string("PRESSIONE [") + SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::OpenStore].key) + std::string("] PARA ABRIR A LOJA"), Vector2::Zero, 30);
     }
     else {
-        text = mStoreMessage->AddText("PRESSIONE [LS] PARA ABRIR A LOJA", Vector2::Zero, static_cast<int>(30));
+        text = mStoreMessage->AddText(std::string("PRESSIONE [") + SDL_GameControllerGetStringForButton(mGame->GetInputBinding()[Game::Action::OpenStore].btn) + std::string("] PARA ABRIR A LOJA"), Vector2::Zero, 30);
     }
     text->SetPosition(Vector2(mStoreMessage->GetSize().x / 2, 35.0f));
     mStoreMessageOpened = true;

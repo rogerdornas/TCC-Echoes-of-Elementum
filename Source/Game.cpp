@@ -1644,20 +1644,21 @@ void Game::CancelRebind() {
 }
 
 void Game::ResetKeyboardToDefault() {
-    mInputBindings[Action::Up].key        = SDL_SCANCODE_UP;
-    mInputBindings[Action::Down].key      = SDL_SCANCODE_DOWN;
-    mInputBindings[Action::MoveLeft].key  = SDL_SCANCODE_LEFT;
-    mInputBindings[Action::MoveRight].key = SDL_SCANCODE_RIGHT;
-    mInputBindings[Action::Jump].key      = SDL_SCANCODE_Z;
-    mInputBindings[Action::Attack].key    = SDL_SCANCODE_X;
-    mInputBindings[Action::Dash].key      = SDL_SCANCODE_C;
-    mInputBindings[Action::Skill1].key    = SDL_SCANCODE_A;
-    mInputBindings[Action::Skill2].key    = SDL_SCANCODE_F;
-    mInputBindings[Action::Heal].key      = SDL_SCANCODE_V;
-    mInputBindings[Action::Hook].key      = SDL_SCANCODE_S;
-    mInputBindings[Action::OpenStore].key = SDL_SCANCODE_SPACE;
-    mInputBindings[Action::Map].key       = SDL_SCANCODE_M;
-    mInputBindings[Action::Look].key      = SDL_SCANCODE_LCTRL;
+    mInputBindings[Action::Up].key         = SDL_SCANCODE_UP;
+    mInputBindings[Action::Down].key       = SDL_SCANCODE_DOWN;
+    mInputBindings[Action::MoveLeft].key   = SDL_SCANCODE_LEFT;
+    mInputBindings[Action::MoveRight].key  = SDL_SCANCODE_RIGHT;
+    mInputBindings[Action::Jump].key       = SDL_SCANCODE_Z;
+    mInputBindings[Action::Attack].key     = SDL_SCANCODE_X;
+    mInputBindings[Action::Dash].key       = SDL_SCANCODE_C;
+    mInputBindings[Action::Skill1].key     = SDL_SCANCODE_A;
+    mInputBindings[Action::Skill2].key     = SDL_SCANCODE_F;
+    mInputBindings[Action::Heal].key       = SDL_SCANCODE_V;
+    mInputBindings[Action::Hook].key       = SDL_SCANCODE_S;
+    mInputBindings[Action::OpenStore].key  = SDL_SCANCODE_SPACE;
+    mInputBindings[Action::Map].key        = SDL_SCANCODE_M;
+    mInputBindings[Action::Look].key       = SDL_SCANCODE_LCTRL;
+    mInputBindings[Action::ChangeMode].key = SDL_SCANCODE_LSHIFT;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
@@ -1692,6 +1693,9 @@ void Game::ResetControllerToDefault() {
 
     mInputBindings[Action::Look].btn  = SDL_CONTROLLER_BUTTON_INVALID;
     mInputBindings[Action::Look].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::ChangeMode].btn  = SDL_CONTROLLER_BUTTON_INVALID;
+    mInputBindings[Action::ChangeMode].axis = SDL_CONTROLLER_AXIS_TRIGGERLEFT;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
@@ -2922,7 +2926,7 @@ void Game::ProcessInput()
                                         break;
                                     }
                                 }
-                                if (mPauseMenu->GetState() == UIScreen::UIState::Closing) {
+                                if (mPauseMenu && mPauseMenu->GetState() == UIScreen::UIState::Closing) {
                                     TogglePause();
                                 }
                                 if (mStore->StoreOpened()) {
@@ -3063,7 +3067,7 @@ void Game::ProcessInput()
                                         break;
                                     }
                                 }
-                                if (mPauseMenu->GetState() == UIScreen::UIState::Closing) {
+                                if (mPauseMenu && mPauseMenu->GetState() == UIScreen::UIState::Closing) {
                                     TogglePause();
                                 }
                                 if (mStore->StoreOpened()) {
@@ -3848,41 +3852,41 @@ void Game::PlayFinalEvilCutscene() {
 
 std::string Game::ActionToString(Action action) {
     switch (action) {
-        case Action::MoveLeft:  return "MoveLeft";
-        case Action::MoveRight: return "MoveRight";
-        case Action::Up:        return "Up";
-        case Action::Down:      return "Down";
-        case Action::Look:      return "Look";
-        case Action::Jump:      return "Jump";
-        case Action::Dash:      return "Dash";
-        case Action::Attack:    return "Attack";
-        case Action::Skill1:    return "Skill1";
-        case Action::Skill2:    return "Skill2";
-        case Action::Heal:      return "Heal";
-        case Action::Hook:      return "Hook";
-        case Action::Pause:     return "Pause";
-        case Action::OpenStore: return "OpenStore";
-        case Action::Map:       return "Map";
-        default:                return "Unknown";
+        case Action::Up:         return "Up";
+        case Action::Down:       return "Down";
+        case Action::MoveLeft:   return "MoveLeft";
+        case Action::MoveRight:  return "MoveRight";
+        case Action::Jump:       return "Jump";
+        case Action::Attack:     return "Attack";
+        case Action::Dash:       return "Dash";
+        case Action::Skill1:     return "Skill1";
+        case Action::Skill2:     return "Skill2";
+        case Action::Heal:       return "Heal";
+        case Action::Hook:       return "Hook";
+        case Action::OpenStore:  return "OpenStore";
+        case Action::Map:        return "Map";
+        case Action::Look:       return "Look";
+        case Action::ChangeMode: return "ChangeMode";
+        default:                 return "Unknown";
     }
 }
 
 Game::Action Game::StringToAction(const std::string &str) {
-    if (str == "MoveLeft")  return Action::MoveLeft;
-    if (str == "MoveRight") return Action::MoveRight;
-    if (str == "Up")        return Action::Up;
-    if (str == "Down")      return Action::Down;
-    if (str == "Look")      return Action::Look;
-    if (str == "Jump")      return Action::Jump;
-    if (str == "Dash")      return Action::Dash;
-    if (str == "Attack")    return Action::Attack;
-    if (str == "Skill1")    return Action::Skill1;
-    if (str == "Skill2")    return Action::Skill2;
-    if (str == "Heal")      return Action::Heal;
-    if (str == "Hook")      return Action::Hook;
-    if (str == "Pause")     return Action::Pause;
-    if (str == "OpenStore") return Action::OpenStore;
-    if (str == "Map")       return Action::Map;
+    if (str == "Up")         return Action::Up;
+    if (str == "Down")       return Action::Down;
+    if (str == "MoveLeft")   return Action::MoveLeft;
+    if (str == "MoveRight")  return Action::MoveRight;
+    if (str == "Jump")       return Action::Jump;
+    if (str == "Attack")     return Action::Attack;
+    if (str == "Dash")       return Action::Dash;
+    if (str == "Skill1")     return Action::Skill1;
+    if (str == "Skill2")     return Action::Skill2;
+    if (str == "Heal")       return Action::Heal;
+    if (str == "Hook")       return Action::Hook;
+    if (str == "OpenStore")  return Action::OpenStore;
+    if (str == "Map")        return Action::Map;
+    if (str == "Look")       return Action::Look;
+    if (str == "ChangeMode") return Action::ChangeMode;
 
     return Action::Invalid;
 }

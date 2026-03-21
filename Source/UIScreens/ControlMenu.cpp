@@ -120,21 +120,21 @@ std::string ControlMenu::GetActionTextForAxis(SDL_GameControllerAxis axis) {
 
 std::string ControlMenu::TranslateAction(Game::Action action) {
     switch (action) {
-        case Game::Action::MoveLeft:  return "ESQUERDA";
-        case Game::Action::MoveRight: return "DIREITA";
-        case Game::Action::Up:        return "CIMA";
-        case Game::Action::Down:      return "BAIXO";
-        case Game::Action::Look:      return "OLHAR";
-        case Game::Action::Jump:      return "PULO";
-        case Game::Action::Dash:      return "AVANCO";
-        case Game::Action::Attack:    return "ATAQUE";
-        case Game::Action::Skill1:    return "HABILIDADE 1";
-        case Game::Action::Skill2:    return "HABILIDADE 2";
-        case Game::Action::Heal:      return "CURA";
-        case Game::Action::Hook:      return "GANCHO";
-        case Game::Action::Pause:     return "PAUSAR";
-        case Game::Action::OpenStore: return "LOJA";
-        case Game::Action::Map:       return "MAPA";
-        default:                      return "---";
+        case Game::Action::Up:         return "CIMA";
+        case Game::Action::Down:       return "BAIXO";
+        case Game::Action::MoveLeft:   return "ESQUERDA";
+        case Game::Action::MoveRight:  return "DIREITA";
+        case Game::Action::Jump:       return "PULO";
+        case Game::Action::Attack:     return "ATAQUE";
+        case Game::Action::Dash:       return "AVANCO";
+        case Game::Action::Skill1:     return "HABILIDADE 1";
+        case Game::Action::Skill2:     return "HABILIDADE 2";
+        case Game::Action::Heal:       return "CURA";
+        case Game::Action::Hook:       return "GANCHO";
+        case Game::Action::OpenStore:  return "LOJA";
+        case Game::Action::Map:        return "MAPA";
+        case Game::Action::Look:       return "OLHAR";
+        case Game::Action::ChangeMode: return "TROCAR MODO";
+        default:                       return "---";
     }
 }

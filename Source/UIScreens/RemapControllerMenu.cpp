@@ -118,16 +118,16 @@ RemapControllerMenu::RemapControllerMenu(class Game *game, const std::string &fo
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 2);
 
 
-    button = AddButton("MAPA", mButtonPos2 + Vector2(0, mButtonSize.y * 3), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("TROCAR MODO", mButtonPos2 + Vector2(0, mButtonSize.y * 3), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
         GetTexts()[8]->SetText("...");
         GetTexts()[8]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 3);
-        mGame->RebindController(GetTexts()[8], Game::Action::Map);
+        mGame->RebindController(GetTexts()[8], Game::Action::ChangeMode);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(GetBindingText(Game::Action::Map), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::ChangeMode), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 3);
 
 
@@ -193,5 +193,5 @@ void RemapControllerMenu::RefreshTexts() {
     GetTexts()[5]->SetText(GetBindingText(Game::Action::Hook));
     GetTexts()[6]->SetText(GetBindingText(Game::Action::Skill1));
     GetTexts()[7]->SetText(GetBindingText(Game::Action::Skill2));
-    GetTexts()[8]->SetText(GetBindingText(Game::Action::Map));
+    GetTexts()[8]->SetText(GetBindingText(Game::Action::ChangeMode));
 }

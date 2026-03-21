@@ -79,20 +79,50 @@ int RadialMenu::GetIndexFromInput(float x, float y) {
 }
 
 void RadialMenu::HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX) {
-    // Lógica do Analógico (Radial)
-    // Os valores de Axis do SDL geralmente vão de -32768 a 32767.
-    // Vamos normalizar para -1.0 a 1.0
-    float normX = 0.0f;
-    float normY = 0.0f;
+    if (mButtons.empty()) {
+        return;
+    }
 
-    // Ajuste esses valores constantes conforme sua classe Game ou use direto se já vier normalizado
+    auto inputBinding = mGame->GetInputBinding();
+    float inputX = 0.0f;
+    float inputY = 0.0f;
+    bool hasDirectionalInput = false;
+
+    // Lógica do Analógico
     const float MAX_AXIS = 32767.0f;
-
     if (rightControllerAxisX != 0 || rightControllerAxisY != 0) {
-        normX = rightControllerAxisX / MAX_AXIS;
-        normY = rightControllerAxisY / MAX_AXIS;
-
-        int newIndex = GetIndexFromInput(normX, normY);
+        inputX = rightControllerAxisX / MAX_AXIS;
+        inputY = rightControllerAxisY / MAX_AXIS;
+        hasDirectionalInput = true;
+    }
+    else {
+        if (key == SDLK_UP ||
+            key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Up].key))
+        {
+            inputY = -1.0f;
+            hasDirectionalInput = true;
+        }
+        else if (key == SDLK_DOWN ||
+                 key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Down].key))
+        {
+            inputY = 1.0f;
+            hasDirectionalInput = true;
+        }
+        else if (key == SDLK_LEFT ||
+                 key == SDL_GetKeyFromScancode(inputBinding[Game::Action::MoveLeft].key))
+        {
+            inputX = -1.0f;
+            hasDirectionalInput = true;
+        }
+        else if (key == SDLK_RIGHT ||
+         key == SDL_GetKeyFromScancode(inputBinding[Game::Action::MoveRight].key))
+        {
+            inputX = 1.0f;
+            hasDirectionalInput = true;
+        }
+    }
+    if (hasDirectionalInput) {
+        int newIndex = GetIndexFromInput(inputX, inputY);
         if (newIndex != -1) {
             mSelectedButtonIndex = newIndex;
         }

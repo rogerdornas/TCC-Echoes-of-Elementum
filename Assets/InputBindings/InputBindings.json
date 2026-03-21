@@ -4,6 +4,11 @@
         "btn": 2,
         "key": 27
     },
+    "ChangeMode": {
+        "axis": 4,
+        "btn": -1,
+        "key": 225
+    },
     "Dash": {
         "axis": -1,
         "btn": 10,
@@ -52,7 +57,7 @@
     "OpenStore": {
         "axis": -1,
         "btn": 8,
-        "key": 44
+        "key": 15
     },
     "Skill1": {
         "axis": -1,
