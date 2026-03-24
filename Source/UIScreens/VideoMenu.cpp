@@ -3,6 +3,8 @@
 //
 
 #include "VideoMenu.h"
+
+#include "ResolutionMenu.h"
 #include "../Game.h"
 
 VideoMenu::VideoMenu(class Game *game, const std::string &fontName, bool isClosable)
@@ -10,6 +12,9 @@ VideoMenu::VideoMenu(class Game *game, const std::string &fontName, bool isClosa
 {
     SetSize(Vector2(1920, 1080));
     SetPosition(Vector2::Zero);
+
+    mFullScreenTextPos = Vector2(1085, 380);
+    mResolutionTextPos = Vector2(1085, 452);
 
     auto* background = AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(1920, 1080) * 0.5f, Vector2(1920, 1080));
     background->SetAlpha(0.6f);
@@ -28,7 +33,7 @@ VideoMenu::VideoMenu(class Game *game, const std::string &fontName, bool isClosa
         }, false);
 
         text = AddText("ON", Vector2::Zero, 34);
-        text->SetPosition(Vector2(1120, 380));
+        text->SetPosition(mFullScreenTextPos + Vector2(text->GetSize().x * 0.5f, 0));
     }
     else {
         AddButton("TELA CHEIA", Vector2(760, 360), Vector2(390, 42), 34, UIButton::TextPos::AlignLeft,
@@ -50,12 +55,30 @@ VideoMenu::VideoMenu(class Game *game, const std::string &fontName, bool isClosa
         }, false);
 
         text = AddText("OFF", Vector2::Zero, 34);
-        text->SetPosition(Vector2(1120, 380));
+        text->SetPosition(mFullScreenTextPos + Vector2(text->GetSize().x * 0.5f, 0));
     }
+
+    AddButton("RESOLUÇÃO", Vector2(760, 432), Vector2(520, 42), 34, UIButton::TextPos::AlignLeft,
+    [this]() {
+        mResolutionText->SetIsVisible(false);
+        auto* resolutionMenu = new ResolutionMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", this);
+        resolutionMenu->SetPosition(Vector2(1065, 433));
+    }
+    , false);
+
+    mResolutionText = AddText(std::to_string(static_cast<int>(mGame->GetRenderer()->GetResolution().x)) + " x " + std::to_string(static_cast<int>(mGame->GetRenderer()->GetResolution().y)), Vector2::Zero, 34);
+    mResolutionText->SetPosition(mResolutionTextPos + Vector2(mResolutionText->GetSize().x * 0.5f, 0));
+
 
     AddButton("VOLTAR", Vector2(887, 930), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         Close();
     }
     , true);
+}
+
+void VideoMenu::RefreshTexts() {
+    mResolutionText->SetIsVisible(true);
+    mResolutionText->SetText(std::to_string(static_cast<int>(mGame->GetRenderer()->GetResolution().x)) + " x " + std::to_string(static_cast<int>(mGame->GetRenderer()->GetResolution().y)));
+    mResolutionText->SetPosition(mResolutionTextPos + Vector2(mResolutionText->GetSize().x * 0.5f, 0));
 }

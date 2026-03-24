@@ -34,14 +34,18 @@ UIButton::~UIButton()
 
 void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
 {
+    if (!mIsVisible) {
+        return;
+    }
+
     // Desenhar o retângulo do botão
-    Vector2 drawPos = screenPos + mPosition + mSize / 2.0f;
+    Vector2 drawPos = screenPos + mPosition + mSize * 0.5f;
 
     if (mHighlighted) {
-        renderer->DrawTexture(mPosition + Vector2(-16, mSize.y * 0.5f), Vector2(26, 26), Math::Pi, Color::White,
+        renderer->DrawTexture(drawPos + Vector2(mSize.x * -0.5f - 16, 0), Vector2(26, 26), Math::Pi, Color::White,
                               mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
 
-        renderer->DrawTexture(mPosition + Vector2(mSize.x + 16, mSize.y * 0.5f), Vector2(26, 26), 0.0f, Color::White,
+        renderer->DrawTexture(drawPos + Vector2(mSize.x * 0.5f + 16, 0), Vector2(26, 26), 0.0f, Color::White,
                       mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
 
         mText->SetColor(Color::White);

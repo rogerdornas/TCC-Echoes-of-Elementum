@@ -48,6 +48,9 @@ void UIImage::SetImage(const std::string& imagePath)
 
 void UIImage::Draw(Renderer* renderer, const Vector2 &screenPos)
 {
+    if (!mIsVisible) {
+        return;
+    }
     if (mTexture == nullptr) {
         return;
     }

@@ -1790,7 +1790,7 @@ void Player::UseLightningSpear() {
             mLightningSpear->SetRotation(GetRotation());
             mLightningSpear->SetTransformRotation(GetRotation());
             mLightningSpear->Activate();
-            mMana -= mLightningSpearManaCost;;
+            mMana -= mLightningSpearManaCost;
             mLightningSpearCooldownTimer = 0;
         }
     }

@@ -12,7 +12,7 @@ Texture::~Texture()
     Unload();
 }
 
-bool Texture::Load(const std::string &filePath)
+bool Texture::Load(const std::string &filePath, bool smooth)
 {
     // 1. Carrega a imagem original
     SDL_Surface* loadedSurface = IMG_Load(filePath.c_str());
@@ -52,9 +52,10 @@ bool Texture::Load(const std::string &filePath)
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mWidth, mHeight,
                  0, GL_RGBA, GL_UNSIGNED_BYTE, formattedSurface->pixels);
 
-    // Configura filtros (Pixel Art fica melhor com GL_NEAREST)
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    // Configura filtros
+    GLint filter = smooth ? GL_LINEAR : GL_NEAREST;
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, filter);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, filter);
 
     // Configura para a textura repetir ou clamar (opcional, mas bom para garantir)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);

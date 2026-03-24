@@ -1225,25 +1225,6 @@ void Game::LoadOptionsMenu() {
         text->SetPosition(Vector2(optionPosX, button->GetPosition().y + text->GetSize().y / 2));
     }
 
-    // name = "RESOLUÇÃO";
-    // Vector2 currentRes = mResolutions[mCurrentResolutionIndex];
-    // optionValue = std::to_string(static_cast<int>(currentRes.x)) + "x" + std::to_string(static_cast<int>(currentRes.y));
-    //
-    // button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0, buttonSize.y * 3.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    // [this]() {
-    //     mCurrentResolutionIndex = (mCurrentResolutionIndex + 1) % mResolutions.size();
-    //     Vector2 res = mResolutions[mCurrentResolutionIndex];
-    //
-    //     SDL_SetWindowFullscreen(mWindow, 0);  // sai do fullscreen se estiver
-    //     SDL_SetWindowSize(mWindow, static_cast<int>(res.x), static_cast<int>(res.y));
-    //     SDL_SetWindowPosition(mWindow, SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED);
-    //
-    //     mOptionsMenu->Close();
-    //     LoadOptionsMenu();
-    // }, textPos);
-    // text = mOptionsMenu->AddText(optionValue, Vector2::Zero, Vector2::Zero, buttonPointSize);
-    // text->SetPosition(Vector2(optionPosX, button->GetPosition().y));
-
     name = "TECLADO";
     button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 3.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
     [this]() {

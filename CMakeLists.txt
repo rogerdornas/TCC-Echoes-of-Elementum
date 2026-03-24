@@ -224,6 +224,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/LightningSpear.h
         Source/UIScreens/RemapControllerMenu.cpp
         Source/UIScreens/RemapControllerMenu.h
+        Source/UIScreens/ResolutionMenu.cpp
+        Source/UIScreens/ResolutionMenu.h
 )
 
 

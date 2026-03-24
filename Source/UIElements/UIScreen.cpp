@@ -146,49 +146,6 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerA
     }
 }
 
-void UIScreen::HandleMouse(const SDL_Event &event) {
-    if (event.type == SDL_MOUSEBUTTONDOWN) {
-        if (event.button.button == SDL_BUTTON_LEFT) {
-            int x = event.button.x;
-            int y = event.button.y;
-            for (UIButton* button : mButtons) {
-                Vector2 relativePos = Vector2(x, y) - GetPosition();
-                if (button->ContainsPoint(relativePos)) {
-                    button->OnMouseClick(relativePos);
-                }
-            }
-        }
-    }
-
-    if (event.type == SDL_MOUSEMOTION) {
-        int x = event.motion.x;
-        int y = event.motion.y;
-        Vector2 relativePos = Vector2(x, y) - GetPosition();
-
-        int index = -1;
-
-        for (size_t i = 0; i < mButtons.size(); ++i) {
-            if (mButtons[i]->ContainsPoint(relativePos)) {
-                index = i;
-                mSelectedButtonIndex = i;
-            }
-        }
-
-        if (SDL_GetMouseState(NULL, NULL) & SDL_BUTTON(SDL_BUTTON_LEFT)) {
-            if (index != -1) {
-                mButtons[index]->OnMouseClick(relativePos);
-            }
-        }
-
-        // Atualiza destaque dos botões
-        if (index != -1) {
-            for (size_t i = 0; i < mButtons.size(); ++i) {
-                mButtons[i]->SetHighlighted(static_cast<int>(i) == index);
-            }
-        }
-    }
-}
-
 void UIScreen::HandleMousePress(const Vector2& virtualMousePos)
 {
     Vector2 uiScreenRelativePos = virtualMousePos - GetPosition();
@@ -201,6 +158,15 @@ void UIScreen::HandleMousePress(const Vector2& virtualMousePos)
                 mDraggedButton = button;
             }
             return;
+        }
+    }
+
+    bool isInsideWidth = (virtualMousePos.x >= mPos.x) && (virtualMousePos.x <= (mPos.x + mSize.x));
+    bool isInsideHeight = (virtualMousePos.y >= mPos.y) && (virtualMousePos.y <= (mPos.y + mSize.y));
+
+    if (!(isInsideWidth && isInsideHeight)) {
+        if (mIsClosable) {
+            Close();
         }
     }
 }

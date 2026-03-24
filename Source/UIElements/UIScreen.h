@@ -27,7 +27,6 @@ public:
 	virtual void Draw(class Renderer *renderer);
 	virtual void ProcessInput(const uint8_t* keys);
 	virtual void HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX);
-	virtual void HandleMouse(const SDL_Event& event);
 	virtual void HandleMousePress(const Vector2& virtualMousePos);
 	virtual void HandleMouseRelease(const Vector2& virtualMousePos);
 	virtual void HandleMouseMotion(const Vector2& virtualMousePos);

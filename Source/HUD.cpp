@@ -327,7 +327,7 @@ void HUD::DrawManaBar(Renderer *renderer) {
     for (int i = 1; i < mNumOfSubManaBars; i++) {
         renderer->DrawLine(Vector2(mManaBar.x + i * mManaBar.w / mNumOfSubManaBars, mManaBar.y),
                            Vector2(mManaBar.x + i * mManaBar.w / mNumOfSubManaBars, mManaBar.y + mManaBar.h),
-                           Vector3(0, 0, 0), 2.0f, Vector2::Zero, 1.0f);
+                           Vector3(0, 0, 0), 3.0f, Vector2::Zero, 1.0f);
     }
 }
 

@@ -10,7 +10,7 @@ public:
 	Texture();
 	~Texture();
 
-	bool Load(const std::string& fileName);
+	bool Load(const std::string& fileName, bool smooth = false);
 	bool LoadFromSurface(SDL_Surface* surface);
 	void Unload();
 

@@ -270,6 +270,8 @@ public:
     void SetTargetZoom(float targetZoom) { mTargetZoom = targetZoom; }
     void SetZoomSpeed(float zoomSpeed) { mZoomSpeed = zoomSpeed; }
 
+    std::vector<Vector2> GetResolutionsList() { return mResolutions; }
+
     // Converte uma Action para sua representação em string
     std::string ActionToString(Action action);
     Action StringToAction(const std::string& str);
@@ -448,10 +450,10 @@ private:
 
     std::vector<Vector2> mResolutions = {
         Vector2(640, 360),
+        Vector2(854, 480),
         Vector2(1280, 720),
-        Vector2(1920, 1080),
+        Vector2(1920, 1080)
     };
-    int mCurrentResolutionIndex = 1;
 
     GamePlayState mGamePlayState;
 

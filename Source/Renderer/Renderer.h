@@ -59,7 +59,7 @@ public:
 	float GetZoomedHeight() const { return mZoomedHeight; }
 
     // Getters
-    class Texture* GetTexture(const std::string& fileName);
+    class Texture* GetTexture(const std::string& fileName, bool smooth = false);
 	class Shader* GetBaseShader() const { return mBaseShader; }
 	class VertexArray* GetSpriteVerts() const { return mSpriteVerts; }
 	// Getters para a resolução virtual (útil para o Game)
@@ -70,6 +70,9 @@ public:
 
 	// Nova função helper para calcular e definir o viewport
 	void UpdateViewport();
+
+	bool CreateRenderTarget(int width, int height);
+	Vector2 GetResolution() const { return Vector2(mRenderWidth, mRenderHeight); }
 
 	// === Iluminação ===
 	void SetAmbientLight(const Vector3& color, float intensity);
@@ -87,18 +90,18 @@ private:
 	void UploadLightingUniforms(); // envia luzes ao shader
 	void DeactivateLighting();
 
-	void SetShader(Shader* shader);
-
 	// Game
 	class Game* mGame;
 
-	// Basic shader
+	// shader
 	class Shader* mBaseShader;
 	class Shader* mFadeShader;
+	class Shader* mScreenShader;
 
     // Sprite vertex array
     class VertexArray *mSpriteVerts;
-	VertexArray* mFadeVAO;
+	class VertexArray* mFadeVAO;
+	class VertexArray* mScreenQuad;
 
 	// Window
 	SDL_Window* mWindow;
@@ -111,6 +114,13 @@ private:
 
     // Map of textures loaded
     std::unordered_map<std::string, class Texture*> mTextures;
+
+	// Controle de Resolução Interna
+	float mRenderWidth;
+	float mRenderHeight;
+
+	unsigned int mFBO;         // Framebuffer Object
+	unsigned int mFBOTexture;  // A textura onde o jogo será desenhado
 
 	// === Dados de iluminação ===
 	Vector3 mAmbientColor;

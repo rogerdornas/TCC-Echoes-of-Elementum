@@ -214,7 +214,7 @@ void WaveManager::Update(float deltaTime) {
                             auto hook = *it;
                             mHookPoints.erase(it);
                             hook->SetState(ActorState::Destroy);
-                            break;;
+                            break;
                         }
                     }
                     break;

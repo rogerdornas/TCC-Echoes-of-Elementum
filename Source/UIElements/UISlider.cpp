@@ -34,6 +34,10 @@ UISlider::~UISlider() {
 }
 
 void UISlider::Draw(Renderer* renderer, const Vector2& screenPos) {
+    if (!mIsVisible) {
+        return;
+    }
+
     // Desenhar o fundo do botão total (Container)
     Vector2 containerCenter = screenPos + mPosition + mSize / 2.0f;
 

@@ -49,11 +49,14 @@ void UIText::SetText(const std::string &text)
 
 void UIText::SetColor(const Vector3 &color) {
     mColor = color;
-    SetText(mText);;
+    SetText(mText);
 }
 
 void UIText::Draw(Renderer *renderer, const Vector2 &screenPos)
 {
+    if (!mIsVisible) {
+        return;
+    }
     if (!mTextTexture)
         return;
 

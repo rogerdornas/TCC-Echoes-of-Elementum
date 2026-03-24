@@ -58,6 +58,26 @@ bool Renderer::Initialize(float width, float height)
         return false;
     }
 
+    mFBO = 0;
+    mFBOTexture = 0;
+
+    // Define a resolução de renderização inicial
+    CreateRenderTarget(1920, 1080);
+
+    // O mesmo quad usado no Fade serve aqui (espaço NDC -1 a 1)
+    float vertices[] = {
+        -1.0f,  1.0f,   0.0f, 1.0f,
+        -1.0f, -1.0f,   0.0f, 0.0f,
+         1.0f, -1.0f,   1.0f, 0.0f,
+         1.0f,  1.0f,   1.0f, 1.0f
+    };
+    unsigned int indices[] = { 0, 1, 2, 0, 2, 3 };
+    mScreenQuad = new VertexArray(vertices, 4, indices, 6);
+
+    // Você precisará de um shader MUITO SIMPLES para isso
+    mScreenShader = new Shader();
+    mScreenShader->Load("../Shaders/Screen");
+
     // Armazena o tamanho inicial da janela
     // mWindowWidth = width;
     // mWindowHeight = height;
@@ -161,7 +181,14 @@ void Renderer::UnloadAllTextures()
 
 void Renderer::Clear()
 {
-    // Clear the color buffer
+    // Diz ao OpenGL para desenhar na nossa textura de resolução interna
+    glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
+
+    // Define o Viewport para a resolução do jogo
+    glViewport(0, 0, static_cast<int>(mRenderWidth), static_cast<int>(mRenderHeight));
+
+    // Limpa o fundo do jogo
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f); // Cor de fundo do cenário
     glClear(GL_COLOR_BUFFER_BIT);
 }
 
@@ -169,7 +196,7 @@ void Renderer::Draw(RendererMode mode, const Matrix4 &modelMatrix, const Vector2
                     const Vector3 &color, float alpha, Texture *texture, const Vector4 &textureRect,
                     float textureFactor)
 {
-    // Transforma posição da cânera em int para não ter tremor
+    // Transforma posição da câmera em int para não ter tremor
     Vector2 cameraInt(std::floor(cameraPos.x), std::floor(cameraPos.y));
 
     mBaseShader->SetMatrixUniform("uOrthoProj", mOrthoProjection);
@@ -309,8 +336,32 @@ void Renderer::DrawFade(float alpha)
 
 void Renderer::Present()
 {
-	// Swap the buffers
-	SDL_GL_SwapWindow(mWindow);
+    // Volta para o monitor (janela padrão do SO)
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    // Limpa a janela real (as bordas pretas)
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Define onde a tela será desenhada na janela (usando suas variáveis calculadas no UpdateViewport)
+    glViewport(mViewportX, mViewportY, mViewportWidth, mViewportHeight);
+
+    // Desenha o Quad com a textura do jogo
+    glDisable(GL_BLEND); // Desativa blend para desenhar a tela mais rápido
+
+    mScreenShader->SetActive();
+    mScreenQuad->SetActive();
+
+    glBindTexture(GL_TEXTURE_2D, mFBOTexture);
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+    glEnable(GL_BLEND); // Reativa o blend
+
+    // Restaura o shader principal
+    mBaseShader->SetActive();
+
+    // Swap the buffers
+    SDL_GL_SwapWindow(mWindow);
 }
 
 void Renderer::SetAmbientLight(const Vector3& color, float intensity)
@@ -395,8 +446,49 @@ void Renderer::DeactivateLighting() {
     mBaseShader->SetIntUniform("uNumLights", 0);
 }
 
+bool Renderer::CreateRenderTarget(int width, int height)
+{
+    mRenderWidth = static_cast<float>(width);
+    mRenderHeight = static_cast<float>(height);
 
-Texture* Renderer::GetTexture(const std::string& fileName)
+    // Se já existe um FBO, delete para recriar (útil ao mudar a resolução no meio do jogo)
+    if (mFBO != 0) {
+        glDeleteFramebuffers(1, &mFBO);
+        glDeleteTextures(1, &mFBOTexture);
+    }
+
+    // Gera o FBO
+    glGenFramebuffers(1, &mFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
+
+    // Gera a Textura que servirá de tela
+    glGenTextures(1, &mFBOTexture);
+    glBindTexture(GL_TEXTURE_2D, mFBOTexture);
+
+    // Aloca a memória da textura com a resolução desejada (Ex: 1280x720)
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+
+    // Filtro de interpolação:
+    // Use GL_NEAREST se for Pixel Art. Use GL_LINEAR se for HD/Suave.
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+
+    // Anexa a textura ao FBO
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mFBOTexture, 0);
+
+    // Verifica se o FBO foi criado com sucesso
+    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
+        SDL_Log("Erro: Framebuffer não está completo!");
+        return false;
+    }
+
+    // Desvincula o FBO para voltar à tela normal
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+
+    return true;
+}
+
+Texture* Renderer::GetTexture(const std::string& fileName, bool smooth)
 {
     Texture* tex = nullptr;
     auto iter = mTextures.find(fileName);
@@ -407,7 +499,7 @@ Texture* Renderer::GetTexture(const std::string& fileName)
     else
     {
         tex = new Texture();
-        if (tex->Load(fileName))
+        if (tex->Load(fileName, smooth))
         {
             mTextures.emplace(fileName, tex);
             return tex;
