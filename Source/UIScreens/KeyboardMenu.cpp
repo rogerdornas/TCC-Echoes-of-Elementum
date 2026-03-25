@@ -3,7 +3,6 @@
 //
 
 #include "KeyboardMenu.h"
-#include "../Game.h"
 
 KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool isClosable)
     :UIScreen(game, fontName, isClosable)
@@ -35,7 +34,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Up].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Up), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 0);
 
 
@@ -48,7 +47,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Down].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Down), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 1);
 
 
@@ -61,7 +60,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Jump].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Jump), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 2);
 
 
@@ -74,7 +73,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Attack].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Attack), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 3);
 
 
@@ -87,7 +86,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Dash].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Dash), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 4);
 
 
@@ -100,7 +99,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Skill1].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Skill1), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 5);
 
 
@@ -113,7 +112,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Skill2].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Skill2), Vector2::Zero, 34);
     text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 6);
 
 
@@ -126,7 +125,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::MoveLeft].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::MoveLeft), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 0);
 
 
@@ -139,7 +138,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::MoveRight].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::MoveRight), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 1);
 
 
@@ -152,7 +151,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Heal].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Heal), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 2);
 
 
@@ -165,7 +164,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Hook].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Hook), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 3);
 
 
@@ -178,7 +177,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::OpenStore].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::OpenStore), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 4);
 
 
@@ -191,7 +190,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Map].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::Map), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 5);
 
 
@@ -204,7 +203,7 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
 
-    text = AddText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::ChangeMode].key), Vector2::Zero, 34);
+    text = AddText(GetBindingText(Game::Action::ChangeMode), Vector2::Zero, 34);
     text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 6);
 
 
@@ -220,6 +219,25 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
         Close();
     }
     , true);
+}
+
+std::string KeyboardMenu::GetBindingText(Game::Action action) const {
+    auto binding = mGame->GetInputBinding()[action];
+
+    if (binding.key != SDL_SCANCODE_UNKNOWN) {
+        return SDL_GetScancodeName(binding.key);
+    }
+    else if (binding.mouseButton != 0) {
+        switch(binding.mouseButton) {
+            case SDL_BUTTON_LEFT: return "Mouse Esq";
+            case SDL_BUTTON_RIGHT: return "Mouse Dir";
+            case SDL_BUTTON_MIDDLE: return "Mouse Meio";
+            case SDL_BUTTON_X1: return "Mouse X1";
+            case SDL_BUTTON_X2: return "Mouse X2";
+            default: return "Mouse " + std::to_string(binding.mouseButton);
+        }
+    }
+    return "N/A";
 }
 
 void KeyboardMenu::Draw(class Renderer *renderer) {
@@ -248,18 +266,18 @@ void KeyboardMenu::Draw(class Renderer *renderer) {
 }
 
 void KeyboardMenu::RefreshTexts() {
-    GetTexts()[1]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Up].key));
-    GetTexts()[2]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Down].key));
-    GetTexts()[3]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Jump].key));
-    GetTexts()[4]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Attack].key));
-    GetTexts()[5]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Dash].key));
-    GetTexts()[6]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Skill1].key));
-    GetTexts()[7]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Skill2].key));
-    GetTexts()[8]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::MoveLeft].key));
-    GetTexts()[9]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::MoveRight].key));
-    GetTexts()[10]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Heal].key));
-    GetTexts()[11]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Hook].key));
-    GetTexts()[12]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::OpenStore].key));
-    GetTexts()[13]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::Map].key));
-    GetTexts()[14]->SetText(SDL_GetScancodeName(mGame->GetInputBinding()[Game::Action::ChangeMode].key));
+    GetTexts()[1]->SetText(GetBindingText(Game::Action::Up));
+    GetTexts()[2]->SetText(GetBindingText(Game::Action::Down));
+    GetTexts()[3]->SetText(GetBindingText(Game::Action::Jump));
+    GetTexts()[4]->SetText(GetBindingText(Game::Action::Attack));
+    GetTexts()[5]->SetText(GetBindingText(Game::Action::Dash));
+    GetTexts()[6]->SetText(GetBindingText(Game::Action::Skill1));
+    GetTexts()[7]->SetText(GetBindingText(Game::Action::Skill2));
+    GetTexts()[8]->SetText(GetBindingText(Game::Action::MoveLeft));
+    GetTexts()[9]->SetText(GetBindingText(Game::Action::MoveRight));
+    GetTexts()[10]->SetText(GetBindingText(Game::Action::Heal));
+    GetTexts()[11]->SetText(GetBindingText(Game::Action::Hook));
+    GetTexts()[12]->SetText(GetBindingText(Game::Action::OpenStore));
+    GetTexts()[13]->SetText(GetBindingText(Game::Action::Map));
+    GetTexts()[14]->SetText(GetBindingText(Game::Action::ChangeMode));
 }

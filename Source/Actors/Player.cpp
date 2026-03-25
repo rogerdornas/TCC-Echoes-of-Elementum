@@ -96,7 +96,7 @@ Player::Player(Game* game)
     ,mFrenzyModeSpeed(850.0f)
     ,mFrenzyAuraEffect(nullptr)
     ,mFrenzyAuraTimer(0.2f)
-    ,mFrenzyModeManaCost(90.0f)
+    ,mFrenzyModeManaCost(60.0f)
 
     ,mCanLightningSpear(true)
     ,mLightningSpearCooldownDuration(1.0f)

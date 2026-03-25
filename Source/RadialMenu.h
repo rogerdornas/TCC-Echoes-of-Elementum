@@ -32,6 +32,10 @@ private:
     float mRadius;
     Vector2 mCenterPos;
 
+    Vector2 mLastMousePos;
+    Vector2 mMouseVirtualStick;
+    bool mFirstMouseUpdate;
+
     // Recalcula a posição de todos os botões em círculo
     void RearrangeButtons();
 

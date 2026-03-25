@@ -2,76 +2,91 @@
     "Attack": {
         "axis": -1,
         "btn": 2,
-        "key": 27
+        "key": 27,
+        "mouse": 0
     },
     "ChangeMode": {
         "axis": 4,
         "btn": -1,
-        "key": 225
+        "key": 225,
+        "mouse": 0
     },
     "Dash": {
         "axis": -1,
         "btn": 10,
-        "key": 6
+        "key": 6,
+        "mouse": 0
     },
     "Down": {
         "axis": -1,
         "btn": 12,
-        "key": 81
+        "key": 81,
+        "mouse": 0
     },
     "Heal": {
         "axis": 5,
         "btn": -1,
-        "key": 25
+        "key": 25,
+        "mouse": 0
     },
     "Hook": {
         "axis": -1,
         "btn": 9,
-        "key": 22
+        "key": 22,
+        "mouse": 0
     },
     "Jump": {
         "axis": -1,
         "btn": 0,
-        "key": 29
+        "key": 29,
+        "mouse": 0
     },
     "Look": {
         "axis": -1,
         "btn": -1,
-        "key": 224
+        "key": 224,
+        "mouse": 0
     },
     "Map": {
         "axis": -1,
         "btn": 4,
-        "key": 16
+        "key": 16,
+        "mouse": 0
     },
     "MoveLeft": {
         "axis": -1,
         "btn": 13,
-        "key": 80
+        "key": 80,
+        "mouse": 0
     },
     "MoveRight": {
         "axis": -1,
         "btn": 14,
-        "key": 79
+        "key": 79,
+        "mouse": 0
     },
     "OpenStore": {
         "axis": -1,
         "btn": 8,
-        "key": 44
+        "key": 44,
+        "mouse": 0
     },
     "Skill1": {
         "axis": -1,
         "btn": 1,
-        "key": 4
+        "key": 4,
+        "mouse": 0
     },
     "Skill2": {
         "axis": -1,
         "btn": 3,
-        "key": 9
+        "key": 9,
+        "mouse": 0
     },
     "Up": {
         "axis": -1,
         "btn": 11,
-        "key": 82
+        "key": 82,
+        "mouse": 0
     }
 }

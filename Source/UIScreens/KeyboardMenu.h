@@ -4,6 +4,7 @@
 
 #pragma once
 
+#include "../Game.h"
 #include "../UIElements/UIScreen.h"
 
 class KeyboardMenu : public UIScreen
@@ -13,6 +14,7 @@ public:
     void Draw(class Renderer *renderer) override;
 
 private:
+    std::string GetBindingText(Game::Action action) const;
     void RefreshTexts() override;
 
     Vector2 mButtonSize;

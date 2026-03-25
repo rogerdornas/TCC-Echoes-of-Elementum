@@ -8,6 +8,9 @@
 RadialMenu::RadialMenu(class Game *game, const std::string &fontName, float radius)
     :UIScreen(game, fontName)
     ,mRadius(radius)
+    ,mLastMousePos(Vector2::Zero)
+    ,mMouseVirtualStick(Vector2::Zero)
+    ,mFirstMouseUpdate(true)
 {
     float virtualWidth = mGame->GetRenderer()->GetVirtualWidth();
     float virtualHeight = mGame->GetRenderer()->GetVirtualHeight();
@@ -135,19 +138,38 @@ void RadialMenu::HandleKeyPress(int key, int controllerButton, int leftControlle
 }
 
 void RadialMenu::HandleMouseMotion(const Vector2& virtualMousePos) {
-    // Calcula vetor do centro da tela até o mouse
-    Vector2 dir = virtualMousePos - mCenterPos;
+    if (mFirstMouseUpdate) {
+        mLastMousePos = virtualMousePos;
+        mFirstMouseUpdate = false;
+        return;
+    }
 
-    // Só atualiza se o mouse estiver a uma distância mínima do centro (ex: 50 pixels)
-    // para evitar "jitter" quando o mouse está exatamente no meio.
-    if (dir.LengthSq() > 2500.0f) { // 50^2
-        int newIndex = GetIndexFromInput(dir.x, dir.y);
+    // Calcula o quanto o mouse se moveu (Delta)
+    Vector2 delta = virtualMousePos - mLastMousePos;
+    mLastMousePos = virtualMousePos;
+
+    // Fator de sensibilidade
+    float sensitivity = 1.0f;
+
+    // Empurra o nosso "analógico virtual" na direção do movimento
+    mMouseVirtualStick += delta * sensitivity;
+
+    // Limita o tamanho desse vetor imaginário.
+    float maxStickRadius = 150.0f;
+    if (mMouseVirtualStick.LengthSq() > (maxStickRadius * maxStickRadius)) {
+        mMouseVirtualStick.Normalize();
+        mMouseVirtualStick *= maxStickRadius;
+    }
+
+    // Verifica se saiu da zona morta para atualizar a seleção
+    if (mMouseVirtualStick.LengthSq() > 2500.0f) {
+        int newIndex = GetIndexFromInput(mMouseVirtualStick.x, mMouseVirtualStick.y);
         if (newIndex != -1) {
             mSelectedButtonIndex = newIndex;
         }
     }
 
-    // Atualiza Highlight
+    // Atualiza Highlight visual
     for (size_t i = 0; i < mButtons.size(); ++i) {
         mButtons[i]->SetHighlighted(static_cast<int>(i) == mSelectedButtonIndex);
     }

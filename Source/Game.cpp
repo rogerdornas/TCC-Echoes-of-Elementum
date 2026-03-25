@@ -1601,7 +1601,20 @@ void Game::CancelRebind() {
         std::string oldName = "N/A";
 
         if (mWaitingForKey) {
-            oldName = SDL_GetScancodeName(mInputBindings[mBindingAction].key);
+            auto binding = mInputBindings[mBindingAction];
+            if (binding.key != SDL_SCANCODE_UNKNOWN) {
+                oldName = SDL_GetScancodeName(binding.key);
+            }
+            else if (binding.mouseButton != 0) {
+                switch(binding.mouseButton) {
+                    case SDL_BUTTON_LEFT: oldName = "Mouse Esq"; break;
+                    case SDL_BUTTON_RIGHT: oldName = "Mouse Dir"; break;
+                    case SDL_BUTTON_MIDDLE: oldName = "Mouse Meio"; break;
+                    case SDL_BUTTON_X1: oldName = "Mouse X1"; break;
+                    case SDL_BUTTON_X2: oldName = "Mouse X2"; break;
+                    default: oldName = "Mouse " + std::to_string(binding.mouseButton);
+                }
+            }
         }
         else if (mWaitingForButton) {
             auto binding = mInputBindings[mBindingAction];
@@ -1640,6 +1653,22 @@ void Game::ResetKeyboardToDefault() {
     mInputBindings[Action::Map].key        = SDL_SCANCODE_M;
     mInputBindings[Action::Look].key       = SDL_SCANCODE_LCTRL;
     mInputBindings[Action::ChangeMode].key = SDL_SCANCODE_LSHIFT;
+
+    mInputBindings[Action::Up].mouseButton         = 0;
+    mInputBindings[Action::Down].mouseButton       = 0;
+    mInputBindings[Action::MoveLeft].mouseButton   = 0;
+    mInputBindings[Action::MoveRight].mouseButton  = 0;
+    mInputBindings[Action::Jump].mouseButton       = 0;
+    mInputBindings[Action::Attack].mouseButton     = 0;
+    mInputBindings[Action::Dash].mouseButton       = 0;
+    mInputBindings[Action::Skill1].mouseButton     = 0;
+    mInputBindings[Action::Skill2].mouseButton     = 0;
+    mInputBindings[Action::Heal].mouseButton       = 0;
+    mInputBindings[Action::Hook].mouseButton       = 0;
+    mInputBindings[Action::OpenStore].mouseButton  = 0;
+    mInputBindings[Action::Map].mouseButton        = 0;
+    mInputBindings[Action::Look].mouseButton       = 0;
+    mInputBindings[Action::ChangeMode].mouseButton = 0;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
@@ -1681,20 +1710,35 @@ void Game::ResetControllerToDefault() {
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
 
-void Game::SwapKeyboardBinding(SDL_Scancode newKey) {
-    SDL_Scancode oldKey = mInputBindings[mBindingAction].key;
+void Game::SwapKeyboardBinding(SDL_Scancode newKey, Uint8 newMouseBtn) {
+    auto oldBinding = mInputBindings[mBindingAction];
 
-    // Procura se alguma outra ação já usa essa tecla
+    // Procura se alguma outra ação já usa essa tecla OU esse botão do mouse
     for (auto& pair : mInputBindings) {
-        if (pair.first != mBindingAction && pair.second.key == newKey) {
-            // A ação antiga recebe a tecla que estávamos usando
-            pair.second.key = oldKey;
-            break;
+        if (pair.first != mBindingAction) {
+            bool conflict = false;
+
+            // Checa conflito de teclado
+            if (newKey != SDL_SCANCODE_UNKNOWN && pair.second.key == newKey) {
+                conflict = true;
+            }
+            // Checa conflito de mouse
+            if (newMouseBtn != 0 && pair.second.mouseButton == newMouseBtn) {
+                conflict = true;
+            }
+
+            if (conflict) {
+                // Passa o mapeamento antigo completo para a ação conflitante
+                pair.second.key = oldBinding.key;
+                pair.second.mouseButton = oldBinding.mouseButton;
+                break;
+            }
         }
     }
 
     // Define a nova tecla para a ação atual
     mInputBindings[mBindingAction].key = newKey;
+    mInputBindings[mBindingAction].mouseButton = newMouseBtn;
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
 
@@ -2859,7 +2903,7 @@ void Game::ProcessInput()
                         break;
                     }
 
-                    SwapKeyboardBinding(sc);
+                    SwapKeyboardBinding(sc, 0);
 
                     if (!mUIStack.empty()) {
                         mUIStack.back()->RefreshTexts();
@@ -3211,11 +3255,23 @@ void Game::ProcessInput()
                 break;
 
             case SDL_MOUSEBUTTONDOWN:
-                if (mWaitingForKey || mWaitingForButton) {
+                if (mWaitingForKey) {
+                    Uint8 btn = event.button.button;
+
+                    SwapKeyboardBinding(SDL_SCANCODE_UNKNOWN, btn);
+
+                    if (!mUIStack.empty()) {
+                        mUIStack.back()->RefreshTexts();
+                    }
+                    mWaitingForKey = false;
+                    mNewButtonText = nullptr;
+                }
+                else if (mWaitingForButton) {
+                    CancelRebind();
                     break;
                 }
 
-                if (mGamePlayState != GamePlayState::GameOver) {
+                else if (mGamePlayState != GamePlayState::GameOver) {
                     mIsPlayingOnKeyboard = true;
 
                     // Handle mouse for UI screens
@@ -3456,9 +3512,11 @@ void Game::UpdateGame()
     {
         // Esconde o cursor
         SDL_ShowCursor(SDL_DISABLE);
+        SDL_SetWindowMouseGrab(mWindow, SDL_TRUE);
     }
     else {
         SDL_ShowCursor(SDL_ENABLE);
+        SDL_SetWindowMouseGrab(mWindow, SDL_FALSE);
     }
 
     if (mIsCrossFading) {
@@ -3882,6 +3940,7 @@ void Game::SaveBindingsToFile(const std::string &filename) {
         // Cria um objeto JSON para o binding atual
         nlohmann::json bindingJson;
         bindingJson["key"] = static_cast<int>(binding.key);
+        bindingJson["mouse"] = static_cast<int>(binding.mouseButton);
         bindingJson["btn"] = static_cast<int>(binding.btn);
         bindingJson["axis"] = static_cast<int>(binding.axis);
 
@@ -3907,10 +3966,10 @@ void Game::LoadBindingsFromFile(const std::string &filename) {
         std::cerr << "Arquivo de controles '" << filename << "' nao encontrado. Criando controles padrao." << std::endl;
 
         // --- Crie aqui seus controles padrão ---
-        mInputBindings[Action::MoveLeft]  = {SDL_SCANCODE_A, SDL_CONTROLLER_BUTTON_DPAD_LEFT, SDL_CONTROLLER_AXIS_INVALID};
-        mInputBindings[Action::MoveRight] = {SDL_SCANCODE_D, SDL_CONTROLLER_BUTTON_DPAD_RIGHT, SDL_CONTROLLER_AXIS_INVALID};
-        mInputBindings[Action::Jump]      = {SDL_SCANCODE_SPACE, SDL_CONTROLLER_BUTTON_A, SDL_CONTROLLER_AXIS_INVALID};
-        mInputBindings[Action::Attack]    = {SDL_SCANCODE_J, SDL_CONTROLLER_BUTTON_X, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::MoveLeft]  = {SDL_SCANCODE_A, 0, SDL_CONTROLLER_BUTTON_DPAD_LEFT, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::MoveRight] = {SDL_SCANCODE_D, 0, SDL_CONTROLLER_BUTTON_DPAD_RIGHT, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::Jump]      = {SDL_SCANCODE_SPACE, 0, SDL_CONTROLLER_BUTTON_A, SDL_CONTROLLER_AXIS_INVALID};
+        mInputBindings[Action::Attack]    = {SDL_SCANCODE_J, 0, SDL_CONTROLLER_BUTTON_X, SDL_CONTROLLER_AXIS_INVALID};
         // ... adicione todos os outros padrões
 
         // Salva os padrões para que o arquivo exista na próxima vez
@@ -3929,12 +3988,16 @@ void Game::LoadBindingsFromFile(const std::string &filename) {
             Action action = StringToAction(key_str);
 
             SDL_Scancode scancode = SDL_SCANCODE_UNKNOWN;
+            Uint8 mouseBtn = 0;
             SDL_GameControllerButton button = SDL_CONTROLLER_BUTTON_INVALID;
             SDL_GameControllerAxis axis = SDL_CONTROLLER_AXIS_INVALID;
 
             // Verifica se as chaves "key" e "btn" existem antes de tentar acessá-las
             if (value.contains("key") && value["key"].is_number()) {
                 scancode = static_cast<SDL_Scancode>(value["key"].get<int>());
+            }
+            if (value.contains("mouse") && value["mouse"].is_number()) {
+                mouseBtn = static_cast<Uint8>(value["mouse"].get<int>());
             }
             if (value.contains("btn") && value["btn"].is_number()) {
                 button = static_cast<SDL_GameControllerButton>(value["btn"].get<int>());
@@ -3943,7 +4006,7 @@ void Game::LoadBindingsFromFile(const std::string &filename) {
                 axis = static_cast<SDL_GameControllerAxis>(value["axis"].get<int>());
             }
 
-            mInputBindings[action] = {scancode, button, axis};
+            mInputBindings[action] = {scancode, mouseBtn, button, axis};
         }
 
     } catch (nlohmann::json::parse_error& e) {
@@ -3958,6 +4021,15 @@ bool Game::IsActionPressed(Action action, const Uint8 *keyboardState, SDL_GameCo
 
     // Teclado
     if (binding.key != SDL_SCANCODE_UNKNOWN && keyboardState[binding.key]) return true;
+
+    // Mouse
+    if (binding.mouseButton != 0) {
+        Uint32 mouseState = SDL_GetMouseState(NULL, NULL);
+        // O macro SDL_BUTTON retorna uma máscara de bit para o botão pressionado
+        if (mouseState & SDL_BUTTON(binding.mouseButton)) {
+            return true;
+        }
+    }
 
     // Controle
     if (controller) {

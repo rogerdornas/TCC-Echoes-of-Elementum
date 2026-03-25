@@ -3,7 +3,6 @@
 //
 
 #include "RemapControllerMenu.h"
-
 #include "ControlMenu.h"
 
 RemapControllerMenu::RemapControllerMenu(class Game *game, const std::string &fontName, bool isClosable)

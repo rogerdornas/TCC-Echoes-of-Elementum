@@ -89,6 +89,7 @@ public:
 
     struct InputBinding {
         SDL_Scancode key = SDL_SCANCODE_UNKNOWN;
+        Uint8 mouseButton = 0;
         SDL_GameControllerButton btn = SDL_CONTROLLER_BUTTON_INVALID;
         SDL_GameControllerAxis axis = SDL_CONTROLLER_AXIS_INVALID;
     };
@@ -303,7 +304,7 @@ private:
     void LoadConfirmQuitGameMenu();
     void LoadLoadGameMenu();
 
-    void SwapKeyboardBinding(SDL_Scancode newKey);
+    void SwapKeyboardBinding(SDL_Scancode newKey, Uint8 newMouseBtn);
     void SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameControllerAxis newAxis);
 
     void ChangeResolution(float oldScale);
