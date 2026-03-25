@@ -152,8 +152,8 @@ Player::Player(Game* game)
     ,mFireballDamage(10.0f)
     ,mMaxMana(90.0f)
     ,mMana(90.0f)
-    ,mManaIncreaseRate(6.0f)
-    ,mFireballManaCost(30.0f)
+    ,mManaIncreaseRate(12.0f)
+    ,mFireballManaCost(20.0f)
     ,mFireballAnimationDuration(0.2f)
     ,mFireballAnimationTimer(mFireballAnimationDuration)
 
@@ -238,6 +238,10 @@ Player::Player(Game* game)
     ,mRopeThrowSpeed(3000.0f)
 
     ,mRadialMenu(nullptr)
+    ,mRadialMenuSlowMotionDuration(0.25f)
+    ,mRadialMenuSlowMotionTimer(mRadialMenuSlowMotionDuration)
+    ,mRadialMenuSlowMotionCharging(false)
+    ,mRadialMenuSlowMotionChangingRate(0.1f)
 
     ,mIsRunning(false)
     ,mHurtDuration(0.2f)
@@ -877,6 +881,30 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mIsHealing) {
         mHealAnimationTimer += deltaTime;
+    }
+
+    if (mRadialMenu) {
+        if (mRadialMenuSlowMotionTimer > 0 && !mRadialMenuSlowMotionCharging) {
+            mGame->SetIsSlowMotion(true);
+            mRadialMenuSlowMotionTimer -= deltaTime;
+        }
+        else {
+            mGame->SetIsSlowMotion(false);
+            mRadialMenuSlowMotionCharging = true;
+        }
+    }
+    else {
+        if (mRadialMenuSlowMotionTimer < mRadialMenuSlowMotionDuration) {
+            mRadialMenuSlowMotionTimer += deltaTime * mRadialMenuSlowMotionChangingRate;
+            if (mRadialMenuSlowMotionTimer > mRadialMenuSlowMotionDuration) {
+                mRadialMenuSlowMotionTimer = mRadialMenuSlowMotionDuration;
+                // Se estava carregando e acabou de encher, toca um som!
+                if (mRadialMenuSlowMotionCharging) {
+                    // mGame->GetAudio()->PlaySound("StaminaReady.wav");
+                }
+                mRadialMenuSlowMotionCharging = false;
+            }
+        }
     }
 
     mTimerToLeaveWallSlidingLeft += mTryingLeavingWallSlideLeft * deltaTime;

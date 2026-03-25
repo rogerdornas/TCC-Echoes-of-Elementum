@@ -169,6 +169,7 @@ void RadialMenu::SetSelectedOption(int index) {
 void RadialMenu::Close() {
     mButtons[mSelectedButtonIndex]->OnClick();
     mState = UIState::Closing;
+    mGame->SetIsSlowMotion(false);
 }
 
 void RadialMenu::Draw(Renderer* renderer) {

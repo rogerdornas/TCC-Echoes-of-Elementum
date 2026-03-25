@@ -6,21 +6,21 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 1904.0,
-            "y": 1728.0
+            "x": 688.0,
+            "y": 3104.0
         },
-        "scene": "Level3",
-        "total_play_time": 162532.140625
+        "scene": "Coliseu",
+        "total_play_time": 165181.46875
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 433,
-        "elemental_mode": "Earth",
+        "death_counter": 434,
+        "elemental_mode": "Lightning",
         "max_jumps_in_air": 1,
-        "money": 44909
+        "money": 46686
     },
     "upgrades": {
         "fireball": true,

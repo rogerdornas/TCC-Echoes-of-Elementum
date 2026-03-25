@@ -30,7 +30,7 @@ AudioMenu::AudioMenu(class Game *game, const std::string &fontName, bool isClosa
         }
     );
 
-    AddSlider("MÚSICA", Vector2(700, 433), buttonSize, sliderOffset, sliderSize, 0.0f, 1.0f, mGame->GetAudio()->GetCategoryVolume(SoundCategory::Master), 34, 20,
+    AddSlider("MÚSICA", Vector2(700, 433), buttonSize, sliderOffset, sliderSize, 0.0f, 1.0f, mGame->GetAudio()->GetCategoryVolume(SoundCategory::Music), 34, 20,
         [this](float valor) {
             mGame->GetAudio()->SetCategoryVolume(SoundCategory::Music, valor);
         }

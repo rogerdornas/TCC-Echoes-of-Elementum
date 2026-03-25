@@ -68,6 +68,10 @@ private:
     RectF mBossHPRemainingBar;
     RectF mBossHPGrowingBar;
 
+    Vector2 mSlowMotionBarPos;
+    float mSlowMotionBarRadius;
+    float mSlowMotionBarThickness;
+
     std::vector<BossLifeBar> mBossLifeBars;
 
     float mWaitToDecreaseDuration;
@@ -79,4 +83,5 @@ private:
     void DrawLifeBar(class Renderer *renderer);
     void DrawManaBar(class Renderer * renderer);
     void DrawBossLifeBar(class Renderer * renderer);
+    void DrawSlowMotionBar(class Renderer * renderer);
 };

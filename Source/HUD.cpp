@@ -10,7 +10,7 @@ HUD::HUD(class Game* game, const std::string& fontName)
     :UIScreen(game, fontName, false)
     ,mSpeedHPDecrease(200.0f)
     ,mSpeedHPIncrease(200.0f)
-    ,mNumOfSubManaBars(mGame->GetPlayer()->GetMaxMana() / mGame->GetPlayer()->GetFireballManaCost())
+    ,mNumOfSubManaBars(mGame->GetPlayer()->GetMaxMana() / 30.0f)
     ,mWaitToDecreaseDuration(0.7f)
     ,mWaitToDecreaseTimer(0.0f)
     ,mWaitToDecreaseManaDuration(0.7f)
@@ -47,6 +47,10 @@ HUD::HUD(class Game* game, const std::string& fontName)
     mBossDamageTakenBar = mBossHPBar;
     mBossHPRemainingBar = mBossHPBar;
     mBossHPGrowingBar = mBossHPBar;
+
+    mSlowMotionBarPos = Vector2(75.0f, 185.0f);
+    mSlowMotionBarRadius = 16.0f;
+    mSlowMotionBarThickness = 8.0f;
 
     mPlayerHealCount = AddText(std::to_string(mGame->GetPlayer()->GetHealCount()),
                                 Vector2(65, 138),
@@ -231,7 +235,7 @@ void HUD::IncreaseHPBar() {
 
 void HUD::IncreaseManaBar() {
     mManaBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
-    mNumOfSubManaBars = mGame->GetPlayer()->GetMaxMana() / mGame->GetPlayer()->GetFireballManaCost();
+    mNumOfSubManaBars = mGame->GetPlayer()->GetMaxMana() / 30.0f;
 }
 
 void HUD::Draw(Renderer *renderer) {
@@ -252,6 +256,7 @@ void HUD::Draw(Renderer *renderer) {
 
     DrawLifeBar(renderer);
     DrawManaBar(renderer);
+    DrawSlowMotionBar(renderer);
     if (!mBossLifeBars.empty()) {
         DrawBossLifeBar(renderer);
     }
@@ -368,6 +373,83 @@ void HUD::DrawBossLifeBar(Renderer *renderer) {
 
         renderer->DrawRect(Vector2(HPGrowingBar.x, HPGrowingBar.y) + Vector2(HPGrowingBar.w, HPGrowingBar.h) / 2, Vector2(HPGrowingBar.w, HPGrowingBar.h), 0.0f,
                  Vector3(242 / 255.0f, 90 / 255.0f, 70 / 255.0f), Vector2::Zero, RendererMode::TRIANGLES, 255 / 255.0f);
+    }
+}
+
+void HUD::DrawSlowMotionBar(Renderer* renderer) {
+    auto* player = mGame->GetPlayer();
+    float timer = player->GetRadialMenuSlowMotionTimer();
+    float duration = player->GetRadialMenuSlowMotionDuration();
+    bool isCharging = player->IsSlowMotionCharging();
+
+    if (duration <= 0.0f) return;
+
+    // Calcula a porcentagem de preenchimento (0.0f a 1.0f)
+    float ratio = timer / duration;
+    ratio = std::clamp(ratio, 0.0f, 1.0f);
+
+    // Configurações visuais do círculo
+    int numSegments = 128;
+    float angleStep = Math::TwoPi / numSegments;
+
+    // Cores
+    Vector3 bgColor = Vector3(40 / 255.0f, 40 / 255.0f, 40 / 255.0f); // Fundo escuro
+
+    // LÓGICA DE CORES E OPACIDADE
+    Vector3 fillColor;
+    float alpha = 1.0f;
+
+    if (isCharging) {
+        // ESTADO BLOQUEADO: Fica vermelho
+        fillColor = Vector3(242 / 255.0f, 90 / 255.0f, 70 / 255.0f);
+
+        // Faz a opacidade pulsar usando o tempo do jogo ou do sistema
+        float time = SDL_GetTicks() / 60.0f;
+        alpha = 0.5f + (std::sin(time) * 0.5f); // Varia suavemente entre 0.0 e 1.0
+
+        // Evita que fique 100% invisível
+        if (alpha < 0.2f) alpha = 0.2f;
+    }
+    else {
+        // ESTADO PRONTO/NORMAL: Ciano
+        fillColor = Vector3(65 / 255.0f, 217 / 255.0f, 188 / 255.0f);
+        alpha = 1.0f; // Opacidade máxima
+    }
+
+
+    // Desenha o fundo do círculo (Anel vazio)
+    for (int i = 0; i < numSegments; i++) {
+        // Começa em -PI/2 (Topo / 12 horas) e gira em sentido horário
+        float angle1 = -Math::PiOver2 + (i * angleStep);
+        float angle2 = -Math::PiOver2 + ((i + 1) * angleStep);
+
+        // Calcula as posições na tela
+        Vector2 p1 = mSlowMotionBarPos + Vector2(std::cos(angle1), std::sin(angle1)) * mSlowMotionBarRadius;
+        Vector2 p2 = mSlowMotionBarPos + Vector2(std::cos(angle2), std::sin(angle2)) * mSlowMotionBarRadius;
+
+        renderer->DrawLine(p1, p2, bgColor, mSlowMotionBarThickness, Vector2::Zero, 150 / 255.0f);
+    }
+
+    // Desenha apenas a parte preenchida de acordo com o ratio
+    int activeSegments = static_cast<int>(numSegments * ratio);
+    float remainder = (numSegments * ratio) - activeSegments;
+
+    for (int i = 0; i <= activeSegments; i++) {
+        float angle1 = -Math::PiOver2 + (i * angleStep);
+        float angle2 = -Math::PiOver2 + ((i + 1) * angleStep);
+
+        // Se for o último segmento (que está pela metade), interpolamos o ângulo final
+        // Isso faz com que a barra não "pule" bruscamente de segmento em segmento
+        if (i == activeSegments) {
+            if (remainder <= 0.0f) break;
+            angle2 = angle1 + (angleStep * remainder);
+        }
+
+        Vector2 p1 = mSlowMotionBarPos + Vector2(std::cos(angle1), std::sin(angle1)) * mSlowMotionBarRadius;
+        Vector2 p2 = mSlowMotionBarPos + Vector2(std::cos(angle2), std::sin(angle2)) * mSlowMotionBarRadius;
+
+        // Desenha a linha sólida
+        renderer->DrawLine(p1, p2, fillColor, mSlowMotionBarThickness, Vector2::Zero, alpha);
     }
 }
 

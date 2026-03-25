@@ -97,6 +97,10 @@ public:
     void SetMoney(int money) { mMoney = money; }
     int GetSartingMoney() { return mStartMoney; }
 
+    float GetRadialMenuSlowMotionDuration() const { return mRadialMenuSlowMotionDuration; }
+    float GetRadialMenuSlowMotionTimer() const { return mRadialMenuSlowMotionTimer; }
+    bool IsSlowMotionCharging() const { return mRadialMenuSlowMotionCharging; }
+
     void AdjustSwordAttackSpeed(float factor) { mSwordCooldownDuration /= factor; }
 
     void SetFireballWidth(float width) { mFireballWidth = width; }
@@ -369,6 +373,10 @@ private:
     float mRopeThrowSpeed;     // Velocidade visual da corda (deve ser rápida)
 
     class RadialMenu* mRadialMenu;
+    float mRadialMenuSlowMotionDuration;
+    float mRadialMenuSlowMotionTimer;
+    bool mRadialMenuSlowMotionCharging;
+    float mRadialMenuSlowMotionChangingRate;
 
     // Atributos para animar sprites
     bool mIsRunning;
