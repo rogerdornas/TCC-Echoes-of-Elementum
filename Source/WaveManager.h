@@ -7,7 +7,7 @@
 #include <string>
 #include <vector>
 #include <unordered_map>
-#include "Actors/Enemy.h"
+#include "Actors/Enemies/Enemy.h"
 #include "Actors/HookPoint.h"
 
 enum class ActionType {

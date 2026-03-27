@@ -47,16 +47,16 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Sword.h
         Source/Actors/FireBall.cpp
         Source/Actors/FireBall.h
-        Source/Actors/EnemySimple.cpp
-        Source/Actors/EnemySimple.h
-        Source/Actors/Enemy.cpp
-        Source/Actors/Enemy.h
-        Source/Actors/FlyingEnemySimple.cpp
-        Source/Actors/FlyingEnemySimple.h
+        Source/Actors/Enemies/EnemySimple.cpp
+        Source/Actors/Enemies/EnemySimple.h
+        Source/Actors/Enemies/Enemy.cpp
+        Source/Actors/Enemies/Enemy.h
+        Source/Actors/Enemies/FlyingEnemySimple.cpp
+        Source/Actors/Enemies/FlyingEnemySimple.h
         Source/Json.h
         Source/CSV.h
-        Source/Actors/Fox.cpp
-        Source/Actors/Fox.h
+        Source/Actors/Enemies/Fox.cpp
+        Source/Actors/Enemies/Fox.h
         Source/Actors/Trigger.cpp
         Source/Actors/Trigger.h
         Source/Actors/DynamicGround.cpp
@@ -65,14 +65,14 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Lever.h
         Source/Actors/Effect.cpp
         Source/Actors/Effect.h
-        Source/Actors/Frog.cpp
-        Source/Actors/Frog.h
+        Source/Actors/Enemies/Frog.cpp
+        Source/Actors/Enemies/Frog.h
         Source/Actors/FrogTongue.cpp
         Source/Actors/FrogTongue.h
         Source/AudioSystem.cpp
         Source/AudioSystem.h
-        Source/Actors/FlyingShooterEnemy.cpp
-        Source/Actors/FlyingShooterEnemy.h
+        Source/Actors/Enemies/FlyingShooterEnemy.cpp
+        Source/Actors/Enemies/FlyingShooterEnemy.h
         Source/Actors/Projectile.cpp
         Source/Actors/Projectile.h
         Source/UIElements/UIScreen.h
@@ -94,12 +94,12 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Checkpoint.h
         Source/Store.cpp
         Source/Store.h
-        Source/Actors/Mantis.cpp
-        Source/Actors/Mantis.h
-        Source/Actors/Moth.cpp
-        Source/Actors/Moth.h
-        Source/Actors/Golem.cpp
-        Source/Actors/Golem.h
+        Source/Actors/Enemies/Mantis.cpp
+        Source/Actors/Enemies/Mantis.h
+        Source/Actors/Enemies/Moth.cpp
+        Source/Actors/Enemies/Moth.h
+        Source/Actors/Enemies/Golem.cpp
+        Source/Actors/Enemies/Golem.h
         Source/Actors/Skill.cpp
         Source/Actors/Skill.h
         Source/Actors/Fairy.cpp
@@ -108,14 +108,14 @@ add_executable(${PROJECT_NAME}
         Source/DialogueSystem.h
         Source/Cutscene.cpp
         Source/Cutscene.h
-        Source/Actors/BushMonster.cpp
-        Source/Actors/BushMonster.h
+        Source/Actors/Enemies/BushMonster.cpp
+        Source/Actors/Enemies/BushMonster.h
         Source/Actors/HookPoint.cpp
         Source/Actors/HookPoint.h
-        Source/Actors/FlyingGolem.cpp
-        Source/Actors/FlyingGolem.h
-        Source/Actors/DragonFly.cpp
-        Source/Actors/DragonFly.h
+        Source/Actors/Enemies/FlyingGolem.cpp
+        Source/Actors/Enemies/FlyingGolem.h
+        Source/Actors/Enemies/DragonFly.cpp
+        Source/Actors/Enemies/DragonFly.h
         Source/Components/ColliderComponent.cpp
         Source/Components/ColliderComponent.h
         Source/Components/OBBComponent.cpp
@@ -128,28 +128,28 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Lava.h
         Source/Actors/JumpEffect.cpp
         Source/Actors/JumpEffect.h
-        Source/Actors/HookEnemy.cpp
-        Source/Actors/HookEnemy.h
+        Source/Actors/Enemies/HookEnemy.cpp
+        Source/Actors/Enemies/HookEnemy.h
         Source/Actors/Spawner.cpp
         Source/Actors/Spawner.h
-        Source/Actors/FlyingSpawnerEnemy.cpp
-        Source/Actors/FlyingSpawnerEnemy.h
-        Source/Actors/LittleBat.cpp
-        Source/Actors/LittleBat.h
+        Source/Actors/Enemies/FlyingSpawnerEnemy.cpp
+        Source/Actors/Enemies/FlyingSpawnerEnemy.h
+        Source/Actors/Enemies/LittleBat.cpp
+        Source/Actors/Enemies/LittleBat.h
         Source/SaveData.cpp
         Source/SaveData.h
         Source/SaveManager.cpp
         Source/SaveManager.h
         Source/Actors/Decorations.cpp
         Source/Actors/Decorations.h
-        Source/Actors/Snake.cpp
-        Source/Actors/Snake.h
-        Source/Actors/Mushroom.cpp
-        Source/Actors/Mushroom.h
-        Source/Actors/CloneEnemy.cpp
-        Source/Actors/CloneEnemy.h
-        Source/Actors/MirrorBoss.cpp
-        Source/Actors/MirrorBoss.h
+        Source/Actors/Enemies/Snake.cpp
+        Source/Actors/Enemies/Snake.h
+        Source/Actors/Enemies/Mushroom.cpp
+        Source/Actors/Enemies/Mushroom.h
+        Source/Actors/Enemies/CloneEnemy.cpp
+        Source/Actors/Enemies/CloneEnemy.h
+        Source/Actors/Enemies/MirrorBoss.cpp
+        Source/Actors/Enemies/MirrorBoss.h
         Source/Actors/Light.cpp
         Source/Actors/Light.h
         Source/Renderer/Renderer.cpp
@@ -186,8 +186,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/AirGlideEffect.h
         Source/Components/CombatBoxComponent.cpp
         Source/Components/CombatBoxComponent.h
-        Source/Actors/OrangeSlime.cpp
-        Source/Actors/OrangeSlime.h
+        Source/Actors/Enemies/OrangeSlime.cpp
+        Source/Actors/Enemies/OrangeSlime.h
         Source/UIElements/UISlider.cpp
         Source/UIElements/UISlider.h
         Source/Actors/FireWisp.cpp

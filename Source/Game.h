@@ -7,7 +7,7 @@
 #include "Actors/Ground.h"
 #include "Actors/Player.h"
 #include "Actors/FireBall.h"
-#include "Actors/Enemy.h"
+#include "Actors/Enemies/Enemy.h"
 #include "Math.h"
 #include <string>
 #include <unordered_map>

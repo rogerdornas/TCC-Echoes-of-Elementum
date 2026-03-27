@@ -6,21 +6,21 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 7920.0,
-            "y": 4256.0
+            "x": 5392.0,
+            "y": 3968.0
         },
-        "scene": "Level1",
-        "total_play_time": 165767.3125
+        "scene": "Level4",
+        "total_play_time": 167158.953125
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 437,
-        "elemental_mode": "Earth",
+        "death_counter": 442,
+        "elemental_mode": "Ice",
         "max_jumps_in_air": 1,
-        "money": 47011
+        "money": 48004
     },
     "upgrades": {
         "fireball": true,

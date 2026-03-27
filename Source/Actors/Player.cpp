@@ -13,7 +13,7 @@
 #include "HookPoint.h"
 #include "LightningEffect.h"
 #include "LightningSpear.h"
-#include "Mushroom.h"
+#include "Enemies/Mushroom.h"
 #include "PillarGround.h"
 #include "../Game.h"
 #include "../RadialMenu.h"

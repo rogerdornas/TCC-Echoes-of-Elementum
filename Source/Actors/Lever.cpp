@@ -5,7 +5,7 @@
 #include "Lever.h"
 
 #include "Effect.h"
-#include "Golem.h"
+#include "Enemies/Golem.h"
 #include "../Actors/Sword.h"
 #include "../Game.h"
 #include "../Components/AABBComponent.h"
