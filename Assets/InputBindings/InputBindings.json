@@ -8,14 +8,14 @@
     "ChangeMode": {
         "axis": 4,
         "btn": -1,
-        "key": 20,
+        "key": 225,
         "mouse": 0
     },
     "Dash": {
         "axis": -1,
         "btn": 10,
-        "key": 225,
-        "mouse": 0
+        "key": 0,
+        "mouse": 3
     },
     "Down": {
         "axis": -1,
@@ -26,14 +26,14 @@
     "Heal": {
         "axis": 5,
         "btn": -1,
-        "key": 21,
+        "key": 25,
         "mouse": 0
     },
     "Hook": {
         "axis": -1,
         "btn": 9,
-        "key": 9,
-        "mouse": 0
+        "key": 0,
+        "mouse": 2
     },
     "Jump": {
         "axis": -1,
@@ -74,8 +74,8 @@
     "Skill1": {
         "axis": -1,
         "btn": 1,
-        "key": 0,
-        "mouse": 3
+        "key": 20,
+        "mouse": 0
     },
     "Skill2": {
         "axis": -1,

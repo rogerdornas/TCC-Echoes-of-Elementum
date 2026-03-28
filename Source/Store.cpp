@@ -352,8 +352,3 @@ void Store::CloseStoreMessage() {
     }
     mStoreMessageOpened = false;
 }
-
-
-void Store::ChangeResolution(float oldScale, float newScale) {
-    mStoreMenu->ChangeResolution(oldScale, newScale);
-}

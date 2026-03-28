@@ -33,9 +33,9 @@ MirrorBoss::MirrorBoss(Game *game)
 
     ,mHitDuration(0.3f)
 
-    ,mProjectileWidth(80 * mGame->GetScale())
-    ,mProjectileHeight(80 * mGame->GetScale())
-    ,mProjectileSpeed(1000 * mGame->GetScale())
+    ,mProjectileWidth(80)
+    ,mProjectileHeight(80)
+    ,mProjectileSpeed(1000)
     ,mProjectileDamage(10)
     ,mProjectileDuration(8.0f)
     ,mProjectileSpread(Math::Pi / 2)
@@ -45,8 +45,8 @@ MirrorBoss::MirrorBoss(Game *game)
     ,mDurationBetweenProjectiles(0.25f)
     ,mTimerBetweenProjectiles(0.0f)
 
-    ,mMirrorWidth(100 * mGame->GetScale())
-    ,mMirrorHeight(200 * mGame->GetScale())
+    ,mMirrorWidth(100)
+    ,mMirrorHeight(200)
 
     ,mSpawnEnemyDuration(6.0f)
     ,mSpawnEnemyTimer(0.0f)
@@ -63,20 +63,20 @@ MirrorBoss::MirrorBoss(Game *game)
     ,mTeleportDurationNormal(0.6f)
     ,mTeleportInTimer(0.0f)
     ,mTeleportOutTimer(0.0f)
-    ,mDistFromPlayerToStartTeleport(550.0f * mGame->GetScale())
-    ,mDistFromPlayerToEndTeleport(650.0f * mGame->GetScale())
+    ,mDistFromPlayerToStartTeleport(550.0f)
+    ,mDistFromPlayerToEndTeleport(650.0f)
     ,mTeleportLight(nullptr)
     ,mTeleportLightDuration(1.5f)
     ,mTeleportLightTimer(0.0f)
 {
-    mWidth = 120 * mGame->GetScale();
-    mHeight = 250 * mGame->GetScale();
-    mMoveSpeed = 500 * mGame->GetScale();
+    mWidth = 120;
+    mHeight = 250;
+    mMoveSpeed = 500;
     mHealthPoints = 700;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 20;
     mMoneyDrop = 200;
-    mKnockBackSpeed = 0.0f * mGame->GetScale();
+    mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
     mEnemyCollision = false;
@@ -589,61 +589,4 @@ void MirrorBoss::ManageAnimations() {
         // mDrawAnimatedComponent->SetTransparency(static_cast<int>(mTeleportOutTimer / mTeleportDuration * 255));
         mDrawComponent->SetAlpha(mTeleportOutTimer / mTeleportDuration);
     }
-}
-
-void MirrorBoss::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mProjectileWidth = mProjectileWidth / oldScale * newScale;
-    mProjectileHeight = mProjectileHeight / oldScale * newScale;
-    mProjectileSpeed = mProjectileSpeed / oldScale * newScale;
-    mMirrorWidth = mMirrorWidth / oldScale * newScale;
-    mMirrorHeight = mMirrorHeight / oldScale * newScale;
-    mDistFromPlayerToStartTeleport = mDistFromPlayerToStartTeleport / oldScale * newScale;
-    mDistFromPlayerToEndTeleport = mDistFromPlayerToEndTeleport / oldScale * newScale;
-    mArenaMinPos.x = mArenaMinPos.x / oldScale * newScale;
-    mArenaMinPos.y = mArenaMinPos.y / oldScale * newScale;
-    mArenaMaxPos.x = mArenaMaxPos.x / oldScale * newScale;
-    mArenaMaxPos.y = mArenaMaxPos.y / oldScale * newScale;
-    mSpawnPosition.x = mSpawnPosition.x / oldScale * newScale;
-    mSpawnPosition.y = mSpawnPosition.y / oldScale * newScale;
-
-    for (Vector2& pos : mSpawnPoints) {
-        pos.x = pos.x / oldScale * newScale;
-        pos.y = pos.y / oldScale * newScale;
-    }
-
-    mTeleportTargetPosition.x = mTeleportTargetPosition.x / oldScale * newScale;
-    mTeleportTargetPosition.y = mTeleportTargetPosition.y / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mHeight * 1.8f * 0.667f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.8f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

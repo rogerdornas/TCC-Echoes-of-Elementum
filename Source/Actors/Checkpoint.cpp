@@ -96,39 +96,3 @@ void Checkpoint::OnUpdate(float deltaTime) {
         mStoreMessageOpened = false;
     }
 }
-
-
-void Checkpoint::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 1.1f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.1f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
-}
-
-
-
-

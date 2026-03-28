@@ -96,7 +96,6 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mCamera(nullptr)
     ,mPlayer(nullptr)
     ,mStore(nullptr)
-    ,mScale(1.0f)
     ,mLevelData(nullptr)
     ,mLevelDataDynamicGrounds(nullptr)
     ,mMap(nullptr)
@@ -201,34 +200,12 @@ bool Game::Initialize()
     }
 
     // Informe o renderer sobre a mudança
-    if (mRenderer) // 'mRenderer' é seu objeto Renderer
-    {
+    if (mRenderer) {
         mRenderer->OnWindowResize(mWindowWidth, mWindowHeight);
     }
 
     mLogicalWindowWidth = mRenderer->GetVirtualWidth();
     mLogicalWindowHeight = mRenderer->GetVirtualHeight();
-
-    // if (static_cast<float>(mWindowWidth) / static_cast<float>(mWindowHeight) < mOriginalWindowWidth / mOriginalWindowHeight) {
-    //     mLogicalWindowWidth = static_cast<float>(mWindowWidth);
-    //     mLogicalWindowHeight = static_cast<float>(mWindowWidth) / (mOriginalWindowWidth / mOriginalWindowHeight);
-    //     SDL_RenderSetLogicalSize(mRenderer, mLogicalWindowWidth, mLogicalWindowHeight);
-    //     float ratio = mOriginalWindowWidth / static_cast<float>(mLogicalWindowWidth);
-    //     int tileSize = static_cast<int>(mOriginalTileSize / ratio);
-    //     mScale = static_cast<float>(tileSize) / mOriginalTileSize;
-    // }
-    // else {
-    //     mLogicalWindowWidth = static_cast<float>(mWindowHeight) * (mOriginalWindowWidth / mOriginalWindowHeight);
-    //     mLogicalWindowHeight = static_cast<float>(mWindowHeight);
-    //     SDL_RenderSetLogicalSize(mRenderer, mLogicalWindowWidth, mLogicalWindowHeight);
-    //     float ratio = mOriginalWindowHeight / static_cast<float>(mLogicalWindowHeight);
-    //     int tileSize = static_cast<int>(mOriginalTileSize / ratio);
-    //     mScale = static_cast<float>(tileSize) / mOriginalTileSize;
-    // }
-
-
-    // Esconde o cursor
-    // SDL_ShowCursor(SDL_DISABLE);
 
     // Inicializa controle
     for (int i = 0; i < SDL_NumJoysticks(); ++i)
@@ -786,284 +763,6 @@ void Game::ChangeScene()
     mGameScene = mNextScene;
 }
 
-void Game::LoadMainMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mMainMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
-    const Vector2 buttonSize = Vector2(virtualWidth / 5, 0.046f * virtualHeight);
-    // mMainMenu->SetSize(Vector2(virtualWidth / 3, virtualHeight / 3));
-    // mMainMenu->SetPosition(Vector2(virtualWidth / 3, 2 * virtualHeight / 3));
-    mMainMenu->SetSize(Vector2(virtualWidth, virtualHeight));
-    mMainMenu->SetPosition(Vector2::Zero);
-    Vector2 buttonPos = Vector2((mMainMenu->GetSize().x - buttonSize.x) / 2,  2 * virtualHeight / 3);
-    float distanceBetweenButtons = 0.064f * virtualHeight;
-
-    mMainMenu->AddImage("../Assets/Sprites/Background/Menu6.png", mMainMenu->GetSize() / 2, mMainMenu->GetSize());
-
-    std::string name = "INICIAR JOGO";
-    int buttonPointSize = static_cast<int>(0.031f * virtualHeight);
-    mMainMenu->AddButton(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        LoadLoadGameMenu();
-    });
-
-    name = "OPÇÕES";
-    mMainMenu->AddButton(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() { LoadOptionsMenu(); });
-
-    name = "SAIR";
-    mMainMenu->AddButton(name, buttonPos + Vector2(0, 3 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        // mMainMenu->SetIsVisible(false);
-        // LoadConfirmQuitGameMenu();
-        Quit();
-    });
-}
-
-void Game::LoadConfirmQuitGameMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mConfirmQuitGameMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    const Vector2 buttonSize = Vector2(virtualWidth / 5, 0.046f * virtualHeight);
-    mConfirmQuitGameMenu->SetSize(Vector2(virtualWidth / 3, virtualHeight / 3));
-    mConfirmQuitGameMenu->SetPosition(Vector2(virtualWidth / 3, 2 * virtualHeight / 3));
-    Vector2 buttonPos = Vector2((mConfirmQuitGameMenu->GetSize().x - buttonSize.x) / 2, mConfirmQuitGameMenu->GetSize().y * 0.30f);
-    float distanceBetweenButtons = 0.064f * virtualHeight;
-
-    UIText* text = mConfirmQuitGameMenu->AddText("SAIR DO JOGO?", Vector2::Zero, 0.035f * mWindowHeight);
-    text->SetPosition(Vector2(mConfirmQuitGameMenu->GetSize().x / 2, 0.0f));
-
-    std::string name = "SIM";
-    int buttonPointSize = static_cast<int>(0.031f * virtualHeight);
-    mConfirmQuitGameMenu->AddButton(name, buttonPos, buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        Quit();
-    });
-
-    name = "NÃO";
-    mConfirmQuitGameMenu->AddButton(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mConfirmQuitGameMenu->Close();
-        // mMainMenu->SetIsVisible(true);
-    });
-}
-
-void Game::LoadLoadGameMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mLoadGameMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    mLoadGameMenu->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
-    mLoadGameMenu->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
-
-    auto buttonSize = Vector2(mLoadGameMenu->GetSize().x * 0.65f, 0.14f * virtualHeight);
-    auto buttonPointSize = static_cast<int>(0.033f * virtualHeight);
-    auto buttonPos = Vector2(mLoadGameMenu->GetSize().x * 0.05f, mLoadGameMenu->GetSize().y * 0.2f);
-    float distanceBetweenButtons = 0.16f * virtualHeight;
-
-    mLoadGameMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mLoadGameMenu->GetSize() / 2, mLoadGameMenu->GetSize());
-
-    UIText* text = mLoadGameMenu->AddText("SELECIONAR PERFIL", Vector2::Zero,  0.046f * virtualHeight);
-    text->SetPosition(Vector2(mLoadGameMenu->GetSize().x / 2, mLoadGameMenu->GetSize().y * 0.05f));
-
-    std::string name = "   SLOT 1";
-    mLoadGameMenu->AddButton(name, buttonPos,
-        buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-        [this]()
-        {
-            delete mPlayer;
-            mPlayer = nullptr;
-            mPlayerDeathCounter = 0;
-            delete mStore;
-            mStore = nullptr;
-            mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-            mSaveSlot = 1;
-            LoadGame();
-        });
-
-    name = "   SLOT 2";
-    mLoadGameMenu->AddButton(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons),
-        buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-        [this]()
-        {
-            delete mPlayer;
-            mPlayer = nullptr;
-            mPlayerDeathCounter = 0;
-            delete mStore;
-            mStore = nullptr;
-            mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-            mSaveSlot = 2;
-            LoadGame();
-        });
-
-    name = "   SLOT 3";
-    mLoadGameMenu->AddButton(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons),
-        buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-        [this]()
-        {
-            delete mPlayer;
-            mPlayer = nullptr;
-            mPlayerDeathCounter = 0;
-            delete mStore;
-            mStore = nullptr;
-            mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-            mSaveSlot = 3;
-            LoadGame();
-        });
-
-    name = "   SLOT 4";
-    mLoadGameMenu->AddButton(name, buttonPos + Vector2(0, 3 * distanceBetweenButtons),
-        buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-        [this]()
-        {
-            delete mPlayer;
-            mPlayer = nullptr;
-            mPlayerDeathCounter = 0;
-            delete mStore;
-            mStore = nullptr;
-            mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-            mSaveSlot = 4;
-            LoadGame();
-        });
-
-    buttonSize = Vector2(mLoadGameMenu->GetSize().x * 0.20f, 0.046f * virtualHeight);
-    buttonPos = Vector2(mLoadGameMenu->GetSize().x * 0.75f, mLoadGameMenu->GetSize().y * 0.25f);
-
-    name = "DELETAR SAVE";
-    mLoadGameMenu->AddButton(name, buttonPos,
-        buttonSize, buttonPointSize, UIButton::TextPos::Center,
-        [this]()
-        {
-            mSaveManager->DeleteSave(1);
-        });
-
-    name = "DELETAR SAVE";
-    mLoadGameMenu->AddButton(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons),
-        buttonSize, buttonPointSize, UIButton::TextPos::Center,
-        [this]()
-        {
-            mSaveManager->DeleteSave(2);
-        });
-
-    name = "DELETAR SAVE";
-    mLoadGameMenu->AddButton(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons),
-        buttonSize, buttonPointSize, UIButton::TextPos::Center,
-        [this]()
-        {
-            mSaveManager->DeleteSave(3);
-        });
-
-    name = "DELETAR SAVE";
-    mLoadGameMenu->AddButton(name, buttonPos + Vector2(0, 3 * distanceBetweenButtons),
-        buttonSize, buttonPointSize, UIButton::TextPos::Center,
-        [this]()
-        {
-            mSaveManager->DeleteSave(4);
-        });
-
-    buttonSize = Vector2(mLoadGameMenu->GetSize().x * 0.2f, 0.046f * virtualHeight);
-    buttonPos = Vector2((mLoadGameMenu->GetSize().x - buttonSize.x) / 2, mLoadGameMenu->GetSize().y - 0.056f * virtualHeight);
-    name = "VOLTAR";
-    mLoadGameMenu->AddButton(name, buttonPos,
-        buttonSize, buttonPointSize, UIButton::TextPos::Center,
-        [this]() {
-            mLoadGameMenu->Close();
-        });
-}
-
-
-void Game::LoadPauseMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mPauseMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    const Vector2 buttonSize = Vector2(virtualWidth * 0.22f, 0.046f * virtualHeight);
-    mPauseMenu->SetSize(Vector2(virtualWidth / 3, virtualHeight / 3));
-    mPauseMenu->SetPosition(Vector2(virtualWidth / 3, 5 * virtualHeight / 12));
-    Vector2 buttonPos = Vector2((mPauseMenu->GetSize().x - buttonSize.x) / 2, 0.0f);
-    float distanceBetweenButtons = 0.064f * virtualHeight;
-
-    auto* background = mPauseMenu->AddImage("../Assets/Sprites/Menus/FundoPreto.png", mPauseMenu->GetSize() / 2, Vector2(virtualWidth, virtualHeight) * 1.5f);
-    background->SetAlpha(0.7f);
-
-    std::string name = "CONTINUAR";
-    int buttonPointSize = static_cast<int>(0.031f * virtualHeight);
-    mPauseMenu->AddButton(name, buttonPos, buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        TogglePause();
-        mPauseMenu->Close();
-    });
-
-    name = "OPÇÕES";
-    mPauseMenu->AddButton(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        LoadOptionsMenu();
-    });
-
-    name = "SELECIONAR FASE";
-    mPauseMenu->AddButton(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        LoadLevelSelectMenu();
-
-        if (mStore->StoreOpened()) {
-            mStore->CloseStore();
-        }
-        if (mStore->StoreMessageOpened()) {
-            mStore->CloseStoreMessage();
-        }
-    });
-
-    name = "VOLTAR AO MENU";
-    mPauseMenu->AddButton(name, buttonPos + Vector2(0, 3 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mPauseMenu->SetIsVisible(false);
-        LoadConfirmBackToMenu();
-    });
-}
-
-void Game::LoadConfirmBackToMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mConfirmBackToMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    const Vector2 buttonSize = Vector2(virtualWidth * 0.22f, 50);
-    mConfirmBackToMenu->SetSize(Vector2(virtualWidth / 3, virtualHeight / 3));
-    mConfirmBackToMenu->SetPosition(Vector2(virtualWidth / 3, 5 * virtualHeight / 12));
-    Vector2 buttonPos = Vector2((mConfirmBackToMenu->GetSize().x - buttonSize.x) / 2, mConfirmBackToMenu->GetSize().y * 0.30f);
-
-    auto* background = mConfirmBackToMenu->AddImage("../Assets/Sprites/Menus/FundoPreto.png", mConfirmBackToMenu->GetSize() / 2, Vector2(virtualWidth, virtualHeight) * 1.5f);
-    background->SetAlpha(0.5f);
-
-    UIText* text = mConfirmBackToMenu->AddText("VOLTAR AO MENU?", Vector2::Zero, 38 * mScale);
-    text->SetPosition(Vector2(mConfirmBackToMenu->GetSize().x / 2, 0.0f));
-
-    std::string name = "SIM";
-    int buttonPointSize = static_cast<int>(34);
-    mConfirmBackToMenu->AddButton(name, buttonPos, buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        SaveGame();
-        SetGameScene(GameScene::MainMenu, 0.5f);
-        mConfirmBackToMenu->Close();
-        mPauseMenu->Close();
-        if (mStore->StoreOpened()) {
-            mStore->CloseStore();
-        }
-    });
-
-    name = "NÃO";
-    mConfirmBackToMenu->AddButton(name, buttonPos + Vector2(0, 2 * 35), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mConfirmBackToMenu->Close();
-        mPauseMenu->SetIsVisible(true);
-    });
-}
-
 void Game::LoadLevelSelectMenu() {
     float virtualWidth = mRenderer->GetVirtualWidth();
     float virtualHeight = mRenderer->GetVirtualHeight();
@@ -1163,407 +862,6 @@ void Game::LoadLevelSelectMenu() {
     mLevelSelectMenu->AddButton(name, buttonPos + Vector2(0.0f, mLevelSelectMenu->GetSize().y - buttonSize.y * 1.2f),
         buttonSize, buttonPointSize, UIButton::TextPos::Center,
         [this]() { mLevelSelectMenu->Close(); });
-}
-
-void Game::LoadOptionsMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mOptionsMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    mOptionsMenu->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
-    mOptionsMenu->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
-    Vector2 buttonSize = Vector2(mOptionsMenu->GetSize().x * 0.8f, 50);
-    Vector2 buttonPos = Vector2(mOptionsMenu->GetSize().x * 0.1f, 0.0f);
-
-    mOptionsMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mOptionsMenu->GetSize() / 2, mOptionsMenu->GetSize());
-
-    UIText* text;
-    std::string name;
-    int buttonPointSize = static_cast<int>(0.031f * virtualHeight);
-    Vector2 textPos = Vector2(buttonSize.x * 0.05f, 0.0f);
-    std::string optionValue;
-    float optionPosX = mOptionsMenu->GetSize().x * 0.6f;
-    UIButton* button;
-
-    if (SDL_GetWindowFlags(mWindow) & SDL_WINDOW_FULLSCREEN_DESKTOP) {
-        name = "FULL SCREEN";
-        button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 1.5f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-        [this]() {
-            SDL_SetWindowFullscreen(mWindow, 0);
-            mOptionsMenu->Close();
-            LoadOptionsMenu();
-        }, false, textPos);
-
-        optionValue = "< ON >";
-        text = mOptionsMenu->AddText(optionValue, Vector2::Zero, buttonPointSize);
-        text->SetPosition(Vector2(optionPosX, button->GetPosition().y + text->GetSize().y / 2));
-    }
-    else {
-        name = "FULL SCREEN";
-        button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 1.5f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-        [this]() {
-            Uint32 flags = SDL_GetWindowFlags(mWindow);
-
-            // Alterna o bit de fullscreen
-            if (flags & SDL_WINDOW_FULLSCREEN_DESKTOP)
-            {
-                SDL_SetWindowFullscreen(mWindow, 0);
-            }
-            else
-            {
-                SDL_SetWindowFullscreen(mWindow, SDL_WINDOW_FULLSCREEN_DESKTOP);
-            }
-            // int w, h;
-            // SDL_GL_GetDrawableSize(mWindow, &w, &h);
-            // mRenderer->OnWindowResize(static_cast<float>(w), static_cast<float>(h));
-
-            mOptionsMenu->Close();
-            LoadOptionsMenu();
-        }, false, textPos);
-        optionValue = "< OFF >";
-        text = mOptionsMenu->AddText(optionValue, Vector2::Zero, buttonPointSize);
-        text->SetPosition(Vector2(optionPosX, button->GetPosition().y + text->GetSize().y / 2));
-    }
-
-    name = "TECLADO";
-    button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 3.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        LoadKeyBoardMenu2();
-    }, false, textPos);
-
-    name = "CONTROLE";
-    button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 4.5f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        LoadControlMenu();
-    }, false, textPos);
-
-    name = "AUDIO";
-    button = mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, buttonSize.y * 6.0f), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        LoadAudioMenu();
-    }, false, textPos);
-
-    name = "VOLTAR";
-    mOptionsMenu->AddButton(name, buttonPos + Vector2(0.0f, mOptionsMenu->GetSize().y - buttonSize.y * 1.2f), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mOptionsMenu->Close();
-    });
-}
-
-void Game::LoadControlMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mControlMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    mControlMenu->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
-    mControlMenu->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
-    Vector2 buttonSize = Vector2(mControlMenu->GetSize().x * 0.8f, 50);
-    Vector2 buttonPos = Vector2(mControlMenu->GetSize().x * 0.1f, 0.0f);
-
-    mControlMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mControlMenu->GetSize() / 2, mControlMenu->GetSize());
-    mControlMenu->AddImage("../Assets/Sprites/Menus/Control2.png", mControlMenu->GetSize() / 2, Vector2(mControlMenu->GetSize().x, mControlMenu->GetSize().x / 1.9f));
-
-    std::string name;
-    int buttonPointSize = static_cast<int>(34);
-
-    name = "VOLTAR";
-    mControlMenu->AddButton(name, buttonPos + Vector2(0.0f, mControlMenu->GetSize().y - buttonSize.y * 1.2f), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mControlMenu->Close();
-    });
-}
-
-void Game::LoadKeyBoardMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mKeyboardMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    mKeyboardMenu->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
-    mKeyboardMenu->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
-    Vector2 buttonSize = Vector2(mKeyboardMenu->GetSize().x * 0.8f, 50);
-    Vector2 buttonPos = Vector2(mKeyboardMenu->GetSize().x * 0.1f, 0.0f);
-
-    mKeyboardMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mKeyboardMenu->GetSize() / 2, mKeyboardMenu->GetSize());
-    mKeyboardMenu->AddImage("../Assets/Sprites/Menus/Keyboard4.png", Vector2(mKeyboardMenu->GetSize().x * 0.125f, 0.0f), Vector2(mKeyboardMenu->GetSize().y * 1.4f, mKeyboardMenu->GetSize().y * 1.4f / 1.52f));
-
-    std::string name;
-    int buttonPointSize = static_cast<int>(34);
-
-
-    name = "VOLTAR";
-    mKeyboardMenu->AddButton(name, buttonPos + Vector2(0.0f, mKeyboardMenu->GetSize().y - buttonSize.y * 1.2f), buttonSize, buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mKeyboardMenu->Close();
-    });
-}
-
-void Game::LoadKeyBoardMenu2() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mKeyboardMenu2 = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    mKeyboardMenu2->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
-    mKeyboardMenu2->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
-
-    Vector2 buttonSize = Vector2(mKeyboardMenu2->GetSize().x * 0.47f, 60);
-    Vector2 buttonPos = Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200);
-    int buttonPointSize = static_cast<int>(40);
-    Vector2 textPos = Vector2(buttonSize.x / 20, 0.0f);
-    float distanceBetweenButtons = 80;
-
-    mKeyboardMenu2->AddImage("../Assets/Sprites/Menus/Fundo2.png", mKeyboardMenu2->GetSize() / 2, mKeyboardMenu2->GetSize());
-
-    UIText* text = mKeyboardMenu2->AddText("TECLADO", Vector2::Zero, 50);
-    text->SetPosition(Vector2(mKeyboardMenu2->GetSize().x / 2, 50));
-
-    std::string name;
-
-    name = "CIMA";
-    mKeyboardMenu2->AddButton(name, buttonPos, buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[1]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[1]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[1]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[1]->GetSize().x / 2, 25 + 0 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[1];
-        mBindingAction = Action::Up;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Up].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, text->GetSize().y / 2));
-
-    name = "BAIXO";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[2]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[2]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[2]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[2]->GetSize().x / 2, 25 + 2 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[2];
-        mBindingAction = Action::Down;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Down].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 1 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "PULO";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[3]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[3]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[3]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[3]->GetSize().x / 2, 25 + 4 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[3];
-        mBindingAction = Action::Jump;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Jump].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 2 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "ATAQUE";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 3 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[4]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[4]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[4]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[4]->GetSize().x / 2, 25 + 6 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[4];
-        mBindingAction = Action::Attack;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Attack].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 3 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "AVANÇO";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 4 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[5]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[5]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[5]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[5]->GetSize().x / 2, 25 + 8 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[5];
-        mBindingAction = Action::Dash;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Dash].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 4 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "HABILIDADE 1";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 5 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[6]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[6]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[6]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[6]->GetSize().x / 2, 25 + 10 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[6];
-        mBindingAction = Action::Skill1;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill1].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 5 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "CURA";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(0, 6 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[7]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[7]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[7]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(470 + mKeyboardMenu2->GetTexts()[7]->GetSize().x / 2, 25 + 12 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[7];
-        mBindingAction = Action::Heal;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Heal].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(600 + text->GetSize().x / 2, 6 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "ESQUERDA";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 0 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[8]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[8]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[8]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[8]->GetSize().x / 2, 25 + 0 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[8];
-        mBindingAction = Action::MoveLeft;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::MoveLeft].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 0 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "DIREITA";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 1 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[9]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[9]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[9]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[9]->GetSize().x / 2, 25 + 2 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[9];
-        mBindingAction = Action::MoveRight;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::MoveRight].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 1 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "GANCHO";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 2 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[10]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[10]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[10]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[10]->GetSize().x / 2, 25 + 4 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[10];
-        mBindingAction = Action::Hook;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Hook].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 2 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "ABRIR LOJA";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 3 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[11]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[11]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[11]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[11]->GetSize().x / 2, 25 + 6 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[11];
-        mBindingAction = Action::OpenStore;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::OpenStore].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 3 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "MAPA";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 4 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[12]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[12]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[12]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[12]->GetSize().x / 2, 25 + 8 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[12];
-        mBindingAction = Action::Map;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Map].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 4 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "CAMINHAR / OLHAR";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 5 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[13]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[13]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[13]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[13]->GetSize().x / 2, 25 + 10 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[13];
-        mBindingAction = Action::Look;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Look].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 5 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "HABILIDADE 2";
-    mKeyboardMenu2->AddButton(name, buttonPos + Vector2(mKeyboardMenu2->GetSize().x / 2, 6 * distanceBetweenButtons), buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
-    [this]() {
-        mKeyboardMenu2->GetTexts()[14]->SetPointSize(25);
-        mKeyboardMenu2->GetTexts()[14]->SetText("Pressione outra tecla");
-        mKeyboardMenu2->GetTexts()[14]->SetPosition(Vector2(mKeyboardMenu2->GetSize().x * 0.01f, 200) + Vector2(mKeyboardMenu2->GetSize().x / 2 + 403 + mKeyboardMenu2->GetTexts()[14]->GetSize().x / 2, 25 + 12 * 40));
-        mWaitingForKey = true;
-        mNewButtonText = mKeyboardMenu2->GetTexts()[14];
-        mBindingAction = Action::Skill2;
-    }, false, textPos);
-
-    text = mKeyboardMenu2->AddText(SDL_GetScancodeName(mInputBindings[Action::Skill2].key), Vector2::Zero, buttonPointSize);
-    text->SetPosition(buttonPos + Vector2(1300 + text->GetSize().x / 2, 6 * distanceBetweenButtons + text->GetSize().y / 2));
-
-    name = "VOLTAR";
-    mKeyboardMenu2->AddButton(name, Vector2(mKeyboardMenu2->GetSize().x * 0.375f, mKeyboardMenu2->GetSize().y * 0.9f), Vector2(mKeyboardMenu2->GetSize().x * 0.25f, 40), buttonPointSize, UIButton::TextPos::Center,
-    [this]() {
-        mKeyboardMenu2->Close();
-    });
-}
-
-void Game::LoadAudioMenu() {
-    float virtualWidth = mRenderer->GetVirtualWidth();
-    float virtualHeight = mRenderer->GetVirtualHeight();
-
-    mAudioMenu = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf");
-    mAudioMenu->SetSize(Vector2(virtualWidth * 0.8f, virtualHeight * 0.85f));
-    mAudioMenu->SetPosition(Vector2(virtualWidth * 0.1f, virtualHeight * 0.13f));
-
-    Vector2 buttonSize(1200, 100);
-    Vector2 buttonPos(150, 200);
-    Vector2 sliderSize(400, 40);
-    Vector2 sliderPos(550, 30);
-    int pointSize = static_cast<int>(40);
-    float distanceBetweenButtons = 185;
-
-    mAudioMenu->AddImage("../Assets/Sprites/Menus/Fundo2.png", mAudioMenu->GetSize() / 2, mAudioMenu->GetSize());
-
-    UIText* text = mAudioMenu->AddText("AUDIO", Vector2::Zero, 50);
-    text->SetPosition(Vector2(mAudioMenu->GetSize().x / 2, 50));
-
-    std::string name = "GERAL";
-    UISlider* slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 0 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Master), 34, 20,
-    [this](float valor) {
-        mAudio->SetCategoryVolume(SoundCategory::Master, valor);
-    });
-
-    name = "MUSICA";
-    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 1 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::Music), 34, 20,
-    [this](float valor) {
-        mAudio->SetCategoryVolume(SoundCategory::Music, valor);
-    });
-
-    name = "EFEITOS";
-    slider = mAudioMenu->AddSlider(name, buttonPos + Vector2(0, 2 * distanceBetweenButtons), buttonSize, sliderPos, sliderSize, 0.0f, 1.0f, mAudio->GetCategoryVolume(SoundCategory::SFX), 34, 20,
-    [this](float valor) {
-        mAudio->SetCategoryVolume(SoundCategory::SFX, valor);
-    });
-
-    name = "VOLTAR";
-    mAudioMenu->AddButton(name, Vector2(mAudioMenu->GetSize().x * 0.375f, mAudioMenu->GetSize().y * 0.9f), Vector2(mAudioMenu->GetSize().x * 0.25f, 40), 40, UIButton::TextPos::Center,
-    [this]() {
-        mAudioMenu->Close();
-    });
 }
 
 void Game::BackToMenu() {
@@ -1786,14 +1084,14 @@ void Game::LoadObjects(const std::string &fileName) {
         if (layer["name"] == "Grounds") {
             for (const auto &obj: layer["objects"]) {
                 std::string name = obj["name"];
-                float xOriginal = static_cast<float>(obj["x"]);
-                float yOriginal = static_cast<float>(obj["y"]);
-                float widthOriginal = static_cast<float>(obj["width"]);
-                float heightOriginal = static_cast<float>(obj["height"]);
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float xOriginal = obj["x"];
+                float yOriginal = obj["y"];
+                float widthOriginal = obj["width"];
+                float heightOriginal = obj["height"];
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 int id = obj["id"];
                 bool isSpike = false;
                 bool isMoving = false;
@@ -1824,10 +1122,10 @@ void Game::LoadObjects(const std::string &fileName) {
                             isBreakable = prop["value"];
                         }
                         else if (propName == "RespawnPositionX") {
-                            respawnPositionX = static_cast<float>(prop["value"]) * mScale;
+                            respawnPositionX = static_cast<float>(prop["value"]);
                         }
                         else if (propName == "RespawnPositionY") {
-                            respawnPositionY = static_cast<float>(prop["value"]) * mScale;
+                            respawnPositionY = static_cast<float>(prop["value"]);
                         }
                         else if (propName == "MovingDuration") {
                             movingDuration = prop["value"];
@@ -1914,10 +1212,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Decorations") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 std::string imagePath;
 
                 if (obj.contains("properties")) {
@@ -1934,8 +1232,8 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Light") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
                 float intensity = 0.0f;
                 float radius = 0.0f;
                 Vector3 color = Vector3::One;
@@ -1970,10 +1268,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Brazier") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 bool brazierOn = false;
 
                 if (obj.contains("properties")) {
@@ -1996,10 +1294,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Lava") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 float respawnPositionX = 0.0f;
                 float respawnPositionY = 0.0f;
                 bool isMoving = false;
@@ -2011,10 +1309,10 @@ void Game::LoadObjects(const std::string &fileName) {
                     for (const auto &prop: obj["properties"]) {
                         std::string propName = prop["name"];
                         if (propName == "RespawnPositionX") {
-                            respawnPositionX = static_cast<float>(prop["value"]) * mScale;
+                            respawnPositionX = static_cast<float>(prop["value"]);
                         }
                         else if (propName == "RespawnPositionY") {
-                            respawnPositionY = static_cast<float>(prop["value"]) * mScale;
+                            respawnPositionY = static_cast<float>(prop["value"]);
                         }
                         else if (propName == "Moving") {
                             isMoving = prop["value"];
@@ -2037,10 +1335,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "LightningBarrier") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]);
-                float y = static_cast<float>(obj["y"]);
-                float width = static_cast<float>(obj["width"]);
-                float height = static_cast<float>(obj["height"]);
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 bool isMoving = false;
                 float movingDuration = 0.0f;
                 float speedX = 0.0f;
@@ -2069,10 +1367,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Triggers") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 bool destroy = false;
                 std::string target;
                 std::string event;
@@ -2209,10 +1507,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Camera") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 bool destroy = false;
                 std::string target;
                 std::string event;
@@ -2273,10 +1571,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Levers") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 std::string target;
                 std::string event;
                 std::string grounds;
@@ -2345,8 +1643,8 @@ void Game::LoadObjects(const std::string &fileName) {
 
         if (layer["name"] == "HookPoints") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
 
                 auto* hookPoint = new HookPoint(this);
                 hookPoint->SetPosition(Vector2(x, y));
@@ -2355,8 +1653,8 @@ void Game::LoadObjects(const std::string &fileName) {
 
         if (layer["name"] == "SpawnPoint") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
                 std::string id;
 
                 if (obj.contains("properties")) {
@@ -2375,8 +1673,8 @@ void Game::LoadObjects(const std::string &fileName) {
             for (const auto &obj: layer["objects"]) {
                 std::string name = obj["name"];
                 int id = obj["id"];
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
                 float MinPosX = 0;
                 float MaxPosX = 0;
                 float MinPosY = 0;
@@ -2468,16 +1766,16 @@ void Game::LoadObjects(const std::string &fileName) {
                         for (const auto &prop: obj["properties"]) {
                             std::string propName = prop["name"];
                             if (propName == "MinPosX") {
-                                MinPosX = static_cast<float>(prop["value"]) * mScale;
+                                MinPosX = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MaxPosX") {
-                                MaxPosX = static_cast<float>(prop["value"]) * mScale;
+                                MaxPosX = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MinPosY") {
-                                MinPosY =static_cast<float>(prop["value"]) * mScale;
+                                MinPosY =static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MaxPosY") {
-                                MaxPosY = static_cast<float>(prop["value"]) * mScale;
+                                MaxPosY = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "UnlockGrounds") {
                                 grounds = prop["value"];
@@ -2540,16 +1838,16 @@ void Game::LoadObjects(const std::string &fileName) {
                         for (const auto &prop: obj["properties"]) {
                             std::string propName = prop["name"];
                             if (propName == "MinPosX") {
-                                MinPosX = static_cast<float>(prop["value"]) * mScale;
+                                MinPosX = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MaxPosX") {
-                                MaxPosX = static_cast<float>(prop["value"]) * mScale;
+                                MaxPosX = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MinPosY") {
-                                MinPosY = static_cast<float>(prop["value"]) * mScale;
+                                MinPosY = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MaxPosY") {
-                                MaxPosY = static_cast<float>(prop["value"]) * mScale;
+                                MaxPosY = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "UnlockGrounds") {
                                 grounds = prop["value"];
@@ -2593,16 +1891,16 @@ void Game::LoadObjects(const std::string &fileName) {
                         for (const auto &prop: obj["properties"]) {
                             std::string propName = prop["name"];
                             if (propName == "MinPosX") {
-                                MinPosX = static_cast<float>(prop["value"]) * mScale;
+                                MinPosX = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MaxPosX") {
-                                MaxPosX = static_cast<float>(prop["value"]) * mScale;
+                                MaxPosX = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MinPosY") {
-                                MinPosY = static_cast<float>(prop["value"]) * mScale;
+                                MinPosY = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "MaxPosY") {
-                                MaxPosY = static_cast<float>(prop["value"]) * mScale;
+                                MaxPosY = static_cast<float>(prop["value"]);
                             }
                             else if (propName == "Condition") {
                                 condition = prop["value"];
@@ -2624,10 +1922,10 @@ void Game::LoadObjects(const std::string &fileName) {
         }
         if (layer["name"] == "Checkpoint") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
-                float width = static_cast<float>(obj["width"]) * mScale;
-                float height = static_cast<float>(obj["height"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
                 Vector2 cameraPosition(Vector2::Zero);
 
                 if (obj.contains("properties")) {
@@ -2647,8 +1945,8 @@ void Game::LoadObjects(const std::string &fileName) {
 
         if (layer["name"] == "Player") {
             for (const auto &obj: layer["objects"]) {
-                float x = static_cast<float>(obj["x"]) * mScale;
-                float y = static_cast<float>(obj["y"]) * mScale;
+                float x = obj["x"];
+                float y = obj["y"];
                 int playerStartPositionId = 0;
                 Vector2 enteringLevelVelocity(Vector2::Zero);
 
@@ -2659,10 +1957,10 @@ void Game::LoadObjects(const std::string &fileName) {
                             playerStartPositionId = prop["value"];
                         }
                         if (propName == "EnteringLevelSpeedX") {
-                            enteringLevelVelocity.x = static_cast<float>(prop["value"]) * mScale;
+                            enteringLevelVelocity.x = static_cast<float>(prop["value"]);
                         }
                         if (propName == "EnteringLevelSpeedY") {
-                            enteringLevelVelocity.y = static_cast<float>(prop["value"]) * mScale;
+                            enteringLevelVelocity.y = static_cast<float>(prop["value"]);
                         }
                     }
                 }
@@ -2725,7 +2023,7 @@ void Game::LoadLevel(const std::string &fileName) {
     // Lê altura, largura e tileSize
     int height = int(mapData["height"]);
     int width = int(mapData["width"]);
-    float tileSize = static_cast<float>(mapData["tilewidth"]) * mScale;
+    float tileSize = static_cast<float>(mapData["tilewidth"]);
     mLevelHeight = height;
     mLevelWidth = width;
     mTileSize = tileSize;
@@ -2848,49 +2146,20 @@ void Game::ProcessInput()
                 if (event.window.event == SDL_WINDOWEVENT_SIZE_CHANGED ||
                     event.window.event == SDL_WINDOWEVENT_RESIZED) 
                 {
-                    float oldScale = mScale;
                     mWindowWidth = event.window.data1;
                     mWindowHeight = event.window.data2;
 
                     // Pega o NOVO tamanho em PIXELS
                     int newWidth, newHeight;
                     SDL_GL_GetDrawableSize(mWindow, &newWidth, &newHeight);
-                    
-                    // Avisa o Renderer
-                    if (mRenderer)
-                    {
+
+                    if (mRenderer) {
                         mRenderer->OnWindowResize(static_cast<float>(newWidth), 
                                                 static_cast<float>(newHeight));
                     }
 
                     mLogicalWindowWidth = mRenderer->GetVirtualWidth();
                     mLogicalWindowHeight = mRenderer->GetVirtualHeight();
-                    // if (static_cast<float>(mWindowWidth) / static_cast<float>(mWindowHeight) < mOriginalWindowWidth / mOriginalWindowHeight) {
-                    //     // Comenta essa parte para tirar o zoom do mapa
-                    //     mLogicalWindowWidth = static_cast<float>(mWindowWidth);
-                    //     mLogicalWindowHeight = static_cast<float>(mWindowWidth) / (mOriginalWindowWidth / mOriginalWindowHeight);
-                    //     SDL_RenderSetLogicalSize(mRenderer, mLogicalWindowWidth, mLogicalWindowHeight);
-                    //
-                    //     float ratio = mOriginalWindowWidth / static_cast<float>(mLogicalWindowWidth);
-                    //     mScale = 1 / ratio;
-                    //     // int tileSize = static_cast<int>(mOriginalTileSize / ratio);
-                    //     // mScale = static_cast<float>(tileSize) / mOriginalTileSize;
-                    // }
-                    // else {
-                    //     // Comenta essa parte para tirar o zoom do mapa
-                    //     mLogicalWindowWidth = static_cast<float>(mWindowHeight) * (mOriginalWindowWidth / mOriginalWindowHeight);
-                    //     mLogicalWindowHeight = static_cast<float>(mWindowHeight);
-                    //     SDL_RenderSetLogicalSize(mRenderer, mLogicalWindowWidth, mLogicalWindowHeight);
-                    //
-                    //     float ratio = mOriginalWindowHeight / static_cast<float>(mLogicalWindowHeight);
-                    //     mScale = 1 / ratio;
-                    //     // int tileSize = static_cast<int>(mOriginalTileSize / ratio);
-                    //     // mScale = static_cast<float>(tileSize) / mOriginalTileSize;
-                    // }
-                    // const float ratio = mOriginalWindowHeight / static_cast<float>(mLogicalWindowHeight);
-                    // const int tileSize = static_cast<int>(32 / ratio);
-                    // mScale = static_cast<float>(tileSize) / 32.0f;
-                    // ChangeResolution(oldScale);
                 }
                 break;
 
@@ -4410,45 +3679,3 @@ void Game::DrawParallaxLayers(std::vector<Texture*> layers)
         }
     }
 }
-
-// void Game::ChangeResolution(float oldScale)
-// {
-//     mCheckpointPosition.x = mCheckpointPosition.x / oldScale * mScale;
-//     mCheckpointPosition.y = mCheckpointPosition.y / oldScale * mScale;
-//     mLavaRespawnPosition.x = mLavaRespawnPosition.x / oldScale * mScale;
-//     mLavaRespawnPosition.y = mLavaRespawnPosition.y / oldScale * mScale;
-//
-//     for (auto& [key, value] : mSpawnPoints) {
-//         value.x = value.x / oldScale * mScale;
-//         value.y = value.y / oldScale * mScale;
-//     }
-//
-//     mTileSize = mTileSize / oldScale * mScale;
-//
-//     for (auto actor : mActors) {
-//         actor->ChangeResolution(oldScale, mScale);
-//     }
-//
-//     if (mCamera) {
-//         mCamera->ChangeResolution(oldScale, mScale);
-//     }
-//
-//     for (auto UIScreen : mUIStack) {
-//         UIScreen->ChangeResolution(oldScale, mScale);
-//     }
-//
-//     if (static_cast<float>(mWindowWidth) / static_cast<float>(mWindowHeight) < mOriginalWindowWidth / mOriginalWindowHeight) {
-//         mLogicalWindowWidth = static_cast<float>(mWindowWidth);
-//         mLogicalWindowHeight = static_cast<float>(mWindowWidth) / (mOriginalWindowWidth / mOriginalWindowHeight);
-//         SDL_RenderSetLogicalSize(mRenderer, mLogicalWindowWidth, mLogicalWindowHeight);
-//     }
-//     else {
-//         mLogicalWindowWidth = static_cast<float>(mWindowHeight) * (mOriginalWindowWidth / mOriginalWindowHeight);
-//         mLogicalWindowHeight = static_cast<float>(mWindowHeight);
-//         SDL_RenderSetLogicalSize(mRenderer, mLogicalWindowWidth, mLogicalWindowHeight);
-//     }
-//
-//     if (mMap) {
-//         mMap->ChangeResolution(oldScale, mScale);
-//     }
-// }

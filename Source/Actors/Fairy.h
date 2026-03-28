@@ -12,7 +12,6 @@ public:
     Fairy(Game *game);
 
     void OnUpdate(float deltaTime) override;
-    void ChangeResolution(float oldScale, float newScale) override;
 
 private:
     float mHeight;

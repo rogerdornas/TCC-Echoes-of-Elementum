@@ -24,7 +24,7 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     ,mMovingDuration(movingDuration)
     ,mMovingTimer(movingDuration)
     ,mIsBreakable(false)
-    ,mVelocity(velocity * mGame->GetScale())
+    ,mVelocity(velocity)
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
 {
@@ -168,39 +168,4 @@ void Ground::DestroyEffects() {
     smoke->SetEmitDirection(Vector2::Zero);
     smoke->SetPosition(GetPosition());
     smoke->SetGroundCollision(false);
-}
-
-void Ground::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    SetRespawnPosition(Vector2(mRespawnPosition.x / oldScale * newScale, mRespawnPosition.y / oldScale * newScale));
-    mStartingPosition.x = mStartingPosition.x / oldScale * newScale;
-    mStartingPosition.y = mStartingPosition.y / oldScale * newScale;
-    mVelocity.x = mVelocity.x / oldScale * newScale;
-    mVelocity.y = mVelocity.y / oldScale * newScale;
-
-    if (mIsMoving) {
-        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-    }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

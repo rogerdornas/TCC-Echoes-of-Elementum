@@ -64,14 +64,16 @@ public:
 
     Trigger(class Game *game, float width, float height);
 
+    void OnUpdate(float deltaTime) override;
+
     void SetTarget(std::string target);
     void SetEvent(std::string event);
     void SetDestroy(bool destroy) { mDestroy = destroy; }
     void SetGroundsIds(const std::vector<int>& ids) { mGroundsIds = ids; }
     void SetEnemiesIds(const std::vector<int>& ids) { mEnemiesIds = ids; }
-    void SetFixedCameraPosition(Vector2 pos) { mFixedCameraPosition = pos * mGame->GetScale(); }
-    void SetLimitMinCameraPosition(Vector2 pos) { mLimitMinCameraPosition = pos * mGame->GetScale(); }
-    void SetLimitMaxCameraPosition(Vector2 pos) { mLimitMaxCameraPosition = pos * mGame->GetScale(); }
+    void SetFixedCameraPosition(Vector2 pos) { mFixedCameraPosition = pos; }
+    void SetLimitMinCameraPosition(Vector2 pos) { mLimitMinCameraPosition = pos; }
+    void SetLimitMaxCameraPosition(Vector2 pos) { mLimitMaxCameraPosition = pos; }
     void SetScene(std::string scene);
     void SetPlayerStartPositionId(int id) { mPlayerStartPositionId = id; }
     void SetWavesPath(const std::string &wavesPath);
@@ -83,9 +85,6 @@ public:
     void SetAmbientIntensity(float ambientIntensity) { mAmbientIntensity = ambientIntensity; }
     void SetDialoguePath(const std::string &dialoguePath) { mDialoguePath = dialoguePath; }
     void SetCutsceneId(const std::string &cutsceneId) { mCutsceneId = cutsceneId; }
-
-    void OnUpdate(float deltaTime) override;
-    void ChangeResolution(float oldScale, float newScale) override;
 
 protected:
     void CameraTrigger();

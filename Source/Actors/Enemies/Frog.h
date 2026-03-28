@@ -30,8 +30,6 @@ public:
     void SetArenaMaxPos(Vector2 pos) { mArenaMaxPos = pos; }
     void SetIsLicking(bool isLicking) { mIsLicking = isLicking; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ResolveGroundCollision() override;
     void ResolvePlayerCollision();

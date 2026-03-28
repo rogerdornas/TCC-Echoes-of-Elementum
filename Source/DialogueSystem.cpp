@@ -20,7 +20,7 @@ DialogueSystem::DialogueSystem(class Game *game, const std::string &fontName, st
     AddImage("../Assets/Sprites/Background/Store.png", GetSize() / 2, GetSize());
 
     if (!mLines.empty()) {
-        int textPointSize = static_cast<int>(40 * mGame->GetScale());
+        int textPointSize = static_cast<int>(40);
         // std::string text = mLines[mCurrentLine].speakerName + ": " + mLines[mCurrentLine].text;
         std::string text = mLines[mCurrentLine].text;
         Vector3 color = mLines[mCurrentLine].color;
@@ -36,19 +36,19 @@ DialogueSystem::DialogueSystem(class Game *game, const std::string &fontName, st
 
     std::string buttonName = "Próximo";
     Vector2 buttonPos = Vector2(GetSize().x * 0.85f, GetSize().y * 0.7f);
-    Vector2 buttonSize = Vector2(GetSize().x / 10, 50 * mGame->GetScale());
-    int buttonPointSize = static_cast<int>(34 * mGame->GetScale());
+    Vector2 buttonSize = Vector2(GetSize().x / 10, 50);
+    int buttonPointSize = static_cast<int>(34);
     AddButton(buttonName, buttonPos, buttonSize, buttonPointSize, UIButton::TextPos::Center,
         [this]() {
             Advance();
         });
 
     if (mGame->GetIsPlayingOnKeyboard()) {
-        UIText* text = AddText("[ENTER]", Vector2::Zero, static_cast<int>(20 * mGame->GetScale()));
+        UIText* text = AddText("[ENTER]", Vector2::Zero, static_cast<int>(20));
         text->SetPosition(Vector2(GetSize().x * 0.953f + text->GetSize().x / 2, GetSize().y * 0.80f + text->GetSize().y / 2));
     }
     else {
-        UIText* text = AddText("[A]", Vector2::Zero, static_cast<int>(20 * mGame->GetScale()));
+        UIText* text = AddText("[A]", Vector2::Zero, static_cast<int>(20));
         text->SetPosition(Vector2(GetSize().x * 0.953f + text->GetSize().x / 2, GetSize().y * 0.80f + text->GetSize().y / 2));
     }
 

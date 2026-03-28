@@ -21,8 +21,6 @@ public:
     void SetColor(const Vector3 &color) override;
     void Draw(Renderer* renderer, const Vector2 &screenPos) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 protected:
     std::string mText;
     class UIFont* mFont;

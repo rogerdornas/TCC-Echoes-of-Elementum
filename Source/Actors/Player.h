@@ -131,8 +131,6 @@ public:
 
     void InitLight();
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ResolveGroundCollision();
     void ResolveEnemyCollision();

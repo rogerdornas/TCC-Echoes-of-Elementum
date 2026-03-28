@@ -33,8 +33,6 @@ public:
 
     void Draw(class Renderer *renderer) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     struct BossLifeBar {
         RectF bossHPBar;

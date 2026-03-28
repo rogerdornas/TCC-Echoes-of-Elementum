@@ -27,8 +27,6 @@ public:
     void SetArenaMinPos(Vector2 pos) { mArenaMinPos = pos; }
     void SetArenaMaxPos(Vector2 pos) { mArenaMaxPos = pos; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     enum class Enemies {
         Snake,

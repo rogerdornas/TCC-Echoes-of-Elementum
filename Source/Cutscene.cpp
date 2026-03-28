@@ -38,7 +38,6 @@ void Action::Start() {
         Player* player = mGame->GetPlayer();
         std::string direction = mParams["direction"];
         mMoveSpeed = mParams["speed"];
-        mMoveSpeed *= mGame->GetScale();
         mDuration = mParams["duration"];
         mMoveElapsed = 0.0f;
         mTimer = 0.0f;
@@ -92,13 +91,9 @@ void Action::Start() {
         mDuration = mParams["duration"];
         mTimer = 0.0f;
         mCameraVelocity.x = mParams["speedX"];
-        mCameraVelocity.x *= mGame->GetScale();
         mCameraVelocity.y = mParams["speedY"];
-        mCameraVelocity.y *= mGame->GetScale();
         mPosCameraStart.x = mParams["posStartX"];
-        mPosCameraStart.x *= mGame->GetScale();
         mPosCameraStart.y = mParams["posStartY"];
-        mPosCameraStart.y *= mGame->GetScale();
         mGame->GetCamera()->ChangeCameraMode(CameraMode::PanoramicCamera);
         mGame->GetCamera()->SetCameraVelocity(mCameraVelocity);
         mGame->GetCamera()->SetPosition(mPosCameraStart);

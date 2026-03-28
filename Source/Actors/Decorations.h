@@ -12,7 +12,6 @@ public:
     Decorations(Game* game, float width, float height, std::string imagePath);
 
     void OnUpdate(float deltaTime) override;
-    void ChangeResolution(float oldScale, float newScale) override;
 
 private:
     float mWidth;

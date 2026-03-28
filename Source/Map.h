@@ -23,8 +23,6 @@ public:
 
     void CreateMap(SDL_Renderer* renderer);
     void Draw(SDL_Renderer* renderer);
-    void ChangeResolution(float oldScale, float newScale);
-
 
 private:
     class Game *mGame;

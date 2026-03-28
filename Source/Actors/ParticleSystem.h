@@ -33,8 +33,6 @@ public:
     void SetParticleDrawOrder(int particleDrawOrder) { mParticleDrawOrder = particleDrawOrder; }
     void SetAdditiveBlending(bool additiveBlending) { mAdditiveBlending = additiveBlending; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void EmitParticle();
 

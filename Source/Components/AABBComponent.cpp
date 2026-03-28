@@ -175,8 +175,6 @@ Vector2 AABBComponent::ResolveCollisionWithAABB(AABBComponent &other) {
         dist = 25.0f;
     }
 
-    dist *= GetGame()->GetScale();
-
     top = Math::Abs(top);
     bottom = Math::Abs(bottom);
     left = Math::Abs(left);

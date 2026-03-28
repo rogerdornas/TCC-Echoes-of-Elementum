@@ -36,8 +36,8 @@ Player::Player(Game* game)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
     ,mElementalMode(ElementalMode::Fire)
-    ,mWidth(45 * mGame->GetScale())
-    ,mHeight(75 * mGame->GetScale())
+    ,mWidth(45)
+    ,mHeight(75)
 
     ,mIsOnGround(false)
     ,mIsOnSpike(false)
@@ -67,13 +67,13 @@ Player::Player(Game* game)
     ,mIsJumping(false)
     ,mJumpTimer(0.0f)
     ,mMaxJumpTime(0.33f)
-    ,mJumpForce(-750.0f * mGame->GetScale())
+    ,mJumpForce(-750.0f)
     ,mCanJump(true)
     ,mJumpCountInAir(0)
     ,mMaxJumpsInAir(1)
-    ,mLowGravity(50.0f * mGame->GetScale())
-    ,mMediumGravity(3300.0f * mGame->GetScale())
-    ,mHighGravity(4500.0f * mGame->GetScale())
+    ,mLowGravity(50.0f)
+    ,mMediumGravity(3300.0f)
+    ,mHighGravity(4500.0f)
 
     ,mCanDash(true)
     ,mDashSpeed(1500)
@@ -145,10 +145,10 @@ Player::Player(Game* game)
     ,mIsFireAttacking(false)
     ,mStopInAirFireBallTimer(0.0f)
     ,mStopInAirFireBallMaxDuration(0.0f)
-    ,mFireballRecoil(0.0f * mGame->GetScale())
-    ,mFireballWidth(45 * mGame->GetScale())
-    ,mFireBallHeight(45 * mGame->GetScale())
-    ,mFireballSpeed(1500 * mGame->GetScale())
+    ,mFireballRecoil(0.0f)
+    ,mFireballWidth(45)
+    ,mFireBallHeight(45)
+    ,mFireballSpeed(1500)
     ,mFireballDamage(10.0f)
     ,mMaxMana(90.0f)
     ,mMana(90.0f)
@@ -193,10 +193,10 @@ Player::Player(Game* game)
     ,mWallJumpMaxTime(0.12f)
     ,mWallJumpTimer(0.0f)
 
-    ,mKnockBackSpeed(1000.0f * mGame->GetScale())
+    ,mKnockBackSpeed(1000.0f)
     ,mKnockBackTimer(0.0f)
     ,mKnockBackDuration(0.2f)
-    ,mCameraShakeStrength(70.0f * mGame->GetScale())
+    ,mCameraShakeStrength(70.0f)
 
     ,mMaxHealthPoints(70.0f)
     ,mHealthPoints(mMaxHealthPoints)
@@ -219,7 +219,7 @@ Player::Player(Game* game)
     ,mIsHooking(false)
     ,mPrevHookPressed(false)
     ,mHookDirection(Vector2::Zero)
-    ,mHookSpeed(1550.0f * mGame->GetScale())
+    ,mHookSpeed(1550.0f)
     ,mHookCooldownDuration(0.4f)
     ,mHookCooldownTimer(0.0f)
     ,mHookingDuration(0.3f)
@@ -230,8 +230,8 @@ Player::Player(Game* game)
     ,mHookPoint(nullptr)
     ,mHookAnimationDuration(0.45f)
     ,mHookSegments(20)
-    ,mHookAmplitude(14.0f * mGame->GetScale())
-    ,mHookSegmentHeight(8.0f * mGame->GetScale())
+    ,mHookAmplitude(14.0f)
+    ,mHookSegmentHeight(8.0f)
 
     ,mIsHookThrowing(false)
     ,mCurrentRopeTip(Vector2::Zero)
@@ -363,7 +363,7 @@ Player::Player(Game* game)
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), mMaxSpeedYNormal * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, mMaxSpeedYNormal);
     mAABBComponent = new AABBComponent(this, v1, v3);
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
@@ -1279,7 +1279,7 @@ void Player::OnUpdate(float deltaTime) {
     mWasOnGround = mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump;
 
     // Se cair, volta para a posição inicial
-    if (GetPosition().y > 20000 * mGame->GetScale()) {
+    if (GetPosition().y > 20000) {
         // SetPosition(mStartingPosition);
     }
 
@@ -2384,14 +2384,14 @@ void Player::ManageAnimations() {
         if (mIsGliding) {
             mDrawComponent->SetAnimation("jumpUp");
         }
-        else if (mRigidBodyComponent->GetVelocity().y < -200 * mGame->GetScale()) {
+        else if (mRigidBodyComponent->GetVelocity().y < -200) {
             mDrawComponent->SetAnimation("jumpUp");
         }
-        else if (mRigidBodyComponent->GetVelocity().y > 200 * mGame->GetScale()) {
+        else if (mRigidBodyComponent->GetVelocity().y > 200) {
             mDrawComponent->SetAnimation("falling");
         }
-        else if (mRigidBodyComponent->GetVelocity().y > -200 * mGame->GetScale() &&
-            mRigidBodyComponent->GetVelocity().y < 200 * mGame->GetScale())
+        else if (mRigidBodyComponent->GetVelocity().y > -200 &&
+            mRigidBodyComponent->GetVelocity().y < 200)
         {
             mDrawComponent->SetAnimation("jumpApex");
         }
@@ -2493,68 +2493,4 @@ void Player::SetIsEnteringLevel(Vector2 velocity) {
         SetRotation(Math::Pi);
         SetScale(Vector2(-1, 1));
     }
-}
-
-void Player::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    SetStartingPosition(Vector2(mStartingPosition.x / oldScale * newScale, mStartingPosition.y / oldScale * newScale));
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    mJumpForce = mJumpForce / oldScale * newScale;
-    mLowGravity = mLowGravity / oldScale * newScale;
-    mMediumGravity = mMediumGravity / oldScale * newScale;
-    mHighGravity = mHighGravity / oldScale * newScale;
-    mSwordWidth = mSwordWidth / oldScale * newScale;
-    mSwordHeight = mSwordHeight / oldScale * newScale;
-    mFireballRecoil = mFireballRecoil / oldScale * newScale;
-    mFireballWidth = mFireballWidth / oldScale * newScale;
-    mFireBallHeight = mFireBallHeight / oldScale * newScale;
-    mFireballSpeed = mFireballSpeed / oldScale * newScale;
-    mWallSlideSpeed = mWallSlideSpeed / oldScale * newScale;
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mHookSpeed = mHookSpeed / oldScale * newScale;
-    mHookAmplitude = mHookAmplitude / oldScale * newScale;
-    mHookSegmentHeight = mHookSegmentHeight / oldScale * newScale;
-
-    mHookEnd.x = mHookEnd.x / oldScale * newScale;
-    mHookEnd.y = mHookEnd.y / oldScale * newScale;
-
-    // if (mDrawRopeComponent) {
-    //     mDrawRopeComponent->SetNumSegments(mHookSegments);
-    //     mDrawRopeComponent->SetAmplitude(mHookAmplitude);
-    //     mDrawRopeComponent->SetSegmentHeight(mHookSegmentHeight);
-    // }
-
-    mRigidBodyComponent->SetMaxSpeedX(mRigidBodyComponent->GetMaxSpeedX() / oldScale * newScale);
-    mRigidBodyComponent->SetMaxSpeedY(mRigidBodyComponent->GetMaxSpeedY() / oldScale * newScale);
-    mDashComponent->SetDashSpeed(mDashComponent->GetDashSpeed() / oldScale * newScale);
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 4.93f);
-    //     mDrawAnimatedComponent->SetHeight(mWidth * 4.93f * 1.11f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

@@ -14,7 +14,6 @@ public:
 
     void OnProcessInput(const Uint8* keyState, SDL_GameController &controller) override;
     void OnUpdate(float deltaTime) override;
-    void ChangeResolution(float oldScale, float newScale) override;
 
 private:
     float mWidth;

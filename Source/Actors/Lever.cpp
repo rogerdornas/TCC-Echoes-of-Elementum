@@ -15,7 +15,7 @@
 #include "../Actors/DynamicGround.h"
 
 Lever::Lever(class Game* game, float width, float height, LeverType leverType)
-    :Trigger(game, width * game->GetScale(), height * game->GetScale())
+    :Trigger(game, width, height)
     ,mLeverType(leverType)
     ,mSwordHit(false)
     ,mActivate(false)
@@ -184,39 +184,4 @@ void Lever::EnemyTrigger() {
         default:
             break;
     }
-}
-
-
-
-void Lever::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mFixedCameraPosition.x = mFixedCameraPosition.x / oldScale * newScale;
-    mFixedCameraPosition.y = mFixedCameraPosition.y / oldScale * newScale;
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth);
-    //     mDrawAnimatedComponent->SetHeight(mHeight);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

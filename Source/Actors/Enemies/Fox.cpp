@@ -22,10 +22,10 @@
 
 Fox::Fox(Game* game)
     :Enemy(game)
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mWalkingAroundDuration(2.0f)
     ,mWalkingAroundTimer(0.0f)
-    ,mWalkingAroundMoveSpeed(50.0f * mGame->GetScale())
+    ,mWalkingAroundMoveSpeed(50.0f)
 
     ,mFoxState(State::Stop)
 
@@ -45,30 +45,30 @@ Fox::Fox(Game* game)
     ,mFireballDuration(1.5f)
     ,mFireballTimer(0.0f)
     ,mAlreadyFireballed(false)
-    ,mFireballWidth(100 * mGame->GetScale())
-    ,mFireBallHeight(100 * mGame->GetScale())
-    ,mFireballSpeed(1400 * mGame->GetScale())
+    ,mFireballWidth(100)
+    ,mFireBallHeight(100)
+    ,mFireballSpeed(1400)
 
     ,mMaxJumps(3)
     ,mJumpCount(0)
-    ,mJumpForce(-1300.0f * mGame->GetScale())
-    ,mGravity(3000 * mGame->GetScale())
+    ,mJumpForce(-1300.0f)
+    ,mGravity(3000)
 
     ,mSword(nullptr)
     ,mSwordHitPlayer(false)
-    ,mDistToSword(200 * mGame->GetScale())
+    ,mDistToSword(200)
     ,mRunAndSwordProbability(0.5f)
 
     ,mDashComponent(nullptr)
 {
-    mWidth = 100 * mGame->GetScale();
-    mHeight = 170 * mGame->GetScale();
-    mMoveSpeed = 300 * mGame->GetScale();
+    mWidth = 100;
+    mHeight = 170;
+    mMoveSpeed = 300;
     mHealthPoints = 450;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 150;
-    mKnockBackSpeed = 0.0f * mGame->GetScale();
+    mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
     mFreezeMax = 1000;
@@ -95,7 +95,7 @@ Fox::Fox(Game* game)
     mDrawComponent->SetAnimation("idle");
     mDrawComponent->SetAnimFPS(16.0f);
 
-    mDashComponent = new DashComponent(this, 1500 * mGame->GetScale(), mDashDuration * 0.95f, 0.5f);
+    mDashComponent = new DashComponent(this, 1500, mDashDuration * 0.95f, 0.5f);
     mSword = new Sword(game, this, mWidth * 3.6f, mHeight * 1.3f, 0.2f, 10.0f);
 }
 
@@ -192,11 +192,11 @@ void Fox::ResolveGroundCollision() {
                     if (mFoxState == State::Dash) {
                         if (collisionNormal == Vector2::NegUnitX) {
                             mDashTimer = mDashDuration;
-                            SetPosition(GetPosition() - Vector2(32, 0) * mGame->GetScale());
+                            SetPosition(GetPosition() - Vector2(32, 0));
                         }
                         else {
                             mDashTimer = mDashDuration;
-                            SetPosition(GetPosition() + Vector2(32, 0) * mGame->GetScale());
+                            SetPosition(GetPosition() + Vector2(32, 0));
                         }
                     }
                 }
@@ -526,49 +526,4 @@ void Fox::Jump(float deltaTime) {
         mJumpCount++;
         mRigidBodyComponent->SetVelocity(Vector2(GetForward().x * mMoveSpeed * 2, mJumpForce));
     }
-}
-
-void Fox::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mWalkingAroundMoveSpeed = mWalkingAroundMoveSpeed / oldScale * newScale;
-    mFireballWidth = mFireballWidth / oldScale * newScale;
-    mFireBallHeight = mFireBallHeight / oldScale * newScale;
-    mFireballSpeed = mFireballSpeed / oldScale * newScale;
-    mJumpForce = mJumpForce / oldScale * newScale;
-    mGravity = mGravity / oldScale * newScale;
-    mDistToSword = mDistToSword / oldScale * newScale;
-    mDashComponent->SetDashSpeed(mDashComponent->GetDashSpeed() / oldScale * newScale);
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 2.3f);
-    //     mDrawAnimatedComponent->SetHeight(0.91f * mWidth * 2.3f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

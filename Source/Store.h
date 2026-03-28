@@ -37,8 +37,6 @@ public:
     bool GetManaUpgrade() const { return mManaUpgrade; }
     bool GetFireballUpgrade() const { return mFireballUpgrade; }
 
-    void ChangeResolution(float oldScale, float newScale);
-
 private:
     class Game* mGame;
     std::string mFontName;

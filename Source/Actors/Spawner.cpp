@@ -11,9 +11,9 @@
 
 Spawner::Spawner(class Game *game)
     :Actor(game)
-    ,mWidth(200 * mGame->GetScale())
+    ,mWidth(200)
     ,mHeight(0)
-    ,mMaxHeight(200 * mGame->GetScale())
+    ,mMaxHeight(200)
     ,mSpawnerState(SpawnerState::Appear)
     ,mAppearDuration(0.6f)
     ,mAppearTimer(0.0f)
@@ -40,7 +40,7 @@ Spawner::Spawner(class Game *game)
     vertices.emplace_back(v3);
     vertices.emplace_back(v4);
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1600 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 1600);
     mAABBComponent = new AABBComponent(this, v1, v3);
 
     // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, SDL_Color{255, 255, 0, 255}, 997);
@@ -190,32 +190,3 @@ void Spawner::OnUpdate(float deltaTime) {
         }
     }
 }
-
-void Spawner::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMaxHeight = mMaxHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 1.8f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.8f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
-}
-
-

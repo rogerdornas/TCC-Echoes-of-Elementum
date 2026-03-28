@@ -34,14 +34,12 @@ public:
     float GetMaxHeight() const { return mMaxHeight; }
     void SetMinWidth(float minWidth) { mMinWidth = minWidth; }
     void SetMinHeight(float minHeight) { mMinHeight = minHeight; }
-    void SetGrowSpeed(Vector2 speed) { mGrowSpeed = speed*  mGame->GetScale(); }
+    void SetGrowSpeed(Vector2 speed) { mGrowSpeed = speed; }
     void SetGrowDirection(GrowthDirection growDirection) { mGrowthDirection = growDirection; }
     GrowthDirection GetGrowDirection() const { return mGrowthDirection; }
 
     void SetSprites() override;
     void SetTilesIndex(float width, float height, float x, float y) override;
-
-    void ChangeResolution(float oldScale, float newScale) override;
 
 protected:
     float mMaxWidth;

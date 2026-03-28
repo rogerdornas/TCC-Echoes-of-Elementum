@@ -13,8 +13,6 @@ public:
     EnemySimple(Game* game);
     void OnUpdate(float deltaTime) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void MovementAfterPlayerSpotted();
     void MovementBeforePlayerSpotted();

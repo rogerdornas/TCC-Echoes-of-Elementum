@@ -25,8 +25,6 @@ public:
     void Activate();
     void Deactivate();
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     enum class State {
         FlyingOut,

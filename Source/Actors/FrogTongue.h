@@ -15,7 +15,6 @@ public:
     void OnUpdate(float deltaTime) override;
 
     void SetDuration(float duration);
-    void ChangeResolution(float oldScale, float newScale) override;
 
 private:
     void ResolveGroundCollision();

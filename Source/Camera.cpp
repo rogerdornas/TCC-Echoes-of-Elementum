@@ -8,10 +8,10 @@
 Camera::Camera(class Game* game, Vector2 startPosition)
     :mPos(startPosition)
     ,mGame(game)
-    ,mCameraLerpSpeed(6.0f * mGame->GetScale())
-    ,mNormalSpeed(6.0f * mGame->GetScale())
-    ,mSlowTransitionSpeed(2.0f * mGame->GetScale())
-    ,mInitPositionSpeed(20.0f * mGame->GetScale())
+    ,mCameraLerpSpeed(6.0f)
+    ,mNormalSpeed(6.0f)
+    ,mSlowTransitionSpeed(2.0f)
+    ,mInitPositionSpeed(20.0f)
     ,mTransitionDuration(0.0f)
     ,mTransitionTimer(mTransitionDuration)
     ,mCameraMode(CameraMode::FollowPlayer)
@@ -21,12 +21,12 @@ Camera::Camera(class Game* game, Vector2 startPosition)
     ,mCurrentOffsetX(0.0f)
     ,mInitPositionTimer(0.1f)
     ,mIsAdjustingInitialPosition(true)
-    ,mDistMove(200 * mGame->GetScale())
+    ,mDistMove(200)
     ,mIsShaking(false)
     ,mShakeDuration(1.0f)
     ,mShakeTimer(0.0f)
-    ,mShakeStrength(5.0f * mGame->GetScale())
-    ,mCameraSpeed(500.0f * mGame->GetScale())
+    ,mShakeStrength(5.0f)
+    ,mCameraSpeed(500.0f)
     ,mCameraVelocity(Vector2::Zero)
     ,mLookUp(false)
     ,mLookDown(false)
@@ -363,7 +363,7 @@ Vector2 Camera::ScrollRight(float deltaTime, float speed) {
         targetPos.x = mPos.x + speed * deltaTime;
         targetPos.y = playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2;
 
-        if (playerPos.x < targetPos.x - 50 * mGame->GetScale()) {
+        if (playerPos.x < targetPos.x - 50) {
             mGame->SetBackToCheckpoint();
             mGame->GetAudio()->StopAllSounds();
             mGame->GetPlayer()->SetState(ActorState::Paused);
@@ -382,7 +382,7 @@ Vector2 Camera::ScrollUp(float deltaTime, float speed) {
         targetPos.y = mPos.y + speed * deltaTime;
 
 
-        if (playerPos.y > targetPos.y + mGame->GetRenderer()->GetZoomedHeight() + 50 * mGame->GetScale()) {
+        if (playerPos.y > targetPos.y + mGame->GetRenderer()->GetZoomedHeight() + 50) {
             mGame->SetBackToCheckpoint();
             mGame->GetAudio()->StopAllSounds();
             mGame->GetPlayer()->SetState(ActorState::Paused);
@@ -423,26 +423,4 @@ void Camera::SetZoom(float zoom)
 
     mPos.x += (oldWidth - newWidth) * 0.5f;
     mPos.y += (oldHeight - newHeight) * 0.5f;
-}
-
-void Camera::ChangeResolution(float oldScale, float newScale) {
-    mPos.x = mPos.x / oldScale * newScale;
-    mPos.y = mPos.y / oldScale * newScale;
-    mDistMove = mDistMove / oldScale * newScale;
-    mShakeStrength = mShakeStrength / oldScale * newScale;
-    mCameraSpeed = mCameraSpeed / oldScale * newScale;
-    mNormalSpeed = mNormalSpeed / oldScale * newScale;
-    mSlowTransitionSpeed = mSlowTransitionSpeed / oldScale * newScale;
-    mInitPositionSpeed = mInitPositionSpeed / oldScale * newScale;
-    mCurrentOffsetX = mCurrentOffsetX / oldScale * newScale;
-    mFixedCameraPosition.x = mFixedCameraPosition.x / oldScale * newScale;
-    mFixedCameraPosition.y = mFixedCameraPosition.y / oldScale * newScale;
-    mLimitMinCameraPosition.x = mLimitMinCameraPosition.x / oldScale * newScale;
-    mLimitMinCameraPosition.y = mLimitMinCameraPosition.y / oldScale * newScale;
-    mLimitMaxCameraPosition.x = mLimitMaxCameraPosition.x / oldScale * newScale;
-    mLimitMaxCameraPosition.y = mLimitMaxCameraPosition.y / oldScale * newScale;
-    mCurrentLimitMinPosition.x = mCurrentLimitMinPosition.x / oldScale * newScale;
-    mCurrentLimitMinPosition.y = mCurrentLimitMinPosition.y / oldScale * newScale;
-    mCurrentLimitMaxPosition.x = mCurrentLimitMaxPosition.x / oldScale * newScale;
-    mCurrentLimitMaxPosition.y = mCurrentLimitMaxPosition.y / oldScale * newScale;
 }

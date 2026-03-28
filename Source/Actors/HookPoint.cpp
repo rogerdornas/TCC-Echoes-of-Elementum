@@ -10,9 +10,9 @@
 
 HookPoint::HookPoint(class Game *game)
     :Actor(game)
-    ,mWidth(48 * mGame->GetScale())
-    ,mHeight(48 * mGame->GetScale())
-    ,mRadius(530.0f * mGame->GetScale())
+    ,mWidth(48)
+    ,mHeight(48)
+    ,mRadius(530.0f)
     ,mHookPointState(HookPointState::OutRange)
 
     ,mDrawComponent(nullptr)
@@ -79,37 +79,3 @@ void HookPoint::OnUpdate(float deltaTime) {
 
     mHookPointState = HookPointState::OutRange;
 }
-
-void HookPoint::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mRadius = mRadius / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth);
-    //     mDrawAnimatedComponent->SetHeight(mHeight);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
-}
-
-

@@ -14,19 +14,19 @@
 
 FlyingEnemySimple::FlyingEnemySimple(Game *game)
     :Enemy(game)
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mFlyingAroundDuration(1.0f)
     ,mFlyingAroundTimer(0.0f)
-    ,mFlyingAroundMoveSpeed(100.0f * mGame->GetScale())
+    ,mFlyingAroundMoveSpeed(100.0f)
 {
-    mWidth = 70 * mGame->GetScale();
-    mHeight = 70 * mGame->GetScale();
-    mMoveSpeed = 250 * mGame->GetScale();
+    mWidth = 70;
+    mHeight = 70;
+    mMoveSpeed = 250;
     mHealthPoints = 30;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 4;
-    mKnockBackSpeed = 1000.0f * mGame->GetScale();
+    mKnockBackSpeed = 1000.0f;
     mKnockBackDuration = 0.2f;
     mKnockBackTimer = mKnockBackDuration;
 
@@ -138,42 +138,4 @@ void FlyingEnemySimple::ManageAnimations() {
     else {
         mDrawComponent->SetAnimation("fly");
     }
-}
-
-void FlyingEnemySimple::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mFlyingAroundMoveSpeed = mFlyingAroundMoveSpeed / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 2.0f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 2.0f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

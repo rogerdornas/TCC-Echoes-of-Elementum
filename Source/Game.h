@@ -121,8 +121,6 @@ public:
     float GetLogicalWindowWidth() const { return mLogicalWindowWidth; }
     float GetLogicalWindowHeight() const { return mLogicalWindowHeight; }
 
-    float GetScale() const { return mScale; }
-
     // Game-specific
     void AddGround(class Ground* g);
     void RemoveGround(class Ground* g);
@@ -293,21 +291,8 @@ private:
     void LoadLevel(const std::string &fileName);
     bool ShouldLoadObject(const std::string& condition);
 
-    void LoadMainMenu();
-    void LoadPauseMenu();
-    void LoadOptionsMenu();
-    void LoadControlMenu();
-    void LoadKeyBoardMenu();
-    void LoadKeyBoardMenu2();
-    void LoadAudioMenu();
-    void LoadConfirmBackToMenu();
-    void LoadConfirmQuitGameMenu();
-    void LoadLoadGameMenu();
-
     void SwapKeyboardBinding(SDL_Scancode newKey, Uint8 newMouseBtn);
     void SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameControllerAxis newAxis);
-
-    void ChangeResolution(float oldScale);
 
     // All the actors in the game
     std::vector<class Actor *> mActors;
@@ -404,8 +389,6 @@ private:
     int mOriginalTileSize = 32;
     Map* mMap;
     bool mShowMap;
-
-    float mScale;
 
     bool mHitstopActive;
     float mHitstopDuration;

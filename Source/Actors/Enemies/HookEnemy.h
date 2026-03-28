@@ -23,8 +23,6 @@ public:
     State GetHookEnemyState() const { return mHookEnemyState; }
     int GetLastForwardAttackDirection() const { return mLastForwardAttackDirection; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ResolveGroundCollision() override;
     void ResolveEnemyCollision() override;

@@ -22,8 +22,6 @@ public:
 
     void Activate() { mActivate = true; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void EnemyTrigger() override;
 

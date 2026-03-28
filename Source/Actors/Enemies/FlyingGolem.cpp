@@ -18,10 +18,10 @@ FlyingGolem::FlyingGolem(Game *game)
     :Enemy(game)
     ,mFlyingGolemState(State::FlyingAround)
 
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mFlyingAroundDuration(1.0f)
     ,mFlyingAroundTimer(mFlyingAroundDuration)
-    ,mFlyingAroundMoveSpeed(100.0f * mGame->GetScale())
+    ,mFlyingAroundMoveSpeed(100.0f)
 
     ,mStopDuration(1.3f)
     ,mStopTimer(0.0f)
@@ -31,25 +31,25 @@ FlyingGolem::FlyingGolem(Game *game)
 
     ,mAttackDuration(0.7f)
     ,mAttackTimer(0.0f)
-    ,mDistToAttack(400 * mGame->GetScale())
+    ,mDistToAttack(400)
     ,mAttackDirectionRight(true)
 
-    ,mDistToTeleport(1100 * mGame->GetScale())
+    ,mDistToTeleport(1100)
     ,mTeleportDuration(0.6f)
     ,mTeleportInTimer(0.0f)
     ,mTeleportOutTimer(0.0f)
     ,mTeleportTargetPosition(Vector2::Zero)
-    ,mTeleportHoverHeight(250 * mGame->GetScale())
-    ,mTeleportRangeTargetX(400* mGame->GetScale())
+    ,mTeleportHoverHeight(250)
+    ,mTeleportRangeTargetX(400)
 {
-    mWidth = 100 * mGame->GetScale();
-    mHeight = 100 * mGame->GetScale();
-    mMoveSpeed = 420 * mGame->GetScale();
+    mWidth = 100;
+    mHeight = 100;
+    mMoveSpeed = 420;
     mHealthPoints = 80;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 20;
-    mKnockBackSpeed = 500.0f * mGame->GetScale();
+    mKnockBackSpeed = 500.0f;
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
@@ -381,72 +381,4 @@ void FlyingGolem::ManageCombatBox() {
             mCombatBoxComponent->GetBox("hurtbox").collider->SetActive(true);
         }
     }
-}
-
-void FlyingGolem::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mFlyingAroundMoveSpeed = mFlyingAroundMoveSpeed / oldScale * newScale;
-    mDistToAttack = mDistToAttack / oldScale * newScale;
-    mIdleWidth = mIdleWidth / oldScale * newScale;
-    mAttackSpriteWidth = mAttackSpriteWidth / oldScale * newScale;
-    mAttackOffsetHitBox = mAttackOffsetHitBox / oldScale * newScale;
-    mDistToTeleport = mDistToTeleport / oldScale * newScale;
-    mTeleportTargetPosition.x = mTeleportTargetPosition.x / oldScale * newScale;
-    mTeleportTargetPosition.y = mTeleportTargetPosition.y / oldScale * newScale;
-    mTeleportHoverHeight = mTeleportHoverHeight / oldScale * newScale;
-    mTeleportRangeTargetX = mTeleportRangeTargetX / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mIdleWidth * 1.7f * 2.0f);
-    //     mDrawAnimatedComponent->SetHeight(mIdleWidth * 1.7f);
-    // }
-
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
-    if (mWidth == mAttackSpriteWidth) {
-        if (mAttackDirectionRight) {
-            v1 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 + mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 + mAttackOffsetHitBox, mHeight / 2);
-        }
-        else {
-            v1 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v2 = Vector2(mWidth / 2 - mAttackOffsetHitBox, -mHeight / 2);
-            v3 = Vector2(mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-            v4 = Vector2(-mWidth / 2 - mAttackOffsetHitBox, mHeight / 2);
-        }
-    }
-    else {
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-    }
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

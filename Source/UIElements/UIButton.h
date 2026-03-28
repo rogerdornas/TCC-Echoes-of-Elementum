@@ -48,8 +48,6 @@ public:
     void OnClick();
     virtual void OnMouseClick(const Vector2& mousePos) { OnClick(); }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 protected:
     // Callback function
     std::function<void()> mOnClick;

@@ -376,23 +376,3 @@ UIButton* UIScreen::FindNeighbor(UIButton *current, const Vector2 &dir) {
 
     return best;
 }
-
-
-void UIScreen::ChangeResolution(float oldScale, float newScale) {
-    mPos.x = mPos.x / oldScale * newScale;
-    mPos.y = mPos.y / oldScale * newScale;
-    mSize.x = mSize.x / oldScale * newScale;
-    mSize.y = mSize.y / oldScale * newScale;
-
-    for (UIImage* image : mImages) {
-        image->ChangeResolution(oldScale, newScale);
-    }
-
-    for (UIButton* button: mButtons) {
-        button->ChangeResolution(oldScale, newScale);
-    }
-
-    for (UIText* text: mTexts) {
-        text->ChangeResolution(oldScale, newScale);
-    }
-}

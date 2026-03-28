@@ -12,13 +12,13 @@
 
 Money::Money(class Game *game, MoneyType type)
     :Actor(game)
-    ,mWidth(15.0f * mGame->GetScale())
-    ,mHeight(15.0f * mGame->GetScale())
+    ,mWidth(15.0f)
+    ,mHeight(15.0f)
     ,mMoneyState(State::FlyingOut)
     ,mMoneyType(type)
 
-    ,mFlySpeed(500.0f * mGame->GetScale())
-    ,mHomingSpeed(1000.0f * mGame->GetScale())
+    ,mFlySpeed(500.0f)
+    ,mHomingSpeed(1000.0f)
 
     ,mFlyDuration(0.2f)
     ,mFlyTimer(0.0f)
@@ -32,24 +32,24 @@ Money::Money(class Game *game, MoneyType type)
     switch (mMoneyType) {
         case MoneyType::Large:
             mValue = 10;
-            mWidth = 36.0f * mGame->GetScale();
-            mHeight = 63.0f * mGame->GetScale();
+            mWidth = 36.0f;
+            mHeight = 63.0f;
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Money/CristalLarge.png", "",
                                                             mWidth, mHeight, 5000);
             break;
 
         case MoneyType::Medium:
             mValue = 5;
-            mWidth = 25.0f * mGame->GetScale();
-            mHeight = 43.75f * mGame->GetScale();
+            mWidth = 25.0f;
+            mHeight = 43.75f;
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Money/CristalMedium.png", "",
                                                             mWidth, mHeight, 5000);
             break;
 
         case MoneyType::Small:
             mValue = 1;
-            mWidth = 16.0f * mGame->GetScale();
-            mHeight = 28.0f * mGame->GetScale();
+            mWidth = 16.0f;
+            mHeight = 28.0f;
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Money/CristalSmall.png", "",
                                                             mWidth, mHeight, 5000);
             break;
@@ -164,41 +164,4 @@ void Money::Deactivate() {
     if (mDrawComponent) {
         mDrawComponent->SetVisible(false);
     }
-}
-
-
-
-void Money::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mFlySpeed = mFlySpeed / oldScale * newScale;
-    mHomingSpeed = mHomingSpeed / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawSpriteComponent) {
-    //     mDrawSpriteComponent->SetWidth(mWidth);
-    //     mDrawSpriteComponent->SetHeight(mHeight);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

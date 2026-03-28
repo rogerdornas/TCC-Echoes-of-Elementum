@@ -47,7 +47,6 @@ public:
 
     void StartCameraShake(float duration = 1.0f, float strength = 5.0f);
     void ChangeCameraMode(CameraMode cameraMode);
-    void ChangeResolution(float oldScale, float newScale);
 
 private:
     Vector2 Fixed(Vector2 pos);

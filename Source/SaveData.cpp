@@ -174,8 +174,8 @@ void SaveData::ApplyToGame() {
 
 void SaveData::ApplyToPlayer() {
     Player* player = mGame->GetPlayer();
-    player->SetPosition(mLastCheckpointPosition * mGame->GetScale());
-    player->SetStartingPosition(mLastCheckpointPosition * mGame->GetScale());
+    player->SetPosition(mLastCheckpointPosition);
+    player->SetStartingPosition(mLastCheckpointPosition);
     player->SetElementalMode(mElementalMode);
     player->SetMoney(mMoney);
     player->SetCanDash(mCanDash);
@@ -223,8 +223,8 @@ void SaveData::ApplyConfigs() {
 void SaveData::CaptureFromGame() {
     Player* player = mGame->GetPlayer();
     mGameScene = mGame->GetCheckpointGameScene();
-    mLastCheckpointPosition.x = mGame->GetCheckPointPosition().x / mGame->GetScale();
-    mLastCheckpointPosition.y = mGame->GetCheckPointPosition().y / mGame->GetScale();
+    mLastCheckpointPosition.x = mGame->GetCheckPointPosition().x;
+    mLastCheckpointPosition.y = mGame->GetCheckPointPosition().y;
     mTotalPlayTime = mGame->GetTotalPlayTime();
 
     mMasterAudio = mGame->GetAudio()->GetCategoryVolume(SoundCategory::Master);

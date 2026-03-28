@@ -18,10 +18,10 @@ DragonFly::DragonFly(Game *game)
     :Enemy(game)
     ,mDragonFlyState(State::FlyingAround)
 
-    ,mDistToSpotPlayer(700 * mGame->GetScale())
+    ,mDistToSpotPlayer(700)
     ,mFlyingAroundDuration(1.0f)
     ,mFlyingAroundTimer(mFlyingAroundDuration)
-    ,mFlyingAroundMoveSpeed(100.0f * mGame->GetScale())
+    ,mFlyingAroundMoveSpeed(100.0f)
 
     ,mStopDuration(0.5f)
     ,mStopTimer(0.0f)
@@ -32,18 +32,18 @@ DragonFly::DragonFly(Game *game)
     ,mAttackStraightDuration(0.3f)
     ,mAttackStraightTimer(0.0f)
     ,mAttackStraightTarget(Vector2::Zero)
-    ,mDistToGoStraight(250 * mGame->GetScale())
-    ,mDistToDive(40 * mGame->GetScale())
+    ,mDistToGoStraight(250)
+    ,mDistToDive(40)
 
     ,mDiveDuration(0.5f)
     ,mDiveTimer(0.0f)
-    ,mDiveSpeedX(1200 * mGame->GetScale())
-    ,mDiveSpeedY(-2000 * mGame->GetScale())
+    ,mDiveSpeedX(1200)
+    ,mDiveSpeedY(-2000)
 
     ,mCurveDuration(0.5f)
     ,mCurveTimer(-mCurveDuration / 2)
-    ,mCurveSpeedX(700 * mGame->GetScale())
-    ,mCurveSpeedY(16500 * mGame->GetScale())
+    ,mCurveSpeedX(700)
+    ,mCurveSpeedY(16500)
     ,mIsCurvingRight(true)
 
     ,mStumDuration(1.5f)
@@ -53,14 +53,14 @@ DragonFly::DragonFly(Game *game)
     ,mAttackDuration(0.7f)
     ,mAttackTimer(0.0f)
 {
-    mWidth = 130 * mGame->GetScale();
-    mHeight = 70 * mGame->GetScale();
-    mMoveSpeed = 1300 * mGame->GetScale();
+    mWidth = 130;
+    mHeight = 70;
+    mMoveSpeed = 1300;
     mHealthPoints = 80;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 30;
-    mKnockBackSpeed = 700.0f * mGame->GetScale();
+    mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.15f;
     mKnockBackTimer = mKnockBackDuration;
     mEnemyCollision = false;
@@ -565,43 +565,3 @@ void DragonFly::ManageAnimations() {
         mDrawComponent->SetAnimation("idle");
     }
 }
-
-void DragonFly::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mFlyingAroundMoveSpeed = mFlyingAroundMoveSpeed / oldScale * newScale;
-    mAttackStraightTarget.x = mAttackStraightTarget.x / oldScale * newScale;
-    mAttackStraightTarget.y = mAttackStraightTarget.y / oldScale * newScale;
-    mDistToGoStraight = mDistToGoStraight / oldScale * newScale;
-    mDistToDive = mDistToDive / oldScale * newScale;
-    mDiveSpeedX = mDiveSpeedX / oldScale * newScale;
-    mDiveSpeedY = mDiveSpeedY / oldScale * newScale;
-    mCurveSpeedX = mCurveSpeedX / oldScale * newScale;
-    mCurveSpeedY = mCurveSpeedY / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 1.8f);
-    //     mDrawAnimatedComponent->SetHeight(mWidth * 1.8f);
-    // }
-
-    if (auto* obb = dynamic_cast<OBBComponent*>(mColliderComponent)) {
-        obb->Update(0);
-        obb->SetHalfSize(Vector2(mWidth / 2, mHeight / 2));
-
-        // if (mDrawPolygonComponent) {
-        //     auto verts = obb->GetVertices();
-        //     mDrawPolygonComponent->SetVertices(verts);
-        // }
-    }
-}
-
-
-
-

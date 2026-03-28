@@ -15,13 +15,13 @@
 Mantis::Mantis(Game *game)
     :Enemy(game)
     ,mMantisState(State::WalkForward)
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mWalkingAroundDuration(3.0f)
     ,mWalkingAroundTimer(0.0f)
-    ,mWalkingAroundMoveSpeed(70 * mGame->GetScale())
-    ,mGravity(3000 * mGame->GetScale())
-    ,mDistToAttack(450.0f * mGame->GetScale())
-    ,mJumpForce(-700.0f * mGame->GetScale())
+    ,mWalkingAroundMoveSpeed(70)
+    ,mGravity(3000)
+    ,mDistToAttack(450.0f)
+    ,mJumpForce(-700.0f)
     ,mAttackDuration(2.0f)
     ,mAttackTimer(0.0f)
     ,mWalkBackDuration(0.5f)
@@ -29,14 +29,14 @@ Mantis::Mantis(Game *game)
     ,mWaitToAttackDuration(0.3f)
     ,mWaitToAttackTimer(0.0f)
 {
-    mWidth = 120 * mGame->GetScale();
-    mHeight = 120 * mGame->GetScale();
-    mMoveSpeed = 250 * mGame->GetScale();
+    mWidth = 120;
+    mHeight = 120;
+    mMoveSpeed = 250;
     mHealthPoints = 50;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 10;
-    mKnockBackSpeed = 700.0f * mGame->GetScale();
+    mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
 
@@ -114,7 +114,7 @@ void Mantis::MovementBeforePlayerSpotted() {
     }
 
     // Testa se spottou player
-    if (Math::Abs(GetPosition().y - player->GetPosition().y) < 40 * mGame->GetScale()) { // Se está no mesmo nível verticalmente
+    if (Math::Abs(GetPosition().y - player->GetPosition().y) < 40) { // Se está no mesmo nível verticalmente
         if (player->GetPosition().x < GetPosition().x && GetForward().x < 0 && Math::Abs(player->GetPosition().x - GetPosition().x) < mDistToSpotPlayer) {
             mPlayerSpotted = true;
         }
@@ -226,49 +226,3 @@ void Mantis::ManageAnimations() {
         mDrawComponent->SetAnimation("walk");
     }
 }
-
-void Mantis::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mWalkingAroundMoveSpeed = mWalkingAroundMoveSpeed / oldScale * newScale;
-    mGravity = mGravity / oldScale * newScale;
-    mDistToAttack = mDistToAttack / oldScale * newScale;
-    mJumpForce = mJumpForce / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 1.35f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.35f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
-}
-
-
-
-
-

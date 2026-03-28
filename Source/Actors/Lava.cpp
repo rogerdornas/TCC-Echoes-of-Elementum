@@ -18,7 +18,7 @@ Lava::Lava(Game *game, float width, float height, bool isMoving, float movingDur
     ,mIsMoving(isMoving)
     ,mMovingDuration(movingDuration)
     ,mMovingTimer(0.0f)
-    ,mVelocity(velocity * mGame->GetScale())
+    ,mVelocity(velocity)
     ,mSwordHitLava(false)
     ,mDrawComponent(nullptr)
     ,mRectComponent(nullptr)
@@ -165,44 +165,4 @@ void Lava::ResolveSwordCollision() {
             }
         }
     }
-}
-
-
-void Lava::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mRespawnPosition.x = mRespawnPosition.x / oldScale * newScale;
-    mRespawnPosition.y = mRespawnPosition.y / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mVelocity.x = mVelocity.x / oldScale * newScale;
-    mVelocity.y = mVelocity.y / oldScale * newScale;
-
-    if (mIsMoving) {
-        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-    }
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.1f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

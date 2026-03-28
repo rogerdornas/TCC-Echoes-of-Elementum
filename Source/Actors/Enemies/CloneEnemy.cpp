@@ -26,13 +26,13 @@ CloneEnemy::CloneEnemy(Game *game)
     ,mIsJumping(false)
     ,mJumpTimer(0.0f)
     ,mMaxJumpTime(0.33f)
-    ,mJumpForce(-750.0f * mGame->GetScale())
+    ,mJumpForce(-750.0f)
     ,mCanJump(true)
     ,mJumpCountInAir(0)
     ,mMaxJumpsInAir(1)
-    ,mLowGravity(50.0f * mGame->GetScale())
-    ,mMediumGravity(3300.0f * mGame->GetScale())
-    ,mHighGravity(4500.0f * mGame->GetScale())
+    ,mLowGravity(50.0f)
+    ,mMediumGravity(3300.0f)
+    ,mHighGravity(4500.0f)
 
     ,mCanDash(true)
 
@@ -53,10 +53,10 @@ CloneEnemy::CloneEnemy(Game *game)
     ,mIsFireAttacking(false)
     ,mStopInAirFireBallTimer(0.0f)
     ,mStopInAirFireBallMaxDuration(0.0f)
-    ,mFireballRecoil(0.0f * mGame->GetScale())
-    ,mFireballWidth(45 * mGame->GetScale())
-    ,mFireBallHeight(45 * mGame->GetScale())
-    ,mFireballSpeed(1500 * mGame->GetScale())
+    ,mFireballRecoil(0.0f)
+    ,mFireballWidth(45)
+    ,mFireBallHeight(45)
+    ,mFireballSpeed(1500)
     ,mFireballDamage(10.0f)
     ,mMaxMana(90.0f)
     ,mMana(90.0f)
@@ -83,9 +83,9 @@ CloneEnemy::CloneEnemy(Game *game)
     ,mWasOnGround(false)
     ,mDashComponent(nullptr)
 {
-    mWidth = 45 * mGame->GetScale();
-    mHeight = 75 * mGame->GetScale();
-    mMoveSpeed = 700 * mGame->GetScale();
+    mWidth = 45;
+    mHeight = 75;
+    mMoveSpeed = 700;
     mSwordWidth = mWidth * 3.0f;
     mSwordHeight = mHeight * 1.3f;
     mFlashTimer = mHurtDuration;
@@ -93,7 +93,7 @@ CloneEnemy::CloneEnemy(Game *game)
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 0;
-    mKnockBackSpeed = 700.0f * mGame->GetScale();
+    mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mEnemyCollision = false;
@@ -160,7 +160,7 @@ CloneEnemy::CloneEnemy(Game *game)
     // mDrawAnimatedComponent->SetTransparency(170);
     mDrawComponent->SetAlpha(0.7f);
 
-    mDashComponent = new DashComponent(this, 1500 * mGame->GetScale(), 0.2f, 0.5f);
+    mDashComponent = new DashComponent(this, 1500, 0.2f, 0.5f);
 
     mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, 0.15f, mSwordDamage);
 
@@ -846,14 +846,14 @@ void CloneEnemy::ManageAnimations() {
         mDrawComponent->SetAnimation("run");
     }
     else if (!mIsOnGround) {
-        if (mRigidBodyComponent->GetVelocity().y < -200 * mGame->GetScale()) {
+        if (mRigidBodyComponent->GetVelocity().y < -200) {
             mDrawComponent->SetAnimation("jumpUp");
         }
-        if (mRigidBodyComponent->GetVelocity().y > 200 * mGame->GetScale()) {
+        if (mRigidBodyComponent->GetVelocity().y > 200) {
             mDrawComponent->SetAnimation("falling");
         }
-        if (mRigidBodyComponent->GetVelocity().y > -200 * mGame->GetScale() &&
-            mRigidBodyComponent->GetVelocity().y < 200 * mGame->GetScale())
+        if (mRigidBodyComponent->GetVelocity().y > -200 &&
+            mRigidBodyComponent->GetVelocity().y < 200)
         {
             mDrawComponent->SetAnimation("jumpApex");
         }
@@ -866,54 +866,4 @@ void CloneEnemy::ManageAnimations() {
         mDrawComponent->SetAnimation("idle");
         mDrawComponent->SetAnimFPS(6.0f);
     }
-}
-
-void CloneEnemy::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mJumpForce = mJumpForce / oldScale * newScale;
-    mLowGravity = mLowGravity / oldScale * newScale;
-    mMediumGravity = mMediumGravity / oldScale * newScale;
-    mHighGravity = mHighGravity / oldScale * newScale;
-    mSwordWidth = mSwordWidth / oldScale * newScale;
-    mSwordHeight = mSwordHeight / oldScale * newScale;
-    mFireballRecoil = mFireballRecoil / oldScale * newScale;
-    mFireballWidth = mFireballWidth / oldScale * newScale;
-    mFireBallHeight = mFireBallHeight / oldScale * newScale;
-    mFireballSpeed = mFireballSpeed / oldScale * newScale;
-
-    mRigidBodyComponent->SetMaxSpeedX(mRigidBodyComponent->GetMaxSpeedX() / oldScale * newScale);
-    mRigidBodyComponent->SetMaxSpeedY(mRigidBodyComponent->GetMaxSpeedY() / oldScale * newScale);
-    mDashComponent->SetDashSpeed(mDashComponent->GetDashSpeed() / oldScale * newScale);
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 4.93f);
-    //     mDrawAnimatedComponent->SetHeight(mWidth * 4.93f * 1.11f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

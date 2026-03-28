@@ -40,8 +40,6 @@ public:
     void SetId(int id) { mId = id; }
     int GetId() { return mId; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 protected:
     int mId;
     float mHeight;

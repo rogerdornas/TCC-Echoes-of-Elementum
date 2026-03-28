@@ -23,8 +23,6 @@ public:
     void OnUpdate(float deltaTime) override;
     State GetMushroomState() const { return mMushroomState; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true) override;
 

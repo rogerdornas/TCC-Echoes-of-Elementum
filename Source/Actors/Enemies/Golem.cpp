@@ -22,12 +22,12 @@ Golem::Golem(Game *game)
     ,mGolemState(State::Stop)
 
     ,mIsRunning(false)
-    ,mGravity(3000 * mGame->GetScale())
+    ,mGravity(3000)
 
     ,mIsInvulnerable(false)
     ,mAlreadySpawnedCrystal(false)
-    ,mCrystalWidth(108 * mGame->GetScale())
-    ,mCrystalHeight(72 * mGame->GetScale())
+    ,mCrystalWidth(108)
+    ,mCrystalHeight(72)
 
     ,mStopDuration(1.2f)
     ,mStopTimer(0.0f)
@@ -42,36 +42,36 @@ Golem::Golem(Game *game)
     ,mPunchProbability(0.5f)
     ,mPunchDuration(0.4f)
     ,mPunchTimer(0.0f)
-    ,mDistToPunch(200 * mGame->GetScale())
+    ,mDistToPunch(200)
     ,mPunchDirectionRight(true)
 
     ,mFireballDuration(1.0f)
     ,mFireballTimer(0.0f)
     ,mAlreadyFireBalled(false)
-    ,mFireballWidth(100 * mGame->GetScale())
-    ,mFireBallHeight(100 * mGame->GetScale())
-    ,mFireballSpeed(1400 * mGame->GetScale())
+    ,mFireballWidth(100)
+    ,mFireBallHeight(100)
+    ,mFireballSpeed(1400)
     ,mFireballDamage(15)
 
     ,mFireballRainIntervalDuration(0.6f)
     ,mFireballRainIntervalTimer(0.0f)
-    ,mFireballRainWidth(70 * mGame->GetScale())
-    ,mFireballRainHeight(70 * mGame->GetScale())
-    ,mFireballRainSpeed(850 * mGame->GetScale())
+    ,mFireballRainWidth(70)
+    ,mFireballRainHeight(70)
+    ,mFireballRainSpeed(850)
     ,mFireballRainDamage(15)
-    ,mFireballRainPositionYOffset(30 * mGame->GetScale())
+    ,mFireballRainPositionYOffset(30)
 
     ,mRunningSoundIntervalDuration(0.3f)
     ,mRunningSoundIntervalTimer(0.0f)
 {
-    mWidth = 144 * mGame->GetScale();
-    mHeight = 190 * mGame->GetScale();
-    mMoveSpeed = 600 * mGame->GetScale();
+    mWidth = 144;
+    mHeight = 190;
+    mMoveSpeed = 600;
     mHealthPoints = 400;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 50;
-    mKnockBackSpeed = 0.0f * mGame->GetScale();
+    mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
@@ -582,74 +582,4 @@ void Golem::ManageCombatBox() {
             mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
         }
     }
-}
-
-void Golem::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    mCrystalWidth = mCrystalWidth / oldScale * newScale;
-    mCrystalHeight = mCrystalHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToPunch = mDistToPunch / oldScale * newScale;
-    mIdleWidth = mIdleWidth / oldScale * newScale;
-    mPunchSpriteWidth = mPunchSpriteWidth / oldScale * newScale;
-    mPunchOffsetHitBox = mPunchOffsetHitBox / oldScale * newScale;
-    mArenaMinPos.x = mArenaMinPos.x / oldScale * newScale;
-    mArenaMinPos.y = mArenaMinPos.y / oldScale * newScale;
-    mArenaMaxPos.x = mArenaMaxPos.x / oldScale * newScale;
-    mArenaMaxPos.y = mArenaMaxPos.y / oldScale * newScale;
-
-    mFireballWidth = mFireballWidth / oldScale * newScale;
-    mFireBallHeight = mFireBallHeight / oldScale * newScale;
-    mFireballSpeed = mFireballSpeed / oldScale * newScale;
-
-    mFireballRainWidth = mFireballRainWidth / oldScale * newScale;
-    mFireballRainHeight = mFireballRainHeight / oldScale * newScale;
-    mFireballRainSpeed = mFireballRainSpeed / oldScale * newScale;
-    mFireballRainPositionYOffset = mFireballRainPositionYOffset / oldScale * newScale;
-
-    mGravity = mGravity / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mIdleWidth * 1.8f * 1.73f);
-    //     mDrawAnimatedComponent->SetHeight(mIdleWidth * 1.8f);
-    // }
-
-    Vector2 v1;
-    Vector2 v2;
-    Vector2 v3;
-    Vector2 v4;
-
-    if (mWidth == mPunchSpriteWidth) {
-        v1 = Vector2(-mWidth / 2 + mPunchOffsetHitBox * GetForward().x, -mHeight / 2);
-        v2 = Vector2(mWidth / 2 + mPunchOffsetHitBox * GetForward().x, -mHeight / 2);
-        v3 = Vector2(mWidth / 2 + mPunchOffsetHitBox * GetForward().x, mHeight / 2);
-        v4 = Vector2(-mWidth / 2 + mPunchOffsetHitBox * GetForward().x, mHeight / 2);
-    }
-    else {
-        v1 = Vector2(-mWidth / 2, -mHeight / 2);
-        v2 = Vector2(mWidth / 2, -mHeight / 2);
-        v3 = Vector2(mWidth / 2, mHeight / 2);
-        v4 = Vector2(-mWidth / 2, mHeight / 2);
-    }
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

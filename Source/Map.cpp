@@ -285,16 +285,3 @@
 //     // SDL_Rect dst = { 200, 200, mMapWidth * mTileSize, mMapHeight * mTileSize };
 //     // SDL_RenderCopy(renderer, mMapTexture, nullptr, &dst);
 // }
-//
-// void Map::ChangeResolution(float oldScale, float newScale) {
-//     // CreateMap(mGame->GetRenderer());
-//     // mTileSize = (mGame->GetLogicalWindowWidth() * 0.75f) / mMapWidth;
-//
-//     mPlayerAmplitude = mPlayerAmplitude / oldScale * newScale;
-//
-//     // desenha fundo inicial (tudo bloqueado)
-//     SDL_SetRenderTarget(mGame->GetRenderer(), mMapTexture);
-//     SDL_SetRenderDrawColor(mGame->GetRenderer(), 50, 50, 50, 120);
-//     SDL_RenderClear(mGame->GetRenderer());
-//     SDL_SetRenderTarget(mGame->GetRenderer(), nullptr);
-// }

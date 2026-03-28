@@ -19,7 +19,6 @@ public:
 
     void OnUpdate(float deltaTime) override;
     void StartEffect(EffectType type);
-    void ChangeResolution(float oldScale, float newScale) override;
 
 private:
     void ManageAnimations();

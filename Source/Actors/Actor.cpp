@@ -63,6 +63,3 @@ void Actor::RemoveComponent(const class Component* c) {
     auto iter = std::find(mComponents.begin(), mComponents.end(), c);
     mComponents.erase(iter);
 }
-
-
-void Actor::ChangeResolution(float oldScale, float newScale) {}

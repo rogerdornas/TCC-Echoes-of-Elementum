@@ -14,9 +14,9 @@
 
 FireBall::FireBall(class Game* game)
     :Actor(game)
-    ,mWidth(80.0f * mGame->GetScale())
-    ,mHeight(80.0f * mGame->GetScale())
-    ,mSpeed(1800.0f * mGame->GetScale())
+    ,mWidth(80.0f)
+    ,mHeight(80.0f)
+    ,mSpeed(1800.0f)
     ,mDuration(3.0f)
     ,mDurationTimer(mDuration)
     ,mThrowingWidth(mWidth)
@@ -153,11 +153,11 @@ void FireBall::OnUpdate(float deltaTime) {
 }
 
 void FireBall::ExplosionEffect() {
-    auto* explosion = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, mWidth / 5 / mGame->GetScale(), 200.0, 0.2, 0.07f);
+    auto* explosion = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, mWidth / 5, 200.0, 0.2, 0.07f);
     explosion->SetPosition(GetPosition() + GetForward() * (mWidth / 2));
     explosion->SetEmitDirection(Vector2::Zero);
     explosion->SetGroundCollision(false);
-    explosion->SetParticleSpeedScale(mWidth / 50 / mGame->GetScale());
+    explosion->SetParticleSpeedScale(mWidth / 50);
     explosion->SetParticleColor(SDL_Color{247, 118, 34, 255});
     explosion->SetParticleGravity(false);
 }
@@ -340,38 +340,4 @@ void FireBall::ResolvePlayerCollision() {
 
 void FireBall::ManageAnimations() {
 
-}
-
-void FireBall::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mSpeed = mSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 1.8f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.8f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

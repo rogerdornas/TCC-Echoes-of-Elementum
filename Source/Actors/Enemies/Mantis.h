@@ -13,8 +13,6 @@ public:
     Mantis(Game* game);
     void OnUpdate(float deltaTime) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     enum class State
     {

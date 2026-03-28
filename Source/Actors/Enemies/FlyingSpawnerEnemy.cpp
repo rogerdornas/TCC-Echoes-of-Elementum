@@ -18,19 +18,19 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
     :Enemy(game)
     ,mEnemyState(State::Fly)
 
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mFlyingAroundDuration(1.0f)
     ,mFlyingAroundTimer(0.0f)
-    ,mFlyingAroundMoveSpeed(100.0f * mGame->GetScale())
+    ,mFlyingAroundMoveSpeed(100.0f)
 
     ,mStopDuration(0.3f)
     ,mStopTimer(0.0f)
 
     ,mHitDuration(0.3f)
 
-    ,mPatrolRangeX(400.0f * mGame->GetScale())
-    ,mPatrolRangeY(100.0f * mGame->GetScale())
-    ,mHoverHeight(300.0f * mGame->GetScale())
+    ,mPatrolRangeX(400.0f)
+    ,mPatrolRangeY(100.0f)
+    ,mHoverHeight(300.0f)
     ,mTargetSet(false)
     ,mPatrolTargetDuration(1.0f)
     ,mPatrolTargetTimer(0.0f)
@@ -52,14 +52,14 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
     ,mMaxSpawnBat(2)
     ,mCountSpawnBat(0)
 {
-    mWidth = 96 * mGame->GetScale();
-    mHeight = 96 * mGame->GetScale();
-    mMoveSpeed = 400 * mGame->GetScale();
+    mWidth = 96;
+    mHeight = 96;
+    mMoveSpeed = 400;
     mHealthPoints = 75;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 14;
-    mKnockBackSpeed = 600.0f * mGame->GetScale();
+    mKnockBackSpeed = 600.0f;
     mKnockBackDuration = 0.2f;
     mKnockBackTimer = mKnockBackDuration;
     mOriginalHeight = mHeight;
@@ -295,7 +295,7 @@ void FlyingSpawnerEnemy::Fly(float deltaTime) {
     Vector2 direction = mCurrentTarget - GetPosition();
     float distance = direction.Length();
 
-    if (mPatrolTargetTimer >= mPatrolTargetDuration || distance < 5.0f * mGame->GetScale()) {
+    if (mPatrolTargetTimer >= mPatrolTargetDuration || distance < 5.0f) {
         // Quando chegar perto do alvo ou passar o tempo, escolher novo ponto
         mPatrolTargetTimer = 0;
         mTargetSet = false;
@@ -444,7 +444,7 @@ void FlyingSpawnerEnemy::SpawnBat(float deltaTime) {
     if (!mAlreadySpawnedBat) {
         if (mSpawnBatTimer >= mSpawnBatDuration * 0.83f) {
             auto* littleBat = new LittleBat(mGame);
-            littleBat->SetPosition(GetPosition() + Vector2(mWidth * 0.8f * GetForward().x, 30 * mGame->GetScale()));
+            littleBat->SetPosition(GetPosition() + Vector2(mWidth * 0.8f * GetForward().x, 30));
             littleBat->SetSpottedPlayer(true);
             mAlreadySpawnedBat = true;
         }
@@ -501,47 +501,4 @@ void FlyingSpawnerEnemy::ManageCombatBox() {
         mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
         mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
     }
-}
-
-void FlyingSpawnerEnemy::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mFlyingAroundMoveSpeed = mFlyingAroundMoveSpeed / oldScale * newScale;
-    mHoverHeight = mHoverHeight / oldScale * newScale;
-    mPatrolRangeX = mPatrolRangeX / oldScale * newScale;
-    mPatrolRangeY = mPatrolRangeY / oldScale * newScale;
-    mOriginalHeight = mOriginalHeight / oldScale * newScale;
-    mSmashHeight = mSmashHeight / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 2.0f);
-    //     mDrawAnimatedComponent->SetHeight(mOriginalHeight * 2.0f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

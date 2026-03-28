@@ -71,13 +71,3 @@ void UIText::Draw(Renderer *renderer, const Vector2 &screenPos)
     //
     // SDL_RenderCopyEx(renderer, mTextTexture, nullptr, &titleQuad, 0.0, nullptr, SDL_FLIP_NONE);
 }
-
-void UIText::ChangeResolution(float oldScale, float newScale) {
-    mPosition.x = mPosition.x / oldScale * newScale;
-    mPosition.y = mPosition.y / oldScale * newScale;
-    mSize.x = mSize.x / oldScale * newScale;
-    mSize.y = mSize.y / oldScale * newScale;
-
-    mPointSize = mPointSize / oldScale * newScale;
-    SetText(mText);
-}

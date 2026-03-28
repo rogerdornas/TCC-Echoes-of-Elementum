@@ -23,8 +23,6 @@ public:
 
     void OnUpdate(float deltaTime) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     SkillType mSkill;
     float mWidth;

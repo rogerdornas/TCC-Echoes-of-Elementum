@@ -37,8 +37,6 @@ public:
     float GetWidth() override { return mWidth; }
     float GetHeight() override { return mHeight; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ResolveGroundCollision() override;
     void ResolvePlayerCollision();

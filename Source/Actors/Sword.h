@@ -20,8 +20,6 @@ public:
     void SetWidth(float width) { mWidth = width; }
     void SetHeight(float height) { mHeight = height; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void Deactivate();
     void Activate();

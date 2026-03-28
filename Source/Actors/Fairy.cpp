@@ -13,9 +13,9 @@ Fairy::Fairy(Game *game)
     :Actor(game)
     ,mWidth(40)
     ,mHeight(40)
-    ,mSpeed(400.0f * mGame->GetScale())
-    ,mLerpSpeed(2.0f * mGame->GetScale())
-    ,mOffsetPosition(Vector2(-70, -70) * mGame->GetScale())
+    ,mSpeed(400.0f)
+    ,mLerpSpeed(2.0f)
+    ,mOffsetPosition(Vector2(-70, -70))
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
 {
@@ -41,7 +41,7 @@ Fairy::Fairy(Game *game)
     mDrawComponent->SetAnimation("idle");
     mDrawComponent->SetAnimFPS(10.0f);
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 1600 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 1600);
     mAABBComponent = new AABBComponent(this, v1, v3);
 }
 
@@ -58,37 +58,4 @@ void Fairy::OnUpdate(float deltaTime) {
         SetRotation(Math::Pi);
         SetScale(Vector2(-1, 1));
     }
-}
-
-void Fairy::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mSpeed = mSpeed / oldScale * newScale;
-    mLerpSpeed = mLerpSpeed / oldScale * newScale;
-    mOffsetPosition.x = mOffsetPosition.x / oldScale * newScale;
-    mOffsetPosition.y = mOffsetPosition.y / oldScale * newScale;
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 2.0f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 2.0f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    mAABBComponent->SetMin(v1);
-    mAABBComponent->SetMax(v3);
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

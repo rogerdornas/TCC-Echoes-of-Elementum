@@ -14,7 +14,7 @@
 Particle::Particle(Game* game, ParticleType particleType)
     :Actor(game)
     ,mParticleType(particleType)
-    ,mSize(8.0f * mGame->GetScale())
+    ,mSize(8.0f)
     ,mLifeTDuration(0.0f)
     ,mLifeTimer(0.0f)
     ,mGroundCollision(true)
@@ -24,7 +24,7 @@ Particle::Particle(Game* game, ParticleType particleType)
     ,mGravity(true)
     ,mGravityForce(2000.0f)
     ,mDirection(Vector2::Zero)
-    ,mSpeedScale(1.0f * mGame->GetScale())
+    ,mSpeedScale(1.0f)
     ,mApplyDamage(false)
     ,mApplyFreeze(false)
     ,mFreezeDamage(1.0f)
@@ -297,40 +297,4 @@ void Particle::ApplyEnemyFreeze() {
             }
         }
     }
-}
-
-void Particle::ChangeResolution(float oldScale, float newScale) {
-    mSize = mSize / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mSpeedScale = mSpeedScale / oldScale * newScale;
-    mGravityForce = mGravityForce / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    float width = 1.2 * mSize;
-    float height = mSize;
-    // if (mDrawParticleComponent) {
-    //     mDrawParticleComponent->SetWidth(width * 1.6f);
-    //     mDrawParticleComponent->SetHeight(height * 1.6f);
-    // }
-
-    Vector2 v1(-width / 2, -height / 2);
-    Vector2 v2(width / 2, -height / 2);
-    Vector2 v3(width / 2, height / 2);
-    Vector2 v4(-width / 2, height / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

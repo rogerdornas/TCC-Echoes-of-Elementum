@@ -23,8 +23,6 @@ public:
     float GetRadius() { return mRadius; }
     void SetHookPointState(HookPointState state) { mHookPointState = state; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     float mWidth;
     float mHeight;

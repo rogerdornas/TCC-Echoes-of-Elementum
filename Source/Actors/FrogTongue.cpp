@@ -13,8 +13,8 @@
 
 FrogTongue::FrogTongue(class Game* game, Frog* owner, float damage)
     :Actor(game)
-    ,mWidth(0.0f * mGame->GetScale())
-    ,mHeight(44.0f * mGame->GetScale())
+    ,mWidth(0.0f)
+    ,mHeight(44.0f)
     ,mDuration(1.4f)
     ,mDamage(damage)
     ,mOwner(owner)
@@ -23,7 +23,7 @@ FrogTongue::FrogTongue(class Game* game, Frog* owner, float damage)
     ,mFrameTimer(0.0f)
     ,mFrameIndex(0)
     ,mTongueRange(1000.0f)
-    ,mGrowSpeed(mTongueRange / (mDuration / 2) * mGame->GetScale())
+    ,mGrowSpeed(mTongueRange / (mDuration / 2))
     ,mIsIncreasing(false)
     ,mDrawComponent(nullptr)
     ,mRectComponent(nullptr)
@@ -92,7 +92,7 @@ FrogTongue::FrogTongue(class Game* game, Frog* owner, float damage)
 void FrogTongue::SetDuration(float duration) {
     mDuration = duration;
     mFrameDuration = mDuration / 2 / mNumOfFrames;
-    mGrowSpeed = mTongueRange / (mDuration / 2) * mGame->GetScale();
+    mGrowSpeed = mTongueRange / (mDuration / 2);
 }
 
 void FrogTongue::OnUpdate(float deltaTime) {
@@ -139,10 +139,10 @@ void FrogTongue::OnUpdate(float deltaTime) {
             mDrawComponent->SetAnimation("extending" + std::to_string(mFrameIndex));
         }
         if (GetRotation() == 0) {
-            SetPosition(mOwner->GetPosition() + Vector2(mWidth / 2, 0) + Vector2(30 * mGame->GetScale(), 0));
+            SetPosition(mOwner->GetPosition() + Vector2(mWidth / 2, 0) + Vector2(30, 0));
         }
         else if (GetRotation() == Math::Pi) {
-            SetPosition(mOwner->GetPosition() - Vector2(mWidth / 2, 0) - Vector2(30 * mGame->GetScale(), 0));
+            SetPosition(mOwner->GetPosition() - Vector2(mWidth / 2, 0) - Vector2(30, 0));
         }
 
         mFrameTimer += deltaTime;
@@ -214,38 +214,4 @@ void FrogTongue::Deactivate() {
     mWidth = 0;
     mIsIncreasing = true;
     mOwner->SetIsLicking(false);
-}
-
-void FrogTongue::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mGrowSpeed = mGrowSpeed / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth);
-    //     mDrawAnimatedComponent->SetHeight(mHeight);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

@@ -18,8 +18,6 @@ public:
     void SetRespawPosition(Vector2 pos) { mRespawnPosition = pos; }
     Vector2 GetRespawPosition() { return mRespawnPosition; }
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ResolveEnemyCollision();
     void ResolvePlayerCollision();

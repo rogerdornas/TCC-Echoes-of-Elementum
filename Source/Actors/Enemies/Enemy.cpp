@@ -25,7 +25,7 @@ Enemy::Enemy(Game* game)
     ,mKnockBackSpeed(0.0f)
     ,mKnockBackTimer(0.0f)
     ,mKnockBackDuration(0.0f)
-    ,mCameraShakeStrength(60.0f * mGame->GetScale())
+    ,mCameraShakeStrength(60.0f)
     ,mIsFlashing(false)
     ,mFlashDuration(0.07f)
     ,mFlashTimer(mFlashDuration)
@@ -70,7 +70,7 @@ void Enemy::SetSize(float width, float height) {
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(245, 0, 0));
 
-    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000 * mGame->GetScale(), 40000 * mGame->GetScale());
+    mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 40000);
     mColliderComponent = new AABBComponent(this, v1, v3);
 
     mCombatBoxComponent = new CombatBoxComponent(this);

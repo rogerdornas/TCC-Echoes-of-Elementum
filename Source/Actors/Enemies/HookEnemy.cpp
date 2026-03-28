@@ -21,7 +21,7 @@ HookEnemy::HookEnemy(Game *game)
     :Enemy(game)
     ,mHookEnemyState(State::Stop)
 
-    ,mGravity(3000 * mGame->GetScale())
+    ,mGravity(3000)
 
     ,mStopDuration(1.2f)
     ,mStopTimer(0.0f)
@@ -32,7 +32,7 @@ HookEnemy::HookEnemy(Game *game)
     ,mHookStateTimer(0.0f)
     ,mIsHooking(false)
     ,mHookDirection(Vector2::Zero)
-    ,mHookSpeed(1600.0f * mGame->GetScale())
+    ,mHookSpeed(1600.0f)
     ,mHookingDuration(0.20f)
     ,mHookingTimer(0.0f)
     ,mHookEnd(Vector2::Zero)
@@ -41,8 +41,8 @@ HookEnemy::HookEnemy(Game *game)
     ,mHookPoint(nullptr)
     ,mHookAnimationDuration(0.45f)
     ,mHookSegments(20)
-    ,mHookAmplitude(12.0f * mGame->GetScale())
-    ,mHookSegmentHeight(10.0f * mGame->GetScale())
+    ,mHookAmplitude(12.0f)
+    ,mHookSegmentHeight(10.0f)
 
     ,mIsHookThrowing(false)
     ,mCurrentRopeTip(Vector2::Zero)
@@ -58,14 +58,14 @@ HookEnemy::HookEnemy(Game *game)
 
     ,mDrawRopeComponent(nullptr)
 {
-    mWidth = 220 * mGame->GetScale();
-    mHeight = 100 * mGame->GetScale();
-    mMoveSpeed = 500 * mGame->GetScale();
+    mWidth = 220;
+    mHeight = 100;
+    mMoveSpeed = 500;
     mHealthPoints = 600;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 50;
-    mKnockBackSpeed = 0.0f * mGame->GetScale();
+    mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
     mFreezeMax = 1000;
@@ -592,45 +592,5 @@ void HookEnemy::ManageAnimations() {
     }
     else {
         mDrawComponent->SetTextureFactor(1.0f);
-    }
-}
-
-void HookEnemy::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mGravity = mGravity / oldScale * newScale;
-
-    mHookSpeed = mHookSpeed / oldScale * newScale;
-    mHookAmplitude = mHookAmplitude / oldScale * newScale;
-    mHookSegmentHeight = mHookSegmentHeight / oldScale * newScale;
-
-    mHookEnd.x = mHookEnd.x / oldScale * newScale;
-    mHookEnd.y = mHookEnd.y / oldScale * newScale;
-
-    // if (mDrawRopeComponent) {
-    //     mDrawRopeComponent->SetNumSegments(mHookSegments);
-    //     mDrawRopeComponent->SetAmplitude(mHookAmplitude);
-    //     mDrawRopeComponent->SetSegmentHeight(mHookSegmentHeight);
-    // }
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth( mWidth * 1.35f);
-    //     mDrawAnimatedComponent->SetHeight(mWidth * 1.35f * 0.73f);
-    // }
-
-    if (auto* obb = dynamic_cast<OBBComponent*>(mColliderComponent)) {
-        obb->Update(0);
-        obb->SetHalfSize(Vector2(mWidth / 2, mHeight / 2));
-
-        // if (mDrawPolygonComponent) {
-        //     auto verts = obb->GetVertices();
-        //     mDrawPolygonComponent->SetVertices(verts);
-        // }
     }
 }

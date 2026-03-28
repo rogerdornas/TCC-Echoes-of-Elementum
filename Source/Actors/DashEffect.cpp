@@ -8,8 +8,8 @@
 
 DashEffect::DashEffect(Game *game, Actor* owner, float duration)
     :Actor(game)
-    ,mWidth(195 * mGame->GetScale())
-    ,mHeight(159 * mGame->GetScale())
+    ,mWidth(195)
+    ,mHeight(159)
     ,mEffectDuration(duration)
     ,mEffectTimer(mEffectDuration)
     ,mOffsetPosition(Vector2::Zero)

@@ -12,7 +12,7 @@ Effect::Effect(class Game* game)
     :Actor(game)
     ,mDuration(0.1f)
     ,mDurationTimer(0.0f)
-    ,mSize(50 * mGame->GetScale())
+    ,mSize(50)
     ,mEnemy(nullptr)
     ,mColor(SDL_Color{200, 200, 200, 255})
     ,mRectComponent(nullptr)
@@ -77,20 +77,5 @@ void Effect::SwordHitEffect(float deltaTime) {
     if (mDurationTimer >= mDuration) {
         SetState(ActorState::Destroy);
         return;
-    }
-}
-
-void Effect::ChangeResolution(float oldScale, float newScale) {
-    mSize = mSize / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    switch (mTargetEffect) {
-        case TargetEffect::SwordHit:
-            // mDrawParticleComponent->SetWidth(mSize * 2);
-            // mDrawParticleComponent->SetHeight(mSize / 2);
-        break;
-        case TargetEffect::Circle:
-            // mDrawParticleComponent->SetWidth(mSize);
-            // mDrawParticleComponent->SetHeight(mSize);
-        break;
     }
 }

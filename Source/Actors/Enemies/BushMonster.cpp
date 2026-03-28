@@ -14,19 +14,19 @@
 BushMonster::BushMonster(Game* game)
     :Enemy(game)
     ,mBushMonsterState(State::Idle)
-    ,mGravity(3000 * mGame->GetScale())
+    ,mGravity(3000)
     ,mIdleDuration(1.0f)
     ,mIdleTimer(0.0f)
     ,mDashDuration(5.6f)
     ,mDashTimer(0.0f)
-    ,mDashSpeed(1400.0f * mGame->GetScale())
+    ,mDashSpeed(1400.0f)
     ,mIsDashingRight(true)
     ,mHitDuration(0.3f)
     ,mHitTimer(0.0f)
 {
-    mWidth = 220 * mGame->GetScale();
-    mHeight = 140 * mGame->GetScale();
-    mMoveSpeed = 300 * mGame->GetScale();
+    mWidth = 220;
+    mHeight = 140;
+    mMoveSpeed = 300;
     mHealthPoints = 100;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
@@ -95,7 +95,7 @@ void BushMonster::OnUpdate(float deltaTime) {
 
     if (mHealthPoints <= 0.0f * mMaxHealthPoints) {
         mIdleDuration = 0.8f;
-        mDashSpeed = 2000 * mGame->GetScale();
+        mDashSpeed = 2000;
     }
     if (!mIsFrozen && !mIsStunned) {
         if (mDrawComponent) {
@@ -256,39 +256,4 @@ void BushMonster::TriggerBossDefeat() {
 
     mGame->SetWorldFlag("BushMonsterDefeated", true);
     mGame->StopBossMusic();
-}
-
-
-void BushMonster::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    mDashSpeed = mDashSpeed / oldScale * newScale;
-    mGravity = mGravity / oldScale * newScale;
-
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    mRigidBodyComponent->SetVelocity(Vector2(
-        mRigidBodyComponent->GetVelocity().x / oldScale * newScale,
-        mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 2.5f);
-    //     mDrawAnimatedComponent->SetHeight(mWidth * 2.5f / 1.29f);
-    // }
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-    std::vector<Vector2> vertices = { v1, v2, v3, v4 };
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

@@ -14,12 +14,12 @@ ParticleSystem::ParticleSystem(Game* game, Particle::ParticleType particleType, 
     ,mEmitRate(emitRate)
     ,mEmitTimer(0.0f)
     ,mParticleLifeTime(particleLifeTime)
-    ,mParticleSize(particleSize * mGame->GetScale())
+    ,mParticleSize(particleSize)
     ,mLifeTime(lifeTime)
     ,mGroundCollision(true)
     ,mEnemyCollision(false)
     ,mColor(SDL_Color{255, 255, 255, 255})
-    ,mParticleSpeedScale(1.0f * mGame->GetScale())
+    ,mParticleSpeedScale(1.0f)
     ,mParticleGravity(true)
     ,mEmitDirection(Vector2::Zero)
     ,mConeSpread(0.0f)
@@ -51,7 +51,7 @@ void ParticleSystem::OnUpdate(float deltaTime) {
 }
 
 void ParticleSystem::SetParticleSpeedScale(float speedScale) {
-    mParticleSpeedScale = speedScale * mGame->GetScale();
+    mParticleSpeedScale = speedScale;
 }
 
 void ParticleSystem::EmitParticle() {
@@ -97,10 +97,4 @@ void ParticleSystem::EmitParticle() {
             break;
         }
     }
-}
-
-void ParticleSystem::ChangeResolution(float oldScale, float newScale) {
-    mParticleSize = mParticleSize / oldScale * newScale;
-    mParticleSpeedScale = mParticleSpeedScale / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
 }

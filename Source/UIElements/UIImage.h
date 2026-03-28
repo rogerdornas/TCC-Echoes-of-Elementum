@@ -22,8 +22,6 @@ public:
     void SetAlpha(float alpha) { mAlpha = alpha; }
     void Draw(Renderer* renderer, const Vector2 &screenPos) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     Texture* mTexture; // Texture for the image
     Renderer* mRenderer;

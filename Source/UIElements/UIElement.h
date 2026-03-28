@@ -27,8 +27,6 @@ public:
 
     virtual void Draw(Renderer* renderer, const Vector2 &screenPos) {}
 
-    virtual void ChangeResolution(float oldScale, float newScale) {}
-
 protected:
     Vector2 mPosition;
     Vector2 mSize;

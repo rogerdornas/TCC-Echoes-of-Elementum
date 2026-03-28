@@ -17,7 +17,7 @@ LightningBarrier::LightningBarrier(Game *game, float width, float height, bool i
     ,mIsMoving(isMoving)
     ,mMovingDuration(movingDuration)
     ,mMovingTimer(0.0f)
-    ,mVelocity(velocity * mGame->GetScale())
+    ,mVelocity(velocity)
     ,mAlreadyHitPlayer(false)
 
     ,mRectComponent(nullptr)

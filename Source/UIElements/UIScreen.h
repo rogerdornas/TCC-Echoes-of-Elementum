@@ -64,7 +64,6 @@ public:
 
 	UIButton* FindNeighbor(UIButton* current, const Vector2& dir);
 
-	virtual void ChangeResolution(float oldScale, float newScale);
 protected:
     // Sets the mouse mode to relative or not
 	class Game* mGame;

@@ -16,23 +16,23 @@ Snake::Snake(Game *game)
     ,mSnakeState(State::Stop)
     ,mStopDuration(0.7f)
     ,mStopTimer(0.0f)
-    ,mDistToSpotPlayer(400 * mGame->GetScale())
+    ,mDistToSpotPlayer(400)
     ,mWalkingAroundDuration(3.0f)
     ,mWalkingAroundTimer(0.0f)
-    ,mWalkingAroundMoveSpeed(70 * mGame->GetScale())
-    ,mGravity(3000 * mGame->GetScale())
-    ,mDistToAttack(300.0f * mGame->GetScale())
+    ,mWalkingAroundMoveSpeed(70)
+    ,mGravity(3000)
+    ,mDistToAttack(300.0f)
     ,mAttackDuration(0.7f)
     ,mAttackTimer(0.0f)
 {
-    mWidth = 100 * mGame->GetScale();
-    mHeight = 25 * mGame->GetScale();
-    mMoveSpeed = 300 * mGame->GetScale();
+    mWidth = 100;
+    mHeight = 25;
+    mMoveSpeed = 300;
     mHealthPoints = 40;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 7;
-    mKnockBackSpeed = 700.0f * mGame->GetScale();
+    mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
@@ -123,7 +123,7 @@ void Snake::MovementBeforePlayerSpotted() {
     }
 
     // Testa se spottou player
-    if (Math::Abs(GetPosition().y - player->GetPosition().y) < 40 * mGame->GetScale()) { // Se está no mesmo nível verticalmente
+    if (Math::Abs(GetPosition().y - player->GetPosition().y) < 40) { // Se está no mesmo nível verticalmente
         if (player->GetPosition().x < GetPosition().x && GetForward().x < 0 && Math::Abs(player->GetPosition().x - GetPosition().x) < mDistToSpotPlayer) {
             mPlayerSpotted = true;
         }
@@ -241,8 +241,4 @@ void Snake::ManageCombatBox() {
             mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
         }
     }
-}
-
-void Snake::ChangeResolution(float oldScale, float newScale) {
-
 }

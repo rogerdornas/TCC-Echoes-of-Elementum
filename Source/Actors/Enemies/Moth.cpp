@@ -40,9 +40,9 @@ Moth::Moth(Game *game)
     ,mAttackTimer(0.0f)
     ,mAttackAnimation(false)
 
-    ,mProjectileWidth(60 * mGame->GetScale())
-    ,mProjectileHeight(60 * mGame->GetScale())
-    ,mProjectileSpeed(1400 * mGame->GetScale())
+    ,mProjectileWidth(60)
+    ,mProjectileHeight(60)
+    ,mProjectileSpeed(1400)
     ,mProjectileDamage(15)
     ,mMaxProjectiles(15)
     ,mCountProjectiles(0)
@@ -51,9 +51,9 @@ Moth::Moth(Game *game)
 
     ,mProjectilesStartDirection(0)
 
-    ,mCircleProjectileWidth(60 * mGame->GetScale())
-    ,mCircleProjectileHeight(60 * mGame->GetScale())
-    ,mCircleProjectileSpeed(800 * mGame->GetScale())
+    ,mCircleProjectileWidth(60)
+    ,mCircleProjectileHeight(60)
+    ,mCircleProjectileSpeed(800)
     ,mMaxCircleProjectiles(40)
     ,mCountCircleProjectiles(0)
     ,mCircleProjectilesDuration(1.5f)
@@ -62,14 +62,14 @@ Moth::Moth(Game *game)
     ,mFlyUpDuration(6.5f)
     ,mFlyUpTimer(0.0f)
 {
-    mWidth = 200 * mGame->GetScale();
-    mHeight = 200 * mGame->GetScale();
-    mMoveSpeed = 500 * mGame->GetScale();
+    mWidth = 200;
+    mHeight = 200;
+    mMoveSpeed = 500;
     mHealthPoints = 700;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 20;
     mMoneyDrop = 200;
-    mKnockBackSpeed = 0.0f * mGame->GetScale();
+    mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
     mFreezeMax = 1000;
@@ -163,7 +163,7 @@ void Moth::ReflectFireball() {
     std::vector<FireBall*> fireBalls = mGame->GetFireBalls();
     if (!fireBalls.empty()) {
         for (FireBall* f : fireBalls) {
-            if ((GetPosition() - f->GetPosition()).Length() < 180 * mGame->GetScale()) {
+            if ((GetPosition() - f->GetPosition()).Length() < 180) {
                 if (Random::GetFloat() < mSlowMotionProbability) {
                     Vector2 direction = mGame->GetPlayer()->GetPosition() - GetPosition();
                     if (direction.Length() > 0) {
@@ -638,49 +638,3 @@ void Moth::ManageAnimations() {
     // }
 
 }
-
-void Moth::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    mProjectileWidth = mProjectileWidth / oldScale * newScale;
-    mProjectileHeight = mProjectileHeight / oldScale * newScale;
-    mProjectileSpeed = mProjectileSpeed / oldScale * newScale;
-    mCircleProjectileWidth = mCircleProjectileWidth / oldScale * newScale;
-    mCircleProjectileHeight = mCircleProjectileHeight / oldScale * newScale;
-    mCircleProjectileSpeed = mCircleProjectileSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 2.0f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 2.0f);
-    // }
-
-    Vector2 v1(-mHeight / 2, -mHeight / 2);
-    Vector2 v2(mHeight / 2, -mHeight / 2);
-    Vector2 v3(mHeight / 2, mHeight / 2);
-    Vector2 v4(-mHeight / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
-}
-
-
-
-

@@ -93,12 +93,3 @@ void UIButton::OnClick()
         mOnClick();
     }
 }
-
-void UIButton::ChangeResolution(float oldScale, float newScale) {
-    mPosition.x = mPosition.x / oldScale * newScale;
-    mPosition.y = mPosition.y / oldScale * newScale;
-    mSize.x = mSize.x / oldScale * newScale;
-    mSize.y = mSize.y / oldScale * newScale;
-
-    mText->ChangeResolution(oldScale, newScale);
-}

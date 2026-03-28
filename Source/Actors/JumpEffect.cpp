@@ -8,8 +8,8 @@
 
 JumpEffect::JumpEffect(Game *game, Actor *owner, float duration)
     :Actor(game)
-    ,mWidth(130 * mGame->GetScale())
-    ,mHeight(65 * mGame->GetScale())
+    ,mWidth(130)
+    ,mHeight(65)
     ,mEffectDuration(duration)
     ,mEffectTimer(mEffectDuration)
     ,mOwner(owner)
@@ -84,14 +84,4 @@ void JumpEffect::StartEffect(EffectType type) {
 
 void JumpEffect::ManageAnimations() {
 
-}
-
-
-void JumpEffect::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-
-    // mDrawAnimatedComponent->SetWidth(mWidth);
-    // mDrawAnimatedComponent->SetHeight(mHeight);
 }

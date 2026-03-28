@@ -23,8 +23,6 @@ public:
     FlyingSpawnerEnemy(Game* game);
     void OnUpdate(float deltaTime) override;
 
-    void ChangeResolution(float oldScale, float newScale) override;
-
 private:
     void ResolveGroundCollision() override;
     void MovementAfterPlayerSpotted(float deltaTime);

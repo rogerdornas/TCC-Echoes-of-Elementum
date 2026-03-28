@@ -20,10 +20,10 @@
 
 Frog::Frog(Game* game)
     :Enemy(game)
-    ,mDistToSpotPlayer(500 * mGame->GetScale())
+    ,mDistToSpotPlayer(500)
     ,mWalkingAroundDuration(2.0f)
     ,mWalkingAroundTimer(0.0f)
-    ,mWalkingAroundMoveSpeed(50.0f * mGame->GetScale())
+    ,mWalkingAroundMoveSpeed(50.0f)
 
     ,mFrogState(State::Stop)
 
@@ -34,15 +34,15 @@ Frog::Frog(Game* game)
 
     ,mMaxJumps(6)
     ,mJumpCount(0)
-    ,mJumpForce(1500.0f * mGame->GetScale())
+    ,mJumpForce(1500.0f)
     ,mDurationBetweenJumps(0.3f)
     ,mTimerBetweenJumps(0.0f)
 
     ,mWallPosition(WallSide::Bottom)
     ,mDestinyWall(WallSide::Bottom)
-    ,mGravity(3000 * mGame->GetScale())
+    ,mGravity(3000)
 
-    ,mMinDistFromEdge(256 * mGame->GetScale())
+    ,mMinDistFromEdge(256)
     ,mAttackJumpInterval(2)
 
     ,mTongue(nullptr)
@@ -51,14 +51,14 @@ Frog::Frog(Game* game)
     ,mIsLicking(false)
     ,mJumpComboProbability(0.6f)
 {
-    mWidth = 165 * mGame->GetScale();
-    mHeight = 165 * mGame->GetScale();
-    mMoveSpeed = 300 * mGame->GetScale();
+    mWidth = 165;
+    mHeight = 165;
+    mMoveSpeed = 300;
     mHealthPoints = 400;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 100;
-    mKnockBackSpeed = 0.0f * mGame->GetScale();
+    mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
     mEnemyCollision = false;
@@ -204,7 +204,7 @@ void Frog::OnUpdate(float deltaTime) {
     if (mHealthPoints <= mMaxHealthPoints / 2) {
         mStopDuration = 1.0;
         mMaxJumps = 12;
-        mJumpForce = 1900 * mGame->GetScale();
+        mJumpForce = 1900;
         mDurationBetweenJumps = 0.15;
         mAttackJumpInterval = 3;
         mTongueDuration = 1.2f;
@@ -219,8 +219,8 @@ void Frog::TriggerBossDefeat() {
     if (!mGame->GetPlayer()->GetCanWallSlide()) {
         auto* skill = new Skill(mGame, Skill::SkillType::WallSlide);
         skill->SetPosition(GetPosition());
-        if (skill->GetPosition().y < mArenaMaxPos.y - 320 * mGame->GetScale()) {
-            skill->SetPosition(Vector2(GetPosition().x, mArenaMaxPos.y - 320 * mGame->GetScale()));
+        if (skill->GetPosition().y < mArenaMaxPos.y - 320) {
+            skill->SetPosition(Vector2(GetPosition().x, mArenaMaxPos.y - 320));
         }
     }
 
@@ -609,49 +609,4 @@ void Frog::Tongue(float delTime) {
     mTongue->SetState(ActorState::Active);
     mTongue->SetRotation(GetRotation());
     mTongue->SetScale(GetScale());
-}
-
-
-void Frog::ChangeResolution(float oldScale, float newScale) {
-    mWidth = mWidth / oldScale * newScale;
-    mHeight = mHeight / oldScale * newScale;
-    mMoveSpeed = mMoveSpeed / oldScale * newScale;
-    SetPosition(Vector2(GetPosition().x / oldScale * newScale, GetPosition().y / oldScale * newScale));
-    mKnockBackSpeed = mKnockBackSpeed / oldScale * newScale;
-    mCameraShakeStrength = mCameraShakeStrength / oldScale * newScale;
-    mDistToSpotPlayer = mDistToSpotPlayer / oldScale * newScale;
-    mWalkingAroundMoveSpeed = mWalkingAroundMoveSpeed / oldScale * newScale;
-    mJumpForce = mJumpForce / oldScale * newScale;
-    mGravity = mGravity / oldScale * newScale;
-    mArenaMinPos.x = mArenaMinPos.x / oldScale * newScale;
-    mArenaMinPos.y = mArenaMinPos.y / oldScale * newScale;
-    mArenaMaxPos.x = mArenaMaxPos.x / oldScale * newScale;
-    mArenaMaxPos.y = mArenaMaxPos.y / oldScale * newScale;
-    mMinDistFromEdge = mMinDistFromEdge / oldScale * newScale;
-
-    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x / oldScale * newScale, mRigidBodyComponent->GetVelocity().y / oldScale * newScale));
-
-    // if (mDrawAnimatedComponent) {
-    //     mDrawAnimatedComponent->SetWidth(mWidth * 1.5f);
-    //     mDrawAnimatedComponent->SetHeight(mHeight * 1.5f / 1.2f);
-    // }
-    Vector2 v1(-mHeight / 2, -mHeight / 2);
-    Vector2 v2(mHeight / 2, -mHeight / 2);
-    Vector2 v3(mHeight / 2, mHeight / 2);
-    Vector2 v4(-mHeight / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    // if (mDrawPolygonComponent) {
-    //     mDrawPolygonComponent->SetVertices(vertices);
-    // }
 }

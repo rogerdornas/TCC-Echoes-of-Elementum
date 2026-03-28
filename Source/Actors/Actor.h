@@ -35,8 +35,6 @@ public:
     const Vector2& GetScale() const { return mScale; }
     void SetScale(const Vector2& scale) { mScale = scale; }
 
-    virtual void ChangeResolution(float oldScale, float newScale);
-
     // Rotation getter/setter
     float GetRotation() const { return mRotation; }
     void SetRotation(float rotation) { mRotation = rotation; }
