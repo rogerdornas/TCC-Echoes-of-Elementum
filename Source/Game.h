@@ -200,6 +200,8 @@ public:
         mHitstopTimer = mHitstopDuration - duration;
     }
 
+    void ActiveDamageFlash();
+
     void SetIsSlowMotion(bool slowMotion) { mIsSlowMotion = slowMotion; }
 
     // Audio functions
@@ -396,6 +398,10 @@ private:
     bool mHitstopDelayActive;
     float mHitstopDelayDuration;
     float mHitstopDelayTimer;
+
+    bool mDamageFlashActive;
+    float mDamageFlashDuration;
+    float mDamageFlashTimer;
 
     bool mIsSlowMotion;
     bool mIsAccelerated;

@@ -8,7 +8,7 @@
 
 PillarGround::PillarGround(Game *game, float width, float height)
     :DynamicGround(game, width, height)
-    ,mLifeDuration(1.5f)
+    ,mLifeDuration(3.5f)
     ,mLifeTimer(0.0f)
 {
     mIsBreakable = true;

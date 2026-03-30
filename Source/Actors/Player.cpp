@@ -702,7 +702,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
             UseLightningSpear();
         }
         if (mElementalMode == ElementalMode::Earth) {
-            if (down && !mIsOnGround) {
+            if (!mIsOnGround) {
                 UseGroundSlam();
             }
         }
@@ -2462,6 +2462,7 @@ void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType dam
         mKnockBackTimer = 0;
         mInvulnerableTimer = 0;
         mGame->ActiveHitStop();
+        mGame->ActiveDamageFlash();
         mHealAnimationTimer = 0;
         mGame->GetCamera()->StartCameraShake(0.5, mCameraShakeStrength);
         mGame->GetAudio()->PlaySound("Damage/Damage.wav");

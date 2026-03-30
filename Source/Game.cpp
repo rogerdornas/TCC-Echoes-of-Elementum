@@ -108,6 +108,9 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mHitstopDelayActive(false)
     ,mHitstopDelayDuration(0.01f)
     ,mHitstopDelayTimer(0.0f)
+    ,mDamageFlashActive(false)
+    ,mDamageFlashDuration(0.6f)
+    ,mDamageFlashTimer(0.0f)
     ,mIsSlowMotion(false)
     ,mIsAccelerated(false)
     ,mSaveSlot(0)
@@ -370,6 +373,7 @@ void Game::ChangeScene()
 
         // Guarda último level que o player estava
         mIsPaused = false;
+        mRenderer->SetPostProcessEffect(PostProcessEffect::None);
     }
     else {
         // Se está no menu, pausa draw de player
@@ -944,7 +948,7 @@ void Game::ResetKeyboardToDefault() {
     mInputBindings[Action::Attack].key     = SDL_SCANCODE_X;
     mInputBindings[Action::Dash].key       = SDL_SCANCODE_C;
     mInputBindings[Action::Skill1].key     = SDL_SCANCODE_A;
-    mInputBindings[Action::Skill2].key     = SDL_SCANCODE_F;
+    mInputBindings[Action::Skill2].key     = SDL_SCANCODE_D;
     mInputBindings[Action::Heal].key       = SDL_SCANCODE_V;
     mInputBindings[Action::Hook].key       = SDL_SCANCODE_S;
     mInputBindings[Action::OpenStore].key  = SDL_SCANCODE_SPACE;
@@ -2638,6 +2642,8 @@ void Game::TogglePause() {
             // if (mAudio->GetSoundState(mBossMusic) == SoundState::Playing) {
             //     mAudio->PauseSound(mBossMusic);
             // }
+            mRenderer->SetPostProcessEffect(PostProcessEffect::Blur);
+            mRenderer->SetEffectIntensity(2.0f);
             mAudio->SetCategoryModifier(SoundCategory::Music, mPauseMusicVolumeScale);
             mGamePlayState = GamePlayState::Paused;
         }
@@ -2648,6 +2654,7 @@ void Game::TogglePause() {
             // else if (mAudio->GetSoundState(mMusicHandle) == SoundState::Paused) {
             //     mAudio->ResumeSound(mMusicHandle);
             // }
+            mRenderer->SetPostProcessEffect(PostProcessEffect::None);
             mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);
             mGamePlayState = GamePlayState::Playing;
         }
@@ -2719,6 +2726,25 @@ void Game::UpdateGame()
             // if (mHUD) {
             //     mHUD->Update(deltaTime);
             // }
+        }
+
+        if (mDamageFlashActive) {
+            if (mDamageFlashTimer < mDamageFlashDuration) {
+                mDamageFlashTimer += deltaTime;
+
+                float progress = mDamageFlashTimer / mDamageFlashDuration;
+
+                float maxIntensity = 0.5f;
+
+                float intensity = maxIntensity * (1.0f - progress);
+
+                mRenderer->SetEffectIntensity(intensity);
+            }
+            else {
+                mRenderer->SetPostProcessEffect(PostProcessEffect::None);
+                mRenderer->SetEffectIntensity(1.0f);
+                mDamageFlashActive = false;
+            }
         }
     }
 
@@ -2920,6 +2946,12 @@ void Game::UpdateCamera(float deltaTime) {
         return;
     }
     mCamera->Update(deltaTime);
+}
+
+void Game::ActiveDamageFlash() {
+    mDamageFlashActive = true;
+    mDamageFlashTimer = 0.0f;
+    mRenderer->SetPostProcessEffect(PostProcessEffect::DamageFlash);
 }
 
 void Game::AddGround(class Ground* g) { mGrounds.emplace_back(g); }

@@ -1,4 +1,5 @@
 #pragma once
+
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -11,6 +12,14 @@ enum class RendererMode
 {
     TRIANGLES,
     LINES
+};
+
+enum class PostProcessEffect
+{
+	None,
+	Blur,
+	Grayscale,
+	DamageFlash
 };
 
 class Renderer
@@ -80,6 +89,10 @@ public:
 	void RemoveLight(class Light* light);
 	void ClearLights();
 
+	// Pos Processamento
+	void SetPostProcessEffect(PostProcessEffect effect);
+	void SetEffectIntensity(float intensity) { mEffectIntensity = intensity; }
+
 private:
     void Draw(RendererMode mode, const Matrix4 &modelMatrix, const Vector2 &cameraPos, VertexArray *vertices,
               const Vector3 &color, float alpha = 1.0f, Texture *texture = nullptr, const Vector4 &textureRect = Vector4::UnitRect,
@@ -97,6 +110,7 @@ private:
 	class Shader* mBaseShader;
 	class Shader* mFadeShader;
 	class Shader* mScreenShader;
+	class Shader* mPostProcessShader;
 
     // Sprite vertex array
     class VertexArray *mSpriteVerts;
@@ -119,13 +133,22 @@ private:
 	float mRenderWidth;
 	float mRenderHeight;
 
-	unsigned int mFBO;         // Framebuffer Object
-	unsigned int mFBOTexture;  // A textura onde o jogo será desenhado
+	// FBO 1: Onde o jogo e o HUD são desenhados
+	unsigned int mGameFBO;
+	unsigned int mGameFBOTexture;
+
+	// FBO 2: Onde os efeitos são aplicados e a UI Limpa é desenhada
+	unsigned int mUIFBO;
+	unsigned int mUIFBOTexture;
 
 	// === Dados de iluminação ===
 	Vector3 mAmbientColor;
 	float mAmbientIntensity;
 	std::vector<Light*> mLights;
+
+	// Pos processamento
+	PostProcessEffect mCurrentPostProcess;
+	float mEffectIntensity;
 
 	// === Novas variáveis para controle de resolução ===
 	float mVirtualWidth;  // Largura da nossa cena (ex: 1920)

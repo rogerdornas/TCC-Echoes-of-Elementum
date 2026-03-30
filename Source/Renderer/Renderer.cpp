@@ -9,11 +9,15 @@
 Renderer::Renderer(SDL_Window *window)
     :mBaseShader(nullptr)
     ,mFadeShader(nullptr)
+    ,mScreenShader(nullptr)
+    ,mPostProcessShader(nullptr)
     ,mWindow(window)
     ,mContext(nullptr)
     ,mOrthoProjection(Matrix4::Identity)
     ,mAmbientColor(Vector3(1.0f, 1.0f, 1.0f))
     ,mAmbientIntensity(0.8f)
+    ,mCurrentPostProcess(PostProcessEffect::None)
+    ,mEffectIntensity(1.0f)
     ,mVirtualWidth(1920.0f) // <-- Defina sua resolução virtual 16:9 aqui
     ,mVirtualHeight(1080.0f) // <-- Defina sua resolução virtual 16:9 aqui
     ,mWindowWidth(0.0f)
@@ -58,8 +62,11 @@ bool Renderer::Initialize(float width, float height)
         return false;
     }
 
-    mFBO = 0;
-    mFBOTexture = 0;
+    mGameFBO = 0;
+    mGameFBOTexture = 0;
+
+    mUIFBO = 0;
+    mUIFBOTexture = 0;
 
     // Define a resolução de renderização inicial
     CreateRenderTarget(1920, 1080);
@@ -77,6 +84,9 @@ bool Renderer::Initialize(float width, float height)
     // Você precisará de um shader MUITO SIMPLES para isso
     mScreenShader = new Shader();
     mScreenShader->Load("../Shaders/Screen");
+
+    mPostProcessShader = new Shader();
+    mPostProcessShader->Load("../Shaders/PostProcess");
 
     // Armazena o tamanho inicial da janela
     // mWindowWidth = width;
@@ -146,16 +156,21 @@ void Renderer::Shutdown()
     // Destroy textures
     for (auto i : mTextures)
     {
-        // i.second->Unload();
+        i.second->Unload();
         delete i.second;
     }
     mTextures.clear();
 
-    mBaseShader->Unload();
-    delete mBaseShader;
-    mFadeShader->Unload();
-    delete mFadeShader;
+    // Destroy Shaders
+    if (mBaseShader) { mBaseShader->Unload(); delete mBaseShader; }
+    if (mFadeShader) { mFadeShader->Unload(); delete mFadeShader; }
+    if (mScreenShader) { mScreenShader->Unload(); delete mScreenShader; }
+    if (mPostProcessShader) { mPostProcessShader->Unload(); delete mPostProcessShader; }
 
+    // Destroy Vertex Arrays
+    delete mSpriteVerts;
+    delete mFadeVAO;
+    delete mScreenQuad;
 
     SDL_GL_DeleteContext(mContext);
 	SDL_DestroyWindow(mWindow);
@@ -182,7 +197,7 @@ void Renderer::UnloadAllTextures()
 void Renderer::Clear()
 {
     // Diz ao OpenGL para desenhar na nossa textura de resolução interna
-    glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, mGameFBO);
 
     // Define o Viewport para a resolução do jogo
     glViewport(0, 0, static_cast<int>(mRenderWidth), static_cast<int>(mRenderHeight));
@@ -352,7 +367,7 @@ void Renderer::Present()
     mScreenShader->SetActive();
     mScreenQuad->SetActive();
 
-    glBindTexture(GL_TEXTURE_2D, mFBOTexture);
+    glBindTexture(GL_TEXTURE_2D, mUIFBOTexture);
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     glEnable(GL_BLEND); // Reativa o blend
@@ -451,21 +466,23 @@ bool Renderer::CreateRenderTarget(int width, int height)
     mRenderWidth = static_cast<float>(width);
     mRenderHeight = static_cast<float>(height);
 
-    // Se já existe um FBO, delete para recriar (útil ao mudar a resolução no meio do jogo)
-    if (mFBO != 0) {
-        glDeleteFramebuffers(1, &mFBO);
-        glDeleteTextures(1, &mFBOTexture);
+    // Limpa se já existirem
+    if (mGameFBO != 0) {
+        glDeleteFramebuffers(1, &mGameFBO);
+        glDeleteTextures(1, &mGameFBOTexture);
+        glDeleteFramebuffers(1, &mUIFBO);
+        glDeleteTextures(1, &mUIFBOTexture);
     }
 
-    // Gera o FBO
-    glGenFramebuffers(1, &mFBO);
-    glBindFramebuffer(GL_FRAMEBUFFER, mFBO);
+    // Gera o FBO do jogo
+    glGenFramebuffers(1, &mGameFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, mGameFBO);
 
     // Gera a Textura que servirá de tela
-    glGenTextures(1, &mFBOTexture);
-    glBindTexture(GL_TEXTURE_2D, mFBOTexture);
+    glGenTextures(1, &mGameFBOTexture);
+    glBindTexture(GL_TEXTURE_2D, mGameFBOTexture);
 
-    // Aloca a memória da textura com a resolução desejada (Ex: 1280x720)
+    // Aloca a memória da textura com a resolução desejada
     glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
 
     // Filtro de interpolação:
@@ -473,14 +490,23 @@ bool Renderer::CreateRenderTarget(int width, int height)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 
-    // Anexa a textura ao FBO
-    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mFBOTexture, 0);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    // Verifica se o FBO foi criado com sucesso
-    if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE) {
-        SDL_Log("Erro: Framebuffer não está completo!");
-        return false;
-    }
+    // Anexa a textura ao FBO
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mGameFBOTexture, 0);
+
+    // --- CRIA O FBO DA UI (FBO 2) ---
+    glGenFramebuffers(1, &mUIFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, mUIFBO);
+    glGenTextures(1, &mUIFBOTexture);
+    glBindTexture(GL_TEXTURE_2D, mUIFBOTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, mUIFBOTexture, 0);
 
     // Desvincula o FBO para voltar à tela normal
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
@@ -609,6 +635,20 @@ Vector2 Renderer::ScreenToVirtual(const Vector2& screenPoint) const
     return virtualPoint;
 }
 
+void Renderer::SetPostProcessEffect(PostProcessEffect effect) {
+    mCurrentPostProcess = effect;
+
+    glBindTexture(GL_TEXTURE_2D, mGameFBOTexture);
+    if (effect == PostProcessEffect::Blur) {
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    } else {
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+    }
+    glBindTexture(GL_TEXTURE_2D, 0);
+}
+
 void Renderer::BeginGameDraw()
 {
     mDrawingUI = false;
@@ -617,4 +657,32 @@ void Renderer::BeginGameDraw()
 void Renderer::BeginUIDraw()
 {
     mDrawingUI = true;
+
+    // 1. Muda o alvo para o FBO da UI (FBO 2). AINDA estamos na resolução interna!
+    glBindFramebuffer(GL_FRAMEBUFFER, mUIFBO);
+
+    // Opcional: Não precisa limpar (Clear) o FBO 2, porque vamos desenhar um Quad gigante cobrindo tudo
+    glDisable(GL_BLEND);
+
+    // 2. Prepara o shader de pós-processamento
+    mPostProcessShader->SetActive();
+    mPostProcessShader->SetIntUniform("uEffectType", static_cast<int>(mCurrentPostProcess));
+    mPostProcessShader->SetFloatUniform("uEffectIntensity", mEffectIntensity);
+    mPostProcessShader->SetVectorUniform("uResolution", GetResolution());
+    // ... (passe blur intensity, etc) ...
+
+    mScreenQuad->SetActive();
+
+    // 3. Pega a textura do FBO 1 (Jogo) como entrada
+    glBindTexture(GL_TEXTURE_2D, mGameFBOTexture);
+
+    // 4. Desenha! Agora o FBO 2 contém o jogo borrado.
+    glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+
+    glEnable(GL_BLEND);
+
+    // 5. Devolve o controle para o BaseShader.
+    // Como o mUIFBO ainda está "bindado", qualquer menu desenhado a partir de
+    // agora cairá no FBO 2, nítido, sobrepondo o fundo embaçado!
+    mBaseShader->SetActive();
 }
