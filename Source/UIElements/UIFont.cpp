@@ -90,7 +90,7 @@ Texture* UIFont::RenderText(const std::string& text, const Vector3& color /*= Co
 	SDL_Surface* surface = TTF_RenderUTF8_Blended_Wrapped(font, text.c_str(), sdlColor, wrapLength);
 	if (!surface)
 	{
-		SDL_Log("Falha ao renderizar texto: %s", TTF_GetError());
+		// SDL_Log("Falha ao renderizar texto: %s", TTF_GetError());
 		return nullptr;
 	}
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="380" height="200" tilewidth="32" tileheight="32" infinite="0" nextlayerid="5" nextobjectid="10">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="380" height="200" tilewidth="32" tileheight="32" infinite="0" nextlayerid="6" nextobjectid="11">
  <editorsettings>
   <export target="Prologue.json" format="json"/>
  </editorsettings>
@@ -213,8 +213,20 @@
   <object id="3" x="192" y="2880" width="1280" height="3200"/>
   <object id="6" x="10944" y="2880" width="960" height="3200"/>
  </objectgroup>
+ <objectgroup id="5" name="Camera">
+  <object id="10" x="1472" y="3616" width="3328" height="768">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="4800"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="4736"/>
+    <property name="LimitMinCameraPositionX" type="float" value="0"/>
+    <property name="LimitMinCameraPositionY" type="float" value="3656"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="3" name="Triggers">
-  <object id="5" name="Level1" x="4896" y="4096" width="448" height="288">
+  <object id="5" name="Room0" x="4896" y="4096" width="448" height="288">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
@@ -229,14 +241,6 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="StartCutscene"/>
     <property name="Target" value="Cutscene"/>
-   </properties>
-  </object>
-  <object id="9" x="1472" y="4160" width="3328" height="224">
-   <properties>
-    <property name="Event" value="FollowPlayerLimitRightHorizontally"/>
-    <property name="FixedCameraPositionX" type="float" value="4800"/>
-    <property name="FixedCameraPositionY" type="float" value="3616"/>
-    <property name="Target" value="Camera"/>
    </properties>
   </object>
  </objectgroup>

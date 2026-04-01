@@ -432,7 +432,7 @@
                 {
                  "height":704,
                  "id":13,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -535,7 +535,7 @@
                 {
                  "height":608,
                  "id":7,
-                 "name":"",
+                 "name":"Light",
                  "properties":[
                         {
                          "name":"AmbientColorB",

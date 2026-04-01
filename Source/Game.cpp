@@ -129,6 +129,8 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mLeftStickStateX(StickState::Neutral)
     ,mRightStickStateY(StickState::Neutral)
     ,mRightStickStateX(StickState::Neutral)
+    ,mRawRightAxisX(0.0f)
+    ,mRawRightAxisY(0.0f)
     ,mPauseMusicVolumeScale(0.45f)
     ,mWaveManager(nullptr)
     ,mNewButtonText(nullptr)
@@ -2317,7 +2319,7 @@ void Game::ProcessInput()
 
                     // Handle key press for UI screens
                     if (!mUIStack.empty()) {
-                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, event.cbutton.button, 0, 0, 0, 0);
+                        mUIStack.back()->HandleKeyPress(-1, event.cbutton.button, 0, 0, 0, 0);
                     }
 
                     // if (event.cbutton.button == SDL_CONTROLLER_BUTTON_START) {
@@ -2395,6 +2397,12 @@ void Game::ProcessInput()
                 break;
 
             case SDL_CONTROLLERAXISMOTION:
+                if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTX) {
+                    mRawRightAxisX = event.caxis.value;
+                }
+                if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTY) {
+                    mRawRightAxisY = event.caxis.value;
+                }
                 if (mWaitingForButton) {
                     // Verifica se é o gatilho esquerdo ou direito
                     if (event.caxis.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT ||
@@ -2432,7 +2440,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateY != StickState::Up) {
                                     mLeftStickStateY = StickState::Up;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0, 0, 0);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0, 0, 0);
                                     }
                                 }
                             }
@@ -2440,7 +2448,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateY != StickState::Down) {
                                     mLeftStickStateY = StickState::Down;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0, 0, 0);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, valueY, 0, 0, 0);
                                     }
                                 }
                             }
@@ -2457,7 +2465,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateX != StickState::Left) {
                                     mLeftStickStateX = StickState::Left;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX, 0, 0);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX, 0, 0);
                                     }
                                 }
                             }
@@ -2465,7 +2473,7 @@ void Game::ProcessInput()
                                 if (mLeftStickStateX != StickState::Right) {
                                     mLeftStickStateX = StickState::Right;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX, 0, 0);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, 0, valueX, 0, 0);
                                     }
                                 }
                             }
@@ -2481,7 +2489,7 @@ void Game::ProcessInput()
                                 if (mRightStickStateY != StickState::Up) {
                                     mRightStickStateY = StickState::Up;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, valueY, 0);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, valueY, 0);
                                     }
                                 }
                             }
@@ -2489,7 +2497,7 @@ void Game::ProcessInput()
                                 if (mRightStickStateY != StickState::Down) {
                                     mRightStickStateY = StickState::Down;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, valueY, 0);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, valueY, 0);
                                     }
                                 }
                             }
@@ -2506,7 +2514,7 @@ void Game::ProcessInput()
                                 if (mRightStickStateX != StickState::Left) {
                                     mRightStickStateX = StickState::Left;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, valueX);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, valueX);
                                     }
                                 }
                             }
@@ -2514,7 +2522,7 @@ void Game::ProcessInput()
                                 if (mRightStickStateX != StickState::Right) {
                                     mRightStickStateX = StickState::Right;
                                     if (!mUIStack.empty()) {
-                                        mUIStack.back()->HandleKeyPress(SDLK_UNKNOWN, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, valueX);
+                                        mUIStack.back()->HandleKeyPress(-1, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, valueX);
                                     }
                                 }
                             }

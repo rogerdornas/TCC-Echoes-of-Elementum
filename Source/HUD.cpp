@@ -11,20 +11,29 @@ HUD::HUD(class Game* game, const std::string& fontName)
     ,mSpeedHPDecrease(200.0f)
     ,mSpeedHPIncrease(200.0f)
     ,mNumOfSubManaBars(mGame->GetPlayer()->GetMaxMana() / 30.0f)
+    ,mFireColor(216.0f / 255.0f, 136.0f / 255.0f, 34.0f / 255.0f)
+    ,mLightningColor(95.0f / 255.0f, 204.0f / 255.0f, 206.0f / 255.0f)
+    ,mIceColor(16.0f / 255.0f, 101.0f / 255.0f, 137.0f / 255.0f)
+    ,mEarthColor(141.0f / 255.0f, 82.0f / 255.0f, 68.0f / 255.0f)
+    ,mFireIconSize(Vector2(35, 44))
+    ,mLightningIconSize(Vector2(36, 46))
+    ,mIceIconSize(Vector2(47, 60))
+    ,mEarthIconSize(Vector2(49, 62))
     ,mWaitToDecreaseDuration(0.7f)
     ,mWaitToDecreaseTimer(0.0f)
     ,mWaitToDecreaseManaDuration(0.7f)
     ,mWaitToDecreaseManaTimer(0.0f)
     ,mPlayerDie(false)
 {
+    auto* player = mGame->GetPlayer();
     float HPBarX = 50;
     float HPBarY = 50;
-    float HPBarWidth = mGame->GetPlayer()->GetMaxHealthPoints() * 5;
+    float HPBarWidth = player->GetMaxHealthPoints() * 5;
     float HPBarHeight = 30;
 
     float ManaBarX = 50;
     float ManaBarY = 85;
-    float ManaBarWidth = mGame->GetPlayer()->GetMaxMana() * 2.5;
+    float ManaBarWidth = player->GetMaxMana() * 2.5;
     float ManaBarHeight = 30;
 
     float bossHPBarX = mGame->GetRenderer()->GetVirtualWidth() * 0.15f;
@@ -48,43 +57,66 @@ HUD::HUD(class Game* game, const std::string& fontName)
     mBossHPRemainingBar = mBossHPBar;
     mBossHPGrowingBar = mBossHPBar;
 
-    mSlowMotionBarPos = Vector2(75.0f, 185.0f);
-    mSlowMotionBarRadius = 16.0f;
-    mSlowMotionBarThickness = 8.0f;
+    mSlowMotionBarPos = Vector2(75.0f, 190.0f);
+    mSlowMotionBarRadius = 28.0f;
+    mSlowMotionBarThickness = 7.0f;
 
-    mPlayerHealCount = AddText(std::to_string(mGame->GetPlayer()->GetHealCount()),
+    mPlayerHealCount = AddText(std::to_string(player->GetHealCount()),
                                 Vector2(65, 138),
                                 POINT_SIZE);
 
-    if (mGame->GetPlayer()->GetHealCount() == 0) {
+    if (player->GetHealCount() == 0) {
         mPotion = AddImage("../Assets/Sprites/Healingpotions/empty.png", Vector2(96, 139), Vector2(32, 32));
     }
-    else if (mGame->GetPlayer()->GetHealCount() == 1) {
+    else if (player->GetHealCount() == 1) {
         mPotion = AddImage("../Assets/Sprites/Healingpotions/bemVazia.png", Vector2(96, 139), Vector2(32, 32));
     }
-    else if (mGame->GetPlayer()->GetHealCount() == 2) {
+    else if (player->GetHealCount() == 2) {
         mPotion = AddImage("../Assets/Sprites/Healingpotions/meioVazia.png", Vector2(96, 139), Vector2(32, 32));
     }
-    else if (mGame->GetPlayer()->GetHealCount() == 3 || mGame->GetPlayer()->GetHealCount() == 4) {
+    else if (player->GetHealCount() == 3 || player->GetHealCount() == 4) {
         mPotion = AddImage("../Assets/Sprites/Healingpotions/cheia.png", Vector2(96, 139), Vector2(32, 32));
     }
 
     AddImage("../Assets/Sprites/Money/CristalSmall.png", Vector2(1770, 68), Vector2(18.0f, 31.5f));
 
-    mPlayerMoney = AddText(std::to_string(mGame->GetPlayer()->GetMoney()),
+    mPlayerMoney = AddText(std::to_string(player->GetMoney()),
                                 Vector2::Zero,
                                 POINT_SIZE);
     mPlayerMoney->SetPosition(Vector2(1790 + mPlayerMoney->GetSize().x / 2, 65));
+
+    Vector2 elementalIconSize(38, 48);
+    switch (player->GetElementalMode()) {
+        case Player::ElementalMode::Fire:
+            mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
+        break;
+
+        case Player::ElementalMode::Ice:
+            mElementalMode = AddImage("../Assets/Sprites/HUD/Ice.png", mSlowMotionBarPos, mIceIconSize);
+        break;
+
+        case Player::ElementalMode::Earth:
+            mElementalMode = AddImage("../Assets/Sprites/HUD/Earth.png", mSlowMotionBarPos, mEarthIconSize);
+        break;
+
+        case Player::ElementalMode::Lightning:
+            mElementalMode = AddImage("../Assets/Sprites/HUD/Lightning.png", mSlowMotionBarPos, mLightningIconSize);
+        break;
+
+        default:
+            mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
+        break;
+    }
 }
 
 HUD::~HUD()
 {
-
 }
 
 void HUD::Update(float deltaTime) {
+    auto* player = mGame->GetPlayer();
     if (!mPlayerDie) {
-        float playerHealthPoints = mGame->GetPlayer()->GetHealthPoints() / mGame->GetPlayer()->GetMaxHealthPoints();
+        float playerHealthPoints = player->GetHealthPoints() / player->GetMaxHealthPoints();
         if (playerHealthPoints < 0) {
             playerHealthPoints = 0;
         }
@@ -100,29 +132,56 @@ void HUD::Update(float deltaTime) {
             mHPGrowingBar.w = mHPRemainingBar.w;
         }
 
-        float playerMana = mGame->GetPlayer()->GetMana() / mGame->GetPlayer()->GetMaxMana();
+        float playerMana = player->GetMana() / player->GetMaxMana();
         if (playerMana < 0) {
             playerMana = 0;
         }
         mManaRemainingBar.w = mManaBar.w * playerMana;
 
-        std::string playerHealCount = std::to_string(mGame->GetPlayer()->GetHealCount());
+        std::string playerHealCount = std::to_string(player->GetHealCount());
         mPlayerHealCount->SetText(playerHealCount);
 
-        if (mGame->GetPlayer()->GetHealCount() == 0) {
+        if (player->GetHealCount() == 0) {
             mPotion->SetImage("../Assets/Sprites/Healingpotions/empty.png");
         }
-        else if (mGame->GetPlayer()->GetHealCount() == 1) {
+        else if (player->GetHealCount() == 1) {
             mPotion->SetImage("../Assets/Sprites/Healingpotions/bemVazia.png");
         }
-        else if (mGame->GetPlayer()->GetHealCount() == 2) {
+        else if (player->GetHealCount() == 2) {
             mPotion->SetImage("../Assets/Sprites/Healingpotions/meioVazia.png");
         }
-        else if (mGame->GetPlayer()->GetHealCount() == 3 || mGame->GetPlayer()->GetHealCount() == 4) {
+        else if (player->GetHealCount() == 3 || player->GetHealCount() == 4) {
             mPotion->SetImage("../Assets/Sprites/Healingpotions/cheia.png");
         }
 
-        std::string playerMoney = std::to_string(mGame->GetPlayer()->GetMoney());
+        switch (player->GetElementalMode()) {
+            case Player::ElementalMode::Fire:
+                mElementalMode->SetImage("../Assets/Sprites/HUD/Fire.png");
+                mElementalMode->SetSize(mFireIconSize);
+            break;
+
+            case Player::ElementalMode::Ice:
+                mElementalMode->SetImage("../Assets/Sprites/HUD/Ice.png");
+                mElementalMode->SetSize(mIceIconSize);
+            break;
+
+            case Player::ElementalMode::Earth:
+                mElementalMode->SetImage("../Assets/Sprites/HUD/Earth.png");
+                mElementalMode->SetSize(mEarthIconSize);
+            break;
+
+            case Player::ElementalMode::Lightning:
+                mElementalMode->SetImage("../Assets/Sprites/HUD/Lightning.png");
+                mElementalMode->SetSize(mLightningIconSize);
+            break;
+
+            default:
+                mElementalMode->SetImage("../Assets/Sprites/HUD/Fire.png");
+                mElementalMode->SetSize(mFireIconSize);
+            break;
+        }
+
+        std::string playerMoney = std::to_string(player->GetMoney());
         mPlayerMoney->SetText(playerMoney);
         mPlayerMoney->SetPosition(Vector2(1790 + mPlayerMoney->GetSize().x / 2, 65));
     }
@@ -149,7 +208,7 @@ void HUD::Update(float deltaTime) {
         mWaitToDecreaseManaTimer = 0;
     }
 
-    if (mGame->GetPlayer()->Died()) {
+    if (player->Died()) {
         mPlayerDie = true;
     }
 
@@ -242,6 +301,8 @@ void HUD::Draw(Renderer *renderer) {
     if (!mIsVisible) {
         return;
     }
+    DrawSlowMotionBar(renderer);
+
     for (UIImage* image : mImages) {
         image->Draw(renderer, mPos);
     }
@@ -256,7 +317,6 @@ void HUD::Draw(Renderer *renderer) {
 
     DrawLifeBar(renderer);
     DrawManaBar(renderer);
-    DrawSlowMotionBar(renderer);
     if (!mBossLifeBars.empty()) {
         DrawBossLifeBar(renderer);
     }
@@ -399,56 +459,37 @@ void HUD::DrawSlowMotionBar(Renderer* renderer) {
     Vector3 fillColor;
     float alpha = 1.0f;
 
-    if (isCharging) {
-        // ESTADO BLOQUEADO: Fica vermelho
-        fillColor = Vector3(242 / 255.0f, 90 / 255.0f, 70 / 255.0f);
+    switch (player->GetElementalMode()) {
+        case Player::ElementalMode::Fire:
+            fillColor = mFireColor;
+        break;
 
+        case Player::ElementalMode::Lightning:
+            fillColor = mLightningColor;
+        break;
+
+        case Player::ElementalMode::Ice:
+            fillColor = mIceColor;
+        break;
+
+        case Player::ElementalMode::Earth:
+            fillColor = mEarthColor;
+        break;
+    }
+
+    if (isCharging) {
         // Faz a opacidade pulsar usando o tempo do jogo ou do sistema
         float time = SDL_GetTicks() / 60.0f;
         alpha = 0.5f + (std::sin(time) * 0.5f); // Varia suavemente entre 0.0 e 1.0
 
         // Evita que fique 100% invisível
-        if (alpha < 0.2f) alpha = 0.2f;
+        if (alpha < 0.2f) {
+            alpha = 0.2f;
+        }
     }
     else {
-        // ESTADO PRONTO/NORMAL: Ciano
-        fillColor = Vector3(65 / 255.0f, 217 / 255.0f, 188 / 255.0f);
         alpha = 1.0f; // Opacidade máxima
     }
 
-
-    // Desenha o fundo do círculo (Anel vazio)
-    for (int i = 0; i < numSegments; i++) {
-        // Começa em -PI/2 (Topo / 12 horas) e gira em sentido horário
-        float angle1 = -Math::PiOver2 + (i * angleStep);
-        float angle2 = -Math::PiOver2 + ((i + 1) * angleStep);
-
-        // Calcula as posições na tela
-        Vector2 p1 = mSlowMotionBarPos + Vector2(std::cos(angle1), std::sin(angle1)) * mSlowMotionBarRadius;
-        Vector2 p2 = mSlowMotionBarPos + Vector2(std::cos(angle2), std::sin(angle2)) * mSlowMotionBarRadius;
-
-        renderer->DrawLine(p1, p2, bgColor, mSlowMotionBarThickness, Vector2::Zero, 150 / 255.0f);
-    }
-
-    // Desenha apenas a parte preenchida de acordo com o ratio
-    int activeSegments = static_cast<int>(numSegments * ratio);
-    float remainder = (numSegments * ratio) - activeSegments;
-
-    for (int i = 0; i <= activeSegments; i++) {
-        float angle1 = -Math::PiOver2 + (i * angleStep);
-        float angle2 = -Math::PiOver2 + ((i + 1) * angleStep);
-
-        // Se for o último segmento (que está pela metade), interpolamos o ângulo final
-        // Isso faz com que a barra não "pule" bruscamente de segmento em segmento
-        if (i == activeSegments) {
-            if (remainder <= 0.0f) break;
-            angle2 = angle1 + (angleStep * remainder);
-        }
-
-        Vector2 p1 = mSlowMotionBarPos + Vector2(std::cos(angle1), std::sin(angle1)) * mSlowMotionBarRadius;
-        Vector2 p2 = mSlowMotionBarPos + Vector2(std::cos(angle2), std::sin(angle2)) * mSlowMotionBarRadius;
-
-        // Desenha a linha sólida
-        renderer->DrawLine(p1, p2, fillColor, mSlowMotionBarThickness, Vector2::Zero, alpha);
-    }
+    renderer->DrawCircularBar(mSlowMotionBarPos, mSlowMotionBarRadius, mSlowMotionBarThickness, ratio, fillColor, bgColor, alpha);
 }

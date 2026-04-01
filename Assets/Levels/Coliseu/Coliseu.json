@@ -319,7 +319,7 @@
          "name":"DynamicGrounds",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":150,
          "x":0,
          "y":0
@@ -365,7 +365,7 @@
                 {
                  "height":1536,
                  "id":42,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -407,7 +407,7 @@
                 {
                  "height":832,
                  "id":43,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -449,7 +449,7 @@
                 {
                  "height":320,
                  "id":44,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -491,7 +491,7 @@
                 {
                  "height":672,
                  "id":45,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",

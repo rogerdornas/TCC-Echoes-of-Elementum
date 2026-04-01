@@ -38,6 +38,7 @@ public:
     bool GetHighlighted() const { return mHighlighted; }
 
     void UseBackGroundColor() { mUseBackGroundColor = true; }
+    void RemoveImageSelector() { mUseImageSelector = false; }
 
     // Returns true if the point is within the button's bounds
     bool ContainsPoint(const Vector2& pt) const;
@@ -62,6 +63,7 @@ protected:
     bool mHighlighted;
 
     bool mUseBackGroundColor;
+    bool mUseImageSelector;
 
     Renderer* mRenderer;
     Texture* mSelectorTexture;

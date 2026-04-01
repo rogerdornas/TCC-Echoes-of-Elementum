@@ -2193,7 +2193,7 @@
                 {
                  "height":768,
                  "id":223,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2235,7 +2235,7 @@
                 {
                  "height":768,
                  "id":224,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Condition",
@@ -2282,7 +2282,7 @@
                 {
                  "height":768,
                  "id":225,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2324,7 +2324,7 @@
                 {
                  "height":1696,
                  "id":228,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2366,7 +2366,7 @@
                 {
                  "height":448,
                  "id":229,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2408,7 +2408,7 @@
                 {
                  "height":576,
                  "id":235,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2450,7 +2450,7 @@
                 {
                  "height":864,
                  "id":236,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2492,7 +2492,7 @@
                 {
                  "height":1920,
                  "id":237,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2534,7 +2534,7 @@
                 {
                  "height":224,
                  "id":238,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2576,7 +2576,7 @@
                 {
                  "height":3904,
                  "id":239,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2618,7 +2618,7 @@
                 {
                  "height":416,
                  "id":240,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2660,7 +2660,7 @@
                 {
                  "height":1440,
                  "id":241,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2702,7 +2702,7 @@
                 {
                  "height":2400,
                  "id":242,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2744,7 +2744,7 @@
                 {
                  "height":384,
                  "id":246,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -2786,7 +2786,7 @@
                 {
                  "height":384,
                  "id":248,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",

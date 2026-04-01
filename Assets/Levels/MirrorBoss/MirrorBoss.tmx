@@ -316,7 +316,7 @@
     <property name="Target" value="DynamicGround"/>
    </properties>
   </object>
-  <object id="48" x="128" y="1760" width="1120" height="512">
+  <object id="48" name="Light" x="128" y="1760" width="1120" height="512">
    <properties>
     <property name="AmbientColorB" type="float" value="1"/>
     <property name="AmbientColorG" type="float" value="1"/>

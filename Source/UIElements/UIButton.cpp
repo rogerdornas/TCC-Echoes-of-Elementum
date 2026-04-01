@@ -15,6 +15,7 @@ UIButton::UIButton(const std::string& text, class UIFont* font, std::function<vo
     ,mHighlighted(false)
     ,mTextAlign(textAlign)
     ,mUseBackGroundColor(false)
+    ,mUseImageSelector(true)
     ,mRenderer(renderer)
 {
     mText = new UIText(text, font, pointSize, wrapLength, textPos, textColor);
@@ -42,12 +43,13 @@ void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
     Vector2 drawPos = screenPos + mPosition + mSize * 0.5f;
 
     if (mHighlighted) {
-        renderer->DrawTexture(drawPos + Vector2(mSize.x * -0.5f - 16, 0), Vector2(26, 26), Math::Pi, Color::White,
-                              mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
+        if (mUseImageSelector) {
+            renderer->DrawTexture(drawPos + Vector2(mSize.x * -0.5f - 16, 0), Vector2(26, 26), Math::Pi, Color::White,
+                                  mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
 
-        renderer->DrawTexture(drawPos + Vector2(mSize.x * 0.5f + 16, 0), Vector2(26, 26), 0.0f, Color::White,
-                      mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
-
+            renderer->DrawTexture(drawPos + Vector2(mSize.x * 0.5f + 16, 0), Vector2(26, 26), 0.0f, Color::White,
+                          mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
+        }
         mText->SetColor(Color::White);
 
         if (mUseBackGroundColor) {

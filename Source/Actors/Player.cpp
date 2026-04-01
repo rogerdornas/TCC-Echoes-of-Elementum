@@ -417,6 +417,9 @@ void Player::SetJumpEffects() {
     mLightningSpear = new LightningSpear(mGame);
     // Glide Effect
     mGlideEffect = new AirGlideEffect(mGame, this);
+
+    // Reset Radial Menu
+    mRadialMenu = nullptr;
 }
 
 void Player::InitLight() {
@@ -2271,13 +2274,13 @@ void Player::UseHook(HookPoint* nearestHookPoint) {
 
 void Player::OpenElementalMenu() {
     if (!mRadialMenu) {
-        mRadialMenu = new RadialMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", 250.0f);
+        mRadialMenu = new RadialMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", 200.0f);
 
         // Adiciona os elementos
-        mRadialMenu->AddRadialOption("FOGO", [this]() { SetElementalMode(ElementalMode::Fire); });
-        mRadialMenu->AddRadialOption("GELO", [this]() { SetElementalMode(ElementalMode::Ice); });
-        mRadialMenu->AddRadialOption("TERRA", [this]() { SetElementalMode(ElementalMode::Earth); });
-        mRadialMenu->AddRadialOption("RAIO", [this]() { SetElementalMode(ElementalMode::Lightning); });
+        mRadialMenu->AddRadialOption("", [this]() { SetElementalMode(ElementalMode::Fire); });
+        mRadialMenu->AddRadialOption("", [this]() { SetElementalMode(ElementalMode::Lightning); });
+        mRadialMenu->AddRadialOption("", [this]() { SetElementalMode(ElementalMode::Earth); });
+        mRadialMenu->AddRadialOption("", [this]() { SetElementalMode(ElementalMode::Ice); });
 
         mRadialMenu->SetSelectedOption(static_cast<int>(mElementalMode));
     }

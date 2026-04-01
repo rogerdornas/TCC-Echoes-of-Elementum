@@ -61,13 +61,5 @@ void UIText::Draw(Renderer *renderer, const Vector2 &screenPos)
         return;
 
     Vector2 pos = mPosition + screenPos;
-    renderer->DrawTexture(pos, mSize, 0.0f, mColor, mTextTexture);
-
-    // SDL_Rect titleQuad;
-    // titleQuad.x = mPosition.x + screenPos.x;
-    // titleQuad.y = mPosition.y + screenPos.y;
-    // titleQuad.w = mSize.x;
-    // titleQuad.h = mSize.y;
-    //
-    // SDL_RenderCopyEx(renderer, mTextTexture, nullptr, &titleQuad, 0.0, nullptr, SDL_FLIP_NONE);
+    renderer->DrawTexture(pos, mSize, mRotation, mColor, mTextTexture);
 }

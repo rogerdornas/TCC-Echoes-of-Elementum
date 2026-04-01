@@ -180,7 +180,7 @@
 21,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,22,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="DynamicGrounds" width="376" height="172" visible="0">
+ <layer id="4" name="DynamicGrounds" width="376" height="172">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -563,7 +563,7 @@
  </objectgroup>
  <objectgroup id="12" name="Decorations"/>
  <objectgroup id="11" name="Camera">
-  <object id="298" name="Camera" x="1696" y="1280" width="1568" height="864">
+  <object id="298" x="1696" y="1280" width="1568" height="864">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="4352"/>
@@ -573,7 +573,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="299" name="Camera" x="3328" y="1760" width="192" height="192">
+  <object id="299" x="3328" y="1760" width="192" height="192">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="4352"/>
@@ -583,7 +583,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="300" name="Camera" x="3584" y="1760" width="192" height="576">
+  <object id="300" x="3584" y="1760" width="192" height="576">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="4352"/>
@@ -593,7 +593,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="301" name="Camera" x="3584" y="2400" width="1280" height="384">
+  <object id="301" x="3584" y="2400" width="1280" height="384">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="6944"/>
@@ -603,7 +603,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="302" name="Camera" x="4544" y="1280" width="2240" height="544">
+  <object id="302" x="4544" y="1280" width="2240" height="544">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="6944"/>
@@ -613,7 +613,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="303" name="Camera" x="4640" y="3136" width="2144" height="320">
+  <object id="303" x="4640" y="3136" width="2144" height="320">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="6944"/>
@@ -623,7 +623,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="304" name="Camera" x="4096" y="3104" width="480" height="352">
+  <object id="304" x="4096" y="3104" width="480" height="352">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="8064"/>
@@ -633,7 +633,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="305" name="Camera" x="4320" y="3552" width="2720" height="672">
+  <object id="305" x="4320" y="3552" width="2720" height="672">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="8064"/>
@@ -643,7 +643,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="306" name="Camera" x="6144" y="2368" width="640" height="704">
+  <object id="306" x="6144" y="2368" width="640" height="704">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="6944"/>
@@ -653,7 +653,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="307" name="Camera" x="7104" y="1568" width="800" height="2656">
+  <object id="307" x="7104" y="1568" width="800" height="2656">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="8064"/>
@@ -663,7 +663,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="308" name="Camera" x="4096" y="3520" width="160" height="224">
+  <object id="308" x="4096" y="3520" width="160" height="224">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="8064"/>
@@ -673,7 +673,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="309" name="Camera" x="7104" y="1280" width="1280" height="224">
+  <object id="309" x="7104" y="1280" width="1280" height="224">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="70000"/>
@@ -683,7 +683,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="310" name="Camera" x="8448" y="1280" width="256" height="288">
+  <object id="310" x="8448" y="1280" width="256" height="288">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="70000"/>
@@ -693,7 +693,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="311" name="Camera" x="8448" y="1664" width="1792" height="896">
+  <object id="311" x="8448" y="1664" width="1792" height="896">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="10304"/>
@@ -703,7 +703,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="312" name="Camera" x="10304" y="1344" width="1280" height="1216">
+  <object id="312" x="10304" y="1344" width="1280" height="1216">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="11840"/>
@@ -713,7 +713,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="313" name="Camera" x="9376" y="992" width="864" height="288">
+  <object id="313" x="9376" y="992" width="864" height="288">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="11840"/>
@@ -723,7 +723,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="314" name="Camera" x="10304" y="992" width="1280" height="288">
+  <object id="314" x="10304" y="992" width="1280" height="288">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="11840"/>
@@ -733,7 +733,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="318" name="Camera" x="960" y="1280" width="672" height="864">
+  <object id="318" x="960" y="1280" width="672" height="864">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="4352"/>

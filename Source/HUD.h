@@ -47,6 +47,7 @@ private:
     UIText* mPlayerHealCount;
     UIText* mPlayerMoney;
     UIImage* mPotion;
+    UIImage* mElementalMode;
 
     float mSpeedHPDecrease;
     float mSpeedHPIncrease;
@@ -69,6 +70,15 @@ private:
     Vector2 mSlowMotionBarPos;
     float mSlowMotionBarRadius;
     float mSlowMotionBarThickness;
+    Vector3 mFireColor;
+    Vector3 mLightningColor;
+    Vector3 mIceColor;
+    Vector3 mEarthColor;
+
+    Vector2 mFireIconSize;
+    Vector2 mLightningIconSize;
+    Vector2 mIceIconSize;
+    Vector2 mEarthIconSize;
 
     std::vector<BossLifeBar> mBossLifeBars;
 

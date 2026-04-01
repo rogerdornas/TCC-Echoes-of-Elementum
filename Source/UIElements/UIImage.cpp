@@ -55,7 +55,7 @@ void UIImage::Draw(Renderer* renderer, const Vector2 &screenPos)
         return;
     }
 
-    mRenderer->DrawTexture(mPosition + screenPos, mSize, 0.0f, Color::White, mTexture, Vector4::UnitRect,
+    mRenderer->DrawTexture(mPosition + screenPos, mSize, mRotation, Color::White, mTexture, Vector4::UnitRect,
                             Vector2::Zero, Vector2::One, 1.0f, mAlpha);
 
     // SDL_Rect dstRect;

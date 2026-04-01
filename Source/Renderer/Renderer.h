@@ -49,6 +49,9 @@ public:
 	void DrawLine(const Vector2 &start, const Vector2 &end, const Vector3 &color,
 						float thickness, const Vector2 &cameraPos, float alpha, bool additiveBlending = false);
 
+	void DrawCircularBar(const Vector2& position, float radius, float thickness, float ratio,
+					 const Vector3& fillColor, const Vector3& bgColor, float alpha);
+
 	void DrawFade(float alpha);
 
     void Clear();
@@ -111,6 +114,7 @@ private:
 	class Shader* mFadeShader;
 	class Shader* mScreenShader;
 	class Shader* mPostProcessShader;
+	class Shader* mCircleShader;
 
     // Sprite vertex array
     class VertexArray *mSpriteVerts;

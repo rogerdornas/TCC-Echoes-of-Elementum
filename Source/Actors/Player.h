@@ -17,9 +17,9 @@ class Player : public Actor
 public:
     enum class ElementalMode {
         Fire,
-        Ice,
+        Lightning,
         Earth,
-        Lightning
+        Ice
     };
     enum class WallSlideSide { notSliding, left, right };
     enum class EffectDir { Front, Up, Down };

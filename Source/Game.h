@@ -203,6 +203,10 @@ public:
     void ActiveDamageFlash();
 
     void SetIsSlowMotion(bool slowMotion) { mIsSlowMotion = slowMotion; }
+    bool IsSlowMotion() const { return  mIsSlowMotion; }
+
+    float GetRightAxisX() const { return mRawRightAxisX; }
+    float GetRightAxisY() const { return mRawRightAxisY; }
 
     // Audio functions
     class AudioSystem* GetAudio() const { return mAudio; }
@@ -410,6 +414,8 @@ private:
     StickState mLeftStickStateX;
     StickState mRightStickStateY;
     StickState mRightStickStateX;
+    float mRawRightAxisX;
+    float mRawRightAxisY;
 
     SoundHandle mMusicHandle;
     SoundHandle mBossMusic;

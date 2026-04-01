@@ -385,7 +385,7 @@
                 {
                  "height":512,
                  "id":52,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -427,7 +427,7 @@
                 {
                  "height":896,
                  "id":53,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -469,7 +469,7 @@
                 {
                  "height":2880,
                  "id":54,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -511,7 +511,7 @@
                 {
                  "height":384,
                  "id":55,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -916,7 +916,7 @@
                 {
                  "height":512,
                  "id":57,
-                 "name":"",
+                 "name":"Light",
                  "properties":[
                         {
                          "name":"AmbientColorB",

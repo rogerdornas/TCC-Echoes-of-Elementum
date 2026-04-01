@@ -221,7 +221,7 @@
                 {
                  "height":1024,
                  "id":49,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -263,7 +263,7 @@
                 {
                  "height":640,
                  "id":50,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -305,7 +305,7 @@
                 {
                  "height":640,
                  "id":51,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -347,7 +347,7 @@
                 {
                  "height":640,
                  "id":52,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -389,7 +389,7 @@
                 {
                  "height":640,
                  "id":53,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -431,7 +431,7 @@
                 {
                  "height":640,
                  "id":54,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -473,7 +473,7 @@
                 {
                  "height":960,
                  "id":55,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -515,7 +515,7 @@
                 {
                  "height":256,
                  "id":56,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -557,7 +557,7 @@
                 {
                  "height":800,
                  "id":57,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -599,7 +599,7 @@
                 {
                  "height":192,
                  "id":58,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -641,7 +641,7 @@
                 {
                  "height":192,
                  "id":59,
-                 "name":"Camera",
+                 "name":"",
                  "properties":[
                         {
                          "name":"Event",
@@ -1068,7 +1068,7 @@
                 {
                  "height":608,
                  "id":81,
-                 "name":"",
+                 "name":"Light",
                  "properties":[
                         {
                          "name":"AmbientColorB",

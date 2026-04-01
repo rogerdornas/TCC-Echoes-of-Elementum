@@ -13,6 +13,8 @@ public:
     RadialMenu(class Game* game, const std::string& fontName, float radius = 200.0f);
     ~RadialMenu() override;
 
+    void Update(float deltaTime) override;
+
     // Sobrescrevemos para não permitir movimentação padrão de vizinhos
     void HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX) override;
 
@@ -22,7 +24,7 @@ public:
     // Função auxiliar para adicionar opções facilmente
     void AddRadialOption(const std::string& name, std::function<void()> onClick, const std::string& iconPath = "");
 
-    void SetSelectedOption(int index);
+    void SetSelectedOption(int index, bool snapVisuals = true);
 
     void Close() override;
 
@@ -35,6 +37,19 @@ private:
     Vector2 mLastMousePos;
     Vector2 mMouseVirtualStick;
     bool mFirstMouseUpdate;
+
+    UIImage* mRing;
+    UIImage* mRingArc;
+    UIImage* mInsiderCircle;
+    UIImage* mTriangleSelector;
+
+    float mCurrentSelectorAngle;
+
+    Vector2 mSlowMotionBarPos;
+    float mSlowMotionBarRadius;
+    float mSlowMotionBarThickness;
+
+    void DrawSlowMotionBar(class Renderer * renderer);
 
     // Recalcula a posição de todos os botões em círculo
     void RearrangeButtons();

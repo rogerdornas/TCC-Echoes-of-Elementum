@@ -32,8 +32,6 @@ Renderer::Renderer(SDL_Window *window)
 
 Renderer::~Renderer()
 {
-    delete mSpriteVerts;
-    mSpriteVerts = nullptr;
 }
 
 bool Renderer::Initialize(float width, float height)
@@ -166,6 +164,7 @@ void Renderer::Shutdown()
     if (mFadeShader) { mFadeShader->Unload(); delete mFadeShader; }
     if (mScreenShader) { mScreenShader->Unload(); delete mScreenShader; }
     if (mPostProcessShader) { mPostProcessShader->Unload(); delete mPostProcessShader; }
+    if (mCircleShader) { mCircleShader->Unload(); delete mCircleShader; }
 
     // Destroy Vertex Arrays
     delete mSpriteVerts;
@@ -328,6 +327,45 @@ void Renderer::DrawLine(const Vector2 &start, const Vector2 &end, const Vector3 
     Draw(RendererMode::TRIANGLES, model, cameraPos, mSpriteVerts, color, alpha);
 }
 
+void Renderer::DrawCircularBar(const Vector2& position, float radius, float thickness, float ratio,
+                               const Vector3& fillColor, const Vector3& bgColor, float alpha)
+{
+    // Garante que o blend está ativado para as bordas suaves e transparência funcionarem
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Como mSpriteVerts vai de -0.5 a 0.5 (tamanho 1), escalar pelo diâmetro (raio * 2)
+    // faz o quad ter exatamente o tamanho do círculo na tela.
+    float diameter = radius * 2.0f;
+    Matrix4 model = Matrix4::CreateScale(Vector3(diameter, diameter, 1.0f)) *
+                    Matrix4::CreateTranslation(Vector3(position.x, position.y, 0.0f));
+
+    // Ativa nosso novo shader de círculo
+    mCircleShader->SetActive();
+    if (mDrawingUI) {
+        mOrthoProjection = Matrix4::CreateOrtho(0.0f, mVirtualWidth, mVirtualHeight, 0.0f, -1.0f, 1.0f);
+    }
+    else {
+        mOrthoProjection = Matrix4::CreateOrtho(0.0f, mZoomedWidth, mZoomedHeight, 0.0f, -1.0f, 1.0f);
+    }
+    mCircleShader->SetMatrixUniform("uOrthoProj", mOrthoProjection);
+    mCircleShader->SetMatrixUniform("uWorldTransform", model);
+
+    // Passa os uniformes da barra
+    mCircleShader->SetFloatUniform("uRatio", ratio);
+    mCircleShader->SetVectorUniform("uFillColor", fillColor);
+    mCircleShader->SetVectorUniform("uBgColor", bgColor);
+    mCircleShader->SetFloatUniform("uAlpha", alpha);
+
+    // A espessura no shader precisa ser uma porcentagem do raio (0.0 a 1.0)
+    mCircleShader->SetFloatUniform("uThickness", thickness / radius);
+
+    mSpriteVerts->SetActive();
+    glDrawElements(GL_TRIANGLES, mSpriteVerts->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+
+    mBaseShader->SetActive();
+}
+
 void Renderer::DrawFade(float alpha)
 {
     if (!mFadeShader || !mFadeVAO)
@@ -414,6 +452,12 @@ bool Renderer::LoadShaders()
     mBaseShader->SetActive(); // Ativa para configurar
     mBaseShader->SetMatrixUniform("uOrthoProj", mOrthoProjection);
     mBaseShader->SetTextureUniform("uTexture", 0);
+
+    mCircleShader = new Shader();
+    if (!mCircleShader->Load("../Shaders/Circle")) {
+        SDL_Log("Falha ao carregar Circle shader.");
+        return false;
+    }
 
     return true;
 }

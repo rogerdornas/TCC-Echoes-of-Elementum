@@ -23,6 +23,9 @@ public:
     const Vector3& GetColor() const { return mColor; }
     virtual void SetColor(const Vector3 &color) { mColor = color; }
 
+    const float& GetRotation() const { return mRotation; }
+    void SetRotation(const float &rotation) { mRotation = rotation; }
+
     void SetIsVisible(bool isVisible) { mIsVisible = isVisible; }
 
     virtual void Draw(Renderer* renderer, const Vector2 &screenPos) {}
@@ -31,5 +34,6 @@ protected:
     Vector2 mPosition;
     Vector2 mSize;
     Vector3 mColor;
+    float mRotation;
     bool mIsVisible;
 };

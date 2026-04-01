@@ -413,7 +413,7 @@
 </data>
  </layer>
  <objectgroup id="6" name="Camera">
-  <object id="13" name="Camera" x="896" y="544" width="2880" height="704">
+  <object id="13" x="896" y="544" width="2880" height="704">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="70000"/>
@@ -434,7 +434,7 @@
   <object id="9" x="3584" y="1120" width="128" height="128"/>
  </objectgroup>
  <objectgroup id="5" name="Triggers">
-  <object id="7" x="896" y="640" width="832" height="608">
+  <object id="7" name="Light" x="896" y="640" width="832" height="608">
    <properties>
     <property name="AmbientColorB" type="float" value="1"/>
     <property name="AmbientColorG" type="float" value="1"/>
