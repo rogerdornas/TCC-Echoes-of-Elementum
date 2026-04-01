@@ -4,6 +4,7 @@
 
 #include "Camera.h"
 #include "Random.h"
+#include "Components/RigidBodyComponent.h"
 
 Camera::Camera(class Game* game, Vector2 startPosition)
     :mPos(startPosition)
@@ -14,10 +15,9 @@ Camera::Camera(class Game* game, Vector2 startPosition)
     ,mInitPositionSpeed(20.0f)
     ,mTransitionDuration(0.0f)
     ,mTransitionTimer(mTransitionDuration)
-    ,mCameraMode(CameraMode::FollowPlayer)
-    ,mFixedCameraPosition(Vector2::Zero)
-    ,mLimitMinCameraPosition(Vector2(-1, -1))
-    ,mLimitMaxCameraPosition(Vector2(-1, -1))
+    ,mCameraMode(CameraMode::FollowPlayerLimited)
+    ,mLimitMinCameraPosition(Vector2(0, 0))
+    ,mLimitMaxCameraPosition(Vector2(70000, 70000))
     ,mCurrentOffsetX(0.0f)
     ,mInitPositionTimer(0.1f)
     ,mIsAdjustingInitialPosition(true)
@@ -26,7 +26,6 @@ Camera::Camera(class Game* game, Vector2 startPosition)
     ,mShakeDuration(1.0f)
     ,mShakeTimer(0.0f)
     ,mShakeStrength(5.0f)
-    ,mCameraSpeed(500.0f)
     ,mCameraVelocity(Vector2::Zero)
     ,mLookUp(false)
     ,mLookDown(false)
@@ -66,7 +65,6 @@ void Camera::SetLimitMaxCameraPosition(Vector2 pos) {
     }
 }
 
-
 void Camera::Update(float deltaTime) {
     // Ajuste rápido de câmera no início de cenas
     if (mInitPositionTimer > 0) {
@@ -83,6 +81,10 @@ void Camera::Update(float deltaTime) {
         if (!mIsAdjustingInitialPosition) {
             mCameraLerpSpeed = mSlowTransitionSpeed;
         }
+
+        float screenW = mGame->GetRenderer()->GetZoomedWidth();
+        float screenH = mGame->GetRenderer()->GetZoomedHeight();
+
         mCurrentLimitMinPosition = Vector2::Lerp(mCurrentLimitMinPosition, mLimitMinCameraPosition, mCameraLerpSpeed * deltaTime);
         mCurrentLimitMaxPosition = Vector2::Lerp(mCurrentLimitMaxPosition, mLimitMaxCameraPosition, mCameraLerpSpeed * deltaTime);
 
@@ -98,13 +100,13 @@ void Camera::Update(float deltaTime) {
         // Calcula posição alvo do player
         Vector2 playerPos = mGame->GetPlayer()->GetPosition();
         Vector2 playerPosOffset(
-            playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2 + mCurrentOffsetX,
-            playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2
+            playerPos.x - screenW * 0.5f + mCurrentOffsetX,
+            playerPos.y - screenH * 0.5f
         );
 
         // Aplica limites já suavizados ao alvo
-        playerPosOffset.x = Math::Clamp(playerPosOffset.x, mCurrentLimitMinPosition.x, mCurrentLimitMaxPosition.x - mGame->GetRenderer()->GetZoomedWidth());
-        playerPosOffset.y = Math::Clamp(playerPosOffset.y, mCurrentLimitMinPosition.y, mCurrentLimitMaxPosition.y - mGame->GetRenderer()->GetZoomedHeight());
+        playerPosOffset.x = Math::Clamp(playerPosOffset.x, mCurrentLimitMinPosition.x, mCurrentLimitMaxPosition.x - screenW);
+        playerPosOffset.y = Math::Clamp(playerPosOffset.y, mCurrentLimitMinPosition.y, mCurrentLimitMaxPosition.y - screenH);
 
         // Aplica deslocamento vertical se estiver olhando para cima ou para baixo
         if (mLookUp) {
@@ -158,52 +160,12 @@ void Camera::Update(float deltaTime) {
 
     Vector2 targetPosition = Vector2::Zero;
     switch (mCameraMode) {
-        case CameraMode::Fixed:
-            targetPosition = Fixed(Vector2(mFixedCameraPosition));
-            break;
-
-        case CameraMode::FollowPlayer:
-            targetPosition = FollowPlayer();
-            break;
-
-        case CameraMode::FollowPlayerHorizontally:
-            targetPosition = FollowPlayerHorizontally();
-            break;
-
-        case CameraMode::FollowPlayerLimitRight:
-            targetPosition = FollowPlayerLimitRight();
-            break;
-
-        case CameraMode::FollowPlayerLimitLeft:
-            targetPosition = FollowPlayerLimitLeft();
-            break;
-
-        case CameraMode::FollowPlayerLimitUp:
-            targetPosition = FollowPlayerLimitUp();
-            break;
-
-        case CameraMode::FollowPlayerLimitDown:
-            targetPosition = FollowPlayerLimitDown();
-            break;
-
-        case CameraMode::FollowPlayerLimitRightHorizontally:
-            targetPosition = FollowPlayerLimitRightHorizontally();
-            break;
-
-        case CameraMode::FollowPlayerLimitLeftHorizontally:
-            targetPosition = FollowPlayerLimitLeftHorizontally();
-            break;
-
-        case CameraMode::ScrollRight:
-            targetPosition = ScrollRight(deltaTime, mCameraSpeed);
-            break;
-
-        case CameraMode::ScrollUp:
-            targetPosition = ScrollUp(deltaTime, -mCameraSpeed / 2);
-            break;
-
         case CameraMode::PanoramicCamera:
             targetPosition = PanoramicCamera(deltaTime);
+            break;
+
+        default:
+            targetPosition = Vector2::Zero;
             break;
     }
 
@@ -215,36 +177,9 @@ void Camera::Update(float deltaTime) {
         targetPosition.y += mDistMove;
     }
 
-    // Interpola camera se estiver seguindo o player
-    if (mCameraMode == CameraMode::FollowPlayer ||
-        mCameraMode == CameraMode::FollowPlayerHorizontally ||
-        mCameraMode == CameraMode::FollowPlayerLimitRight ||
-        mCameraMode == CameraMode::FollowPlayerLimitLeft ||
-        mCameraMode == CameraMode::FollowPlayerLimitUp ||
-        mCameraMode == CameraMode::FollowPlayerLimitDown ||
-        mCameraMode == CameraMode::FollowPlayerLimitRightHorizontally ||
-        mCameraMode == CameraMode::FollowPlayerLimitLeftHorizontally )
-    {
-        mPos = Vector2(int(mPos.x + (targetPosition.x - mPos.x) * mCameraLerpSpeed * deltaTime),
-                       int(mPos.y + (targetPosition.y - mPos.y) * mCameraLerpSpeed * deltaTime));
-    }
-    else if (mCameraMode == CameraMode::ScrollRight) {
-        mPos = Vector2(targetPosition.x,
-                    int(mPos.y + (targetPosition.y - mPos.y) * mCameraLerpSpeed * deltaTime));
-    }
-    else if (mCameraMode == CameraMode::ScrollUp) {
-        mPos = Vector2(int(mPos.x + (targetPosition.x - mPos.x) * mCameraLerpSpeed * deltaTime),
-                        targetPosition.y);
-    }
-    else if (mCameraMode == CameraMode::Fixed) {
-        // mPos = targetPosition;
-        mPos = Vector2(int(mPos.x + (targetPosition.x - mPos.x) * mCameraLerpSpeed * deltaTime),
-               int(mPos.y + (targetPosition.y - mPos.y) * mCameraLerpSpeed * deltaTime));
-    }
-    else if (mCameraMode == CameraMode::PanoramicCamera) {
+    if (mCameraMode == CameraMode::PanoramicCamera) {
         mPos = targetPosition;
     }
-
 
     // Camera Shake
     if (mShakeTimer < mShakeDuration) {
@@ -272,127 +207,6 @@ void Camera::Update(float deltaTime) {
     mLookDown = false;
 }
 
-Vector2 Camera::Fixed(Vector2 pos) {
-    return pos;
-}
-
-Vector2 Camera::FollowPlayer() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2);
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerHorizontally() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      mFixedCameraPosition.y);
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerLimitRight() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2);
-
-    if (targetPos.x + mGame->GetRenderer()->GetZoomedWidth() > mFixedCameraPosition.x) {
-        targetPos.x = mFixedCameraPosition.x - mGame->GetRenderer()->GetZoomedWidth();
-    }
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerLimitLeft() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2);
-
-    if (targetPos.x < mFixedCameraPosition.x) {
-        targetPos.x = mFixedCameraPosition.x;
-    }
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerLimitUp() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2);
-
-    if (targetPos.y < mFixedCameraPosition.y) {
-        targetPos.y = mFixedCameraPosition.y;
-    }
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerLimitDown() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2);
-
-    if (targetPos.y + mGame->GetRenderer()->GetZoomedHeight() > mFixedCameraPosition.y) {
-        targetPos.y = mFixedCameraPosition.y - mGame->GetRenderer()->GetZoomedHeight();
-    }
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerLimitRightHorizontally() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      mFixedCameraPosition.y);
-
-    if (targetPos.x + mGame->GetRenderer()->GetZoomedWidth() > mFixedCameraPosition.x) {
-        targetPos.x = mFixedCameraPosition.x - mGame->GetRenderer()->GetZoomedWidth();
-    }
-    return targetPos;
-}
-
-Vector2 Camera::FollowPlayerLimitLeftHorizontally() {
-    Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-    Vector2 targetPos(playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2,
-                      mFixedCameraPosition.y);
-
-    if (targetPos.x < mFixedCameraPosition.x) {
-        targetPos.x = mFixedCameraPosition.x;
-    }
-    return targetPos;
-}
-
-Vector2 Camera::ScrollRight(float deltaTime, float speed) {
-    Vector2 targetPos = GetPosCamera();
-    if (mGame->GetGamePlayState() == Game::GamePlayState::Playing) {
-        Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-        targetPos.x = mPos.x + speed * deltaTime;
-        targetPos.y = playerPos.y - mGame->GetRenderer()->GetZoomedHeight() / 2;
-
-        if (playerPos.x < targetPos.x - 50) {
-            mGame->SetBackToCheckpoint();
-            mGame->GetAudio()->StopAllSounds();
-            mGame->GetPlayer()->SetState(ActorState::Paused);
-            mFixedCameraPosition = mPos - Vector2(mGame->GetRenderer()->GetZoomedWidth() / 2, 0);
-            mCameraMode = CameraMode::Fixed;
-        }
-    }
-    return targetPos;
-}
-
-Vector2 Camera::ScrollUp(float deltaTime, float speed) {
-    Vector2 targetPos = GetPosCamera();
-    if (mGame->GetGamePlayState() == Game::GamePlayState::Playing) {
-        Vector2 playerPos = mGame->GetPlayer()->GetPosition();
-        targetPos.x = playerPos.x - mGame->GetRenderer()->GetZoomedWidth() / 2;
-        targetPos.y = mPos.y + speed * deltaTime;
-
-
-        if (playerPos.y > targetPos.y + mGame->GetRenderer()->GetZoomedHeight() + 50) {
-            mGame->SetBackToCheckpoint();
-            mGame->GetAudio()->StopAllSounds();
-            mGame->GetPlayer()->SetState(ActorState::Paused);
-            mFixedCameraPosition = mPos + Vector2(0, mGame->GetRenderer()->GetZoomedHeight() / 2);
-            mCameraMode = CameraMode::Fixed;
-        }
-    }
-    return targetPos;
-}
-
 Vector2 Camera::PanoramicCamera(float deltaTime) {
     Vector2 targetPos = GetPosCamera();
     targetPos.x = mPos.x + mCameraVelocity.x * deltaTime;
@@ -403,8 +217,7 @@ Vector2 Camera::PanoramicCamera(float deltaTime) {
 void Camera::SetZoom(float zoom)
 {
     // Limita o zoom para evitar valores inválidos
-    if (zoom < 0.01f)
-    {
+    if (zoom < 0.01f) {
         zoom = 0.01f;
     }
 

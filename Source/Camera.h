@@ -8,18 +8,7 @@
 #include "Game.h"
 
 enum class CameraMode {
-    Fixed,
-    FollowPlayer,
-    FollowPlayerHorizontally,
-    FollowPlayerLimitRight,
-    FollowPlayerLimitLeft,
-    FollowPlayerLimitUp,
-    FollowPlayerLimitDown,
     FollowPlayerLimited,
-    FollowPlayerLimitRightHorizontally,
-    FollowPlayerLimitLeftHorizontally,
-    ScrollRight,
-    ScrollUp,
     PanoramicCamera,
 };
 
@@ -30,7 +19,6 @@ public:
 
     void SetPosition(Vector2 pos) { mPos = pos; }
     Vector2 GetPosCamera() const { return mPos; }
-    void SetFixedCameraPosition(Vector2 pos) { mFixedCameraPosition = pos; }
 
     void SetLimitMinCameraPosition(Vector2 pos);
     void SetLimitMaxCameraPosition(Vector2 pos);
@@ -49,17 +37,6 @@ public:
     void ChangeCameraMode(CameraMode cameraMode);
 
 private:
-    Vector2 Fixed(Vector2 pos);
-    Vector2 FollowPlayer();
-    Vector2 FollowPlayerHorizontally();
-    Vector2 FollowPlayerLimitRight();
-    Vector2 FollowPlayerLimitLeft();
-    Vector2 FollowPlayerLimitUp();
-    Vector2 FollowPlayerLimitDown();
-    Vector2 FollowPlayerLimitRightHorizontally();
-    Vector2 FollowPlayerLimitLeftHorizontally();
-    Vector2 ScrollRight(float deltaTime, float speed);
-    Vector2 ScrollUp(float deltaTime, float speed);
     Vector2 PanoramicCamera(float deltaTime);
 
     Vector2 mPos;
@@ -71,7 +48,6 @@ private:
     float mTransitionDuration;
     float mTransitionTimer;
     CameraMode mCameraMode;
-    Vector2 mFixedCameraPosition;
     Vector2 mLimitMinCameraPosition;
     Vector2 mLimitMaxCameraPosition;
     Vector2 mCurrentLimitMinPosition;
@@ -87,7 +63,6 @@ private:
     float mShakeTimer;
     float mShakeStrength;
 
-    float mCameraSpeed;
     Vector2 mCameraVelocity;
 
     bool mLookUp;

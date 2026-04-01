@@ -78,52 +78,8 @@ void Trigger::SetTarget(std::string target) {
 }
 
 void Trigger::SetEvent(std::string event) {
-    if (event == "Fixed") {
-        mEvent = Event::Fixed;
-        return;
-    }
-    if (event == "FollowPlayer") {
-        mEvent = Event::FollowPlayer;
-        return;
-    }
-    if (event == "FollowPlayerHorizontally") {
-        mEvent = Event::FollowPlayerHorizontally;
-        return;
-    }
-    if (event == "FollowPlayerLimitRight") {
-        mEvent = Event::FollowPlayerLimitRight;
-        return;
-    }
-    if (event == "FollowPlayerLimitLeft") {
-        mEvent = Event::FollowPlayerLimitLeft;
-        return;
-    }
-    if (event == "FollowPlayerLimitUp") {
-        mEvent = Event::FollowPlayerLimitUp;
-        return;
-    }
-    if (event == "FollowPlayerLimitDown") {
-        mEvent = Event::FollowPlayerLimitDown;
-        return;
-    }
     if (event == "FollowPlayerLimited") {
         mEvent = Event::FollowPlayerLimited;
-        return;
-    }
-    if (event == "FollowPlayerLimitRightHorizontally") {
-        mEvent = Event::FollowPlayerLimitRightHorizontally;
-        return;
-    }
-    if (event == "FollowPlayerLimitLeftHorizontally") {
-        mEvent = Event::FollowPlayerLimitLeftHorizontally;
-        return;
-    }
-    if (event == "ScrollRight") {
-        mEvent = Event::ScrollRight;
-        return;
-    }
-    if (event == "ScrollUp") {
-        mEvent = Event::ScrollUp;
         return;
     }
 
@@ -309,62 +265,10 @@ void Trigger::OnUpdate(float deltaTime) {
 void Trigger::CameraTrigger() {
     Camera* camera = mGame->GetCamera();
     switch (mEvent) {
-        case Event::Fixed:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::Fixed);
-            break;
-
-        case Event::FollowPlayer:
-            camera->ChangeCameraMode(CameraMode::FollowPlayer);
-            break;
-
-        case Event::FollowPlayerHorizontally:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerHorizontally);
-            break;
-
-        case Event::FollowPlayerLimitRight:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerLimitRight);
-            break;
-
-        case Event::FollowPlayerLimitLeft:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerLimitLeft);
-            break;
-
-        case Event::FollowPlayerLimitUp:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerLimitUp);
-            break;
-
-        case Event::FollowPlayerLimitDown:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerLimitDown);
-            break;
-
         case Event::FollowPlayerLimited:
             camera->SetLimitMinCameraPosition(mLimitMinCameraPosition);
             camera->SetLimitMaxCameraPosition(mLimitMaxCameraPosition);
             camera->ChangeCameraMode(CameraMode::FollowPlayerLimited);
-            break;
-
-        case Event::FollowPlayerLimitRightHorizontally:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerLimitRightHorizontally);
-            break;
-
-        case Event::FollowPlayerLimitLeftHorizontally:
-            camera->SetFixedCameraPosition(mFixedCameraPosition);
-            camera->ChangeCameraMode(CameraMode::FollowPlayerLimitLeftHorizontally);
-            break;
-
-        case Event::ScrollRight:
-            camera->ChangeCameraMode(CameraMode::ScrollRight);
-            break;
-
-        case Event::ScrollUp:
-            camera->ChangeCameraMode(CameraMode::ScrollUp);
             break;
 
         default:

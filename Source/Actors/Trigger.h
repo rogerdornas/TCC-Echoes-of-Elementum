@@ -25,18 +25,7 @@ public:
     };
 
     enum class Event {
-        Fixed,
-        FollowPlayer,
-        FollowPlayerHorizontally,
-        FollowPlayerLimitRight,
-        FollowPlayerLimitLeft,
-        FollowPlayerLimitUp,
-        FollowPlayerLimitDown,
         FollowPlayerLimited,
-        FollowPlayerLimitRightHorizontally,
-        FollowPlayerLimitLeftHorizontally,
-        ScrollRight,
-        ScrollUp,
 
         SetIsGrowing,
         SetIsDecreasing,
