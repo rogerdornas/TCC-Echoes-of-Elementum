@@ -6,21 +6,21 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 656.0,
-            "y": 2176.0
+            "x": 688.0,
+            "y": 3104.0
         },
-        "scene": "MirrorBoss",
-        "total_play_time": 189333.609375
+        "scene": "Coliseu",
+        "total_play_time": 190360.484375
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 469,
-        "elemental_mode": "Earth",
+        "death_counter": 470,
+        "elemental_mode": "Ice",
         "max_jumps_in_air": 1,
-        "money": 59854
+        "money": 60662
     },
     "upgrades": {
         "fireball": true,

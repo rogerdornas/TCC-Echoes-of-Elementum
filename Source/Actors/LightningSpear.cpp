@@ -33,8 +33,8 @@ LightningSpear::LightningSpear(Game *game)
     ,mGhostTrailComponent(nullptr)
 {
     mDrawComponent = new AnimatorComponent(this,
-                                        "../Assets/Sprites/LightningSpear/01.png",
-                                        "../Assets/Sprites/LightningSpear/01.json",
+                                        "../Assets/Sprites/LightningSpear/LightningSpear.png",
+                                        "../Assets/Sprites/LightningSpear/LightningSpear.json",
                                          mWidth * 1.2f, mWidth * 1.11f * 1.2f, 1001);
 
     std::vector<int> idle = {0};

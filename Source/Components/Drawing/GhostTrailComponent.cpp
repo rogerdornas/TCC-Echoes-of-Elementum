@@ -14,7 +14,7 @@ GhostTrailComponent::GhostTrailComponent(Actor* owner, AnimatorComponent* animat
     ,mSpawnTimer(0.0f)
     ,mSpawnInterval(0.04f)
     ,mGhostDuration(0.2f)
-    ,mGhostColor(Vector3(0.0f, 0.8f, 1.0f))
+    ,mGhostColor(Vector3(1.0f, 0.84f, 0.0f))
     ,mAdditiveBlending(true)
 {
 }

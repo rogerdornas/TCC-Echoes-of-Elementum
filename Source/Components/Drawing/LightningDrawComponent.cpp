@@ -18,7 +18,7 @@ void LightningDrawComponent::Draw(Renderer *renderer) {
     }
 
     // Cor da eletricidade (Ciano vibrante)
-    Vector3 glowColor(0.0f, 0.8f, 1.0f);
+    Vector3 glowColor(1.0f, 0.84f, 0.0f);
     Vector3 coreColor(1.0f, 1.0f, 1.0f);
     Vector2 cameraPos = GetGame()->GetCamera()->GetPosCamera();
 
