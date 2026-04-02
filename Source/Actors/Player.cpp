@@ -258,6 +258,7 @@ Player::Player(Game* game)
     ,mDeathAnimationTimer(0.0f)
     ,mIsDead(false)
     ,mInvertControls(false)
+    ,mConfusionTime(0.0f)
 
     ,mLight(nullptr)
 
@@ -927,6 +928,25 @@ void Player::OnUpdate(float deltaTime) {
                 mBlinkTimer -= mBlinkDuration;
             }
         }
+    }
+
+    if (mInvertControls) {
+        mConfusionTime += deltaTime;
+
+        float pulseSpeed = 4.0f;
+        float wave = std::sin(mConfusionTime * pulseSpeed) * 0.1f;
+        float intensity = 0.15f + wave;
+
+        float rotationSpeed = 4.5f;
+        float currentAngle = mConfusionTime * rotationSpeed;
+
+        mGame->GetRenderer()->SetEffectIntensity(PostProcessEffect::ChromaticAberration, intensity);
+        mGame->GetRenderer()->SetAberrationAngle(currentAngle);
+    }
+    else {
+        mConfusionTime = 0.0f;
+        mGame->GetRenderer()->SetEffectIntensity(PostProcessEffect::ChromaticAberration, 0.0f);
+        mGame->GetRenderer()->SetAberrationAngle(0.0f);
     }
 
     mIsOnGround = false;

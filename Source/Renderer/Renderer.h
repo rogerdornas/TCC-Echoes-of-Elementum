@@ -16,10 +16,11 @@ enum class RendererMode
 
 enum class PostProcessEffect
 {
-	None,
-	Blur,
-	Grayscale,
-	DamageFlash
+	Blur = 0,
+	Grayscale = 1,
+	DamageFlash = 2,
+	ChromaticAberration = 3,
+	Count
 };
 
 class Renderer
@@ -93,8 +94,9 @@ public:
 	void ClearLights();
 
 	// Pos Processamento
-	void SetPostProcessEffect(PostProcessEffect effect);
-	void SetEffectIntensity(float intensity) { mEffectIntensity = intensity; }
+	void SetEffectIntensity(PostProcessEffect effect, float intensity);
+	void SetAberrationAngle(float angle) { mAberrationAngle = angle; }
+	void DeactivateAllEffects();
 
 private:
     void Draw(RendererMode mode, const Matrix4 &modelMatrix, const Vector2 &cameraPos, VertexArray *vertices,
@@ -151,8 +153,8 @@ private:
 	std::vector<Light*> mLights;
 
 	// Pos processamento
-	PostProcessEffect mCurrentPostProcess;
-	float mEffectIntensity;
+	float mEffectIntensities[static_cast<int>(PostProcessEffect::Count)];
+	float mAberrationAngle;
 
 	// === Novas variáveis para controle de resolução ===
 	float mVirtualWidth;  // Largura da nossa cena (ex: 1920)

@@ -375,7 +375,7 @@ void Game::ChangeScene()
 
         // Guarda último level que o player estava
         mIsPaused = false;
-        mRenderer->SetPostProcessEffect(PostProcessEffect::None);
+        mRenderer->DeactivateAllEffects();
     }
     else {
         // Se está no menu, pausa draw de player
@@ -2650,8 +2650,7 @@ void Game::TogglePause() {
             // if (mAudio->GetSoundState(mBossMusic) == SoundState::Playing) {
             //     mAudio->PauseSound(mBossMusic);
             // }
-            mRenderer->SetPostProcessEffect(PostProcessEffect::Blur);
-            mRenderer->SetEffectIntensity(2.0f);
+            mRenderer->SetEffectIntensity(PostProcessEffect::Blur, 2.0f);
             mAudio->SetCategoryModifier(SoundCategory::Music, mPauseMusicVolumeScale);
             mGamePlayState = GamePlayState::Paused;
         }
@@ -2662,7 +2661,7 @@ void Game::TogglePause() {
             // else if (mAudio->GetSoundState(mMusicHandle) == SoundState::Paused) {
             //     mAudio->ResumeSound(mMusicHandle);
             // }
-            mRenderer->SetPostProcessEffect(PostProcessEffect::None);
+            mRenderer->SetEffectIntensity(PostProcessEffect::Blur, 0.0f);
             mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);
             mGamePlayState = GamePlayState::Playing;
         }
@@ -2746,11 +2745,10 @@ void Game::UpdateGame()
 
                 float intensity = maxIntensity * (1.0f - progress);
 
-                mRenderer->SetEffectIntensity(intensity);
+                mRenderer->SetEffectIntensity(PostProcessEffect::DamageFlash, intensity);
             }
             else {
-                mRenderer->SetPostProcessEffect(PostProcessEffect::None);
-                mRenderer->SetEffectIntensity(1.0f);
+                mRenderer->SetEffectIntensity(PostProcessEffect::DamageFlash, 0.0f);
                 mDamageFlashActive = false;
             }
         }
@@ -2959,7 +2957,6 @@ void Game::UpdateCamera(float deltaTime) {
 void Game::ActiveDamageFlash() {
     mDamageFlashActive = true;
     mDamageFlashTimer = 0.0f;
-    mRenderer->SetPostProcessEffect(PostProcessEffect::DamageFlash);
 }
 
 void Game::AddGround(class Ground* g) { mGrounds.emplace_back(g); }

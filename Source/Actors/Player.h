@@ -406,6 +406,7 @@ private:
     bool mWasOnGround;
 
     bool mInvertControls;
+    float mConfusionTime;
 
     class Light* mLight;
 

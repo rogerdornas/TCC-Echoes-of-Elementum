@@ -16,8 +16,7 @@ Renderer::Renderer(SDL_Window *window)
     ,mOrthoProjection(Matrix4::Identity)
     ,mAmbientColor(Vector3(1.0f, 1.0f, 1.0f))
     ,mAmbientIntensity(0.8f)
-    ,mCurrentPostProcess(PostProcessEffect::None)
-    ,mEffectIntensity(1.0f)
+    ,mAberrationAngle(0.0f)
     ,mVirtualWidth(1920.0f) // <-- Defina sua resolução virtual 16:9 aqui
     ,mVirtualHeight(1080.0f) // <-- Defina sua resolução virtual 16:9 aqui
     ,mWindowWidth(0.0f)
@@ -27,7 +26,9 @@ Renderer::Renderer(SDL_Window *window)
     ,mZoomedHeight(1080.0f) // <-- Inicializa com o valor base
     ,mDrawingUI(false)
 {
-
+    for (int i = 0; i < static_cast<int>(PostProcessEffect::Count); ++i) {
+        mEffectIntensities[i] = 0.0f;
+    }
 }
 
 Renderer::~Renderer()
@@ -679,11 +680,17 @@ Vector2 Renderer::ScreenToVirtual(const Vector2& screenPoint) const
     return virtualPoint;
 }
 
-void Renderer::SetPostProcessEffect(PostProcessEffect effect) {
-    mCurrentPostProcess = effect;
+void Renderer::SetEffectIntensity(PostProcessEffect effect, float intensity) {
+    // Grava a intensidade no slot específico do efeito
+    mEffectIntensities[static_cast<int>(effect)] = intensity;
 
+    // Checa se algum efeito que deforma o UV (Spatial) está ativo
+    bool needsLinear = (mEffectIntensities[static_cast<int>(PostProcessEffect::Blur)] > 0.0f ||
+                        mEffectIntensities[static_cast<int>(PostProcessEffect::ChromaticAberration)] > 0.0f);
+
+    // Ajusta o filtro da textura de acordo
     glBindTexture(GL_TEXTURE_2D, mGameFBOTexture);
-    if (effect == PostProcessEffect::Blur) {
+    if (needsLinear) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
     } else {
@@ -691,6 +698,13 @@ void Renderer::SetPostProcessEffect(PostProcessEffect effect) {
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
     }
     glBindTexture(GL_TEXTURE_2D, 0);
+}
+
+void Renderer::DeactivateAllEffects() {
+    mEffectIntensities[static_cast<int>(PostProcessEffect::Blur)] = 0.0f;
+    mEffectIntensities[static_cast<int>(PostProcessEffect::Grayscale)] = 0.0f;
+    mEffectIntensities[static_cast<int>(PostProcessEffect::DamageFlash)] = 0.0f;
+    mEffectIntensities[static_cast<int>(PostProcessEffect::ChromaticAberration)] = 0.0f;
 }
 
 void Renderer::BeginGameDraw()
@@ -710,10 +724,13 @@ void Renderer::BeginUIDraw()
 
     // 2. Prepara o shader de pós-processamento
     mPostProcessShader->SetActive();
-    mPostProcessShader->SetIntUniform("uEffectType", static_cast<int>(mCurrentPostProcess));
-    mPostProcessShader->SetFloatUniform("uEffectIntensity", mEffectIntensity);
+    mPostProcessShader->SetFloatUniform("uBlurIntensity", mEffectIntensities[static_cast<int>(PostProcessEffect::Blur)]);
+    mPostProcessShader->SetFloatUniform("uGrayscaleIntensity", mEffectIntensities[static_cast<int>(PostProcessEffect::Grayscale)]);
+    mPostProcessShader->SetFloatUniform("uDamageIntensity", mEffectIntensities[static_cast<int>(PostProcessEffect::DamageFlash)]);
+    mPostProcessShader->SetFloatUniform("uAberrationIntensity", mEffectIntensities[static_cast<int>(PostProcessEffect::ChromaticAberration)]);
+    mPostProcessShader->SetFloatUniform("uAberrationAngle", mAberrationAngle);
+
     mPostProcessShader->SetVectorUniform("uResolution", GetResolution());
-    // ... (passe blur intensity, etc) ...
 
     mScreenQuad->SetActive();
 

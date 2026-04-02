@@ -10,17 +10,17 @@
             "y": 2176.0
         },
         "scene": "MirrorBoss",
-        "total_play_time": 187467.859375
+        "total_play_time": 189333.609375
     },
     "player": {
         "can_dash": true,
         "can_fireball": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 464,
-        "elemental_mode": "Fire",
+        "death_counter": 469,
+        "elemental_mode": "Earth",
         "max_jumps_in_air": 1,
-        "money": 59368
+        "money": 59854
     },
     "upgrades": {
         "fireball": true,
