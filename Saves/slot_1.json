@@ -6,11 +6,11 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 7920.0,
-            "y": 4256.0
+            "x": 656.0,
+            "y": 2176.0
         },
-        "scene": "Level1",
-        "total_play_time": 186043.0
+        "scene": "MirrorBoss",
+        "total_play_time": 187467.859375
     },
     "player": {
         "can_dash": true,
@@ -18,9 +18,9 @@
         "can_hook": true,
         "can_wallslide": true,
         "death_counter": 464,
-        "elemental_mode": "Lightning",
+        "elemental_mode": "Fire",
         "max_jumps_in_air": 1,
-        "money": 57842
+        "money": 59368
     },
     "upgrades": {
         "fireball": true,

@@ -2272,6 +2272,31 @@ void Player::UseHook(HookPoint* nearestHookPoint) {
     }
 }
 
+void Player::SetElementalMode(ElementalMode mode) {
+    if (mElementalMode == mode) {
+        return;
+    }
+
+    mElementalMode = mode;
+    switch (mElementalMode) {
+        case ElementalMode::Fire:
+            FireTransformationEffect();
+            break;
+
+        case ElementalMode::Lightning:
+            LightningTransformationEffect();
+            break;
+
+        case ElementalMode::Ice:
+            IceTransformationEffect();
+            break;
+
+        case ElementalMode::Earth:
+            EarthTransformationEffect();
+            break;
+    }
+}
+
 void Player::OpenElementalMenu() {
     if (!mRadialMenu) {
         mRadialMenu = new RadialMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", 200.0f);
@@ -2284,6 +2309,48 @@ void Player::OpenElementalMenu() {
 
         mRadialMenu->SetSelectedOption(static_cast<int>(mElementalMode));
     }
+}
+
+void Player::FireTransformationEffect() {
+    // float transitionDuration = 0.3f;
+    //
+    // // 1. O "Burst" de Ignição: Uma aura rápida que se expande 360 graus
+    // auto* ignition = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 20.0f, 50.0f, 0.25f, transitionDuration);
+    // ignition->SetPosition(GetPosition());
+    // ignition->SetParticleColor(SDL_Color{255, 50, 20, 255}); // Começa mais amarelado/branco (quente)
+    // ignition->SetConeSpread(360.0f); // Expande para todos os lados em volta do player
+    // ignition->SetEmitDirection(Vector2::NegUnitY);
+    // ignition->SetParticleSpeedScale(0.3f); // Um pouco mais rápido para o "impacto" inicial
+    // ignition->SetParticleGravity(false);
+    // ignition->SetGroundCollision(false);
+    // ignition->SetAdditiveBlending(true);
+    // ignition->SetParticleDrawOrder(5001);
+    // ignition->SetFollowTarget(this);
+    //
+    // // 2. As Fagulhas: Menos quantidade, subindo suavemente ao redor do player
+    // auto* embers = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 2.0f, 15.0f, 0.4f, transitionDuration);
+    // embers->SetPosition(GetPosition()); // Idealmente, levemente abaixo do centro do player
+    // embers->SetParticleColor(SDL_Color{255, 100, 10, 255}); // Laranja clássico
+    // embers->SetConeSpread(90.0f); // Cone voltado para cima
+    // embers->SetEmitDirection(Vector2::NegUnitY);
+    // embers->SetParticleSpeedScale(0.25f); // Sobe bem devagar
+    // embers->SetParticleGravity(false);
+    // embers->SetGroundCollision(false);
+    // embers->SetAdditiveBlending(true);
+    // embers->SetParticleDrawOrder(5001);
+    // embers->SetFollowTarget(this);
+}
+
+void Player::LightningTransformationEffect() {
+
+}
+
+void Player::IceTransformationEffect() {
+
+}
+
+void Player::EarthTransformationEffect() {
+
 }
 
 void Player::ManageCombatBoxes(float deltaTime) {

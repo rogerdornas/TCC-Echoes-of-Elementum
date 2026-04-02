@@ -29,6 +29,7 @@ ParticleSystem::ParticleSystem(Game* game, Particle::ParticleType particleType, 
     ,mFreezeIntensity(1.0f)
     ,mParticleDrawOrder(5000)
     ,mAdditiveBlending(false)
+    ,mFollowTarget(nullptr)
 {
 }
 
@@ -37,6 +38,10 @@ void ParticleSystem::OnUpdate(float deltaTime) {
     if (mLifeTime <= 0.0f) {
         SetState(ActorState::Destroy);
         return; // evita criar partículas depois de destruído
+    }
+
+    if (mFollowTarget && mFollowTarget->GetState() != ActorState::Destroy) {
+        SetPosition(mFollowTarget->GetPosition());
     }
 
     // Atualiza o timer de emissão

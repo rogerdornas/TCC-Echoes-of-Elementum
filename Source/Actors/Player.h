@@ -39,7 +39,7 @@ public:
 
     void SetJumpEffects();
 
-    void SetElementalMode(ElementalMode mode) { mElementalMode = mode; }
+    void SetElementalMode(ElementalMode mode);
     ElementalMode GetElementalMode() { return mElementalMode; }
 
     bool GetIsOnGround() const { return mIsOnGround; }
@@ -153,6 +153,11 @@ private:
     void UseHook(HookPoint* nearestHookPoint);
 
     void OpenElementalMenu();
+
+    void FireTransformationEffect();
+    void LightningTransformationEffect();
+    void IceTransformationEffect();
+    void EarthTransformationEffect();
 
     void ManageCombatBoxes(float deltaTime);
     void ManageAnimations();

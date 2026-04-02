@@ -33,6 +33,7 @@ public:
     void SetParticleDrawOrder(int particleDrawOrder) { mParticleDrawOrder = particleDrawOrder; }
     void SetAdditiveBlending(bool additiveBlending) { mAdditiveBlending = additiveBlending; }
 
+    void SetFollowTarget(Actor* target) { mFollowTarget = target; }
 private:
     void EmitParticle();
 
@@ -57,4 +58,6 @@ private:
     float mConeSpread;
     int mParticleDrawOrder;
     bool mAdditiveBlending;
+
+    Actor* mFollowTarget;
 };
