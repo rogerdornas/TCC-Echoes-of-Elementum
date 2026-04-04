@@ -2847,7 +2847,7 @@
                         {
                          "name":"Enemies",
                          "type":"string",
-                         "value":"138,139,140,141,142"
+                         "value":"138,139,140,141,142,251,252"
                         }, 
                         {
                          "name":"Event",
@@ -2884,7 +2884,7 @@
                         {
                          "name":"Enemies",
                          "type":"string",
-                         "value":"138,139,140,141,142"
+                         "value":"138,139,140,141,142,251,252"
                         }, 
                         {
                          "name":"Event",
@@ -3465,6 +3465,72 @@
                  "width":32,
                  "x":6208,
                  "y":3040
+                }, 
+                {
+                 "height":32,
+                 "id":247,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":6688,
+                 "y":2976
+                }, 
+                {
+                 "height":32,
+                 "id":248,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":7392,
+                 "y":2976
+                }, 
+                {
+                 "height":32,
+                 "id":249,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":8224,
+                 "y":2976
+                }, 
+                {
+                 "height":32,
+                 "id":250,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":5984,
+                 "y":448
+                }, 
+                {
+                 "height":32,
+                 "id":251,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":6496,
+                 "y":1568
+                }, 
+                {
+                 "height":32,
+                 "id":252,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":7040,
+                 "y":1568
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3586,7 +3652,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":247,
+ "nextobjectid":253,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

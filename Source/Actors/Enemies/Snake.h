@@ -4,7 +4,6 @@
 
 #pragma once
 
-#include "../Actor.h"
 #include "Enemy.h"
 
 class Snake : public Enemy

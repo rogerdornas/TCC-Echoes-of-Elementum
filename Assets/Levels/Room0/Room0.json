@@ -1504,6 +1504,39 @@
                  "width":32,
                  "x":2304,
                  "y":4256
+                }, 
+                {
+                 "height":32,
+                 "id":79,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":3488,
+                 "y":3680
+                }, 
+                {
+                 "height":32,
+                 "id":80,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":640,
+                 "y":2368
+                }, 
+                {
+                 "height":32,
+                 "id":81,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1088,
+                 "y":2368
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1678,7 +1711,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":79,
+ "nextobjectid":82,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

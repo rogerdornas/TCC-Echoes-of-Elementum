@@ -25,6 +25,7 @@
 #include "Actors/Enemies/OrangeSlime.h"
 #include "Actors/Enemies/Snake.h"
 #include "Actors/Spawner.h"
+#include "Actors/Enemies/Bat.h"
 
 WaveManager::WaveManager(Game *game)
     :mGame(game)
@@ -367,6 +368,12 @@ void WaveManager::SpawnEnemy(WaveAction& a) {
         orangeSlime->SetPosition(pos);
         orangeSlime->SetSpottedPlayer(true);
         a.enemy = orangeSlime;
+    }
+    if (a.enemyType == "Bat") {
+        auto* bat = new Bat(mGame);
+        bat->SetPosition(pos);
+        bat->SetSpottedPlayer(true);
+        a.enemy = bat;
     }
     if (a.enemyType == "CloneEnemy") {
         auto* cloneEnemy = new CloneEnemy(mGame);

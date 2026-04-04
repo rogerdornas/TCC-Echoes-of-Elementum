@@ -307,12 +307,9 @@ void FlyingGolem::ManageAnimations() {
     mDrawComponent->SetAnimFPS(10.0f);
     if (GetRotation() > Math::PiOver2 && GetRotation() < 3 * Math::PiOver2) {
         SetScale(Vector2(-1,1));
-        // mDrawAnimatedComponent->UseFlip(true);
-        // mDrawAnimatedComponent->SetFlip(SDL_FLIP_HORIZONTAL);
     }
     else {
         SetScale(Vector2(1,1));
-        // mDrawAnimatedComponent->UseFlip(false);
     }
 
     if (mFlyingGolemState == State::Attack) {

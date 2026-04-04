@@ -49,6 +49,7 @@
 #include "Actors/Enemies/Mushroom.h"
 #include "Actors/Enemies/OrangeSlime.h"
 #include "Actors/Projectile.h"
+#include "Actors/Enemies/Bat.h"
 #include "Actors/Enemies/Snake.h"
 #include "Components/AABBComponent.h"
 #include "Components/CombatBoxComponent.h"
@@ -1742,6 +1743,11 @@ void Game::LoadObjects(const std::string &fileName) {
                     auto* orangeSlime = new OrangeSlime(this);
                     orangeSlime->SetPosition(Vector2(x, y));
                     orangeSlime->SetId(id);
+                }
+                else if (name == "Bat") {
+                    auto* bat = new Bat(this);
+                    bat->SetPosition(Vector2(x, y));
+                    bat->SetId(id);
                 }
                 else if (name == "CloneEnemy") {
                     auto* cloneEnemy = new CloneEnemy(this);

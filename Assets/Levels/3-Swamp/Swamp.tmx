@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="376" height="172" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="319">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="376" height="172" tilewidth="32" tileheight="32" infinite="0" nextlayerid="13" nextobjectid="321">
  <editorsettings>
   <export target="Swamp.json" format="json"/>
  </editorsettings>
@@ -1121,6 +1121,8 @@
   <object id="268" name="Flying Enemy" x="7552" y="3872" width="32" height="32"/>
   <object id="265" name="Flying Enemy" x="7296" y="1664" width="32" height="32"/>
   <object id="220" name="Flying Enemy" x="6176" y="2816" width="32" height="32"/>
+  <object id="319" name="Bat" x="1408" y="1632" width="32" height="32"/>
+  <object id="320" name="Bat" x="2304" y="1632" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="3" name="Player">
   <object id="193" name="Player" x="1088" y="1792" width="32" height="32">

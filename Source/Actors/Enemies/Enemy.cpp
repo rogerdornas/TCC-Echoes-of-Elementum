@@ -219,7 +219,6 @@ void Enemy::ManageFreezing(float deltaTime) {
         }
     }
 
-
     // --- ENVIANDO PARA O SHADER ---
     // Calcula a porcentagem (0.0 a 1.0)
     float freezeLevel = mFreezeCount / mFreezeMax;

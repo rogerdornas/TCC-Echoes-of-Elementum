@@ -9067,6 +9067,17 @@
                  "width":32,
                  "x":15968,
                  "y":16672
+                }, 
+                {
+                 "height":32,
+                 "id":525,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":18112,
+                 "y":16128
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -9405,7 +9416,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":524,
+ "nextobjectid":526,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

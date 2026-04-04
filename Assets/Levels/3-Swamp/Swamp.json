@@ -3502,6 +3502,28 @@
                  "width":32,
                  "x":6176,
                  "y":2816
+                }, 
+                {
+                 "height":32,
+                 "id":319,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1408,
+                 "y":1632
+                }, 
+                {
+                 "height":32,
+                 "id":320,
+                 "name":"Bat",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2304,
+                 "y":1632
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3548,7 +3570,7 @@
          "y":0
         }],
  "nextlayerid":13,
- "nextobjectid":319,
+ "nextobjectid":321,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

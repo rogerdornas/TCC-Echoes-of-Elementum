@@ -226,6 +226,8 @@ add_executable(${PROJECT_NAME}
         Source/UIScreens/RemapControllerMenu.h
         Source/UIScreens/ResolutionMenu.cpp
         Source/UIScreens/ResolutionMenu.h
+        Source/Actors/Enemies/Bat.cpp
+        Source/Actors/Enemies/Bat.h
 )
 
 
