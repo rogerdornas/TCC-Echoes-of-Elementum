@@ -336,7 +336,7 @@ Vector2 OBBComponent::CollisionSide(ColliderComponent &other) {
 }
 
 Vector2 OBBComponent::CollisionSideWithAABB(AABBComponent &other) {
-    // Obtém vértices do AABB
+// Obtém vértices do AABB
     Vector2 AABBPosition = other.GetOwner()->GetPosition() + other.GetOffset();
     std::vector<Vector2> vertsAABB = {
         Vector2(other.GetMin().x + AABBPosition.x, other.GetMin().y + AABBPosition.y),
@@ -353,45 +353,50 @@ Vector2 OBBComponent::CollisionSideWithAABB(AABBComponent &other) {
 
     // Eixos para testar (SAT)
     Vector2 axes[4] = {
-        Vector2(1, 0),      // eixo X global (AABB)
-        Vector2(0, 1),      // eixo Y global (AABB)
-        GetAxis()[0],               // eixo X do OBB
-        GetAxis()[1]                // eixo Y do OBB
+        Vector2(1, 0),      // [0] eixo X global (AABB)
+        Vector2(0, 1),      // [1] eixo Y global (AABB)
+        GetAxis()[0],               // [2] eixo X do OBB
+        GetAxis()[1]                // [3] eixo Y do OBB
     };
 
     // Função auxiliar para projetar pontos num eixo
     auto projectOntoAxis = [](const std::vector<Vector2>& verts, const Vector2& axis, float& min, float& max) {
-        min = max = Vector2::Dot(verts[0],axis);
+        min = max = Vector2::Dot(verts[0], axis);
         for (int i = 1; i < 4; i++) {
-            float p = Vector2::Dot(verts[i],axis);
+            float p = Vector2::Dot(verts[i], axis);
             if (p < min) min = p;
             if (p > max) max = p;
         }
     };
 
     Vector2 normal;
-    float penetration = FLT_MAX;
+    float minAABBOverlap = FLT_MAX; // Variável dedicada apenas para o AABB
+
     // SAT: testa todos os eixos
     for (int i = 0; i < 4; i++) {
         float minA, maxA, minB, maxB;
         projectOntoAxis(vertsOBB, axes[i], minA, maxA);
-        projectOntoAxis(vertsAABB,  axes[i], minB, maxB);
+        projectOntoAxis(vertsAABB, axes[i], minB, maxB);
 
         if (maxA < minB || maxB < minA) {
-            return Vector2::Zero; // não colidiu
+            return Vector2::Zero; // separação → não colidiu
         }
 
-        // Calcula quanto penetrou neste eixo
+        // Se chegou aqui, os eixos se sobrepõem. Calcula quanto penetrou
         float overlap = std::min(maxA, maxB) - std::max(minA, minB);
-        if (overlap < penetration) {
-            penetration = overlap;
+
+        // Só guardamos a normal e a penetração se o eixo pertencer ao AABB (índices 0 e 1)
+        if (i < 2 && overlap < minAABBOverlap) {
+            minAABBOverlap = overlap;
             normal = axes[i];
         }
     }
 
-    // Decide direção correta do vetor normal
+    // Decide direção correta do vetor normal (tem que apontar para FORA do AABB)
     Vector2 centerA = GetOwner()->GetPosition() + mOffset;
     Vector2 dir = other.GetOwner()->GetPosition() + other.GetOffset() - centerA;
+
+    // Se o produto escalar for positivo, a normal tá apontando pro AABB. Invertemos ela.
     if (Vector2::Dot(dir, normal) > 0) {
         normal = normal * -1.0f;
     }
