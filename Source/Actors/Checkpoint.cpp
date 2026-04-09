@@ -51,8 +51,8 @@ void Checkpoint::OnProcessInput(const Uint8 *keyState, SDL_GameController &contr
     if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
         if (mGame->IsActionPressed(Game::Action::OpenStore, keyState, &controller)) {
             if (mGame->GetStore()->StoreMessageOpened() && player->GetIsOnGround()) {
-                mGame->GetStore()->CloseStoreMessage();
-                mStoreMessageOpened = false;
+                // mGame->GetStore()->CloseStoreMessage();
+                // mStoreMessageOpened = false;
             }
 
             if (!mGame->GetStore()->StoreOpened() && player->GetIsOnGround()) {
@@ -82,8 +82,8 @@ void Checkpoint::OnUpdate(float deltaTime) {
         mGame->SaveGame();
 
         if (!mGame->GetStore()->StoreMessageOpened()) {
-            mGame->GetStore()->LoadStoreMessage();
-            mStoreMessageOpened = true;
+            // mGame->GetStore()->LoadStoreMessage();
+            // mStoreMessageOpened = true;
         }
     }
     if ((!mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>()) &&
@@ -92,7 +92,7 @@ void Checkpoint::OnUpdate(float deltaTime) {
         !player->GetIsOnGround() &&
         mGame->GetStore()->StoreMessageOpened() && mStoreMessageOpened))
     {
-        mGame->GetStore()->CloseStoreMessage();
-        mStoreMessageOpened = false;
+        // mGame->GetStore()->CloseStoreMessage();
+        // mStoreMessageOpened = false;
     }
 }
