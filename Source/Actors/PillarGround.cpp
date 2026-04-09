@@ -19,7 +19,7 @@ PillarGround::PillarGround(Game *game, float width, float height)
     mMaxHeight = 134;
     mGrowthDirection = GrowthDirection::Up;
 
-    mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar/1.png"),
+    mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar2/01.png"),
                     mMaxWidth, mMaxHeight);
 
     if (mDrawComponent) {
@@ -69,19 +69,19 @@ void PillarGround::ResolveGroundCollision() {
 
 void PillarGround::ManageAnimations() {
     if (mLifeTimer > mLifeDuration * 0.75f) {
-        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar/4.png"),
+        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar2/04.png"),
                 mMaxWidth, mMaxHeight);
     }
     else if (mLifeTimer > mLifeDuration * 0.5f && mLifeTimer <= mLifeDuration * 0.75f) {
-        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar/3.png"),
+        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar2/03.png"),
                 mMaxWidth, mMaxHeight);
     }
     else if (mLifeTimer > mLifeDuration * 0.25f && mLifeTimer <= mLifeDuration * 0.5f) {
-        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar/2.png"),
+        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar2/02.png"),
                 mMaxWidth, mMaxHeight);
     }
     if (mLifeTimer <= mLifeDuration * 0.25f) {
-        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar/1.png"),
+        mDrawComponent->SetTexture(mGame->GetRenderer()->GetTexture("../Assets/Sprites/Pillar2/01.png"),
                 mMaxWidth, mMaxHeight);
     }
 }

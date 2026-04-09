@@ -6,11 +6,11 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 3184.0,
-            "y": 1152.0
+            "x": 1328.0,
+            "y": 5312.0
         },
-        "scene": "Cave",
-        "total_play_time": 219003.390625
+        "scene": "Room0",
+        "total_play_time": 219081.578125
     },
     "player": {
         "can_dash": true,
@@ -18,9 +18,9 @@
         "can_hook": true,
         "can_wallslide": true,
         "death_counter": 811,
-        "elemental_mode": "Lightning",
+        "elemental_mode": "Earth",
         "max_jumps_in_air": 1,
-        "money": 69092
+        "money": 69173
     },
     "upgrades": {
         "fireball": true,
