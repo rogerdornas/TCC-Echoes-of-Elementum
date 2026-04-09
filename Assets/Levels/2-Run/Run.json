@@ -3531,6 +3531,28 @@
                  "width":32,
                  "x":7040,
                  "y":1568
+                }, 
+                {
+                 "height":32,
+                 "id":254,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":4359,
+                 "y":544
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3652,7 +3674,7 @@
          "y":0
         }],
  "nextlayerid":14,
- "nextobjectid":253,
+ "nextobjectid":255,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

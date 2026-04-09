@@ -15,16 +15,16 @@ public:
 
     void SetIsMoving(bool isMoving);
 
-    void SetRespawPosition(Vector2 pos) { mRespawnPosition = pos; }
-    Vector2 GetRespawPosition() { return mRespawnPosition; }
+    void SetRespawnPosition(Vector2 pos) { mRespawnPosition = pos; }
+    Vector2 GetRespawnPosition() const { return mRespawnPosition; }
 
 private:
     void ResolveEnemyCollision();
     void ResolvePlayerCollision();
     void ResolveSwordCollision();
 
-    float mHeight;
     float mWidth;
+    float mHeight;
     float mDamage;
     Vector2 mRespawnPosition;
     bool mIsMoving;
@@ -37,6 +37,6 @@ private:
     class RectComponent* mRectComponent;
     class AnimatorComponent* mDrawComponent;
 
-    class RigidBodyComponent *mRigidBodyComponent;
-    class ColliderComponent *mAABBComponent;
+    class RigidBodyComponent* mRigidBodyComponent;
+    class ColliderComponent* mAABBComponent;
 };

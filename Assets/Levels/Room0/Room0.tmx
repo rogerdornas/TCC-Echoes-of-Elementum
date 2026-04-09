@@ -618,9 +618,9 @@
   <object id="62" name="Snake" x="5056" y="4256" width="32" height="32"/>
   <object id="76" name="FlyingGolem" x="1696" y="4992" width="32" height="32"/>
   <object id="78" name="OrangeSlime" x="2304" y="4256" width="32" height="32"/>
-  <object id="79" name="Bat" x="3488" y="3680" width="32" height="32"/>
-  <object id="80" name="Bat" x="640" y="2368" width="32" height="32"/>
-  <object id="81" name="Bat" x="1088" y="2368" width="32" height="32"/>
+  <object id="79" name="Bat" x="3488" y="3648" width="32" height="32"/>
+  <object id="80" name="Bat" x="640" y="2336" width="32" height="32"/>
+  <object id="81" name="Bat" x="1088" y="2336" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="8" name="Levers"/>
  <objectgroup id="9" name="Player">

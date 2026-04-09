@@ -207,7 +207,7 @@ Player::Player(Game* game)
     ,mHealCount(mMaxHealCount)
     ,mHealAmount(30.0f)
     ,mIsHealing(false)
-    ,mHealAnimationDuration(0.8f)
+    ,mHealAnimationDuration(0.9f)
     ,mHealAnimationTimer(0.0f)
 
     ,mIFramesTimer(0.0f)
@@ -2546,7 +2546,9 @@ void Player::ReceiveHit(float damage, Vector2 knockBackDirection, DamageType dam
         }
 
         Vector2 knockBack = knockBackDirection * mKnockBackSpeed + vel * (mKnockBackSpeed / 3);
-        knockBack.Normalize();
+        if (knockBack.Length() > 0) {
+            knockBack.Normalize();
+        }
         mRigidBodyComponent->SetVelocity(knockBack * mKnockBackSpeed);
         // mRigidBodyComponent->SetVelocity(knockBackDirection * mKnockBackSpeed + vel * (mKnockBackSpeed / 3));
         mKnockBackTimer = 0;

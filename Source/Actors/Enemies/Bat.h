@@ -45,7 +45,6 @@ private:
     float mStopTimer;
 
     float mHitDuration;
-    float mHitTimer;
 
     float mWakeUpDuration;
     float mWakeUpTimer;

@@ -38,6 +38,7 @@
 #include "Actors/Enemies/Golem.h"
 #include "Actors/Enemies/HookEnemy.h"
 #include "Actors/HookPoint.h"
+#include "Actors/LaserShooter.h"
 #include "Actors/Lava.h"
 #include "Actors/Light.h"
 #include "Actors/LightningBarrier.h"
@@ -51,6 +52,7 @@
 #include "Actors/Projectile.h"
 #include "Actors/Enemies/Bat.h"
 #include "Actors/Enemies/Snake.h"
+#include "Actors/Enemies/StoneGolem.h"
 #include "Components/AABBComponent.h"
 #include "Components/CombatBoxComponent.h"
 #include "Components/DashComponent.h"
@@ -1337,7 +1339,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
                 auto* lava = new Lava(this, width, height, isMoving, movingDuration, Vector2(speedX, speedY));
                 lava->SetPosition(Vector2(x + width / 2, y + height / 2));
-                lava->SetRespawPosition(Vector2(respawnPositionX, respawnPositionY));
+                lava->SetRespawnPosition(Vector2(respawnPositionX, respawnPositionY));
             }
         }
         if (layer["name"] == "LightningBarrier") {
@@ -1686,8 +1688,6 @@ void Game::LoadObjects(const std::string &fileName) {
                 float MaxPosX = 0;
                 float MinPosY = 0;
                 float MaxPosY = 0;
-                std::string grounds;
-                std::vector<int> ids;
                 std::string condition;
                 if (name == "Enemy Simple") {
                     auto* enemySimple = new EnemySimple(this);
@@ -1749,6 +1749,65 @@ void Game::LoadObjects(const std::string &fileName) {
                     bat->SetPosition(Vector2(x, y));
                     bat->SetId(id);
                 }
+                else if (name == "LaserShooter") {
+                    int direction = 0;
+                    bool continuousShooting = true;
+                    float cooldown = 2.0f;
+                    float castDuration = 1.5f;
+                    float shootDuration = 1.0f;
+                    if (obj.contains("properties")) {
+                        for (const auto &prop: obj["properties"]) {
+                            std::string propName = prop["name"];
+                            if (propName == "Direction") {
+                                direction = prop["value"];
+                            }
+                            if (propName == "ContinuousShooting") {
+                                continuousShooting = prop["value"];
+                            }
+                            if (propName == "Cooldown") {
+                                cooldown = prop["value"];
+                            }
+                            if (propName == "CastDuration") {
+                                castDuration = prop["value"];
+                            }
+                            if (propName == "ShootDuration") {
+                                shootDuration = prop["value"];
+                            }
+                        }
+                    }
+                    auto* laserShooter = new LaserShooter(this);
+                    laserShooter->SetPosition(Vector2(x, y));
+                    laserShooter->SetId(id);
+                    laserShooter->SetContinuousShooting(continuousShooting);
+                    laserShooter->SetIdleDuration(cooldown);
+                    laserShooter->SetCastDuration(castDuration);
+                    laserShooter->SetShootDuration(shootDuration);
+                    switch (direction) {
+                        case 0:
+                            laserShooter->SetRotation(3.0f * Math::PiOver2);
+                            laserShooter->SetTransformRotation(3.0f * Math::PiOver2);
+                        break;
+
+                        case 1:
+                            laserShooter->SetRotation(Math::PiOver2);
+                            laserShooter->SetTransformRotation(Math::PiOver2);
+                        break;
+
+                        case 2:
+                            laserShooter->SetRotation(Math::Pi);
+                            laserShooter->SetScale(Vector2(-1, 1));
+                        break;
+
+                        case 3:
+                            laserShooter->SetRotation(0.0f);
+                            laserShooter->SetScale(Vector2(1, 1));
+                        break;
+
+                        default:
+                            laserShooter->SetRotation(0.0f);
+                        break;
+                    }
+                }
                 else if (name == "CloneEnemy") {
                     auto* cloneEnemy = new CloneEnemy(this);
                     cloneEnemy->SetPosition(Vector2(x, y));
@@ -1768,7 +1827,6 @@ void Game::LoadObjects(const std::string &fileName) {
                         continue;
                     }
 
-                    ids = ParseIntList(grounds);
                     auto* fox = new Fox(this);
                     fox->SetPosition(Vector2(x, y));
                     fox->SetId(id);
@@ -1789,9 +1847,6 @@ void Game::LoadObjects(const std::string &fileName) {
                             else if (propName == "MaxPosY") {
                                 MaxPosY = static_cast<float>(prop["value"]);
                             }
-                            else if (propName == "UnlockGrounds") {
-                                grounds = prop["value"];
-                            }
                             else if (propName == "Condition") {
                                 condition = prop["value"];
                             }
@@ -1802,7 +1857,6 @@ void Game::LoadObjects(const std::string &fileName) {
                         continue;
                     }
 
-                    ids = ParseIntList(grounds);
                     auto* frog = new Frog(this);
                     frog->SetPosition(Vector2(x, y));
                     frog->SetId(id);
@@ -1860,9 +1914,6 @@ void Game::LoadObjects(const std::string &fileName) {
                             }
                             else if (propName == "MaxPosY") {
                                 MaxPosY = static_cast<float>(prop["value"]);
-                            }
-                            else if (propName == "UnlockGrounds") {
-                                grounds = prop["value"];
                             }
                             else if (propName == "Condition") {
                                 condition = prop["value"];
@@ -1929,6 +1980,53 @@ void Game::LoadObjects(const std::string &fileName) {
                     mirrorBoss->SetId(id);
                     mirrorBoss->SetArenaMinPos(Vector2(MinPosX, MinPosY));
                     mirrorBoss->SetArenaMaxPos(Vector2(MaxPosX, MaxPosY));
+                }
+                else if (name == "StoneGolem") {
+                    std::string leftLaserShooters;
+                    std::string rightLaserShooters;
+                    std::string topLaserShooters;
+                    if (obj.contains("properties")) {
+                        for (const auto &prop: obj["properties"]) {
+                            std::string propName = prop["name"];
+                            if (propName == "MinPosX") {
+                                MinPosX = static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "MaxPosX") {
+                                MaxPosX = static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "MinPosY") {
+                                MinPosY = static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "MaxPosY") {
+                                MaxPosY = static_cast<float>(prop["value"]);
+                            }
+                            if (propName == "Condition") {
+                                condition = prop["value"];
+                            }
+                            if (propName == "LeftLaserShooters") {
+                                leftLaserShooters = prop["value"];
+                            }
+                            if (propName == "RightLaserShooters") {
+                                rightLaserShooters = prop["value"];
+                            }
+                            if (propName == "TopLaserShooters") {
+                                topLaserShooters = prop["value"];
+                            }
+                        }
+                    }
+
+                    if (!ShouldLoadObject(condition)) {
+                        continue;
+                    }
+
+                    auto* stoneGolem = new StoneGolem(this);
+                    stoneGolem->SetPosition(Vector2(x, y));
+                    stoneGolem->SetId(id);
+                    stoneGolem->SetArenaMinPos(Vector2(MinPosX, MinPosY));
+                    stoneGolem->SetArenaMaxPos(Vector2(MaxPosX, MaxPosY));
+                    stoneGolem->SetLeftLaserShooters(ParseIntList(leftLaserShooters));
+                    stoneGolem->SetRightLaserShooters(ParseIntList(rightLaserShooters));
+                    stoneGolem->SetTopLaserShooters(ParseIntList(topLaserShooters));
                 }
             }
         }
@@ -2858,7 +2956,7 @@ void Game::UpdateGame()
     }
 
     if (mBackToCheckpoint) {
-        mStore->CloseStoreMessage();
+        // mStore->CloseStoreMessage();
         SetGameScene(mCheckpointGameScene, 1.5f);
         mPlayer->ResetHealthPoints();
         mPlayer->ResetMana();
@@ -3026,6 +3124,24 @@ void Game::RemoveHookPoint(class HookPoint* hp) {
     if (iter != mHookPoints.end()) {
         mHookPoints.erase(iter);
     }
+}
+
+void Game::AddLaserShooter(class LaserShooter* ls) { mLaserShooters.emplace_back(ls); }
+
+void Game::RemoveLaserShooter(class LaserShooter* ls) {
+    auto iter = std::find(mLaserShooters.begin(), mLaserShooters.end(), ls);
+    if (iter != mLaserShooters.end()) {
+        mLaserShooters.erase(iter);
+    }
+}
+
+LaserShooter* Game::GetLaserShooterById(int id) {
+    for (LaserShooter* ls : mLaserShooters) {
+        if (ls->GetId() == id) {
+            return ls;
+        }
+    }
+    return nullptr;
 }
 
 void Game::AddSpawnPoint(const std::string &id, const Vector2 &pos) {

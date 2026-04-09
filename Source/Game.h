@@ -155,6 +155,11 @@ public:
     void RemoveHookPoint(class HookPoint* hp);
     std::vector<class HookPoint*> &GetHookPoints() { return mHookPoints; }
 
+    void AddLaserShooter(class LaserShooter* ls);
+    void RemoveLaserShooter(class LaserShooter* ls);
+    std::vector<class LaserShooter*> &GetLaserShooters() { return mLaserShooters; }
+    LaserShooter* GetLaserShooterById(int id);
+
     void AddSpawnPoint(const std::string& id, const Vector2& pos);
     Vector2 GetSpawnPointPosition(const std::string& id) const;
     std::vector<Vector2> GetSpawnPointsPositions();
@@ -350,6 +355,7 @@ private:
     std::vector<class Projectile*> mProjectiles;
     std::vector<class Money*> mMoneys;
     std::vector<class HookPoint*> mHookPoints;
+    std::vector<class LaserShooter*> mLaserShooters;
     std::vector<class Enemy*> mEnemies;
     SDL_GameController *mController;
     class HUD *mHUD;

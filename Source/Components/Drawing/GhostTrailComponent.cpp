@@ -56,7 +56,7 @@ void GhostTrailComponent::Draw(Renderer* renderer) {
     }
 
     Texture* tex = mTargetAnimator->GetTexture();
-    Vector2 size(mTargetAnimator->GetWidth(), mTargetAnimator->GetHeight());
+    Vector2 drawSize(mTargetAnimator->GetWidth() * mTargetAnimator->GetCropWidth(), mTargetAnimator->GetHeight() * mTargetAnimator->GetCropHeight());
     Vector2 cameraPos = GetGame()->GetCamera()->GetPosCamera();
 
     for (const auto& ghost : mSnapshots) {
@@ -65,7 +65,7 @@ void GhostTrailComponent::Draw(Renderer* renderer) {
         float currentAlpha = 0.6f * (1.0f - lifePercent);
 
         renderer->DrawTexture(
-            ghost.position, size, ghost.rotation,
+            ghost.position, drawSize, ghost.rotation,
             mGhostColor, tex, ghost.texRect,
             cameraPos, ghost.scale,
             0.9f, currentAlpha, 0.0f, mAdditiveBlending

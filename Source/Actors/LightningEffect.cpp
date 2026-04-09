@@ -72,3 +72,11 @@ void LightningEffect::SetGlowThickness(float thickness) const {
 void LightningEffect::SetCoreThickness(float thickness) const {
     mDrawComponent->SetCoreThickness(thickness);
 }
+
+void LightningEffect::SetGlowColor(Vector3 color) const {
+    mDrawComponent->SetGlowColor(color);
+}
+
+void LightningEffect::SetCoreColor(Vector3 color) const {
+    mDrawComponent->SetCoreColor(color);
+}

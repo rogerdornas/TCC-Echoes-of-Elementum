@@ -26,6 +26,7 @@
 #include "Actors/Enemies/Snake.h"
 #include "Actors/Spawner.h"
 #include "Actors/Enemies/Bat.h"
+#include "Actors/Enemies/StoneGolem.h"
 
 WaveManager::WaveManager(Game *game)
     :mGame(game)
@@ -388,6 +389,12 @@ void WaveManager::SpawnEnemy(WaveAction& a) {
         mirrorBoss->SetArenaMinPos(Vector2(a.arenaMinPos.x, a.arenaMinPos.y));
         mirrorBoss->SetArenaMaxPos(Vector2(a.arenaMaxPos.x, a.arenaMaxPos.y));
         a.enemy = mirrorBoss;
+    }
+    if (a.enemyType == "StoneGolem") {
+        auto* stoneGolem = new StoneGolem(mGame);
+        stoneGolem->SetPosition(pos);
+        stoneGolem->SetSpottedPlayer(true);
+        a.enemy = stoneGolem;
     }
 }
 

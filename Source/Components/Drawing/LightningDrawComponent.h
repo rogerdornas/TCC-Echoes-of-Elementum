@@ -20,6 +20,8 @@ public:
     void SetPositions(Vector2 startPos, Vector2 endPos);
     void SetGlowThickness(float thickness) { mGlowThickness = thickness; }
     void SetCoreThickness(float thickness) { mCoreThickness = thickness; }
+    void SetGlowColor(Vector3 color) { mGlowColor = color; }
+    void SetCoreColor(Vector3 color) { mCoreColor = color; }
     void ClearLightningBolts();
     void GenerateLightningBolts(Vector2 startPos, Vector2 endPos, int numBolts, float spreadRadius, int generations, float maxOffset);
 
@@ -30,6 +32,8 @@ private:
     Vector2 mEndPos;
     float mGlowThickness;
     float mCoreThickness;
+    Vector3 mGlowColor;
+    Vector3 mCoreColor;
 
     std::vector<std::vector<Vector2>> mLightningBolts;
 

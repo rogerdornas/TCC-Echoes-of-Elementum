@@ -19,6 +19,8 @@ public:
     void SetDrawOrder(int drawOrder) const;
     void SetGlowThickness(float thickness) const;
     void SetCoreThickness(float thickness) const;
+    void SetGlowColor(Vector3 color) const;
+    void SetCoreColor(Vector3 color) const;
     void SetLightningGenerationIntervalDuration(float duration) { mLightningGenerationIntervalDuration = duration; }
     void SetNumBolts(int numBolts) { mNumBolts = numBolts; }
     void SetSpeadRadius (float  spreadRadius) { mSpreadRadius = spreadRadius; }

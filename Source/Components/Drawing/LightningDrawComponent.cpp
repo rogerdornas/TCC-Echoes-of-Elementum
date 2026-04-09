@@ -9,6 +9,8 @@
 LightningDrawComponent::LightningDrawComponent(Actor *owner, int drawOrder)
     :DrawComponent(owner, drawOrder)
     ,mAdditiveBlending(true)
+    ,mGlowColor(1.0f, 0.84f, 0.0f)
+    ,mCoreColor(1.0f, 1.0f, 1.0f)
 {
 }
 
@@ -17,9 +19,6 @@ void LightningDrawComponent::Draw(Renderer *renderer) {
         return;
     }
 
-    // Cor da eletricidade (Ciano vibrante)
-    Vector3 glowColor(1.0f, 0.84f, 0.0f);
-    Vector3 coreColor(1.0f, 1.0f, 1.0f);
     Vector2 cameraPos = GetGame()->GetCamera()->GetPosCamera();
 
     for (const auto& boltPoints : mLightningBolts) {
@@ -27,11 +26,11 @@ void LightningDrawComponent::Draw(Renderer *renderer) {
             Vector2 p1 = boltPoints[i];
             Vector2 p2 = boltPoints[i+1];
 
-            // O Glow (Mais grosso, translúcido, ciano)
-            renderer->DrawLine(p1, p2, glowColor, mGlowThickness, cameraPos, 0.5f, mAdditiveBlending);
+            // O Glow (Mais grosso, translúcido)
+            renderer->DrawLine(p1, p2, mGlowColor, mGlowThickness, cameraPos, 0.5f, mAdditiveBlending);
 
             // O Core (Fino, opaco, branco)
-            renderer->DrawLine(p1, p2, coreColor, mCoreThickness, cameraPos, 1.0f, mAdditiveBlending);
+            renderer->DrawLine(p1, p2, mCoreColor, mCoreThickness, cameraPos, 1.0f, mAdditiveBlending);
         }
     }
 }

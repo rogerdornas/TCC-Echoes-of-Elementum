@@ -56,7 +56,7 @@ Frog::Frog(Game* game)
     mMoveSpeed = 300;
     mHealthPoints = 400;
     mMaxHealthPoints = mHealthPoints;
-    mContactDamage = 10;
+    mContactDamage = 30;
     mMoneyDrop = 100;
     mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;

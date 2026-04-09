@@ -117,11 +117,6 @@ Golem::Golem(Game *game)
 
 void Golem::OnUpdate(float deltaTime) {
     if (mFlashTimer < mHitDuration) {
-        if (mFlashTimer == 0 && mGolemState != State::Punch) {
-            // if (mDrawAnimatedComponent) {
-            //     mDrawAnimatedComponent->ResetAnimationTimer();
-            // }
-        }
         mFlashTimer += deltaTime;
     }
     else {
@@ -292,7 +287,6 @@ void Golem::RunForward(float deltaTime) {
         mGolemState = State::Punch;
         return;
     }
-
 }
 
 void Golem::Punch(float deltaTime) {

@@ -39,7 +39,9 @@ LightningSpear::LightningSpear(Game *game)
 
     std::vector<int> idle = {0};
     mDrawComponent->AddAnimation("idle", idle);
-    mDrawComponent->SetAnimFPS(12.0f);
+
+    mDrawComponent->SetAnimation("idle");
+    mDrawComponent->SetAnimFPS(2.0f);
 
     mGhostTrailComponent = new GhostTrailComponent(this, mDrawComponent);
     mGhostTrailComponent->SetSpawnInterval(0.01f);

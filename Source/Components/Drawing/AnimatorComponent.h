@@ -31,6 +31,10 @@ public:
     class Texture* GetTexture() const { return mSpriteTexture; }
     int GetWidth() const { return mWidth; }
     int GetHeight() const { return mHeight; }
+    float GetCropWidth() const { return mCropW; }
+    float GetCropHeight() const { return mCropH; }
+
+    void SetFrameCrop(float x, float y, float w, float h);
 
     // Use to pause/unpause the animation
     void SetIsPaused(bool pause) { mIsPaused = pause; }
@@ -71,6 +75,11 @@ private:
     // Size
     int mWidth;
     int mHeight;
+
+    float mCropX;
+    float mCropY;
+    float mCropW;
+    float mCropH;
 
     float mTextureFactor;
 

@@ -38,9 +38,9 @@ private:
     class LightningEffect* mLightningEffect;
     float mLightningEffectWidth;
 
-    class AnimatorComponent *mDrawComponent;
-    class RigidBodyComponent *mRigidBodyComponent;
-    class ColliderComponent *mAABBComponent;
+    class AnimatorComponent* mDrawComponent;
+    class RigidBodyComponent* mRigidBodyComponent;
+    class ColliderComponent* mAABBComponent;
     class CombatBoxComponent* mCombatBoxComponent;
     class GhostTrailComponent* mGhostTrailComponent;
 };

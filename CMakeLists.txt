@@ -228,6 +228,16 @@ add_executable(${PROJECT_NAME}
         Source/UIScreens/ResolutionMenu.h
         Source/Actors/Enemies/Bat.cpp
         Source/Actors/Enemies/Bat.h
+        Source/Actors/Laser.cpp
+        Source/Actors/Laser.h
+        Source/Actors/Enemies/StoneGolem.cpp
+        Source/Actors/Enemies/StoneGolem.h
+        Source/Actors/GolemProjectile.cpp
+        Source/Actors/GolemProjectile.h
+        Source/Actors/LaserExplosion.cpp
+        Source/Actors/LaserExplosion.h
+        Source/Actors/LaserShooter.cpp
+        Source/Actors/LaserShooter.h
 )
 
 

@@ -17,6 +17,10 @@ AnimatorComponent::AnimatorComponent(class Actor* owner, const std::string &texP
     ,mIsPaused(false)
     ,mWidth(width)
     ,mHeight(height)
+    ,mCropX(0.0f)
+    ,mCropY(0.0f)
+    ,mCropW(1.0f)
+    ,mCropH(1.0f)
     ,mTextureFactor(1.0f)
     ,mAdditiveBlending(false)
     ,mFreezeLevel(0.0f)
@@ -37,6 +41,13 @@ AnimatorComponent::~AnimatorComponent()
     //     delete mSpriteTexture;
     //     mSpriteTexture = nullptr;
     // }
+}
+
+void AnimatorComponent::SetFrameCrop(float x, float y, float w, float h) {
+    mCropX = x;
+    mCropY = y;
+    mCropW = w;
+    mCropH = h;
 }
 
 bool AnimatorComponent::LoadSpriteSheetData(const std::string& dataPath)
@@ -76,7 +87,16 @@ bool AnimatorComponent::LoadSpriteSheetData(const std::string& dataPath)
 Vector4 AnimatorComponent::GetCurrentTexRect() {
     if (mAnimations.find(mAnimName) != mAnimations.end()) {
         int spriteIdx = mAnimations.at(mAnimName)[static_cast<int>(mAnimTimer)];
-        return mSpriteSheetData[spriteIdx];
+        Vector4 frameRect = mSpriteSheetData[spriteIdx];
+
+        // Aplica a matemática do recorte em cima do frame atual
+        Vector4 croppedRect;
+        croppedRect.x = frameRect.x + (frameRect.z * mCropX); // x inicial + offset x
+        croppedRect.y = frameRect.y + (frameRect.w * mCropY); // y inicial + offset y
+        croppedRect.z = frameRect.z * mCropW;                 // largura do frame * porcentagem
+        croppedRect.w = frameRect.w * mCropH;                 // altura do frame * porcentagem
+
+        return croppedRect;
     }
     return Vector4::UnitRect;
 }
@@ -85,17 +105,12 @@ void AnimatorComponent::Draw(Renderer* renderer)
 {
     if (mIsVisible)
     {
-        // Init with default full texture rect
-        Vector4 texRect = Vector4::UnitRect;
+        Vector4 texRect = GetCurrentTexRect();
 
-        // If we have sprite sheet data, get the current sprite rect
-        if (mAnimations.find(mAnimName) != mAnimations.end())
-        {
-            int spriteIdx = mAnimations[mAnimName][static_cast<int>(mAnimTimer)];
-            texRect = mSpriteSheetData[spriteIdx];
-        }
+        // Ajusta o tamanho de desenho físico para evitar que a textura seja esticada
+        Vector2 drawSize(mWidth * mCropW, mHeight * mCropH);
 
-        renderer->DrawTexture(mOwner->GetPosition(), Vector2(mWidth, mHeight), mOwner->GetTransformRotation(),
+        renderer->DrawTexture(mOwner->GetPosition(), drawSize, mOwner->GetTransformRotation(),
                               mColor, mSpriteTexture, texRect, GetGame()->GetCamera()->GetPosCamera(), mOwner->GetScale(), mTextureFactor, mAlpha, mFreezeLevel, mAdditiveBlending);
     }
 }

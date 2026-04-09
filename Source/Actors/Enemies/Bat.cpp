@@ -20,7 +20,6 @@ Bat::Bat(Game *game)
     ,mStopTimer(0.0f)
 
     ,mHitDuration(0.07f)
-    ,mHitTimer(0.0f)
 
     ,mWakeUpDuration(1.0f)
     ,mWakeUpTimer(0.0f)
