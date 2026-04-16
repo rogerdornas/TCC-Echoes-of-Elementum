@@ -16,6 +16,7 @@
 #include "Enemies/Mushroom.h"
 #include "PillarGround.h"
 #include "../Game.h"
+#include "../PlayerSkillManager.h"
 #include "../RadialMenu.h"
 #include "../Random.h"
 #include "../Actors/Sword.h"
@@ -38,6 +39,7 @@ Player::Player(Game* game)
     ,mElementalMode(ElementalMode::Fire)
     ,mWidth(45)
     ,mHeight(75)
+    ,mSkillManager(nullptr)
 
     ,mIsOnGround(false)
     ,mIsOnSpike(false)
@@ -51,7 +53,6 @@ Player::Player(Game* game)
     ,mMaxTimeOutOfWallToJump(0.07)
     ,mTimerOutOfWallToJump(0.0f)
 
-    ,mCanGlide(true)
     ,mIsGliding(false)
     ,mMinGlideDuration(0.25f)
     ,mGlideTimer(0.0f)
@@ -60,7 +61,7 @@ Player::Player(Game* game)
     ,mGlideInitialSpeedY(30)
     ,mMaxSpeedYGlide(300)
     ,mGlideGravity(1300)
-    ,mGlideManaCost(15)
+    ,mGlideManaCost(40)
     ,mIsGlideManaOver(false)
     ,mGlideEffect(nullptr)
 
@@ -70,12 +71,10 @@ Player::Player(Game* game)
     ,mJumpForce(-750.0f)
     ,mCanJump(true)
     ,mJumpCountInAir(0)
-    ,mMaxJumpsInAir(1)
     ,mLowGravity(50.0f)
     ,mMediumGravity(3300.0f)
     ,mHighGravity(4500.0f)
 
-    ,mCanDash(true)
     ,mDashSpeed(1500)
     ,mDashDuration(0.2f)
     ,mDashCooldown(0.5f)
@@ -88,7 +87,6 @@ Player::Player(Game* game)
     ,mLightningDashIFramesDuration(mLightningDashDuration + 0.2f)
     ,mLightningDashEffect(nullptr)
 
-    ,mCanFrenzyMode(true)
     ,mIsOnFrenzyMode(false)
     ,mFrenzyModeDuration(10.0f)
     ,mFrenzyModeTimer(0.0f)
@@ -98,7 +96,6 @@ Player::Player(Game* game)
     ,mFrenzyAuraTimer(0.2f)
     ,mFrenzyModeManaCost(60.0f)
 
-    ,mCanLightningSpear(true)
     ,mLightningSpearCooldownDuration(1.0f)
     ,mLightningSpearCooldownTimer(mLightningSpearCooldownDuration)
     ,mLightningSpearManaCost(20.0f)
@@ -107,7 +104,6 @@ Player::Player(Game* game)
     ,mPrevSkill1Pressed(false)
     ,mPrevSkill2Pressed(false)
 
-    ,mCanGroundSlam(true)
     ,mIsGroundSlamStarting(false)
     ,mIsGroundSlamRecovering(false)
     ,mIsDiving(false)
@@ -123,7 +119,7 @@ Player::Player(Game* game)
     ,mGroundSlamIFramesDuration(0.3f)
     ,mGroundSlamCameraShakeStrength(90.0f)
     ,mGroundSlamCameraShakeDuration(0.2f)
-    ,mGroundSlamManaCost(2.0f)
+    ,mGroundSlamManaCost(30.0f)
     ,mDiveEffect(nullptr)
     ,mGroundSlamImpactEffect(nullptr)
 
@@ -139,7 +135,6 @@ Player::Player(Game* game)
     ,mSwordHitSpike(false)
     ,mSwordHitKnockBack(750.0f)
 
-    ,mCanFireBall(true)
     ,mFireBallCooldownDuration(0.1f)
     ,mFireBallCooldownTimer(0.0f)
     ,mIsFireAttacking(false)
@@ -150,19 +145,17 @@ Player::Player(Game* game)
     ,mFireBallHeight(45)
     ,mFireballSpeed(1500)
     ,mFireballDamage(10.0f)
-    ,mMaxMana(90.0f)
+    ,mBaseMaxMana(90.0f)
     ,mMana(90.0f)
     ,mManaIncreaseRate(12.0f)
     ,mFireballManaCost(20.0f)
     ,mFireballAnimationDuration(0.2f)
     ,mFireballAnimationTimer(mFireballAnimationDuration)
 
-    ,mCanFireWisp(true)
     ,mFireWispCooldownDuration(10.0f)
     ,mFireWispCooldownTimer(mFireWispCooldownDuration)
     ,mFireWispManaCost(45.0f)
 
-    ,mCanFreeze(true)
     ,mIsFreezingFront(false)
     ,mIsFreezingUp(false)
     ,mIsFreezingDown(false)
@@ -170,14 +163,12 @@ Player::Player(Game* game)
     ,mIntervalBetweenFreezeEmitTimer(0.0f)
     ,mFreezeManaCost(2.0f)
 
-    ,mCanCreatePillar(true)
     ,mPillarDistanceFromPlayer(100.0f)
     ,mPillarManaCost(20.0f)
     ,mPillarAnimationDuration(0.5f)
     ,mPillarAnimationTimer(mPillarAnimationDuration)
     ,mAlreadyCreatedPillar(false)
 
-    ,mCanWallSlide(true)
     ,mIsWallSliding(false)
     ,mWallSlideSide(WallSlideSide::notSliding)
     ,mWallSlideSpeed(350)
@@ -198,8 +189,8 @@ Player::Player(Game* game)
     ,mKnockBackDuration(0.2f)
     ,mCameraShakeStrength(70.0f)
 
-    ,mMaxHealthPoints(70.0f)
-    ,mHealthPoints(mMaxHealthPoints)
+    ,mBaseMaxHealthPoints(70.0f)
+    ,mHealthPoints(mBaseMaxHealthPoints)
     ,mIsInvulnerable(false)
     ,mInvulnerableDuration(0.85f)
     ,mInvulnerableTimer(mInvulnerableDuration)
@@ -214,8 +205,11 @@ Player::Player(Game* game)
 
     ,mMoney(1000)
     ,mStartMoney(0)
+    ,mEarthStone(0)
+    ,mFireStone(0)
+    ,mIceStone(0)
+    ,mLightningStone(0)
 
-    ,mCanHook(true)
     ,mIsHooking(false)
     ,mPrevHookPressed(false)
     ,mHookDirection(Vector2::Zero)
@@ -272,6 +266,8 @@ Player::Player(Game* game)
     ,mCombatBoxComponent(nullptr)
     ,mGhostTrailComponent(nullptr)
 {
+    mSkillManager = new PlayerSkillManager(this);
+
     Vector2 v1(-mWidth / 2, -mHeight / 2);
     Vector2 v2(mWidth / 2, -mHeight / 2);
     Vector2 v3(mWidth / 2, mHeight / 2);
@@ -374,7 +370,7 @@ Player::Player(Game* game)
     mCombatBoxComponent->AddAABBBox("groundSlam", true, Vector2(-35, -60), Vector2(35, 60));
     // mCombatBoxComponent->SetDebugDraw(true);
 
-    mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, mSwordDuration, mSwordDamage);
+    mSword = new Sword(mGame, this, mSwordWidth * mSkillManager->GetSwordRangeMultiplier(), mSwordHeight * mSkillManager->GetSwordRangeMultiplier(), mSwordDuration, mSwordDamage);
 
     InitLight();
 
@@ -753,7 +749,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     }
 
     // Hook
-    if (mCanHook) {
+    if (mSkillManager->CanHook()) {
         std::vector<HookPoint* > hookPoints = mGame->GetHookPoints();
 
         HookPoint* nearestHookPoint = nullptr;
@@ -794,7 +790,7 @@ void Player::OnUpdate(float deltaTime) {
         }
     }
 
-    if (mSwordCooldownTimer < mSwordCooldownDuration) {
+    if (mSwordCooldownTimer < mSwordCooldownDuration * mSkillManager->GetSwordAttackSpeedMultiplier()) {
         mSwordCooldownTimer += deltaTime;
     }
 
@@ -876,10 +872,10 @@ void Player::OnUpdate(float deltaTime) {
         mIFramesTimer -= deltaTime;
     }
 
-    if (mMana < mMaxMana) {
+    if (mMana < mBaseMaxMana * mSkillManager->GetMaxManaMultiplier()) {
         mMana += mManaIncreaseRate * deltaTime;
-        if (mMana > mMaxMana) {
-            mMana = mMaxMana;
+        if (mMana > mBaseMaxMana * mSkillManager->GetMaxManaMultiplier()) {
+            mMana = mBaseMaxMana * mSkillManager->GetMaxManaMultiplier();
         }
     }
 
@@ -988,7 +984,7 @@ void Player::OnUpdate(float deltaTime) {
             mFrenzyAuraEffect->StartEffect(p1, p2);
         }
 
-        if (mFrenzyModeTimer >= mFrenzyModeDuration) {
+        if (mFrenzyModeTimer >= mFrenzyModeDuration * mSkillManager->GetFrenzyModeDurationMultiplier()) {
             StopFrenzyMode();
         }
     }
@@ -1068,7 +1064,7 @@ void Player::OnUpdate(float deltaTime) {
     }
 
     if (mIsGlideManaOver) {
-        if (mMana >= mMaxMana * 0.25f) {
+        if (mMana >= mBaseMaxMana * mSkillManager->GetMaxManaMultiplier() * 0.25f) {
             mIsGlideManaOver = false;
         }
     }
@@ -1420,7 +1416,7 @@ void Player::ResolveGroundCollision() {
                 }
 
                 //colidiu pelas laterais
-                if (mCanWallSlide) {
+                if (mSkillManager->CanWallSlide()) {
                     if ((collisionNormal == Vector2::NegUnitX || collisionNormal == Vector2::UnitX)) {
                         isCollidingSides = true;
                         // Testa se não está dashando para não bugar quando dar um dash na quina de baixo e inverter a direção do dash
@@ -1667,7 +1663,7 @@ void Player::ResolveEnemyCollision() {
                 if (hitResult.hitTag == "lightningDash") {
                     auto it = std::find(mEnemiesHitByCurrentDash.begin(), mEnemiesHitByCurrentDash.end(), e);
                     if (it == mEnemiesHitByCurrentDash.end()) {
-                        e->ReceiveHit(mLightningDashDamage, GetForward(), false);
+                        e->ReceiveHit(mLightningDashDamage * mSkillManager->GetLightningDashDamageMultiplier(), GetForward(), false);
                         mEnemiesHitByCurrentDash.push_back(e);
                     }
                 }
@@ -1691,7 +1687,7 @@ void Player::ResolveEnemyCollision() {
             if (hitResult.isValid) {
                 auto it = std::find(mEnemiesHitBySword.begin(), mEnemiesHitBySword.end(), e);
                 if (it == mEnemiesHitBySword.end()) {
-                    e->ReceiveHit(mSword->GetDamage(), mSword->GetForward());
+                    e->ReceiveHit(mSword->GetDamage() * mSkillManager->GetSwordDamageMultiplier(), mSword->GetForward());
                     if (mSword->GetRotation() == Math::Pi / 2) {
                         if (!mDashComponent->GetIsDashing()) {
                             if (auto* mushroom = dynamic_cast<Mushroom*>(e)) {
@@ -1739,14 +1735,14 @@ void Player::Stop() {
 
 void Player::ResetCooldown() {
     mGlideCooldownTimer = mGlideCooldownDuration;
-    mSwordCooldownTimer = mSwordCooldownDuration;
+    mSwordCooldownTimer = mSwordCooldownDuration * mSkillManager->GetSwordAttackSpeedMultiplier();
     mFireBallCooldownTimer = mFireBallCooldownDuration;
     mFireWispCooldownTimer = mFireWispCooldownDuration;
     mLightningSpearCooldownTimer = mLightningSpearCooldownDuration;
 }
 
 void Player::UseDash() {
-    if (mCanDash) {
+    if (mSkillManager->CanDash()) {
         if (!mIsFireAttacking && !mIsDiving && !mIsHookThrowing && !mIsHooking) {
             if (mIsWallSliding && mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
                 if (mWallSlideSide == WallSlideSide::left) {
@@ -1792,7 +1788,7 @@ void Player::UseDash() {
 
 void Player::UseFrenzyMode() {
     if (mElementalMode == ElementalMode::Lightning) {
-        if (mCanFrenzyMode &&
+        if (mSkillManager->CanFrenzyMode() &&
             !mIsOnFrenzyMode &&
             !mIsGroundSlamStarting &&
             !mIsGroundSlamRecovering &&
@@ -1821,7 +1817,7 @@ void Player::StopFrenzyMode() {
 }
 
 void Player::UseLightningSpear() {
-    if (mCanLightningSpear && mElementalMode == ElementalMode::Lightning) {
+    if (mSkillManager->CanLightningSpear() && mElementalMode == ElementalMode::Lightning) {
         if (!mPrevSkill1Pressed &&
             mLightningSpearCooldownTimer >= mLightningSpearCooldownDuration &&
             mMana >= mLightningSpearManaCost &&
@@ -1849,7 +1845,7 @@ void Player::UseLightningSpear() {
 
 void Player::UseGroundSlam() {
     if (mElementalMode == ElementalMode::Earth) {
-        if (mCanGroundSlam &&
+        if (mSkillManager->CanGroundSlam() &&
             !mPrevSkill1Pressed &&
             !mIsGroundSlamStarting &&
             !mIsGroundSlamRecovering &&
@@ -1941,7 +1937,7 @@ void Player::GroundSlamEffects() {
 }
 
 void Player::Glide() {
-    if (mCanGlide &&
+    if (mSkillManager->CanGlide() &&
         mElementalMode == ElementalMode::Ice &&
         mGlideCooldownTimer >= mGlideCooldownDuration &&
         !mIsOnGround &&
@@ -2006,7 +2002,7 @@ void Player::UseJump() {
                 mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
             }
             // Pulo no ar
-            if (!(mIsOnGround || mIsWallSliding) && mJumpCountInAir < mMaxJumpsInAir && mCanJump
+            if (!(mIsOnGround || mIsWallSliding) && mJumpCountInAir < mSkillManager->MaxJumpsInAir() && mCanJump
                 && (mWallJumpTimer >= mWallJumpMaxTime) && !mIsGliding) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce * 0.8f)
                                                  + mMovingGroundVelocity);
@@ -2032,7 +2028,7 @@ void Player::UseJump() {
 }
 
 void Player::UseSword() {
-    if (!mPrevSwordPressed && mSwordCooldownTimer >= mSwordCooldownDuration &&
+    if (!mPrevSwordPressed && mSwordCooldownTimer >= mSwordCooldownDuration * mSkillManager->GetSwordAttackSpeedMultiplier() &&
         !mDashComponent->GetIsDashing() && !mIsDiving)
     {
         mGame->GetAudio()->PlayVariantSound("SwordSlash/SwordSlash.wav", 11);
@@ -2066,7 +2062,7 @@ void Player::UseSword() {
 }
 
 void Player::UseFireBall() {
-    if (mCanFireBall && mElementalMode == ElementalMode::Fire) {
+    if (mSkillManager->CanFireBall() && mElementalMode == ElementalMode::Fire) {
         if (!mPrevSkill1Pressed &&
             mFireBallCooldownTimer >= mFireBallCooldownDuration &&
             mMana >= mFireballManaCost &&
@@ -2089,10 +2085,10 @@ void Player::UseFireBall() {
                     f->SetRotation(GetRotation());
                     f->SetTransformRotation(0.0f);
                     f->SetScale(Vector2(GetForward().x, 1));
-                    f->SetWidth(mFireballWidth);
-                    f->SetHeight(mFireBallHeight);
+                    f->SetWidth(mFireballWidth * mSkillManager->GetFireBallSizeMultiplier());
+                    f->SetHeight(mFireBallHeight * mSkillManager->GetFireBallSizeMultiplier());
                     f->SetSpeed(mFireballSpeed);
-                    f->SetDamage(mFireballDamage);
+                    f->SetDamage(mFireballDamage * mSkillManager->GetFireBallDamageMultiplier());
                     f->SetPosition(GetPosition() + f->GetForward() * (f->GetWidth() / 2));
                     mIsFireAttacking = true;
                     mStopInAirFireBallTimer = 0;
@@ -2108,7 +2104,7 @@ void Player::UseFireBall() {
 }
 
 void Player::UseFireWisp() {
-    if (mCanFireWisp && mElementalMode == ElementalMode::Fire) {
+    if (mSkillManager->CanFireWisp() && mElementalMode == ElementalMode::Fire) {
         if (!mPrevSkill2Pressed &&
             mFireWispCooldownTimer >= mFireWispCooldownDuration &&
             mMana >= mFireWispManaCost &&
@@ -2122,7 +2118,7 @@ void Player::UseFireWisp() {
 }
 
 void Player::UseFreeze(bool up, bool down) {
-    if (mCanFreeze && mElementalMode == ElementalMode::Ice) {
+    if (mSkillManager->CanFreeze() && mElementalMode == ElementalMode::Ice) {
         if (mMana >= mFreezeManaCost && !mDashComponent->GetIsDashing() && !mIsDiving) {
             AttachedEffect freezeEffect;
             if (mIntervalBetweenFreezeEmitTimer >= mIntervalBetweenFreezeEmitDuration) {
@@ -2218,7 +2214,7 @@ void Player::UseFreeze(bool up, bool down) {
 }
 
 void Player::UsePillar() {
-    if (mCanCreatePillar && mElementalMode == ElementalMode::Earth) {
+    if (mSkillManager->CanCreatePillar() && mElementalMode == ElementalMode::Earth) {
         if (!mPrevSkill2Pressed &&
             mMana >= mPillarManaCost &&
             mPillarAnimationTimer >= mPillarAnimationDuration &&
@@ -2235,14 +2231,14 @@ void Player::UsePillar() {
 }
 
 void Player::UseHeal() {
-    if (mHealCount > 0 && mHealthPoints < mMaxHealthPoints && mIsOnGround) {
+    if (mHealCount > 0 && mHealthPoints < mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier() && mIsOnGround) {
         mIsHealing = true;
         if (mHealAnimationTimer >= mHealAnimationDuration) {
             mHealAnimationTimer = 0;
-            mHealthPoints += mHealAmount;
+            mHealthPoints += mHealAmount * mSkillManager->GetHealAmountMultiplier();
             mHealCount--;
-            if (mHealthPoints > mMaxHealthPoints) {
-                mHealthPoints = mMaxHealthPoints;
+            if (mHealthPoints > mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier()) {
+                mHealthPoints = mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier();
             }
         }
     }
@@ -2253,7 +2249,7 @@ void Player::UseHeal() {
 }
 
 void Player::UseHook(HookPoint* nearestHookPoint) {
-    if (mCanHook) {
+    if (mSkillManager->CanHook()) {
         if (nearestHookPoint &&
             !mPrevHookPressed &&
             !mDashComponent->GetIsDashing() &&
@@ -2371,6 +2367,67 @@ void Player::IceTransformationEffect() {
 
 void Player::EarthTransformationEffect() {
 
+}
+
+void Player::IncreaseStone(std::string stoneType, int value) {
+    if (stoneType == "earthStone") {
+        mEarthStone += value;
+    }
+    else if (stoneType == "fireStone") {
+        mFireStone += value;
+    }
+    else if (stoneType == "iceStone") {
+        mIceStone += value;
+    }
+    else if (stoneType == "lightningStone") {
+        mLightningStone += value;
+    }
+}
+
+void Player::DecreaseStone(std::string stoneType, int value) {
+    if (stoneType == "earthStone") {
+        mEarthStone -= value;
+    }
+    else if (stoneType == "fireStone") {
+        mFireStone -= value;
+    }
+    else if (stoneType == "iceStone") {
+        mIceStone -= value;
+    }
+    else if (stoneType == "lightningStone") {
+        mLightningStone -= value;
+    }
+}
+
+int Player::GetStone(std::string stoneType) {
+    if (stoneType == "earthStone") {
+        return mEarthStone;
+    }
+    else if (stoneType == "fireStone") {
+        return mFireStone;
+    }
+    else if (stoneType == "iceStone") {
+        return mIceStone;
+    }
+    else if (stoneType == "lightningStone") {
+        return mLightningStone;
+    }
+    return 0;
+}
+
+void Player::SetStone(std::string stoneType, int value) {
+    if (stoneType == "earthStone") {
+        mEarthStone = value;
+    }
+    else if (stoneType == "fireStone") {
+        mFireStone = value;
+    }
+    else if (stoneType == "iceStone") {
+        mIceStone = value;
+    }
+    else if (stoneType == "lightningStone") {
+        mLightningStone = value;
+    }
 }
 
 void Player::ManageCombatBoxes(float deltaTime) {

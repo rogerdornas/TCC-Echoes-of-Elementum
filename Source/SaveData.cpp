@@ -5,6 +5,9 @@
 #include "SaveData.h"
 #include "Json.h"
 #include <fstream>
+#include <iostream>
+
+#include "PlayerSkillManager.h"
 
 SaveData::SaveData(class Game *game)
     :mGame(game)
@@ -16,22 +19,19 @@ SaveData::SaveData(class Game *game)
     ,mSFXAudio(1.0f)
 
     ,mLastCheckpointPosition(Vector2(1952, 4352))
-    ,mElementalMode(Player::ElementalMode::Fire)
-    ,mMoney(0)
-    ,mCanDash(false)
-    ,mCanFireBall(false)
-    ,mCanWallSlide(false)
-    ,mMaxJumpsInAir(0)
-    ,mCanHook(false)
-    ,mDeathCounter(0)
 
-    ,mSwordRangeUpgrade(false)
-    ,mSwordDamageUpgrade(false)
-    ,mSwordSpeedUpgrade(false)
-    ,mHealthPointsUpgrade(false)
-    ,mHealCountUpgrade(false)
-    ,mManaUpgrade(false)
-    ,mFireballUpgrade(false)
+    ,mHasEarthMode(false)
+    ,mHasFireMode(false)
+    ,mHasIceMode(false)
+    ,mHasLightningMode(false)
+    ,mCurrentElementalMode(Player::ElementalMode::Earth)
+
+    ,mMoney(0)
+    ,mDeathCounter(0)
+    ,mMaxJumpsInAir(0)
+    ,mCanDash(false)
+    ,mCanWallSlide(false)
+    ,mCanHook(false)
 {
 }
 
@@ -49,28 +49,43 @@ void SaveData::Save(const std::string &filename) {
     j["world_state"] = mWorldState;
 
     j["player"] = {
-        {"elemental_mode", ElementalModeToString(mElementalMode)},
-        {"can_dash", mCanDash},
         {"money", mMoney},
+        {"death_counter", mDeathCounter},
+        {"elemental_mode", ElementalModeToString(mCurrentElementalMode)},
         {"max_jumps_in_air", mMaxJumpsInAir},
-        {"can_fireball", mCanFireBall},
+        {"can_dash", mCanDash},
         {"can_wallslide", mCanWallSlide},
-        {"can_hook", mCanHook},
-        {"death_counter", mDeathCounter}
+        {"can_hook", mCanHook}
+    };
+    j["player"]["elemental_modes"] = {
+        {"has_earth", mHasEarthMode},
+        {"has_fire", mHasFireMode},
+        {"has_ice", mHasIceMode},
+        {"has_lightning", mHasLightningMode}
     };
 
-    j["upgrades"] = {
-        {"sword_range", mSwordRangeUpgrade},
-        {"sword_damage", mSwordDamageUpgrade},
-        {"sword_speed", mSwordSpeedUpgrade},
-        {"health_points", mHealthPointsUpgrade},
-        {"heal_count", mHealCountUpgrade},
-        {"mana", mManaUpgrade},
-        {"fireball", mFireballUpgrade}
-    };
+    j["skill_tree"]["unlocked_nodes"] = mUnlockedSkillNodes;
 
-    std::ofstream file(filename);
-    file << j.dump(4); // 4 = identação
+    std::string tempFilename = filename + ".tmp";
+    std::ofstream file(tempFilename);
+
+    if (!file.is_open()) {
+        // não foi possível criar o arquivo temporário
+        return;
+    }
+
+    // Escreve os dados
+    file << j.dump(4); // Identação
+
+    file.flush();
+    if (file.good()) {
+        file.close();
+        std::remove(filename.c_str());
+        std::rename(tempFilename.c_str(), filename.c_str());
+    } else {
+        file.close();
+        std::remove(tempFilename.c_str());
+    }
 }
 
 bool SaveData::Load(const std::string &filename) {
@@ -93,22 +108,27 @@ bool SaveData::Load(const std::string &filename) {
 
     mWorldState = j["world_state"];
 
-    mElementalMode = StringToElementalMode(j["player"]["elemental_mode"]);
+    mCurrentElementalMode = StringToElementalMode(j["player"]["elemental_mode"]);
     mMoney = j["player"]["money"];
-    mCanDash = j["player"]["can_dash"];
-    mMaxJumpsInAir = j["player"]["max_jumps_in_air"];
-    mCanFireBall = j["player"]["can_fireball"];
-    mCanWallSlide = j["player"]["can_wallslide"];
-    mCanHook = j["player"]["can_hook"];
     mDeathCounter = j["player"]["death_counter"];
 
-    mSwordRangeUpgrade = j["upgrades"]["sword_range"];
-    mSwordDamageUpgrade = j["upgrades"]["sword_damage"];
-    mSwordSpeedUpgrade = j["upgrades"]["sword_speed"];
-    mHealthPointsUpgrade = j["upgrades"]["health_points"];
-    mHealCountUpgrade = j["upgrades"]["heal_count"];
-    mManaUpgrade = j["upgrades"]["mana"];
-    mFireballUpgrade = j["upgrades"]["fireball"];
+    mMaxJumpsInAir = j["player"]["max_jumps_in_air"];
+    mCanDash = j["player"]["can_dash"];
+    mCanWallSlide = j["player"]["can_wallslide"];
+    mCanHook = j["player"]["can_hook"];
+
+    mHasEarthMode = j["player"]["elemental_modes"]["has_earth"];
+    mHasFireMode = j["player"]["elemental_modes"]["has_fire"];
+    mHasIceMode = j["player"]["elemental_modes"]["has_ice"];
+    mHasLightningMode = j["player"]["elemental_modes"]["has_lightning"];
+
+    // Carregando a árvore
+    mUnlockedSkillNodes.clear();
+    if (j.contains("skill_tree") && j["skill_tree"].contains("unlocked_nodes")) {
+        for (const auto& node_id : j["skill_tree"]["unlocked_nodes"]) {
+            mUnlockedSkillNodes.push_back(node_id);
+        }
+    }
 
     return true;
 }
@@ -168,45 +188,28 @@ Player::ElementalMode SaveData::StringToElementalMode(const std::string &str) {
 }
 
 void SaveData::ApplyToGame() {
+    mGame->SetCheckPointPosition(mLastCheckpointPosition);
+    mGame->SetCheckpointGameScene(mGameScene);
     mGame->SetGameScene(mGameScene, 0.5f);
     mGame->SetTotalPlayTime(mTotalPlayTime);
 }
 
 void SaveData::ApplyToPlayer() {
     Player* player = mGame->GetPlayer();
+    PlayerSkillManager* psm = player->GetSkillManager();
+
     player->SetPosition(mLastCheckpointPosition);
     player->SetStartingPosition(mLastCheckpointPosition);
-    player->SetElementalMode(mElementalMode);
+    player->SetElementalMode(mCurrentElementalMode);
     player->SetMoney(mMoney);
-    player->SetCanDash(mCanDash);
-    player->SetMaxJumpsInAir(mMaxJumpsInAir);
-    player->SetCanFireBall(mCanFireBall);
-    player->SetCanWallSlide(mCanWallSlide);
-    player->SetCanHook(mCanHook);
     player->SetDeathCounter(mDeathCounter);
 
-    Store* store = mGame->GetStore();
-    if (mSwordRangeUpgrade) {
-        store->UpgradePlayerSwordRange();
-    }
-    if (mSwordDamageUpgrade) {
-        store->UpgradePlayerSwordDamage();
-    }
-    if (mSwordSpeedUpgrade) {
-        store->UpgradePlayerSwordSpeed();
-    }
-    if (mHealthPointsUpgrade) {
-        store->UpgradePlayerHealthPoints();
-    }
-    if (mHealCountUpgrade) {
-        store->UpgradePlayerHealCount();
-    }
-    if (mManaUpgrade) {
-        store->UpgradePlayerMana();
-    }
-    if (mFireballUpgrade) {
-        store->UpgradePlayerFireball();
-    }
+    if (mMaxJumpsInAir == 1) psm->UnlockMechanic("double_jump");
+    if (mCanDash) psm->UnlockMechanic("dash");
+    if (mCanWallSlide) psm->UnlockMechanic("wall_slide");
+    if (mCanHook) psm->UnlockMechanic("hook");
+
+    mGame->GetSkillTreeManager()->LoadUnlockedNodes(mUnlockedSkillNodes, psm);
 }
 
 void SaveData::ApplyWorldState() {
@@ -221,7 +224,6 @@ void SaveData::ApplyConfigs() {
 }
 
 void SaveData::CaptureFromGame() {
-    Player* player = mGame->GetPlayer();
     mGameScene = mGame->GetCheckpointGameScene();
     mLastCheckpointPosition.x = mGame->GetCheckPointPosition().x;
     mLastCheckpointPosition.y = mGame->GetCheckPointPosition().y;
@@ -233,21 +235,23 @@ void SaveData::CaptureFromGame() {
 
     mWorldState = mGame->GetWorldState();
 
-    mElementalMode = player->GetElementalMode();
+    Player* player = mGame->GetPlayer();
+    PlayerSkillManager* psm = player->GetSkillManager();
+
+    mMaxJumpsInAir = psm->MaxJumpsInAir();
+    mCanDash = psm->CanDash();
+    mCanWallSlide = psm->CanWallSlide();
+    mCanHook = psm->CanHook();
+
+    mHasEarthMode = psm->HasEarthMode();
+    mHasFireMode = psm->HasFireMode();
+    mHasIceMode = psm->HasIceMode();
+    mHasLightningMode = psm->HasLightningMode();
+    mCurrentElementalMode = player->GetElementalMode();
+
     mMoney = player->GetMoney();
-    mCanDash = player->GetCanDash();
-    mMaxJumpsInAir = player->GetMaxJumpsInAir();
-    mCanFireBall = player->GetCanFireBall();
-    mCanWallSlide = player->GetCanWallSlide();
-    mCanHook = player->GetCanHook();
     mDeathCounter = player->GetDeathCounter();
 
-    Store* store = mGame->GetStore();
-    mSwordRangeUpgrade = store->GetSwordRangeUpgrade();
-    mSwordDamageUpgrade = store->GetSwordDamageUpgrade();
-    mSwordSpeedUpgrade = store->GetSwordSpeedUpgrade();
-    mHealthPointsUpgrade = store->GetHealthPointsUpgrade();
-    mHealCountUpgrade = store->GetHealCountUpgrade();
-    mManaUpgrade = store->GetManaUpgrade();
-    mFireballUpgrade = store->GetFireballUpgrade();
+    // Captura a lista da árvore
+    mUnlockedSkillNodes = mGame->GetSkillTreeManager()->GetUnlockedNodesIDs();
 }

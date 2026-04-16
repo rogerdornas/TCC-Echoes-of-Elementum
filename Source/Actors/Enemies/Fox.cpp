@@ -18,6 +18,7 @@
 #include "../FireBall.h"
 #include "../../Random.h"
 #include "../DynamicGround.h"
+#include "../../PlayerSkillManager.h"
 
 
 Fox::Fox(Game* game)
@@ -158,7 +159,7 @@ void Fox::OnUpdate(float deltaTime) {
 
 void Fox::TriggerBossDefeat() {
     // Player ganha pulo duplo
-    if (mGame->GetPlayer()->GetMaxJumpsInAir() == 0) {
+    if (mGame->GetPlayer()->GetSkillManager()->MaxJumpsInAir() == 0) {
         auto* skill = new Skill(mGame, Skill::SkillType::DoubleJump);
         skill->SetPosition(GetPosition());
     }

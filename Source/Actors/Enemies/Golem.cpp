@@ -15,6 +15,7 @@
 #include "../../Components/Drawing/RectComponent.h"
 #include "../../Components/CombatBoxComponent.h"
 #include "../FireBall.h"
+#include "../../PlayerSkillManager.h"
 #include "../../Random.h"
 
 Golem::Golem(Game *game)
@@ -424,10 +425,11 @@ void Golem::SpawCrystal(Vector2 position) {
 
 void Golem::TriggerBossDefeat() {
     // Player ganha bola de fogo
-    if (!mGame->GetPlayer()->GetCanFireBall()) {
-        auto* skill = new Skill(mGame, Skill::SkillType::FireBall);
-        skill->SetPosition(GetPosition());
-    }
+    // if (!mGame->GetPlayer()->GetCanFireBall()) {
+    // if (!mGame->GetPlayer()->GetSkillManager()->CanFireBall()) {
+    //     auto* skill = new Skill(mGame, Skill::SkillType::FireBall);
+    //     skill->SetPosition(GetPosition());
+    // }
 
     mGame->SetWorldFlag("GolemDefeated", true);
     mGame->StopBossMusic();

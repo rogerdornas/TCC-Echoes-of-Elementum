@@ -98,7 +98,6 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mZoomSpeed(1.0f)
     ,mCamera(nullptr)
     ,mPlayer(nullptr)
-    ,mStore(nullptr)
     ,mLevelData(nullptr)
     ,mLevelDataDynamicGrounds(nullptr)
     ,mMap(nullptr)
@@ -246,7 +245,7 @@ bool Game::Initialize()
 
     SetGameScene(GameScene::MainMenu);
 
-    mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
+    mSkillTreeManager = new SkillTreeManager();
 
     mSaveData = new SaveData(this);
     mSaveManager = new SaveManager(this);
@@ -876,19 +875,15 @@ void Game::LoadLevelSelectMenu() {
 void Game::BackToMenu() {
     SaveGame();
     SetGameScene(GameScene::MainMenu, 0.5f);
-    mPauseMenu->Close();
-    if (mStore->StoreOpened()) {
-        mStore->CloseStore();
-    }
 }
 
-void Game::ResetPlayerAndStore() {
+void Game::ResetPlayerAndSkillTree() {
     delete mPlayer;
     mPlayer = nullptr;
     mPlayerDeathCounter = 0;
-    delete mStore;
-    mStore = nullptr;
-    mStore = new Store(this, "../Assets/Fonts/K2D-Bold.ttf");
+    delete mSkillTreeManager;
+    mSkillTreeManager = nullptr;
+    mSkillTreeManager = new SkillTreeManager();
 }
 
 void Game::RebindKeyboard(UIText *text, Action action) {
@@ -2304,18 +2299,6 @@ void Game::ProcessInput()
                         mUIStack.back()->HandleKeyPress(event.key.keysym.sym, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, 0);
                     }
 
-                    // if (event.key.keysym.sym == SDLK_ESCAPE) {
-                    //     if (!mStore->StoreOpened() && mGameScene != GameScene::MainMenu) {
-                    //         TogglePause();
-                    //         if (mIsPaused) {
-                    //             LoadPauseMenu();
-                    //         }
-                    //         else {
-                    //             mPauseMenu->Close();
-                    //         }
-                    //     }
-                    // }
-
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
                         // if (!mShowMap &&
                         //     mGameScene != GameScene::MainMenu &&
@@ -2330,15 +2313,8 @@ void Game::ProcessInput()
                                         break;
                                     }
                                 }
-                                if (mPauseMenu && mPauseMenu->GetState() == UIScreen::UIState::Closing) {
-                                    TogglePause();
-                                }
-                                if (mStore->StoreOpened()) {
-                                    mStore->CloseStore();
-                                }
                             }
                             else {
-                                TogglePause();
                                 mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
                             }
                         }
@@ -2390,6 +2366,12 @@ void Game::ProcessInput()
                 }
                 break;
 
+            case SDL_KEYUP:
+                if (!mUIStack.empty()) {
+                    mUIStack.back()->HandleKeyRelease(event.key.keysym.sym, SDL_CONTROLLER_BUTTON_INVALID);
+                }
+                break;
+
             case SDL_CONTROLLERBUTTONDOWN:
                 if (mWaitingForButton) {
                     auto button = event.cbutton.button;
@@ -2426,18 +2408,6 @@ void Game::ProcessInput()
                         mUIStack.back()->HandleKeyPress(-1, event.cbutton.button, 0, 0, 0, 0);
                     }
 
-                    // if (event.cbutton.button == SDL_CONTROLLER_BUTTON_START) {
-                    //     if (!mStore->StoreOpened() && mGameScene != GameScene::MainMenu) {
-                    //         TogglePause();
-                    //         if (mIsPaused) {
-                    //             LoadPauseMenu();
-                    //         }
-                    //         else {
-                    //             mPauseMenu->Close();
-                    //         }
-                    //     }
-                    // }
-
                     if (event.cbutton.button == SDL_CONTROLLER_BUTTON_START) {
                         // if (!mShowMap &&
                         //     mGameScene != GameScene::MainMenu &&
@@ -2448,11 +2418,9 @@ void Game::ProcessInput()
                             if (mIsPaused) {
                                 if (mUIStack.back() == mPauseMenu) {
                                     mPauseMenu->Close();
-                                    TogglePause();
                                 }
                             }
                             else {
-                                TogglePause();
                                 mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
                             }
                         }
@@ -2470,12 +2438,6 @@ void Game::ProcessInput()
                                         (*iter)->Close();
                                         break;
                                     }
-                                }
-                                if (mPauseMenu && mPauseMenu->GetState() == UIScreen::UIState::Closing) {
-                                    TogglePause();
-                                }
-                                if (mStore->StoreOpened()) {
-                                    mStore->CloseStore();
                                 }
                             }
                         }
@@ -2497,6 +2459,12 @@ void Game::ProcessInput()
                         //     }
                         // }
                     }
+                }
+                break;
+
+            case SDL_CONTROLLERBUTTONUP:
+                if (!mUIStack.empty()) {
+                    mUIStack.back()->HandleKeyRelease(-1, event.cbutton.button);
                 }
                 break;
 
@@ -2956,12 +2924,11 @@ void Game::UpdateGame()
     }
 
     if (mBackToCheckpoint) {
-        // mStore->CloseStoreMessage();
         SetGameScene(mCheckpointGameScene, 1.5f);
         mPlayer->ResetHealthPoints();
         mPlayer->ResetMana();
         mPlayer->ResetHealCount();
-        mPlayer->SetMoney(mCheckPointMoney);
+        SaveGame();
         mBackToCheckpoint = false;
     }
 
@@ -3667,8 +3634,8 @@ void Game::Shutdown()
     delete mPlayer;
     mPlayer = nullptr;
 
-    delete mStore;
-    mStore = nullptr;
+    delete mSkillTreeManager;
+    mSkillTreeManager = nullptr;
 
     // Delete map
     // if (mMap) {

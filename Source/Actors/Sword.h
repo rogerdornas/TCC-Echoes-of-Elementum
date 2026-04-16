@@ -31,7 +31,7 @@ private:
     float mDurationTimer;
     float mDamage;
 
-    Actor *mOwner;
+    Actor* mOwner;
 
     class RectComponent* mRectComponent;
     class AnimatorComponent* mDrawComponent;

@@ -16,6 +16,7 @@
 #include "../../Components/Drawing/RectComponent.h"
 #include "../../Random.h"
 #include "../DynamicGround.h"
+#include "../../PlayerSkillManager.h"
 
 
 Frog::Frog(Game* game)
@@ -216,7 +217,7 @@ void Frog::TriggerBossDefeat() {
     mTongue->SetState(ActorState::Destroy);
 
     // Player ganha wall slide
-    if (!mGame->GetPlayer()->GetCanWallSlide()) {
+    if (!mGame->GetPlayer()->GetSkillManager()->CanWallSlide()) {
         auto* skill = new Skill(mGame, Skill::SkillType::WallSlide);
         skill->SetPosition(GetPosition());
         if (skill->GetPosition().y < mArenaMaxPos.y - 320) {

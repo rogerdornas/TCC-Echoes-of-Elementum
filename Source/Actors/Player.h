@@ -9,6 +9,7 @@
 #include "../Actors/JumpEffect.h"
 #include "../Actors/Sword.h"
 #include "../AudioSystem.h"
+#include "../PlayerSkillManager.h"
 
 class ParticleSystem;
 
@@ -42,60 +43,59 @@ public:
     void SetElementalMode(ElementalMode mode);
     ElementalMode GetElementalMode() { return mElementalMode; }
 
+    class PlayerSkillManager* GetSkillManager() const { return mSkillManager; }
+
     bool GetIsOnGround() const { return mIsOnGround; }
-    void SetMaxJumpsInAir(int jumps) { mMaxJumpsInAir = jumps; }
-    int GetMaxJumpsInAir() const { return mMaxJumpsInAir; }
 
     void SetStartingPosition(Vector2 pos) { mStartingPosition = pos; }
     Vector2 GetStartingPosition() const { return mStartingPosition; }
 
     void ReceiveHit(float damage, Vector2 knockBackDirection, DamageType damageType = DamageType::Normal);
-    void SetCanFireBall(bool canFireBall) { mCanFireBall = canFireBall; }
-    bool GetCanFireBall() const { return mCanFireBall; }
-
-    void SetCanWallSlide(bool canWallSlide) { mCanWallSlide = canWallSlide; }
-    bool GetCanWallSlide() const { return mCanWallSlide; }
 
     class Sword* GetSword() const { return mSword; }
     void SetSword() { mSword = new Sword(mGame, this, mSwordWidth, mSwordHeight, mSwordDuration, mSwordDamage); }
     void SetSwordWidth(float width) { mSwordWidth = width; }
+    float GetSwordWidth() const { return mSwordWidth; }
     void SetSwordHeight(float height) { mSwordHeight = height; }
+    float GetSwordHeight() const { return mSwordHeight; }
     void SetSwordDamage(float damage) { mSwordDamage = damage; }
 
-    void SetCanDash(bool canDash) { mCanDash = canDash; }
-    bool GetCanDash() const { return mCanDash; }
     bool IsLightningDashing() { return mIsLightningDashing; }
 
     void Stop();
 
     void ResetCooldown();
 
-    void SetCanHook(bool canHook) { mCanHook = canHook; }
-    bool GetCanHook() const { return mCanHook; }
 
-    void ResetHealthPoints() { mHealthPoints = mMaxHealthPoints; }
+    void ResetHealthPoints() { mHealthPoints = mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier(); }
     float GetHealthPoints() const { return mHealthPoints; }
     void SetHealthPoints(float HP) { mHealthPoints = HP; }
-    float GetMaxHealthPoints() const { return mMaxHealthPoints; }
-    void SetMaxHealthPoints(float maxHealthPoints) { mMaxHealthPoints = maxHealthPoints; }
+    float GetMaxHealthPoints() const { return mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier(); }
+    void SetMaxHealthPoints(float maxHealthPoints) { mBaseMaxHealthPoints = maxHealthPoints; }
     void SetIsInvulnerable(bool isInvulnerable) { mIsInvulnerable = isInvulnerable; }
     void SetInvulnerableTimer(float invulnerableTimer) { mInvulnerableTimer = invulnerableTimer; }
 
-    void ResetMana() { mMana = mMaxMana; }
+    void ResetMana() { mMana = mBaseMaxMana * mSkillManager->GetMaxManaMultiplier(); }
     float GetMana() const { return mMana; }
-    float GetMaxMana() const { return mMaxMana; }
-    void SetMaxMana(float maxMana) { mMaxMana = maxMana; }
+    float GetMaxMana() const { return mBaseMaxMana * mSkillManager->GetMaxManaMultiplier(); }
+    void SetMana(float mana) { mMana = mana; }
+    void SetMaxMana(float maxMana) { mBaseMaxMana = maxMana; }
     float GetFireballManaCost() const { return mFireballManaCost; }
 
-    void ResetHealCount() { mHealCount = mMaxHealCount; }
+    void ResetHealCount() { mHealCount = mMaxHealCount + mSkillManager->GetHealCountIncrease(); }
     int GetHealCount() const { return mHealCount; }
-    void IncreaseHealCount() { mHealCount++; mMaxHealCount++; }
+    void IncreaseHealCount() { mHealCount++; }
 
     void IncreaseMoney(int value) { mMoney += value; }
     void DecreaseMoney(int value) { mMoney -= value; }
     int GetMoney() const { return mMoney; }
     void SetMoney(int money) { mMoney = money; }
     int GetSartingMoney() { return mStartMoney; }
+
+    void IncreaseStone(std::string stoneType, int value);
+    void DecreaseStone(std::string stoneType, int value);
+    int GetStone(std::string stoneType);
+    void SetStone(std::string stoneType, int value);
 
     float GetRadialMenuSlowMotionDuration() const { return mRadialMenuSlowMotionDuration; }
     float GetRadialMenuSlowMotionTimer() const { return mRadialMenuSlowMotionTimer; }
@@ -168,6 +168,8 @@ private:
     float mWidth;
     float mHeight;
 
+    class PlayerSkillManager* mSkillManager;
+
     bool mIsOnGround;
     bool mIsOnSpike;
     bool mIsOnMovingGround;
@@ -180,7 +182,6 @@ private:
     float mMaxTimeOutOfWallToJump;
     float mTimerOutOfWallToJump;
 
-    bool mCanGlide;
     bool mIsGliding;
     float mMinGlideDuration;
     float mGlideTimer;
@@ -199,13 +200,11 @@ private:
     float mJumpForce;    // Força contínua durante o pulo
     bool mCanJump;       // Usado para não continuar pulando ao segurar botão de pular
     int mJumpCountInAir; // Numero de pulos realizados no ar
-    int mMaxJumpsInAir;  // Maximo de pulos no ar
     float mLowGravity;
     float mMediumGravity;
     float mHighGravity;
     std::vector<JumpEffect*> mJumpEffects;
 
-    bool mCanDash;
     float mDashSpeed;
     float mDashDuration;
     float mDashCooldown;
@@ -221,7 +220,6 @@ private:
     class LightningEffect* mLightningDashEffect;
     Vector2 mStartLightningDashPosition;
 
-    bool mCanFrenzyMode;
     bool mIsOnFrenzyMode;
     float mFrenzyModeDuration;
     float mFrenzyModeTimer;
@@ -231,7 +229,6 @@ private:
     float mFrenzyAuraTimer;
     float mFrenzyModeManaCost;
 
-    bool mCanLightningSpear;
     float mLightningSpearCooldownDuration;
     float mLightningSpearCooldownTimer;
     float mLightningSpearManaCost;
@@ -240,7 +237,6 @@ private:
     bool mPrevSkill1Pressed;
     bool mPrevSkill2Pressed;
 
-    bool mCanGroundSlam;
     bool mIsGroundSlamStarting;
     bool mIsGroundSlamRecovering;
     bool mIsDiving;
@@ -275,7 +271,6 @@ private:
     float mSwordHitKnockBack;
     std::vector<class Enemy*> mEnemiesHitBySword;
 
-    bool mCanFireBall;
     float mFireBallCooldownTimer; // Timer de cooldown da fireball
     const float mFireBallCooldownDuration; // Cooldown da fireball
     bool mIsFireAttacking; // As seguintes variáveis são para a feature de ficar parado ao atirar e dar um recoil
@@ -286,19 +281,17 @@ private:
     float mFireBallHeight;
     float mFireballSpeed;
     float mFireballDamage;
-    float mMaxMana;
+    float mBaseMaxMana;
     float mMana;
     float mManaIncreaseRate;
     float mFireballManaCost;
     float mFireballAnimationDuration;
     float mFireballAnimationTimer;
 
-    bool mCanFireWisp;
     float mFireWispCooldownDuration;
     float mFireWispCooldownTimer;
     float mFireWispManaCost;
 
-    bool mCanFreeze;
     bool mIsFreezingFront;
     bool mIsFreezingUp;
     bool mIsFreezingDown;
@@ -308,14 +301,12 @@ private:
     float mIntervalBetweenFreezeEmitTimer;
     float mFreezeManaCost;
 
-    bool mCanCreatePillar;
     float mPillarDistanceFromPlayer;
     float mPillarManaCost;
     float mPillarAnimationDuration;
     float mPillarAnimationTimer;
     bool mAlreadyCreatedPillar;
 
-    bool mCanWallSlide;                  // Habilidade de agarrar na parede
     bool mIsWallSliding;                 // Se esta deslizando
     WallSlideSide mWallSlideSide;        // Lado que esta deslizando
     float mWallSlideSpeed;               // Velocidade que desce deslizando
@@ -336,7 +327,7 @@ private:
     float mKnockBackDuration;
     float mCameraShakeStrength;
 
-    float mMaxHealthPoints;
+    float mBaseMaxHealthPoints;
     float mHealthPoints;
     bool mIsInvulnerable;
     float mInvulnerableDuration;
@@ -352,8 +343,11 @@ private:
 
     int mMoney;
     int mStartMoney;
+    int mEarthStone;
+    int mFireStone;
+    int mIceStone;
+    int mLightningStone;
 
-    bool mCanHook;
     bool mIsHooking;
     bool mPrevHookPressed;
     Vector2 mHookDirection;

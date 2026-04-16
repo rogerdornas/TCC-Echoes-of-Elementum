@@ -8,15 +8,14 @@
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 #include "../UIElements/UIScreen.h"
+#include "../UIScreens/CheckPointMenu.h"
 
 Checkpoint::Checkpoint(class Game *game, float width, float height, Vector2 position)
     :Actor(game)
     ,mWidth(width)
     ,mHeight(height)
-    ,mStoreOpened(false)
-    ,mStoreMessageOpened(false)
-    ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
+    ,mAABBComponent(nullptr)
 {
     SetPosition(position);
 
@@ -31,7 +30,6 @@ Checkpoint::Checkpoint(class Game *game, float width, float height, Vector2 posi
     vertices.emplace_back(v3);
     vertices.emplace_back(v4);
 
-    // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, {160, 32, 240, 255});
     mAABBComponent = new AABBComponent(this, v1, v3);
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/CheckPoint/CheckPoint.png", \
@@ -45,54 +43,15 @@ Checkpoint::Checkpoint(class Game *game, float width, float height, Vector2 posi
     mDrawComponent->SetAnimFPS(10.0f);
 }
 
-
 void Checkpoint::OnProcessInput(const Uint8 *keyState, SDL_GameController &controller) {
     Player* player = mGame->GetPlayer();
-    if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
+    if (player->GetIsOnGround() && mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
         if (mGame->IsActionPressed(Game::Action::OpenStore, keyState, &controller)) {
-            if (mGame->GetStore()->StoreMessageOpened() && player->GetIsOnGround()) {
-                // mGame->GetStore()->CloseStoreMessage();
-                // mStoreMessageOpened = false;
-            }
+            mGame->SetCheckPointPosition(GetPosition());
+            mGame->SetCheckpointGameScene(mGame->GetGameScene());
+            mGame->SetCheckPointMoney(player->GetMoney());
 
-            if (!mGame->GetStore()->StoreOpened() && player->GetIsOnGround()) {
-                mGame->GetStore()->OpenStore();
-                mStoreOpened = true;
-            }
+            new CheckPointMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         }
-    }
-}
-
-void Checkpoint::OnUpdate(float deltaTime) {
-    Player* player = mGame->GetPlayer();
-    if (!mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
-        if (mGame->GetStore()->StoreOpened() && mStoreOpened) {
-            mGame->GetStore()->CloseStore();
-            mStoreOpened = false;
-        }
-    }
-
-    if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
-        mGame->SetCheckPointPosition(GetPosition());
-        mGame->SetCheckpointGameScene(mGame->GetGameScene());
-        mGame->SetCheckPointMoney(player->GetMoney());
-        player->ResetHealthPoints();
-        player->ResetMana();
-        player->ResetHealCount();
-        mGame->SaveGame();
-
-        if (!mGame->GetStore()->StoreMessageOpened()) {
-            // mGame->GetStore()->LoadStoreMessage();
-            // mStoreMessageOpened = true;
-        }
-    }
-    if ((!mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>()) &&
-        mGame->GetStore()->StoreMessageOpened() && mStoreMessageOpened) ||
-        (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>()) &&
-        !player->GetIsOnGround() &&
-        mGame->GetStore()->StoreMessageOpened() && mStoreMessageOpened))
-    {
-        // mGame->GetStore()->CloseStoreMessage();
-        // mStoreMessageOpened = false;
     }
 }

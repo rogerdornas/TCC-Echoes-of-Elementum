@@ -4,6 +4,7 @@
 
 #include "Skill.h"
 #include "../Game.h"
+#include "../PlayerSkillManager.h"
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
@@ -57,23 +58,23 @@ void Skill::SetPlayerSkill() {
 
     switch (mSkill) {
         case SkillType::Dash:
-            player->SetCanDash(true);
+            player->GetSkillManager()->UnlockMechanic("dash");
             break;
 
         case SkillType::FireBall:
-            player->SetCanFireBall(true);
+            player->GetSkillManager()->UnlockMechanic("fire_ball");
             break;
 
         case SkillType::WallSlide:
-            player->SetCanWallSlide(true);
+            player->GetSkillManager()->UnlockMechanic("wall_slide");
             break;
 
         case SkillType::DoubleJump:
-            player->SetMaxJumpsInAir(1);
+            player->GetSkillManager()->UnlockMechanic("double_jump");
             break;
 
         case SkillType::Hook:
-            player->SetCanHook(true);
+            player->GetSkillManager()->UnlockMechanic("hook");
         break;
 
         case SkillType::TimeControl:

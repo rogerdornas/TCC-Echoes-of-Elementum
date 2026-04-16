@@ -10,26 +10,37 @@
             "y": 5312.0
         },
         "scene": "Room0",
-        "total_play_time": 37.432212829589844
+        "total_play_time": 65.95158386230469
     },
     "player": {
         "can_dash": false,
-        "can_fireball": false,
         "can_hook": false,
         "can_wallslide": false,
         "death_counter": 0,
         "elemental_mode": "Lightning",
+        "elemental_modes": {
+            "has_earth": false,
+            "has_fire": false,
+            "has_ice": false,
+            "has_lightning": false
+        },
         "max_jumps_in_air": 0,
-        "money": 40
+        "money": 15
     },
-    "upgrades": {
-        "fireball": false,
-        "heal_count": false,
-        "health_points": false,
-        "mana": false,
-        "sword_damage": false,
-        "sword_range": false,
-        "sword_speed": false
+    "skill_tree": {
+        "unlocked_nodes": [
+            "lightning_spear_chain_shock",
+            "fire_wisp",
+            "fire_wisp_attack",
+            "glide",
+            "frenzy_mode",
+            "lightning_spear",
+            "ground_slam",
+            "freeze_duration",
+            "freeze",
+            "fire_ball",
+            "fire_ball_damage_1"
+        ]
     },
     "world_state": {}
 }

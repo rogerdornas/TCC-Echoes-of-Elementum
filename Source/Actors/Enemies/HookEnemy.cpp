@@ -9,6 +9,7 @@
 #include "../Skill.h"
 #include "../../Game.h"
 #include "../../HUD.h"
+#include "../../PlayerSkillManager.h"
 #include "../../Components/RigidBodyComponent.h"
 #include "../../Components/AABBComponent.h"
 #include "../../Components/CombatBoxComponent.h"
@@ -525,7 +526,7 @@ void HookEnemy::ForwardAttack(float deltaTime) {
 
 void HookEnemy::TriggerBossDefeat() {
     // Player ganha hook
-    if (!mGame->GetPlayer()->GetCanHook()) {
+    if (!mGame->GetPlayer()->GetSkillManager()->CanHook()) {
         auto* skill = new Skill(mGame, Skill::SkillType::Hook);
         skill->SetPosition(GetPosition());
     }

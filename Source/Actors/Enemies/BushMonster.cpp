@@ -9,6 +9,7 @@
 #include "../../Components/Drawing/RectComponent.h"
 #include "../../Components/AABBComponent.h"
 #include "../../Math.h"
+#include "../../PlayerSkillManager.h"
 #include "../../Random.h"
 
 BushMonster::BushMonster(Game* game)
@@ -249,7 +250,7 @@ void BushMonster::ManageAnimations() {
 
 void BushMonster::TriggerBossDefeat() {
     // Player ganha dash
-    if (!mGame->GetPlayer()->GetCanDash()) {
+    if (!mGame->GetPlayer()->GetSkillManager()->CanDash()) {
         auto* skill = new Skill(mGame, Skill::SkillType::Dash);
         skill->SetPosition(GetPosition());
     }

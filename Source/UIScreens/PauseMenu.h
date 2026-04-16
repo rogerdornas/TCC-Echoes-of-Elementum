@@ -10,5 +10,6 @@ class PauseMenu : public UIScreen
 {
 public:
     PauseMenu(class Game* game, const std::string& fontName, bool isClosable = true);
+    void Close() override;
 };
 

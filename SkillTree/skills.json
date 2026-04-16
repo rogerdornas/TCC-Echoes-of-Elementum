@@ -1,0 +1,778 @@
+{
+    "skills": [
+        {
+            "id": "fire_ball",
+            "name": "BOLA DE FOGO",
+            "skillType": "HABILIDADE DE FOGO",
+            "description": "DISPARA UMA BOLA DE FOGO À SUA FRENTE QUE CAUSA DANO AOS INIMIGOS E ATIVA ALAVANCAS",
+            "howToUse": "PRESSIONE A",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "fire_ball"
+            }
+        },
+        {
+            "id": "fire_ball_damage_1",
+            "name": "AUMENTA DANO DA BOLA DE FOGO",
+            "skillType": "HABILIDADE DE FOGO",
+            "description": "AUMENTA O DANO E TAMANHO DA BOLA DE FOGO EM 15%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["fire_ball"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "fire_ball_damage:0.15"
+            }
+        },
+        {
+            "id": "sword_damage_fire",
+            "name": "AUMENTA DANO DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O DANO DA ESPADA EM 55%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["fire_ball"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_damage:0.55"
+            }
+        },
+        {
+            "id": "fire_wisp",
+            "name": "ORBE DE FOGO",
+            "skillType": "HABILIDADE DE FOGO",
+            "description": "CIRA UM ORBE DE FOGO QUE SEGUE E ILUMINA O ENTORNO DO JOGADOR",
+            "howToUse": "PRESSIONE D",
+            "costs": {
+                "gold": 5,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["fire_ball_damage_1", "sword_damage_fire"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "fire_wisp"
+            }
+        },
+        {
+            "id": "mana_max_fire",
+            "name": "AUMENTA MANA MÁXIMO",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O MANA MÁXIMO EM 40%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 5,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["fire_wisp"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "mana_max:0.40"
+            }
+        },
+        {
+            "id": "fire_wisp_attack",
+            "name": "ORBE DE FOGO ATACA",
+            "skillType": "HABILIDADE DE FOGO",
+            "description": "SEU ORBE DE FOGO ATACA INIMIGOS PRÓXIMOS PERIODICAMENTE",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 5,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["fire_wisp"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "fire_wisp_attack"
+            }
+        },
+        {
+            "id": "fire_ball_damage_2",
+            "name": "AUMENTA DANO DA BOLA DE FOGO",
+            "skillType": "HABILIDADE DE FOGO",
+            "description": "AUMENTA O DANO E TAMANHO DA BOLA DE FOGO EM 15%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["mana_max_fire", "fire_wisp_attack"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "fire_ball_damage:0.15"
+            }
+        },
+        {
+            "id": "fire_ball_damage_3",
+            "name": "AUMENTAR DANO DA BOLA DE FOGO",
+            "skillType": "HABILIDADE DE FOGO",
+            "description": "AUMENTA O DANO E TAMANHO DA BOLA DE FOGO EM 15%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["fire_ball_damage_2"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "fire_ball_damage:0.15"
+            }
+        },
+		
+		
+		
+		
+        {
+            "id": "lightning_spear",
+            "name": "LANÇA DE RAIO",
+            "skillType": "HABILIDADE DE RAIO",
+            "description": "ARREMESSA UMA LANÇA DE RAIO QUE CAUSA DANO E ATORDOA BREVEMENTE O INIMIGO",
+            "howToUse": "PRESSIONE A",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "lightning_spear"
+            }
+        },
+        {
+            "id": "lightning_spear_chain_shock",
+            "name": "LANÇA DE RAIO EM CADEIA",
+            "skillType": "HABILIDADE DE RAIO",
+            "description": "SUAS LANÇAS DE RAIO ATINGEM INIMIGOS EM CADEIA",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["lightning_spear"]
+			],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "lightning_spear_chain_shock"
+            }
+        },
+        {
+            "id": "max_health_points_lightning",
+            "name": "AUMENTA VIDA MÁXIMA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA SUA VIDA MÁXIMA EM 50%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["lightning_spear"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "max_health_points:0.50"
+            }
+        },
+        {
+            "id": "frenzy_mode",
+            "name": "MODO FRENÉTICO",
+            "skillType": "HABILIDADE DE RAIO",
+            "description": "ENTRA EM UM ESTADO FRENÉTICO, AUMENTANDO SUA VELOCIDADE E TRANSFORMANDO O AVANÇO EM UM AVANÇO ELÉTRICO, PERMITINDO ATRAVESSAR PAREDES DE RAIO",
+            "howToUse": "PRESSIONE D",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["lightning_spear_chain_shock", "max_health_points_lightning"]
+			],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "frenzy_mode"
+            }
+        },
+        {
+            "id": "sword_range_lightning",
+            "name": "AUMENTA ALCANCE DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O ALCANCE DA ESPADA EM 10%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["frenzy_mode"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_range:0.1"
+            }
+        },
+        {
+            "id": "frenzy_mode_duration",
+            "name": "AUMENTA DURAÇÃO DO MODO FRENÉTICO",
+            "skillType": "HABILIDADE DE RAIO",
+            "description": "AUMENTA O TEMPO DE DURAÇÃO DO MODO FRENÉTICO EM 50%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["frenzy_mode"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "frenzy_mode_duration:0.5"
+            }
+        },
+        {
+            "id": "lightning_spear_damage",
+            "name": "AUMENTA DANO DA LANÇA DE RAIO",
+            "skillType": "HABILIDADE DE RAIO",
+            "description": "AUMENTA O DANO DA LANÇA DE RAIO EM 40%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["sword_range_lightning", "frenzy_mode_duration"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "lightning_spear_damage:0.4"
+            }
+        },
+        {
+            "id": "lightning_dash_damage",
+            "name": "AUMENTA DANO DO DASH RELÂMPAGO",
+            "skillType": "HABILIDADE DE RAIO",
+            "description": "AUMENTA O DANO DO DASH RELÂMPAGO EM 50%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["lightning_spear_damage"]
+			],
+            "effect": {
+                "type": "stat_boost",
+                "value": "lightning_dash_damage:0.5"
+            }
+        },
+		
+		
+		
+		
+		
+		
+        {
+            "id": "freeze",
+            "name": "JATO DE GELO",
+            "skillType": "HABILIDADE DE GELO",
+            "description": "EMITE UMA RAJADA DE GELO À SUA FRENTE QUE CONGELA INIMIGOS",
+            "howToUse": "PRESSIONE A",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "freeze"
+            }
+        },
+        {
+            "id": "freeze_duration",
+            "name": "FRIO INTENSO",
+            "skillType": "HABILIDADE DE GELO",
+            "description": "AUMENTA O TEMPO QUE OS INIMIGOS FICAM CONGELADOS EM 50%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["freeze"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "freeze_duration:0.5"
+            }
+        },
+        {
+            "id": "sword_attack_speed_ice",
+            "name": "AUMENTA VELOCIDADE DE ATAQUE DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA A VELOCIDADE DE ATAQUE DA ESPADA EM 45%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["freeze"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_attack_speed:0.45"
+            }
+        },
+        {
+            "id": "glide",
+            "name": "ESFERA DE GELO",
+            "skillType": "HABILIDADE DE GELO",
+            "description": "SE ENVOLVE EM UMA ESFERA DE GEADA QUE PERMITE PLANAR",
+            "howToUse": "PRESSIONE D ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+				["freeze_duration", "sword_attack_speed_ice"]
+			],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "glide"
+            }
+        },
+        {
+            "id": "heal_count_ice",
+            "name": "AUMENTA O NÚMERO DE CURAS",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "RECEBE MAIS UMA POÇÃO DE CURA",
+            "howToUse": "PRESSIONE V PARA CURAR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["glide"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "heal_count:1"
+            }
+        },
+        {
+            "id": "ice_test_1",
+            "name": "ESFERA DE GELO",
+            "skillType": "HABILIDADE DE GELO",
+            "description": "SE ENVOLVE EM UMA ESFERA DE GEADA QUE PERMITE PLANAR",
+            "howToUse": "PRESSIONE D ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["glide"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "glide"
+            }
+        },
+        {
+            "id": "ice_test_2",
+            "name": "ESFERA DE GELO",
+            "skillType": "HABILIDADE DE GELO",
+            "description": "SE ENVOLVE EM UMA ESFERA DE GEADA QUE PERMITE PLANAR",
+            "howToUse": "PRESSIONE D ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["heal_count_ice", "ice_test_1"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "glide"
+            }
+        },
+        {
+            "id": "ice_test_3",
+            "name": "ESFERA DE GELO",
+            "skillType": "HABILIDADE DE GELO",
+            "description": "SE ENVOLVE EM UMA ESFERA DE GEADA QUE PERMITE PLANAR",
+            "howToUse": "PRESSIONE D ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["ice_test_2"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "glide"
+            }
+        },
+
+
+
+
+
+
+
+
+
+        {
+            "id": "ground_slam",
+            "name": "ABALO SÍSMICO",
+            "skillType": "HABILIDADE DE TERRA",
+            "description": "AVANÇA RAPIDAMENTE EM DIREÇÃO AO CHÃO, GERANDO UM ABALO SÍSMICO QUE CAUSA DANO AOS INIMIGOS E QUEBRA CHÃO FRÁGEIS",
+            "howToUse": "PRESSIONE A ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "ground_slam"
+            }
+        },
+        {
+            "id": "earth_test_1",
+            "name": "ABALO SÍSMICO",
+            "skillType": "HABILIDADE DE TERRA",
+            "description": "AVANÇA RAPIDAMENTE EM DIREÇÃO AO CHÃO, GERANDO UM ABALO SÍSMICO QUE CAUSA DANO AOS INIMIGOS E QUEBRA CHÃO FRÁGEIS",
+            "howToUse": "PRESSIONE A ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["ground_slam"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "ground_slam"
+            }
+        },
+        {
+            "id": "heal_amount_earth",
+            "name": "EFICÁCIA DA CURA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA A CURA DE SUAS POÇÕES EM 40%",
+            "howToUse": "PRESSIONE V PARA CURAR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["ground_slam"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "heal_amount:0.4"
+            }
+        },
+        {
+            "id": "create_pillar",
+            "name": "PILAR",
+            "skillType": "HABILIDADE DE TERRA",
+            "description": "INVOCA UM PILAR DE TERRA À SUA FRENTE QUE BLOQUEIA INIMIGOS E PROJÉTEIS",
+            "howToUse": "PRESSIONE D ENQUANTO NO CHÃO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["earth_test_1", "heal_amount_earth"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "create_pillar"
+            }
+        },
+        {
+            "id": "sword_damage_earth",
+            "name": "AUMENTA DANO DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O DANO DA ESPADA EM 35%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["create_pillar"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_damage:0.35"
+            }
+        },
+        {
+            "id": "earth_test_2",
+            "name": "ABALO SÍSMICO",
+            "skillType": "HABILIDADE DE TERRA",
+            "description": "AVANÇA RAPIDAMENTE EM DIREÇÃO AO CHÃO, GERANDO UM ABALO SÍSMICO QUE CAUSA DANO AOS INIMIGOS E QUEBRA CHÃO FRÁGEIS",
+            "howToUse": "PRESSIONE A ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["create_pillar"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "ground_slam"
+            }
+        },
+        {
+            "id": "earth_test_3",
+            "name": "ABALO SÍSMICO",
+            "skillType": "HABILIDADE DE TERRA",
+            "description": "AVANÇA RAPIDAMENTE EM DIREÇÃO AO CHÃO, GERANDO UM ABALO SÍSMICO QUE CAUSA DANO AOS INIMIGOS E QUEBRA CHÃO FRÁGEIS",
+            "howToUse": "PRESSIONE A ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["earth_test_2", "sword_damage_earth"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "ground_slam"
+            }
+        },
+        {
+            "id": "earth_test_4",
+            "name": "ABALO SÍSMICO",
+            "skillType": "HABILIDADE DE TERRA",
+            "description": "AVANÇA RAPIDAMENTE EM DIREÇÃO AO CHÃO, GERANDO UM ABALO SÍSMICO QUE CAUSA DANO AOS INIMIGOS E QUEBRA CHÃO FRÁGEIS",
+            "howToUse": "PRESSIONE A ENQUANTO NO AR",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["earth_test_3"]
+            ],
+            "effect": {
+                "type": "unlock_mechanic",
+                "value": "ground_slam"
+            }
+        },
+
+
+
+
+
+
+        {
+            "id": "sword_damage_1",
+            "name": "AUMENTA DANO DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O DANO DA ESPADA EM 3%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["fire_ball_damage_3", "lightning_dash_damage"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_damage:0.03"
+            }
+        },
+        {
+            "id": "sword_damage_2",
+            "name": "AUMENTA DANO DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O DANO DA ESPADA EM 3%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["fire_ball_damage_3", "ice_test_3"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_damage:0.03"
+            }
+        },
+        {
+            "id": "sword_damage_3",
+            "name": "AUMENTA DANO DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O DANO DA ESPADA EM 3%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["ice_test_3", "earth_test_4"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_damage:0.03"
+            }
+        },
+        {
+            "id": "sword_damage_4",
+            "name": "AUMENTA DANO DA ESPADA",
+            "skillType": "HABILIDADE NEUTRA",
+            "description": "AUMENTA O DANO DA ESPADA EM 3%",
+            "howToUse": "EFEITO PASSIVO",
+            "costs": {
+                "gold": 2,
+                "earthStone": 0,
+                "fireStone": 0,
+                "iceStone": 0,
+                "lightningStone": 0
+            },
+            "prerequisites": [
+                ["earth_test_4", "lightning_dash_damage"]
+            ],
+            "effect": {
+                "type": "stat_boost",
+                "value": "sword_damage:0.03"
+            }
+        }
+    ]
+}

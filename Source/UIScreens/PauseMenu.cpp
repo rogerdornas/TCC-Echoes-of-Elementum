@@ -3,7 +3,6 @@
 //
 
 #include "PauseMenu.h"
-
 #include "ConfirmBackToMenu.h"
 #include "OptionsMenu.h"
 #include "../Game.h"
@@ -11,6 +10,8 @@
 PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosable)
     :UIScreen(game, fontName, isClosable)
 {
+    mGame->TogglePause();
+
     SetSize(Vector2(1920, 1080));
     SetPosition(Vector2::Zero);
 
@@ -19,7 +20,6 @@ PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosa
 
     AddButton("CONTINUAR", Vector2(856, 445), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->TogglePause();
         Close();
     }
     , true);
@@ -44,4 +44,9 @@ PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosa
         mIsVisible = false;
     }
     , true);
+}
+
+void PauseMenu::Close() {
+    UIScreen::Close();
+    mGame->TogglePause();
 }

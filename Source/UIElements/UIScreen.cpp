@@ -37,7 +37,9 @@ UIScreen::~UIScreen()
 }
 
 void UIScreen::Update(float deltaTime) {
-
+    for (UIButton* button : mButtons) {
+        button->Update(deltaTime);
+    }
 }
 
 void UIScreen::Draw(Renderer *renderer)
@@ -119,6 +121,10 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerA
 
     // Troca seleção se houver vizinho
     if (next) {
+        if (mSelectedButtonIndex >= 0) {
+            mButtons[mSelectedButtonIndex]->SetBeingHeld(false);
+        }
+
         mSelectedButtonIndex = static_cast<int>(
             std::distance(mButtons.begin(),
                           std::find(mButtons.begin(), mButtons.end(), next))
@@ -131,8 +137,16 @@ void UIScreen::HandleKeyPress(int key, int controllerButton, int leftControllerA
         key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Jump].key) ||
         key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Attack].key))
     {
-        if (mSelectedButtonIndex >= 0 && mSelectedButtonIndex < (int)mButtons.size()) {
-            mButtons[mSelectedButtonIndex]->OnClick();
+        if (mSelectedButtonIndex >= 0 && mSelectedButtonIndex < static_cast<int>(mButtons.size())) {
+            UIButton* btn = mButtons[mSelectedButtonIndex];
+
+            // SE FOR HOLDABLE, COMEÇA A SEGURAR EM VEZ DE CLICAR
+            if (btn->IsHoldable()) {
+                btn->SetBeingHeld(true);
+            } else {
+                btn->OnClick();
+            }
+
             if (mGame->GetPlayer()) {
                 mGame->GetPlayer()->SetCanJump(false);
                 mGame->GetPlayer()->SetPrevSwordPressed(true);
@@ -152,7 +166,11 @@ void UIScreen::HandleMousePress(const Vector2& virtualMousePos)
 
     for (UIButton* button : mButtons) {
         if (button->ContainsPoint(uiScreenRelativePos)) {
-            button->OnMouseClick(uiScreenRelativePos);
+            if (button->IsHoldable()) {
+                button->SetBeingHeld(true);
+            } else {
+                button->OnMouseClick(uiScreenRelativePos);
+            }
 
             if (button->IsDraggable()) {
                 mDraggedButton = button;
@@ -171,9 +189,29 @@ void UIScreen::HandleMousePress(const Vector2& virtualMousePos)
     }
 }
 
+void UIScreen::HandleKeyRelease(int key, int controllerButton) {
+    if (mButtons.empty()) {
+        return;
+    }
+    auto inputBinding = mGame->GetInputBinding();
+
+    if (key == SDLK_RETURN ||
+        controllerButton == SDL_CONTROLLER_BUTTON_A||
+        key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Jump].key) ||
+        key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Attack].key))
+    {
+        if (mSelectedButtonIndex >= 0 && mSelectedButtonIndex < static_cast<int>(mButtons.size())) {
+            mButtons[mSelectedButtonIndex]->SetBeingHeld(false);
+        }
+    }
+}
+
 void UIScreen::HandleMouseRelease(const Vector2& virtualMousePos)
 {
     mDraggedButton = nullptr;
+    for (UIButton* button : mButtons) {
+        button->SetBeingHeld(false);
+    }
 }
 
 void UIScreen::HandleMouseMotion(const Vector2& virtualMousePos)
@@ -249,6 +287,18 @@ UISlider* UIScreen::AddSlider(const std::string& name, const Vector2& pos, const
         slider->SetHighlighted(true);
     }
     return slider;
+}
+
+UISkillNodeButton* UIScreen::AddSkillNodeButton(const std::string& skillId, UISkillNodeButton::NodeType nodeType, const Vector2& pos, std::function<void()> onClick, std::function<void(const std::string&)> onSelect) {
+    UISkillNodeButton* nodeBtn = new UISkillNodeButton(skillId, nodeType, onClick, onSelect, pos, mGame->GetRenderer());
+    mButtons.emplace_back(nodeBtn);
+
+    if (mButtons.size() == 1) {
+        mSelectedButtonIndex = 0;
+        nodeBtn->SetHighlighted(true);
+    }
+
+    return nodeBtn;
 }
 
 // Retorna true se há interseção no eixo perpendicular

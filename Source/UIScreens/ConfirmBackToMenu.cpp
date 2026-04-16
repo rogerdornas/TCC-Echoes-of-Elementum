@@ -21,7 +21,6 @@ ConfirmBackToMenu::ConfirmBackToMenu(class Game *game, const std::string &fontNa
 
     AddButton("SIM", Vector2(920, 531), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
-        Close();
         mGame->BackToMenu();
     }
     , true);

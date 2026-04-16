@@ -12,15 +12,24 @@ UIButton::UIButton(const std::string& text, class UIFont* font, std::function<vo
                    Renderer* renderer)
     :UIElement(pos, size, color)
     ,mOnClick(onClick)
-    ,mHighlighted(false)
+    ,mText(nullptr)
     ,mTextAlign(textAlign)
+    ,mHighlighted(false)
     ,mUseBackGroundColor(false)
     ,mUseImageSelector(true)
+    ,mIsHoldable(false)
+    ,mHoldTimeRequired(1.0f)
+    ,mCurrentHoldTime(0.0f)
+    ,mIsBeingHeld(false)
+    ,mIsInteractable(true)
     ,mRenderer(renderer)
+    ,mSelectorTexture(nullptr)
 {
-    mText = new UIText(text, font, pointSize, wrapLength, textPos, textColor);
-    if (useTextSize) {
-        mSize = mText->GetSize() * Vector2(1.1f, 1.0f);
+    if (text.size() > 0) {
+        mText = new UIText(text, font, pointSize, wrapLength, textPos, textColor);
+        if (useTextSize) {
+            mSize = mText->GetSize() * Vector2(1.1f, 1.0f);
+        }
     }
     std::string texPath = "../Assets/Sprites/Menus/select.png";
     mSelectorTexture = mRenderer->GetTexture(texPath);
@@ -28,10 +37,49 @@ UIButton::UIButton(const std::string& text, class UIFont* font, std::function<vo
 
 UIButton::~UIButton()
 {
-    delete mText;
-    mText = nullptr;
+    if (mText) {
+        delete mText;
+        mText = nullptr;
+    }
 }
 
+void UIButton::Update(float deltaTime) {
+    if (mIsBeingHeld) {
+        mCurrentHoldTime += deltaTime;
+
+        // Se o tempo chegou no limite, dispara o OnClick e reseta
+        if (mCurrentHoldTime >= mHoldTimeRequired) {
+            OnClick();
+            mIsBeingHeld = false;
+            mCurrentHoldTime = 0.0f;
+        }
+    } else {
+        mCurrentHoldTime = 0.0f;
+    }
+}
+
+void UIButton::SetHoldable(bool holdable, float timeRequired) {
+    mIsHoldable = holdable;
+    mHoldTimeRequired = timeRequired;
+}
+
+void UIButton::SetBeingHeld(bool held) {
+    if (held && !mIsInteractable) {
+        return;
+    }
+    mIsBeingHeld = held;
+    if (!held) {
+        mCurrentHoldTime = 0.0f;
+    }
+}
+
+void UIButton::SetInteractable(bool interactable) {
+    mIsInteractable = interactable;
+    if (!mIsInteractable) {
+        mIsBeingHeld = false;
+        mCurrentHoldTime = 0.0f;
+    }
+}
 
 void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
 {
@@ -50,7 +98,9 @@ void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
             renderer->DrawTexture(drawPos + Vector2(mSize.x * 0.5f + 16, 0), Vector2(26, 26), 0.0f, Color::White,
                           mSelectorTexture, Vector4::UnitRect, Vector2::Zero, Vector2::One, 0.0f, 1.0f);
         }
-        mText->SetColor(Color::White);
+        if (mText) {
+            mText->SetColor(Color::White);
+        }
 
         if (mUseBackGroundColor) {
             Vector3 drawColor = Color::Black;
@@ -58,25 +108,29 @@ void UIButton::Draw(Renderer *renderer, const Vector2 &screenPos)
         }
     }
     else {
-        mText->SetColor(Vector3(0.5f, 0.5f, 0.5f));
+        if (mText) {
+            mText->SetColor(Vector3(0.5f, 0.5f, 0.5f));
+        }
     }
 
     // Calcular posição do texto
-    Vector2 textDrawPos = drawPos;
-    switch (mTextAlign) {
-        case TextPos::AlignLeft:
-            textDrawPos += Vector2(-mSize.x / 2 + mText->GetSize().x / 2, 0);
-        break;
+    if (mText) {
+        Vector2 textDrawPos = drawPos;
+        switch (mTextAlign) {
+            case TextPos::AlignLeft:
+                textDrawPos += Vector2(-mSize.x / 2 + mText->GetSize().x / 2, 0);
+            break;
 
-        case TextPos::AlignRight:
-            textDrawPos += Vector2(mSize.x / 2 - mText->GetSize().x / 2, 0);
-        break;
+            case TextPos::AlignRight:
+                textDrawPos += Vector2(mSize.x / 2 - mText->GetSize().x / 2, 0);
+            break;
 
-        case TextPos::Center:
-        break;
+            case TextPos::Center:
+                break;
+        }
+
+        mText->Draw(renderer, textDrawPos);
     }
-
-    mText->Draw(renderer, textDrawPos);
 }
 
 bool UIButton::ContainsPoint(const Vector2 &pt) const {
@@ -91,6 +145,18 @@ bool UIButton::ContainsPoint(const Vector2 &pt) const {
 
 void UIButton::OnClick()
 {
+    if (!mIsInteractable) {
+        return;
+    }
+    if (mOnClick) {
+        mOnClick();
+    }
+}
+
+void UIButton::OnMouseClick(const Vector2 &mousePos) {
+    if (!mIsInteractable) {
+        return;
+    }
     if (mOnClick) {
         mOnClick();
     }

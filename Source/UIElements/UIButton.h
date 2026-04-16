@@ -28,13 +28,22 @@ public:
              const Vector3& textColor = Color::White,
              Renderer* renderer = nullptr);
 
-    ~UIButton();
+    virtual ~UIButton();
+
+    virtual void Update(float deltaTime);
+
+    void SetHoldable(bool holdable, float timeRequired = 1.0f);
+    void SetBeingHeld(bool held);
+    bool IsHoldable() const { return mIsHoldable; }
+
+    void SetInteractable(bool interactable);
+    bool IsInteractable() const { return mIsInteractable; }
 
     // Set the name of the button
     UIText* GetText() const { return mText; }
     void Draw(Renderer* renderer, const Vector2 &screenPos) override;
 
-    void SetHighlighted(bool sel) { mHighlighted = sel; }
+    virtual void SetHighlighted(bool sel) { mHighlighted = sel; }
     bool GetHighlighted() const { return mHighlighted; }
 
     void UseBackGroundColor() { mUseBackGroundColor = true; }
@@ -47,7 +56,7 @@ public:
 
     // Called when button is clicked
     void OnClick();
-    virtual void OnMouseClick(const Vector2& mousePos) { OnClick(); }
+    virtual void OnMouseClick(const Vector2& mousePos);
 
 protected:
     // Callback function
@@ -64,6 +73,13 @@ protected:
 
     bool mUseBackGroundColor;
     bool mUseImageSelector;
+
+    bool mIsHoldable;
+    float mHoldTimeRequired;
+    float mCurrentHoldTime;
+    bool mIsBeingHeld;
+
+    bool mIsInteractable;
 
     Renderer* mRenderer;
     Texture* mSelectorTexture;

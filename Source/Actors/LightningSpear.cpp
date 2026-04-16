@@ -167,31 +167,33 @@ void LightningSpear::ProcessChainLightning(Enemy* firstTarget) {
 
     Enemy* currentTarget = firstTarget;
 
-    currentTarget->ReceiveHit(mDamage, Vector2::Zero, false);
+    currentTarget->ReceiveHit(mDamage * mGame->GetPlayer()->GetSkillManager()->GetLightningSpearDamageMultiplier(), Vector2::Zero, false);
     mEnemiesHit.push_back(currentTarget);
     mNumEnemiesHit = 1;
 
-    while (mNumEnemiesHit < mMaxNumEnemiesHit) {
-        // Efeito no alvo
-        currentTarget->Stun();
+    if (mGame->GetPlayer()->GetSkillManager()->CanLightningSpearChainShock()) {
+        while (mNumEnemiesHit < mMaxNumEnemiesHit) {
+            // Efeito no alvo
+            currentTarget->Stun();
 
-        Enemy* nextTarget = FindClosestEnemy(currentTarget->GetPosition());
-        if (!nextTarget) {
-            break;
+            Enemy* nextTarget = FindClosestEnemy(currentTarget->GetPosition());
+            if (!nextTarget) {
+                break;
+            }
+
+            // Calcula o dano reduzido (perde 15% a cada pulo)
+            float currentDamage = mDamage * mGame->GetPlayer()->GetSkillManager()->GetLightningSpearDamageMultiplier() * std::pow(0.85f, mNumEnemiesHit);
+
+            nextTarget->ReceiveHit(currentDamage, Vector2::Zero, false);
+
+            // Cria a ponte de raio entre os dois inimigos!
+            SpawnChainVisual(currentTarget->GetPosition(), nextTarget->GetPosition());
+
+            // Atualiza a lista para o próximo pulo
+            mEnemiesHit.push_back(nextTarget);
+            mNumEnemiesHit++;
+            currentTarget = nextTarget;
         }
-
-        // Calcula o dano reduzido (perde 15% a cada pulo)
-        float currentDamage = mDamage * std::pow(0.85f, mNumEnemiesHit);
-
-        nextTarget->ReceiveHit(currentDamage, Vector2::Zero, false);
-
-        // Cria a ponte de raio entre os dois inimigos!
-        SpawnChainVisual(currentTarget->GetPosition(), nextTarget->GetPosition());
-
-        // Atualiza a lista para o próximo pulo
-        mEnemiesHit.push_back(nextTarget);
-        mNumEnemiesHit++;
-        currentTarget = nextTarget;
     }
 
     Deactivate();

@@ -8,6 +8,7 @@
 #include "UIButton.h"
 #include "UIImage.h"
 #include "UISlider.h"
+#include "UISkillNodeButton.h"
 
 class UIScreen
 {
@@ -27,6 +28,7 @@ public:
 	virtual void Draw(class Renderer *renderer);
 	virtual void ProcessInput(const uint8_t* keys);
 	virtual void HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX);
+	virtual void HandleKeyRelease(int key, int controllerButton);
 	virtual void HandleMousePress(const Vector2& virtualMousePos);
 	virtual void HandleMouseRelease(const Vector2& virtualMousePos);
 	virtual void HandleMouseMotion(const Vector2& virtualMousePos);
@@ -58,11 +60,12 @@ public:
 	UIButton* AddButton(const std::string& name, const Vector2& pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, bool useTextSize = false, Vector2 textPos = Vector2::Zero, Vector3 textColor = Color::White);
     UIText* AddText(const std::string& name, const Vector2& pos = Vector2::Zero, const int pointSize = 40, Vector3 color = Color::White, const int unsigned wrapLength = 1024);
     UIImage* AddImage(const std::string& imagePath, const Vector2& pos, const Vector2& dims, const Vector3& color = Color::White);
-	class UISlider* AddSlider(const std::string& name, const Vector2& pos, const Vector2& size, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, int textPointSize, int valuePointSize, std::function<void(float)> onValueChanged);
+	UISlider* AddSlider(const std::string& name, const Vector2& pos, const Vector2& size, const Vector2& sliderOffset, const Vector2& sliderSize, float minVal, float maxVal, float initialVal, int textPointSize, int valuePointSize, std::function<void(float)> onValueChanged);
+	UISkillNodeButton* AddSkillNodeButton(const std::string& skillId, UISkillNodeButton::NodeType nodeType, const Vector2& pos, std::function<void()> onClick, std::function<void(const std::string&)> onSelect);
 
 	bool IsClosable() { return mIsClosable; }
 
-	UIButton* FindNeighbor(UIButton* current, const Vector2& dir);
+	virtual UIButton* FindNeighbor(UIButton* current, const Vector2& dir);
 
 protected:
     // Sets the mouse mode to relative or not

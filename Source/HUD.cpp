@@ -290,10 +290,15 @@ void HUD::EndBossFight(class Enemy* boss) {
 
 void HUD::IncreaseHPBar() {
     mHPBar.w = mGame->GetPlayer()->GetMaxHealthPoints() * 5;
+    mDamageTakenBar.w = mGame->GetPlayer()->GetMaxHealthPoints() * 5;
+    mHPRemainingBar.w = mGame->GetPlayer()->GetMaxHealthPoints() * 5;
+    mHPGrowingBar.w = mGame->GetPlayer()->GetMaxHealthPoints() * 5;
 }
 
 void HUD::IncreaseManaBar() {
     mManaBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
+    mManaUsedBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
+    mManaRemainingBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
     mNumOfSubManaBars = mGame->GetPlayer()->GetMaxMana() / 30.0f;
 }
 
@@ -389,11 +394,11 @@ void HUD::DrawManaBar(Renderer *renderer) {
     renderer->DrawRect(Vector2(ManaRemainingBar.x, ManaRemainingBar.y) + Vector2(ManaRemainingBar.w, ManaRemainingBar.h) / 2, Vector2(ManaRemainingBar.w, ManaRemainingBar.h), 0.0f,
              Vector3(65 / 255.0f, 188 / 255.0f, 217 / 255.0f), Vector2::Zero, RendererMode::TRIANGLES, 255 / 255.0f);
 
-    for (int i = 1; i < mNumOfSubManaBars; i++) {
-        renderer->DrawLine(Vector2(mManaBar.x + i * mManaBar.w / mNumOfSubManaBars, mManaBar.y),
-                           Vector2(mManaBar.x + i * mManaBar.w / mNumOfSubManaBars, mManaBar.y + mManaBar.h),
-                           Vector3(0, 0, 0), 3.0f, Vector2::Zero, 1.0f);
-    }
+    // for (int i = 1; i < mNumOfSubManaBars; i++) {
+    //     renderer->DrawLine(Vector2(mManaBar.x + i * mManaBar.w / mNumOfSubManaBars, mManaBar.y),
+    //                        Vector2(mManaBar.x + i * mManaBar.w / mNumOfSubManaBars, mManaBar.y + mManaBar.h),
+    //                        Vector3(0, 0, 0), 3.0f, Vector2::Zero, 1.0f);
+    // }
 }
 
 void HUD::DrawBossLifeBar(Renderer *renderer) {

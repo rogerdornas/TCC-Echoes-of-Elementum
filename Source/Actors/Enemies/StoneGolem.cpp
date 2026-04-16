@@ -772,9 +772,12 @@ void StoneGolem::ActiveTopLaserShooters() {
     std::mt19937 gen(rd());
     std::shuffle(mTopLaserShooters.begin(), mTopLaserShooters.end(), gen);
 
-    for (int i = 0; i < mTopLaserShooters.size() - mNumDeactivateTopLaserShooters; i++) {
-        if (auto* ls = mGame->GetLaserShooterById(mTopLaserShooters[i])) {
-            ls->IncreaseShotsRemaining(1);
+    if (mTopLaserShooters.size() > mNumDeactivateTopLaserShooters) {
+        size_t activeCount = mTopLaserShooters.size() - mNumDeactivateTopLaserShooters;
+        for (int i = 0; i < activeCount; i++) {
+            if (auto* ls = mGame->GetLaserShooterById(mTopLaserShooters[i])) {
+                ls->IncreaseShotsRemaining(1);
+            }
         }
     }
 }

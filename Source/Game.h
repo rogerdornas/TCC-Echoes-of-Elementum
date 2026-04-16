@@ -15,7 +15,7 @@
 #include "Cutscene.h"
 #include "Map.h"
 #include "SaveManager.h"
-#include "Store.h"
+#include "SkillTreeManager.h"
 #include "WaveManager.h"
 
 class Game
@@ -188,9 +188,9 @@ public:
     SDL_Texture *LoadTexture(const std::string &texturePath);
 
     void BackToMenu();
-    void ResetPlayerAndStore();
-    void RebindKeyboard(UIText* text, Action action);
-    void RebindController(UIText* text, Action action);
+    void ResetPlayerAndSkillTree();
+    void RebindKeyboard(class UIText* text, Action action);
+    void RebindController(class UIText* text, Action action);
     void CancelRebind();
     void ResetKeyboardToDefault();
     void ResetControllerToDefault();
@@ -240,7 +240,7 @@ public:
 
     bool GetIsPlayingOnKeyboard() const { return mIsPlayingOnKeyboard; }
 
-    Store* GetStore() const { return mStore; }
+    SkillTreeManager* GetSkillTreeManager() const { return mSkillTreeManager; }
 
     void PlayFinalGoodCutscene();
     void PlayFinalEvilCutscene();
@@ -469,7 +469,7 @@ private:
     Cutscene* mCurrentCutscene;
     bool mIsPlayingFinalCutscene;
 
-    Store* mStore;
+    SkillTreeManager* mSkillTreeManager;
 
     // Background images
     void DrawParallaxBackground(Texture* background);

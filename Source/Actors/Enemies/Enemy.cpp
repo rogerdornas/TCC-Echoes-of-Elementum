@@ -201,7 +201,9 @@ void Enemy::ManageFreezing(float deltaTime) {
             mFreezeEffect->EndParticleSystem();
         }
 
-        mFreezeCount -= mFrozenDecayRate * deltaTime;
+        float freezeMult = mGame->GetPlayer()->GetSkillManager()->GetFreezeDurationMultiplier();
+
+        mFreezeCount -= (mFrozenDecayRate / freezeMult) * deltaTime;
 
         if (mFreezeCount <= 0) {
             Unfreeze();

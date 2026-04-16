@@ -92,8 +92,6 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Money.h
         Source/Actors/Checkpoint.cpp
         Source/Actors/Checkpoint.h
-        Source/Store.cpp
-        Source/Store.h
         Source/Actors/Enemies/Mantis.cpp
         Source/Actors/Enemies/Mantis.h
         Source/Actors/Enemies/Moth.cpp
@@ -238,6 +236,16 @@ add_executable(${PROJECT_NAME}
         Source/Actors/LaserExplosion.h
         Source/Actors/LaserShooter.cpp
         Source/Actors/LaserShooter.h
+        Source/UIScreens/CheckPointMenu.cpp
+        Source/UIScreens/CheckPointMenu.h
+        Source/UIScreens/SkillMenu.cpp
+        Source/UIScreens/SkillMenu.h
+        Source/PlayerSkillManager.cpp
+        Source/PlayerSkillManager.h
+        Source/SkillTreeManager.cpp
+        Source/SkillTreeManager.h
+        Source/UIElements/UISkillNodeButton.cpp
+        Source/UIElements/UISkillNodeButton.h
 )
 
 

@@ -6,7 +6,6 @@
 #include "../Game.h"
 #include "../Json.h"
 #include <fstream>
-
 #include "DeleteProfileMenu.h"
 
 SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontName, bool isClosable)
@@ -37,9 +36,9 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
 
     AddImage("../Assets/Sprites/Menus/titulo_sublinhado.png", Vector2(960, 372), Vector2(360, 30));
 
-    auto* button = AddButton("", profileButtonPos+ Vector2(0, profileButtonSize.y * 0), profileButtonSize, 34, UIButton::TextPos::Center,
+    auto* button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 0), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndStore();
+        mGame->ResetPlayerAndSkillTree();
 
         mGame->SetSaveSlot(1);
         mGame->LoadGame();
@@ -49,7 +48,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
 
     button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 1), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndStore();
+        mGame->ResetPlayerAndSkillTree();
 
         mGame->SetSaveSlot(2);
         mGame->LoadGame();
@@ -59,7 +58,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
 
     button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 2), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndStore();
+        mGame->ResetPlayerAndSkillTree();
 
         mGame->SetSaveSlot(3);
         mGame->LoadGame();
@@ -69,7 +68,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
 
     button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 3), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndStore();
+        mGame->ResetPlayerAndSkillTree();
 
         mGame->SetSaveSlot(4);
         mGame->LoadGame();

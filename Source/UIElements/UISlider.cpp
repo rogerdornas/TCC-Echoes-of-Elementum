@@ -29,8 +29,10 @@ UISlider::UISlider(const std::string& name, class UIFont* font,
 }
 
 UISlider::~UISlider() {
-    delete mValueText;
-    mValueText = nullptr;
+    if (mValueText) {
+        delete mValueText;
+        mValueText = nullptr;
+    }
 }
 
 void UISlider::Draw(Renderer* renderer, const Vector2& screenPos) {

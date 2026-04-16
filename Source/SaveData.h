@@ -41,21 +41,19 @@ private:
     float mSFXAudio;
 
     Vector2 mLastCheckpointPosition;
-    Player::ElementalMode mElementalMode;
-    int mMoney;
-    bool mCanDash;
-    bool mCanFireBall;
-    bool mCanWallSlide;
-    int mMaxJumpsInAir;
-    bool mCanHook;
-    int mDeathCounter;
 
-    bool mSwordRangeUpgrade;
-    bool mSwordDamageUpgrade;
-    bool mSwordSpeedUpgrade;
-    bool mHealthPointsUpgrade;
-    bool mHealCountUpgrade;
-    bool mManaUpgrade;
-    bool mFireballUpgrade;
+    bool mHasEarthMode;
+    bool mHasFireMode;
+    bool mHasIceMode;
+    bool mHasLightningMode;
+    Player::ElementalMode mCurrentElementalMode;
+    int mMoney;
+    int mDeathCounter;
+    int mMaxJumpsInAir;
+    bool mCanDash;
+    bool mCanWallSlide;
+    bool mCanHook;
+
+    std::vector<std::string> mUnlockedSkillNodes;
 };
 

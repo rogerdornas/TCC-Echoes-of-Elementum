@@ -7,6 +7,7 @@
 #include "Light.h"
 #include "Particle.h"
 #include "ParticleSystem.h"
+#include "../PlayerSkillManager.h"
 #include "../Random.h"
 #include "../Components/RigidBodyComponent.h"
 #include "../Components/CombatBoxComponent.h"
@@ -223,7 +224,7 @@ void FireWisp::UpdateLight(float deltaTime) {
 }
 
 void FireWisp::AttackEnemies(float deltaTime) {
-    if (!mCanAttackEnemies) {
+    if (!mGame->GetPlayer()->GetSkillManager()->CanFireWispAttack()) {
         return;
     }
 
