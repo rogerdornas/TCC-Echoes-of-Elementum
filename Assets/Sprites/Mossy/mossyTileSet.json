@@ -1,0 +1,352 @@
+{
+  "sprites": [
+    {
+      "fileName": "01.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 1
+    },
+    {
+      "fileName": "02.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 1
+    },
+    {
+      "fileName": "03.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 1
+    },
+    {
+      "fileName": "04.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 1
+    },
+    {
+      "fileName": "05.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 1
+    },
+    {
+      "fileName": "06.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 1
+    },
+    {
+      "fileName": "07.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 1
+    },
+    {
+      "fileName": "08.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 67
+    },
+    {
+      "fileName": "09.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 67
+    },
+    {
+      "fileName": "10.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 67
+    },
+    {
+      "fileName": "11.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 67
+    },
+    {
+      "fileName": "12.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 67
+    },
+    {
+      "fileName": "13.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 67
+    },
+    {
+      "fileName": "14.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 67
+    },
+    {
+      "fileName": "15.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 133
+    },
+    {
+      "fileName": "16.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 133
+    },
+    {
+      "fileName": "17.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 133
+    },
+    {
+      "fileName": "18.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 133
+    },
+    {
+      "fileName": "19.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 133
+    },
+    {
+      "fileName": "20.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 133
+    },
+    {
+      "fileName": "21.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 133
+    },
+    {
+      "fileName": "22.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 199
+    },
+    {
+      "fileName": "23.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 199
+    },
+    {
+      "fileName": "24.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 199
+    },
+    {
+      "fileName": "25.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 199
+    },
+    {
+      "fileName": "26.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 199
+    },
+    {
+      "fileName": "27.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 199
+    },
+    {
+      "fileName": "28.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 199
+    },
+    {
+      "fileName": "29.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 265
+    },
+    {
+      "fileName": "30.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 265
+    },
+    {
+      "fileName": "31.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 265
+    },
+    {
+      "fileName": "32.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 265
+    },
+    {
+      "fileName": "33.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 265
+    },
+    {
+      "fileName": "34.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 265
+    },
+    {
+      "fileName": "35.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 265
+    },
+    {
+      "fileName": "36.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 331
+    },
+    {
+      "fileName": "37.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 331
+    },
+    {
+      "fileName": "38.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 331
+    },
+    {
+      "fileName": "39.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 331
+    },
+    {
+      "fileName": "40.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 331
+    },
+    {
+      "fileName": "41.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 331
+    },
+    {
+      "fileName": "42.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 331
+    },
+    {
+      "fileName": "43.png",
+      "width": 64,
+      "height": 64,
+      "x": 1,
+      "y": 397
+    },
+    {
+      "fileName": "44.png",
+      "width": 64,
+      "height": 64,
+      "x": 67,
+      "y": 397
+    },
+    {
+      "fileName": "45.png",
+      "width": 64,
+      "height": 64,
+      "x": 133,
+      "y": 397
+    },
+    {
+      "fileName": "46.png",
+      "width": 64,
+      "height": 64,
+      "x": 199,
+      "y": 397
+    },
+    {
+      "fileName": "47.png",
+      "width": 64,
+      "height": 64,
+      "x": 265,
+      "y": 397
+    },
+    {
+      "fileName": "48.png",
+      "width": 64,
+      "height": 64,
+      "x": 331,
+      "y": 397
+    },
+    {
+      "fileName": "49.png",
+      "width": 64,
+      "height": 64,
+      "x": 397,
+      "y": 397
+    }
+  ],
+  "packMode": "grid",
+  "padding": 1,
+  "backgroundColor": "rgba(0, 0, 0, 0)",
+  "spriteSheetWidth": 462,
+  "spriteSheetHeight": 462
+}

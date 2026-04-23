@@ -649,17 +649,6 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="Decorations">
-  <object id="54" x="2144" y="4928" width="96" height="96">
-   <properties>
-    <property name="Path" value="Sprites/Objects_Fire/Rocks/6.png"/>
-   </properties>
-  </object>
-  <object id="55" x="2304" y="4768" width="128" height="256">
-   <properties>
-    <property name="Path" value="Sprites/Objects_Fire/Threes/1.png"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup id="12" name="Decorations"/>
  <objectgroup id="10" name="HookPoints"/>
 </map>

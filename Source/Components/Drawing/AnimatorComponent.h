@@ -42,6 +42,9 @@ public:
     // Add an animation of the corresponding name to the animation map
     void AddAnimation(const std::string& name, const std::vector<int>& images);
 
+    void SetParallaxFactor(const Vector2& factor) { mParallaxFactor = factor; }
+    Vector2 GetParallaxFactor() const { return mParallaxFactor; }
+
     void SetTextureFactor(float textureFactor) { mTextureFactor = textureFactor; }
 
     void SetAdditiveBlending(bool additiveBlending) { mAdditiveBlending = additiveBlending; }
@@ -71,6 +74,8 @@ private:
 
     // Whether or not the animation is paused (defaults to false)
     bool mIsPaused;
+
+    Vector2 mParallaxFactor;
 
     // Size
     int mWidth;

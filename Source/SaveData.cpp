@@ -145,6 +145,11 @@ std::string SaveData::GameSceneToString(Game::GameScene scene) {
         case Game::GameScene::Level5: return "Level5";
         case Game::GameScene::Room0: return "Room0";
         case Game::GameScene::Room1: return "Room1";
+        case Game::GameScene::Room2: return "Room2";
+        case Game::GameScene::Room3: return "Room3";
+        case Game::GameScene::Room4: return "Room4";
+        case Game::GameScene::Room5: return "Room5";
+        case Game::GameScene::Room6: return "Room6";
         case Game::GameScene::Desafios: return "Desafios";
         case Game::GameScene::Cave: return "Cave";
         case Game::GameScene::MirrorBoss: return "MirrorBoss";
@@ -163,6 +168,11 @@ Game::GameScene SaveData::StringToGameScene(const std::string &str) {
     if (str == "Level5") return Game::GameScene::Level5;
     if (str == "Room0") return Game::GameScene::Room0;
     if (str == "Room1") return Game::GameScene::Room1;
+    if (str == "Room2") return Game::GameScene::Room2;
+    if (str == "Room3") return Game::GameScene::Room3;
+    if (str == "Room4") return Game::GameScene::Room4;
+    if (str == "Room5") return Game::GameScene::Room5;
+    if (str == "Room6") return Game::GameScene::Room6;
     if (str == "Desafios") return Game::GameScene::Desafios;
     if (str == "Cave") return Game::GameScene::Cave;
     if (str == "MirrorBoss") return Game::GameScene::MirrorBoss;

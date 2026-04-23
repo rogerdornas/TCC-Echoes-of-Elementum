@@ -13,7 +13,7 @@
 #include "ParticleSystem.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 
-Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMoving, float movingDuration, Vector2 velocity)
+Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMoving, float movingDuration, Vector2 velocity, bool groundBehindPlayer, bool usePadding)
     :Actor(game)
     ,mStartingPosition(Vector2::Zero)
     ,mRespawnPosition(Vector2::Zero)
@@ -39,6 +39,21 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     vertices.emplace_back(v3);
     vertices.emplace_back(v4);
 
+    float paddingTop = 0;
+    float paddingBottom = 0;
+    float paddingLeft = 0;
+    float paddingRight = 0;
+
+    if (usePadding) {
+        paddingTop = 10.0f;    // Ignora a altura da grama
+        paddingBottom = 8.0f;  // Ignora as raizes
+        paddingLeft = 8.0f;    // Ignora folhas nas laterais
+        paddingRight = 8.0f;   // Ignora folhas nas laterais
+    }
+
+    Vector2 physicsV1(-mWidth / 2 + paddingLeft, -mHeight / 2 + paddingTop);
+    Vector2 physicsV3(mWidth / 2 - paddingRight, mHeight / 2 - paddingBottom);
+
     SDL_Color color;
     if (mIsSpike)
         color = SDL_Color{255, 0, 0, 255};
@@ -52,10 +67,18 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, color);
 
     mRigidBodyComponent = new RigidBodyComponent(this, 1);
-    mAABBComponent = new AABBComponent(this, v1, v3);
+    mAABBComponent = new AABBComponent(this, physicsV1, physicsV3);
+    // mAABBComponent->SetDebugDraw(true);
 
     // mDrawGroundSpritesComponent = new DrawGroundSpritesComponent(this, mGame->GetTileSize(), mGame->GetTileSize(), 99);
-    mDrawComponent = new TileMapComponent(this, 99);
+    int drawOrder;
+    if (groundBehindPlayer) {
+        drawOrder = 99;
+    }
+    else {
+        drawOrder = 1003;
+    }
+    mDrawComponent = new TileMapComponent(this, drawOrder);
 
     if (mIsMoving) {
         mRigidBodyComponent->SetVelocity(mVelocity);

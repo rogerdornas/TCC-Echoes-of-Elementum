@@ -1,0 +1,555 @@
+{
+  "frames": [
+    {
+      "filename": "blueplantclosed_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00001.png",
+      "frame": {
+        "x": 771,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00002.png",
+      "frame": {
+        "x": 1541,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00003.png",
+      "frame": {
+        "x": 2311,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00004.png",
+      "frame": {
+        "x": 3081,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00005.png",
+      "frame": {
+        "x": 3851,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00006.png",
+      "frame": {
+        "x": 4621,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00007.png",
+      "frame": {
+        "x": 5391,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00008.png",
+      "frame": {
+        "x": 1,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00009.png",
+      "frame": {
+        "x": 771,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00010.png",
+      "frame": {
+        "x": 1541,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00011.png",
+      "frame": {
+        "x": 2311,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00012.png",
+      "frame": {
+        "x": 3081,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00013.png",
+      "frame": {
+        "x": 3851,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00014.png",
+      "frame": {
+        "x": 4621,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00015.png",
+      "frame": {
+        "x": 5391,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00016.png",
+      "frame": {
+        "x": 1,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00017.png",
+      "frame": {
+        "x": 771,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00018.png",
+      "frame": {
+        "x": 1541,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00019.png",
+      "frame": {
+        "x": 2311,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00020.png",
+      "frame": {
+        "x": 3081,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00021.png",
+      "frame": {
+        "x": 3851,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00022.png",
+      "frame": {
+        "x": 4621,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00023.png",
+      "frame": {
+        "x": 5391,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00024.png",
+      "frame": {
+        "x": 1,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00025.png",
+      "frame": {
+        "x": 771,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00026.png",
+      "frame": {
+        "x": 1541,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00027.png",
+      "frame": {
+        "x": 2311,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00028.png",
+      "frame": {
+        "x": 3081,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00029.png",
+      "frame": {
+        "x": 3851,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00030.png",
+      "frame": {
+        "x": 4621,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00031.png",
+      "frame": {
+        "x": 5391,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00032.png",
+      "frame": {
+        "x": 1,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00033.png",
+      "frame": {
+        "x": 771,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00034.png",
+      "frame": {
+        "x": 1541,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00035.png",
+      "frame": {
+        "x": 2311,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00036.png",
+      "frame": {
+        "x": 3081,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00037.png",
+      "frame": {
+        "x": 3851,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00038.png",
+      "frame": {
+        "x": 4621,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00039.png",
+      "frame": {
+        "x": 5391,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00040.png",
+      "frame": {
+        "x": 1,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00041.png",
+      "frame": {
+        "x": 771,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00042.png",
+      "frame": {
+        "x": 1541,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00043.png",
+      "frame": {
+        "x": 2311,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00044.png",
+      "frame": {
+        "x": 3081,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00045.png",
+      "frame": {
+        "x": 3851,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00046.png",
+      "frame": {
+        "x": 4621,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00047.png",
+      "frame": {
+        "x": 5391,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00048.png",
+      "frame": {
+        "x": 1,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00049.png",
+      "frame": {
+        "x": 771,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00050.png",
+      "frame": {
+        "x": 1541,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00051.png",
+      "frame": {
+        "x": 2311,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00052.png",
+      "frame": {
+        "x": 3081,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00053.png",
+      "frame": {
+        "x": 3851,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00054.png",
+      "frame": {
+        "x": 4621,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00055.png",
+      "frame": {
+        "x": 5391,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00056.png",
+      "frame": {
+        "x": 1,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00057.png",
+      "frame": {
+        "x": 771,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00058.png",
+      "frame": {
+        "x": 1541,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00059.png",
+      "frame": {
+        "x": 2311,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "BlueFlower2.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 6160,
+      "h": 6160
+    },
+    "scale": 1
+  }
+}

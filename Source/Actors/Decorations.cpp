@@ -7,13 +7,35 @@
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 
-Decorations::Decorations(Game *game, float width, float height, std::string imagePath)
+Decorations::Decorations(Game *game, float width, float height, std::string imagePath,
+                         float fps, int numFrames, bool animated, int gid, float rotation,
+                         int drawOrder, Vector2 parallaxFactor,
+                         Vector3 textureColor, float textureFactor)
     :Actor(game)
     ,mWidth(width)
     ,mHeight(height)
+    ,mFPS(fps)
+    ,mNumFrames(numFrames)
+    ,mAnimated(animated)
     ,mDrawComponent(nullptr)
     ,mRectComponent(nullptr)
 {
+    int FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
+    int FLIPPED_VERTICALLY_FLAG   = 0x40000000;
+
+    bool flippedHorizontally = (gid & FLIPPED_HORIZONTALLY_FLAG) != 0;
+    bool flippedVertically   = (gid & FLIPPED_VERTICALLY_FLAG) != 0;
+
+    if (flippedHorizontally) {
+        SetScale(Vector2(-1, GetScale().y));
+    }
+    if (flippedVertically) {
+        SetScale(Vector2(GetScale().x, -1));
+    }
+
+    SetRotation(rotation);
+    SetTransformRotation(rotation);
+
     mImagePath = "../Assets/" + imagePath;
 
     Vector2 v1(-mWidth / 2, -mHeight / 2);
@@ -29,7 +51,28 @@ Decorations::Decorations(Game *game, float width, float height, std::string imag
 
     // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, {0, 255, 0, 255});
 
-    mDrawComponent = new AnimatorComponent(this, mImagePath, "", mWidth, mHeight, 200);
+    if (mAnimated) {
+        mDrawComponent = new AnimatorComponent(this,
+                                            mImagePath + ".png",
+                                            mImagePath + ".json",
+                                            mWidth, mHeight, drawOrder);
+
+        std::vector<int> idle(mNumFrames);
+        std::iota(idle.begin(), idle.end(), 0);
+        mDrawComponent->AddAnimation("idle", idle);
+
+        mDrawComponent->SetAnimation("idle");
+        mDrawComponent->SetAnimFPS(mFPS);
+    }
+    else {
+        mDrawComponent = new AnimatorComponent(this,
+                                    mImagePath + ".png",
+                                    "",
+                                    mWidth, mHeight, drawOrder);
+    }
+    mDrawComponent->SetColor(textureColor);
+    mDrawComponent->SetTextureFactor(textureFactor);
+    mDrawComponent->SetParallaxFactor(parallaxFactor);
 }
 
 void Decorations::OnUpdate(float deltaTime) {

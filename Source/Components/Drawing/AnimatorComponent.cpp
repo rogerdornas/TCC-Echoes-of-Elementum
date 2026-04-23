@@ -15,6 +15,7 @@ AnimatorComponent::AnimatorComponent(class Actor* owner, const std::string &texP
     ,mAnimTimer(0.0f)
     ,mAnimFPS(10.0f)
     ,mIsPaused(false)
+    ,mParallaxFactor(1, 1)
     ,mWidth(width)
     ,mHeight(height)
     ,mCropX(0.0f)
@@ -107,11 +108,14 @@ void AnimatorComponent::Draw(Renderer* renderer)
     {
         Vector4 texRect = GetCurrentTexRect();
 
+        Vector2 cameraPos = GetGame()->GetCamera()->GetPosCamera();
+        Vector2 parallaxCameraPos(cameraPos * mParallaxFactor);
+
         // Ajusta o tamanho de desenho físico para evitar que a textura seja esticada
         Vector2 drawSize(mWidth * mCropW, mHeight * mCropH);
 
         renderer->DrawTexture(mOwner->GetPosition(), drawSize, mOwner->GetTransformRotation(),
-                              mColor, mSpriteTexture, texRect, GetGame()->GetCamera()->GetPosCamera(), mOwner->GetScale(), mTextureFactor, mAlpha, mFreezeLevel, mAdditiveBlending);
+                              mColor, mSpriteTexture, texRect, parallaxCameraPos, mOwner->GetScale(), mTextureFactor, mAlpha, mFreezeLevel, mAdditiveBlending);
     }
 }
 

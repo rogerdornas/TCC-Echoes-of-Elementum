@@ -12,8 +12,8 @@
 #include "../Components/Drawing/TileMapComponent.h"
 
 DynamicGround::DynamicGround(Game* game, float width, float height, bool isSpike, bool isMoving,
-                             float movingDuration, Vector2 velocity)
-    :Ground(game, width, height, isSpike, isMoving, movingDuration, velocity)
+                             float movingDuration, Vector2 velocity, bool groundBehindPlayer, bool usePadding)
+    :Ground(game, width, height, isSpike, isMoving, movingDuration, velocity, groundBehindPlayer, usePadding)
     ,mMaxWidth(width)
     ,mMaxHeight(height)
     ,mGrowSpeed(Vector2::Zero)
@@ -23,7 +23,14 @@ DynamicGround::DynamicGround(Game* game, float width, float height, bool isSpike
     ,mGrowthDirection(GrowthDirection::Centered)
 {
     if (mDrawComponent) {
-        mDrawComponent->SetDrawOrder(100);
+        int drawOrder;
+        if (groundBehindPlayer) {
+            drawOrder = 100;
+        }
+        else {
+            drawOrder = 1004;
+        }
+        mDrawComponent->SetDrawOrder(drawOrder);
     }
 }
 

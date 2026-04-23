@@ -1,0 +1,285 @@
+{
+  "frames": [
+    {
+      "filename": "plantposion_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00001.png",
+      "frame": {
+        "x": 515,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00002.png",
+      "frame": {
+        "x": 1029,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00003.png",
+      "frame": {
+        "x": 1543,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00004.png",
+      "frame": {
+        "x": 2057,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00005.png",
+      "frame": {
+        "x": 2571,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00006.png",
+      "frame": {
+        "x": 1,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00007.png",
+      "frame": {
+        "x": 515,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00008.png",
+      "frame": {
+        "x": 1029,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00009.png",
+      "frame": {
+        "x": 1543,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00010.png",
+      "frame": {
+        "x": 2057,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00011.png",
+      "frame": {
+        "x": 2571,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00012.png",
+      "frame": {
+        "x": 1,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00013.png",
+      "frame": {
+        "x": 515,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00014.png",
+      "frame": {
+        "x": 1029,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00015.png",
+      "frame": {
+        "x": 1543,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00016.png",
+      "frame": {
+        "x": 2057,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00017.png",
+      "frame": {
+        "x": 2571,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00018.png",
+      "frame": {
+        "x": 1,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00019.png",
+      "frame": {
+        "x": 515,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00020.png",
+      "frame": {
+        "x": 1029,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00021.png",
+      "frame": {
+        "x": 1543,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00022.png",
+      "frame": {
+        "x": 2057,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00023.png",
+      "frame": {
+        "x": 2571,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00024.png",
+      "frame": {
+        "x": 1,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00025.png",
+      "frame": {
+        "x": 515,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00026.png",
+      "frame": {
+        "x": 1029,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00027.png",
+      "frame": {
+        "x": 1543,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00028.png",
+      "frame": {
+        "x": 2057,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plantposion_00029.png",
+      "frame": {
+        "x": 2571,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant8.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3084,
+      "h": 2570
+    },
+    "scale": 1
+  }
+}

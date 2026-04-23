@@ -102,6 +102,8 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mLevelDataDynamicGrounds(nullptr)
     ,mMap(nullptr)
     ,mShowMap(false)
+    ,mGroundBehindPlayer(true)
+    ,mUseGroundPadding(false)
     ,mTileSheet(nullptr)
     ,mController(nullptr)
     ,mHitstopActive(false)
@@ -269,6 +271,10 @@ void Game::SetGameScene(Game::GameScene scene, float transitionTime) {
             scene == GameScene::Room0 ||
             scene == GameScene::Room1 ||
             scene == GameScene::Room2 ||
+            scene == GameScene::Room3 ||
+            scene == GameScene::Room4 ||
+            scene == GameScene::Room5 ||
+            scene == GameScene::Room6 ||
             scene == GameScene::Desafios ||
             scene == GameScene::Cave ||
             scene == GameScene::MirrorBoss)
@@ -427,6 +433,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::LevelTeste) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
@@ -449,6 +457,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Coliseu) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -473,6 +483,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Prologue) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
@@ -491,6 +503,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Level1) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -512,6 +526,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Level2) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -536,6 +552,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Level3) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
@@ -558,6 +576,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Level4) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
@@ -592,6 +612,8 @@ void Game::ChangeScene()
     }
 
     else if (mNextScene == GameScene::Level5) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
@@ -615,6 +637,8 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Room0) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -638,6 +662,8 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Room1) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -661,6 +687,8 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Room2) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
@@ -677,7 +705,97 @@ void Game::ChangeScene()
         }
         mBossMusic.Reset();
     }
+    else if (mNextScene == GameScene::Room3) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+
+        LoadLevel(levelsAssets + "Room3/Room3.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
+        }
+        mBossMusic.Reset();
+    }
+    else if (mNextScene == GameScene::Room4) {
+        mGroundBehindPlayer = false;
+        mUseGroundPadding = true;
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+
+        LoadLevel(levelsAssets + "Room4/Room4.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
+        }
+        mBossMusic.Reset();
+    }
+    else if (mNextScene == GameScene::Room5) {
+        mGroundBehindPlayer = false;
+        mUseGroundPadding = true;
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
+
+        LoadLevel(levelsAssets + "Room5/Room5.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
+        }
+        mBossMusic.Reset();
+    }
+    else if (mNextScene == GameScene::Room6) {
+        mGroundBehindPlayer = false;
+        mUseGroundPadding = true;
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
+
+        LoadLevel(levelsAssets + "Room6/Room6.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
+        }
+        mBossMusic.Reset();
+    }
     else if (mNextScene == GameScene::Desafios) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -701,6 +819,8 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Cave) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -721,6 +841,8 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::MirrorBoss) {
+        mGroundBehindPlayer = true;
+        mUseGroundPadding = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
@@ -1169,7 +1291,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
 
                 if (name == "DynamicGround") {
-                    auto* dynamicGround = new DynamicGround(this, minWidth, minHeight, isSpike, isMoving, movingDuration, Vector2(speedX, speedY));
+                    auto* dynamicGround = new DynamicGround(this, minWidth, minHeight, isSpike, isMoving, movingDuration, Vector2(speedX, speedY), mGroundBehindPlayer, mUseGroundPadding);
                     dynamicGround->SetId(id);
                     dynamicGround->SetIsBreakable(isBreakable);
                     dynamicGround->SetRespawnPosition(Vector2(respawnPositionX, respawnPositionY));
@@ -1204,7 +1326,7 @@ void Game::LoadObjects(const std::string &fileName) {
                     dynamicGround->SetTilesIndex(widthOriginal, heightOriginal, xOriginal, yOriginal);
                 }
                 else {
-                    auto* ground = new Ground(this, width, height, isSpike, isMoving, movingDuration, Vector2(speedX, speedY));
+                    auto* ground = new Ground(this, width, height, isSpike, isMoving, movingDuration, Vector2(speedX, speedY), mGroundBehindPlayer, mUseGroundPadding);
                     ground->SetId(id);
                     ground->SetIsBreakable(isBreakable);
                     ground->SetPosition(Vector2(x + width / 2, y + height / 2));
@@ -1214,13 +1336,51 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
             }
         }
-        if (layer["name"] == "Decorations") {
+        if (layer["name"] == "Background1" || layer["name"] == "Decorations" || layer["name"] == "Foreground1" || layer["name"] == "Foreground2") {
+            float parallaxX = 1.0f;
+            float parallaxY = 1.0f;
+            if (layer.contains("parallaxx")) {
+                parallaxX = layer["parallaxx"];
+            }
+            if (layer.contains("parallaxy")) {
+                parallaxY = layer["parallaxy"];
+            }
+            Vector3 textureColor = Color::White;
+            float textureFactor = 1.0f;
+            if (layer.contains("properties")) {
+                for (const auto &prop: layer["properties"]) {
+                    std::string propName = prop["name"];
+                    if (propName == "TextureColorR") {
+                        textureColor.x = prop["value"];
+                    }
+                    if (propName == "TextureColorG") {
+                        textureColor.y = prop["value"];
+                    }
+                    if (propName == "TextureColorB") {
+                        textureColor.z = prop["value"];
+                    }
+                    if (propName == "TextureFactor") {
+                        textureFactor = prop["value"];
+                    }
+                }
+            }
+            textureColor /= 255.0f;
             for (const auto &obj: layer["objects"]) {
                 float x = obj["x"];
                 float y = obj["y"];
                 float width = obj["width"];
                 float height = obj["height"];
+                float rotation = Math::ToRadians(obj["rotation"]);
+                int gid = 0;
+
+                if (obj.contains("gid")) {
+                    gid = obj["gid"];
+                }
+
                 std::string imagePath;
+                float fps = 10.0f;
+                int numFrames = 1;
+                bool animated = false;
 
                 if (obj.contains("properties")) {
                     for (const auto &prop: obj["properties"]) {
@@ -1228,10 +1388,33 @@ void Game::LoadObjects(const std::string &fileName) {
                         if (propName == "Path") {
                             imagePath = prop["value"];
                         }
+                        if (propName == "FPS") {
+                            fps = prop["value"];
+                        }
+                        if (propName == "NumFrames") {
+                            numFrames = prop["value"];
+                        }
+                        if (propName == "Animated") {
+                            animated = prop["value"];
+                        }
                     }
                 }
-                auto* decoration = new Decorations(this, width, height, imagePath);
-                decoration->SetPosition(Vector2(x + width / 2, y + height / 2));
+                if (layer["name"] == "Background1") {
+                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 100, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                }
+                if (layer["name"] == "Decorations") {
+                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 200, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                }
+                if (layer["name"] == "Foreground1") {
+                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 6000, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                }
+                if (layer["name"] == "Foreground2") {
+                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 7000, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                }
             }
         }
         if (layer["name"] == "Light") {
@@ -2132,6 +2315,7 @@ void Game::LoadLevel(const std::string &fileName) {
     mLevelHeight = height;
     mLevelWidth = width;
     mTileSize = tileSize;
+    mOriginalTileSize = tileSize;
 
     if (mGoingToNextLevel) {
         // Delete map
@@ -3199,7 +3383,7 @@ void Game::RemoveDrawable(class DrawComponent *drawable)
 }
 
 void Game::SortDrawables() {
-    std::sort(mDrawables.begin(), mDrawables.end(),[](DrawComponent* a, DrawComponent* b) {
+    std::stable_sort(mDrawables.begin(), mDrawables.end(),[](DrawComponent* a, DrawComponent* b) {
     return a->GetDrawOrder() < b->GetDrawOrder();
     });
 }

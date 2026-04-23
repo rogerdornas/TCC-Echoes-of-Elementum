@@ -10,7 +10,7 @@ class Ground : public Actor
 {
 public:
     Ground(Game* game, float width, float height, bool isSpike = false, bool isMoving = false,
-           float movingDuration = 0.0f, Vector2 velocity = Vector2::Zero);
+           float movingDuration = 0.0f, Vector2 velocity = Vector2::Zero, bool groundBehindPlayer = true, bool usePadding = false);
     ~Ground() override;
 
     void OnUpdate(float deltaTime) override;

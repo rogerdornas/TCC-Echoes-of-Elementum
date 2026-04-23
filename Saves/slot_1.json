@@ -6,17 +6,17 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 1328.0,
-            "y": 5312.0
+            "x": 688.0,
+            "y": 3104.0
         },
-        "scene": "Room0",
-        "total_play_time": 232706.21875
+        "scene": "Coliseu",
+        "total_play_time": 242518.984375
     },
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 840,
+        "death_counter": 848,
         "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 4330
+        "money": 7324
     },
     "skill_tree": {
         "unlocked_nodes": [

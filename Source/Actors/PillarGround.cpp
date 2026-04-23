@@ -7,7 +7,7 @@
 #include "../Components/AABBComponent.h"
 
 PillarGround::PillarGround(Game *game, float width, float height)
-    :DynamicGround(game, width, height)
+    :DynamicGround(game, width, height, false, false, 0.0f, Vector2::Zero, true, false)
     ,mLifeDuration(3.5f)
     ,mLifeTimer(0.0f)
 {

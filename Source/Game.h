@@ -46,6 +46,10 @@ public:
         Room0,
         Room1,
         Room2,
+        Room3,
+        Room4,
+        Room5,
+        Room6,
         Desafios,
         Cave,
         MirrorBoss
@@ -401,6 +405,8 @@ private:
     int mOriginalTileSize = 32;
     Map* mMap;
     bool mShowMap;
+    bool mGroundBehindPlayer;
+    bool mUseGroundPadding;
 
     bool mHitstopActive;
     float mHitstopDuration;

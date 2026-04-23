@@ -1,0 +1,285 @@
+{
+  "frames": [
+    {
+      "filename": "plant_wind_1_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00001.png",
+      "frame": {
+        "x": 515,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00002.png",
+      "frame": {
+        "x": 1029,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00003.png",
+      "frame": {
+        "x": 1543,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00004.png",
+      "frame": {
+        "x": 2057,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00005.png",
+      "frame": {
+        "x": 2571,
+        "y": 1,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00006.png",
+      "frame": {
+        "x": 1,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00007.png",
+      "frame": {
+        "x": 515,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00008.png",
+      "frame": {
+        "x": 1029,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00009.png",
+      "frame": {
+        "x": 1543,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00010.png",
+      "frame": {
+        "x": 2057,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00011.png",
+      "frame": {
+        "x": 2571,
+        "y": 515,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00012.png",
+      "frame": {
+        "x": 1,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00013.png",
+      "frame": {
+        "x": 515,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00014.png",
+      "frame": {
+        "x": 1029,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00015.png",
+      "frame": {
+        "x": 1543,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00016.png",
+      "frame": {
+        "x": 2057,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00017.png",
+      "frame": {
+        "x": 2571,
+        "y": 1029,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00018.png",
+      "frame": {
+        "x": 1,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00019.png",
+      "frame": {
+        "x": 515,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00020.png",
+      "frame": {
+        "x": 1029,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00021.png",
+      "frame": {
+        "x": 1543,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00022.png",
+      "frame": {
+        "x": 2057,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00023.png",
+      "frame": {
+        "x": 2571,
+        "y": 1543,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00024.png",
+      "frame": {
+        "x": 1,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00025.png",
+      "frame": {
+        "x": 515,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00026.png",
+      "frame": {
+        "x": 1029,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00027.png",
+      "frame": {
+        "x": 1543,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00028.png",
+      "frame": {
+        "x": 2057,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    },
+    {
+      "filename": "plant_wind_1_00029.png",
+      "frame": {
+        "x": 2571,
+        "y": 2057,
+        "w": 512,
+        "h": 512
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant9.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3084,
+      "h": 2570
+    },
+    "scale": 1
+  }
+}

@@ -382,6 +382,15 @@ public:
 		return *this;
 	}
 
+	// Scalar /=
+	Vector3& operator/=(float scalar)
+	{
+		x /= scalar;
+		y /= scalar;
+		z /= scalar;
+		return *this;
+	}
+
 	// Vector +=
 	Vector3& operator+=(const Vector3& right)
 	{

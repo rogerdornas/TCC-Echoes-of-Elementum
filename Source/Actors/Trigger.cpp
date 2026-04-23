@@ -170,6 +170,22 @@ void Trigger::SetScene(std::string scene) {
         mScene = Game::GameScene::Room2;
         return;
     }
+    if (scene == "Room3") {
+        mScene = Game::GameScene::Room3;
+        return;
+    }
+    if (scene == "Room4") {
+        mScene = Game::GameScene::Room4;
+        return;
+    }
+    if (scene == "Room5") {
+        mScene = Game::GameScene::Room5;
+        return;
+    }
+    if (scene == "Room6") {
+        mScene = Game::GameScene::Room6;
+        return;
+    }
     if (scene == "Desafios") {
         mScene = Game::GameScene::Desafios;
         return;

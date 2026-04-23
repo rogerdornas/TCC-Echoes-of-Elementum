@@ -1658,41 +1658,7 @@
          "draworder":"topdown",
          "id":12,
          "name":"Decorations",
-         "objects":[
-                {
-                 "height":96,
-                 "id":54,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Objects_Fire\/Rocks\/6.png"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":96,
-                 "x":2144,
-                 "y":4928
-                }, 
-                {
-                 "height":256,
-                 "id":55,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Objects_Fire\/Threes\/1.png"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":2304,
-                 "y":4768
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,

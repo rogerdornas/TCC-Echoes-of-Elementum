@@ -1088,7 +1088,7 @@
                         {
                          "name":"AmbientIntensity",
                          "type":"float",
-                         "value":0
+                         "value":1
                         }, 
                         {
                          "name":"Destroy",
@@ -1112,6 +1112,17 @@
                  "x":896,
                  "y":4832
                 }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":9,
+         "name":"Decorations",
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1146,8 +1157,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":9,
- "nextobjectid":88,
+ "nextlayerid":10,
+ "nextobjectid":94,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -1,0 +1,555 @@
+{
+  "frames": [
+    {
+      "filename": "blueflower_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00001.png",
+      "frame": {
+        "x": 771,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00002.png",
+      "frame": {
+        "x": 1541,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00003.png",
+      "frame": {
+        "x": 2311,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00004.png",
+      "frame": {
+        "x": 3081,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00005.png",
+      "frame": {
+        "x": 3851,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00006.png",
+      "frame": {
+        "x": 4621,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00007.png",
+      "frame": {
+        "x": 5391,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00008.png",
+      "frame": {
+        "x": 1,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00009.png",
+      "frame": {
+        "x": 771,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00010.png",
+      "frame": {
+        "x": 1541,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00011.png",
+      "frame": {
+        "x": 2311,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00012.png",
+      "frame": {
+        "x": 3081,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00013.png",
+      "frame": {
+        "x": 3851,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00014.png",
+      "frame": {
+        "x": 4621,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00015.png",
+      "frame": {
+        "x": 5391,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00016.png",
+      "frame": {
+        "x": 1,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00017.png",
+      "frame": {
+        "x": 771,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00018.png",
+      "frame": {
+        "x": 1541,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00019.png",
+      "frame": {
+        "x": 2311,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00020.png",
+      "frame": {
+        "x": 3081,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00021.png",
+      "frame": {
+        "x": 3851,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00022.png",
+      "frame": {
+        "x": 4621,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00023.png",
+      "frame": {
+        "x": 5391,
+        "y": 1541,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00024.png",
+      "frame": {
+        "x": 1,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00025.png",
+      "frame": {
+        "x": 771,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00026.png",
+      "frame": {
+        "x": 1541,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00027.png",
+      "frame": {
+        "x": 2311,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00028.png",
+      "frame": {
+        "x": 3081,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00029.png",
+      "frame": {
+        "x": 3851,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00030.png",
+      "frame": {
+        "x": 4621,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00031.png",
+      "frame": {
+        "x": 5391,
+        "y": 2311,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00032.png",
+      "frame": {
+        "x": 1,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00033.png",
+      "frame": {
+        "x": 771,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00034.png",
+      "frame": {
+        "x": 1541,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00035.png",
+      "frame": {
+        "x": 2311,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00036.png",
+      "frame": {
+        "x": 3081,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00037.png",
+      "frame": {
+        "x": 3851,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00038.png",
+      "frame": {
+        "x": 4621,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00039.png",
+      "frame": {
+        "x": 5391,
+        "y": 3081,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00040.png",
+      "frame": {
+        "x": 1,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00041.png",
+      "frame": {
+        "x": 771,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00042.png",
+      "frame": {
+        "x": 1541,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00043.png",
+      "frame": {
+        "x": 2311,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00044.png",
+      "frame": {
+        "x": 3081,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00045.png",
+      "frame": {
+        "x": 3851,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00046.png",
+      "frame": {
+        "x": 4621,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00047.png",
+      "frame": {
+        "x": 5391,
+        "y": 3851,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00048.png",
+      "frame": {
+        "x": 1,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00049.png",
+      "frame": {
+        "x": 771,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00050.png",
+      "frame": {
+        "x": 1541,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00051.png",
+      "frame": {
+        "x": 2311,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00052.png",
+      "frame": {
+        "x": 3081,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00053.png",
+      "frame": {
+        "x": 3851,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00054.png",
+      "frame": {
+        "x": 4621,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00055.png",
+      "frame": {
+        "x": 5391,
+        "y": 4621,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00056.png",
+      "frame": {
+        "x": 1,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00057.png",
+      "frame": {
+        "x": 771,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00058.png",
+      "frame": {
+        "x": 1541,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueflower_00059.png",
+      "frame": {
+        "x": 2311,
+        "y": 5391,
+        "w": 768,
+        "h": 768
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "BlueFlower.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 6160,
+      "h": 6160
+    },
+    "scale": 1
+  }
+}
