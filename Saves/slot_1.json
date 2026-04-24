@@ -6,11 +6,11 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 688.0,
-            "y": 3104.0
+            "x": 5196.97021484375,
+            "y": 4784.85009765625
         },
-        "scene": "Coliseu",
-        "total_play_time": 242518.984375
+        "scene": "Room6",
+        "total_play_time": 243316.46875
     },
     "player": {
         "can_dash": true,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 7324
+        "money": 7954
     },
     "skill_tree": {
         "unlocked_nodes": [

@@ -348,6 +348,8 @@ private:
     int mIceStone;
     int mLightningStone;
 
+    class VineRope* mVineRope;
+    float mVineRopeThickness;
     bool mIsHooking;
     bool mPrevHookPressed;
     Vector2 mHookDirection;
@@ -357,13 +359,8 @@ private:
     float mHookingDuration;
     float mHookingTimer;
     Vector2 mHookEnd;
-    float mHookAnimProgress;
     bool mIsHookAnimating;
     HookPoint* mHookPoint;
-    float mHookAnimationDuration; // duração do efeito visual
-    int mHookSegments;
-    float mHookAmplitude;
-    float mHookSegmentHeight;
 
     bool mIsHookThrowing;      // Se a corda está viajando pelo ar
     Vector2 mCurrentRopeTip;   // Onde está a ponta da corda agora
@@ -406,8 +403,6 @@ private:
 
     class RectComponent* mRectComponent;
     class AnimatorComponent* mDrawComponent;
-    class DrawRopeComponent* mDrawRopeComponent;
-
     class RigidBodyComponent* mRigidBodyComponent;
     class ColliderComponent* mAABBComponent;
     class CombatBoxComponent* mCombatBoxComponent;

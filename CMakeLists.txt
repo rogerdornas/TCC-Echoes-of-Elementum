@@ -246,6 +246,8 @@ add_executable(${PROJECT_NAME}
         Source/SkillTreeManager.h
         Source/UIElements/UISkillNodeButton.cpp
         Source/UIElements/UISkillNodeButton.h
+        Source/Actors/VineRope.cpp
+        Source/Actors/VineRope.h
 )
 
 

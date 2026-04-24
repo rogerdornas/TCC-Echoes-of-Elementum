@@ -1,0 +1,33 @@
+{
+  "frames": [
+    {
+      "filename": "01.png",
+      "frame": {
+		"x": 1,
+		"y": 1,
+		"w": 3277,
+		"h": 329
+      }
+    },
+    {
+      "filename": "02.png",
+      "frame": {
+		"x": 1,
+		"y": 332,
+		"w": 3277,
+		"h": 329
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "VineRope.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3279,
+      "h": 662
+    },
+    "scale": 1
+  }
+}

@@ -15,6 +15,7 @@
 #include "LightningSpear.h"
 #include "Enemies/Mushroom.h"
 #include "PillarGround.h"
+#include "VineRope.h"
 #include "../Game.h"
 #include "../PlayerSkillManager.h"
 #include "../RadialMenu.h"
@@ -210,6 +211,8 @@ Player::Player(Game* game)
     ,mIceStone(0)
     ,mLightningStone(0)
 
+    ,mVineRope(nullptr)
+    ,mVineRopeThickness(90.0f)
     ,mIsHooking(false)
     ,mPrevHookPressed(false)
     ,mHookDirection(Vector2::Zero)
@@ -219,17 +222,12 @@ Player::Player(Game* game)
     ,mHookingDuration(0.3f)
     ,mHookingTimer(0.0f)
     ,mHookEnd(Vector2::Zero)
-    ,mHookAnimProgress(0.0f)
     ,mIsHookAnimating(false)
     ,mHookPoint(nullptr)
-    ,mHookAnimationDuration(0.45f)
-    ,mHookSegments(20)
-    ,mHookAmplitude(14.0f)
-    ,mHookSegmentHeight(8.0f)
 
     ,mIsHookThrowing(false)
     ,mCurrentRopeTip(Vector2::Zero)
-    ,mRopeThrowSpeed(3000.0f)
+    ,mRopeThrowSpeed(2500.0f)
 
     ,mRadialMenu(nullptr)
     ,mRadialMenuSlowMotionDuration(0.25f)
@@ -262,7 +260,6 @@ Player::Player(Game* game)
 
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
-    ,mDrawRopeComponent(nullptr)
     ,mCombatBoxComponent(nullptr)
     ,mGhostTrailComponent(nullptr)
 {
@@ -352,10 +349,7 @@ Player::Player(Game* game)
 
     mGhostTrailComponent = new GhostTrailComponent(this, mDrawComponent);
 
-    mDrawRopeComponent = new DrawRopeComponent(this, "../Assets/Sprites/Rope/Rope2.png");
-    mDrawRopeComponent->SetNumSegments(mHookSegments);
-    mDrawRopeComponent->SetAmplitude(mHookAmplitude);
-    mDrawRopeComponent->SetSegmentHeight(mHookSegmentHeight);
+    mVineRope = new VineRope(mGame, mVineRopeThickness);
 
     // mRectComponent = new RectComponent(this, mWidth, mHeight, RendererMode::LINES);
     // mRectComponent->SetColor(Vector3(255, 255, 0));
@@ -414,6 +408,9 @@ void Player::SetJumpEffects() {
     mLightningSpear = new LightningSpear(mGame);
     // Glide Effect
     mGlideEffect = new AirGlideEffect(mGame, this);
+
+    // VineRope
+    mVineRope = new VineRope(mGame, mVineRopeThickness);
 
     // Reset Radial Menu
     mRadialMenu = nullptr;
@@ -832,13 +829,8 @@ void Player::OnUpdate(float deltaTime) {
     }
 
     if (mIsHookAnimating) {
-        mHookAnimProgress += deltaTime / mHookAnimationDuration;
-        if (mHookAnimProgress >= 1.0f) {
-            mHookAnimProgress = 1.0f;
-        }
-        if (mDrawRopeComponent) {
-            mDrawRopeComponent->SetEndpoints(GetPosition(), mHookEnd);
-            mDrawRopeComponent->SetAnimationProgress(mHookAnimProgress);
+        if (mVineRope) {
+            mVineRope->SetEndpoints(GetPosition(), mHookEnd);
         }
     }
 
@@ -1155,9 +1147,9 @@ void Player::OnUpdate(float deltaTime) {
         }
 
         // Atualiza o desenho da corda enquanto ela viaja
-        if (mDrawRopeComponent) {
-            // Start no Player (que pode estar caindo), End na ponta viajante
-            mDrawRopeComponent->SetEndpoints(GetPosition(), mCurrentRopeTip);
+        if (mVineRope) {
+            mVineRope->SetEndpoints(GetPosition(), mCurrentRopeTip);
+            mVineRope->SetIsHooking(false);
         }
     }
     if (mIsHooking) {
@@ -1167,8 +1159,9 @@ void Player::OnUpdate(float deltaTime) {
             mHookingTimer += deltaTime;
 
             // Garante que a corda fique desenhada esticada até o fim
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetEndpoints(GetPosition(), mHookEnd);
+            if (mVineRope) {
+                mVineRope->SetEndpoints(GetPosition(), mHookEnd);
+                mVineRope->SetIsHooking(true);
             }
         } else {
             mIsHooking = false;
@@ -1180,8 +1173,8 @@ void Player::OnUpdate(float deltaTime) {
             // RESET DO CONTADOR DE PULO
             mJumpCountInAir = 0;
 
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetVisible(false);
+            if (mVineRope) {
+                mVineRope->Deactivate();
             }
         }
     }
@@ -1317,11 +1310,10 @@ void Player::OnUpdate(float deltaTime) {
         }
         mIsHooking = false;
         mIsHookThrowing = false;
-        mHookAnimProgress = 1.0f;
         mIsHookAnimating = false;
         mHookPoint = nullptr;
-        if (mDrawRopeComponent) {
-            mDrawRopeComponent->SetVisible(false);
+        if (mVineRope) {
+            mVineRope->Deactivate();
         }
         // mGame->GetAudio()->StopAllSounds();
         mGame->GetAudio()->StopSound(mGame->GetMusicHandle());
@@ -1725,8 +1717,8 @@ void Player::Stop() {
     mIsHookAnimating = false;
     mIsHookThrowing = false;
     mHookPoint = nullptr;
-    if (mDrawRopeComponent) {
-        mDrawRopeComponent->SetVisible(false);
+    if (mVineRope) {
+        mVineRope->Deactivate();
     }
     mDashComponent->StopDash();
     mLightningDashEffect->StopEffect();
@@ -1757,11 +1749,10 @@ void Player::UseDash() {
             if (mDashComponent->UseDash(mIsOnGround)) {
                 mIsHooking = false;
                 mIsHookThrowing = false;
-                mHookAnimProgress = 1.0f;
                 mIsHookAnimating = false;
                 mHookPoint = nullptr;
-                if (mDrawRopeComponent) {
-                    mDrawRopeComponent->SetVisible(false);
+                if (mVineRope) {
+                    mVineRope->Deactivate();
                 }
 
                 if (mIsOnFrenzyMode && mMana >= mLightningDashManaCost) {
@@ -1864,11 +1855,10 @@ void Player::UseGroundSlam() {
 
             mIsHooking = false;
             mIsHookThrowing = false;
-            mHookAnimProgress = 1.0f;
             mIsHookAnimating = false;
             mHookPoint = nullptr;
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetVisible(false);
+            if (mVineRope) {
+                mVineRope->Deactivate();
             }
         }
     }
@@ -2278,11 +2268,11 @@ void Player::UseHook(HookPoint* nearestHookPoint) {
 
             // Inicia a animação visual (o componente precisa ficar visível)
             mIsHookAnimating = true;
-            mHookAnimProgress = 0.0f; // Reseta a ondulação da corda
 
-            if (mDrawRopeComponent) {
-                mDrawRopeComponent->SetVisible(true);
-                mDrawRopeComponent->SetEndpoints(GetPosition(), mCurrentRopeTip);
+            if (mVineRope) {
+                mVineRope->SetState(ActorState::Active);
+                mVineRope->Activate();
+                mVineRope->SetEndpoints(GetPosition(), mCurrentRopeTip);
             }
         }
     }
