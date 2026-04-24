@@ -27,6 +27,7 @@ Particle::Particle(Game* game, ParticleType particleType)
     ,mSpeedScale(1.0f)
     ,mApplyDamage(false)
     ,mApplyFreeze(false)
+    ,mFadeIn(false)
     ,mFreezeDamage(1.0f)
     ,mFreezeIntensity(1.2f)
     ,mDrawComponent(nullptr)
@@ -137,6 +138,13 @@ void Particle::UpdateFade() {
     float t = mLifeTimer / mLifeTDuration;
 
     float alphaCurve = 1.0f - (t * t * t * t);
+
+    // Lógica de Fade In
+    if (mFadeIn) {
+        // Multiplica por 5 para que t=0.2 (20% da vida) resulte em 1.0.
+        float fadeInFactor = std::min(1.0f, t * 5.0f);
+        alphaCurve *= fadeInFactor;
+    }
 
     if (mDrawComponent) {
         // Aplica a curva à cor original

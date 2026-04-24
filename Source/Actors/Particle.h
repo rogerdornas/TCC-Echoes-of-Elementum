@@ -38,6 +38,7 @@ public:
     float GetFreezeIntensity() { return mFreezeIntensity; }
     void SetVelocity(Vector2 velocity);
     void UpdateFade();
+    void SetFadeIn(bool fadeIn) { mFadeIn = fadeIn; }
 
     void Activate();
     void Deactivate();
@@ -58,6 +59,7 @@ private:
     float mGravityForce;
     Vector2 mDirection;
     float mSpeedScale;
+    bool mFadeIn;
 
     bool mApplyDamage;
     bool mApplyFreeze;

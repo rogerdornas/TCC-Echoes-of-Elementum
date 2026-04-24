@@ -1,10 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="15" nextobjectid="169">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="16" nextobjectid="183">
  <editorsettings>
   <export target="Room6.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="Room6.tsx"/>
  <tileset firstgid="50" source="../Room5/mossy.tsx"/>
+ <objectgroup id="15" name="AmbientParticleArea">
+  <object id="171" x="278" y="1550" width="8052" height="3612">
+   <properties>
+    <property name="ColorB" type="int" value="200"/>
+    <property name="ColorG" type="int" value="255"/>
+    <property name="ColorR" type="int" value="200"/>
+    <property name="EmitRate" type="float" value="20"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="7" name="Background1" opacity="0.53" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
@@ -12,28 +22,12 @@
    <property name="TextureColorR" type="int" value="22"/>
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
-  <object id="104" gid="75" x="1586.06" y="4912.67" width="388.649" height="184.359">
-   <properties>
-    <property name="Animated" type="bool" value="false"/>
-    <property name="FPS" type="float" value="1"/>
-    <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Stone2"/>
-   </properties>
-  </object>
   <object id="105" gid="1073741890" x="337.636" y="5008.01" width="369.673" height="1022.12">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
     <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
-   </properties>
-  </object>
-  <object id="106" gid="50" x="1320.1" y="4935.84" width="263.545" height="263.545">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
   <object id="107" gid="56" x="2980.52" y="5079.12" width="382.929" height="836.821">
@@ -172,6 +166,46 @@
     <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
    </properties>
   </object>
+  <object id="174" gid="82" x="1290.95" y="4212.89" width="270.513" height="1328.08" rotation="90">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/Vine3"/>
+   </properties>
+  </object>
+  <object id="177" gid="1073741890" x="1575.95" y="4924.05" width="91.346" height="252.566">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
+   </properties>
+  </object>
+  <object id="178" gid="75" x="1571.46" y="4932.49" width="388.649" height="184.359">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/Stone2"/>
+   </properties>
+  </object>
+  <object id="179" gid="58" x="778.076" y="5004.21" width="895.303" height="895.303">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration4"/>
+   </properties>
+  </object>
+  <object id="180" gid="60" x="1992.26" y="5069.99" width="745.03" height="751.018">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration6"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="5" name="Decorations">
   <object id="86" gid="51" x="2284.95" y="4390.55" width="340.873" height="337.298">
@@ -206,7 +240,7 @@
     <property name="Path" value="Sprites/MossyBackgrounds/Spike1"/>
    </properties>
   </object>
-  <object id="90" gid="73" x="3235.23" y="3340.14" width="150.333" height="140.889" rotation="270">
+  <object id="90" gid="73" x="3367.73" y="3330.14" width="150.333" height="140.889" rotation="270">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
@@ -596,6 +630,14 @@
     <property name="Path" value="Sprites/MossyBackgrounds/Stone3"/>
    </properties>
   </object>
+  <object id="169" gid="50" x="1561.79" y="4995.56" width="263.545" height="263.545">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="FPS" type="float" value="60"/>
+    <property name="NumFrames" type="int" value="90"/>
+    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="10" name="HookPoints">
   <object id="122" x="2034.67" y="4201.33" width="25.3333" height="26.6667"/>
@@ -682,7 +724,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Grounds">
+ <objectgroup id="3" name="Grounds" locked="1">
   <object id="4" x="768" y="2304" width="3072" height="256"/>
   <object id="5" x="2688" y="1536" width="256" height="768"/>
   <object id="6" x="3840" y="1536" width="640" height="1024"/>

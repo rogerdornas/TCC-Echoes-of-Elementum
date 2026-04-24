@@ -4,42 +4,52 @@
  "layers":[
         {
          "draworder":"topdown",
-         "id":7,
-         "name":"Background1",
+         "id":15,
+         "name":"AmbientParticleArea",
          "objects":[
                 {
-                 "gid":75,
-                 "height":184.359,
-                 "id":104,
+                 "height":3612,
+                 "id":171,
                  "name":"",
                  "properties":[
                         {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":1
-                        }, 
-                        {
-                         "name":"NumFrames",
+                         "name":"ColorB",
                          "type":"int",
-                         "value":1
+                         "value":200
                         }, 
                         {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyBackgrounds\/Stone2"
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":20
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":388.649,
-                 "x":1586.06,
-                 "y":4912.67
-                }, 
+                 "width":8052,
+                 "x":278,
+                 "y":1550
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":7,
+         "name":"Background1",
+         "objects":[
                 {
                  "gid":1073741890,
                  "height":1022.12,
@@ -72,39 +82,6 @@
                  "width":369.673,
                  "x":337.636,
                  "y":5008.01
-                }, 
-                {
-                 "gid":50,
-                 "height":263.545,
-                 "id":106,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":60
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":90
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":263.545,
-                 "x":1320.1,
-                 "y":4935.84
                 }, 
                 {
                  "gid":56,
@@ -666,6 +643,171 @@
                  "width":143.346,
                  "x":6078.6,
                  "y":4930.38
+                }, 
+                {
+                 "gid":82,
+                 "height":1328.08266748135,
+                 "id":174,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/MossyBackgrounds\/Vine3"
+                        }],
+                 "rotation":90,
+                 "type":"",
+                 "visible":true,
+                 "width":270.512853470437,
+                 "x":1290.95,
+                 "y":4212.88706365503
+                }, 
+                {
+                 "gid":1073741890,
+                 "height":252.566152372581,
+                 "id":177,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/MossyBackgrounds\/HangingPlants6"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":91.346,
+                 "x":1575.952,
+                 "y":4924.05165237258
+                }, 
+                {
+                 "gid":75,
+                 "height":184.359,
+                 "id":178,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/MossyBackgrounds\/Stone2"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":388.649,
+                 "x":1571.45883333333,
+                 "y":4932.48716666667
+                }, 
+                {
+                 "gid":58,
+                 "height":895.30303030303,
+                 "id":179,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/MossyBackgrounds\/BackgroundDecoration4"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":895.30303030303,
+                 "x":778.075757575757,
+                 "y":5004.21212121212
+                }, 
+                {
+                 "gid":60,
+                 "height":751.017917405977,
+                 "id":180,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/MossyBackgrounds\/BackgroundDecoration6"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":745.030303030303,
+                 "x":1992.25757575758,
+                 "y":5069.98761437567
                 }],
          "opacity":0.53,
          "parallaxx":0.95,
@@ -862,8 +1004,8 @@
                  "type":"",
                  "visible":true,
                  "width":150.333,
-                 "x":3235.23,
-                 "y":3340.14
+                 "x":3367.73,
+                 "y":3330.14
                 }, 
                 {
                  "gid":75,
@@ -2255,6 +2397,39 @@
                  "width":515.689,
                  "x":7908.5,
                  "y":5250.33
+                }, 
+                {
+                 "gid":50,
+                 "height":263.545,
+                 "id":169,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":60
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":263.545,
+                 "x":1561.78810606061,
+                 "y":4995.56083333333
                 }],
          "opacity":1,
          "parallaxx":1.1,
@@ -2499,6 +2674,7 @@
         {
          "draworder":"topdown",
          "id":3,
+         "locked":true,
          "name":"Grounds",
          "objects":[
                 {
@@ -3068,8 +3244,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":15,
- "nextobjectid":169,
+ "nextlayerid":16,
+ "nextobjectid":183,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

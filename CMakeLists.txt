@@ -248,6 +248,8 @@ add_executable(${PROJECT_NAME}
         Source/UIElements/UISkillNodeButton.h
         Source/Actors/VineRope.cpp
         Source/Actors/VineRope.h
+        Source/Actors/AmbientParticleArea.cpp
+        Source/Actors/AmbientParticleArea.h
 )
 
 

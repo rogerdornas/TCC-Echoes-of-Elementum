@@ -32,6 +32,9 @@ public:
     void SetConeSpread(float degrees) { mConeSpread = degrees; }
     void SetParticleDrawOrder(int particleDrawOrder) { mParticleDrawOrder = particleDrawOrder; }
     void SetAdditiveBlending(bool additiveBlending) { mAdditiveBlending = additiveBlending; }
+    void SetParallaxFactor(Vector2 parallaxFactor) { mParallaxFactor = parallaxFactor; }
+    void SetParticleFadeIn(bool fadeIn) { mParticleFadeIn = fadeIn; }
+    void SetEmitArea(Vector2 emitArea) { mEmitArea = emitArea; }
 
     void SetFollowTarget(Actor* target) { mFollowTarget = target; }
 private:
@@ -49,6 +52,7 @@ private:
     float mParticleSpeedScale;
     bool mParticleGravity;
     Vector2 mEmitDirection;
+    Vector2 mEmitArea;
 
     bool mApplyDamage;
     bool mApplyFreeze;
@@ -58,6 +62,8 @@ private:
     float mConeSpread;
     int mParticleDrawOrder;
     bool mAdditiveBlending;
+    bool mParticleFadeIn;
+    Vector2 mParallaxFactor;
 
     Actor* mFollowTarget;
 };

@@ -17,6 +17,7 @@
 #include "HUD.h"
 #include "SaveData.h"
 #include "SaveManager.h"
+#include "Actors/AmbientParticleArea.h"
 #include "Actors/Brazier.h"
 #include "Actors/Enemies/BushMonster.h"
 #include "Actors/Checkpoint.h"
@@ -336,7 +337,7 @@ void Game::ChangeScene()
         for (int i = 0; i < 150; i++) {
             new Particle(this, Particle::ParticleType::SolidParticle);
         }
-        for (int i = 0; i < 300; i++) {
+        for (int i = 0; i < 600; i++) {
             new Particle(this, Particle::ParticleType::BlurParticle);
         }
 
@@ -1399,22 +1400,28 @@ void Game::LoadObjects(const std::string &fileName) {
                         }
                     }
                 }
+                int drawOrder;
                 if (layer["name"] == "Background1") {
-                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 100, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
-                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                    drawOrder = 100;
                 }
                 if (layer["name"] == "Decorations") {
-                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 200, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
-                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                    drawOrder = 200;
                 }
                 if (layer["name"] == "Foreground1") {
-                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 6000, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
-                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                    drawOrder = 6000;
                 }
                 if (layer["name"] == "Foreground2") {
-                    auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, 7000, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
-                    decoration->SetPosition(Vector2(x + width / 2, y - height / 2));
+                    drawOrder = 7000;
                 }
+
+                float dx = width / 2.0f;
+                float dy = -height / 2.0f;
+
+                float rotatedDx = (dx * cos(rotation)) - (dy * sin(rotation));
+                float rotatedDy = (dx * sin(rotation)) + (dy * cos(rotation));
+
+                auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                decoration->SetPosition(Vector2(x + rotatedDx, y + rotatedDy));
             }
         }
         if (layer["name"] == "Light") {
@@ -2230,7 +2237,37 @@ void Game::LoadObjects(const std::string &fileName) {
                 auto checkpoint = new Checkpoint(this, width, height, Vector2(x + width / 2, y + height / 2));
             }
         }
+        if (layer["name"] == "AmbientParticleArea") {
+            for (const auto &obj: layer["objects"]) {
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
+                float emitRate = 3;
+                Vector3 color = Color::White;
 
+                if (obj.contains("properties")) {
+                    for (const auto &prop: obj["properties"]) {
+                        std::string propName = prop["name"];
+                        if (propName == "EmitRate") {
+                            emitRate = prop["value"];
+                        }
+                        if (propName == "ColorR") {
+                            color.x = prop["value"];
+                        }
+                        if (propName == "ColorG") {
+                            color.y = prop["value"];
+                        }
+                        if (propName == "ColorB") {
+                            color.z = prop["value"];
+                        }
+                    }
+                }
+
+                auto ambientParticleArea = new AmbientParticleArea(this, width, height, emitRate, color);
+                ambientParticleArea->SetPosition(Vector2(x + width / 2, y + height / 2));
+            }
+        }
         if (layer["name"] == "Player") {
             for (const auto &obj: layer["objects"]) {
                 float x = obj["x"];
