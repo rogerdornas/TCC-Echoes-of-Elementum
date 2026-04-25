@@ -176,20 +176,25 @@ void Renderer::Shutdown()
 	SDL_DestroyWindow(mWindow);
 }
 
-void Renderer::UnloadAllTextures()
+void Renderer::UnloadUnusedTextures(const std::vector<std::string>& keepTextures)
 {
-    for (auto it = mTextures.begin(); it != mTextures.end(); )
-    {
-        if (it->first != "../Assets/Sprites/EsquiloFire/Esquilo.png" &&
-            it->first != "../Assets/Sprites/Rope/Rope2.png")
-        {
+    for (auto it = mTextures.begin(); it != mTextures.end(); ) {
+        // Verifica se o caminho atual está na lista de texturas para manter
+        bool shouldKeep = false;
+        for (const auto& path : keepTextures) {
+            if (it->first == path) {
+                shouldKeep = true;
+                break;
+            }
+        }
+
+        if (!shouldKeep) {
             it->second->Unload();
             delete it->second;
-            it = mTextures.erase(it); // remove do mapa e avança
+            it = mTextures.erase(it); // Remove do map e avança
         }
-        else
-        {
-            ++it; // apenas avança
+        else {
+            ++it; // Apenas avança, mantendo a textura viva
         }
     }
 }

@@ -18,7 +18,7 @@ struct GhostSnapshot {
 
 class GhostTrailComponent: public DrawComponent {
 public:
-    GhostTrailComponent(class Actor* owner, class AnimatorComponent* animator, int drawOrder = 90);
+    GhostTrailComponent(class Actor* owner, class AnimatorComponent* animator, int drawOrder = 1001);
 
     void Update(float deltaTime) override;
     void Draw(class Renderer* renderer) override;

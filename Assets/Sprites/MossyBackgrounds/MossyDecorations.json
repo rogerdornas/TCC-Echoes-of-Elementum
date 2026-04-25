@@ -1,0 +1,339 @@
+{
+  "frames": [
+    {
+      "filename": "backgrounddecoration1.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 1127,
+        "h": 4096
+      }
+    },
+    {
+      "filename": "backgrounddecoration2.png",
+      "frame": {
+        "x": 2874,
+        "y": 1,
+        "w": 1144,
+        "h": 2500
+      }
+    },
+    {
+      "filename": "backgrounddecoration3.png",
+      "frame": {
+        "x": 1130,
+        "y": 3273,
+        "w": 979,
+        "h": 743
+      }
+    },
+    {
+      "filename": "backgrounddecoration4.png",
+      "frame": {
+        "x": 4020,
+        "y": 966,
+        "w": 1165,
+        "h": 1165
+      }
+    },
+    {
+      "filename": "backgrounddecoration5.png",
+      "frame": {
+        "x": 4020,
+        "y": 1,
+        "w": 1746,
+        "h": 963
+      }
+    },
+    {
+      "filename": "backgrounddecoration6.png",
+      "frame": {
+        "x": 1130,
+        "y": 1,
+        "w": 1742,
+        "h": 1756
+      }
+    },
+    {
+      "filename": "hangingplants1.png",
+      "frame": {
+        "x": 6778,
+        "y": 1,
+        "w": 395,
+        "h": 1221
+      }
+    },
+    {
+      "filename": "hangingplants2.png",
+      "frame": {
+        "x": 1,
+        "y": 6130,
+        "w": 398,
+        "h": 1015
+      }
+    },
+    {
+      "filename": "hangingplants3.png",
+      "frame": {
+        "x": 5187,
+        "y": 966,
+        "w": 398,
+        "h": 1024
+      }
+    },
+    {
+      "filename": "hangingplants4.png",
+      "frame": {
+        "x": 6778,
+        "y": 2234,
+        "w": 349,
+        "h": 880
+      }
+    },
+    {
+      "filename": "hangingplants5.png",
+      "frame": {
+        "x": 6778,
+        "y": 1224,
+        "w": 329,
+        "h": 1008
+      }
+    },
+    {
+      "filename": "hangingplants6.png",
+      "frame": {
+        "x": 6257,
+        "y": 1,
+        "w": 519,
+        "h": 1435
+      }
+    },
+    {
+      "filename": "hangingplants7.png",
+      "frame": {
+        "x": 6257,
+        "y": 2986,
+        "w": 495,
+        "h": 1440
+      }
+    },
+    {
+      "filename": "hangingplants8.png",
+      "frame": {
+        "x": 801,
+        "y": 5568,
+        "w": 789,
+        "h": 559
+      }
+    },
+    {
+      "filename": "hangingplants9.png",
+      "frame": {
+        "x": 2874,
+        "y": 3463,
+        "w": 813,
+        "h": 565
+      }
+    },
+    {
+      "filename": "hangingplants10.png",
+      "frame": {
+        "x": 1,
+        "y": 5568,
+        "w": 798,
+        "h": 560
+      }
+    },
+    {
+      "filename": "hill1.png",
+      "frame": {
+        "x": 6778,
+        "y": 3116,
+        "w": 276,
+        "h": 341
+      }
+    },
+    {
+      "filename": "hill2.png",
+      "frame": {
+        "x": 5288,
+        "y": 2133,
+        "w": 402,
+        "h": 394
+      }
+    },
+    {
+      "filename": "hill3.png",
+      "frame": {
+        "x": 6778,
+        "y": 3459,
+        "w": 298,
+        "h": 293
+      }
+    },
+    {
+      "filename": "hill4.png",
+      "frame": {
+        "x": 2353,
+        "y": 5011,
+        "w": 570,
+        "h": 459
+      }
+    },
+    {
+      "filename": "hill5.png",
+      "frame": {
+        "x": 1173,
+        "y": 5011,
+        "w": 1178,
+        "h": 530
+      }
+    },
+    {
+      "filename": "hill6.png",
+      "frame": {
+        "x": 4020,
+        "y": 2133,
+        "w": 1266,
+        "h": 891
+      }
+    },
+    {
+      "filename": "hill7.png",
+      "frame": {
+        "x": 974,
+        "y": 4099,
+        "w": 1359,
+        "h": 491
+      }
+    },
+    {
+      "filename": "spike1.png",
+      "frame": {
+        "x": 1130,
+        "y": 2602,
+        "w": 1512,
+        "h": 669
+      }
+    },
+    {
+      "filename": "spike2.png",
+      "frame": {
+        "x": 1130,
+        "y": 1759,
+        "w": 1259,
+        "h": 841
+      }
+    },
+    {
+      "filename": "spike3.png",
+      "frame": {
+        "x": 1,
+        "y": 4099,
+        "w": 971,
+        "h": 910
+      }
+    },
+    {
+      "filename": "spike4.png",
+      "frame": {
+        "x": 6257,
+        "y": 4428,
+        "w": 480,
+        "h": 465
+      }
+    },
+    {
+      "filename": "spike5.png",
+      "frame": {
+        "x": 2111,
+        "y": 3273,
+        "w": 637,
+        "h": 431
+      }
+    },
+    {
+      "filename": "spike6.png",
+      "frame": {
+        "x": 2335,
+        "y": 4099,
+        "w": 783,
+        "h": 361
+      }
+    },
+    {
+      "filename": "stone1.png",
+      "frame": {
+        "x": 4020,
+        "y": 3026,
+        "w": 1363,
+        "h": 806
+      }
+    },
+    {
+      "filename": "stone2.png",
+      "frame": {
+        "x": 1,
+        "y": 5011,
+        "w": 1170,
+        "h": 555
+      }
+    },
+    {
+      "filename": "stone3.png",
+      "frame": {
+        "x": 2874,
+        "y": 2503,
+        "w": 1103,
+        "h": 958
+      }
+    },
+    {
+      "filename": "vine1.png",
+      "frame": {
+        "x": 5768,
+        "y": 1559,
+        "w": 460,
+        "h": 1511
+      }
+    },
+    {
+      "filename": "vine2.png",
+      "frame": {
+        "x": 6257,
+        "y": 1438,
+        "w": 480,
+        "h": 1546
+      }
+    },
+    {
+      "filename": "vine3.png",
+      "frame": {
+        "x": 5768,
+        "y": 1,
+        "w": 487,
+        "h": 1556
+      }
+    },
+    {
+      "filename": "vine4.png",
+      "frame": {
+        "x": 5768,
+        "y": 3072,
+        "w": 308,
+        "h": 1589
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "MossyDecorations.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 7174,
+      "h": 7146
+    },
+    "scale": 1
+  }
+}

@@ -6,8 +6,10 @@
 #include "../Game.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 #include "../Components/Drawing/RectComponent.h"
+#include "../Json.h"
+#include <fstream>
 
-Decorations::Decorations(Game *game, float width, float height, std::string imagePath,
+Decorations::Decorations(Game *game, float width, float height, std::string imagePath, std::string decorationName,
                          float fps, int numFrames, bool animated, int gid, float rotation,
                          int drawOrder, Vector2 parallaxFactor,
                          Vector3 textureColor, float textureFactor)
@@ -67,9 +69,26 @@ Decorations::Decorations(Game *game, float width, float height, std::string imag
     else {
         mDrawComponent = new AnimatorComponent(this,
                                     mImagePath + ".png",
-                                    "",
-                                    mWidth, mHeight, drawOrder);
+                                    mImagePath + ".json",
+                                    mWidth, mHeight, drawOrder, true);
+
+        auto decorationsName = mGame->GetDecorationsName();
+
+        // Encontra o índice apenas da decoração atual
+        auto it = std::find(decorationsName.begin(), decorationsName.end(), decorationName);
+        if (it != decorationsName.end()) {
+            int index = std::distance(decorationsName.begin(), it);
+
+            mDrawComponent->AddAnimation(decorationName, {index});
+            mDrawComponent->SetAnimation(decorationName);
+        } else {
+            SDL_Log("Aviso: Decoração %s não encontrada", decorationName.c_str());
+        }
+
+        mDrawComponent->SetAnimation(decorationName);
+        mDrawComponent->SetAnimFPS(mFPS);
     }
+
     mDrawComponent->SetColor(textureColor);
     mDrawComponent->SetTextureFactor(textureFactor);
     mDrawComponent->SetParallaxFactor(parallaxFactor);

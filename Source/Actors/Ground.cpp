@@ -24,6 +24,7 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     ,mMovingDuration(movingDuration)
     ,mMovingTimer(movingDuration)
     ,mIsBreakable(false)
+    ,mUsePadding(usePadding)
     ,mVelocity(velocity)
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
@@ -44,7 +45,7 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     float paddingLeft = 0;
     float paddingRight = 0;
 
-    if (usePadding) {
+    if (mUsePadding) {
         paddingTop = 10.0f;    // Ignora a altura da grama
         paddingBottom = 8.0f;  // Ignora as raizes
         paddingLeft = 8.0f;    // Ignora folhas nas laterais

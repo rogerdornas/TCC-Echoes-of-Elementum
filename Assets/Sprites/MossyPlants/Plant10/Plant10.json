@@ -1,0 +1,105 @@
+{
+  "frames": [
+    {
+      "filename": "blueplantclosed_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00006.png",
+      "frame": {
+        "x": 771,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00012.png",
+      "frame": {
+        "x": 1541,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00018.png",
+      "frame": {
+        "x": 2311,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00024.png",
+      "frame": {
+        "x": 3081,
+        "y": 1,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00030.png",
+      "frame": {
+        "x": 1,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00036.png",
+      "frame": {
+        "x": 771,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00042.png",
+      "frame": {
+        "x": 1541,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00048.png",
+      "frame": {
+        "x": 2311,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    },
+    {
+      "filename": "blueplantclosed_00054.png",
+      "frame": {
+        "x": 3081,
+        "y": 771,
+        "w": 768,
+        "h": 768
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant10.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 3850,
+      "h": 1540
+    },
+    "scale": 1
+  }
+}

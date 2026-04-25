@@ -10,7 +10,7 @@
 #include <fstream>
 
 AnimatorComponent::AnimatorComponent(class Actor* owner, const std::string &texPath, const std::string &dataPath,
-                                     int width, int height, int drawOrder)
+                                     int width, int height, int drawOrder, bool alreadyHasSpriteSheet)
     :DrawComponent(owner, drawOrder)
     ,mAnimTimer(0.0f)
     ,mAnimFPS(10.0f)
@@ -26,11 +26,17 @@ AnimatorComponent::AnimatorComponent(class Actor* owner, const std::string &texP
     ,mAdditiveBlending(false)
     ,mFreezeLevel(0.0f)
 {
-    // Load texture
-    mSpriteTexture = GetGame()->GetRenderer()->GetTexture(texPath);
+    if (alreadyHasSpriteSheet) {
+        mSpriteTexture = mOwner->GetGame()->GetDecorationsTileSheet();
+        mSpriteSheetData = mOwner->GetGame()->GetDecorationsTileSheetData();
+    }
+    else {
+        // Load texture
+        mSpriteTexture = GetGame()->GetRenderer()->GetTexture(texPath);
 
-    // Load sprite sheet data
-    LoadSpriteSheetData(dataPath);
+        // Load sprite sheet data
+        LoadSpriteSheetData(dataPath);
+    }
 }
 
 AnimatorComponent::~AnimatorComponent()

@@ -140,7 +140,7 @@
   <image source="../../Sprites/Plants/Plant6/Plant6_00000.png" width="512" height="512"/>
  </tile>
  <tile id="46">
-  <image source="../../Sprites/Plants/Plant8Poison/PlantPosion_00000.png" width="512" height="512"/>
+  <image source="../../Sprites/Plants/Plant8Poison/PlantPosion_00000.png"/>
  </tile>
  <tile id="47">
   <image source="../../Sprites/Plants/Plant9/Plant Wind 1_00000.png" width="512" height="512"/>

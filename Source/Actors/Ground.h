@@ -49,6 +49,7 @@ protected:
     float mMovingDuration;
     float mMovingTimer;
     bool mIsBreakable;
+    bool mUsePadding;
     Vector2 mStartingPosition;
     Vector2 mRespawnPosition;
     Vector2 mVelocity;

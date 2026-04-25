@@ -10,7 +10,7 @@
             "y": 5312.0
         },
         "scene": "Room0",
-        "total_play_time": 145.10130310058594
+        "total_play_time": 155.2934112548828
     },
     "player": {
         "can_dash": false,
@@ -29,25 +29,28 @@
     },
     "skill_tree": {
         "unlocked_nodes": [
-            "freeze",
-            "lightning_dash_damage",
-            "frenzy_mode_duration",
-            "fire_ball",
-            "fire_ball_damage_3",
-            "lightning_spear_damage",
-            "fire_ball_damage_1",
-            "sword_damage_fire",
-            "frenzy_mode",
-            "glide",
-            "fire_wisp",
-            "mana_max_fire",
-            "fire_ball_damage_2",
+            "sword_range_lightning",
             "lightning_spear_chain_shock",
-            "max_health_points_lightning",
+            "fire_wisp",
             "fire_wisp_attack",
+            "glide",
+            "frenzy_mode",
+            "sword_damage_fire",
             "lightning_spear",
-            "sword_range_lightning"
+            "mana_max_fire",
+            "lightning_spear_damage",
+            "max_health_points_lightning",
+            "frenzy_mode_duration",
+            "freeze",
+            "fire_ball",
+            "fire_ball_damage_2",
+            "fire_ball_damage_3",
+            "lightning_dash_damage",
+            "fire_ball_damage_1"
         ]
     },
-    "world_state": {}
+    "world_state": {
+        "Level1ArenaDone": false,
+        "Level1Puzzle1Done": false
+    }
 }

@@ -181,8 +181,13 @@ public:
 
     int **GetLevelData() const { return mLevelData; }
     int **GetLevelDataDynamicGrounds() const { return mLevelDataDynamicGrounds; }
+
     Texture* GetTileSheet() const { return mTileSheet; }
     std::unordered_map<int, Vector4> GetTileSheetData() { return mTileSheetData; }
+
+    Texture* GetDecorationsTileSheet() const { return mDecorationsTileSheet; }
+    std::vector<Vector4> GetDecorationsTileSheetData() const { return mDecorationsTileSheetData; }
+    std::vector<std::string> GetDecorationsName() { return mDecorationsName; }
 
     float GetTileSize() { return mTileSize; }
     int GetOriginalTileSize() { return mOriginalTileSize; }
@@ -397,8 +402,15 @@ private:
     // Level data
     int **mLevelData;
     int **mLevelDataDynamicGrounds;
+
     Texture* mTileSheet;
     std::unordered_map<int, Vector4> mTileSheetData;
+    Texture* mDecorationsTileSheet;
+    std::vector<Vector4> mDecorationsTileSheetData;
+    std::vector<std::string> mDecorationsName;
+    std::string mCurrentTileSheetPath;
+    std::string mCurrentDecorationsPath;
+
     int mLevelWidth;
     int mLevelHeight;
     float mTileSize;

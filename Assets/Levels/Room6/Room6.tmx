@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="16" nextobjectid="183">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="16" nextobjectid="266">
  <editorsettings>
   <export target="Room6.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="DecorationsPath" value="Sprites/MossyBackgrounds/MossyDecorations"/>
+ </properties>
  <tileset firstgid="1" source="Room6.tsx"/>
  <tileset firstgid="50" source="../Room5/mossy.tsx"/>
- <objectgroup id="15" name="AmbientParticleArea">
+ <objectgroup id="15" name="AmbientParticleArea" locked="1">
   <object id="171" x="278" y="1550" width="8052" height="3612">
    <properties>
     <property name="ColorB" type="int" value="200"/>
     <property name="ColorG" type="int" value="255"/>
     <property name="ColorR" type="int" value="200"/>
-    <property name="EmitRate" type="float" value="20"/>
+    <property name="EmitRate" type="float" value="18"/>
    </properties>
   </object>
  </objectgroup>
@@ -22,60 +25,47 @@
    <property name="TextureColorR" type="int" value="22"/>
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
-  <object id="105" gid="1073741890" x="337.636" y="5008.01" width="369.673" height="1022.12">
+  <object id="105" name="hangingplants6" gid="1073741890" x="337.636" y="5008.01" width="369.673" height="1022.12">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
    </properties>
   </object>
-  <object id="107" gid="56" x="2980.52" y="5079.12" width="382.929" height="836.821">
+  <object id="107" name="backgrounddecoration2" gid="56" x="2980.52" y="5079.12" width="382.929" height="836.821">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration2"/>
    </properties>
   </object>
-  <object id="108" gid="2147483728" x="629.485" y="4040.02" width="168.727" height="554.232">
+  <object id="108" name="vine1" gid="2147483728" x="629.485" y="4040.02" width="168.727" height="554.232">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Vine1"/>
    </properties>
   </object>
-  <object id="109" gid="83" x="940.572" y="4035.18" width="106.872" height="551.364">
+  <object id="109" name="vine4" gid="83" x="940.572" y="4035.18" width="106.872" height="551.364">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Vine4"/>
    </properties>
   </object>
-  <object id="110" gid="1073741912" x="3035.15" y="2833.7" width="897.334" height="403.724">
+  <object id="110" name="hill5" gid="1073741912" x="3035.15" y="2833.7" width="897.334" height="403.724">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Hill5"/>
    </properties>
   </object>
-  <object id="111" gid="89" x="756.242" y="4304.83" width="241.569" height="170.014">
+  <object id="111" name="hill6" gid="89" x="756.242" y="4304.83" width="241.569" height="170.014">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Hill6"/>
-   </properties>
-  </object>
-  <object id="114" gid="55" x="1886.24" y="5082.61" width="767.875" height="2790.79">
-   <properties>
-    <property name="Animated" type="bool" value="false"/>
-    <property name="FPS" type="float" value="1"/>
-    <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
   <object id="135" gid="50" x="5704.83" y="4953.86" width="263.545" height="263.545">
@@ -86,134 +76,136 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="137" gid="1073741883" x="6749.67" y="4399.45" width="949.342" height="523.606">
+  <object id="137" name="backgrounddecoration5" gid="1073741883" x="6707.12" y="4547.93" width="949.342" height="523.606">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration5"/>
    </properties>
   </object>
-  <object id="138" gid="1073741881" x="6897.18" y="4285.03" width="504.653" height="383">
+  <object id="138" name="backgrounddecoration3" gid="1073741881" x="6897.18" y="4285.03" width="504.653" height="383">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration3"/>
    </properties>
   </object>
-  <object id="139" gid="56" x="6161.7" y="5063.44" width="552.524" height="1207.44">
+  <object id="139" name="backgrounddecoration2" gid="56" x="6243.33" y="5173.15" width="552.524" height="1207.44">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration2"/>
    </properties>
   </object>
-  <object id="140" gid="74" x="5553.61" y="5018.09" width="794.801" height="470">
+  <object id="140" name="stone1" gid="74" x="5553.61" y="5018.09" width="794.801" height="470">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Stone1"/>
    </properties>
   </object>
-  <object id="141" gid="1073741890" x="6283.42" y="4999.58" width="249.303" height="689.306">
+  <object id="141" name="hangingplants6" gid="1073741890" x="6283.42" y="4999.58" width="249.303" height="689.306">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
   <object id="142" gid="2147483699" x="6720.59" y="5009.97" width="583.138" height="577.023">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="40"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
+    <property name="FPS" type="float" value="12"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant11/Plant11"/>
    </properties>
   </object>
-  <object id="143" gid="75" x="6948.33" y="4941.64" width="665.332" height="315.606">
+  <object id="143" name="stone2" gid="75" x="6948.33" y="4941.64" width="665.332" height="315.606">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Stone2"/>
    </properties>
   </object>
-  <object id="148" gid="1073741882" x="5408.67" y="4420.09" width="635" height="635">
+  <object id="148" name="backgrounddecoration4" gid="1073741882" x="5408.67" y="4420.09" width="635" height="635">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration4"/>
    </properties>
   </object>
-  <object id="152" gid="81" x="7267.25" y="4955.58" width="300.103" height="966.583">
+  <object id="152" name="vine2" gid="81" x="7267.25" y="4955.58" width="300.103" height="966.583">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Vine2"/>
    </properties>
   </object>
-  <object id="153" gid="1073741890" x="6078.6" y="4930.38" width="143.346" height="396.343">
+  <object id="153" name="hangingplants6" gid="1073741890" x="6078.6" y="4930.38" width="143.346" height="396.343">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
    </properties>
   </object>
-  <object id="174" gid="82" x="1290.95" y="4212.89" width="270.513" height="1328.08" rotation="90">
+  <object id="174" name="vine3" gid="82" x="1290.95" y="4212.89" width="270.513" height="1328.08" rotation="90">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Vine3"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
-  <object id="177" gid="1073741890" x="1575.95" y="4924.05" width="91.346" height="252.566">
+  <object id="177" name="hangingplants6" gid="1073741890" x="1575.95" y="4924.05" width="91.346" height="252.566">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants6"/>
    </properties>
   </object>
-  <object id="178" gid="75" x="1571.46" y="4932.49" width="388.649" height="184.359">
+  <object id="178" name="stone2" gid="75" x="1571.46" y="4932.49" width="388.649" height="184.359">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Stone2"/>
    </properties>
   </object>
-  <object id="179" gid="58" x="778.076" y="5004.21" width="895.303" height="895.303">
+  <object id="179" name="backgrounddecoration4" gid="58" x="778.076" y="5004.21" width="895.303" height="895.303">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration4"/>
    </properties>
   </object>
-  <object id="180" gid="60" x="1992.26" y="5069.99" width="745.03" height="751.018">
+  <object id="180" name="backgrounddecoration6" gid="60" x="1992.26" y="5069.99" width="745.03" height="751.018">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration6"/>
+   </properties>
+  </object>
+  <object id="183" name="vine2" gid="81" x="2165.22" y="2614.4" width="447.876" height="1442.54" rotation="218.786">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
+   </properties>
+  </object>
+  <object id="184" name="backgrounddecoration1" gid="55" x="1895.16" y="5108.61" width="767.875" height="2790.79">
+   <properties>
+    <property name="Animated" type="bool" value="false"/>
+    <property name="FPS" type="float" value="1"/>
+    <property name="NumFrames" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="5" name="Decorations">
-  <object id="86" gid="51" x="2284.95" y="4390.55" width="340.873" height="337.298">
+  <object id="86" gid="51" x="2408.92" y="4390.55" width="216.906" height="214.631">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
+    <property name="FPS" type="float" value="10"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant11/Plant11"/>
    </properties>
   </object>
   <object id="87" gid="50" x="2326.91" y="4910.8" width="108.212" height="108.212">
@@ -224,44 +216,41 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="88" gid="61" x="928.586" y="3819.65" width="131.364" height="406.063">
+  <object id="88" name="hangingplants1" gid="61" x="928.586" y="3819.65" width="131.364" height="406.063">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
-  <object id="89" gid="71" x="3015.93" y="3224.65" width="406.063" height="179.667">
+  <object id="89" name="spike1" gid="71" x="3015.93" y="3224.65" width="406.063" height="179.667">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Spike1"/>
    </properties>
   </object>
-  <object id="90" gid="73" x="3367.73" y="3330.14" width="150.333" height="140.889" rotation="270">
+  <object id="90" name="spike3" gid="73" x="3367.73" y="3330.14" width="150.333" height="140.889" rotation="270">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Spike3"/>
    </properties>
   </object>
-  <object id="91" gid="75" x="2927.02" y="4257.26" width="170.328" height="80.7964">
+  <object id="91" name="stone2" gid="75" x="2927.02" y="4257.26" width="170.328" height="80.7964">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Stone2"/>
    </properties>
   </object>
-  <object id="92" gid="2147483716" x="2191.47" y="3922.52" width="167.82" height="118.899">
+  <object id="92" name="hangingplants8" gid="2147483716" x="2191.47" y="3922.52" width="167.82" height="118.899">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants8"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
   <object id="93" gid="50" x="1317.15" y="4276.21" width="120.212" height="120.212">
@@ -275,189 +264,184 @@
   <object id="94" gid="50" x="3567.15" y="4280.88" width="120.212" height="120.212">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+    <property name="FPS" type="float" value="7"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant02/Plant02"/>
    </properties>
   </object>
-  <object id="95" gid="84" x="602.589" y="2941.19" width="125.625" height="155.21">
+  <object id="95" name="hill1" gid="84" x="602.589" y="2941.19" width="125.625" height="155.21">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Hill1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
   <object id="96" gid="2147483701" x="1965.76" y="3896.65" width="150" height="150">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="45"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
+    <property name="FPS" type="float" value="7"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant07/Plant07"/>
    </properties>
   </object>
-  <object id="97" gid="73" x="4040.59" y="5128.9" width="256" height="239.917">
+  <object id="97" name="spike3" gid="73" x="4040.59" y="5128.9" width="256" height="239.917">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Spike3"/>
    </properties>
   </object>
-  <object id="98" gid="73" x="4233.93" y="5114.29" width="238.986" height="223.972">
+  <object id="98" name="spike3" gid="73" x="4233.93" y="5114.29" width="238.986" height="223.972">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Spike3"/>
    </properties>
   </object>
-  <object id="99" gid="73" x="4414.43" y="5113" width="238.986" height="223.972">
+  <object id="99" name="spike3" gid="73" x="4414.43" y="5113" width="238.986" height="223.972">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Spike3"/>
    </properties>
   </object>
   <object id="100" gid="1073741874" x="2677.15" y="4534.88" width="108.212" height="108.212">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="70"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant02/Plant02"/>
    </properties>
   </object>
   <object id="101" gid="53" x="3484.26" y="4927.32" width="150" height="150">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant07/Plant07"/>
    </properties>
   </object>
   <object id="102" gid="53" x="3570.93" y="4927.32" width="150" height="150">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="45"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
+    <property name="FPS" type="float" value="6"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant07/Plant07"/>
    </properties>
   </object>
-  <object id="103" gid="81" x="3241.93" y="4113" width="244.145" height="786.35">
+  <object id="103" name="vine2" gid="81" x="2696.2" y="3636.32" width="244.145" height="786.35" rotation="57.471">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Vine2"/>
    </properties>
   </object>
-  <object id="116" gid="83" x="2678.97" y="4298.62" width="134.97" height="696.321">
+  <object id="116" name="vine4" gid="83" x="2678.97" y="4298.62" width="134.97" height="696.321">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Vine4"/>
    </properties>
   </object>
   <object id="134" gid="51" x="7441.82" y="4929.18" width="286.084" height="283.084">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
+    <property name="FPS" type="float" value="10"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant11/Plant11"/>
    </properties>
   </object>
   <object id="149" gid="1073741874" x="6888.89" y="4206.89" width="202.212" height="202.212">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="70"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+    <property name="FPS" type="float" value="7"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant02/Plant02"/>
    </properties>
   </object>
   <object id="150" gid="50" x="7081.89" y="4946.89" width="226.212" height="226.212">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="70"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant02/Plant02"/>
    </properties>
   </object>
   <object id="157" gid="52" x="3673" y="4260" width="148" height="148">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
+    <property name="FPS" type="float" value="10"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant04/Plant04"/>
    </properties>
   </object>
   <object id="158" gid="91" x="3751" y="4949" width="230" height="230">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="50"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant1/Plant1"/>
+    <property name="FPS" type="float" value="10"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant01/Plant01"/>
    </properties>
   </object>
-  <object id="159" gid="2147483740" x="1440.61" y="4403.39" width="294.061" height="294.061">
+  <object id="159" gid="2147483740" x="1440.61" y="4403.39" width="232.728" height="232.728">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="40"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower2/BlueFlower2"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant10/Plant10"/>
    </properties>
   </object>
   <object id="160" gid="93" x="2617.33" y="4940" width="206.667" height="206.667">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="50"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant3/Plant3"/>
+    <property name="FPS" type="float" value="7"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant03/Plant03"/>
    </properties>
   </object>
   <object id="161" gid="94" x="254.061" y="4021.21" width="160" height="160">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant5/Plant5"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant05/Plant05"/>
    </properties>
   </object>
   <object id="162" gid="95" x="1082" y="2866" width="140" height="140">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="50"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant6/Plant6"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant06/Plant06"/>
    </properties>
   </object>
   <object id="164" gid="97" x="2091" y="2373" width="174" height="174">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="40"/>
-    <property name="NumFrames" type="int" value="30"/>
-    <property name="Path" value="Sprites/Plants/Plant9/Plant9"/>
+    <property name="FPS" type="float" value="5"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant09/Plant09"/>
    </properties>
   </object>
   <object id="165" gid="98" x="2351" y="2400" width="217" height="217">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="40"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/Plants/PlantJump1/PlantJump1"/>
+    <property name="FPS" type="float" value="10"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant12/Plant12"/>
    </properties>
   </object>
   <object id="166" gid="99" x="3063" y="2392" width="203" height="203">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="40"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
+    <property name="FPS" type="float" value="12"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant13/Plant13"/>
    </properties>
   </object>
  </objectgroup>
- <layer id="1" name="Camada de Blocos 1" width="100" height="50">
+ <layer id="1" name="Camada de Blocos 1" width="100" height="50" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -518,52 +502,48 @@
    <property name="TextureColorR" type="int" value="0"/>
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
-  <object id="27" gid="61" x="2800.45" y="4876.04" width="175.426" height="542.268">
+  <object id="27" name="hangingplants1" gid="61" x="2800.45" y="4876.04" width="175.426" height="542.268">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants1"/>
    </properties>
   </object>
-  <object id="29" gid="61" x="3022.07" y="4871.61" width="175.426" height="542.268">
+  <object id="29" name="hangingplants1" gid="61" x="3022.07" y="4871.61" width="175.426" height="542.268">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants1"/>
    </properties>
   </object>
-  <object id="30" gid="61" x="929.954" y="2850.6" width="136.093" height="420.683">
+  <object id="30" name="hangingplants1" gid="61" x="929.954" y="2850.6" width="136.093" height="420.683">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
-  <object id="28" gid="1073741885" x="1762.32" y="2496.36" width="151.051" height="466.918">
+  <object id="28" name="hangingplants1" gid="1073741885" x="1762.32" y="2496.36" width="151.051" height="466.918">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants1"/>
+    <property name="Path" value="Sprites/MossyBackgrounds/MossyDecorations"/>
    </properties>
   </object>
-  <object id="113" gid="90" x="2572.48" y="2389.99" width="509.994" height="184.258">
+  <object id="113" name="hill7" gid="90" x="2572.48" y="2389.99" width="509.994" height="184.258">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Hill7"/>
    </properties>
   </object>
-  <object id="112" gid="58" x="3721.91" y="2450.16" width="327" height="327">
+  <object id="112" name="backgrounddecoration4" gid="58" x="3721.91" y="2450.16" width="327" height="327">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration4"/>
    </properties>
   </object>
  </objectgroup>
@@ -574,77 +554,70 @@
    <property name="TextureColorR" type="int" value="0"/>
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
-  <object id="26" gid="57" x="493.818" y="5212.89" width="565" height="428.8">
+  <object id="26" name="backgrounddecoration3" gid="57" x="493.818" y="5212.89" width="565" height="428.8">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration3"/>
    </properties>
   </object>
-  <object id="31" gid="59" x="2431.46" y="5036.17" width="404.318" height="223">
+  <object id="31" name="backgrounddecoration5" gid="59" x="2431.46" y="5036.17" width="404.318" height="223">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration5"/>
    </properties>
   </object>
-  <object id="118" gid="1073741891" x="1010.58" y="5484.74" width="349.545" height="1016.86">
+  <object id="118" name="hangingplants7" gid="1073741891" x="1010.58" y="5484.74" width="349.545" height="1016.86">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants7"/>
    </properties>
   </object>
-  <object id="144" gid="58" x="6687.52" y="5507.73" width="728.636" height="728.636">
+  <object id="144" name="backgrounddecoration4" gid="58" x="6687.52" y="5507.73" width="728.636" height="728.636">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/BackgroundDecoration4"/>
    </properties>
   </object>
-  <object id="146" gid="65" x="6743.21" y="4414.85" width="156.273" height="478.793">
+  <object id="146" name="hangingplants5" gid="65" x="6743.21" y="4414.85" width="156.273" height="478.793">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants5"/>
    </properties>
   </object>
-  <object id="151" gid="2147483713" x="8267.36" y="4440.6" width="156.273" height="478.793">
+  <object id="151" name="hangingplants5" gid="2147483713" x="8267.36" y="4440.6" width="156.273" height="478.793">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/HangingPlants5"/>
    </properties>
   </object>
-  <object id="154" gid="76" x="7908.5" y="5250.33" width="515.689" height="444">
+  <object id="154" name="stone3" gid="76" x="7908.5" y="5250.33" width="515.689" height="444">
    <properties>
     <property name="Animated" type="bool" value="false"/>
     <property name="FPS" type="float" value="1"/>
     <property name="NumFrames" type="int" value="1"/>
-    <property name="Path" value="Sprites/MossyBackgrounds/Stone3"/>
    </properties>
   </object>
   <object id="169" gid="50" x="1561.79" y="4995.56" width="263.545" height="263.545">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="FPS" type="float" value="60"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="10"/>
+    <property name="Path" value="Sprites/MossyPlants/Plant02/Plant02"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="HookPoints">
+ <objectgroup id="10" name="HookPoints" locked="1">
   <object id="122" x="2034.67" y="4201.33" width="25.3333" height="26.6667"/>
   <object id="167" x="4860.18" y="4414.67" width="25.3333" height="26.6667"/>
   <object id="168" x="4231.33" y="4350.67" width="25.3333" height="26.6667"/>
  </objectgroup>
- <objectgroup id="11" name="Triggers" visible="0">
+ <objectgroup id="11" name="Triggers" locked="1">
   <object id="125" name="Boss Battle" x="6016" y="3968" width="1792" height="896">
    <properties>
     <property name="Enemies" value="130"/>
@@ -669,8 +642,17 @@
     <property name="Target" value="Enemy"/>
    </properties>
   </object>
+  <object id="265" x="5636.61" y="3229.48" width="340" height="484">
+   <properties>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Event" value="ChangeScene"/>
+    <property name="PlayerStartPositionId" type="int" value="0"/>
+    <property name="Scene" value="Room6"/>
+    <property name="Target" value="Game"/>
+   </properties>
+  </object>
  </objectgroup>
- <layer id="12" name="DynamicGrounds" width="100" height="50">
+ <layer id="12" name="DynamicGrounds" width="100" height="50" locked="1">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -781,19 +763,19 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="4" name="Checkpoint">
+ <objectgroup id="4" name="Checkpoint" locked="1">
   <object id="24" name="Checkpoint" x="380.97" y="3803.55" width="416" height="192"/>
   <object id="25" name="Checkpoint" x="1156.97" y="2130.55" width="416" height="192"/>
   <object id="145" name="Checkpoint" x="4988.97" y="4688.85" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="2" name="Player">
+ <objectgroup id="2" name="Player" locked="1">
   <object id="23" x="1024" y="2176" width="128" height="128">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="9" name="Enemies">
+ <objectgroup id="9" name="Enemies" locked="1">
   <object id="123" name="Mushroom" x="2081.33" y="4794.67" width="54.6667" height="56"/>
   <object id="124" name="OrangeSlime" x="2877" y="4190" width="32" height="32"/>
   <object id="130" name="Frog" x="6990" y="4825" width="37.766" height="38.766">
@@ -805,7 +787,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="8" name="Camera" visible="0">
+ <objectgroup id="8" name="Camera" visible="0" locked="1">
   <object id="115" x="256" y="1920" width="5632" height="2944">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>

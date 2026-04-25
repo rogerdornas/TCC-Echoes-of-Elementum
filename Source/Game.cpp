@@ -106,6 +106,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mGroundBehindPlayer(true)
     ,mUseGroundPadding(false)
     ,mTileSheet(nullptr)
+    ,mDecorationsTileSheet(nullptr)
     ,mController(nullptr)
     ,mHitstopActive(false)
     ,mHitstopDuration(0.15f)
@@ -1367,6 +1368,7 @@ void Game::LoadObjects(const std::string &fileName) {
             }
             textureColor /= 255.0f;
             for (const auto &obj: layer["objects"]) {
+                std::string decorationName = obj["name"];
                 float x = obj["x"];
                 float y = obj["y"];
                 float width = obj["width"];
@@ -1415,12 +1417,12 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
 
                 float dx = width / 2.0f;
-                float dy = -height / 2.0f;
+                float dy = height / 2.0f;
 
-                float rotatedDx = (dx * cos(rotation)) - (dy * sin(rotation));
-                float rotatedDy = (dx * sin(rotation)) + (dy * cos(rotation));
+                float rotatedDx = (dx * cos(rotation)) + (dy * sin(rotation));
+                float rotatedDy = (dx * sin(rotation)) - (dy * cos(rotation));
 
-                auto* decoration = new Decorations(this, width, height, imagePath, fps, numFrames, animated, gid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                auto* decoration = new Decorations(this, width, height, imagePath, decorationName,fps, numFrames, animated, gid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
                 decoration->SetPosition(Vector2(x + rotatedDx, y + rotatedDy));
             }
         }
@@ -2353,6 +2355,17 @@ void Game::LoadLevel(const std::string &fileName) {
     mLevelWidth = width;
     mTileSize = tileSize;
     mOriginalTileSize = tileSize;
+    std::string newDecorationsPath = "";
+    std::string newDecorationsJson = "";
+    if (mapData.contains("properties")) {
+        for (const auto &prop: mapData["properties"]) {
+            std::string propName = prop["name"];
+            if (propName == "DecorationsPath") {
+                newDecorationsPath = "../Assets/" + prop["value"].get<std::string>() + ".png";
+                newDecorationsJson = "../Assets/" + prop["value"].get<std::string>() + ".json";
+            }
+        }
+    }
 
     if (mGoingToNextLevel) {
         // Delete map
@@ -2400,37 +2413,87 @@ void Game::LoadLevel(const std::string &fileName) {
 
     // Load tilesheet texture
     size_t pos = fileName.rfind(".json");
-    std::string tileSheetTexturePath = fileName.substr(0, pos) + ".png";
-    // mTileSheet = LoadTexture(tileSheetTexturePath);
-    mTileSheet = mRenderer->GetTexture(tileSheetTexturePath);
+    std::string newTileSheetTexturePath = fileName.substr(0, pos) + ".png";
 
-    // Load tilesheet data
-    std::string tileSheetDataPath = fileName.substr(0, pos) + "TileSet.json";
-    std::ifstream tileSheetFile(tileSheetDataPath);
+    // Verifica se o Tileset mudou
+    if (newTileSheetTexturePath != mCurrentTileSheetPath)
+    {
+        // Limpa os dados antigos, pois o mapa mudou
+        mTileSheetData.clear();
+        mCurrentTileSheetPath = newTileSheetTexturePath;
 
-    nlohmann::json tileSheetData = nlohmann::json::parse(tileSheetFile);
+        mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
 
-    int textureWidth = mTileSheet->GetWidth();
-    int textureHeight = mTileSheet->GetHeight();
+        // Load novo tilesheet data
+        std::string tileSheetDataPath = fileName.substr(0, pos) + "TileSet.json";
+        std::ifstream tileSheetFile(tileSheetDataPath);
+        nlohmann::json tileSheetData = nlohmann::json::parse(tileSheetFile);
 
-    for (const auto &tile: tileSheetData["sprites"]) {
-        std::string tileFileName = tile["fileName"];
-        int x = tile["x"].get<int>();
-        int y = tile["y"].get<int>();
-        int w = tile["width"].get<int>();
-        int h = tile["height"].get<int>();
+        int textureWidth = mTileSheet->GetWidth();
+        int textureHeight = mTileSheet->GetHeight();
 
-        size_t dotPos = tileFileName.find('.');
-        std::string numberStr = tileFileName.substr(0, dotPos);
-        int index = std::stoi(numberStr);
+        for (const auto &tile: tileSheetData["sprites"]) {
+            std::string tileFileName = tile["fileName"];
+            int x = tile["x"].get<int>();
+            int y = tile["y"].get<int>();
+            int w = tile["width"].get<int>();
+            int h = tile["height"].get<int>();
 
-        // Normaliza para [0, 1]
-        float u = static_cast<float>(x) / textureWidth;
-        float v = static_cast<float>(y) / textureHeight;
-        float uw = static_cast<float>(w) / textureWidth;
-        float vh = static_cast<float>(h) / textureHeight;
+            size_t dotPos = tileFileName.find('.');
+            std::string numberStr = tileFileName.substr(0, dotPos);
+            int index = std::stoi(numberStr);
 
-        mTileSheetData[index] = Vector4(u, v, uw, vh);
+            // Normaliza para [0, 1]
+            float u = static_cast<float>(x) / textureWidth;
+            float v = static_cast<float>(y) / textureHeight;
+            float uw = static_cast<float>(w) / textureWidth;
+            float vh = static_cast<float>(h) / textureHeight;
+
+            mTileSheetData[index] = Vector4(u, v, uw, vh);
+        }
+    }
+    else
+    {
+        mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
+    }
+
+    if (newDecorationsPath != mCurrentDecorationsPath)
+    {
+        mDecorationsTileSheetData.clear();
+        mDecorationsName.clear(); // Não esqueça de limpar os nomes antigos também!
+        mCurrentDecorationsPath = newDecorationsPath;
+
+        mDecorationsTileSheet = mRenderer->GetTexture(mCurrentDecorationsPath);
+
+        std::ifstream spriteSheetFile(newDecorationsJson);
+        if (spriteSheetFile.is_open()) {
+            nlohmann::json spriteSheetData = nlohmann::json::parse(spriteSheetFile);
+
+            auto textureWidth1 = static_cast<float>(spriteSheetData["meta"]["size"]["w"].get<int>());
+            auto textureHeight1 = static_cast<float>(spriteSheetData["meta"]["size"]["h"].get<int>());
+
+            for(const auto& frame : spriteSheetData["frames"]) {
+                std::string filename = frame["filename"];
+                // Remove a extensão ".png"
+                size_t lastindex = filename.find_last_of(".");
+                if (lastindex != std::string::npos) {
+                    filename = filename.substr(0, lastindex);
+                }
+                int x = frame["frame"]["x"].get<int>();
+                int y = frame["frame"]["y"].get<int>();
+                int w = frame["frame"]["w"].get<int>();
+                int h = frame["frame"]["h"].get<int>();
+
+                mDecorationsTileSheetData.emplace_back(static_cast<float>(x)/textureWidth1, static_cast<float>(y)/textureHeight1,
+                                              static_cast<float>(w)/textureWidth1, static_cast<float>(h)/textureHeight1);
+
+                mDecorationsName.emplace_back(filename);
+            }
+        }
+    }
+    else
+    {
+        mDecorationsTileSheet = mRenderer->GetTexture(mCurrentDecorationsPath);
     }
 
     // Cria objetos
@@ -3828,9 +3891,8 @@ void Game::UnloadScene()
     delete[] mLevelDataDynamicGrounds;
     mLevelDataDynamicGrounds = nullptr;
 
-    // SDL_DestroyTexture(mTileSheet);
-
-    mTileSheetData.clear();
+    // mTileSheetData.clear();
+    // mDecorationsTileSheetData.clear();
 
     mSpawnPoints.clear();
 
@@ -3838,7 +3900,20 @@ void Game::UnloadScene()
         mBackGroundTexture = nullptr;
     }
 
-    mRenderer->UnloadAllTextures();
+    std::vector<std::string> texturesToKeep;
+    texturesToKeep.push_back("../Assets/Sprites/EsquiloFire/Esquilo.png"); // Mantém o Player
+
+    // Se já carregamos um mapa antes, mantém a textura dele
+    if (!mCurrentTileSheetPath.empty()) {
+        texturesToKeep.push_back(mCurrentTileSheetPath);
+    }
+    if (!mCurrentDecorationsPath.empty()) {
+        texturesToKeep.push_back(mCurrentDecorationsPath);
+    }
+
+    // Limpa todas as texturas, exceto as que estão na lista
+    mRenderer->UnloadUnusedTextures(texturesToKeep);
+
     mRenderer->ClearLights();
 
     mBackgroundLayers.clear();

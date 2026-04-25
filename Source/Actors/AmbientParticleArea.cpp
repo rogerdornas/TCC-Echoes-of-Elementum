@@ -35,7 +35,7 @@ AmbientParticleArea::AmbientParticleArea(Game *game, float width, float height, 
 
     mForegroundParticles = new ParticleSystem(game, Particle::ParticleType::BlurParticle,
                                               17.0f,
-                                              emitRate * 0.8f,
+                                              emitRate * 0.7f,
                                               6.0f,
                                               -1.0f);
 

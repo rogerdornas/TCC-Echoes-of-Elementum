@@ -123,8 +123,14 @@ void DynamicGround::OnUpdate(float deltaTime) {
     vertices.emplace_back(v4);
 
     if (auto* aabb = dynamic_cast<AABBComponent*>(mAABBComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
+        if (mUsePadding) {
+            aabb->SetMin(v1 + Vector2(8.0f, 10.0f));
+            aabb->SetMax(v3 - Vector2(8.0f, 8.0f));
+        }
+        else {
+            aabb->SetMin(v1);
+            aabb->SetMax(v3);
+        }
     }
     if (mRectComponent) {
         // mDrawPolygonComponent->SetVertices(vertices);

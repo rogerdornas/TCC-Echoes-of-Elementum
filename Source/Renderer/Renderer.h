@@ -32,7 +32,7 @@ public:
 	bool Initialize(float width, float height);
 	void InitializeFadeQuad();
 	void Shutdown();
-	void UnloadAllTextures();
+	void UnloadUnusedTextures(const std::vector<std::string>& keepTextures);
 
     void DrawRect(const Vector2 &position, const Vector2 &size,  float rotation,
                   const Vector3 &color, const Vector2 &cameraPos, RendererMode mode, float alpha = 1.0f);
