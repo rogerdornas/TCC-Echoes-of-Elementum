@@ -277,6 +277,7 @@ void Game::SetGameScene(Game::GameScene scene, float transitionTime) {
             scene == GameScene::Room4 ||
             scene == GameScene::Room5 ||
             scene == GameScene::Room6 ||
+            scene == GameScene::Room7 ||
             scene == GameScene::Desafios ||
             scene == GameScene::Cave ||
             scene == GameScene::MirrorBoss)
@@ -737,13 +738,7 @@ void Game::ChangeScene()
         mUseGroundPadding = true;
         mUseParallaxBackground = true;
 
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
 
         LoadLevel(levelsAssets + "Room4/Room4.json");
 
@@ -784,6 +779,28 @@ void Game::ChangeScene()
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
 
         LoadLevel(levelsAssets + "Room6/Room6.json");
+
+        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
+                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+
+        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
+
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
+            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
+        }
+        mBossMusic.Reset();
+    }
+    else if (mNextScene == GameScene::Room7) {
+        mGroundBehindPlayer = false;
+        mUseGroundPadding = false;
+        mUseParallaxBackground = true;
+
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
+
+        LoadLevel(levelsAssets + "Room7/Room7.json", false);
 
         mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
                                            mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
@@ -1338,7 +1355,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
             }
         }
-        if (layer["name"] == "Background1" || layer["name"] == "Decorations" || layer["name"] == "Foreground1" || layer["name"] == "Foreground2") {
+        if (layer["name"] == "Background1" || layer["name"] == "Background2" || layer["name"] == "Decorations" || layer["name"] == "Foreground1" || layer["name"] == "Foreground2") {
             float parallaxX = 1.0f;
             float parallaxY = 1.0f;
             if (layer.contains("parallaxx")) {
@@ -1368,20 +1385,38 @@ void Game::LoadObjects(const std::string &fileName) {
             }
             textureColor /= 255.0f;
             for (const auto &obj: layer["objects"]) {
-                std::string decorationName = obj["name"];
                 float x = obj["x"];
                 float y = obj["y"];
                 float width = obj["width"];
                 float height = obj["height"];
                 float rotation = Math::ToRadians(obj["rotation"]);
-                int gid = 0;
+                int rawGid = 0;
 
                 if (obj.contains("gid")) {
-                    gid = obj["gid"];
+                    rawGid = obj["gid"];
+                }
+
+                // Limpar as flags do Tiled para obter o GID real
+                const unsigned FLIPPED_HORIZONTALLY_FLAG = 0x80000000;
+                const unsigned FLIPPED_VERTICALLY_FLAG   = 0x40000000;
+                const unsigned FLIPPED_DIAGONALLY_FLAG   = 0x20000000;
+
+                int cleanGid = rawGid & ~(FLIPPED_HORIZONTALLY_FLAG | FLIPPED_VERTICALLY_FLAG | FLIPPED_DIAGONALLY_FLAG);
+
+                std::string decorationName = "";
+
+                if (cleanGid >= mDecorationsFirstGid) {
+                    int normalizedGid = (cleanGid - mDecorationsFirstGid) + 1;
+                    decorationName = GetDecorationNameFromGid(normalizedGid);
+                }
+
+                // Fallback: Se não achar no JSON de mapa, tenta pegar da propriedade manual
+                if (decorationName.empty() && obj.contains("name") && !std::string(obj["name"]).empty()) {
+                    decorationName = obj["name"];
                 }
 
                 std::string imagePath;
-                float fps = 10.0f;
+                float fps = 1.0f;
                 int numFrames = 1;
                 bool animated = false;
 
@@ -1406,6 +1441,9 @@ void Game::LoadObjects(const std::string &fileName) {
                 if (layer["name"] == "Background1") {
                     drawOrder = 100;
                 }
+                if (layer["name"] == "Background2") {
+                    drawOrder = 140;
+                }
                 if (layer["name"] == "Decorations") {
                     drawOrder = 200;
                 }
@@ -1422,7 +1460,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 float rotatedDx = (dx * cos(rotation)) + (dy * sin(rotation));
                 float rotatedDy = (dx * sin(rotation)) - (dy * cos(rotation));
 
-                auto* decoration = new Decorations(this, width, height, imagePath, decorationName,fps, numFrames, animated, gid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                auto* decoration = new Decorations(this, width, height, imagePath, decorationName,fps, numFrames, animated, rawGid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
                 decoration->SetPosition(Vector2(x + rotatedDx, y + rotatedDy));
             }
         }
@@ -2337,7 +2375,7 @@ void Game::LoadObjects(const std::string &fileName) {
     }
 }
 
-void Game::LoadLevel(const std::string &fileName) {
+void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
     // Abre arquivo json
     std::ifstream file(fileName);
     if (!file.is_open()) {
@@ -2355,14 +2393,29 @@ void Game::LoadLevel(const std::string &fileName) {
     mLevelWidth = width;
     mTileSize = tileSize;
     mOriginalTileSize = tileSize;
+
+    mDecorationsFirstGid = 1; // Reseta para o padrão
+    if (mapData.contains("tilesets")) {
+        for (const auto& ts : mapData["tilesets"]) {
+            std::string source = ts["source"];
+            // Se o arquivo .tsx conter "Decorations", salvamos o firstgid dele
+            if (source.find("Decorations") != std::string::npos) {
+                mDecorationsFirstGid = ts["firstgid"];
+                break;
+            }
+        }
+    }
+
     std::string newDecorationsPath = "";
     std::string newDecorationsJson = "";
+    std::string newDecorationsGidToName = "";
     if (mapData.contains("properties")) {
         for (const auto &prop: mapData["properties"]) {
             std::string propName = prop["name"];
             if (propName == "DecorationsPath") {
                 newDecorationsPath = "../Assets/" + prop["value"].get<std::string>() + ".png";
                 newDecorationsJson = "../Assets/" + prop["value"].get<std::string>() + ".json";
+                newDecorationsGidToName = "../Assets/" + prop["value"].get<std::string>() + "GidToName.json";
             }
         }
     }
@@ -2412,55 +2465,56 @@ void Game::LoadLevel(const std::string &fileName) {
     }
 
     // Load tilesheet texture
-    size_t pos = fileName.rfind(".json");
-    std::string newTileSheetTexturePath = fileName.substr(0, pos) + ".png";
+    if (hasTileSet) {
+        size_t pos = fileName.rfind(".json");
+        std::string newTileSheetTexturePath = fileName.substr(0, pos) + ".png";
 
-    // Verifica se o Tileset mudou
-    if (newTileSheetTexturePath != mCurrentTileSheetPath)
-    {
-        // Limpa os dados antigos, pois o mapa mudou
-        mTileSheetData.clear();
-        mCurrentTileSheetPath = newTileSheetTexturePath;
+        // Verifica se o Tileset mudou
+        if (newTileSheetTexturePath != mCurrentTileSheetPath)
+        {
+            // Limpa os dados antigos, pois o mapa mudou
+            mTileSheetData.clear();
+            mCurrentTileSheetPath = newTileSheetTexturePath;
 
-        mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
+            mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
 
-        // Load novo tilesheet data
-        std::string tileSheetDataPath = fileName.substr(0, pos) + "TileSet.json";
-        std::ifstream tileSheetFile(tileSheetDataPath);
-        nlohmann::json tileSheetData = nlohmann::json::parse(tileSheetFile);
+            // Load novo tilesheet data
+            std::string tileSheetDataPath = fileName.substr(0, pos) + "TileSet.json";
+            std::ifstream tileSheetFile(tileSheetDataPath);
+            nlohmann::json tileSheetData = nlohmann::json::parse(tileSheetFile);
 
-        int textureWidth = mTileSheet->GetWidth();
-        int textureHeight = mTileSheet->GetHeight();
+            int textureWidth = mTileSheet->GetWidth();
+            int textureHeight = mTileSheet->GetHeight();
 
-        for (const auto &tile: tileSheetData["sprites"]) {
-            std::string tileFileName = tile["fileName"];
-            int x = tile["x"].get<int>();
-            int y = tile["y"].get<int>();
-            int w = tile["width"].get<int>();
-            int h = tile["height"].get<int>();
+            for (const auto &tile: tileSheetData["sprites"]) {
+                std::string tileFileName = tile["fileName"];
+                int x = tile["x"].get<int>();
+                int y = tile["y"].get<int>();
+                int w = tile["width"].get<int>();
+                int h = tile["height"].get<int>();
 
-            size_t dotPos = tileFileName.find('.');
-            std::string numberStr = tileFileName.substr(0, dotPos);
-            int index = std::stoi(numberStr);
+                size_t dotPos = tileFileName.find('.');
+                std::string numberStr = tileFileName.substr(0, dotPos);
+                int index = std::stoi(numberStr);
 
-            // Normaliza para [0, 1]
-            float u = static_cast<float>(x) / textureWidth;
-            float v = static_cast<float>(y) / textureHeight;
-            float uw = static_cast<float>(w) / textureWidth;
-            float vh = static_cast<float>(h) / textureHeight;
+                // Normaliza para [0, 1]
+                float u = static_cast<float>(x) / textureWidth;
+                float v = static_cast<float>(y) / textureHeight;
+                float uw = static_cast<float>(w) / textureWidth;
+                float vh = static_cast<float>(h) / textureHeight;
 
-            mTileSheetData[index] = Vector4(u, v, uw, vh);
+                mTileSheetData[index] = Vector4(u, v, uw, vh);
+            }
+        }
+        else
+        {
+            mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
         }
     }
-    else
-    {
-        mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
-    }
 
-    if (newDecorationsPath != mCurrentDecorationsPath)
-    {
+    if (newDecorationsPath != mCurrentDecorationsPath) {
         mDecorationsTileSheetData.clear();
-        mDecorationsName.clear(); // Não esqueça de limpar os nomes antigos também!
+        mDecorationsName.clear();
         mCurrentDecorationsPath = newDecorationsPath;
 
         mDecorationsTileSheet = mRenderer->GetTexture(mCurrentDecorationsPath);
@@ -2490,6 +2544,15 @@ void Game::LoadLevel(const std::string &fileName) {
                 mDecorationsName.emplace_back(filename);
             }
         }
+
+        std::ifstream mapFile(newDecorationsGidToName);
+        if (mapFile.is_open()) {
+            nlohmann::json gidMapJson = nlohmann::json::parse(mapFile);
+
+            for (auto& [key, value] : gidMapJson.items()) {
+                mGidToDecorationName[std::stoi(key)] = value;
+            }
+        }
     }
     else
     {
@@ -2498,6 +2561,15 @@ void Game::LoadLevel(const std::string &fileName) {
 
     // Cria objetos
     LoadObjects(fileName);
+}
+
+const std::string& Game::GetDecorationNameFromGid(int gid) const {
+    auto it = mGidToDecorationName.find(gid);
+    if (it != mGidToDecorationName.end()) {
+        return it->second;
+    }
+    static std::string empty = "";
+    return empty;
 }
 
 bool Game::ShouldLoadObject(const std::string &condition) {

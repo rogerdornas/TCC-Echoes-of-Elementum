@@ -451,7 +451,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Camera">
+ <objectgroup id="11" name="Camera" visible="0">
   <object id="217" x="0" y="416" width="2272" height="2784">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>

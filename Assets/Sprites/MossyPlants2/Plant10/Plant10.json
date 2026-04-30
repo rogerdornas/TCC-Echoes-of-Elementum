@@ -1,0 +1,195 @@
+{
+  "frames": [
+    {
+      "filename": "jumpplant_2_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00001.png",
+      "frame": {
+        "x": 259,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00002.png",
+      "frame": {
+        "x": 517,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00003.png",
+      "frame": {
+        "x": 775,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00004.png",
+      "frame": {
+        "x": 1033,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00005.png",
+      "frame": {
+        "x": 1,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00006.png",
+      "frame": {
+        "x": 259,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00007.png",
+      "frame": {
+        "x": 517,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00008.png",
+      "frame": {
+        "x": 775,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00009.png",
+      "frame": {
+        "x": 1033,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00010.png",
+      "frame": {
+        "x": 1,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00011.png",
+      "frame": {
+        "x": 259,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00012.png",
+      "frame": {
+        "x": 517,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00013.png",
+      "frame": {
+        "x": 775,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00014.png",
+      "frame": {
+        "x": 1033,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00015.png",
+      "frame": {
+        "x": 1,
+        "y": 775,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00016.png",
+      "frame": {
+        "x": 259,
+        "y": 775,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00017.png",
+      "frame": {
+        "x": 517,
+        "y": 775,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00018.png",
+      "frame": {
+        "x": 775,
+        "y": 775,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "jumpplant_2_00019.png",
+      "frame": {
+        "x": 1033,
+        "y": 775,
+        "w": 256,
+        "h": 256
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant10.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1290,
+      "h": 1032
+    },
+    "scale": 1
+  }
+}

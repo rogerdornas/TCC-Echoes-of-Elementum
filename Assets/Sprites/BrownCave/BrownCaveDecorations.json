@@ -1,0 +1,924 @@
+{
+  "frames": [
+    {
+      "filename": "bigrock01.png",
+      "frame": {
+        "x": 1,
+        "y": 308,
+        "w": 372,
+        "h": 298
+      }
+    },
+    {
+      "filename": "bigrock02.png",
+      "frame": {
+        "x": 293,
+        "y": 1304,
+        "w": 204,
+        "h": 144
+      }
+    },
+    {
+      "filename": "bigrock03.png",
+      "frame": {
+        "x": 607,
+        "y": 1098,
+        "w": 301,
+        "h": 144
+      }
+    },
+    {
+      "filename": "bigrock04.png",
+      "frame": {
+        "x": 1538,
+        "y": 612,
+        "w": 175,
+        "h": 269
+      }
+    },
+    {
+      "filename": "bigrock05.png",
+      "frame": {
+        "x": 974,
+        "y": 159,
+        "w": 134,
+        "h": 113
+      }
+    },
+    {
+      "filename": "bigrock06.png",
+      "frame": {
+        "x": 1341,
+        "y": 344,
+        "w": 186,
+        "h": 203
+      }
+    },
+    {
+      "filename": "bigrock07.png",
+      "frame": {
+        "x": 676,
+        "y": 711,
+        "w": 357,
+        "h": 203
+      }
+    },
+    {
+      "filename": "bigrock08.png",
+      "frame": {
+        "x": 755,
+        "y": 308,
+        "w": 315,
+        "h": 200
+      }
+    },
+    {
+      "filename": "bigrock09.png",
+      "frame": {
+        "x": 1538,
+        "y": 220,
+        "w": 129,
+        "h": 390
+      }
+    },
+    {
+      "filename": "floor01.png",
+      "frame": {
+        "x": 1314,
+        "y": 1362,
+        "w": 192,
+        "h": 49
+      }
+    },
+    {
+      "filename": "floor02.png",
+      "frame": {
+        "x": 886,
+        "y": 536,
+        "w": 203,
+        "h": 55
+      }
+    },
+    {
+      "filename": "floor03.png",
+      "frame": {
+        "x": 1902,
+        "y": 1760,
+        "w": 84,
+        "h": 43
+      }
+    },
+    {
+      "filename": "floor04.png",
+      "frame": {
+        "x": 1341,
+        "y": 1032,
+        "w": 193,
+        "h": 50
+      }
+    },
+    {
+      "filename": "floor05.png",
+      "frame": {
+        "x": 1326,
+        "y": 1304,
+        "w": 202,
+        "h": 53
+      }
+    },
+    {
+      "filename": "floor06.png",
+      "frame": {
+        "x": 1111,
+        "y": 831,
+        "w": 221,
+        "h": 85
+      }
+    },
+    {
+      "filename": "floor07.png",
+      "frame": {
+        "x": 375,
+        "y": 536,
+        "w": 509,
+        "h": 59
+      }
+    },
+    {
+      "filename": "floor08.png",
+      "frame": {
+        "x": 1774,
+        "y": 194,
+        "w": 116,
+        "h": 185
+      }
+    },
+    {
+      "filename": "floor09.png",
+      "frame": {
+        "x": 1774,
+        "y": 1,
+        "w": 126,
+        "h": 191
+      }
+    },
+    {
+      "filename": "floor10.png",
+      "frame": {
+        "x": 913,
+        "y": 1304,
+        "w": 411,
+        "h": 56
+      }
+    },
+    {
+      "filename": "floor11.png",
+      "frame": {
+        "x": 1332,
+        "y": 1492,
+        "w": 159,
+        "h": 50
+      }
+    },
+    {
+      "filename": "floor12.png",
+      "frame": {
+        "x": 1493,
+        "y": 1492,
+        "w": 163,
+        "h": 44
+      }
+    },
+    {
+      "filename": "floor13.png",
+      "frame": {
+        "x": 582,
+        "y": 1690,
+        "w": 126,
+        "h": 51
+      }
+    },
+    {
+      "filename": "floor14.png",
+      "frame": {
+        "x": 710,
+        "y": 1690,
+        "w": 122,
+        "h": 45
+      }
+    },
+    {
+      "filename": "floor15.png",
+      "frame": {
+        "x": 1076,
+        "y": 931,
+        "w": 186,
+        "h": 120
+      }
+    },
+    {
+      "filename": "floor16.png",
+      "frame": {
+        "x": 787,
+        "y": 159,
+        "w": 185,
+        "h": 122
+      }
+    },
+    {
+      "filename": "floor17.png",
+      "frame": {
+        "x": 307,
+        "y": 608,
+        "w": 753,
+        "h": 101
+      }
+    },
+    {
+      "filename": "floor18.png",
+      "frame": {
+        "x": 380,
+        "y": 1,
+        "w": 729,
+        "h": 156
+      }
+    },
+    {
+      "filename": "floor19.png",
+      "frame": {
+        "x": 1774,
+        "y": 980,
+        "w": 86,
+        "h": 206
+      }
+    },
+    {
+      "filename": "floor20.png",
+      "frame": {
+        "x": 1774,
+        "y": 1484,
+        "w": 75,
+        "h": 204
+      }
+    },
+    {
+      "filename": "floor21.png",
+      "frame": {
+        "x": 705,
+        "y": 931,
+        "w": 369,
+        "h": 120
+      }
+    },
+    {
+      "filename": "floor22.png",
+      "frame": {
+        "x": 910,
+        "y": 1098,
+        "w": 357,
+        "h": 97
+      }
+    },
+    {
+      "filename": "floor23.png",
+      "frame": {
+        "x": 1269,
+        "y": 1098,
+        "w": 197,
+        "h": 74
+      }
+    },
+    {
+      "filename": "floor24.png",
+      "frame": {
+        "x": 913,
+        "y": 1362,
+        "w": 196,
+        "h": 63
+      }
+    },
+    {
+      "filename": "floor25.png",
+      "frame": {
+        "x": 380,
+        "y": 159,
+        "w": 405,
+        "h": 135
+      }
+    },
+    {
+      "filename": "floor26.png",
+      "frame": {
+        "x": 1,
+        "y": 931,
+        "w": 403,
+        "h": 165
+      }
+    },
+    {
+      "filename": "platform01.png",
+      "frame": {
+        "x": 1902,
+        "y": 276,
+        "w": 107,
+        "h": 102
+      }
+    },
+    {
+      "filename": "platform02.png",
+      "frame": {
+        "x": 762,
+        "y": 1492,
+        "w": 203,
+        "h": 102
+      }
+    },
+    {
+      "filename": "platform03.png",
+      "frame": {
+        "x": 253,
+        "y": 1492,
+        "w": 165,
+        "h": 172
+      }
+    },
+    {
+      "filename": "platform04.png",
+      "frame": {
+        "x": 1,
+        "y": 1304,
+        "w": 290,
+        "h": 186
+      }
+    },
+    {
+      "filename": "platform05.png",
+      "frame": {
+        "x": 1538,
+        "y": 883,
+        "w": 207,
+        "h": 192
+      }
+    },
+    {
+      "filename": "platform06.png",
+      "frame": {
+        "x": 1774,
+        "y": 787,
+        "w": 105,
+        "h": 191
+      }
+    },
+    {
+      "filename": "platform07.png",
+      "frame": {
+        "x": 1096,
+        "y": 1197,
+        "w": 161,
+        "h": 38
+      }
+    },
+    {
+      "filename": "platform08.png",
+      "frame": {
+        "x": 437,
+        "y": 1690,
+        "w": 143,
+        "h": 89
+      }
+    },
+    {
+      "filename": "platform09.png",
+      "frame": {
+        "x": 1111,
+        "y": 1362,
+        "w": 201,
+        "h": 61
+      }
+    },
+    {
+      "filename": "platform10.png",
+      "frame": {
+        "x": 910,
+        "y": 1197,
+        "w": 184,
+        "h": 40
+      }
+    },
+    {
+      "filename": "platform11.png",
+      "frame": {
+        "x": 1902,
+        "y": 1469,
+        "w": 103,
+        "h": 60
+      }
+    },
+    {
+      "filename": "rockcombination01.png",
+      "frame": {
+        "x": 305,
+        "y": 1098,
+        "w": 300,
+        "h": 183
+      }
+    },
+    {
+      "filename": "rockcombination02.png",
+      "frame": {
+        "x": 595,
+        "y": 1492,
+        "w": 165,
+        "h": 141
+      }
+    },
+    {
+      "filename": "rockcombination03.png",
+      "frame": {
+        "x": 1,
+        "y": 1492,
+        "w": 250,
+        "h": 196
+      }
+    },
+    {
+      "filename": "rockcombination04.png",
+      "frame": {
+        "x": 705,
+        "y": 1304,
+        "w": 206,
+        "h": 136
+      }
+    },
+    {
+      "filename": "rockcombination05.png",
+      "frame": {
+        "x": 1538,
+        "y": 1,
+        "w": 234,
+        "h": 217
+      }
+    },
+    {
+      "filename": "rockcombination06.png",
+      "frame": {
+        "x": 1111,
+        "y": 688,
+        "w": 224,
+        "h": 141
+      }
+    },
+    {
+      "filename": "rockcombination07.png",
+      "frame": {
+        "x": 161,
+        "y": 1690,
+        "w": 136,
+        "h": 136
+      }
+    },
+    {
+      "filename": "rockcombination08.png",
+      "frame": {
+        "x": 299,
+        "y": 1690,
+        "w": 136,
+        "h": 115
+      }
+    },
+    {
+      "filename": "rockcombination09.png",
+      "frame": {
+        "x": 1,
+        "y": 1690,
+        "w": 158,
+        "h": 145
+      }
+    },
+    {
+      "filename": "rockcombination10.png",
+      "frame": {
+        "x": 406,
+        "y": 931,
+        "w": 297,
+        "h": 158
+      }
+    },
+    {
+      "filename": "rockcombination11.png",
+      "frame": {
+        "x": 1,
+        "y": 1098,
+        "w": 302,
+        "h": 204
+      }
+    },
+    {
+      "filename": "rockcombination12.png",
+      "frame": {
+        "x": 307,
+        "y": 711,
+        "w": 367,
+        "h": 204
+      }
+    },
+    {
+      "filename": "rockcombination13.png",
+      "frame": {
+        "x": 1,
+        "y": 608,
+        "w": 304,
+        "h": 321
+      }
+    },
+    {
+      "filename": "rockcombination14.png",
+      "frame": {
+        "x": 1111,
+        "y": 1,
+        "w": 228,
+        "h": 350
+      }
+    },
+    {
+      "filename": "rockcombination15.png",
+      "frame": {
+        "x": 1341,
+        "y": 1,
+        "w": 195,
+        "h": 341
+      }
+    },
+    {
+      "filename": "rockcombination16.png",
+      "frame": {
+        "x": 1111,
+        "y": 353,
+        "w": 215,
+        "h": 333
+      }
+    },
+    {
+      "filename": "smallrock01.png",
+      "frame": {
+        "x": 1902,
+        "y": 1619,
+        "w": 78,
+        "h": 74
+      }
+    },
+    {
+      "filename": "smallrock02.png",
+      "frame": {
+        "x": 1669,
+        "y": 553,
+        "w": 68,
+        "h": 51
+      }
+    },
+    {
+      "filename": "smallrock03.png",
+      "frame": {
+        "x": 1448,
+        "y": 549,
+        "w": 69,
+        "h": 41
+      }
+    },
+    {
+      "filename": "smallrock04.png",
+      "frame": {
+        "x": 1902,
+        "y": 1026,
+        "w": 92,
+        "h": 76
+      }
+    },
+    {
+      "filename": "smallrock05.png",
+      "frame": {
+        "x": 1902,
+        "y": 474,
+        "w": 95,
+        "h": 93
+      }
+    },
+    {
+      "filename": "smallrock06.png",
+      "frame": {
+        "x": 1902,
+        "y": 380,
+        "w": 100,
+        "h": 92
+      }
+    },
+    {
+      "filename": "smallrock07.png",
+      "frame": {
+        "x": 1902,
+        "y": 744,
+        "w": 98,
+        "h": 85
+      }
+    },
+    {
+      "filename": "smallrock08.png",
+      "frame": {
+        "x": 1669,
+        "y": 220,
+        "w": 81,
+        "h": 184
+      }
+    },
+    {
+      "filename": "smallrock09.png",
+      "frame": {
+        "x": 1902,
+        "y": 139,
+        "w": 94,
+        "h": 135
+      }
+    },
+    {
+      "filename": "smallrock10.png",
+      "frame": {
+        "x": 1902,
+        "y": 661,
+        "w": 104,
+        "h": 81
+      }
+    },
+    {
+      "filename": "smallrock11.png",
+      "frame": {
+        "x": 1448,
+        "y": 592,
+        "w": 67,
+        "h": 41
+      }
+    },
+    {
+      "filename": "smallrock12.png",
+      "frame": {
+        "x": 1851,
+        "y": 1484,
+        "w": 49,
+        "h": 46
+      }
+    },
+    {
+      "filename": "smallrock13.png",
+      "frame": {
+        "x": 1902,
+        "y": 1531,
+        "w": 70,
+        "h": 86
+      }
+    },
+    {
+      "filename": "smallrock14.png",
+      "frame": {
+        "x": 1902,
+        "y": 1200,
+        "w": 92,
+        "h": 74
+      }
+    },
+    {
+      "filename": "smallrock15.png",
+      "frame": {
+        "x": 967,
+        "y": 1492,
+        "w": 199,
+        "h": 100
+      }
+    },
+    {
+      "filename": "smallrock16.png",
+      "frame": {
+        "x": 1,
+        "y": 1837,
+        "w": 109,
+        "h": 101
+      }
+    },
+    {
+      "filename": "smallrock17.png",
+      "frame": {
+        "x": 1774,
+        "y": 1188,
+        "w": 106,
+        "h": 146
+      }
+    },
+    {
+      "filename": "smallrock18.png",
+      "frame": {
+        "x": 1669,
+        "y": 406,
+        "w": 102,
+        "h": 145
+      }
+    },
+    {
+      "filename": "smallrock19.png",
+      "frame": {
+        "x": 1774,
+        "y": 1336,
+        "w": 106,
+        "h": 146
+      }
+    },
+    {
+      "filename": "smallrock20.png",
+      "frame": {
+        "x": 420,
+        "y": 1492,
+        "w": 173,
+        "h": 148
+      }
+    },
+    {
+      "filename": "smallrock21.png",
+      "frame": {
+        "x": 1902,
+        "y": 569,
+        "w": 94,
+        "h": 90
+      }
+    },
+    {
+      "filename": "smallrock22.png",
+      "frame": {
+        "x": 1902,
+        "y": 1276,
+        "w": 68,
+        "h": 100
+      }
+    },
+    {
+      "filename": "smallrock23.png",
+      "frame": {
+        "x": 1168,
+        "y": 1492,
+        "w": 162,
+        "h": 80
+      }
+    },
+    {
+      "filename": "smallrock24.png",
+      "frame": {
+        "x": 1902,
+        "y": 831,
+        "w": 78,
+        "h": 97
+      }
+    },
+    {
+      "filename": "smallrock25.png",
+      "frame": {
+        "x": 1902,
+        "y": 1378,
+        "w": 73,
+        "h": 89
+      }
+    },
+    {
+      "filename": "smallrock26.png",
+      "frame": {
+        "x": 1902,
+        "y": 1104,
+        "w": 73,
+        "h": 94
+      }
+    },
+    {
+      "filename": "smallrock27.png",
+      "frame": {
+        "x": 1902,
+        "y": 1695,
+        "w": 76,
+        "h": 63
+      }
+    },
+    {
+      "filename": "smallrock28.png",
+      "frame": {
+        "x": 1902,
+        "y": 930,
+        "w": 76,
+        "h": 94
+      }
+    },
+    {
+      "filename": "smallrock29.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 377,
+        "h": 305
+      }
+    },
+    {
+      "filename": "smallrock30.png",
+      "frame": {
+        "x": 375,
+        "y": 308,
+        "w": 378,
+        "h": 226
+      }
+    },
+    {
+      "filename": "smallrock31.png",
+      "frame": {
+        "x": 1902,
+        "y": 1,
+        "w": 108,
+        "h": 136
+      }
+    },
+    {
+      "filename": "smallrock32.png",
+      "frame": {
+        "x": 1774,
+        "y": 381,
+        "w": 103,
+        "h": 205
+      }
+    },
+    {
+      "filename": "smallrock33.png",
+      "frame": {
+        "x": 1538,
+        "y": 1077,
+        "w": 185,
+        "h": 209
+      }
+    },
+    {
+      "filename": "smallrock34.png",
+      "frame": {
+        "x": 499,
+        "y": 1304,
+        "w": 204,
+        "h": 139
+      }
+    },
+    {
+      "filename": "smallrock35.png",
+      "frame": {
+        "x": 1341,
+        "y": 856,
+        "w": 164,
+        "h": 174
+      }
+    },
+    {
+      "filename": "smallrock36.png",
+      "frame": {
+        "x": 1538,
+        "y": 1288,
+        "w": 193,
+        "h": 193
+      }
+    },
+    {
+      "filename": "smallrock37.png",
+      "frame": {
+        "x": 1341,
+        "y": 549,
+        "w": 105,
+        "h": 305
+      }
+    },
+    {
+      "filename": "smallrock38.png",
+      "frame": {
+        "x": 1774,
+        "y": 588,
+        "w": 104,
+        "h": 197
+      }
+    },
+    {
+      "filename": "squareblack.png",
+      "frame": {
+        "x": 1977,
+        "y": 1104,
+        "w": 32,
+        "h": 32
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "BrownCaveDecorations.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2011,
+      "h": 1939
+    },
+    "scale": 1
+  }
+}

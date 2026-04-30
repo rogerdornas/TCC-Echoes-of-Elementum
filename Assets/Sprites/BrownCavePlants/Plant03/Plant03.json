@@ -1,0 +1,150 @@
+{
+  "frames": [
+    {
+      "filename": "comp_1_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00002.png",
+      "frame": {
+        "x": 131,
+        "y": 1,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00004.png",
+      "frame": {
+        "x": 261,
+        "y": 1,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00006.png",
+      "frame": {
+        "x": 391,
+        "y": 1,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00008.png",
+      "frame": {
+        "x": 521,
+        "y": 1,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00010.png",
+      "frame": {
+        "x": 1,
+        "y": 259,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00012.png",
+      "frame": {
+        "x": 131,
+        "y": 259,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00014.png",
+      "frame": {
+        "x": 261,
+        "y": 259,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00016.png",
+      "frame": {
+        "x": 391,
+        "y": 259,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00018.png",
+      "frame": {
+        "x": 521,
+        "y": 259,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00020.png",
+      "frame": {
+        "x": 1,
+        "y": 517,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00022.png",
+      "frame": {
+        "x": 131,
+        "y": 517,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00024.png",
+      "frame": {
+        "x": 261,
+        "y": 517,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00026.png",
+      "frame": {
+        "x": 391,
+        "y": 517,
+        "w": 128,
+        "h": 256
+      }
+    },
+    {
+      "filename": "comp_1_00028.png",
+      "frame": {
+        "x": 521,
+        "y": 517,
+        "w": 128,
+        "h": 256
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "plant03.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 650,
+      "h": 774
+    },
+    "scale": 1
+  }
+}

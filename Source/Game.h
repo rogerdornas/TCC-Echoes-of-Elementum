@@ -50,6 +50,7 @@ public:
         Room4,
         Room5,
         Room6,
+        Room7,
         Desafios,
         Cave,
         MirrorBoss
@@ -188,6 +189,7 @@ public:
     Texture* GetDecorationsTileSheet() const { return mDecorationsTileSheet; }
     std::vector<Vector4> GetDecorationsTileSheetData() const { return mDecorationsTileSheetData; }
     std::vector<std::string> GetDecorationsName() { return mDecorationsName; }
+    const std::string& GetDecorationNameFromGid(int gid) const;
 
     float GetTileSize() { return mTileSize; }
     int GetOriginalTileSize() { return mOriginalTileSize; }
@@ -308,7 +310,7 @@ private:
 
     // Load Level
     void LoadObjects(const std::string &fileName);
-    void LoadLevel(const std::string &fileName);
+    void LoadLevel(const std::string &fileName, bool hasTileSet = true);
     bool ShouldLoadObject(const std::string& condition);
 
     void SwapKeyboardBinding(SDL_Scancode newKey, Uint8 newMouseBtn);
@@ -410,6 +412,8 @@ private:
     std::vector<std::string> mDecorationsName;
     std::string mCurrentTileSheetPath;
     std::string mCurrentDecorationsPath;
+    std::unordered_map<int, std::string> mGidToDecorationName;
+    int mDecorationsFirstGid = 1;
 
     int mLevelWidth;
     int mLevelHeight;

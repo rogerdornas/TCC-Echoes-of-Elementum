@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tileset version="1.10" tiledversion="1.11.2" name="Room4" tilewidth="64" tileheight="64" spacing="2" margin="1" tilecount="49" columns="7">
- <image source="Room4.png" width="462" height="462"/>
+<tileset version="1.10" tiledversion="1.11.2" name="Room4" tilewidth="128" tileheight="128" spacing="2" margin="1" tilecount="49" columns="7">
+ <image source="Room4.png" width="910" height="910"/>
  <wangsets>
-  <wangset name="Mossy" type="corner" tile="-1">
+  <wangset name="Ground" type="corner" tile="-1">
    <wangcolor name="" color="#ff0000" tile="-1" probability="1"/>
    <wangtile tileid="0" wangid="0,0,0,1,0,0,0,0"/>
    <wangtile tileid="1" wangid="0,0,0,1,0,1,0,0"/>

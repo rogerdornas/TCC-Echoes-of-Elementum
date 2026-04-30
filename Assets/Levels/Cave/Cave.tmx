@@ -422,7 +422,7 @@
   <object id="9" x="3584" y="1120" width="128" height="128"/>
  </objectgroup>
  <objectgroup id="8" name="Levers"/>
- <objectgroup id="5" name="Triggers">
+ <objectgroup id="5" name="Triggers" visible="0">
   <object id="7" name="Light" x="896" y="224" width="2944" height="1024">
    <properties>
     <property name="AmbientColorB" type="float" value="1"/>

@@ -150,6 +150,7 @@ std::string SaveData::GameSceneToString(Game::GameScene scene) {
         case Game::GameScene::Room4: return "Room4";
         case Game::GameScene::Room5: return "Room5";
         case Game::GameScene::Room6: return "Room6";
+        case Game::GameScene::Room7: return "Room7";
         case Game::GameScene::Desafios: return "Desafios";
         case Game::GameScene::Cave: return "Cave";
         case Game::GameScene::MirrorBoss: return "MirrorBoss";
@@ -173,6 +174,7 @@ Game::GameScene SaveData::StringToGameScene(const std::string &str) {
     if (str == "Room4") return Game::GameScene::Room4;
     if (str == "Room5") return Game::GameScene::Room5;
     if (str == "Room6") return Game::GameScene::Room6;
+    if (str == "Room7") return Game::GameScene::Room7;
     if (str == "Desafios") return Game::GameScene::Desafios;
     if (str == "Cave") return Game::GameScene::Cave;
     if (str == "MirrorBoss") return Game::GameScene::MirrorBoss;

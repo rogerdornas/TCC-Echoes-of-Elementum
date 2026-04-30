@@ -1,0 +1,150 @@
+{
+  "frames": [
+    {
+      "filename": "plantposion_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00002.png",
+      "frame": {
+        "x": 259,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00004.png",
+      "frame": {
+        "x": 517,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00006.png",
+      "frame": {
+        "x": 775,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00008.png",
+      "frame": {
+        "x": 1033,
+        "y": 1,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00010.png",
+      "frame": {
+        "x": 1,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00012.png",
+      "frame": {
+        "x": 259,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00014.png",
+      "frame": {
+        "x": 517,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00016.png",
+      "frame": {
+        "x": 775,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00018.png",
+      "frame": {
+        "x": 1033,
+        "y": 259,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00020.png",
+      "frame": {
+        "x": 1,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00022.png",
+      "frame": {
+        "x": 259,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00024.png",
+      "frame": {
+        "x": 517,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00026.png",
+      "frame": {
+        "x": 775,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    },
+    {
+      "filename": "plantposion_00028.png",
+      "frame": {
+        "x": 1033,
+        "y": 517,
+        "w": 256,
+        "h": 256
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant08.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1290,
+      "h": 774
+    },
+    "scale": 1
+  }
+}

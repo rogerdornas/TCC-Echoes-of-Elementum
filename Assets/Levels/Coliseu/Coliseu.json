@@ -6,464 +6,7 @@
          "draworder":"topdown",
          "id":12,
          "name":"Background1",
-         "objects":[
-                {
-                 "gid":55,
-                 "height":196,
-                 "id":957,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":12
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant02\/Plant02"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":196,
-                 "x":167.575757575758,
-                 "y":3256.24242424242
-                }, 
-                {
-                 "gid":56,
-                 "height":684,
-                 "id":958,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":12
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant11\/Plant11"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":684,
-                 "x":473.575757575758,
-                 "y":3354.54545454545
-                }, 
-                {
-                 "gid":57,
-                 "height":512,
-                 "id":959,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":13
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant04\/Plant04"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":913.69696969697,
-                 "y":3319.63636363636
-                }, 
-                {
-                 "gid":58,
-                 "height":512,
-                 "id":960,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant07\/Plant07"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":1404.60606060606,
-                 "y":3413.57575757576
-                }, 
-                {
-                 "gid":59,
-                 "height":768,
-                 "id":961,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant10\/Plant10"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":768,
-                 "x":-150.666666666667,
-                 "y":2880.9696969697
-                }, 
-                {
-                 "gid":96,
-                 "height":512,
-                 "id":962,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant01\/Plant01"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":492.484848484848,
-                 "y":2798.42424242424
-                }, 
-                {
-                 "gid":97,
-                 "height":768,
-                 "id":963,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant10\/Plant10"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":768,
-                 "x":679.636363636364,
-                 "y":3035.51515151515
-                }, 
-                {
-                 "gid":98,
-                 "height":512,
-                 "id":964,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant03\/Plant03"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":1144,
-                 "y":2768.12121212121
-                }, 
-                {
-                 "gid":99,
-                 "height":512,
-                 "id":965,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":14
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant05\/Plant05"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":422.787878787879,
-                 "y":3404.48484848485
-                }, 
-                {
-                 "gid":100,
-                 "height":512,
-                 "id":966,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":15
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant06\/Plant06"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":1177.33333333333,
-                 "y":3380.24242424242
-                }, 
-                {
-                 "gid":102,
-                 "height":512,
-                 "id":967,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant09\/Plant09"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":1462.18181818182,
-                 "y":2871.15151515152
-                }, 
-                {
-                 "gid":103,
-                 "height":512,
-                 "id":968,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant13\/Plant13"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":1474.30303030303,
-                 "y":2725.69696969697
-                }, 
-                {
-                 "gid":104,
-                 "height":512,
-                 "id":969,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":10
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants\/Plant12\/Plant12"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":683.393939393939,
-                 "y":2607.51515151515
-                }, 
-                {
-                 "gid":60,
-                 "height":1419.9079,
-                 "id":971,
-                 "name":"backgrounddecoration1",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":1
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":1
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":390.682128971547,
-                 "x":256.910984848485,
-                 "y":3549.23805151515
-                }],
+         "objects":[],
          "opacity":0.51,
          "parallaxx":0.95,
          "properties":[
@@ -590,8 +133,8 @@
             10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 20, 20, 20, 20, 20, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            10, 11, 14, 2, 2, 2, 2, 3, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 0, 1, 2, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            10, 11, 5, 20, 20, 20, 20, 21, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 20, 21, 0, 0, 0, 0, 19, 20, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            10, 11, 14, 2, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 1, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            10, 11, 5, 20, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 19, 21, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             10, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 11, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -1063,7 +606,6 @@
         {
          "draworder":"topdown",
          "id":4,
-         "locked":true,
          "name":"Grounds",
          "objects":[
                 {
@@ -1360,7 +902,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":160,
+                 "width":64,
                  "x":96,
                  "y":2752
                 }, 
@@ -1372,7 +914,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":320,
+                 "x":256,
                  "y":2752
                 }, 
                 {
@@ -1393,7 +935,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":96,
+                 "width":64,
                  "x":1152,
                  "y":2752
                 }, 
@@ -1427,7 +969,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1728,
+                 "x":1632,
                  "y":2752
                 }, 
                 {
@@ -1437,8 +979,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":96,
-                 "x":1376,
+                 "width":64,
+                 "x":1312,
                  "y":2752
                 }, 
                 {
@@ -1449,7 +991,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1568,
+                 "x":1472,
                  "y":2752
                 }, 
                 {
@@ -1460,7 +1002,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1888,
+                 "x":1792,
                  "y":2752
                 }, 
                 {
@@ -1471,7 +1013,18 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":480,
+                 "x":416,
+                 "y":2752
+                }, 
+                {
+                 "height":64,
+                 "id":973,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":576,
                  "y":2752
                 }],
          "opacity":1,
@@ -1642,7 +1195,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
+                 "width":64,
                  "x":96,
                  "y":2560
                 }, 
@@ -1680,7 +1233,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":320,
+                 "x":256,
                  "y":2560
                 }, 
                 {
@@ -1706,7 +1259,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Desafios"
+                         "value":"Room4"
                         }, 
                         {
                          "name":"Target",
@@ -1716,7 +1269,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":96,
+                 "width":64,
                  "x":1152,
                  "y":2560
                 }, 
@@ -1754,49 +1307,12 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1728,
+                 "x":1632,
                  "y":2560
                 }, 
                 {
                  "height":192,
                  "id":62,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Room3"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":96,
-                 "x":1376,
-                 "y":2560
-                }, 
-                {
-                 "height":192,
-                 "id":63,
                  "name":"",
                  "properties":[
                         {
@@ -1828,7 +1344,44 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1568,
+                 "x":1312,
+                 "y":2560
+                }, 
+                {
+                 "height":192,
+                 "id":63,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Room7"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":1472,
                  "y":2560
                 }, 
                 {
@@ -1854,7 +1407,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room5"
+                         "value":"Desafios"
                         }, 
                         {
                          "name":"Target",
@@ -1865,7 +1418,7 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1888,
+                 "x":1792,
                  "y":2560
                 }, 
                 {
@@ -1891,7 +1444,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room6"
+                         "value":"Room4"
                         }, 
                         {
                          "name":"Target",
@@ -1902,7 +1455,44 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":480,
+                 "x":416,
+                 "y":2560
+                }, 
+                {
+                 "height":192,
+                 "id":976,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Room4"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":64,
+                 "x":576,
                  "y":2560
                 }],
          "opacity":1,
@@ -2172,7 +1762,7 @@
          "y":0
         }],
  "nextlayerid":16,
- "nextobjectid":972,
+ "nextobjectid":978,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -2187,10 +1777,6 @@
         {
          "firstgid":1,
          "source":"Coliseu.tsx"
-        }, 
-        {
-         "firstgid":55,
-         "source":"..\/Room5\/mossy.tsx"
         }],
  "tilewidth":32,
  "type":"map",
