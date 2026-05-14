@@ -6,18 +6,18 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 3600.090087890625,
-            "y": 2467.760009765625
+            "x": 5376.0,
+            "y": 4783.14990234375
         },
-        "scene": "Room7",
-        "total_play_time": 255602.765625
+        "scene": "Room4",
+        "total_play_time": 256403.8125
     },
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
         "death_counter": 855,
-        "elemental_mode": "Fire",
+        "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 11684
+        "money": 11983
     },
     "skill_tree": {
         "unlocked_nodes": [

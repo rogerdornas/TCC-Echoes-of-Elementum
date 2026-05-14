@@ -421,7 +421,7 @@
  <objectgroup id="13" name="Checkpoint" locked="1">
   <object id="3" name="Checkpoint" x="3392.09" y="2371.76" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="12" name="Grounds">
+ <objectgroup id="12" name="Grounds" visible="0">
   <object id="2" x="892.606" y="386.121" width="651.667" height="631.273"/>
   <object id="115" x="57.5758" y="1212.36" width="300.152" height="1696.73"/>
   <object id="116" x="339.394" y="2563.39" width="5015.15" height="348.727"/>

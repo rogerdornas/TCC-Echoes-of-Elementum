@@ -232,6 +232,7 @@ private:
     float mLightningSpearCooldownDuration;
     float mLightningSpearCooldownTimer;
     float mLightningSpearManaCost;
+    Vector2 mLightningSpearStartOffsetPosition;
     class LightningSpear* mLightningSpear;
 
     bool mPrevSkill1Pressed;

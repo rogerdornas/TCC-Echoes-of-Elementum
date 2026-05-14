@@ -38,40 +38,44 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
 
     auto* button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 0), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndSkillTree();
-
-        mGame->SetSaveSlot(1);
-        mGame->LoadGame();
+        if (mGame->GetSceneManagerState() == Game::SceneManagerState::None) {
+            mGame->ResetPlayerAndSkillTree();
+            mGame->SetSaveSlot(1);
+            mGame->LoadGame();
+        }
     }
     , false);
     button->UseBackGroundColor();
 
     button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 1), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndSkillTree();
-
-        mGame->SetSaveSlot(2);
-        mGame->LoadGame();
+        if (mGame->GetSceneManagerState() == Game::SceneManagerState::None) {
+            mGame->ResetPlayerAndSkillTree();
+            mGame->SetSaveSlot(2);
+            mGame->LoadGame();
+        }
     }
     , false);
     button->UseBackGroundColor();
 
     button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 2), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndSkillTree();
-
-        mGame->SetSaveSlot(3);
-        mGame->LoadGame();
+        if (mGame->GetSceneManagerState() == Game::SceneManagerState::None) {
+            mGame->ResetPlayerAndSkillTree();
+            mGame->SetSaveSlot(3);
+            mGame->LoadGame();
+        }
     }
     , false);
     button->UseBackGroundColor();
 
     button = AddButton("", profileButtonPos + Vector2(0, profileButtonSize.y * 3), profileButtonSize, 34, UIButton::TextPos::Center,
     [this]() {
-        mGame->ResetPlayerAndSkillTree();
-
-        mGame->SetSaveSlot(4);
-        mGame->LoadGame();
+        if (mGame->GetSceneManagerState() == Game::SceneManagerState::None) {
+            mGame->ResetPlayerAndSkillTree();
+            mGame->SetSaveSlot(4);
+            mGame->LoadGame();
+        }
     }
     , false);
     button->UseBackGroundColor();

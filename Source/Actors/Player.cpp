@@ -100,6 +100,7 @@ Player::Player(Game* game)
     ,mLightningSpearCooldownDuration(1.0f)
     ,mLightningSpearCooldownTimer(mLightningSpearCooldownDuration)
     ,mLightningSpearManaCost(20.0f)
+    ,mLightningSpearStartOffsetPosition(15, 0)
     ,mLightningSpear(nullptr)
 
     ,mPrevSkill1Pressed(false)
@@ -1824,9 +1825,9 @@ void Player::UseLightningSpear() {
                     SetScale(Vector2(1, 1));
                 }
             }
-            mLightningSpear->SetPosition(GetPosition());
             mLightningSpear->SetRotation(GetRotation());
             mLightningSpear->SetTransformRotation(GetRotation());
+            mLightningSpear->SetPosition(GetPosition() + mLightningSpearStartOffsetPosition * mLightningSpear->GetForward());
             mLightningSpear->Activate();
             mMana -= mLightningSpearManaCost;
             mLightningSpearCooldownTimer = 0;

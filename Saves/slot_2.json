@@ -6,18 +6,18 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 1328.0,
-            "y": 5312.0
+            "x": 1952.0,
+            "y": 4352.0
         },
-        "scene": "Room0",
-        "total_play_time": 156.77142333984375
+        "scene": "Prologue",
+        "total_play_time": 0.0
     },
     "player": {
         "can_dash": false,
         "can_hook": false,
         "can_wallslide": false,
-        "death_counter": 1,
-        "elemental_mode": "Fire",
+        "death_counter": 0,
+        "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,32 +25,10 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 0,
-        "money": 94
+        "money": 0
     },
     "skill_tree": {
-        "unlocked_nodes": [
-            "sword_range_lightning",
-            "lightning_spear_chain_shock",
-            "fire_wisp",
-            "fire_wisp_attack",
-            "glide",
-            "frenzy_mode",
-            "sword_damage_fire",
-            "lightning_spear",
-            "mana_max_fire",
-            "lightning_spear_damage",
-            "max_health_points_lightning",
-            "frenzy_mode_duration",
-            "freeze",
-            "fire_ball",
-            "fire_ball_damage_2",
-            "fire_ball_damage_3",
-            "lightning_dash_damage",
-            "fire_ball_damage_1"
-        ]
+        "unlocked_nodes": []
     },
-    "world_state": {
-        "Level1ArenaDone": false,
-        "Level1Puzzle1Done": false
-    }
+    "world_state": {}
 }

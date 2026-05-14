@@ -281,6 +281,8 @@ public:
     void SetSaveSlot(int saveSlot) { mSaveSlot = saveSlot; }
     SaveManager* GetSaveManager() { return mSaveManager; }
 
+    SceneManagerState GetSceneManagerState() const { return mSceneManagerState; }
+
     void SaveGame();
     void LoadGame();
     void SetWorldState(const std::unordered_map<std::string, bool> &worldState) { mWorldState = worldState; }
