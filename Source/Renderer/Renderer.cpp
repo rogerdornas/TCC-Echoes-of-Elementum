@@ -38,9 +38,9 @@ Renderer::~Renderer()
 bool Renderer::Initialize(float width, float height)
 {
     // Specify version 3.3 (core profile)
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
-    SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+	// SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	// SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
+    // SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
     // Enable double buffering
     SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
@@ -50,6 +50,11 @@ bool Renderer::Initialize(float width, float height)
 
     // Create an OpenGL context
     mContext = SDL_GL_CreateContext(mWindow);
+
+    if (!mContext) {
+        SDL_Log("Falha ao criar o contexto OpenGL: %s", SDL_GetError());
+        return false;
+    }
 
     // Turn on vsync
     SDL_GL_SetSwapInterval(1);
