@@ -2758,6 +2758,38 @@
                  "width":32,
                  "x":2113.33,
                  "y":2532
+                }, 
+                {
+                 "height":32,
+                 "id":259,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2754.33333333333,
+                 "y":1868.16666666667
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2766,7 +2798,7 @@
          "y":0
         }],
  "nextlayerid":17,
- "nextobjectid":259,
+ "nextobjectid":260,
  "orientation":"orthogonal",
  "properties":[
         {

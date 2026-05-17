@@ -709,8 +709,8 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Room3) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
+        mGroundBehindPlayer = false;
+        mUseGroundPadding = true;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -1439,10 +1439,10 @@ void Game::LoadObjects(const std::string &fileName) {
                 }
                 int drawOrder;
                 if (layer["name"] == "Background1") {
-                    drawOrder = 100;
+                    drawOrder = 50;
                 }
                 if (layer["name"] == "Background2") {
-                    drawOrder = 140;
+                    drawOrder = 70;
                 }
                 if (layer["name"] == "Decorations") {
                     drawOrder = 200;
@@ -2385,6 +2385,13 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
     nlohmann::json mapData;
     file >> mapData;
 
+    // Extrai o diretório base do arquivo de mapa atual
+    std::string baseDirectory = "";
+    size_t lastSlashPos = fileName.find_last_of("/\\");
+    if (lastSlashPos != std::string::npos) {
+        baseDirectory = fileName.substr(0, lastSlashPos + 1);
+    }
+
     // Lê altura, largura e tileSize
     int height = int(mapData["height"]);
     int width = int(mapData["width"]);
@@ -2395,13 +2402,21 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
     mOriginalTileSize = tileSize;
 
     mDecorationsFirstGid = 1; // Reseta para o padrão
+
+    // Variáveis para guardar os caminhos relativos lidos do Tiled
+    std::string mainTilesetSource = "";
+    std::string decorationsSource = "";
+
     if (mapData.contains("tilesets")) {
         for (const auto& ts : mapData["tilesets"]) {
             std::string source = ts["source"];
-            // Se o arquivo .tsx conter "Decorations", salvamos o firstgid dele
+            // Se o arquivo .tsx conter "Decorations", salvamos o firstgid e o source dele
             if (source.find("Decorations") != std::string::npos) {
                 mDecorationsFirstGid = ts["firstgid"];
-                break;
+                decorationsSource = source;
+            } else if (mainTilesetSource.empty()) {
+                // Assumimos que o primeiro tileset encontrado (que não seja de decorations) é o principal
+                mainTilesetSource = source;
             }
         }
     }
@@ -2409,7 +2424,18 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
     std::string newDecorationsPath = "";
     std::string newDecorationsJson = "";
     std::string newDecorationsGidToName = "";
-    if (mapData.contains("properties")) {
+
+    // Define os caminhos das decorações dinamicamente baseados no source do .tsx
+    if (!decorationsSource.empty()) {
+        size_t extPos = decorationsSource.rfind(".tsx");
+        std::string sourceNoExt = (extPos != std::string::npos) ? decorationsSource.substr(0, extPos) : decorationsSource;
+
+        newDecorationsPath = baseDirectory + sourceNoExt + ".png";
+        newDecorationsJson = baseDirectory + sourceNoExt + ".json";
+        newDecorationsGidToName = baseDirectory + sourceNoExt + "GidToName.json";
+    }
+    // Fallback: Mantém a lógica de properties para compatibilidade com mapas antigos
+    else if (mapData.contains("properties")) {
         for (const auto &prop: mapData["properties"]) {
             std::string propName = prop["name"];
             if (propName == "DecorationsPath") {
@@ -2465,9 +2491,12 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
     }
 
     // Load tilesheet texture
-    if (hasTileSet) {
-        size_t pos = fileName.rfind(".json");
-        std::string newTileSheetTexturePath = fileName.substr(0, pos) + ".png";
+    if (hasTileSet && !mainTilesetSource.empty()) {
+        // Monta o caminho do Tileset Principal usando o caminho lido do Tiled
+        size_t extPos = mainTilesetSource.rfind(".tsx");
+        std::string sourceNoExt = (extPos != std::string::npos) ? mainTilesetSource.substr(0, extPos) : mainTilesetSource;
+
+        std::string newTileSheetTexturePath = baseDirectory + sourceNoExt + ".png";
 
         // Verifica se o Tileset mudou
         if (newTileSheetTexturePath != mCurrentTileSheetPath)
@@ -2478,32 +2507,37 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
 
             mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
 
-            // Load novo tilesheet data
-            std::string tileSheetDataPath = fileName.substr(0, pos) + "TileSet.json";
+            // Load novo tilesheet data concatenando "TileSet.json" no final do nome base
+            std::string tileSheetDataPath = baseDirectory + sourceNoExt + "TileSet.json";
+
             std::ifstream tileSheetFile(tileSheetDataPath);
-            nlohmann::json tileSheetData = nlohmann::json::parse(tileSheetFile);
+            if (!tileSheetFile.is_open()) {
+                SDL_Log("Erro ao abrir JSON do TileSet Principal: %s", tileSheetDataPath.c_str());
+            } else {
+                nlohmann::json tileSheetData = nlohmann::json::parse(tileSheetFile);
 
-            int textureWidth = mTileSheet->GetWidth();
-            int textureHeight = mTileSheet->GetHeight();
+                int textureWidth = mTileSheet->GetWidth();
+                int textureHeight = mTileSheet->GetHeight();
 
-            for (const auto &tile: tileSheetData["sprites"]) {
-                std::string tileFileName = tile["fileName"];
-                int x = tile["x"].get<int>();
-                int y = tile["y"].get<int>();
-                int w = tile["width"].get<int>();
-                int h = tile["height"].get<int>();
+                for (const auto &tile: tileSheetData["sprites"]) {
+                    std::string tileFileName = tile["fileName"];
+                    int x = tile["x"].get<int>();
+                    int y = tile["y"].get<int>();
+                    int w = tile["width"].get<int>();
+                    int h = tile["height"].get<int>();
 
-                size_t dotPos = tileFileName.find('.');
-                std::string numberStr = tileFileName.substr(0, dotPos);
-                int index = std::stoi(numberStr);
+                    size_t dotPos = tileFileName.find('.');
+                    std::string numberStr = tileFileName.substr(0, dotPos);
+                    int index = std::stoi(numberStr);
 
-                // Normaliza para [0, 1]
-                float u = static_cast<float>(x) / textureWidth;
-                float v = static_cast<float>(y) / textureHeight;
-                float uw = static_cast<float>(w) / textureWidth;
-                float vh = static_cast<float>(h) / textureHeight;
+                    // Normaliza para [0, 1]
+                    float u = static_cast<float>(x) / textureWidth;
+                    float v = static_cast<float>(y) / textureHeight;
+                    float uw = static_cast<float>(w) / textureWidth;
+                    float vh = static_cast<float>(h) / textureHeight;
 
-                mTileSheetData[index] = Vector4(u, v, uw, vh);
+                    mTileSheetData[index] = Vector4(u, v, uw, vh);
+                }
             }
         }
         else
@@ -2512,7 +2546,7 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
         }
     }
 
-    if (newDecorationsPath != mCurrentDecorationsPath) {
+    if (!newDecorationsPath.empty() && newDecorationsPath != mCurrentDecorationsPath) {
         mDecorationsTileSheetData.clear();
         mDecorationsName.clear();
         mCurrentDecorationsPath = newDecorationsPath;
@@ -2543,6 +2577,8 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
 
                 mDecorationsName.emplace_back(filename);
             }
+        } else {
+            SDL_Log("Erro ao abrir JSON da Decoracao: %s", newDecorationsJson.c_str());
         }
 
         std::ifstream mapFile(newDecorationsGidToName);
@@ -2554,7 +2590,7 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
             }
         }
     }
-    else
+    else if (!newDecorationsPath.empty())
     {
         mDecorationsTileSheet = mRenderer->GetTexture(mCurrentDecorationsPath);
     }

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="17" nextobjectid="259">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="17" nextobjectid="260">
  <editorsettings>
   <export target="Room7.json" format="json"/>
  </editorsettings>
@@ -452,5 +452,13 @@
   <object id="253" name="Bat" x="1198" y="2190.67" width="32" height="32"/>
   <object id="256" name="FlyingGolem" x="2277.82" y="1844" width="32" height="32"/>
   <object id="257" name="Snake" x="2113.33" y="2532" width="32" height="32"/>
+  <object id="259" name="LaserShooter" x="2754.33" y="1868.17" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="true"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="2"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>
