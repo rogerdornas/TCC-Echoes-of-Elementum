@@ -29,6 +29,7 @@ Enemy::Enemy(Game* game)
     ,mIsFlashing(false)
     ,mFlashDuration(0.07f)
     ,mFlashTimer(mFlashDuration)
+    ,mBloodColor({226, 90, 70, 255})
     ,mPlayerSpotted(false)
     ,mOffscreenLimit(0.2f)
     ,mEnemyCollision(true)
@@ -99,7 +100,7 @@ void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
     blood->SetPosition(GetPosition());
     blood->SetEmitDirection(knockBackDirection);
     blood->SetParticleSpeedScale(1);
-    blood->SetParticleColor(SDL_Color{226, 90, 70, 255});
+    blood->SetParticleColor(mBloodColor);
     blood->SetParticleGravity(true);
     blood->SetConeSpread(65.0f);
 
@@ -262,7 +263,7 @@ bool Enemy::Died() {
             blood->SetPosition(GetPosition());
             blood->SetEmitDirection(Vector2::UnitY);
             blood->SetParticleSpeedScale(0.8);
-            blood->SetParticleColor(SDL_Color{226, 90, 70, 255});
+            blood->SetParticleColor(mBloodColor);
             blood->SetParticleGravity(true);
             blood->SetConeSpread(360.0f);
 

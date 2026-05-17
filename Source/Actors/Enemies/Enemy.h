@@ -80,6 +80,8 @@ protected:
     float mFlashDuration;
     float mFlashTimer;
 
+    SDL_Color mBloodColor;
+
     bool mPlayerSpotted;
 
     float mOffscreenLimit;

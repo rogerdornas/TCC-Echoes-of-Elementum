@@ -90,6 +90,7 @@ StoneGolem::StoneGolem(Game *game)
     mLaserOffset = Vector2(mWidth * 0.11f, mHeight * -0.59f);
     mFreezeMax = 1000;
     mFrozenDecayRate = mFreezeMax / 3.0f;
+    mBloodColor = {148, 133, 134, 255};
     mEnemyCollision = false;
 
     SetSize(mWidth, mHeight);
