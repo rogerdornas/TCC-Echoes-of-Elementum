@@ -56,7 +56,7 @@ Enemy::~Enemy() {
     mGame->RemoveEnemy(this);
 }
 
-void Enemy::SetSize(float width, float height) {
+void Enemy::SetSize(float width, float height, bool setCombatBox) {
     Vector2 v1(-width / 2, -height / 2);
     Vector2 v2(width / 2, -height / 2);
     Vector2 v3(width / 2, height / 2);
@@ -74,10 +74,12 @@ void Enemy::SetSize(float width, float height) {
     mRigidBodyComponent = new RigidBodyComponent(this, 1, 40000, 40000);
     mColliderComponent = new AABBComponent(this, v1, v3);
 
-    mCombatBoxComponent = new CombatBoxComponent(this);
-    mCombatBoxComponent->AddAABBBox("hitbox", true, v1, v3);
-    mCombatBoxComponent->AddAABBBox("hurtbox", false, v1, v3);
-    // mCombatBoxComponent->SetDebugDraw(true);
+    if (setCombatBox) {
+        mCombatBoxComponent = new CombatBoxComponent(this);
+        mCombatBoxComponent->AddAABBBox("hitbox", true, v1, v3);
+        mCombatBoxComponent->AddAABBBox("hurtbox", false, v1, v3);
+        mCombatBoxComponent->SetDebugDraw(true);
+    }
 }
 
 void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {

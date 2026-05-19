@@ -421,15 +421,15 @@
  <objectgroup id="13" name="Checkpoint" locked="1">
   <object id="3" name="Checkpoint" x="3392.09" y="2371.76" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="12" name="Grounds" visible="0">
+ <objectgroup id="12" name="Grounds">
   <object id="2" x="892.606" y="386.121" width="651.667" height="631.273"/>
   <object id="115" x="57.5758" y="1212.36" width="300.152" height="1696.73"/>
-  <object id="116" x="339.394" y="2563.39" width="5015.15" height="348.727"/>
-  <object id="117" x="357.333" y="2000" width="80" height="568"/>
-  <object id="118" x="438" y="2000" width="206.667" height="86.6667"/>
+  <object id="116" x="339.394" y="2559.39" width="5015.15" height="352.727"/>
+  <object id="117" x="357.333" y="1997.5" width="80" height="570.5"/>
+  <object id="118" x="438" y="1997.5" width="206.667" height="86.1667"/>
   <object id="119" x="1156" y="2062.67" width="89.3333" height="81.3333"/>
-  <object id="120" x="1633.33" y="2172" width="172" height="100"/>
-  <object id="174" x="2772.85" y="1781.18" width="396.848" height="782.273"/>
+  <object id="120" x="1633.33" y="2170.67" width="172" height="101.333"/>
+  <object id="174" x="2769.52" y="1776.85" width="402.181" height="786.606"/>
   <object id="198" x="360.667" y="1216" width="1431.33" height="331.333"/>
   <object id="199" x="364" y="1556" width="1204" height="94"/>
   <object id="201" x="357.333" y="1651.33" width="112.667" height="85.3333"/>

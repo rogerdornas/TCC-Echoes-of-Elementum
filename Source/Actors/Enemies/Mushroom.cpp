@@ -59,7 +59,7 @@ Mushroom::Mushroom(Game *game)
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Mushroom/Mushroom.png",
                                                     "../Assets/Sprites/Mushroom/Mushroom.json",
-                                                    mWidth * 3.7f, mWidth * 3.7f, 998);
+                                                    mWidth * 1.375f * 2.69f, mHeight * 2.69f, 998);
 
     std::vector run = {18, 19, 20, 21, 22, 23, 24, 25, };
     mDrawComponent->AddAnimation("run", run);
@@ -378,5 +378,9 @@ void Mushroom::ManageCombatBox() {
             mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
             mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
         }
+    }
+    else {
+        mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(0, mHeight * 0.12f));
+        mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(0, mHeight * 0.12f));
     }
 }

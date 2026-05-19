@@ -11,6 +11,7 @@
 #include "../../Components/AABBComponent.h"
 #include "../../Components/Drawing/AnimatorComponent.h"
 #include "../../Components/Drawing/RectComponent.h"
+#include "../../Components/CombatBoxComponent.h"
 
 Mantis::Mantis(Game *game)
     :Enemy(game)
@@ -29,7 +30,7 @@ Mantis::Mantis(Game *game)
     ,mWaitToAttackDuration(0.3f)
     ,mWaitToAttackTimer(0.0f)
 {
-    mWidth = 120;
+    mWidth = 60;
     mHeight = 120;
     mMoveSpeed = 250;
     mHealthPoints = 50;
@@ -44,7 +45,7 @@ Mantis::Mantis(Game *game)
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Mantis/Mantis.png",
                                                     "../Assets/Sprites/Mantis/Mantis.json",
-                                                    1.35f * mWidth, 1.35f * mHeight, 998);
+                                                    mWidth * 2.0f * 1.35f, mHeight * 1.35f, 998);
     std::vector walk = {8, 9, 10, 11};
     mDrawComponent->AddAnimation("walk", walk);
 
@@ -56,6 +57,11 @@ Mantis::Mantis(Game *game)
 
     mDrawComponent->SetAnimation("walk");
     mDrawComponent->SetAnimFPS(7.0f);
+
+    mCombatBoxComponent->AddAABBBox("claw", true, Vector2(mWidth * -0.4f, mHeight * -0.3f), Vector2(mWidth * 0.4f, mHeight * 0.3f));
+    mCombatBoxComponent->SetBoxActive("claw", false);
+    mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(0, mHeight * 0.1f));
+    mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(0, mHeight * 0.1f));
 }
 
 void Mantis::OnUpdate(float deltaTime) {
@@ -99,6 +105,10 @@ void Mantis::OnUpdate(float deltaTime) {
         if (mDrawComponent) {
             ManageAnimations();
         }
+    }
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
     }
 }
 
@@ -224,5 +234,20 @@ void Mantis::ManageAnimations() {
     }
     else {
         mDrawComponent->SetAnimation("walk");
+    }
+}
+
+void Mantis::ManageCombatBox() {
+    if (mMantisState == State::Attack) {
+        if (mAttackTimer > 0.15f * mAttackDuration) {
+            mCombatBoxComponent->SetBoxActive("claw", true);
+            mCombatBoxComponent->SetBoxOffset("claw", Vector2(mWidth * 0.9f, mHeight * 0.2f) * Vector2(GetForward().x, 1));
+        }
+        else {
+            mCombatBoxComponent->SetBoxActive("claw", false);
+        }
+    }
+    else {
+        mCombatBoxComponent->SetBoxActive("claw", false);
     }
 }

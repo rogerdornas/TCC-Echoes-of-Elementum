@@ -29,6 +29,7 @@ private:
     void Attack(float deltaTime);
 
     void ManageAnimations();
+    void ManageCombatBox();
 
     State mMantisState;
     float mDistToSpotPlayer;

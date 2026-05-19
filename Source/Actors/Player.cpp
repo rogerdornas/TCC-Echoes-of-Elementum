@@ -409,6 +409,7 @@ void Player::SetJumpEffects() {
     mLightningSpear = new LightningSpear(mGame);
     // Glide Effect
     mGlideEffect = new AirGlideEffect(mGame, this);
+    mGlideEffect->Deactivate();
 
     // VineRope
     mVineRope = new VineRope(mGame, mVineRopeThickness);

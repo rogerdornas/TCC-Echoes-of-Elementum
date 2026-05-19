@@ -29,12 +29,12 @@ public:
 
     void Stun(float duration = 0.2f);
 
-    void ReceiveFreeze(float freezeDamage, float freezeIntensity);
+    virtual void ReceiveFreeze(float freezeDamage, float freezeIntensity);
     bool IsFrozen() const { return mIsFrozen; }
     void Unfreeze();
 
 protected:
-    void SetSize(float width, float height);
+    void SetSize(float width, float height, bool setCombatBox = true);
     void ManageStun(float deltaTime);
     void ManageFreezing(float deltaTime);
     bool Died();

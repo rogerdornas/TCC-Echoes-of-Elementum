@@ -27,6 +27,7 @@ public:
     void SetIsVulnerable() { mIsInvulnerable = false; }
 
     void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true) override;
+    void ReceiveFreeze(float freezeDamage, float freezeIntensity) override;
 
 private:
     void MovementAfterPlayerSpotted(float deltaTime);
@@ -73,9 +74,6 @@ private:
     float mPunchDuration;
     float mPunchTimer;
     float mDistToPunch;
-    float mIdleWidth;
-    float mPunchSpriteWidth;
-    float mPunchOffsetHitBox;
     Vector2 mPunchOffset;
     bool mPunchDirectionRight;
 

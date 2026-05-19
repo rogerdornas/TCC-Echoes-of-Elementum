@@ -39,7 +39,7 @@ FlyingShooterEnemy::FlyingShooterEnemy(Game* game)
     ,mProjectileDamage(10)
 {
     mWidth = 70;
-    mHeight = 70;
+    mHeight = 35;
     mMoveSpeed = 300;
     mHealthPoints = 35;
     mMaxHealthPoints = mHealthPoints;
@@ -53,7 +53,7 @@ FlyingShooterEnemy::FlyingShooterEnemy(Game* game)
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Beetle/Beetle.png",
                                                     "../Assets/Sprites/Beetle/Beetle.json",
-                                                    mWidth * 2.0f, mHeight * 2.0f, 998);
+                                                    mWidth * 2.0f, mHeight * 2.0f * 2.0f, 998);
     std::vector fly = {0, 1, 2, 3};
     mDrawComponent->AddAnimation("fly", fly);
 
@@ -209,10 +209,10 @@ void FlyingShooterEnemy::Shoot(float deltaTime) {
                 p->SetSpeed(mProjectileSpeed);
                 p->SetDamage(mProjectileDamage);
                 if (GetRotation() == 0) {
-                    p->SetPosition(GetPosition() + Vector2(mWidth / 2,0));
+                    p->SetPosition(GetPosition() + Vector2(mWidth * 0.5f,mHeight * 0.5f));
                 }
                 else if (GetRotation() == Math::Pi) {
-                    p->SetPosition(GetPosition() - Vector2(mWidth / 2,0));
+                    p->SetPosition(GetPosition() + Vector2(mWidth * -0.5f,mHeight * 0.5f));
                 }
                 break;
             }

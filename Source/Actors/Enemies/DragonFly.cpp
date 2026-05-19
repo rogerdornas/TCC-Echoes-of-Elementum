@@ -54,7 +54,7 @@ DragonFly::DragonFly(Game *game)
     ,mAttackTimer(0.0f)
 {
     mWidth = 130;
-    mHeight = 70;
+    mHeight = 40;
     mMoveSpeed = 1300;
     mHealthPoints = 80;
     mMaxHealthPoints = mHealthPoints;
@@ -70,7 +70,7 @@ DragonFly::DragonFly(Game *game)
     mDrawComponent = new AnimatorComponent(this,
                                             "../Assets/Sprites/DragonFly/DragonFly.png",
                                             "../Assets/Sprites/DragonFly/DragonFly.json",
-                                            mWidth * 1.8f, mWidth * 1.8f, 999);
+                                            mWidth * 1.8f, mHeight * 3.25f * 1.8f, 999);
     std::vector idle = {39, 40, 41, 42, 43, 44};
     mDrawComponent->AddAnimation("idle", idle);
 
@@ -109,7 +109,7 @@ DragonFly::DragonFly(Game *game)
     mCombatBoxComponent = new CombatBoxComponent(this);
     mCombatBoxComponent->AddOBBBox("hitbox", true, Vector2(mWidth / 2, mHeight / 2));
     mCombatBoxComponent->AddOBBBox("hurtbox", false, Vector2(mWidth / 2, mHeight / 2));
-    // mCombatBoxComponent->SetDebugDraw(true);
+    mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void DragonFly::OnUpdate(float deltaTime) {
@@ -138,6 +138,10 @@ void DragonFly::OnUpdate(float deltaTime) {
 
     if (!mIsFrozen && !mIsStunned) {
         MovementAfterPlayerSpotted(deltaTime);
+    }
+
+    if (mCombatBoxComponent) {
+        ManageCombatBox();
     }
 
     // Se morreu
@@ -563,5 +567,28 @@ void DragonFly::ManageAnimations() {
     }
     else if (mDragonFlyState == State::Stop || mDragonFlyState == State::FlyingAround) {
         mDrawComponent->SetAnimation("idle");
+    }
+}
+
+void DragonFly::ManageCombatBox() {
+    if (mDragonFlyState == State::Attack) {
+        if (mAttackTimer > 0.15f * mAttackDuration && mAttackTimer < 0.45f * mAttackDuration) {
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mHeight * 0.5f, mWidth * 0.4f));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mHeight * 0.5f, mWidth * 0.4f));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(mWidth * -0.35f, mHeight * -1.0f) * GetForward());
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(mWidth * -0.35f, mHeight * -1.0f) * GetForward());
+        }
+        else if (mAttackTimer > 0.45f * mAttackDuration && mAttackTimer < 0.55f * mAttackDuration) {
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth * 0.7f, mWidth * 0.5f));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth * 0.7f, mWidth * 0.5f));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(mWidth * 0.1f, 0.0f) * GetForward());
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(mWidth * 0.1f, 0.0f) * GetForward());
+        }
+        else {
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth * 0.5f, mHeight * 0.5f));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth * 0.5f, mHeight * 0.5f));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
     }
 }

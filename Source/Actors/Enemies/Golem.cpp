@@ -75,9 +75,6 @@ Golem::Golem(Game *game)
     mKnockBackSpeed = 0.0f;
     mKnockBackDuration = 0.0f;
     mKnockBackTimer = mKnockBackDuration;
-    mIdleWidth = mWidth;
-    mPunchSpriteWidth = mWidth * 1.5f;
-    mPunchOffsetHitBox = mWidth * 0.8f;
     mPunchOffset = Vector2(mWidth * 0.8f, 0);
     mFreezeMax = 1000;
     mFrozenDecayRate = mFreezeMax / 3.0f;
@@ -124,16 +121,16 @@ void Golem::OnUpdate(float deltaTime) {
         mIsFlashing = false;
     }
 
-    Player* player = GetGame()->GetPlayer();
-    float dist = GetPosition().x - player->GetPosition().x;
-    if (dist < 0) {
-        SetRotation(0.0);
-        SetScale(Vector2(1, 1));
-    }
-    else {
-        SetRotation(Math::Pi);
-        SetScale(Vector2(-1, 1));
-    }
+    // Player* player = GetGame()->GetPlayer();
+    // float dist = GetPosition().x - player->GetPosition().x;
+    // if (dist < 0) {
+    //     SetRotation(0.0);
+    //     SetScale(Vector2(1, 1));
+    // }
+    // else {
+    //     SetRotation(Math::Pi);
+    //     SetScale(Vector2(-1, 1));
+    // }
 
     ResolveGroundCollision();
     ResolveEnemyCollision();
@@ -242,6 +239,17 @@ void Golem::Stop(float deltaTime) {
         else {
             mPunchProbability += 0.1;
         }
+    }
+
+    Player* player = GetGame()->GetPlayer();
+    float dist = GetPosition().x - player->GetPosition().x;
+    if (dist < 0) {
+        SetRotation(0.0);
+        SetScale(Vector2(1, 1));
+    }
+    else {
+        SetRotation(Math::Pi);
+        SetScale(Vector2(-1, 1));
     }
 }
 
@@ -526,6 +534,14 @@ void Golem::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
     }
 }
 
+void Golem::ReceiveFreeze(float freezeDamage, float freezeIntensity) {
+    if (mIsInvulnerable) {
+        Enemy::ReceiveFreeze(0, freezeIntensity);
+    }
+    else {
+        Enemy::ReceiveFreeze(freezeDamage, freezeIntensity);
+    }
+}
 
 void Golem::ManageAnimations() {
     mDrawComponent->SetAnimFPS(10.0f);
@@ -568,14 +584,18 @@ void Golem::ManageCombatBox() {
         if (mPunchTimer > 0.41f * mPunchDuration && mPunchTimer < 0.78f * mPunchDuration) {
             mCombatBoxComponent->SetBoxActive("punch", true);
             mCombatBoxComponent->SetBoxOffset("punch", mPunchOffset * Vector2(GetForward().x, 1));
-            mCombatBoxComponent->SetBoxOffset("hitbox", (mPunchOffset * 0.6f) * Vector2(GetForward().x, 1));
-            mCombatBoxComponent->SetBoxOffset("hurtbox", (mPunchOffset * 0.6f) * Vector2(GetForward().x, 1));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(mWidth * 0.48f * GetForward().x, mHeight * 0.1f));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(mWidth * 0.48f * GetForward().x, mHeight * 0.1f));
         }
         else {
             mCombatBoxComponent->SetBoxActive("punch", false);
             mCombatBoxComponent->SetBoxOffset("punch", Vector2::Zero);
-            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
-            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(0, mHeight * 0.1f));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(0, mHeight * 0.1f));
         }
+    }
+    else {
+        mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(0, mHeight * 0.1f));
+        mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(0, mHeight * 0.1f));
     }
 }

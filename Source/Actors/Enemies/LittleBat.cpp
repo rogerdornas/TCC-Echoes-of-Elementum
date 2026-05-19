@@ -19,8 +19,8 @@ LittleBat::LittleBat(Game *game)
     ,mFlyingAroundTimer(0.0f)
     ,mFlyingAroundMoveSpeed(100.0f)
 {
-    mWidth = 36;
-    mHeight = 36;
+    mWidth = 24;
+    mHeight = 24;
     mMoveSpeed = 500;
     mHealthPoints = 0.05f;
     mMaxHealthPoints = mHealthPoints;
@@ -35,7 +35,7 @@ LittleBat::LittleBat(Game *game)
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/SpawnFly/SpawnFly.png",
                                                     "../Assets/Sprites/SpawnFly/SpawnFly.json",
-                                                    mWidth * 4.0f, mHeight * 4.0f, 999);
+                                                    mWidth * 6.0f, mHeight * 6.0f, 999);
     std::vector fly = {0, 1, 2, 3, 4};
     mDrawComponent->AddAnimation("fly", fly);
 

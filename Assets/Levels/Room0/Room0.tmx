@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="210" height="200" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="82">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="210" height="200" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="83">
  <editorsettings>
   <export target="Room0.json" format="json"/>
  </editorsettings>
@@ -616,11 +616,12 @@
   <object id="18" name="Flying Enemy" x="5408" y="3808" width="32" height="32"/>
   <object id="61" name="Mushroom" x="2976" y="4992" width="32" height="32"/>
   <object id="62" name="Snake" x="5056" y="4256" width="32" height="32"/>
-  <object id="76" name="FlyingGolem" x="1696" y="4992" width="32" height="32"/>
+  <object id="76" name="FlyingGolem" x="1344" y="4128" width="32" height="32"/>
   <object id="78" name="OrangeSlime" x="2304" y="4256" width="32" height="32"/>
   <object id="79" name="Bat" x="3488" y="3648" width="32" height="32"/>
   <object id="80" name="Bat" x="640" y="2336" width="32" height="32"/>
   <object id="81" name="Bat" x="1088" y="2336" width="32" height="32"/>
+  <object id="82" name="DragonFly" x="1472" y="5024" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="8" name="Levers"/>
  <objectgroup id="9" name="Player">

@@ -6,18 +6,18 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 816.0,
-            "y": 3104.0
+            "x": 7984.0,
+            "y": 1408.0
         },
-        "scene": "Level2",
-        "total_play_time": 257930.078125
+        "scene": "Level3",
+        "total_play_time": 260631.84375
     },
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 858,
-        "elemental_mode": "Earth",
+        "death_counter": 866,
+        "elemental_mode": "Fire",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 13025
+        "money": 14664
     },
     "skill_tree": {
         "unlocked_nodes": [
@@ -69,10 +69,10 @@
     },
     "world_state": {
         "BushMonsterDefeated": false,
-        "FoxDefeated": true,
-        "FrogDefeated": true,
-        "GolemDefeated": true,
-        "HookEnemyDefeated": true,
+        "FoxDefeated": false,
+        "FrogDefeated": false,
+        "GolemDefeated": false,
+        "HookEnemyDefeated": false,
         "Level1ArenaDone": true,
         "Level1Puzzle1Done": true,
         "Level2Lever2Activated": true,

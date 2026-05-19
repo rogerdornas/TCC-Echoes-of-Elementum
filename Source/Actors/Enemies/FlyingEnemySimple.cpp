@@ -20,7 +20,7 @@ FlyingEnemySimple::FlyingEnemySimple(Game *game)
     ,mFlyingAroundMoveSpeed(100.0f)
 {
     mWidth = 70;
-    mHeight = 70;
+    mHeight = 35;
     mMoveSpeed = 250;
     mHealthPoints = 30;
     mMaxHealthPoints = mHealthPoints;
@@ -34,7 +34,7 @@ FlyingEnemySimple::FlyingEnemySimple(Game *game)
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Beetle/Beetle.png",
                                                     "../Assets/Sprites/Beetle/Beetle.json",
-                                                    mWidth * 2.0f, mHeight * 2.0f, 998);
+                                                    mWidth * 2.0f, mHeight * 2.0f * 2.0f, 998);
     std::vector fly = {0, 1, 2, 3};
     mDrawComponent->AddAnimation("fly", fly);
 

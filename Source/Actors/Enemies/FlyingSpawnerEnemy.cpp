@@ -52,7 +52,7 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
     ,mMaxSpawnBat(2)
     ,mCountSpawnBat(0)
 {
-    mWidth = 96;
+    mWidth = 75;
     mHeight = 96;
     mMoveSpeed = 400;
     mHealthPoints = 75;
@@ -63,13 +63,13 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
     mKnockBackDuration = 0.2f;
     mKnockBackTimer = mKnockBackDuration;
     mOriginalHeight = mHeight;
-    mSmashHeight = mHeight * 1.7f;
+    mSmashHeight = mHeight * 1.6f;
 
     SetSize(mWidth, mHeight);
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/FlyingSpawnerEnemy/FlyingSpawnerEnemy.png",
                                                     "../Assets/Sprites/FlyingSpawnerEnemy/FlyingSpawnerEnemy.json",
-                                                    mWidth * 2.0f, mHeight * 2.0f, 998);
+                                                    mWidth * 1.28f * 2.0f, mHeight * 2.0f, 998);
     std::vector fly = {0, 1, 2, 3, 4, 5, 6, 7};
     mDrawComponent->AddAnimation("fly", fly);
 
@@ -93,6 +93,12 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
 
     mDrawComponent->SetAnimation("fly");
     mDrawComponent->SetAnimFPS(12.0f);
+
+    // CombatBox
+    // mCombatBoxComponent = new CombatBoxComponent(this);
+    // mCombatBoxComponent->AddAABBBox("hitbox", true, v1, v3);
+    // mCombatBoxComponent->AddAABBBox("hurtbox", false, v1, v3);
+    // mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void FlyingSpawnerEnemy::OnUpdate(float deltaTime) {
@@ -333,32 +339,31 @@ void FlyingSpawnerEnemy::FlyAway(float deltaTime) {
 void FlyingSpawnerEnemy::SmashAttackCharge(float deltaTime) {
     mSmashAttackChargeTimer += deltaTime;
     if (mSmashAttackChargeTimer >= mSmashAttachChargeDuration) {
+        mHeight = mSmashHeight;
+
+        Vector2 v1(-mWidth / 2, -mHeight / 2);
+        Vector2 v2(mWidth / 2, -mHeight / 2);
+        Vector2 v3(mWidth / 2, mHeight / 2);
+        Vector2 v4(-mWidth / 2, mHeight / 2);
+
+        std::vector<Vector2> vertices;
+        vertices.emplace_back(v1);
+        vertices.emplace_back(v2);
+        vertices.emplace_back(v3);
+        vertices.emplace_back(v4);
+
+        if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
+            aabb->SetMin(v1);
+            aabb->SetMax(v3);
+        }
+
+        if (mRectComponent) {
+            // mDrawPolygonComponent->SetVertices(vertices);
+            mRectComponent->SetWidth(mWidth);
+            mRectComponent->SetHeight(mHeight);
+        }
         mSmashAttackChargeTimer = 0;
         mEnemyState = State::SmashAttack;
-    }
-
-    mHeight = mSmashHeight;
-
-    Vector2 v1(-mWidth / 2, -mHeight / 2);
-    Vector2 v2(mWidth / 2, -mHeight / 2);
-    Vector2 v3(mWidth / 2, mHeight / 2);
-    Vector2 v4(-mWidth / 2, mHeight / 2);
-
-    std::vector<Vector2> vertices;
-    vertices.emplace_back(v1);
-    vertices.emplace_back(v2);
-    vertices.emplace_back(v3);
-    vertices.emplace_back(v4);
-
-    if (auto* aabb = dynamic_cast<AABBComponent*>(mColliderComponent)) {
-        aabb->SetMin(v1);
-        aabb->SetMax(v3);
-    }
-
-    if (mRectComponent) {
-        // mDrawPolygonComponent->SetVertices(vertices);
-        mRectComponent->SetWidth(mWidth);
-        mRectComponent->SetHeight(mHeight);
     }
 
     if (mKnockBackTimer >= mKnockBackDuration) {
@@ -492,11 +497,33 @@ void FlyingSpawnerEnemy::ManageAnimations() {
 
 void FlyingSpawnerEnemy::ManageCombatBox() {
     if (mEnemyState == State::SmashAttackCharge) {
+        if (mSmashAttackChargeTimer > 0.6f * mSmashAttachChargeDuration) {
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight * 0.5f / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight * 0.5f / 2));
+        }
+    }
+    else if (mEnemyState == State::SmashAttack) {
         mHeight = mSmashHeight;
         mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
         mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
     }
-    if (mEnemyState == State::SmashAttackRecovery) {
+    else if (mEnemyState == State::SmashAttackRecovery) {
+        if (mSmashAttackRecoveryTimer > 0.1f * mSmashAttackRecoveryDuration && mSmashAttackRecoveryTimer < 0.7f * mSmashAttackRecoveryDuration) {
+            mHeight = mOriginalHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight * 0.5f / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight * 0.5f / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(0, mHeight * 0.5f));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(0, mHeight * 0.5f));
+        }
+        else {
+            mHeight = mOriginalHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+    }
+    else {
         mHeight = mOriginalHeight;
         mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
         mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
