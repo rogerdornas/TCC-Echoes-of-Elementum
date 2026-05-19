@@ -280,7 +280,7 @@ void FireWisp::AttackEnemies(float deltaTime) {
 }
 
 void FireWisp::InitParticles() {
-    mFlame = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 15.0f, 90.0f, 0.2f, mDuration);
+    mFlame = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 15.0f * 1.2f, 15.0f, 90.0f, 0.2f, mDuration);
     mFlame->SetPosition(GetPosition());
     mFlame->SetParticleColor(SDL_Color{255, 148, 10, 255});
     mFlame->SetConeSpread(30.0f);
@@ -291,7 +291,7 @@ void FireWisp::InitParticles() {
     mFlame->SetAdditiveBlending(true);
     mFlame->SetParticleDrawOrder(5002);
 
-    mSpark = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 3, 30.0, 0.3, mDuration);
+    mSpark = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 3.0f * 1.2f, 3.0f, 30.0, 0.3, mDuration);
     mSpark->SetPosition(GetPosition());
     mSpark->SetParticleColor(SDL_Color{255, 100, 10, 255});
     mSpark->SetConeSpread(270.0f);
@@ -302,7 +302,7 @@ void FireWisp::InitParticles() {
     mSpark->SetAdditiveBlending(true);
     mSpark->SetParticleDrawOrder(5001);
 
-    mSmoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 40.0f, 45.0f, 0.5f, mDuration);
+    mSmoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 40.0f * 1.2f, 40.0f, 45.0f, 0.5f, mDuration);
     mSmoke->SetPosition(GetPosition());
     mSmoke->SetParticleColor(SDL_Color{40, 40, 40, 100});
     mSmoke->SetConeSpread(45.0f);

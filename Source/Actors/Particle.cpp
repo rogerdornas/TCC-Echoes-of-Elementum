@@ -14,7 +14,8 @@
 Particle::Particle(Game* game, ParticleType particleType)
     :Actor(game)
     ,mParticleType(particleType)
-    ,mSize(8.0f)
+    ,mWidth(8.0f)
+    ,mHeight(8.0f)
     ,mLifeTDuration(0.0f)
     ,mLifeTimer(0.0f)
     ,mGroundCollision(true)
@@ -28,6 +29,8 @@ Particle::Particle(Game* game, ParticleType particleType)
     ,mApplyDamage(false)
     ,mApplyFreeze(false)
     ,mFadeIn(false)
+    ,mAutoRotate(false)
+    ,mRotationSpeed(10.0f)
     ,mFreezeDamage(1.0f)
     ,mFreezeIntensity(1.2f)
     ,mDrawComponent(nullptr)
@@ -35,15 +38,11 @@ Particle::Particle(Game* game, ParticleType particleType)
     ,mRigidBodyComponent(nullptr)
     ,mAABBComponent(nullptr)
 {
-    float size = Random::GetFloatRange(mSize * 0.5, mSize * 1.5);
-    float width = 1.2 * size;
-    float height = size;
-
     // Componente visual
-    Vector2 v1(-width/2, -height/2);
-    Vector2 v2(width/2, -height/2);
-    Vector2 v3(width/2, height/2);
-    Vector2 v4(-width/2, height/2);
+    Vector2 v1(-mWidth/2, -mHeight/2);
+    Vector2 v2(mWidth/2, -mHeight/2);
+    Vector2 v3(mWidth/2, mHeight/2);
+    Vector2 v4(-mWidth/2, mHeight/2);
 
     std::vector<Vector2> vertices;
     vertices.emplace_back(v1);
@@ -54,8 +53,8 @@ Particle::Particle(Game* game, ParticleType particleType)
     switch (mParticleType) {
         case ParticleType::SolidParticle:
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Particle/Ellipse.png", "",
-                                                        static_cast<int>(width * 1.6),
-                                                        static_cast<int>(height * 1.6),
+                                                        static_cast<int>(mWidth * 1.6),
+                                                        static_cast<int>(mHeight * 1.6),
                                                     5000);
 
             mDrawComponent->SetTextureFactor(0.0f);
@@ -63,13 +62,24 @@ Particle::Particle(Game* game, ParticleType particleType)
 
         case ParticleType::BlurParticle:
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Particle/ImperfectCircleBlur.png", "",
-                                                        static_cast<int>(width * 1.6),
-                                                        static_cast<int>(height * 1.6),
+                                                        static_cast<int>(mWidth * 1.6),
+                                                        static_cast<int>(mHeight * 1.6),
                                                     5000);
 
             mDrawComponent->SetTextureFactor(0.0f);
             break;
+
+        case ParticleType::Grass:
+            mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Particle/Grass5.png", "",
+                                                        static_cast<int>(mWidth * 1.6),
+                                                        static_cast<int>(mHeight * 1.6),
+                                                    5000);
+
+            mDrawComponent->SetTextureFactor(1.0f);
+            break;
     }
+
+    SetRotation(Random::GetFloatRange(0, Math::TwoPi));
 
     mRigidBodyComponent = new RigidBodyComponent(this, 0.1);
     mAABBComponent = new AABBComponent(this, v1, v3);
@@ -81,8 +91,14 @@ Particle::~Particle() {
     mGame->RemoveParticle(this);
 }
 
-void Particle::SetSize(float size) {
-    mSize = Random::GetFloatRange(size * 0.5, size * 1.5);
+void Particle::SetSize(float width, float height) {
+    float scale = Random::GetFloatRange(0.5, 1.5);
+    mWidth = width * scale;
+    mHeight = height * scale;
+}
+
+void Particle::SetRotationSpeed(float rotationSpeed) {
+    mRotationSpeed = Random::GetFloatRange(rotationSpeed * 0.5, rotationSpeed * 1.5);
 }
 
 void Particle::SetDirection(Vector2 direction) {
@@ -169,12 +185,20 @@ void Particle::OnUpdate(float deltaTime)
         UpdateFade();
 
         // Rotation
-        Vector2 velocity = mRigidBodyComponent->GetVelocity();
-        if (velocity.Length() != 0) {
-            velocity.Normalize();
+        if (mAutoRotate) {
+            float currentRotation = GetRotation();
+            float newRotation = currentRotation + (mRotationSpeed * deltaTime);
+            SetRotation(newRotation);
+            SetTransformRotation(newRotation);
         }
-        SetRotation(Math::Atan2(velocity.y, velocity.x));
-        SetTransformRotation(Math::Atan2(velocity.y, velocity.x));
+        else {
+            Vector2 velocity = mRigidBodyComponent->GetVelocity();
+            if (velocity.Length() != 0) {
+                velocity.Normalize();
+            }
+            SetRotation(Math::Atan2(velocity.y, velocity.x));
+            SetTransformRotation(Math::Atan2(velocity.y, velocity.x));
+        }
 
         // Gravidade
         if (mGravity) {
@@ -196,7 +220,7 @@ void Particle::OnUpdate(float deltaTime)
                 for (Ground* g : grounds) {
                     if (mAABBComponent->Intersect(*g->GetComponent<ColliderComponent>())) {
                         Deactivate();
-                        auto* blood = new ParticleSystem(mGame, mParticleType, 6, 100.0, 0.09, 0.05f);
+                        auto* blood = new ParticleSystem(mGame, mParticleType, 6.0f * 1.2f, 6.0f, 100.0, 0.09, 0.05f);
                         blood->SetPosition(GetPosition());
                         blood->SetGroundCollision(false);
                         blood->SetParticleSpeedScale(0.3f);
@@ -213,7 +237,7 @@ void Particle::OnUpdate(float deltaTime)
                 for (Enemy* e : enemies) {
                     if (mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
                         Deactivate();
-                        auto* blood = new ParticleSystem(mGame, mParticleType, 6, 100.0, 0.09, 0.05f);
+                        auto* blood = new ParticleSystem(mGame, mParticleType, 6.0f * 1.2f, 6.0f, 100.0, 0.09, 0.05f);
                         blood->SetPosition(GetPosition());
                         blood->SetGroundCollision(false);
                         blood->SetParticleSpeedScale(0.3f);
@@ -236,14 +260,11 @@ void Particle::Activate() {
         mDrawComponent->SetAlpha(mColor.a / 255.0f);
     }
 
-    float width = 1.2 * mSize;
-    float height = mSize;
-
     // Componente visual
-    Vector2 v1(-width/2, -height/2);
-    Vector2 v2(width/2, -height/2);
-    Vector2 v3(width/2, height/2);
-    Vector2 v4(-width/2, height/2);
+    Vector2 v1(-mWidth/2, -mHeight/2);
+    Vector2 v2(mWidth/2, -mHeight/2);
+    Vector2 v3(mWidth/2, mHeight/2);
+    Vector2 v4(-mWidth/2, mHeight/2);
 
     std::vector<Vector2> vertices;
     vertices.emplace_back(v1);
@@ -259,13 +280,13 @@ void Particle::Activate() {
     mAABBComponent->SetActive(true); // reativa colisão
     if (mRectComponent) {
         // mDrawPolygonComponent->SetVertices(vertices);
-        mRectComponent->SetWidth(width);
-        mRectComponent->SetHeight(height);
+        mRectComponent->SetWidth(mWidth);
+        mRectComponent->SetHeight(mHeight);
         mRectComponent->SetVisible(true);
     }
     if (mDrawComponent) {
-        mDrawComponent->SetWidth(width * 1.6);
-        mDrawComponent->SetHeight(height * 1.6);
+        mDrawComponent->SetWidth(mWidth * 1.6);
+        mDrawComponent->SetHeight(mHeight * 1.6);
         mDrawComponent->SetVisible(true);
     }
 }

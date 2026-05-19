@@ -243,6 +243,9 @@ Player::Player(Game* game)
     ,mBlinkDuration(0.03f)
     ,mBlinkTimer(mBlinkDuration)
 
+    ,mRunningGrassParticleIntervalDuration(0.05f)
+    ,mRunningGrassParticleIntervalTimer(0.0f)
+
     ,mRunningSoundIntervalDuration(0.3f)
     ,mRunningSoundIntervalTimer(0.0f)
     ,mWasOnGround(false)
@@ -1274,11 +1277,18 @@ void Player::OnUpdate(float deltaTime) {
             mRunningSoundIntervalTimer -= mRunningSoundIntervalDuration;
             mGame->GetAudio()->PlayVariantSound("StepsInGrass/StepsInGrass.wav", 4);
         }
+
+        mRunningGrassParticleIntervalTimer += deltaTime;
+        if (mRunningGrassParticleIntervalTimer >= mRunningGrassParticleIntervalDuration) {
+            mRunningGrassParticleIntervalTimer -= mRunningGrassParticleIntervalDuration;
+            StartGrassEffect(GrassEffectType::Run);
+        }
     }
 
     if (mWasOnGround == false) {
         if (mIsOnGround) {
             mGame->GetAudio()->PlaySound("FallOnGround.wav");
+            StartGrassEffect(GrassEffectType::Land);
             for (JumpEffect* j: mJumpEffects) {
                 if (j->GetState() == ActorState::Paused) {
                     j->SetState(ActorState::Active);
@@ -1499,7 +1509,7 @@ void Player::ResolveGroundCollision() {
                             knockBackForce.x = -mSword->GetForward().x * mSwordHitKnockBack;
                             mRigidBodyComponent->ApplyKnockBack(knockBackForce);
 
-                            auto* grass = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 6, 150.0, 0.30, 0.05f);
+                            auto* grass = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 6.0f * 1.2f, 6.0f, 150.0, 0.30, 0.05f);
                             if (collisionNormal == Vector2::NegUnitY) {
                                 grass->SetPosition(Vector2(mSword->GetPosition().x, g->GetPosition().y - g->GetHeight() / 2));
                             }
@@ -1766,6 +1776,7 @@ void Player::UseDash() {
                     mMana -= mLightningDashManaCost;
                 }
                 if (mIsOnGround) {
+                    StartGrassEffect(GrassEffectType::Dash);
                     for (JumpEffect* j: mJumpEffects) {
                         if (j->GetState() == ActorState::Paused) {
                             j->SetState(ActorState::Active);
@@ -1907,7 +1918,7 @@ void Player::GroundSlamImpact() {
 }
 
 void Player::GroundSlamEffects() {
-    auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 25.0f, 0.35f, 0.3f);
+    auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f * 1.2f, 80.0f, 25.0f, 0.35f, 0.3f);
     smoke->SetParticleColor(SDL_Color{130, 130, 130, 80});
     smoke->SetConeSpread(360.0f);
     smoke->SetParticleSpeedScale(0.2f);
@@ -1965,6 +1976,7 @@ void Player::UseJump() {
                 mJumpTimer = 0.0f;
                 mTimerOutOfGroundToJump = mMaxTimeOutOfGroundToJump;
                 mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
+                StartGrassEffect(GrassEffectType::Jump);
                 for (JumpEffect* j: mJumpEffects) {
                     if (j->GetState() == ActorState::Paused) {
                         j->SetState(ActorState::Active);
@@ -1992,6 +2004,7 @@ void Player::UseJump() {
                 mWallJumpTimer = 0;
                 mTimerOutOfWallToJump = mMaxTimeOutOfWallToJump;
                 mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
+                StartGrassEffect(GrassEffectType::WallJump);
             }
             // Pulo no ar
             if (!(mIsOnGround || mIsWallSliding) && mJumpCountInAir < mSkillManager->MaxJumpsInAir() && mCanJump
@@ -2118,7 +2131,7 @@ void Player::UseFreeze(bool up, bool down) {
                 mIsFreezingUp = false;
                 mIsFreezingFront = false;
 
-                auto* snowBalls = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 13.0f, 100.0f, 0.45f, 0.15f);
+                auto* snowBalls = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 13.0f * 1.2f, 13.0f, 100.0f, 0.45f, 0.15f);
                 snowBalls->SetParticleColor(SDL_Color{255, 255, 255, 180});
                 snowBalls->SetParticleGravity(false);
                 if (down) {
@@ -2159,7 +2172,7 @@ void Player::UseFreeze(bool up, bool down) {
                 freezeEffect.system = snowBalls;
                 mSnowBallsParticleSystems.emplace_back(freezeEffect);
 
-                auto* iceCloud = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 60.0f, 0.55f, 0.2f);
+                auto* iceCloud = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f * 1.2f, 80.0f, 60.0f, 0.55f, 0.2f);
                 iceCloud->SetParticleColor(SDL_Color{100, 200, 255, 50});
                 iceCloud->SetConeSpread(40.0f);
                 iceCloud->SetParticleSpeedScale(0.9f);
@@ -2301,6 +2314,132 @@ void Player::SetElementalMode(ElementalMode mode) {
 
         case ElementalMode::Earth:
             EarthTransformationEffect();
+            break;
+    }
+}
+
+void Player::StartGrassEffect(GrassEffectType type) {
+    ParticleSystem* grass = nullptr;
+    switch (type) {
+        case GrassEffectType::Run:
+            grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+              12.17f,
+              5.5f,
+              20.0f,
+              0.9f,
+              0.1f);
+
+            grass->SetEmitArea(Vector2(mWidth * 0.8f, mHeight * 0.8f));
+            grass->SetParticleGravity(true);
+            grass->SetParticleGravityForce(450.0f);
+            grass->SetEmitDirection(Vector2::NegUnitY);
+            grass->SetGroundCollision(false);
+            grass->SetConeSpread(20.0f);
+            grass->SetParticleSpeedScale(0.16f);
+            grass->SetParticleTextureFactor(1.0f);
+            grass->SetParticleAutoRotate(true);
+            grass->SetParticleRotationSpeed(1.0f);
+            grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+            grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
+            break;
+
+        case GrassEffectType::Jump:
+            grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+              12.17f,
+              5.5f,
+              220.0f,
+              0.9f,
+              0.1f);
+
+            grass->SetEmitArea(Vector2(mWidth, mHeight));
+            grass->SetParticleGravity(true);
+            grass->SetParticleGravityForce(450.0f);
+            grass->SetEmitDirection(Vector2::NegUnitY);
+            grass->SetGroundCollision(false);
+            grass->SetConeSpread(180.0f);
+            grass->SetParticleSpeedScale(0.30f);
+            grass->SetParticleTextureFactor(1.0f);
+            grass->SetParticleAutoRotate(true);
+            grass->SetParticleRotationSpeed(1.0f);
+            grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+            grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+            break;
+
+        case GrassEffectType::Land:
+            grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+              12.17f,
+              5.5f,
+              180.0f,
+              0.9f,
+              0.1f);
+
+            grass->SetEmitArea(Vector2(mWidth, mHeight));
+            grass->SetParticleGravity(true);
+            grass->SetParticleGravityForce(450.0f);
+            grass->SetEmitDirection(Vector2::NegUnitY);
+            grass->SetGroundCollision(false);
+            grass->SetConeSpread(360.0f);
+            grass->SetParticleSpeedScale(0.18f);
+            grass->SetParticleTextureFactor(1.0f);
+            grass->SetParticleAutoRotate(true);
+            grass->SetParticleRotationSpeed(1.0f);
+            grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+            grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+            break;
+
+        case GrassEffectType::WallJump:
+            grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+              12.17f,
+              5.5f,
+              180.0f,
+              0.6f,
+              0.1f);
+
+            grass->SetEmitArea(Vector2(mWidth, mHeight));
+            grass->SetParticleGravity(true);
+            grass->SetParticleGravityForce(450.0f);
+            grass->SetGroundCollision(false);
+            grass->SetConeSpread(30.0f);
+            grass->SetParticleSpeedScale(0.38f);
+            grass->SetParticleTextureFactor(1.0f);
+            grass->SetParticleAutoRotate(true);
+            grass->SetParticleRotationSpeed(1.0f);
+            grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+            if (GetForward().x == 1) {
+                grass->SetEmitDirection(Vector2(0.71f, -0.81f));
+                grass->SetPosition(GetPosition() + Vector2(mWidth * -0.6f, mHeight * 0.3f));
+            }
+            else {
+                grass->SetEmitDirection(Vector2(-0.71f, -0.81f));
+                grass->SetPosition(GetPosition() + Vector2(mWidth * 0.6f, mHeight * 0.3f));
+            }
+            break;
+
+        case GrassEffectType::Dash:
+            grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+              12.17f,
+              5.5f,
+              380.0f,
+              0.9f,
+              0.1f);
+
+            grass->SetEmitArea(Vector2(mWidth * 4.0f, mHeight * 2.0f));
+            grass->SetParticleGravity(true);
+            grass->SetParticleGravityForce(450.0f);
+            grass->SetGroundCollision(false);
+            grass->SetConeSpread(30.0f);
+            grass->SetParticleSpeedScale(0.58f);
+            grass->SetParticleTextureFactor(1.0f);
+            grass->SetParticleAutoRotate(true);
+            grass->SetParticleRotationSpeed(1.0f);
+            grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+            if (GetForward().x == 1) {
+                grass->SetEmitDirection(Vector2(-0.71f, -0.71f));
+            }
+            else {
+                grass->SetEmitDirection(Vector2(0.71f, -0.71f));
+            }
+            grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
             break;
     }
 }

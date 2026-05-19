@@ -109,7 +109,7 @@ DragonFly::DragonFly(Game *game)
     mCombatBoxComponent = new CombatBoxComponent(this);
     mCombatBoxComponent->AddOBBBox("hitbox", true, Vector2(mWidth / 2, mHeight / 2));
     mCombatBoxComponent->AddOBBBox("hurtbox", false, Vector2(mWidth / 2, mHeight / 2));
-    mCombatBoxComponent->SetDebugDraw(true);
+    // mCombatBoxComponent->SetDebugDraw(true);
 }
 
 void DragonFly::OnUpdate(float deltaTime) {

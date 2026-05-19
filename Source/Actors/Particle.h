@@ -6,13 +6,15 @@
 
 #include <string>
 #include "Actor.h"
+#include "../Components/Drawing/AnimatorComponent.h"
 
 class Particle : public Actor
 {
 public:
     enum class ParticleType {
         SolidParticle,
-        BlurParticle
+        BlurParticle,
+        Grass
     };
 
     Particle(class Game* game, ParticleType particleType);
@@ -20,13 +22,15 @@ public:
 
     void OnUpdate(float deltaTime) override;
     ParticleType GetParticleType() { return mParticleType; }
-    void SetSize(float size);
+    void SetSize(float width, float height);
     void SetLifeDuration(float life) { mLifeTDuration = life; }
     void SetGroundCollision(bool groundCollision) { mGroundCollision = groundCollision; }
     void SetEnemyCollision(bool enemyCollision) { mEnemyCollision = enemyCollision; }
     void SetParticleColor(SDL_Color color) { mColor = color; }
+    void SetTextureFactor(float textureFactor) { mDrawComponent->SetTextureFactor(textureFactor); }
     SDL_Color GetColor() { return mColor; }
     void SetGravity(bool g) { mGravity = g; }
+    void SetGravityForce(float gravityForce) { mGravityForce = gravityForce; }
     void SetSpeedScale(float speedScale) { mSpeedScale = speedScale; }
     void SetDirection(Vector2 direction);
 
@@ -39,6 +43,8 @@ public:
     void SetVelocity(Vector2 velocity);
     void UpdateFade();
     void SetFadeIn(bool fadeIn) { mFadeIn = fadeIn; }
+    void SetAutoRotate(bool autoRotate) { mAutoRotate = autoRotate; }
+    void SetRotationSpeed(float rotationSpeed);
 
     void Activate();
     void Deactivate();
@@ -48,7 +54,8 @@ private:
     void ApplyEnemyFreeze();
 
     ParticleType mParticleType;
-    float mSize;
+    float mWidth;
+    float mHeight;
     float mLifeTDuration;
     float mLifeTimer;
     bool mGroundCollision;
@@ -60,6 +67,8 @@ private:
     Vector2 mDirection;
     float mSpeedScale;
     bool mFadeIn;
+    bool mAutoRotate;
+    float mRotationSpeed;
 
     bool mApplyDamage;
     bool mApplyFreeze;

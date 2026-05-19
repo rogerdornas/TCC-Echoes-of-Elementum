@@ -78,7 +78,7 @@ void Enemy::SetSize(float width, float height, bool setCombatBox) {
         mCombatBoxComponent = new CombatBoxComponent(this);
         mCombatBoxComponent->AddAABBBox("hitbox", true, v1, v3);
         mCombatBoxComponent->AddAABBBox("hurtbox", false, v1, v3);
-        mCombatBoxComponent->SetDebugDraw(true);
+        // mCombatBoxComponent->SetDebugDraw(true);
     }
 }
 
@@ -98,7 +98,7 @@ void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
     mFlashTimer = 0;
     mPlayerSpotted = true;
 
-    auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 170.0, 3.0, 0.07f);
+    auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 170.0, 3.0, 0.07f);
     blood->SetPosition(GetPosition());
     blood->SetEmitDirection(knockBackDirection);
     blood->SetParticleSpeedScale(1);
@@ -178,7 +178,7 @@ void Enemy::ReceiveFreeze(float freezeDamage, float freezeIntensity) {
         // mFreezeCount = 0;
         //nuvem de gelo
         float particleSize = 0.75f * (GetWidth() + GetHeight() / 2);
-        mFreezeEffect = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, particleSize, 80.0f, 0.35f, 1000.0f);
+        mFreezeEffect = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, particleSize * 1.2f, particleSize, 80.0f, 0.35f, 1000.0f);
         mFreezeEffect->SetParticleColor(SDL_Color{100, 200, 255, 15});
         mFreezeEffect->SetConeSpread(360.0f);
         mFreezeEffect->SetParticleSpeedScale(0.2f);
@@ -261,7 +261,7 @@ bool Enemy::Died() {
 
             mGame->GetCamera()->StartCameraShake(0.3, mCameraShakeStrength);
 
-            auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 15, 300.0, 3.0, 0.07f);
+            auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 15.0f * 1.2f, 15.0f, 300.0, 3.0, 0.07f);
             blood->SetPosition(GetPosition());
             blood->SetEmitDirection(Vector2::UnitY);
             blood->SetParticleSpeedScale(0.8);

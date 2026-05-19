@@ -121,7 +121,8 @@ void AnimatorComponent::Draw(Renderer* renderer)
         Vector2 drawSize(mWidth * mCropW, mHeight * mCropH);
 
         renderer->DrawTexture(mOwner->GetPosition(), drawSize, mOwner->GetTransformRotation(),
-                              mColor, mSpriteTexture, texRect, parallaxCameraPos, mOwner->GetScale(), mTextureFactor, mAlpha, mFreezeLevel, mAdditiveBlending);
+                              mColor, mSpriteTexture, texRect, parallaxCameraPos, mOwner->GetScale(),
+                              mTextureFactor, mAlpha, mFreezeLevel, mAdditiveBlending);
     }
 }
 

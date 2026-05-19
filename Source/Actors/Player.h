@@ -132,6 +132,14 @@ public:
     void InitLight();
 
 private:
+    enum class GrassEffectType {
+        Run,
+        Jump,
+        Land,
+        WallJump,
+        Dash
+    };
+
     void ResolveGroundCollision();
     void ResolveEnemyCollision();
 
@@ -151,6 +159,8 @@ private:
     void UsePillar();
     void UseHeal();
     void UseHook(HookPoint* nearestHookPoint);
+
+    void StartGrassEffect(GrassEffectType type);
 
     void OpenElementalMenu();
 
@@ -380,6 +390,10 @@ private:
     bool mBlink;
     float mBlinkDuration;
     float mBlinkTimer;
+
+    // Efeitos de grama ao correr
+    float mRunningGrassParticleIntervalDuration;
+    float mRunningGrassParticleIntervalTimer;
 
     // Atributos para sounds
     float mRunningSoundIntervalDuration;

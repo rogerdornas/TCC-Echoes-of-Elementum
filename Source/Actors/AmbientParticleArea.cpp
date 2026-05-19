@@ -12,10 +12,11 @@ AmbientParticleArea::AmbientParticleArea(Game *game, float width, float height, 
     ,mHeight(height)
     ,mBackgroundParticles(nullptr)
     ,mForegroundParticles(nullptr)
-    ,mBackgroundParallaxFactor(0.8f, 0.9f)
-    ,mForegroundParallaxFactor(1.3f, 1.1f)
+    ,mBackgroundParallaxFactor(0.8f, 0.8f)
+    ,mForegroundParallaxFactor(1.3f, 1.3f)
 {
     mBackgroundParticles = new ParticleSystem(game, Particle::ParticleType::BlurParticle,
+                                              6.0f * 1.2f,
                                               6.0f,
                                               emitRate,
                                               6.0f,
@@ -34,6 +35,7 @@ AmbientParticleArea::AmbientParticleArea(Game *game, float width, float height, 
 
 
     mForegroundParticles = new ParticleSystem(game, Particle::ParticleType::BlurParticle,
+                                              17.0f * 1.2f,
                                               17.0f,
                                               emitRate * 0.7f,
                                               6.0f,

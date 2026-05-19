@@ -77,7 +77,7 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
         drawOrder = 99;
     }
     else {
-        drawOrder = 1003;
+        drawOrder = 1004;
     }
     mDrawComponent = new TileMapComponent(this, drawOrder);
 
@@ -184,7 +184,7 @@ void Ground::DestroyGround() {
 }
 
 void Ground::DestroyEffects() {
-    auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 25.0f, 0.35f, 0.3f);
+    auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f * 1.2f, 80.0f, 25.0f, 0.35f, 0.3f);
     smoke->SetParticleColor(SDL_Color{130, 130, 130, 50});
     smoke->SetConeSpread(360.0f);
     smoke->SetParticleSpeedScale(0.2f);

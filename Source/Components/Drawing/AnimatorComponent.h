@@ -46,6 +46,7 @@ public:
     Vector2 GetParallaxFactor() const { return mParallaxFactor; }
 
     void SetTextureFactor(float textureFactor) { mTextureFactor = textureFactor; }
+    float GetTextureFactor() const { return mTextureFactor; }
 
     void SetAdditiveBlending(bool additiveBlending) { mAdditiveBlending = additiveBlending; }
 

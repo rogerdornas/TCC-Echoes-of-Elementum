@@ -93,7 +93,7 @@ void Projectile::OnUpdate(float deltaTime) {
 }
 
 void Projectile::ExplosionEffect() {
-    auto* explosion = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 12, 200.0, 0.2, 0.07f);
+    auto* explosion = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 12.0f * 1.2f, 12.0f, 200.0, 0.2, 0.07f);
     explosion->SetPosition(GetPosition() + GetForward() * (mWidth / 2));
     explosion->SetEmitDirection(Vector2::Zero);
     explosion->SetConeSpread(360.0f);

@@ -97,7 +97,7 @@ void Lava::ResolvePlayerCollision() {
             mGame->SetLavaRespawnPosition(mRespawnPosition);
         }
 
-        auto* fireBubble = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 180.0f, 0.5f, 0.07f);
+        auto* fireBubble = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 180.0f, 0.5f, 0.07f);
         fireBubble->SetPosition(Vector2(player->GetPosition().x, GetPosition().y - mHeight / 2));
         fireBubble->SetEmitDirection(Vector2::NegUnitY);
         fireBubble->SetConeSpread(40.0f);
@@ -116,7 +116,7 @@ void Lava::ResolveEnemyCollision() {
             if (mAABBComponent->Intersect(*e->GetComponent<ColliderComponent>())) {
                 e->ReceiveHit(mDamage * 1000, Vector2::UnitY);
 
-                auto* fireBubble = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 180.0f, 0.5f, 0.07f);
+                auto* fireBubble = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 180.0f, 0.5f, 0.07f);
                 fireBubble->SetPosition(Vector2(e->GetPosition().x, GetPosition().y - mHeight / 2));
                 fireBubble->SetEmitDirection(Vector2::NegUnitY);
                 fireBubble->SetConeSpread(40.0f);
@@ -140,7 +140,7 @@ void Lava::ResolveSwordCollision() {
             Vector2 collisionNormal = sword->GetComponent<ColliderComponent>()->CollisionSide(*mAABBComponent);
             if (1)
             {
-                auto* fireBubble = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 180.0f, 0.5f, 0.07f);
+                auto* fireBubble = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 180.0f, 0.5f, 0.07f);
                 if (collisionNormal == Vector2::NegUnitY) {
                     fireBubble->SetPosition(Vector2(sword->GetPosition().x, GetPosition().y - GetHeight() / 2));
                 }

@@ -342,6 +342,9 @@ void Game::ChangeScene()
         for (int i = 0; i < 600; i++) {
             new Particle(this, Particle::ParticleType::BlurParticle);
         }
+        for (int i = 0; i < 400; i++) {
+            new Particle(this, Particle::ParticleType::Grass);
+        }
 
         // Pool de Projectiles
         for (int i = 0; i < 50; i++) {
@@ -1419,6 +1422,8 @@ void Game::LoadObjects(const std::string &fileName) {
                 float fps = 1.0f;
                 int numFrames = 1;
                 bool animated = false;
+                bool destructible = false;
+                bool windBalance = false;
 
                 if (obj.contains("properties")) {
                     for (const auto &prop: obj["properties"]) {
@@ -1434,6 +1439,12 @@ void Game::LoadObjects(const std::string &fileName) {
                         }
                         if (propName == "Animated") {
                             animated = prop["value"];
+                        }
+                        if (propName == "Destructible") {
+                            destructible = prop["value"];
+                        }
+                        if (propName == "WindBalance") {
+                            windBalance = prop["value"];
                         }
                     }
                 }
@@ -1460,8 +1471,9 @@ void Game::LoadObjects(const std::string &fileName) {
                 float rotatedDx = (dx * cos(rotation)) + (dy * sin(rotation));
                 float rotatedDy = (dx * sin(rotation)) - (dy * cos(rotation));
 
-                auto* decoration = new Decorations(this, width, height, imagePath, decorationName,fps, numFrames, animated, rawGid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor);
+                auto* decoration = new Decorations(this, width, height, imagePath, decorationName,fps, numFrames, animated, rawGid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor, destructible);
                 decoration->SetPosition(Vector2(x + rotatedDx, y + rotatedDy));
+                decoration->SetWindBalance(windBalance);
             }
         }
         if (layer["name"] == "Light") {

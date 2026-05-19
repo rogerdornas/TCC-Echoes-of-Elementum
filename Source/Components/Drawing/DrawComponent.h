@@ -24,6 +24,7 @@ public:
     void SetVisible(bool visible) { mIsVisible = visible; }
     bool IsVisible() const { return mIsVisible; }
     void SetColor(const Vector3& color) { mColor = color; }
+    Vector3 GetColor() const { return mColor; }
     void SetAlpha(float alpha) { mAlpha = alpha; }
 
 protected:

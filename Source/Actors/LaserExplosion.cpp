@@ -60,7 +60,7 @@ void LaserExplosion::ResolvePlayerCollision() {
 }
 
 void LaserExplosion::ParticleEffect() {
-    mSplash = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f, 200.0f, 0.15f, mDuration);
+    mSplash = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 200.0f, 0.15f, mDuration);
     mSplash->SetPosition(GetPosition());
     mSplash->SetParticleColor(SDL_Color{12, 101, 169, 255});
     mSplash->SetConeSpread(110.0f);

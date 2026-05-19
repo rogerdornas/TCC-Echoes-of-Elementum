@@ -153,7 +153,7 @@ void FireBall::OnUpdate(float deltaTime) {
 }
 
 void FireBall::ExplosionEffect() {
-    auto* explosion = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, mWidth / 5, 200.0, 0.2, 0.07f);
+    auto* explosion = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, mWidth * 0.2f * 1.2f, mWidth * 0.2f, 200.0, 0.2, 0.07f);
     explosion->SetPosition(GetPosition() + GetForward() * (mWidth / 2));
     explosion->SetEmitDirection(Vector2::Zero);
     explosion->SetGroundCollision(false);

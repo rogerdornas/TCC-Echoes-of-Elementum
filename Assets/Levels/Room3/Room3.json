@@ -6,7 +6,39 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":2062,
+                 "id":11,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":13
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":6784,
+                 "x":896,
+                 "y":9600
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -14,11 +46,88 @@
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
          "id":3,
          "name":"Background1",
          "objects":[],
          "opacity":1,
+         "parallaxx":0.95,
+         "properties":[
+                {
+                 "name":"TextureColorB",
+                 "type":"int",
+                 "value":69
+                }, 
+                {
+                 "name":"TextureColorG",
+                 "type":"int",
+                 "value":65
+                }, 
+                {
+                 "name":"TextureColorR",
+                 "type":"int",
+                 "value":22
+                }, 
+                {
+                 "name":"TextureFactor",
+                 "type":"float",
+                 "value":0.3
+                }],
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":15,
+         "name":"Background2",
+         "objects":[
+                {
+                 "gid":66,
+                 "height":555.751445086705,
+                 "id":28,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":201,
+                 "x":2370.33333333333,
+                 "y":11374.7514450867
+                }],
+         "opacity":1,
+         "properties":[
+                {
+                 "name":"TextureColorB",
+                 "type":"int",
+                 "value":107
+                }, 
+                {
+                 "name":"TextureColorG",
+                 "type":"int",
+                 "value":101
+                }, 
+                {
+                 "name":"TextureColorR",
+                 "type":"int",
+                 "value":22
+                }, 
+                {
+                 "name":"TextureFactor",
+                 "type":"float",
+                 "value":0.5
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -31,15 +140,187 @@
          "objects":[
                 {
                  "gid":81,
-                 "height":348.047244094488,
-                 "id":4,
+                 "height":144.333333333334,
+                 "id":26,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":278,
-                 "x":1671,
-                 "y":11342.0472440945
+                 "width":115.285115303984,
+                 "x":3080.66666666667,
+                 "y":11318.3333333333
+                }, 
+                {
+                 "gid":62,
+                 "height":510.050251256281,
+                 "id":27,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":200,
+                 "x":2925,
+                 "y":10645.0502512563
+                }, 
+                {
+                 "gid":80,
+                 "height":156.354838709677,
+                 "id":29,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":74,
+                 "x":3664,
+                 "y":11331
+                }, 
+                {
+                 "gid":85,
+                 "height":138,
+                 "id":30,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":111.992307692308,
+                 "x":3853,
+                 "y":11330
+                }, 
+                {
+                 "gid":89,
+                 "height":231,
+                 "id":31,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":207.705882352941,
+                 "x":4052,
+                 "y":11368
+                }, 
+                {
+                 "gid":81,
+                 "height":148,
+                 "id":32,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":118.213836477987,
+                 "x":4364,
+                 "y":11315
+                }, 
+                {
+                 "gid":79,
+                 "height":155.290734824281,
+                 "id":34,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":116.282296650718,
+                 "x":3358.66666666667,
+                 "y":11320.9574014909
+                }, 
+                {
+                 "gid":87,
+                 "height":57,
+                 "id":35,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":126.818181818182,
+                 "x":3491.16666666667,
+                 "y":11299.5
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -136,8 +417,8 @@
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 31, 41, 32, 31, 32, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 16, 16, 16, 16, 38, 48, 39, 38, 39, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 31, 41, 32, 31, 32, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 16, 16, 16, 16, 38, 48, 39, 38, 39, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -164,6 +445,27 @@
          "name":"Foreground1",
          "objects":[],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"TextureColorB",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
+                 "name":"TextureColorG",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
+                 "name":"TextureColorR",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
+                 "name":"TextureFactor",
+                 "type":"float",
+                 "value":0.2
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -175,6 +477,28 @@
          "name":"Foreground2",
          "objects":[],
          "opacity":1,
+         "parallaxx":1.1,
+         "properties":[
+                {
+                 "name":"TextureColorB",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
+                 "name":"TextureColorG",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
+                 "name":"TextureColorR",
+                 "type":"int",
+                 "value":0
+                }, 
+                {
+                 "name":"TextureFactor",
+                 "type":"float",
+                 "value":0.2
+                }],
          "type":"objectgroup",
          "visible":true,
          "x":0,
@@ -325,7 +649,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1792,
+                 "width":6784,
                  "x":896,
                  "y":11264
                 }, 
@@ -372,7 +696,18 @@
          "draworder":"topdown",
          "id":11,
          "name":"Checkpoint",
-         "objects":[],
+         "objects":[
+                {
+                 "height":192,
+                 "id":12,
+                 "name":"Checkpoint",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":416,
+                 "x":1048,
+                 "y":11093.3333333333
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -398,8 +733,8 @@
                  "type":"",
                  "visible":true,
                  "width":28,
-                 "x":1131.66666666667,
-                 "y":11243.6666666667
+                 "x":1131.67,
+                 "y":11243.7
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -429,8 +764,8 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":15,
- "nextobjectid":7,
+ "nextlayerid":16,
+ "nextobjectid":36,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
@@ -442,7 +777,7 @@
         }, 
         {
          "firstgid":50,
-         "source":"..\/..\/Sprites\/MossyBackgrounds2\/MossyDecorations.tsx"
+         "source":"..\/..\/Sprites\/MossyBackgrounds3\/MossyDecorations.tsx"
         }],
  "tilewidth":128,
  "type":"map",

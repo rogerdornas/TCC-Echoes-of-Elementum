@@ -683,7 +683,7 @@ void CloneEnemy::ResolveGroundCollision() {
                             (collisionNormal == Vector2::NegUnitX && Math::Abs(mSword->GetForward().x) == 1) ||
                             (collisionNormal == Vector2::UnitX && Math::Abs(mSword->GetForward().x) == 1) )
                         {
-                            auto* grass = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 6, 150.0, 0.30, 0.05f);
+                            auto* grass = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 6.0f * 1.2f, 6.0f, 150.0, 0.30, 0.05f);
                             if (collisionNormal == Vector2::NegUnitY) {
                                 grass->SetPosition(Vector2(mSword->GetPosition().x, g->GetPosition().y - g->GetHeight() / 2));
                             }

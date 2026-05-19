@@ -81,7 +81,7 @@ void Brazier::OnUpdate(float deltaTime) {
 
     if (mBrazierState == BrazierState::LightOn) {
         if (mIntervalBetweenSmokeEmitTimer >= mIntervalBetweenSmokeEmitDuration) {
-            auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f, 25.0f, 0.65f, 0.2f);
+            auto* smoke = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle, 80.0f * 1.2f, 80.0f, 25.0f, 0.65f, 0.2f);
             smoke->SetParticleColor(SDL_Color{130, 130, 130, 50});
             smoke->SetConeSpread(60.0f);
             smoke->SetParticleSpeedScale(0.5f);

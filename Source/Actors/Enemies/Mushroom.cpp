@@ -145,7 +145,7 @@ void Mushroom::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBa
     mFlashTimer = 0;
     mPlayerSpotted = true;
 
-    auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10, 170.0, 3.0, 0.07f);
+    auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 170.0, 3.0, 0.07f);
     blood->SetPosition(GetPosition());
     blood->SetEmitDirection(knockBackDirection);
     blood->SetParticleSpeedScale(1);

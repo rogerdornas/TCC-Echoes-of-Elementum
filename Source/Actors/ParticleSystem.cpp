@@ -8,19 +8,22 @@
 #include "../Random.h"
 #include "../Components/Drawing/AnimatorComponent.h"
 
-ParticleSystem::ParticleSystem(Game* game, Particle::ParticleType particleType, float particleSize, float emitRate, float particleLifeTime, float lifeTime)
+ParticleSystem::ParticleSystem(Game* game, Particle::ParticleType particleType, float particleWidth, float particleHeight, float emitRate, float particleLifeTime, float lifeTime)
     :Actor(game)
     ,mParticleType(particleType)
     ,mEmitRate(emitRate)
     ,mEmitTimer(0.0f)
     ,mParticleLifeTime(particleLifeTime)
-    ,mParticleSize(particleSize)
+    ,mParticleWidth(particleWidth)
+    ,mParticleHeight(particleHeight)
     ,mLifeTime(lifeTime)
     ,mGroundCollision(true)
     ,mEnemyCollision(false)
     ,mColor(SDL_Color{255, 255, 255, 255})
+    ,mParticleTextureFactor(0.0f)
     ,mParticleSpeedScale(1.0f)
     ,mParticleGravity(true)
+    ,mParticleGravityForce(2000.0f)
     ,mEmitDirection(Vector2::Zero)
     ,mEmitArea(Vector2::Zero)
     ,mConeSpread(0.0f)
@@ -31,6 +34,8 @@ ParticleSystem::ParticleSystem(Game* game, Particle::ParticleType particleType, 
     ,mParticleDrawOrder(5000)
     ,mAdditiveBlending(false)
     ,mParticleFadeIn(false)
+    ,mParticleAutoRotate(false)
+    ,mParticleRotationSpeed(10.0f)
     ,mParallaxFactor(1.0f, 1.0f)
     ,mFollowTarget(nullptr)
 {
@@ -68,17 +73,21 @@ void ParticleSystem::EmitParticle() {
     std::vector<Particle* > particles = mGame->GetParticles();
     for (Particle* p: particles) {
         if (p->GetState() == ActorState::Paused && p->GetParticleType() == mParticleType) {
-            p->SetSize(mParticleSize);
+            p->SetSize(mParticleWidth, mParticleHeight);
             p->SetApplyDamage(mApplyDamage);
             p->SetApplyFreeze(mApplyFreeze);
             p->SetFreezeDamage(mFreezeDamage);
             p->SetFreezeIntensity(mFreezeIntensity);
             p->SetFadeIn(mParticleFadeIn);
+            p->SetAutoRotate(mParticleAutoRotate);
+            p->SetRotationSpeed(mParticleRotationSpeed);
             p->SetLifeDuration(mParticleLifeTime);
             p->SetGroundCollision(mGroundCollision);
             p->SetEnemyCollision(mEnemyCollision);
             p->SetParticleColor(mColor);
+            p->SetTextureFactor(mParticleTextureFactor);
             p->SetGravity(mParticleGravity);
+            p->SetGravityForce(mParticleGravityForce);
             p->SetSpeedScale(mParticleSpeedScale);
             p->GetComponent<AnimatorComponent>()->SetDrawOrder(mParticleDrawOrder);
             p->GetComponent<AnimatorComponent>()->SetAdditiveBlending(mAdditiveBlending);
