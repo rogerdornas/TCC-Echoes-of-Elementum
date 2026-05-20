@@ -689,82 +689,6 @@
                  "y":2856
                 }, 
                 {
-                 "gid":56,
-                 "height":126.667,
-                 "id":57,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":7
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants2\/Plant07\/Plant07"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":126.667,
-                 "x":3083.21,
-                 "y":4916.21666666667
-                }, 
-                {
-                 "gid":2147483704,
-                 "height":148.667,
-                 "id":58,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":11
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants2\/Plant07\/Plant07"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":148.667,
-                 "x":3119,
-                 "y":4924.33666666667
-                }, 
-                {
                  "gid":1073741875,
                  "height":194,
                  "id":60,
@@ -1813,7 +1737,6 @@
         {
          "draworder":"topdown",
          "id":11,
-         "locked":true,
          "name":"Grounds",
          "objects":[
                 {

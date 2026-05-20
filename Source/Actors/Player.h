@@ -124,6 +124,8 @@ public:
 
     void SetIsEnteringLevel(Vector2 velocity);
 
+    void SetIsGrassParticle(bool isGrass) { mIsGrassParticle = isGrass; }
+
     void SetInvertControls(bool invert) { mInvertControls = invert; }
     bool GetIsInvertControls() { return mInvertControls; }
 
@@ -394,6 +396,7 @@ private:
     // Efeitos de grama ao correr
     float mRunningGrassParticleIntervalDuration;
     float mRunningGrassParticleIntervalTimer;
+    bool mIsGrassParticle;
 
     // Atributos para sounds
     float mRunningSoundIntervalDuration;

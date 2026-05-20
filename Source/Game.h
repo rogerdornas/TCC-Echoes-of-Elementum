@@ -425,6 +425,7 @@ private:
     bool mShowMap;
     bool mGroundBehindPlayer;
     bool mUseGroundPadding;
+    bool mUseGrassParticle;
 
     bool mHitstopActive;
     float mHitstopDuration;

@@ -105,6 +105,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mShowMap(false)
     ,mGroundBehindPlayer(true)
     ,mUseGroundPadding(false)
+    ,mUseGrassParticle(false)
     ,mTileSheet(nullptr)
     ,mDecorationsTileSheet(nullptr)
     ,mController(nullptr)
@@ -441,6 +442,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::LevelTeste) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
@@ -465,6 +467,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Coliseu) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -491,6 +494,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Prologue) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
@@ -511,6 +515,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level1) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -534,6 +539,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level2) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = true;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -560,6 +566,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level3) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
@@ -584,6 +591,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level4) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
@@ -620,6 +628,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level5) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
@@ -645,6 +654,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room0) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -670,6 +680,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room1) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -695,6 +706,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room2) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
@@ -714,6 +726,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room3) {
         mGroundBehindPlayer = false;
         mUseGroundPadding = true;
+        mUseGrassParticle = true;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -739,6 +752,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room4) {
         mGroundBehindPlayer = false;
         mUseGroundPadding = true;
+        mUseGrassParticle = true;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -758,6 +772,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room5) {
         mGroundBehindPlayer = false;
         mUseGroundPadding = true;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
@@ -777,6 +792,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room6) {
         mGroundBehindPlayer = false;
         mUseGroundPadding = true;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -796,6 +812,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Room7) {
         mGroundBehindPlayer = false;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -818,6 +835,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Desafios) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
@@ -843,6 +861,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Cave) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
@@ -865,6 +884,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::MirrorBoss) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
@@ -2349,6 +2369,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 if (mPlayer) {
                     mPlayer->SetSword();
                     mPlayer->SetJumpEffects();
+                    mPlayer->SetIsGrassParticle(mUseGrassParticle);
                     mPlayer->InitLight();
                     mPlayer->GetComponent<DashComponent>()->InitDashEffect();
                     mPlayer->GetComponent<RigidBodyComponent>()->SetVelocity(Vector2::Zero);
@@ -2380,6 +2401,7 @@ void Game::LoadObjects(const std::string &fileName) {
                     mPlayer = new Player(this);
                     mSaveData->ApplyToPlayer();
                     mCheckPointMoney = mPlayer->GetMoney();
+                    mPlayer->SetIsGrassParticle(mUseGrassParticle);
                 }
             }
             mPlayerStartPositionId = 0;

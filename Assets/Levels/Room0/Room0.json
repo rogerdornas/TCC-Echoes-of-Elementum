@@ -1537,17 +1537,6 @@
                  "width":32,
                  "x":1088,
                  "y":2336
-                }, 
-                {
-                 "height":32,
-                 "id":82,
-                 "name":"DragonFly",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":1472,
-                 "y":5024
                 }],
          "opacity":1,
          "type":"objectgroup",

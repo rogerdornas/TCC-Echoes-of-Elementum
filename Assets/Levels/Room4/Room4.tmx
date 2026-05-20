@@ -142,24 +142,6 @@
     <property name="Path" value="Sprites/MossyPlants2/Plant06/Plant06"/>
    </properties>
   </object>
-  <object id="57" gid="56" x="3083.21" y="4916.22" width="126.667" height="126.667">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="7"/>
-    <property name="NumFrames" type="int" value="15"/>
-    <property name="Path" value="Sprites/MossyPlants2/Plant07/Plant07"/>
-   </properties>
-  </object>
-  <object id="58" gid="2147483704" x="3119" y="4924.34" width="148.667" height="148.667">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="11"/>
-    <property name="NumFrames" type="int" value="15"/>
-    <property name="Path" value="Sprites/MossyPlants2/Plant07/Plant07"/>
-   </properties>
-  </object>
   <object id="60" gid="1073741875" x="6792" y="4206" width="194" height="194">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -473,7 +455,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="11" name="Grounds" locked="1">
+ <objectgroup id="11" name="Grounds">
   <object id="2" x="768" y="2304" width="3072" height="256"/>
   <object id="3" x="2688" y="1536" width="256" height="768"/>
   <object id="4" x="3840" y="1536" width="640" height="1024"/>

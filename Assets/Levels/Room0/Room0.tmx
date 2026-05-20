@@ -621,7 +621,6 @@
   <object id="79" name="Bat" x="3488" y="3648" width="32" height="32"/>
   <object id="80" name="Bat" x="640" y="2336" width="32" height="32"/>
   <object id="81" name="Bat" x="1088" y="2336" width="32" height="32"/>
-  <object id="82" name="DragonFly" x="1472" y="5024" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="8" name="Levers"/>
  <objectgroup id="9" name="Player">
