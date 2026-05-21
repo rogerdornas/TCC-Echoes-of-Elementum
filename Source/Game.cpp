@@ -196,7 +196,7 @@ bool Game::Initialize()
         return false;
     }
 
-    mRenderer = new Renderer(mWindow);
+    mRenderer = new Renderer(mWindow, this);
     mRenderer->Initialize(mWindowWidth, mWindowHeight);
 
     // Initialize SDL_ttf
@@ -540,7 +540,7 @@ void Game::ChangeScene()
     else if (mNextScene == GameScene::Level2) {
         mGroundBehindPlayer = true;
         mUseGroundPadding = false;
-        mUseGrassParticle = true;
+        mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
         mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));

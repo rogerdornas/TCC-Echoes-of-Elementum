@@ -25,15 +25,15 @@ uniform vec4 uTexRect;
 
 // Any vertex outputs (other than position)
 out vec2 fragTexCoord;
-out vec2 fragWorldPos; // posição em coordenadas do mundo
+out vec2 fragScreenPos; // posição em coordenadas da tela
 
 void main()
 {
     vec4 worldPos = uWorldTransform * vec4(inPosition, 0.0, 1.0);
     // Transform the vertex position to clip space
-    gl_Position = uOrthoProj * ((uWorldTransform * vec4(inPosition, 0.0, 1.0)) - vec4(uCameraPos, 0.0, 0.0));
+    gl_Position = uOrthoProj * (worldPos - vec4(uCameraPos, 0.0, 0.0));
 
     // Pass along the texture coordinate to frag shaders
     fragTexCoord = (inTexCoord * uTexRect.zw) + uTexRect.xy;
-    fragWorldPos = worldPos.xy;
+    fragScreenPos = worldPos.xy- uCameraPos;
 }

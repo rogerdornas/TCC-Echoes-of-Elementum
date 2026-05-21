@@ -26,7 +26,7 @@ enum class PostProcessEffect
 class Renderer
 {
 public:
-	Renderer(SDL_Window* window);
+	Renderer(SDL_Window* window, class Game* game);
 	~Renderer();
 
 	bool Initialize(float width, float height);

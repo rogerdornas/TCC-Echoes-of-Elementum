@@ -43,7 +43,7 @@ uniform Light uLights[MAX_LIGHTS];
 
 // Tex coord input from vertex shader
 in vec2 fragTexCoord;
-in vec2 fragWorldPos;
+in vec2 fragScreenPos;
 
 void main()
 {
@@ -80,7 +80,7 @@ void main()
     // Iluminação pontual (distância 2D)
     for (int i = 0; i < uNumLights; ++i)
     {
-        float dist = length(fragWorldPos - uLights[i].position);
+        float dist = length(fragScreenPos - uLights[i].position);
 
         float attenuation = smoothstep(uLights[i].radius, 0.0, dist);
 

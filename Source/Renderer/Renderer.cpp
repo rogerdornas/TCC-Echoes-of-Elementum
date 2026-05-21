@@ -6,8 +6,9 @@
 #include "../Game.h"
 #include "../Actors/Light.h"
 
-Renderer::Renderer(SDL_Window *window)
-    :mBaseShader(nullptr)
+Renderer::Renderer(SDL_Window *window, Game* game)
+    :mGame(game)
+    ,mBaseShader(nullptr)
     ,mFadeShader(nullptr)
     ,mScreenShader(nullptr)
     ,mPostProcessShader(nullptr)
@@ -490,6 +491,13 @@ void Renderer::CreateSpriteVerts()
 
 void Renderer::UploadLightingUniforms()
 {
+    // Pegamos a posição REAL da câmera (sem o efeito parallax)
+    Vector2 realCameraInt = Vector2::Zero;
+    if (auto* camera = mGame->GetCamera()) {
+        Vector2 realCameraPos = camera->GetPosCamera();
+        realCameraInt = Vector2(std::floor(realCameraPos.x), std::floor(realCameraPos.y));
+    }
+
     mBaseShader->SetVectorUniform("uAmbientColor", mAmbientColor);
     mBaseShader->SetFloatUniform("uAmbientIntensity", mAmbientIntensity);
     mBaseShader->SetIntUniform("uNumLights", static_cast<int>(mLights.size()));
@@ -498,7 +506,11 @@ void Renderer::UploadLightingUniforms()
     {
         std::string prefix = "uLights[" + std::to_string(i) + "]";
         if (mLights[i]->IsActivate()) {
-            mBaseShader->SetVectorUniform((prefix + ".position").c_str(), mLights[i]->GetPosition());
+            // Converte a posição no mundo da luz para Posição de Tela
+            Vector2 lightScreenPos = mLights[i]->GetPosition() - realCameraInt;
+
+            // Envia lightScreenPos
+            mBaseShader->SetVectorUniform((prefix + ".position").c_str(), lightScreenPos);
             mBaseShader->SetVectorUniform((prefix + ".color").c_str(), mLights[i]->GetColor());
             mBaseShader->SetFloatUniform((prefix + ".intensity").c_str(), mLights[i]->GetIntensity());
             mBaseShader->SetFloatUniform((prefix + ".radius").c_str(), mLights[i]->GetRadius());
