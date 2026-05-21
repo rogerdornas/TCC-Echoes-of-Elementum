@@ -250,6 +250,8 @@ add_executable(${PROJECT_NAME}
         Source/Actors/VineRope.h
         Source/Actors/AmbientParticleArea.cpp
         Source/Actors/AmbientParticleArea.h
+        Source/Actors/Enemies/Frogger.cpp
+        Source/Actors/Enemies/Frogger.h
 )
 
 

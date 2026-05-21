@@ -367,15 +367,15 @@ void FlyingGolem::ManageCombatBox() {
 
     if (mFlyingGolemState == State::TeleportIn) {
         if (mTeleportInTimer > 0.5f * mTeleportDuration) {
-            mCombatBoxComponent->GetBox("hitbox").collider->SetActive(false);
-            mCombatBoxComponent->GetBox("hurtbox").collider->SetActive(false);
+            mCombatBoxComponent->GetBox("hitbox")->collider->SetActive(false);
+            mCombatBoxComponent->GetBox("hurtbox")->collider->SetActive(false);
         }
     }
 
     if (mFlyingGolemState == State::TeleportOut) {
         if (mTeleportOutTimer > 0.1f * mTeleportDuration) {
-            mCombatBoxComponent->GetBox("hitbox").collider->SetActive(true);
-            mCombatBoxComponent->GetBox("hurtbox").collider->SetActive(true);
+            mCombatBoxComponent->GetBox("hitbox")->collider->SetActive(true);
+            mCombatBoxComponent->GetBox("hurtbox")->collider->SetActive(true);
         }
     }
 }

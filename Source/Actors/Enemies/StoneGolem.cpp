@@ -22,7 +22,7 @@ StoneGolem::StoneGolem(Game *game)
     ,mCurrentPhase(1)
     ,mPhaseTransitionPending(false)
 
-    ,mDistToSpotPlayer(400)
+    ,mDistToSpotPlayer(400.0f)
 
     ,mTargetHeight(0.0f)
 

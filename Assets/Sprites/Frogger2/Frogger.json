@@ -1,0 +1,384 @@
+{
+  "frames": [
+    {
+      "filename": "hurt01.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "hurt02.png",
+      "frame": {
+        "x": 387,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "hurt03.png",
+      "frame": {
+        "x": 773,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "hurt04.png",
+      "frame": {
+        "x": 1159,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idle01.png",
+      "frame": {
+        "x": 1545,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idle02.png",
+      "frame": {
+        "x": 1931,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idle03.png",
+      "frame": {
+        "x": 2317,
+        "y": 1,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idle04.png",
+      "frame": {
+        "x": 1,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idle05.png",
+      "frame": {
+        "x": 387,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idlefront01.png",
+      "frame": {
+        "x": 773,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idlefront02.png",
+      "frame": {
+        "x": 1159,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idlefront03.png",
+      "frame": {
+        "x": 1545,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idlefront04.png",
+      "frame": {
+        "x": 1931,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "idlefront05.png",
+      "frame": {
+        "x": 2317,
+        "y": 131,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run01.png",
+      "frame": {
+        "x": 1,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run02.png",
+      "frame": {
+        "x": 387,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run03.png",
+      "frame": {
+        "x": 773,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run04.png",
+      "frame": {
+        "x": 1159,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run05.png",
+      "frame": {
+        "x": 1545,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run06.png",
+      "frame": {
+        "x": 1931,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run07.png",
+      "frame": {
+        "x": 2317,
+        "y": 261,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "run08.png",
+      "frame": {
+        "x": 1,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit01.png",
+      "frame": {
+        "x": 387,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit02.png",
+      "frame": {
+        "x": 773,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit03.png",
+      "frame": {
+        "x": 1159,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit04.png",
+      "frame": {
+        "x": 1545,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit05.png",
+      "frame": {
+        "x": 1931,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit06.png",
+      "frame": {
+        "x": 2317,
+        "y": 391,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit07.png",
+      "frame": {
+        "x": 1,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit08.png",
+      "frame": {
+        "x": 387,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit09.png",
+      "frame": {
+        "x": 773,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit10.png",
+      "frame": {
+        "x": 1159,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "spit11.png",
+      "frame": {
+        "x": 1545,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue01.png",
+      "frame": {
+        "x": 1931,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue02.png",
+      "frame": {
+        "x": 2317,
+        "y": 521,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue03.png",
+      "frame": {
+        "x": 1,
+        "y": 651,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue04.png",
+      "frame": {
+        "x": 387,
+        "y": 651,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue05.png",
+      "frame": {
+        "x": 773,
+        "y": 651,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue06.png",
+      "frame": {
+        "x": 1159,
+        "y": 651,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue07.png",
+      "frame": {
+        "x": 1545,
+        "y": 651,
+        "w": 384,
+        "h": 128
+      }
+    },
+    {
+      "filename": "tongue08.png",
+      "frame": {
+        "x": 1931,
+        "y": 651,
+        "w": 384,
+        "h": 128
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Frogger.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 2702,
+      "h": 780
+    },
+    "scale": 1
+  }
+}

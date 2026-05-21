@@ -30,14 +30,14 @@ void CombatBoxComponent::Update(float deltaTime) {
     }
 }
 
-CombatBox CombatBoxComponent::GetBox(const std::string &tag) {
+CombatBox* CombatBoxComponent::GetBox(const std::string &tag) {
     CombatBox result;
     for (auto& box : mBoxes) {
         if (box.tag == tag) {
-            return box;
+            return &box;
         }
     }
-    return result;
+    return nullptr;
 }
 
 void CombatBoxComponent::SetDebugDraw(bool enabled) {

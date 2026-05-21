@@ -22,6 +22,7 @@ public:
     void SetHalfSize(Vector2 halfSize) { mHalfSize = halfSize; }
     std::vector<Vector2> GetVertices();
     Vector2* GetAxis() { return mAxis; }
+    void SetRotation(float rotation);
 
     bool Intersect(ColliderComponent& other) override;
     bool IntersectWithAABB(class AABBComponent& other);
@@ -38,5 +39,7 @@ public:
 private:
     Vector2 mHalfSize;    // metade da largura e altura
     Vector2 mAxis[2];     // eixos já rotacionados
+    bool mUseOwnerRotation;
+    float mComponentRotation;
 };
 

@@ -117,7 +117,7 @@ void Decorations::OnUpdate(float deltaTime) {
         mPositionInitialized = true;
     }
 
-    // ÁLCULOS DE PROPORÇÃO DE TAMANHO
+    // CÁLCULOS DE PROPORÇÃO DE TAMANHO
     float currentArea = mWidth * mHeight;
     float baseArea = 6000.0f; // Área de referência
 

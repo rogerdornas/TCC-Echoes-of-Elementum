@@ -13,7 +13,7 @@ ConfirmQuitGame::ConfirmQuitGame(class Game *game, const std::string &fontName, 
 
     // AddImage("../Assets/Sprites/Background/Menu6.png", GetSize() / 2, GetSize());
 
-    auto* text = AddText("SAIIR DO JOGO?", Vector2::Zero,  34);
+    auto* text = AddText("SAIR DO JOGO?", Vector2::Zero,  34);
     text->SetPosition(Vector2(960, 582));
 
     AddImage("../Assets/Sprites/Menus/titulo_sublinhado.png", Vector2(960, 614), Vector2(360, 30));

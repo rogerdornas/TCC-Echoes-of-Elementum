@@ -26,6 +26,7 @@
 #include "Actors/Enemies/Snake.h"
 #include "Actors/Spawner.h"
 #include "Actors/Enemies/Bat.h"
+#include "Actors/Enemies/Frogger.h"
 #include "Actors/Enemies/StoneGolem.h"
 
 WaveManager::WaveManager(Game *game)
@@ -333,6 +334,14 @@ void WaveManager::SpawnEnemy(WaveAction& a) {
         frog->SetArenaMinPos(Vector2(a.arenaMinPos.x, a.arenaMinPos.y));
         frog->SetArenaMaxPos(Vector2(a.arenaMaxPos.x, a.arenaMaxPos.y));
         a.enemy = frog;
+    }
+    if (a.enemyType == "Frogger") {
+        auto* frogger = new Frogger(mGame);
+        frogger->SetPosition(pos);
+        frogger->SetSpottedPlayer(true);
+        frogger->SetArenaMinPos(Vector2(a.arenaMinPos.x, a.arenaMinPos.y));
+        frogger->SetArenaMaxPos(Vector2(a.arenaMaxPos.x, a.arenaMaxPos.y));
+        a.enemy = frogger;
     }
     if (a.enemyType == "HookEnemy") {
         auto* hookEnemy = new HookEnemy(mGame);

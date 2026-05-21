@@ -518,7 +518,7 @@ void Frog::JumpCombo(float deltaTime) {
                 mRigidBodyComponent->SetVelocity(Vector2(GetForward() * mJumpForce));
             }
             else {
-                mDestinyWall  = mWallPosition;
+                mDestinyWall = mWallPosition;
                 std::vector<WallSide> validSides = {WallSide::Top, WallSide::Left, WallSide::Right};
                 while (mDestinyWall == mWallPosition) {
                     int index = Random::GetIntRange(0, 2);

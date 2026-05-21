@@ -52,6 +52,7 @@
 #include "Actors/Enemies/OrangeSlime.h"
 #include "Actors/Projectile.h"
 #include "Actors/Enemies/Bat.h"
+#include "Actors/Enemies/Frogger.h"
 #include "Actors/Enemies/Snake.h"
 #include "Actors/Enemies/StoneGolem.h"
 #include "Components/AABBComponent.h"
@@ -2119,6 +2120,38 @@ void Game::LoadObjects(const std::string &fileName) {
                     frog->SetId(id);
                     frog->SetArenaMinPos(Vector2(MinPosX, MinPosY));
                     frog->SetArenaMaxPos(Vector2(MaxPosX, MaxPosY));
+                }
+                else if (name == "Frogger") {
+                    if (obj.contains("properties")) {
+                        for (const auto &prop: obj["properties"]) {
+                            std::string propName = prop["name"];
+                            if (propName == "MinPosX") {
+                                MinPosX = static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "MaxPosX") {
+                                MaxPosX = static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "MinPosY") {
+                                MinPosY =static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "MaxPosY") {
+                                MaxPosY = static_cast<float>(prop["value"]);
+                            }
+                            else if (propName == "Condition") {
+                                condition = prop["value"];
+                            }
+                        }
+                    }
+
+                    if (!ShouldLoadObject(condition)) {
+                        continue;
+                    }
+
+                    auto* frogger = new Frogger(this);
+                    frogger->SetPosition(Vector2(x, y));
+                    frogger->SetId(id);
+                    frogger->SetArenaMinPos(Vector2(MinPosX, MinPosY));
+                    frogger->SetArenaMaxPos(Vector2(MaxPosX, MaxPosY));
                 }
                 else if (name == "Moth") {
                     if (obj.contains("properties")) {

@@ -12,6 +12,8 @@
 OBBComponent::OBBComponent(class Actor *owner, Vector2 halfSize, Vector2 offset, bool autoRegister)
     :ColliderComponent(owner, ColliderType::OBB, offset, autoRegister)
     ,mHalfSize(halfSize)
+    ,mUseOwnerRotation(true)
+    ,mComponentRotation(0.0f)
 {
     float c = cosf(mOwner->GetRotation());
     float s = sinf(mOwner->GetRotation());
@@ -20,11 +22,13 @@ OBBComponent::OBBComponent(class Actor *owner, Vector2 halfSize, Vector2 offset,
 }
 
 void OBBComponent::Update(float deltaTime) {
-    // Atualiza eixos quando a rotação muda
-    float c = cosf(mOwner->GetRotation());
-    float s = sinf(mOwner->GetRotation());
-    mAxis[0] = Vector2(c, s);
-    mAxis[1] = Vector2(-s, c);
+    if (mUseOwnerRotation) {
+        // Atualiza eixos quando a rotação muda
+        float c = cosf(mOwner->GetRotation());
+        float s = sinf(mOwner->GetRotation());
+        mAxis[0] = Vector2(c, s);
+        mAxis[1] = Vector2(-s, c);
+    }
 }
 
 void OBBComponent::Draw(Renderer* renderer) {
@@ -32,19 +36,20 @@ void OBBComponent::Draw(Renderer* renderer) {
         return;
     }
 
-    // 1. Calcula o tamanho do retângulo
+    // Calcula o tamanho do retângulo
     float width = mHalfSize.x * 2.0f;
     float height = mHalfSize.y * 2.0f;
     Vector2 size(width, height);
 
-    // 2. Calcula o deslocamento do centro da caixa em relação ao Actor
+    // Calcula o deslocamento do centro da caixa em relação ao Actor
     Vector2 drawPos = GetOwner()->GetPosition() + mOffset;
 
-    // 3. Desenha
+    float rotation = mUseOwnerRotation ? mOwner->GetRotation() : mComponentRotation;
+    // Desenha
     GetGame()->GetRenderer()->DrawRect(
         drawPos,
         size,
-        mOwner->GetRotation(),
+        rotation,
         mColor,
         GetGame()->GetCamera()->GetPosCamera(),
         RendererMode::LINES
@@ -64,6 +69,14 @@ std::vector<Vector2> OBBComponent::GetVertices() {
     return verts;
 }
 
+void OBBComponent::SetRotation(float rotation) {
+    mUseOwnerRotation = false;
+    mComponentRotation = rotation;
+    float c = cosf(mComponentRotation);
+    float s = sinf(mComponentRotation);
+    mAxis[0] = Vector2(c, s);
+    mAxis[1] = Vector2(-s, c);
+}
 
 bool OBBComponent::Intersect(ColliderComponent &other) {
     if (!mIsActive || !other.IsActive()) {

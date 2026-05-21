@@ -121,16 +121,16 @@ void Laser::CalculateInstantWidth() {
         bool hitGround = false;
 
         // Checa se bateu
-        if (mCombatBoxComponent->GetBox("groundCollision").collider->Intersect(*player->GetComponent<ColliderComponent>())) {
+        if (mCombatBoxComponent->GetBox("groundCollision")->collider->Intersect(*player->GetComponent<ColliderComponent>())) {
             hitGround = true;
-            lastHitNormal = mCombatBoxComponent->GetBox("groundCollision").collider->CollisionSide(*player->GetComponent<ColliderComponent>());
+            lastHitNormal = mCombatBoxComponent->GetBox("groundCollision")->collider->CollisionSide(*player->GetComponent<ColliderComponent>());
         }
 
         if (!hitGround) {
             for (Ground* g : grounds) {
-                if (mCombatBoxComponent->GetBox("groundCollision").collider->Intersect(*g->GetComponent<ColliderComponent>())) {
+                if (mCombatBoxComponent->GetBox("groundCollision")->collider->Intersect(*g->GetComponent<ColliderComponent>())) {
                     hitGround = true;
-                    lastHitNormal = mCombatBoxComponent->GetBox("groundCollision").collider->CollisionSide(*g->GetComponent<ColliderComponent>());
+                    lastHitNormal = mCombatBoxComponent->GetBox("groundCollision")->collider->CollisionSide(*g->GetComponent<ColliderComponent>());
                     break;
                 }
             }
@@ -146,16 +146,16 @@ void Laser::CalculateInstantWidth() {
                 hitGround = false;
 
                 // Checa se bateu
-                if (mCombatBoxComponent->GetBox("groundCollision").collider->Intersect(*player->GetComponent<ColliderComponent>())) {
+                if (mCombatBoxComponent->GetBox("groundCollision")->collider->Intersect(*player->GetComponent<ColliderComponent>())) {
                     hitGround = true;
-                    lastHitNormal = mCombatBoxComponent->GetBox("groundCollision").collider->CollisionSide(*player->GetComponent<ColliderComponent>());
+                    lastHitNormal = mCombatBoxComponent->GetBox("groundCollision")->collider->CollisionSide(*player->GetComponent<ColliderComponent>());
                 }
 
                 if (!hitGround) {
                     for (Ground* g : grounds) {
-                        if (mCombatBoxComponent->GetBox("groundCollision").collider->Intersect(*g->GetComponent<ColliderComponent>())) {
+                        if (mCombatBoxComponent->GetBox("groundCollision")->collider->Intersect(*g->GetComponent<ColliderComponent>())) {
                             hitGround = true;
-                            lastHitNormal = mCombatBoxComponent->GetBox("groundCollision").collider->CollisionSide(*g->GetComponent<ColliderComponent>());
+                            lastHitNormal = mCombatBoxComponent->GetBox("groundCollision")->collider->CollisionSide(*g->GetComponent<ColliderComponent>());
                             break;
                         }
                     }

@@ -38,7 +38,7 @@ public:
     void Update(float deltaTime) override;
 
     std::vector<CombatBox>& GetBoxes() { return mBoxes; }
-    CombatBox GetBox(const std::string& tag);
+    CombatBox* GetBox(const std::string& tag);
 
     void SetDebugDraw(bool enabled);
 

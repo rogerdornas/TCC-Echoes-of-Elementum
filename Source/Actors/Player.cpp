@@ -1497,10 +1497,10 @@ void Player::ResolveGroundCollision() {
                         }
                     }
                 }
-                if (mSword->GetComponent<CombatBoxComponent>()->GetBox("ground").collider->Intersect(*g->GetComponent<ColliderComponent>())) {
+                if (mSword->GetComponent<CombatBoxComponent>()->GetBox("ground")->collider->Intersect(*g->GetComponent<ColliderComponent>())) {
                     // Colisão da sword com grounds
                     if (!mSwordHitGround) {
-                        collisionNormal = mSword->GetComponent<CombatBoxComponent>()->GetBox("ground").collider->CollisionSide(*g->GetComponent<ColliderComponent>());
+                        collisionNormal = mSword->GetComponent<CombatBoxComponent>()->GetBox("ground")->collider->CollisionSide(*g->GetComponent<ColliderComponent>());
                         if ((collisionNormal == Vector2::NegUnitY && Math::Abs(mSword->GetForward().y) == 1) ||
                             (collisionNormal == Vector2::UnitY && Math::Abs(mSword->GetForward().y) == 1) ||
                             (collisionNormal == Vector2::NegUnitX && Math::Abs(mSword->GetForward().x) == 1) ||
