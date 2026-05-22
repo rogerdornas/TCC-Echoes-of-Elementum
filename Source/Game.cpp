@@ -132,7 +132,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mPlayerStartPositionId(0)
     ,mCheckPointMoney(0)
     ,mGoingToNextLevel(false)
-    ,mIsPlayingOnKeyboard(true)
+    ,mInputPlayerMode(InputPlayerMode::Keyboard)
     ,mLeftStickStateY(StickState::Neutral)
     ,mLeftStickStateX(StickState::Neutral)
     ,mRightStickStateY(StickState::Neutral)
@@ -150,17 +150,9 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mUseParallaxBackground(false)
     ,mAudio(nullptr)
     ,mHUD(nullptr)
-    ,mMainMenu(nullptr)
+    ,mLastTopUIScreen(nullptr)
     ,mPauseMenu(nullptr)
-    ,mOptionsMenu(nullptr)
     ,mLevelSelectMenu(nullptr)
-    ,mControlMenu(nullptr)
-    ,mKeyboardMenu(nullptr)
-    ,mKeyboardMenu2(nullptr)
-    ,mAudioMenu(nullptr)
-    ,mConfirmBackToMenu(nullptr)
-    ,mConfirmQuitGameMenu(nullptr)
-    ,mLoadGameMenu(nullptr)
     ,mSceneManagerState(SceneManagerState::None)
     ,mFadeDuration(0.4f)
     ,mSceneManagerTimer(0.0f)
@@ -2752,7 +2744,7 @@ void Game::ProcessInput()
                 }
 
                 else if (mGamePlayState != GamePlayState::GameOver) {
-                    mIsPlayingOnKeyboard = true;
+                    mInputPlayerMode = InputPlayerMode::Keyboard;
                     // Handle key press for UI screens
                     if (!mUIStack.empty()) {
                         mUIStack.back()->HandleKeyPress(event.key.keysym.sym, SDL_CONTROLLER_BUTTON_INVALID, 0, 0, 0, 0);
@@ -2860,7 +2852,7 @@ void Game::ProcessInput()
                 }
 
                 else if (mGamePlayState != GamePlayState::GameOver) {
-                    mIsPlayingOnKeyboard = false;
+                    mInputPlayerMode = InputPlayerMode::Controller;
 
                     // Handle key press for UI screens
                     if (!mUIStack.empty()) {
@@ -2960,7 +2952,7 @@ void Game::ProcessInput()
 
                 else if (mGamePlayState != GamePlayState::GameOver) {
                     if (Math::Abs(event.caxis.value) > DEAD_ZONE) {
-                        mIsPlayingOnKeyboard = false;
+                        mInputPlayerMode = InputPlayerMode::Controller;
                     }
 
                     if (!mUIStack.empty()) {
@@ -3084,7 +3076,7 @@ void Game::ProcessInput()
                 }
 
                 else if (mGamePlayState != GamePlayState::GameOver) {
-                    mIsPlayingOnKeyboard = true;
+                    mInputPlayerMode = InputPlayerMode::Mouse;
 
                     // Handle mouse for UI screens
                     if (!mUIStack.empty()) {
@@ -3117,7 +3109,7 @@ void Game::ProcessInput()
                 if (mWaitingForKey || mWaitingForButton) {
                     break;
                 }
-                mIsPlayingOnKeyboard = true;
+                mInputPlayerMode = InputPlayerMode::Mouse;
 
                 // Handle mouse for UI screens
                 if (!mUIStack.empty()) {
@@ -3333,14 +3325,31 @@ void Game::UpdateGame()
         }
     }
 
-    // Garante que a UI screen do topo esteja visível
-    if (!mUIStack.empty()) {
-        mUIStack.back()->SetIsVisible(true);
+    UIScreen* currentTopScreen = mUIStack.empty() ? nullptr : mUIStack.back();
+
+    if (currentTopScreen != nullptr) {
+        currentTopScreen->SetIsVisible(true);
+
+        // Se a tela do topo for diferente da que estava no último frame
+        if (currentTopScreen != mLastTopUIScreen && mInputPlayerMode == InputPlayerMode::Mouse) {
+            int mouseX, mouseY;
+            SDL_GetMouseState(&mouseX, &mouseY);
+
+            Vector2 screenPos(static_cast<float>(mouseX), static_cast<float>(mouseY));
+            Vector2 virtualPos = mRenderer->ScreenToVirtual(screenPos);
+
+            currentTopScreen->HandleMouseMotion(virtualPos);
+        }
     }
 
-    if (mGamePlayState == GamePlayState::Playing ||
+    // Atualiza a variável para a checagem no próximo frame
+    mLastTopUIScreen = currentTopScreen;
+
+    if (mInputPlayerMode == InputPlayerMode::Keyboard || mInputPlayerMode == InputPlayerMode::Controller ||
+        mGamePlayState == GamePlayState::Playing ||
         mGamePlayState == GamePlayState::LevelComplete ||
-        mGamePlayState == GamePlayState::Cutscene)
+        mGamePlayState == GamePlayState::Cutscene ||
+        mGamePlayState == GamePlayState::GameOver)
     {
         // Esconde o cursor
         SDL_ShowCursor(SDL_DISABLE);

@@ -107,7 +107,9 @@ void Skill::LoadSkillMessage() {
 
     switch (mSkill) {
         case SkillType::Dash:
-            if (mGame->GetIsPlayingOnKeyboard()) {
+            if (mGame->GetInputPlayerMode() == Game::InputPlayerMode::Keyboard ||
+                mGame->GetInputPlayerMode() == Game::InputPlayerMode::Mouse)
+            {
                 skillText = mSkillMessage->AddText("PRESSIONE [C] PARA USAR DASH", Vector2::Zero, textPointSize);
             }
             else {
@@ -117,7 +119,9 @@ void Skill::LoadSkillMessage() {
             break;
 
         case SkillType::FireBall:
-            if (mGame->GetIsPlayingOnKeyboard()) {
+            if (mGame->GetInputPlayerMode() == Game::InputPlayerMode::Keyboard ||
+                mGame->GetInputPlayerMode() == Game::InputPlayerMode::Mouse)
+            {
                 skillText = mSkillMessage->AddText("PRESSIONE [A] PARA ATIRAR UMA BOLA DE FOGO", Vector2::Zero, textPointSize);
             }
             else {
@@ -137,7 +141,9 @@ void Skill::LoadSkillMessage() {
             break;
 
         case SkillType::Hook:
-            if (mGame->GetIsPlayingOnKeyboard()) {
+            if (mGame->GetInputPlayerMode() == Game::InputPlayerMode::Keyboard ||
+                mGame->GetInputPlayerMode() == Game::InputPlayerMode::Mouse)
+            {
                 skillText = mSkillMessage->AddText("PRESSIONE [S] PARA JOGAR UMA CORDA E SE IMPULSIONAR", Vector2::Zero, textPointSize);
             }
             else {

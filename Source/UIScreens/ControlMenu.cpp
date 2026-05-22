@@ -80,7 +80,7 @@ ControlMenu::ControlMenu(class Game *game, const std::string &fontName, bool isC
     text->SetPosition(Vector2(textPositionX2, 663) + Vector2(text->GetSize().x * 0.5f, 0));
 
 
-    AddButton("REMAPEAR BOTÕES", Vector2(794, 842), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("ALTERAR BOTÕES", Vector2(794, 842), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         new RemapControllerMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         Close();

@@ -73,6 +73,12 @@ public:
         Menu
     };
 
+    enum class InputPlayerMode {
+        Keyboard,
+        Mouse,
+        Controller
+    };
+
     enum class Action {
         Up,
         Down,
@@ -249,7 +255,7 @@ public:
     void SetGamePlayState(GamePlayState state) { mGamePlayState = state; }
     GamePlayState GetGamePlayState() const { return mGamePlayState; }
 
-    bool GetIsPlayingOnKeyboard() const { return mIsPlayingOnKeyboard; }
+    InputPlayerMode GetInputPlayerMode() const { return mInputPlayerMode; }
 
     SkillTreeManager* GetSkillTreeManager() const { return mSkillTreeManager; }
 
@@ -462,18 +468,10 @@ private:
 
     // All the UI elements
     std::vector<class UIScreen*> mUIStack;
+    UIScreen* mLastTopUIScreen;
     std::unordered_map<std::string, class UIFont*> mFonts;
-    UIScreen* mMainMenu;
     UIScreen* mPauseMenu;
-    UIScreen* mOptionsMenu;
     UIScreen* mLevelSelectMenu;
-    UIScreen* mControlMenu;
-    UIScreen* mKeyboardMenu;
-    UIScreen* mKeyboardMenu2;
-    UIScreen* mAudioMenu;
-    UIScreen* mConfirmBackToMenu;
-    UIScreen* mConfirmQuitGameMenu;
-    UIScreen* mLoadGameMenu;
 
     std::vector<Vector2> mResolutions = {
         Vector2(640, 360),
@@ -484,8 +482,8 @@ private:
 
     GamePlayState mGamePlayState;
 
-    // If is playing on controller or keyboard
-    bool mIsPlayingOnKeyboard;
+    // If is playing on controller or keyboard or mouse
+    InputPlayerMode mInputPlayerMode;
 
     // Track level state
     GameScene mGameScene;

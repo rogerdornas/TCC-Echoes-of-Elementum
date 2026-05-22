@@ -14,8 +14,9 @@ AudioMenu::AudioMenu(class Game *game, const std::string &fontName, bool isClosa
     auto* background = AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(1920, 1080) * 0.5f, Vector2(1920, 1080));
     background->SetAlpha(0.6f);
 
-    Vector2 buttonPos(700, 360);
+    Vector2 buttonPos(700, 380);
     Vector2 buttonSize(520, 42);
+    float distanceBetweenButtons = 73.0f;
     Vector2 sliderOffset(200, buttonSize.y / 2);
     Vector2 sliderSize(270, 3);
 
@@ -30,13 +31,13 @@ AudioMenu::AudioMenu(class Game *game, const std::string &fontName, bool isClosa
         }
     );
 
-    AddSlider("MÚSICA", Vector2(700, 433), buttonSize, sliderOffset, sliderSize, 0.0f, 1.0f, mGame->GetAudio()->GetCategoryVolume(SoundCategory::Music), 34, 20,
+    AddSlider("MÚSICA", buttonPos + Vector2(0, distanceBetweenButtons) * 1, buttonSize, sliderOffset, sliderSize, 0.0f, 1.0f, mGame->GetAudio()->GetCategoryVolume(SoundCategory::Music), 34, 20,
         [this](float valor) {
             mGame->GetAudio()->SetCategoryVolume(SoundCategory::Music, valor);
         }
     );
 
-    AddSlider("EFEITOS", Vector2(700, 506), buttonSize, sliderOffset, sliderSize, 0.0f, 1.0f, mGame->GetAudio()->GetCategoryVolume(SoundCategory::SFX), 34, 20,
+    AddSlider("EFEITOS", buttonPos + Vector2(0, distanceBetweenButtons) * 2, buttonSize, sliderOffset, sliderSize, 0.0f, 1.0f, mGame->GetAudio()->GetCategoryVolume(SoundCategory::SFX), 34, 20,
         [this](float valor) {
             mGame->GetAudio()->SetCategoryVolume(SoundCategory::SFX, valor);
         }

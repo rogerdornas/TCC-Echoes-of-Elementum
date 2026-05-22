@@ -475,7 +475,7 @@ void Frogger::ManageAnimations() {
             mDrawComponent->SetAnimFPS(18.0f);
         }
         else {
-            mDrawComponent->SetAnimFPS(12.0f);
+            mDrawComponent->SetAnimFPS(14.0f);
         }
     }
     else if (mFroggerState == State::JumpCombo) {
@@ -778,16 +778,16 @@ void Frogger::StartGrassEffect(GrassEffectType type) {
             grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
               12.17f,
               5.5f,
-              300.0f,
+              280.0f,
               0.75f,
               0.1f);
 
-            grass->SetEmitArea(Vector2(mWidth * 1.5f, mHeight * 1.5f));
+            grass->SetEmitArea(Vector2(mWidth * 1.0f, mHeight * 1.0f));
             grass->SetParticleGravity(true);
             grass->SetParticleGravityForce(450.0f);
             grass->SetGroundCollision(false);
             grass->SetConeSpread(30.0f);
-            grass->SetParticleSpeedScale(0.58f);
+            grass->SetParticleSpeedScale(0.50f);
             grass->SetParticleTextureFactor(1.0f);
             grass->SetParticleAutoRotate(true);
             grass->SetParticleRotationSpeed(1.0f);

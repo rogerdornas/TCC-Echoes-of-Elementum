@@ -43,7 +43,9 @@ DialogueSystem::DialogueSystem(class Game *game, const std::string &fontName, st
             Advance();
         });
 
-    if (mGame->GetIsPlayingOnKeyboard()) {
+    if (mGame->GetInputPlayerMode() == Game::InputPlayerMode::Keyboard ||
+        mGame->GetInputPlayerMode() == Game::InputPlayerMode::Mouse)
+    {
         UIText* text = AddText("[ENTER]", Vector2::Zero, static_cast<int>(20));
         text->SetPosition(Vector2(GetSize().x * 0.953f + text->GetSize().x / 2, GetSize().y * 0.80f + text->GetSize().y / 2));
     }

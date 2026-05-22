@@ -14,11 +14,11 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     background->SetAlpha(0.6f);
 
     mButtonSize = Vector2(615, 58);
-    mButtonPos = Vector2(321, 348);
-    mButtonPos2 = Vector2(1013, 348);
+    mButtonPos = Vector2(321, 385);
+    mButtonPos2 = Vector2(1013, 385);
     mButtonTextOffset = Vector2(10, 0);
-    mTextPos = Vector2(835, 376);
-    mTextPos2 = Vector2(1527, 376);
+    mTextPos = Vector2(835, 413);
+    mTextPos2 = Vector2(1527, 413);
 
     auto* text = AddText("TECLADO", Vector2::Zero,  34);
     text->SetPosition(Vector2(960, 290));
