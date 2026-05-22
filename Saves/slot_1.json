@@ -10,14 +10,14 @@
             "y": 3897.85009765625
         },
         "scene": "Room4",
-        "total_play_time": 262208.71875
+        "total_play_time": 262212.0
     },
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
         "death_counter": 893,
-        "elemental_mode": "Fire",
+        "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 17052
+        "money": 17174
     },
     "skill_tree": {
         "unlocked_nodes": [

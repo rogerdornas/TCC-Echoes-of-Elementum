@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="18" nextobjectid="170">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="18" nextobjectid="171">
  <editorsettings>
   <export target="Room4.json" format="json"/>
  </editorsettings>
@@ -368,6 +368,7 @@
  </objectgroup>
  <objectgroup id="8" name="HookPoints">
   <object id="50" x="5021.21" y="4169.7" width="30.303" height="39.3939"/>
+  <object id="170" x="1826.85" y="4636.3" width="30.303" height="39.3939"/>
  </objectgroup>
  <objectgroup id="9" name="Triggers" visible="0">
   <object id="29" name="Boss Battle" x="6056.6" y="4077.5" width="1792" height="896">

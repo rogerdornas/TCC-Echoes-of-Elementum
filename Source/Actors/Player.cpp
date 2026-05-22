@@ -754,10 +754,11 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     // Hook
     if (mSkillManager->CanHook()) {
         std::vector<HookPoint* > hookPoints = mGame->GetHookPoints();
-
         HookPoint* nearestHookPoint = nullptr;
-
         float nearestDistance = FLT_MAX;
+
+        // Tolerância horizontal
+        const float marginX = 140.0f;
 
         for (HookPoint* hp: hookPoints) {
             float dist = (GetPosition() - hp->GetPosition()).Length();
@@ -768,7 +769,9 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
                 bool lookingRight = GetRotation() == 0 && distX < 0;
                 bool lookingLeft = GetRotation() == Math::Pi && distX > 0;
 
-                if ((lookingRight || lookingLeft) && dist < nearestDistance) {
+                bool isVerticallyAligned = Math::Abs(distX) <= marginX;
+
+                if ((lookingRight || lookingLeft|| isVerticallyAligned) && dist < nearestDistance) {
                     nearestDistance = dist;
                     nearestHookPoint = hp;
                 }
@@ -2571,7 +2574,7 @@ void Player::StartGrassEffect(GrassEffectType type) {
                 0.5f,
                 0.1f);
 
-                dust->SetEmitArea(Vector2(mWidth * 4.0f, mHeight * 2.0f));
+                dust->SetEmitArea(Vector2(mWidth * 3.5f, mHeight * 1.6f));
                 dust->SetParticleGravity(false);
                 dust->SetGroundCollision(false);
                 dust->SetConeSpread(30.0f);
