@@ -79,7 +79,7 @@ StoneGolem::StoneGolem(Game *game)
     mWidth = 110;
     mHeight = 110;
     mMoveSpeed = 300;
-    mHealthPoints = 1300;
+    mHealthPoints = 800;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 100;

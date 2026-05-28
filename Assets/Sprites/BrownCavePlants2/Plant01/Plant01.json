@@ -1,0 +1,150 @@
+{
+  "frames": [
+    {
+      "filename": "plantsmall_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00002.png",
+      "frame": {
+        "x": 76,
+        "y": 1,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00004.png",
+      "frame": {
+        "x": 151,
+        "y": 1,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00006.png",
+      "frame": {
+        "x": 226,
+        "y": 1,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00008.png",
+      "frame": {
+        "x": 301,
+        "y": 1,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00010.png",
+      "frame": {
+        "x": 1,
+        "y": 98,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00012.png",
+      "frame": {
+        "x": 76,
+        "y": 98,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00014.png",
+      "frame": {
+        "x": 151,
+        "y": 98,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00016.png",
+      "frame": {
+        "x": 226,
+        "y": 98,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00018.png",
+      "frame": {
+        "x": 301,
+        "y": 98,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00020.png",
+      "frame": {
+        "x": 1,
+        "y": 195,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00022.png",
+      "frame": {
+        "x": 76,
+        "y": 195,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00024.png",
+      "frame": {
+        "x": 151,
+        "y": 195,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00026.png",
+      "frame": {
+        "x": 226,
+        "y": 195,
+        "w": 73,
+        "h": 95
+      }
+    },
+    {
+      "filename": "plantsmall_00028.png",
+      "frame": {
+        "x": 301,
+        "y": 195,
+        "w": 73,
+        "h": 95
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant01.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 375,
+      "h": 291
+    },
+    "scale": 1
+  }
+}

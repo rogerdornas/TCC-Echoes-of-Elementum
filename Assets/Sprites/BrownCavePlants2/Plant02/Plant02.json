@@ -1,0 +1,150 @@
+{
+  "frames": [
+    {
+      "filename": "grass2_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00002.png",
+      "frame": {
+        "x": 99,
+        "y": 1,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00004.png",
+      "frame": {
+        "x": 197,
+        "y": 1,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00006.png",
+      "frame": {
+        "x": 295,
+        "y": 1,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00008.png",
+      "frame": {
+        "x": 393,
+        "y": 1,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00010.png",
+      "frame": {
+        "x": 1,
+        "y": 87,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00012.png",
+      "frame": {
+        "x": 99,
+        "y": 87,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00014.png",
+      "frame": {
+        "x": 197,
+        "y": 87,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00016.png",
+      "frame": {
+        "x": 295,
+        "y": 87,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00018.png",
+      "frame": {
+        "x": 393,
+        "y": 87,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00020.png",
+      "frame": {
+        "x": 1,
+        "y": 173,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00022.png",
+      "frame": {
+        "x": 99,
+        "y": 173,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00024.png",
+      "frame": {
+        "x": 197,
+        "y": 173,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00026.png",
+      "frame": {
+        "x": 295,
+        "y": 173,
+        "w": 96,
+        "h": 84
+      }
+    },
+    {
+      "filename": "grass2_00028.png",
+      "frame": {
+        "x": 393,
+        "y": 173,
+        "w": 96,
+        "h": 84
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant02.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 490,
+      "h": 258
+    },
+    "scale": 1
+  }
+}

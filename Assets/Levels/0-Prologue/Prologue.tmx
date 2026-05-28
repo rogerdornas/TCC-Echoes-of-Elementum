@@ -3,7 +3,7 @@
  <editorsettings>
   <export target="Prologue.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="Prologue.tsx"/>
+ <tileset firstgid="1" source="../../Tilesets/SimpleForest/SimpleForestTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="380" height="200">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -213,7 +213,7 @@
   <object id="3" x="192" y="2880" width="1280" height="3200"/>
   <object id="6" x="10944" y="2880" width="960" height="3200"/>
  </objectgroup>
- <objectgroup id="5" name="Camera">
+ <objectgroup id="5" name="Camera" visible="0">
   <object id="10" x="1472" y="3616" width="3328" height="768">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -225,7 +225,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="3" name="Triggers">
+ <objectgroup id="3" name="Triggers" visible="0">
   <object id="5" name="Room0" x="4896" y="4096" width="448" height="288">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -244,7 +244,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="2" name="Player">
+ <objectgroup id="2" name="Player" visible="0">
   <object id="2" x="1952" y="4352" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>

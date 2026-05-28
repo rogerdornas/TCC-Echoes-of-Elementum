@@ -3,7 +3,7 @@
  <editorsettings>
   <export target="Room0.json" format="json"/>
  </editorsettings>
- <tileset firstgid="1" source="Room0.tsx"/>
+ <tileset firstgid="1" source="../../Tilesets/Volcano/VolcanoTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="210" height="200">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -412,7 +412,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="11" name="Camera">
+ <objectgroup id="11" name="Camera" visible="0">
   <object id="31" x="896" y="4384" width="1568" height="1024">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -524,7 +524,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="3" name="Triggers">
+ <objectgroup id="3" name="Triggers" visible="0">
   <object id="29" x="6304" y="4416" width="320" height="192">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -553,10 +553,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="16" name="LightningBarrier">
+ <objectgroup id="16" name="LightningBarrier" visible="0">
   <object id="75" x="4576" y="3648" width="160" height="640"/>
  </objectgroup>
- <objectgroup id="4" name="SpawnPoint"/>
+ <objectgroup id="4" name="SpawnPoint" visible="0"/>
  <objectgroup id="5" name="Grounds">
   <object id="1" x="896" y="5408" width="1248" height="544"/>
   <object id="2" x="2144" y="5024" width="1632" height="928"/>
@@ -606,10 +606,10 @@
   </object>
   <object id="77" x="2656" y="4768" width="128" height="256"/>
  </objectgroup>
- <objectgroup id="6" name="Checkpoint">
+ <objectgroup id="6" name="Checkpoint" visible="0">
   <object id="50" name="Checkpoint" x="1120" y="5216" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="7" name="Enemies">
+ <objectgroup id="7" name="Enemies" visible="0">
   <object id="8" name="Enemy Simple" x="2720" y="4256" width="32" height="32"/>
   <object id="9" name="Flying Enemy" x="2368" y="3744" width="32" height="32"/>
   <object id="16" name="Enemy Simple" x="4480" y="4256" width="32" height="32"/>
@@ -622,8 +622,8 @@
   <object id="80" name="Bat" x="640" y="2336" width="32" height="32"/>
   <object id="81" name="Bat" x="1088" y="2336" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="8" name="Levers"/>
- <objectgroup id="9" name="Player">
+ <objectgroup id="8" name="Levers" visible="0"/>
+ <objectgroup id="9" name="Player" visible="0">
   <object id="6" x="1024" y="5376" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
@@ -649,6 +649,6 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="Decorations"/>
- <objectgroup id="10" name="HookPoints"/>
+ <objectgroup id="12" name="Decorations" visible="0"/>
+ <objectgroup id="10" name="HookPoints" visible="0"/>
 </map>

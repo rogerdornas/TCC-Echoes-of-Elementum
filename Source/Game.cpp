@@ -784,7 +784,7 @@ void Game::ChangeScene()
     }
     else if (mNextScene == GameScene::Room6) {
         mGroundBehindPlayer = false;
-        mUseGroundPadding = true;
+        mUseGroundPadding = false;
         mUseGrassParticle = false;
         mUseParallaxBackground = true;
 
@@ -1484,7 +1484,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 float rotatedDx = (dx * cos(rotation)) + (dy * sin(rotation));
                 float rotatedDy = (dx * sin(rotation)) - (dy * cos(rotation));
 
-                auto* decoration = new Decorations(this, width, height, imagePath, decorationName,fps, numFrames, animated, rawGid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor, destructible);
+                auto* decoration = new Decorations(this, width, height, imagePath, decorationName, fps, numFrames, animated, rawGid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor, destructible);
                 decoration->SetPosition(Vector2(x + rotatedDx, y + rotatedDy));
                 decoration->SetWindBalance(windBalance);
             }
@@ -2567,7 +2567,7 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
             mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
 
             // Load novo tilesheet data concatenando "TileSet.json" no final do nome base
-            std::string tileSheetDataPath = baseDirectory + sourceNoExt + "TileSet.json";
+            std::string tileSheetDataPath = baseDirectory + sourceNoExt + ".json";
 
             std::ifstream tileSheetFile(tileSheetDataPath);
             if (!tileSheetFile.is_open()) {

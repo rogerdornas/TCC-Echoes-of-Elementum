@@ -6,17 +6,17 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 768.0,
-            "y": 3897.85009765625
+            "x": 5115.14990234375,
+            "y": 4795.64013671875
         },
         "scene": "Room4",
-        "total_play_time": 262212.0
+        "total_play_time": 262283.15625
     },
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 893,
+        "death_counter": 906,
         "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 17174
+        "money": 21938
     },
     "skill_tree": {
         "unlocked_nodes": [
@@ -69,10 +69,10 @@
     },
     "world_state": {
         "BushMonsterDefeated": false,
-        "FoxDefeated": false,
+        "FoxDefeated": true,
         "FrogDefeated": true,
-        "GolemDefeated": false,
-        "HookEnemyDefeated": false,
+        "GolemDefeated": true,
+        "HookEnemyDefeated": true,
         "Level1ArenaDone": true,
         "Level1Puzzle1Done": true,
         "Level2Lever2Activated": true,

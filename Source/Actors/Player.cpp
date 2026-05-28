@@ -137,7 +137,7 @@ Player::Player(Game* game)
     ,mSwordHitSpike(false)
     ,mSwordHitKnockBack(750.0f)
 
-    ,mFireBallCooldownDuration(0.1f)
+    ,mFireBallCooldownDuration(0.7f)
     ,mFireBallCooldownTimer(0.0f)
     ,mIsFireAttacking(false)
     ,mStopInAirFireBallTimer(0.0f)

@@ -11,7 +11,7 @@ class AnimatorComponent : public DrawComponent {
 public:
     // (Lower draw order corresponds with further back)
     AnimatorComponent(class Actor* owner, const std::string &texturePath, const std::string &dataPath,
-            int width, int height, int drawOrder = 100, bool alreadyHasSpriteSheet = false);
+            int width, int height, int drawOrder = 100, bool alreadyHasSpriteSheet = false, bool pixelArt = true);
     ~AnimatorComponent() override;
 
     void Draw(Renderer* renderer) override;

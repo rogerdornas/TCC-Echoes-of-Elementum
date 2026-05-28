@@ -1,0 +1,195 @@
+{
+  "frames": [
+    {
+      "filename": "plant5_00000.png",
+      "frame": {
+        "x": 1,
+        "y": 1,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00002.png",
+      "frame": {
+        "x": 386,
+        "y": 1,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00004.png",
+      "frame": {
+        "x": 771,
+        "y": 1,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00006.png",
+      "frame": {
+        "x": 1156,
+        "y": 1,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00008.png",
+      "frame": {
+        "x": 1541,
+        "y": 1,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00010.png",
+      "frame": {
+        "x": 1,
+        "y": 461,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00012.png",
+      "frame": {
+        "x": 386,
+        "y": 461,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00014.png",
+      "frame": {
+        "x": 771,
+        "y": 461,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00016.png",
+      "frame": {
+        "x": 1156,
+        "y": 461,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00018.png",
+      "frame": {
+        "x": 1541,
+        "y": 461,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00020.png",
+      "frame": {
+        "x": 1,
+        "y": 921,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00022.png",
+      "frame": {
+        "x": 386,
+        "y": 921,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00024.png",
+      "frame": {
+        "x": 771,
+        "y": 921,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00026.png",
+      "frame": {
+        "x": 1156,
+        "y": 921,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00028.png",
+      "frame": {
+        "x": 1541,
+        "y": 921,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00030.png",
+      "frame": {
+        "x": 1,
+        "y": 1381,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00032.png",
+      "frame": {
+        "x": 386,
+        "y": 1381,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00034.png",
+      "frame": {
+        "x": 771,
+        "y": 1381,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00036.png",
+      "frame": {
+        "x": 1156,
+        "y": 1381,
+        "w": 383,
+        "h": 458
+      }
+    },
+    {
+      "filename": "plant5_00038.png",
+      "frame": {
+        "x": 1541,
+        "y": 1381,
+        "w": 383,
+        "h": 458
+      }
+    }
+  ],
+  "meta": {
+    "app": "http://free-tex-packer.com",
+    "version": "0.6.7",
+    "image": "Plant05.png",
+    "format": "RGBA8888",
+    "size": {
+      "w": 1925,
+      "h": 1840
+    },
+    "scale": 1
+  }
+}

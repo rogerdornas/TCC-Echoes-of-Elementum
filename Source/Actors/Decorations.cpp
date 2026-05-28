@@ -69,7 +69,8 @@ Decorations::Decorations(Game *game, float width, float height, std::string imag
         mDrawComponent = new AnimatorComponent(this,
                                             mImagePath + ".png",
                                             mImagePath + ".json",
-                                            mWidth, mHeight, drawOrder);
+                                            mWidth, mHeight, drawOrder,
+                                            false, false);
 
         std::vector<int> idle(mNumFrames);
         std::iota(idle.begin(), idle.end(), 0);
@@ -82,7 +83,8 @@ Decorations::Decorations(Game *game, float width, float height, std::string imag
         mDrawComponent = new AnimatorComponent(this,
                                     mImagePath + ".png",
                                     mImagePath + ".json",
-                                    mWidth, mHeight, drawOrder, true);
+                                    mWidth, mHeight, drawOrder,
+                                    true, false);
 
         auto decorationsName = mGame->GetDecorationsName();
 

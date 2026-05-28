@@ -726,7 +726,7 @@ void Frogger::EvaluateNextState() {
             }
         }
 
-        if (Random::GetFloat() < 0.2f) {
+        if (Random::GetFloat() < 0.3f) {
             mFroggerState = State::JumpCombo;
         }
         else {
