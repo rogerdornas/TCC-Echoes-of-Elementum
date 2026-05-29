@@ -6,6 +6,7 @@
 
 #include <string>
 #include "UIElements/UIScreen.h"
+#include "Game.h"
 
 class HUD : public UIScreen
 {
@@ -31,9 +32,36 @@ public:
     void IncreaseHPBar();
     void IncreaseManaBar();
 
+    void ShowTutorial(const std::string& message);
+    void HideTutorial();
+
     void Draw(class Renderer *renderer) override;
 
 private:
+    enum class TutorialState {
+        Hidden,
+        FadingIn,
+        Visible,
+        FadingOut
+    };
+
+    TutorialState mTutorialState;
+    float mTutorialAlpha;
+    float mTutorialFadeSpeed;
+
+    // SISTEMA DE TUTORIAL
+    static const int MAX_TUTORIAL_PARTS = 5; // Suporta até 5 recortes (ex: [Texto] [Ícone] [Texto] [Ícone] [Texto])
+
+    std::vector<UIText*> mTutorialTexts;
+    std::vector<UIImage*> mTutorialIcons;
+
+    std::string mTutorialTemplate;
+    Game::InputPlayerMode mLastInputMode;
+    bool mTutorialNeedsRebuild;
+
+    void RebuildTutorialLayout();
+    std::string GetButtonIconPath(const Game::InputBinding& binding, Game::InputPlayerMode mode);
+
     struct BossLifeBar {
         RectF bossHPBar;
         RectF bossDamageTakenBar;

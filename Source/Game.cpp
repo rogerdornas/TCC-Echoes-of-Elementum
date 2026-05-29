@@ -697,12 +697,12 @@ void Game::ChangeScene()
         mBossMusic.Reset();
     }
     else if (mNextScene == GameScene::Room2) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
+        mGroundBehindPlayer = false;
+        mUseGroundPadding = true;
+        mUseGrassParticle = true;
         mUseParallaxBackground = true;
 
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
 
         LoadLevel(levelsAssets + "Room2/Room2.json");
 
@@ -722,13 +722,7 @@ void Game::ChangeScene()
         mUseGrassParticle = true;
         mUseParallaxBackground = true;
 
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
+        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
 
         LoadLevel(levelsAssets + "Room3/Room3.json");
 
@@ -1652,6 +1646,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 float ambientIntensity = 1;
                 std::string dialoguePath;
                 std::string cutsceneId;
+                std::string tutorialText = "";
                 std::string condition;
                 if (obj.contains("properties")) {
                     for (const auto &prop: obj["properties"]) {
@@ -1728,6 +1723,9 @@ void Game::LoadObjects(const std::string &fileName) {
                         else if (propName == "CutsceneId") {
                             cutsceneId = prop["value"];
                         }
+                        else if (propName == "TutorialText") {
+                            tutorialText = prop["value"];
+                        }
                         else if (propName == "Condition") {
                             condition = prop["value"];
                         }
@@ -1762,6 +1760,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 trigger->SetAmbientIntensity(ambientIntensity);
                 trigger->SetDialoguePath(dialoguePath);
                 trigger->SetCutsceneId(cutsceneId);
+                trigger->SetTutorialText(tutorialText);
             }
         }
         if (layer["name"] == "Camera") {

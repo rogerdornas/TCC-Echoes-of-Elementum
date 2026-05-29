@@ -11,14 +11,14 @@
 
 SaveData::SaveData(class Game *game)
     :mGame(game)
-    ,mGameScene(Game::GameScene::Prologue)
+    ,mGameScene(Game::GameScene::Room2)
     ,mTotalPlayTime(0.0f)
 
     ,mMasterAudio(1.0f)
     ,mMusicAudio(1.0f)
     ,mSFXAudio(1.0f)
 
-    ,mLastCheckpointPosition(Vector2(1952, 4352))
+    ,mLastCheckpointPosition(Vector2(742, 1780))
 
     ,mHasEarthMode(false)
     ,mHasFireMode(false)

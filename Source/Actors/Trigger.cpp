@@ -6,6 +6,7 @@
 #include "../Camera.h"
 #include "../DialogueSystem.h"
 #include "../Game.h"
+#include "../HUD.h"
 #include "../Components/AABBComponent.h"
 #include "../Components/Drawing/RectComponent.h"
 #include "../Actors/Ground.h"
@@ -17,6 +18,7 @@ Trigger::Trigger(class Game *game, float width, float height)
     ,mHeight(height)
     ,mTarget(Target::Nothing)
     ,mDestroy(false)
+    ,mIsActiveTutorial(false)
     ,mRectComponent(nullptr)
 
 {
@@ -73,6 +75,10 @@ void Trigger::SetTarget(std::string target) {
     }
     if (target == "Player") {
         mTarget = Target::Player;
+        return;
+    }
+    if (target == "HUD") {
+        mTarget = Target::HUD;
         return;
     }
 }
@@ -149,6 +155,15 @@ void Trigger::SetEvent(std::string event) {
 
     if (event == "RevertControls") {
         mEvent = Event::RevertControls;
+        return;
+    }
+
+    if (event == "ShowTutorial") {
+        mEvent = Event::ShowTutorial;
+        return;
+    }
+    if (event == "HideTutorial") {
+        mEvent = Event::HideTutorial;
         return;
     }
 }
@@ -235,7 +250,9 @@ void Trigger::SetWavesPath(const std::string &wavesPath) {
 
 void Trigger::OnUpdate(float deltaTime) {
     Player* player = mGame->GetPlayer();
-    if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
+    bool isIntersecting = mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>());
+
+    if (isIntersecting) {
         switch (mTarget) {
             case Target::Camera:
                 CameraTrigger();
@@ -273,11 +290,24 @@ void Trigger::OnUpdate(float deltaTime) {
                 PlayerTrigger();
                 break;
 
+            case Target::HUD:
+                if (mEvent == Event::ShowTutorial && !mIsActiveTutorial) {
+                    HUDTrigger(true);
+                    mIsActiveTutorial = true;
+                }
+                break;
+
             default:
                 break;
         }
         if (mDestroy) {
             SetState(ActorState::Destroy);
+        }
+    }
+    else {
+        if (mTarget == Target::HUD && mEvent == Event::ShowTutorial && mIsActiveTutorial) {
+            HUDTrigger(false);
+            mIsActiveTutorial = false;
         }
     }
 }
@@ -439,5 +469,20 @@ void Trigger::PlayerTrigger() {
 
         default:
             break;
+    }
+}
+
+void Trigger::HUDTrigger(bool isIntersecting) {
+    auto* hud = mGame->GetHUD();
+    if (!hud) {
+        return;
+    }
+
+    if (mEvent == Event::ShowTutorial) {
+        if (isIntersecting) {
+            hud->ShowTutorial(mTutorialText);
+        } else {
+            hud->HideTutorial();
+        }
     }
 }

@@ -1,21 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="128" tileheight="128" infinite="0" nextlayerid="16" nextobjectid="36">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="100" tilewidth="128" tileheight="128" infinite="0" nextlayerid="22" nextobjectid="31">
  <editorsettings>
   <export target="Room3.json" format="json"/>
  </editorsettings>
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
- <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea">
-  <object id="11" x="896" y="9600" width="6784" height="2062">
+ <tileset firstgid="50" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
+ <tileset firstgid="63" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
+ <objectgroup id="2" name="AmbientParticleArea"/>
+ <objectgroup id="15" name="Camera">
+  <object id="1" name="Screen" x="2688" y="8064" width="1920" height="1080"/>
+  <object id="10" x="1024" y="9984" width="1152" height="1280">
    <properties>
-    <property name="ColorB" type="int" value="200"/>
-    <property name="ColorG" type="int" value="255"/>
-    <property name="ColorR" type="int" value="200"/>
-    <property name="EmitRate" type="float" value="13"/>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="5020"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="11136"/>
+    <property name="LimitMinCameraPositionX" type="float" value="1320"/>
+    <property name="LimitMinCameraPositionY" type="float" value="9856"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+  <object id="13" x="2304" y="9344" width="4096" height="1920">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="70000"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="11136"/>
+    <property name="LimitMinCameraPositionX" type="float" value="1320"/>
+    <property name="LimitMinCameraPositionY" type="float" value="7000"/>
+    <property name="Target" value="Camera"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
+ <objectgroup id="10" name="Triggers">
+  <object id="9" x="1152" y="9984" width="96" height="256">
+   <properties>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Event" value="ChangeScene"/>
+    <property name="PlayerStartPositionId" type="int" value="1"/>
+    <property name="Scene" value="Room2"/>
+    <property name="Target" value="Game"/>
+   </properties>
+  </object>
+  <object id="15" x="2176" y="10582.7" width="604" height="297.333">
+   <properties>
+    <property name="Event" value="ShowTutorial"/>
+    <property name="Target" value="HUD"/>
+    <property name="TutorialText" value="PRESSIONE&lt;Attack&gt;PARA ATACAR"/>
+   </properties>
+  </object>
+  <object id="30" x="2304" y="9088" width="512" height="222.667">
+   <properties>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Event" value="ChangeScene"/>
+    <property name="PlayerStartPositionId" type="int" value="0"/>
+    <property name="Scene" value="Room4"/>
+    <property name="Target" value="Game"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="3" name="Background1" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
    <property name="TextureColorG" type="int" value="65"/>
@@ -23,64 +65,22 @@
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
  </objectgroup>
- <objectgroup id="15" name="Background2">
+ <objectgroup id="4" name="Background2">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
    <property name="TextureColorR" type="int" value="22"/>
    <property name="TextureFactor" type="float" value="0.5"/>
   </properties>
-  <object id="28" gid="66" x="2370.33" y="11374.8" width="201" height="555.751">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
  </objectgroup>
- <objectgroup id="4" name="Decorations">
-  <object id="26" gid="81" x="3080.67" y="11318.3" width="115.285" height="144.333">
+ <objectgroup id="5" name="Decorations">
+  <object id="16" gid="93" x="2774" y="10940.3" width="63" height="133.113">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="27" gid="62" x="2925" y="10645.1" width="200" height="510.05" rotation="180">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="29" gid="80" x="3664" y="11331" width="74" height="156.355">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="30" gid="85" x="3853" y="11330" width="111.992" height="138">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="31" gid="89" x="4052" y="11368" width="207.706" height="231">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="32" gid="81" x="4364" y="11315" width="118.214" height="148">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="34" gid="79" x="3358.67" y="11321" width="116.282" height="155.291">
-   <properties>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="35" gid="87" x="3491.17" y="11299.5" width="126.818" height="57">
+  <object id="18" gid="94" x="2899" y="10914.8" width="98.2453" height="123">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
@@ -160,25 +160,25 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,3,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,5,16,16,17,0,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,6,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,10,0,0,0,22,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,10,0,0,0,0,0,0,0,1,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,10,0,0,0,0,0,0,0,8,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,10,0,0,0,0,0,0,0,15,16,16,16,38,23,23,23,24,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,15,16,16,16,16,16,16,17,0,0,22,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,1,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,24,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,12,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,24,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,12,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,13,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,22,23,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,22,23,23,23,23,24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,11,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -191,25 +191,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Foreground1">
-  <properties>
-   <property name="TextureColorB" type="int" value="0"/>
-   <property name="TextureColorG" type="int" value="0"/>
-   <property name="TextureColorR" type="int" value="0"/>
-   <property name="TextureFactor" type="float" value="0.2"/>
-  </properties>
- </objectgroup>
- <objectgroup id="6" name="Foreground2" parallaxx="1.1">
-  <properties>
-   <property name="TextureColorB" type="int" value="0"/>
-   <property name="TextureColorG" type="int" value="0"/>
-   <property name="TextureColorR" type="int" value="0"/>
-   <property name="TextureFactor" type="float" value="0.2"/>
-  </properties>
- </objectgroup>
- <objectgroup id="7" name="HookPoints"/>
- <objectgroup id="8" name="Triggers"/>
- <layer id="9" name="DynamicGrounds" width="100" height="100">
+ <layer id="6" name="DynamicGrounds" width="100" height="100">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -313,22 +295,56 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="10" name="Grounds">
-  <object id="1" x="896" y="11264" width="6784" height="256"/>
-  <object id="2" x="2304" y="10624" width="768" height="128"/>
-  <object id="5" x="1024" y="10368" width="384" height="128"/>
-  <object id="6" x="2048" y="10624" width="128" height="640"/>
+ <objectgroup id="7" name="Foreground1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.2"/>
+  </properties>
  </objectgroup>
- <objectgroup id="11" name="Checkpoint">
-  <object id="12" name="Checkpoint" x="1048" y="11093.3" width="416" height="192"/>
+ <objectgroup id="8" name="Foreground2" parallaxx="1.1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.2"/>
+  </properties>
  </objectgroup>
- <objectgroup id="12" name="Player">
-  <object id="3" x="1131.67" y="11243.7" width="28" height="28">
+ <objectgroup id="16" name="Light"/>
+ <objectgroup id="17" name="Brazier"/>
+ <objectgroup id="18" name="Lava"/>
+ <objectgroup id="19" name="LightningBarrier"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="20" name="Levers"/>
+ <objectgroup id="21" name="SpawnPoint"/>
+ <objectgroup id="11" name="Grounds">
+  <object id="2" x="1024" y="9088" width="1024" height="1024"/>
+  <object id="3" x="1024" y="10240" width="768" height="1024"/>
+  <object id="5" x="2176" y="10880" width="2816" height="384"/>
+  <object id="11" x="4224" y="10624" width="256" height="128"/>
+  <object id="12" x="3712" y="10368" width="256" height="128"/>
+  <object id="21" x="4992" y="9088" width="384" height="2176"/>
+  <object id="22" x="1792" y="10496" width="384" height="768"/>
+  <object id="23" x="2944" y="9600" width="640" height="384"/>
+  <object id="24" x="3584" y="9856" width="512" height="128"/>
+  <object id="25" x="4224" y="10112" width="128" height="128"/>
+  <object id="26" x="2432" y="9472" width="256" height="128"/>
+  <object id="27" x="2688" y="9088" width="2304" height="256"/>
+  <object id="28" x="2048" y="9088" width="384" height="256"/>
+  <object id="29" x="2304" y="9984" width="256" height="128"/>
+ </objectgroup>
+ <objectgroup id="12" name="Checkpoint"/>
+ <objectgroup id="13" name="Player">
+  <object id="8" name="Player" x="1280" y="10224" width="32" height="32">
    <properties>
+    <property name="EnteringLevelSpeedX" type="float" value="700"/>
+    <property name="EnteringLevelSpeedY" type="float" value="0"/>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="13" name="Enemies"/>
- <objectgroup id="14" name="Camera"/>
+ <objectgroup id="14" name="Enemies">
+  <object id="14" name="Enemy Simple" x="3172.73" y="10862.3" width="32" height="32"/>
+ </objectgroup>
 </map>

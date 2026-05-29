@@ -19,11 +19,9 @@ public:
     ~UIImage();
 
     void SetImage(const std::string& imagePath);
-    void SetAlpha(float alpha) { mAlpha = alpha; }
     void Draw(Renderer* renderer, const Vector2 &screenPos) override;
 
 private:
     Texture* mTexture; // Texture for the image
     Renderer* mRenderer;
-    float mAlpha;
 };

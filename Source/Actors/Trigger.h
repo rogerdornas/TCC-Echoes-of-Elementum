@@ -21,6 +21,7 @@ public:
         Dialogue,
         Cutscene,
         Player,
+        HUD,
         Nothing
     };
 
@@ -48,7 +49,10 @@ public:
         StartCutscene,
 
         InvertControls,
-        RevertControls
+        RevertControls,
+
+        ShowTutorial,
+        HideTutorial
     };
 
     Trigger(class Game *game, float width, float height);
@@ -74,6 +78,7 @@ public:
     void SetAmbientIntensity(float ambientIntensity) { mAmbientIntensity = ambientIntensity; }
     void SetDialoguePath(const std::string &dialoguePath) { mDialoguePath = dialoguePath; }
     void SetCutsceneId(const std::string &cutsceneId) { mCutsceneId = cutsceneId; }
+    void SetTutorialText(const std::string& text) { mTutorialText = text; }
 
 protected:
     void CameraTrigger();
@@ -85,6 +90,7 @@ protected:
     void DialogueTrigger();
     void CutsceneTrigger();
     void PlayerTrigger();
+    void HUDTrigger(bool isIntersecting);
 
     float mWidth;
     float mHeight;
@@ -110,6 +116,9 @@ protected:
 
     std::string mDialoguePath;
     std::string mCutsceneId;
+
+    bool mIsActiveTutorial;
+    std::string mTutorialText;
 
     class RectComponent* mRectComponent;
     class ColliderComponent *mAABBComponent;

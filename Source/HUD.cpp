@@ -3,11 +3,13 @@
 //
 
 #include "HUD.h"
-#include "Game.h"
 #include "UIElements/UIText.h"
 
 HUD::HUD(class Game* game, const std::string& fontName)
     :UIScreen(game, fontName, false)
+    ,mTutorialState(TutorialState::Hidden)
+    ,mTutorialAlpha(0.0f)
+    ,mTutorialFadeSpeed(3.0f)
     ,mSpeedHPDecrease(200.0f)
     ,mSpeedHPIncrease(200.0f)
     ,mNumOfSubManaBars(mGame->GetPlayer()->GetMaxMana() / 30.0f)
@@ -106,6 +108,21 @@ HUD::HUD(class Game* game, const std::string& fontName)
         default:
             mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
         break;
+    }
+
+    mTutorialTemplate = "";
+    mTutorialNeedsRebuild = false;
+    mLastInputMode = mGame->GetInputPlayerMode();
+
+    for (int i = 0; i < MAX_TUTORIAL_PARTS; i++) {
+        UIText* t = AddText("", Vector2::Zero, POINT_SIZE);
+        t->SetIsVisible(false);
+        mTutorialTexts.push_back(t);
+
+        // Inicia com um sprite qualquer
+        UIImage* img = AddImage("../Assets/Sprites/XboxButtons/A.png", Vector2::Zero, Vector2::Zero);
+        img->SetIsVisible(false);
+        mTutorialIcons.push_back(img);
     }
 }
 
@@ -252,6 +269,41 @@ void HUD::Update(float deltaTime) {
             i--;
         }
     }
+
+    // Lógica de Atualização do Tutorial
+    if (mTutorialState != TutorialState::Hidden) {
+        Game::InputPlayerMode currentMode = mGame->GetInputPlayerMode();
+
+        // Reconstrói as imagens se o player trocou de controle para teclado, ou se for um tutorial novo
+        if (mLastInputMode != currentMode || mTutorialNeedsRebuild) {
+            mLastInputMode = currentMode;
+            RebuildTutorialLayout();
+            mTutorialNeedsRebuild = false;
+        }
+    }
+
+    if (mTutorialState == TutorialState::FadingIn) {
+        mTutorialAlpha += mTutorialFadeSpeed * deltaTime;
+        if (mTutorialAlpha >= 1.0f) {
+            mTutorialAlpha = 1.0f;
+            mTutorialState = TutorialState::Visible;
+        }
+    }
+    else if (mTutorialState == TutorialState::FadingOut) {
+        mTutorialAlpha -= mTutorialFadeSpeed * deltaTime;
+        if (mTutorialAlpha <= 0.0f) {
+            mTutorialAlpha = 0.0f;
+            mTutorialState = TutorialState::Hidden;
+            mTutorialTemplate = "";
+
+            // Esconde tudo no final do Fade Out
+            for (auto* t : mTutorialTexts) t->SetIsVisible(false);
+            for (auto* i : mTutorialIcons) i->SetIsVisible(false);
+        }
+    }
+
+    for (auto* t : mTutorialTexts) t->SetAlpha(mTutorialAlpha);
+    for (auto* i : mTutorialIcons) i->SetAlpha(mTutorialAlpha);
 }
 
 void HUD::StartBossFight(class Enemy *boss) {
@@ -300,6 +352,152 @@ void HUD::IncreaseManaBar() {
     mManaUsedBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
     mManaRemainingBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
     mNumOfSubManaBars = mGame->GetPlayer()->GetMaxMana() / 30.0f;
+}
+
+void HUD::ShowTutorial(const std::string& message) {
+    if (mTutorialState != TutorialState::Visible || mTutorialTemplate != message) {
+        mTutorialTemplate = message;
+        mTutorialNeedsRebuild = true;
+        mTutorialState = TutorialState::FadingIn;
+    }
+}
+
+void HUD::HideTutorial() {
+    if (mTutorialState != TutorialState::Hidden) {
+        mTutorialState = TutorialState::FadingOut;
+    }
+}
+
+void HUD::RebuildTutorialLayout() {
+    for (auto* t : mTutorialTexts) t->SetIsVisible(false);
+    for (auto* i : mTutorialIcons) i->SetIsVisible(false);
+
+    if (mTutorialTemplate.empty()) return;
+
+    int activeTexts = 0;
+    int activeIcons = 0;
+    std::string str = mTutorialTemplate;
+    size_t pos = 0;
+
+    // Vetor temporário para guardar a ordem dos elementos que vamos desenhar
+    std::vector<UIElement*> layoutElements;
+
+    // Faz o Parse da string
+    while (pos < str.length()) {
+        size_t tagStart = str.find("<", pos);
+
+        // Se não tem mais tags, pega o resto do texto
+        if (tagStart == std::string::npos) {
+            std::string textPart = str.substr(pos);
+            if (!textPart.empty() && activeTexts < MAX_TUTORIAL_PARTS) {
+                UIText* t = mTutorialTexts[activeTexts++];
+                t->SetText(textPart);
+                t->SetIsVisible(true);
+                layoutElements.push_back(t);
+            }
+            break;
+        }
+
+        // Adiciona o texto ANTES da tag
+        if (tagStart > pos) {
+            std::string textPart = str.substr(pos, tagStart - pos);
+            if (activeTexts < MAX_TUTORIAL_PARTS) {
+                UIText* t = mTutorialTexts[activeTexts++];
+                t->SetText(textPart);
+                t->SetIsVisible(true);
+                layoutElements.push_back(t);
+            }
+        }
+
+        // Processa a TAG <Acao>
+        size_t tagEnd = str.find(">", tagStart);
+
+        // Tag mal formatada
+        if (tagEnd == std::string::npos) {
+            break;
+        }
+
+        std::string actionStr = str.substr(tagStart + 1, tagEnd - tagStart - 1);
+        Game::Action action = mGame->StringToAction(actionStr);
+
+        if (action != Game::Action::Invalid && activeIcons < MAX_TUTORIAL_PARTS) {
+            auto bindings = mGame->GetInputBinding();
+            Game::InputBinding binding = bindings[action];
+            auto inputMode = mGame->GetInputPlayerMode();
+
+            std::string iconPath = GetButtonIconPath(binding, inputMode);
+
+            UIImage* icon = mTutorialIcons[activeIcons++];
+            icon->SetImage(iconPath);
+            icon->SetSize(Vector2(64.0f, 64.0f));
+            icon->SetIsVisible(true);
+            layoutElements.push_back(icon);
+        }
+
+        pos = tagEnd + 1;
+    }
+
+    // Posiciona os elementos lado a lado
+    float padding = 0.0f; // Espaço entre textos e imagens
+    float totalWidth = 0.0f;
+
+    // Calcula a largura total
+    for (auto* elem : layoutElements) {
+        totalWidth += elem->GetSize().x + padding;
+    }
+    totalWidth -= padding; // Remove o padding extra do final
+
+    // Calcula a posição inicial (X) e a altura (Y)
+    float startX = (mGame->GetRenderer()->GetVirtualWidth() - totalWidth) / 2.0f;
+    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.85f;
+
+    float currentX = startX;
+    for (auto* elem : layoutElements) {
+        float halfWidth = elem->GetSize().x / 2.0f;
+        elem->SetPosition(Vector2(currentX + halfWidth, centerY));
+
+        currentX += elem->GetSize().x + padding;
+    }
+}
+
+std::string HUD::GetButtonIconPath(const Game::InputBinding& binding, Game::InputPlayerMode mode) {
+    if (mode == Game::InputPlayerMode::Keyboard ||
+        mode == Game::InputPlayerMode::Mouse)
+    {
+        if (binding.key != SDL_SCANCODE_UNKNOWN) {
+            // Usa o nome da tecla da SDL
+            // Ex: "Space", "Return", "A"
+            std::string keyName = SDL_GetScancodeName(binding.key);
+            // return "../Assets/Sprites/UI/Keys/" + keyName + ".png";
+            return "../Assets/Sprites/XboxButtons/A.png";
+        }
+
+        switch(binding.mouseButton) {
+            case SDL_BUTTON_LEFT: return "../Assets/Sprites/XboxButtons/A.png";
+            case SDL_BUTTON_RIGHT: return "../Assets/Sprites/XboxButtons/A.png";
+            case SDL_BUTTON_MIDDLE: return "../Assets/Sprites/XboxButtons/A.png";
+            case SDL_BUTTON_X1: return "../Assets/Sprites/XboxButtons/A.png";
+            case SDL_BUTTON_X2: return "../Assets/Sprites/XboxButtons/A.png";
+            default: return "../Assets/Sprites/XboxButtons/A.png";
+        }
+    }
+    else if (mode == Game::InputPlayerMode::Controller) {
+        // Mapeamento padrão do controle (Estilo Xbox, mas você pode detectar PS4/PS5 no futuro)
+        switch(binding.btn) {
+            case SDL_CONTROLLER_BUTTON_A: return "../Assets/Sprites/XboxButtons/A.png";
+            case SDL_CONTROLLER_BUTTON_B: return "../Assets/Sprites/XboxButtons/B.png";
+            case SDL_CONTROLLER_BUTTON_X: return "../Assets/Sprites/XboxButtons/X.png";
+            case SDL_CONTROLLER_BUTTON_Y: return "../Assets/Sprites/XboxButtons/Y.png";
+            case SDL_CONTROLLER_BUTTON_LEFTSHOULDER: return "../Assets/Sprites/XboxButtons/LB.png";
+            case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return "../Assets/Sprites/XboxButtons/RB.png";
+        }
+
+        if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT) return "../Assets/Sprites/XboxButtons/LT.png";
+        if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) return "../Assets/Sprites/XboxButtons/RT.png";
+    }
+
+    // Fallback caso a tecla não seja encontrada
+    return "../Assets/Sprites/XboxButtons/A.png";
 }
 
 void HUD::Draw(Renderer *renderer) {

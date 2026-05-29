@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="18" nextobjectid="181">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="18" nextobjectid="182">
  <editorsettings>
   <export target="Room4.json" format="json"/>
  </editorsettings>
@@ -459,6 +459,15 @@
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
     <property name="Scene" value="Room7"/>
+    <property name="Target" value="Game"/>
+   </properties>
+  </object>
+  <object id="181" x="3840" y="1024" width="384" height="512">
+   <properties>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Event" value="ChangeScene"/>
+    <property name="PlayerStartPositionId" type="int" value="0"/>
+    <property name="Scene" value="Room2"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>

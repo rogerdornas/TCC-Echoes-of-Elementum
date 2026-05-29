@@ -54,12 +54,11 @@ void UIText::SetColor(const Vector3 &color) {
 
 void UIText::Draw(Renderer *renderer, const Vector2 &screenPos)
 {
-    if (!mIsVisible) {
+    if (!mIsVisible || !mTextTexture || mAlpha <= 0.0f) {
         return;
     }
-    if (!mTextTexture)
-        return;
 
     Vector2 pos = mPosition + screenPos;
-    renderer->DrawTexture(pos, mSize, mRotation, mColor, mTextTexture);
+    renderer->DrawTexture(pos, mSize, mRotation, mColor, mTextTexture, Vector4::UnitRect,
+                          Vector2::Zero, Vector2::One, 1.0f, mAlpha);
 }

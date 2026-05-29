@@ -28,6 +28,9 @@ public:
 
     void SetIsVisible(bool isVisible) { mIsVisible = isVisible; }
 
+    float GetAlpha() const { return mAlpha; }
+    void SetAlpha(float alpha) { mAlpha = alpha; }
+
     virtual void Draw(Renderer* renderer, const Vector2 &screenPos) {}
 
 protected:
@@ -36,4 +39,5 @@ protected:
     Vector3 mColor;
     float mRotation;
     bool mIsVisible;
+    float mAlpha;
 };

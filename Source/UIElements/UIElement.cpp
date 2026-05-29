@@ -10,5 +10,6 @@ UIElement::UIElement(const Vector2 &pos, const Vector2 &size, const Vector3 &col
     ,mColor(color)
     ,mRotation(0.0f)
     ,mIsVisible(true)
+    ,mAlpha(1.0f)
 {
 }
