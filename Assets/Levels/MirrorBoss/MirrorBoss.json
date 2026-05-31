@@ -219,7 +219,7 @@
          "name":"DynamicGrounds",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":150,
          "x":0,
          "y":0
@@ -231,7 +231,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -242,7 +242,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -337,7 +337,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -375,7 +375,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -418,7 +418,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -565,7 +565,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -587,7 +587,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -704,7 +704,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -858,6 +858,37 @@
  "nextlayerid":13,
  "nextobjectid":49,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"BackgroundLayers",
+         "type":"string",
+         "value":"Level3\/1.png,Level3\/2.png,Level3\/3.png,Level3\/4.png,Level3\/5.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff3a9359"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":false
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
  "tileheight":32,

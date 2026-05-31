@@ -35,25 +35,7 @@ public:
 
     enum class GameScene {
         MainMenu,
-        LevelTeste,
-        Coliseu,
-        Prologue,
-        Level1,
-        Level2,
-        Level3,
-        Level4,
-        Level5,
-        Room0,
-        Room1,
-        Room2,
-        Room3,
-        Room4,
-        Room5,
-        Room6,
-        Room7,
-        Desafios,
-        Cave,
-        MirrorBoss
+        Gameplay
     };
 
     enum class SceneManagerState {
@@ -200,6 +182,8 @@ public:
     float GetTileSize() { return mTileSize; }
     int GetOriginalTileSize() { return mOriginalTileSize; }
 
+    SDL_Color GetGroundParticleColor() const { return mGroundParticleColor; }
+
     // Loading functions
     class UIFont* LoadFont(const std::string& fileName);
     SDL_Texture *LoadTexture(const std::string &texturePath);
@@ -245,10 +229,10 @@ public:
     class HUD* GetHUD() const { return mHUD; }
 
     // Scene management
-    void SetGameScene(GameScene scene, float transitionTime = .0f);
-    void ResetGameScene(float transitionTime = .0f);
+    void LoadNextLevel(const std::string& levelPath, float transitionTime = 0.0f);
     void UnloadScene();
     GameScene GetGameScene() const { return mGameScene; }
+    std::string GetCurrentLevelPath() const { return mCurrentLevelPath; }
 
     void TogglePause();
 
@@ -270,8 +254,8 @@ public:
 
     void SetCheckPointPosition(Vector2 pos) { mCheckpointPosition = pos; }
     Vector2 GetCheckPointPosition() { return mCheckpointPosition; }
-    void SetCheckpointGameScene(GameScene scene) { mCheckpointGameScene = scene; }
-    GameScene GetCheckpointGameScene() const { return mCheckpointGameScene; }
+    void SetCheckpointGameScenePath(std::string scene) { mCheckpointGameScenePath = scene; }
+    std::string GetCheckpointGameScenePath() const { return mCheckpointGameScenePath; }
     void SetCheckPointMoney(int money) { mCheckPointMoney = money; }
     int GetCheckPointMoney() const { return mCheckPointMoney; }
     void SetGoingToNextLevel() { mGoingToNextLevel = true; }
@@ -317,9 +301,10 @@ private:
     void GenerateOutput();
 
     // Load Level
-    void LoadObjects(const std::string &fileName);
-    void LoadLevel(const std::string &fileName, bool hasTileSet = true);
+    void LoadObjects(const nlohmann::json& mapData);
+    void LoadLevel(const std::string &fileName, const nlohmann::json& mapData, bool hasTileSet = true);
     bool ShouldLoadObject(const std::string& condition);
+    SDL_Color HexToColor(std::string hex);
 
     void SwapKeyboardBinding(SDL_Scancode newKey, Uint8 newMouseBtn);
     void SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameControllerAxis newAxis);
@@ -394,7 +379,7 @@ private:
 
     // Player State
     Vector2 mCheckpointPosition;
-    GameScene mCheckpointGameScene;
+    std::string mCheckpointGameScenePath;
     int mCheckPointMoney;
     bool mGoingToNextLevel;
     Vector2 mLavaRespawnPosition;
@@ -432,6 +417,7 @@ private:
     bool mGroundBehindPlayer;
     bool mUseGroundPadding;
     bool mUseGrassParticle;
+    SDL_Color mGroundParticleColor;
 
     bool mHitstopActive;
     float mHitstopDuration;
@@ -456,6 +442,7 @@ private:
 
     SoundHandle mMusicHandle;
     SoundHandle mBossMusic;
+    std::string mCurrentMusic;
     float mPauseMusicVolumeScale;
 
     // Scene management
@@ -488,6 +475,8 @@ private:
     // Track level state
     GameScene mGameScene;
     GameScene mNextScene;
+    std::string mCurrentLevelPath;
+    std::string mNextLevelPath;
 
     Cutscene* mCurrentCutscene;
     bool mIsPlayingFinalCutscene;

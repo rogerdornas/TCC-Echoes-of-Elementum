@@ -3,6 +3,14 @@
  <editorsettings>
   <export target="Swamp.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="Level3/1.png,Level3/2.png,Level3/3.png,Level3/4.png,Level3/5.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff3a9359"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
+ </properties>
  <tileset firstgid="1" source="../../Tilesets/Swamp/SwampTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="376" height="172">
   <data encoding="csv">
@@ -180,7 +188,7 @@
 21,5,22,22,5,22,5,22,22,22,22,5,5,22,5,22,22,5,5,22,22,5,22,22,5,22,22,22,22,22,22,5,5,22,5,22,22,5,22,5,5,22,22,22,5,5,5,22,5,22,22,22,22,22,5,5,22,5,5,5,22,5,5,5,22,5,22,5,5,22,22,5,5,5,22,5,5,22,22,5,22,22,22,5,22,22,22,22,5,22,22,22,5,22,5,22,5,22,5,22,5,22,5,22,5,5,5,22,5,5,22,5,22,5,22,22,22,22,22,22,22,5,22,5,22,5,22,22,22,5,22,22,22,5,22,5,22,5,22,5,5,5,5,5,22,22,22,5,22,22,5,5,22,5,5,5,22,5,22,22,5,5,22,5,22,5,22,5,22,5,22,22,22,22,5,22,5,22,22,5,5,22,5,22,22,22,22,22,22,5,22,5,5,5,5,5,5,5,5,22,5,5,22,5,22,22,5,5,5,22,22,22,5,22,5,22,5,5,5,5,22,5,22,22,5,5,5,5,22,5,5,5,5,5,5,5,22,22,5,22,5,5,22,5,22,22,5,22,5,5,22,5,22,22,5,22,5,5,22,5,22,22,5,23,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="4" name="DynamicGrounds" width="376" height="172" visible="0">
+ <layer id="4" name="DynamicGrounds" width="376" height="172">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -532,13 +540,13 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="Checkpoint" visible="0">
+ <objectgroup id="8" name="Checkpoint">
   <object id="194" name="Checkpoint1" x="1696" y="1632" width="416" height="192"/>
   <object id="201" name="Checkpoint2" x="4576" y="4032" width="416" height="192"/>
   <object id="279" name="Checkpoint3" x="7776" y="1312" width="416" height="192"/>
   <object id="292" name="Checkpoint4" x="10688" y="1088" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="7" name="Levers" visible="0">
+ <objectgroup id="7" name="Levers">
   <object id="58" name="Lever1" x="5504" y="4160" width="64" height="64">
    <properties>
     <property name="Event" value="SetIsDecreasing"/>
@@ -561,8 +569,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="Decorations" visible="0"/>
- <objectgroup id="11" name="Camera" visible="0">
+ <objectgroup id="12" name="Decorations"/>
+ <objectgroup id="11" name="Camera">
   <object id="298" x="1696" y="1280" width="1568" height="864">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -744,7 +752,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Triggers" visible="0">
+ <objectgroup id="5" name="Triggers">
   <object id="202" name="Kill Enemies" x="3584" y="2336" width="928" height="448">
    <properties>
     <property name="Enemies" value="200"/>
@@ -839,7 +847,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Level4"/>
+    <property name="Scene" value="4-Pain/Pain"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -866,7 +874,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="1"/>
-    <property name="Scene" value="Level2"/>
+    <property name="Scene" value="2-Run/Run"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -1086,7 +1094,7 @@
   </object>
   <object id="315" x="960" y="0" width="1600" height="1632"/>
  </objectgroup>
- <objectgroup id="6" name="Enemies" visible="0">
+ <objectgroup id="6" name="Enemies">
   <object id="22" name="FlyingShooterEnemy" x="5120" y="1632" width="32" height="32"/>
   <object id="197" name="Enemy Simple" x="2656" y="2112" width="32" height="32"/>
   <object id="199" name="Enemy Simple" x="3296" y="1920" width="32" height="32"/>
@@ -1124,7 +1132,7 @@
   <object id="319" name="Bat" x="1408" y="1632" width="32" height="32"/>
   <object id="320" name="Bat" x="2304" y="1632" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="3" name="Player" visible="0">
+ <objectgroup id="3" name="Player">
   <object id="193" name="Player" x="1088" y="1792" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>

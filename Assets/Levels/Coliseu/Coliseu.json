@@ -599,7 +599,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1036,7 +1036,6 @@
         {
          "draworder":"topdown",
          "id":5,
-         "locked":true,
          "name":"Checkpoint",
          "objects":[
                 {
@@ -1148,7 +1147,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room0"
+                         "value":"Room0\/Room0"
                         }, 
                         {
                          "name":"Target",
@@ -1185,7 +1184,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room1"
+                         "value":"Room0\/Room0"
                         }, 
                         {
                          "name":"Target",
@@ -1222,7 +1221,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room2"
+                         "value":"Room2\/Room2"
                         }, 
                         {
                          "name":"Target",
@@ -1259,7 +1258,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room4"
+                         "value":"Room4\/Room4"
                         }, 
                         {
                          "name":"Target",
@@ -1296,7 +1295,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Cave"
+                         "value":"Cave\/Cave"
                         }, 
                         {
                          "name":"Target",
@@ -1333,7 +1332,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room6"
+                         "value":"Room6\/Room6"
                         }, 
                         {
                          "name":"Target",
@@ -1370,7 +1369,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room7"
+                         "value":"Room7\/Room7"
                         }, 
                         {
                          "name":"Target",
@@ -1407,7 +1406,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Desafios"
+                         "value":"Desafios\/Desafios"
                         }, 
                         {
                          "name":"Target",
@@ -1444,7 +1443,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room3"
+                         "value":"Room3\/Room3"
                         }, 
                         {
                          "name":"Target",
@@ -1481,7 +1480,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room4"
+                         "value":"Room4\/Room4"
                         }, 
                         {
                          "name":"Target",
@@ -1766,9 +1765,34 @@
  "orientation":"orthogonal",
  "properties":[
         {
-         "name":"DecorationsPath",
+         "name":"BackgroundLayers",
          "type":"string",
-         "value":"Sprites\/MossyBackgrounds\/MossyDecorations"
+         "value":"Level2\/7.png,Level2\/6.png,Level2\/5.png,Level2\/4.png,Level2\/3.png,Level2\/2.png,Level2\/1.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff2a304e"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":false
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
         }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

@@ -2012,7 +2012,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="5" name="Triggers" visible="0">
+ <objectgroup id="5" name="Triggers">
   <object id="100" x="22144" y="16128" width="1792" height="224">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -2269,7 +2269,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Camera" visible="0">
+ <objectgroup id="11" name="Camera">
   <object id="460" name="Camera" x="5120" y="23040" width="2560" height="1600">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -3001,7 +3001,15 @@
   </object>
   <object id="526" x="13792" y="17504" width="608" height="96"/>
  </objectgroup>
- <objectgroup id="8" name="Checkpoint" visible="0">
+ <objectgroup id="8" name="Checkpoint">
+  <properties>
+   <property name="BackgroundLayers" value="Level3/1.png,Level3/2.png,Level3/3.png,Level3/4.png,Level3/5.png"/>
+   <property name="GroundBehindPlayer" type="bool" value="true"/>
+   <property name="GroundParticleColor" type="color" value="#ff3a9359"/>
+   <property name="Music" value="Greenpath.wav"/>
+   <property name="UseGrassParticle" type="bool" value="true"/>
+   <property name="UseGroundPadding" type="bool" value="false"/>
+  </properties>
   <object id="222" name="Checkpoint" x="17760" y="16512" width="416" height="192"/>
   <object id="223" name="Checkpoint" x="26016" y="15232" width="416" height="192"/>
   <object id="224" name="Checkpoint" x="26880" y="15232" width="416" height="192"/>
@@ -3012,7 +3020,7 @@
   <object id="527" name="Checkpoint" x="13824" y="17312" width="416" height="192"/>
   <object id="532" name="Checkpoint" x="5632" y="18816" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="3" name="Player" visible="0">
+ <objectgroup id="3" name="Player">
   <object id="55" x="15744" y="15968" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="1"/>
@@ -3024,7 +3032,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="Levers" visible="0">
+ <objectgroup id="6" name="Levers">
   <object id="110" x="18944" y="16320" width="64" height="64">
    <properties>
     <property name="Event" value="SetIsGrowing"/>
@@ -3066,7 +3074,7 @@
   <object id="131" x="25056" y="15360" width="64" height="64"/>
   <object id="132" x="25216" y="15360" width="64" height="64"/>
  </objectgroup>
- <objectgroup id="10" name="Lava" visible="0">
+ <objectgroup id="10" name="Lava">
   <object id="289" x="7776" y="19040" width="1120" height="160">
    <properties>
     <property name="RespawnPositionX" type="float" value="9472"/>
@@ -3214,7 +3222,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="13" name="LightningBarrier" visible="0">
+ <objectgroup id="13" name="LightningBarrier">
   <object id="487" x="19904" y="16160" width="64" height="224">
    <properties>
     <property name="Moving" type="bool" value="false"/>
@@ -3241,8 +3249,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="SpawnPoint" visible="0"/>
- <objectgroup id="4" name="Enemies" visible="0">
+ <objectgroup id="12" name="SpawnPoint"/>
+ <objectgroup id="4" name="Enemies">
   <object id="70" name="Flying Enemy" x="16448" y="15296" width="32" height="32"/>
   <object id="71" name="Enemy Simple" x="16192" y="16352" width="32" height="32"/>
   <object id="72" name="Enemy Simple" x="16992" y="16672" width="32" height="32"/>
@@ -3284,7 +3292,7 @@
   <object id="494" name="OrangeSlime" x="15968" y="16672" width="32" height="32"/>
   <object id="525" name="Bat" x="18112" y="16128" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="9" name="HookPoints" visible="0">
+ <objectgroup id="9" name="HookPoints">
   <object id="243" x="16896" y="16352" width="32" height="32"/>
   <object id="244" x="17600" y="15872" width="32" height="32"/>
   <object id="245" x="16064" y="16128" width="32" height="32"/>

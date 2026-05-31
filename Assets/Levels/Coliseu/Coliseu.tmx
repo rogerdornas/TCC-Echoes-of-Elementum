@@ -4,7 +4,12 @@
   <export target="Coliseu.json" format="json"/>
  </editorsettings>
  <properties>
-  <property name="DecorationsPath" value="Sprites/MossyBackgrounds/MossyDecorations"/>
+  <property name="BackgroundLayers" value="Level2/7.png,Level2/6.png,Level2/5.png,Level2/4.png,Level2/3.png,Level2/2.png,Level2/1.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff2a304e"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
  </properties>
  <tileset firstgid="1" source="../../Tilesets/Volcano/VolcanoTileSet.tsx"/>
  <objectgroup id="12" name="Background1" opacity="0.51" parallaxx="0.95">
@@ -329,7 +334,7 @@
  <objectgroup id="7" name="HookPoints"/>
  <objectgroup id="8" name="Levers"/>
  <objectgroup id="9" name="Enemies"/>
- <objectgroup id="11" name="Camera" visible="0" locked="1">
+ <objectgroup id="11" name="Camera" locked="1">
   <object id="42" x="96" y="1664" width="1856" height="1536">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -446,7 +451,7 @@
   <object id="68" x="416" y="2752" width="64" height="64"/>
   <object id="973" x="576" y="2752" width="64" height="64"/>
  </objectgroup>
- <objectgroup id="5" name="Checkpoint" locked="1">
+ <objectgroup id="5" name="Checkpoint">
   <object id="2" name="Checkpoint" x="480" y="3008" width="416" height="192"/>
  </objectgroup>
  <objectgroup id="3" name="Triggers">
@@ -471,7 +476,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="2"/>
-    <property name="Scene" value="Room0"/>
+    <property name="Scene" value="Room0/Room0"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -480,7 +485,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room1"/>
+    <property name="Scene" value="Room0/Room0"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -489,7 +494,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room2"/>
+    <property name="Scene" value="Room2/Room2"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -498,7 +503,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room4"/>
+    <property name="Scene" value="Room4/Room4"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -507,7 +512,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Cave"/>
+    <property name="Scene" value="Cave/Cave"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -516,7 +521,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room6"/>
+    <property name="Scene" value="Room6/Room6"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -525,7 +530,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room7"/>
+    <property name="Scene" value="Room7/Room7"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -534,7 +539,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Desafios"/>
+    <property name="Scene" value="Desafios/Desafios"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -543,7 +548,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room3"/>
+    <property name="Scene" value="Room3/Room3"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -552,7 +557,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room4"/>
+    <property name="Scene" value="Room4/Room4"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>

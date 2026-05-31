@@ -111,9 +111,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":263.93470464135,
-                 "x":2206.08333333333,
-                 "y":2648.66666666667
+                 "width":263.935,
+                 "x":2206.08,
+                 "y":2648.67
                 }, 
                 {
                  "gid":1073741883,
@@ -355,7 +355,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":311.919213973799,
+                 "width":311.919,
                  "x":545,
                  "y":2653
                 }],
@@ -1312,7 +1312,7 @@
                 }, 
                 {
                  "gid":2147483750,
-                 "height":68.3219178082192,
+                 "height":68.3219,
                  "id":265,
                  "name":"",
                  "properties":[
@@ -2182,7 +2182,7 @@
                 }, 
                 {
                  "gid":103,
-                 "height":89.8333333333332,
+                 "height":89.8333,
                  "id":262,
                  "name":"",
                  "properties":[
@@ -2209,9 +2209,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":102.666666666667,
-                 "x":2698.66666666667,
-                 "y":2501.16666666667
+                 "width":102.667,
+                 "x":2698.67,
+                 "y":2501.17
                 }, 
                 {
                  "gid":3,
@@ -2319,7 +2319,7 @@
                 }, 
                 {
                  "gid":2147483750,
-                 "height":281.063926940639,
+                 "height":281.064,
                  "id":267,
                  "name":"",
                  "properties":[
@@ -2356,9 +2356,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":215.975438596491,
-                 "x":4297.86666666667,
-                 "y":2714.06392694064
+                 "width":215.975,
+                 "x":4297.87,
+                 "y":2714.06
                 }],
          "opacity":1,
          "parallaxx":1.1,
@@ -2427,7 +2427,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room4"
+                         "value":"Room4\/Room4"
                         }, 
                         {
                          "name":"Target",
@@ -2861,9 +2861,34 @@
  "orientation":"orthogonal",
  "properties":[
         {
-         "name":"DecorationsPath",
+         "name":"BackgroundLayers",
          "type":"string",
-         "value":"Sprites\/BrownCave\/BrownCaveDecorations"
+         "value":"DarkForest\/4.png,DarkForest\/3.png,DarkForest\/2.png,DarkForest\/1.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff735951"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":false
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
         }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

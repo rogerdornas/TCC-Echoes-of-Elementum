@@ -67,7 +67,7 @@ public:
     void SetFixedCameraPosition(Vector2 pos) { mFixedCameraPosition = pos; }
     void SetLimitMinCameraPosition(Vector2 pos) { mLimitMinCameraPosition = pos; }
     void SetLimitMaxCameraPosition(Vector2 pos) { mLimitMaxCameraPosition = pos; }
-    void SetScene(std::string scene);
+    void SetNextLevelPath(const std::string& path);
     void SetPlayerStartPositionId(int id) { mPlayerStartPositionId = id; }
     void SetWavesPath(const std::string &wavesPath);
     void SetWorldState(std::string worldState) { mWorldState = worldState; }
@@ -104,6 +104,7 @@ protected:
     Vector2 mLimitMaxCameraPosition;
 
     Game::GameScene mScene;
+    std::string mNextLevelPath;
     int mPlayerStartPositionId;
     std::string mWavesPath;
     std::string mWorldState;

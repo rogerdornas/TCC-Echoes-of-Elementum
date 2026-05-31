@@ -3,6 +3,14 @@
  <editorsettings>
   <export target="Room0.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="Level2/7.png,Level2/6.png,Level2/5.png,Level2/4.png,Level2/3.png,Level2/2.png,Level2/1.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff2a304e"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
+ </properties>
  <tileset firstgid="1" source="../../Tilesets/Volcano/VolcanoTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="210" height="200">
   <data encoding="csv">
@@ -530,7 +538,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Level1"/>
+    <property name="Scene" value="1-Musgo/Musgo"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -539,7 +547,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="1"/>
-    <property name="Scene" value="Coliseu"/>
+    <property name="Scene" value="Coliseu/Coliseu"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -548,7 +556,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="MirrorBoss"/>
+    <property name="Scene" value="MirrorBoss/MirrorBoss"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>

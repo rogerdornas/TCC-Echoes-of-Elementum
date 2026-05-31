@@ -3,6 +3,14 @@
  <editorsettings>
   <export target="Pain.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="FreezeCave/1.png,FreezeCave/2.png,FreezeCave/3.png,FreezeCave/4.png,FreezeCave/5.png,FreezeCave/6.png,FreezeCave/7.png,FreezeCave/8.png,FreezeCave/9.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff62abd4"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
+ </properties>
  <tileset firstgid="1" source="../../Tilesets/Snow/SnowTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="345" height="206">
   <data encoding="csv">
@@ -634,8 +642,8 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="4" name="Levers" visible="0"/>
- <objectgroup id="10" name="Camera" visible="0">
+ <objectgroup id="4" name="Levers"/>
+ <objectgroup id="10" name="Camera">
   <object id="455" x="352" y="3776" width="1600" height="2464">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -807,7 +815,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="7" name="Triggers" visible="0">
+ <objectgroup id="7" name="Triggers">
   <object id="256" name="Close Wall" x="6944" y="4384" width="128" height="224">
    <properties>
     <property name="Condition" value="!Level4ArenaDone"/>
@@ -856,7 +864,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Level5"/>
+    <property name="Scene" value="Room4/Room4"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -890,13 +898,13 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="Checkpoint" visible="0">
+ <objectgroup id="5" name="Checkpoint">
   <object id="164" name="Checkpoint" x="640" y="5760" width="416" height="192"/>
   <object id="181" name="Checkpoint" x="5184" y="3872" width="416" height="192"/>
   <object id="254" name="Checkpoint" x="6176" y="4416" width="416" height="192"/>
   <object id="321" name="Checkpoint" x="10176" y="2016" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="2" name="Grounds">
+ <objectgroup id="2" name="Grounds" visible="0">
   <object id="126" name="Ground" x="1120" y="6240" width="4928" height="352"/>
   <object id="121" name="Ground" x="800" y="5376" width="1184" height="128"/>
   <object id="122" name="Ground" x="320" y="4800" width="1184" height="128"/>
@@ -1988,14 +1996,14 @@
   </object>
   <object id="444" name="Ground" x="8000" y="640" width="128" height="96"/>
  </objectgroup>
- <objectgroup id="3" name="Player" visible="0">
+ <objectgroup id="3" name="Player">
   <object id="117" name="Player" x="1344" y="6208" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="6" name="Enemies" visible="0">
+ <objectgroup id="6" name="Enemies">
   <object id="269" name="FlyingShooterEnemy" x="8064" y="3648" width="32" height="32"/>
   <object id="270" name="FlyingShooterEnemy" x="8064" y="3872" width="32" height="32"/>
   <object id="428" name="FlyingShooterEnemy" x="3840" y="3520" width="32" height="32"/>

@@ -11,7 +11,7 @@
 
 SaveData::SaveData(class Game *game)
     :mGame(game)
-    ,mGameScene(Game::GameScene::Room2)
+    ,mGameScenePath("Room2/Room2")
     ,mTotalPlayTime(0.0f)
 
     ,mMasterAudio(1.0f)
@@ -38,7 +38,7 @@ SaveData::SaveData(class Game *game)
 void SaveData::Save(const std::string &filename) {
     nlohmann::json j;
 
-    j["game"]["scene"] = GameSceneToString(mGameScene);
+    j["game"]["scene"] = mGameScenePath;
     j["game"]["last_checkpoint"] = { {"x", mLastCheckpointPosition.x}, {"y", mLastCheckpointPosition.y} };
     j["game"]["total_play_time"] = mTotalPlayTime;
 
@@ -97,7 +97,7 @@ bool SaveData::Load(const std::string &filename) {
     nlohmann::json j;
     file >> j;
 
-    mGameScene = StringToGameScene(j["game"]["scene"]);
+    mGameScenePath = j["game"]["scene"];
     mLastCheckpointPosition.x = j["game"]["last_checkpoint"]["x"];
     mLastCheckpointPosition.y = j["game"]["last_checkpoint"]["y"];
     mTotalPlayTime = j["game"]["total_play_time"];
@@ -133,54 +133,6 @@ bool SaveData::Load(const std::string &filename) {
     return true;
 }
 
-std::string SaveData::GameSceneToString(Game::GameScene scene) {
-    switch (scene) {
-        case Game::GameScene::LevelTeste: return "LevelTeste";
-        case Game::GameScene::Coliseu: return "Coliseu";
-        case Game::GameScene::Prologue: return "Prologue";
-        case Game::GameScene::Level1: return "Level1";
-        case Game::GameScene::Level2: return "Level2";
-        case Game::GameScene::Level3: return "Level3";
-        case Game::GameScene::Level4: return "Level4";
-        case Game::GameScene::Level5: return "Level5";
-        case Game::GameScene::Room0: return "Room0";
-        case Game::GameScene::Room1: return "Room1";
-        case Game::GameScene::Room2: return "Room2";
-        case Game::GameScene::Room3: return "Room3";
-        case Game::GameScene::Room4: return "Room4";
-        case Game::GameScene::Room5: return "Room5";
-        case Game::GameScene::Room6: return "Room6";
-        case Game::GameScene::Room7: return "Room7";
-        case Game::GameScene::Desafios: return "Desafios";
-        case Game::GameScene::Cave: return "Cave";
-        case Game::GameScene::MirrorBoss: return "MirrorBoss";
-        default: return "Unknown";
-    }
-}
-
-Game::GameScene SaveData::StringToGameScene(const std::string &str) {
-    if (str == "LevelTeste") return Game::GameScene::LevelTeste;
-    if (str == "Coliseu") return Game::GameScene::Coliseu;
-    if (str == "Prologue") return Game::GameScene::Prologue;
-    if (str == "Level1") return Game::GameScene::Level1;
-    if (str == "Level2") return Game::GameScene::Level2;
-    if (str == "Level3") return Game::GameScene::Level3;
-    if (str == "Level4") return Game::GameScene::Level4;
-    if (str == "Level5") return Game::GameScene::Level5;
-    if (str == "Room0") return Game::GameScene::Room0;
-    if (str == "Room1") return Game::GameScene::Room1;
-    if (str == "Room2") return Game::GameScene::Room2;
-    if (str == "Room3") return Game::GameScene::Room3;
-    if (str == "Room4") return Game::GameScene::Room4;
-    if (str == "Room5") return Game::GameScene::Room5;
-    if (str == "Room6") return Game::GameScene::Room6;
-    if (str == "Room7") return Game::GameScene::Room7;
-    if (str == "Desafios") return Game::GameScene::Desafios;
-    if (str == "Cave") return Game::GameScene::Cave;
-    if (str == "MirrorBoss") return Game::GameScene::MirrorBoss;
-    return Game::GameScene::Level1; // fallback
-}
-
 std::string SaveData::ElementalModeToString(Player::ElementalMode elementalMode) {
     switch (elementalMode) {
         case Player::ElementalMode::Fire: return "Fire";
@@ -201,8 +153,8 @@ Player::ElementalMode SaveData::StringToElementalMode(const std::string &str) {
 
 void SaveData::ApplyToGame() {
     mGame->SetCheckPointPosition(mLastCheckpointPosition);
-    mGame->SetCheckpointGameScene(mGameScene);
-    mGame->SetGameScene(mGameScene, 0.5f);
+    mGame->SetCheckpointGameScenePath(mGameScenePath);
+    mGame->LoadNextLevel(mGameScenePath, 0.5f);
     mGame->SetTotalPlayTime(mTotalPlayTime);
 }
 
@@ -236,7 +188,7 @@ void SaveData::ApplyConfigs() {
 }
 
 void SaveData::CaptureFromGame() {
-    mGameScene = mGame->GetCheckpointGameScene();
+    mGameScenePath = mGame->GetCheckpointGameScenePath();
     mLastCheckpointPosition.x = mGame->GetCheckPointPosition().x;
     mLastCheckpointPosition.y = mGame->GetCheckPointPosition().y;
     mTotalPlayTime = mGame->GetTotalPlayTime();

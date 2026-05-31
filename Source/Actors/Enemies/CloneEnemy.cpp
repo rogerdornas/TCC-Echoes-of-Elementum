@@ -701,40 +701,7 @@ void CloneEnemy::ResolveGroundCollision() {
                             grass->SetGroundCollision(false);
                             grass->SetParticleSpeedScale(0.4);
                             grass->SetConeSpread(45.0f);
-                            SDL_Color color;
-                            switch (mGame->GetGameScene()) {
-                                case Game::GameScene::LevelTeste:
-                                    color = {80, 148, 45, 255};
-                                    break;
-
-                                case Game::GameScene::Coliseu:
-                                    color = {102, 114, 145, 255};
-                                    break;
-
-                                case Game::GameScene::Level1:
-                                    color = {80, 148, 45, 255};
-                                    break;
-
-                                case Game::GameScene::Level2:
-                                    color = {102, 114, 145, 255};
-                                    break;
-
-                                case Game::GameScene::Level3:
-                                    color = {80, 148, 45, 255};
-                                    break;
-
-                                case Game::GameScene::Level4:
-                                    color = {98, 171, 212, 255};
-                                    break;
-
-                                case Game::GameScene::Level5:
-                                    color = {98, 171, 212, 255};
-                                    break;
-
-                                default:
-                                    color = {102, 114, 145, 255};
-                                    break;
-                            }
+                            SDL_Color color = mGame->GetGroundParticleColor();
                             grass->SetParticleColor(color);
                             grass->SetParticleGravity(true);
                             mSwordHitGround = true;

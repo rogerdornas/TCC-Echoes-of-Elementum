@@ -161,55 +161,55 @@
                 }, 
                 {
                  "gid":59,
-                 "height":264.185840707964,
+                 "height":264.186,
                  "id":151,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":250.194690265487,
-                 "x":3427.99753285063,
-                 "y":3627.5191740413
+                 "width":250.195,
+                 "x":3428,
+                 "y":3627.52
                 }, 
                 {
                  "gid":40,
-                 "height":215.079371681416,
+                 "height":215.079,
                  "id":149,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":231.882743362832,
-                 "x":3334.00306382408,
-                 "y":3741.91754129793
+                 "width":231.883,
+                 "x":3334,
+                 "y":3741.92
                 }, 
                 {
                  "gid":40,
-                 "height":215.079646017699,
+                 "height":215.08,
                  "id":148,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":231.882743362832,
-                 "x":3483.47331724323,
-                 "y":3740.22150710646
+                 "width":231.883,
+                 "x":3483.47,
+                 "y":3740.22
                 }, 
                 {
                  "gid":4,
-                 "height":242.238938053097,
+                 "height":242.239,
                  "id":150,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":157.590387209264,
-                 "x":3436.50195762939,
-                 "y":3766.33333333333
+                 "width":157.59,
+                 "x":3436.5,
+                 "y":3766.33
                 }, 
                 {
                  "gid":2147483750,
-                 "height":104.497957935679,
+                 "height":104.498,
                  "id":144,
                  "name":"",
                  "properties":[
@@ -246,13 +246,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":80.2981577904749,
-                 "x":3445.1524210646,
-                 "y":3583.61226104756
+                 "width":80.2982,
+                 "x":3445.15,
+                 "y":3583.61
                 }, 
                 {
                  "gid":102,
-                 "height":143.050602610977,
+                 "height":143.051,
                  "id":143,
                  "name":"",
                  "properties":[
@@ -289,13 +289,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":109.923094637909,
-                 "x":3374.31041465881,
-                 "y":3573.97409987874
+                 "width":109.923,
+                 "x":3374.31,
+                 "y":3573.97
                 }, 
                 {
                  "gid":2147483750,
-                 "height":49.712620765517,
+                 "height":49.7126,
                  "id":145,
                  "name":"",
                  "properties":[
@@ -332,13 +332,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":38.20009482515,
-                 "x":3472.13922161014,
-                 "y":3578.03227300245
+                 "width":38.2001,
+                 "x":3472.14,
+                 "y":3578.03
                 }, 
                 {
                  "gid":2147483750,
-                 "height":131.890626520759,
+                 "height":131.891,
                  "id":146,
                  "name":"",
                  "properties":[
@@ -372,16 +372,16 @@
                          "type":"bool",
                          "value":true
                         }],
-                 "rotation":333.919763984424,
+                 "rotation":333.92,
                  "type":"",
                  "visible":true,
-                 "width":101.347190352439,
-                 "x":3305.30931637625,
-                 "y":3619.46612807847
+                 "width":101.347,
+                 "x":3305.31,
+                 "y":3619.47
                 }, 
                 {
                  "gid":102,
-                 "height":61.191969128919,
+                 "height":61.192,
                  "id":147,
                  "name":"",
                  "properties":[
@@ -415,36 +415,36 @@
                          "type":"bool",
                          "value":true
                         }],
-                 "rotation":319.313453343268,
+                 "rotation":319.313,
                  "type":"",
                  "visible":true,
-                 "width":47.0210374412127,
-                 "x":3305.30934545491,
-                 "y":3615.19768087342
+                 "width":47.021,
+                 "x":3305.31,
+                 "y":3615.2
                 }, 
                 {
                  "gid":92,
-                 "height":222.007836045811,
+                 "height":222.008,
                  "id":140,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":371.322840819984,
-                 "x":3240.49215590429,
-                 "y":3751.5191740413
+                 "width":371.323,
+                 "x":3240.49,
+                 "y":3751.52
                 }, 
                 {
                  "gid":58,
-                 "height":283.846226767392,
+                 "height":283.846,
                  "id":152,
                  "name":"",
-                 "rotation":221.907918310815,
+                 "rotation":221.908,
                  "type":"",
                  "visible":true,
-                 "width":510.644927566828,
-                 "x":3926.00374410047,
-                 "y":3086.72442909084
+                 "width":510.645,
+                 "x":3926,
+                 "y":3086.72
                 }, 
                 {
                  "gid":1073741885,
@@ -500,8 +500,8 @@
                  "type":"",
                  "visible":true,
                  "width":304,
-                 "x":3193.33333333333,
-                 "y":3214.33333333333
+                 "x":3193.33,
+                 "y":3214.33
                 }, 
                 {
                  "gid":1073741885,
@@ -512,8 +512,8 @@
                  "type":"",
                  "visible":true,
                  "width":195,
-                 "x":2992.33333333333,
-                 "y":3141.66666666667
+                 "x":2992.33,
+                 "y":3141.67
                 }],
          "opacity":1,
          "properties":[
@@ -549,7 +549,7 @@
          "objects":[
                 {
                  "gid":104,
-                 "height":181.426229508197,
+                 "height":181.426,
                  "id":154,
                  "name":"",
                  "properties":[
@@ -586,9 +586,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":144.666666666667,
-                 "x":2349.66666666667,
-                 "y":3725.4262295082
+                 "width":144.667,
+                 "x":2349.67,
+                 "y":3725.43
                 }, 
                 {
                  "gid":20,
@@ -785,7 +785,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":177.570093457944,
+                 "width":177.57,
                  "x":3189,
                  "y":3717.5
                 }, 
@@ -839,7 +839,7 @@
                 }, 
                 {
                  "gid":102,
-                 "height":105.068493150685,
+                 "height":105.068,
                  "id":137,
                  "name":"",
                  "properties":[
@@ -876,9 +876,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":80.7368421052632,
+                 "width":80.7368,
                  "x":3612,
-                 "y":3734.06849315068
+                 "y":3734.07
                 }, 
                 {
                  "gid":26,
@@ -1507,27 +1507,27 @@
          "objects":[
                 {
                  "gid":58,
-                 "height":267.738419618529,
+                 "height":267.738,
                  "id":141,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":481.666666666667,
+                 "width":481.667,
                  "x":3743,
-                 "y":3889.73841961853
+                 "y":3889.74
                 }, 
                 {
                  "gid":2147483706,
-                 "height":324.436189602646,
+                 "height":324.436,
                  "id":142,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":583.667,
-                 "x":1965.3665,
-                 "y":3938.18518960265
+                 "x":1965.37,
+                 "y":3938.19
                 }],
          "opacity":1,
          "parallaxx":1.1,
@@ -2832,6 +2832,37 @@
  "nextlayerid":17,
  "nextobjectid":158,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"BackgroundLayers",
+         "type":"string",
+         "value":"DarkForest\/4.png,DarkForest\/3.png,DarkForest\/2.png,DarkForest\/1.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff735951"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":false
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
  "tileheight":64,

@@ -3,6 +3,14 @@
  <editorsettings>
   <export target="MirrorBoss.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="Level3/1.png,Level3/2.png,Level3/3.png,Level3/4.png,Level3/5.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff3a9359"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
+ </properties>
  <tileset firstgid="1" source="../../Tilesets/Swamp/SwampTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="150" height="100">
   <data encoding="csv">
@@ -108,7 +116,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="11" name="DynamicGrounds" width="150" height="100" visible="0">
+ <layer id="11" name="DynamicGrounds" width="150" height="100">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -212,9 +220,9 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="8" name="Levers" visible="0"/>
- <objectgroup id="9" name="HookPoints" visible="0"/>
- <objectgroup id="6" name="Camera" visible="0">
+ <objectgroup id="8" name="Levers"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="6" name="Camera">
   <object id="11" x="1856" y="672" width="1728" height="1600">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -236,7 +244,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="2" name="Player" visible="0">
+ <objectgroup id="2" name="Player">
   <object id="10" x="320" y="2240" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -245,7 +253,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="7" name="Enemies" visible="0">
+ <objectgroup id="7" name="Enemies">
   <object id="41" name="MirrorBoss" x="2656" y="1728" width="32" height="32">
    <properties>
     <property name="MaxPosX" type="float" value="3552"/>
@@ -255,7 +263,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="12" name="SpawnPoint" visible="0">
+ <objectgroup id="12" name="SpawnPoint">
   <object id="32" x="2720" y="2144" width="32" height="32">
    <properties>
     <property name="id" value="RightBot"/>
@@ -297,10 +305,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Checkpoint" visible="0">
+ <objectgroup id="10" name="Checkpoint">
   <object id="45" name="Checkpoint" x="448" y="2080" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="5" name="Triggers" visible="0">
+ <objectgroup id="5" name="Triggers">
   <object id="42" name="Spot Player" x="1824" y="640" width="1760" height="1664">
    <properties>
     <property name="Enemies" value="41"/>

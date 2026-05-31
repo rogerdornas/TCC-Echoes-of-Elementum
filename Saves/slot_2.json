@@ -1,23 +1,23 @@
 {
     "configs": {
-        "master_audio": 0.32592591643333435,
+        "master_audio": 1.0,
         "music_audio": 1.0,
         "sfx_audio": 1.0
     },
     "game": {
         "last_checkpoint": {
-            "x": 5115.14990234375,
-            "y": 4795.64013671875
+            "x": 742.0,
+            "y": 1780.0
         },
-        "scene": "Room4",
-        "total_play_time": 231.60804748535156
+        "scene": "Room2/Room2",
+        "total_play_time": 348.63519287109375
     },
     "player": {
         "can_dash": false,
         "can_hook": false,
         "can_wallslide": false,
         "death_counter": 0,
-        "elemental_mode": "Lightning",
+        "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,16 +25,10 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 0,
-        "money": 45
+        "money": 30
     },
     "skill_tree": {
-        "unlocked_nodes": [
-            "fire_wisp",
-            "fire_wisp_attack",
-            "mana_max_fire",
-            "fire_ball",
-            "fire_ball_damage_1"
-        ]
+        "unlocked_nodes": []
     },
     "world_state": {}
 }

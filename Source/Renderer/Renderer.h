@@ -98,6 +98,8 @@ public:
 	void SetAberrationAngle(float angle) { mAberrationAngle = angle; }
 	void DeactivateAllEffects();
 
+	void PrintUsedTextures();
+
 private:
     void Draw(RendererMode mode, const Matrix4 &modelMatrix, const Vector2 &cameraPos, VertexArray *vertices,
               const Vector3 &color, float alpha = 1.0f, Texture *texture = nullptr, const Vector4 &textureRect = Vector4::UnitRect,

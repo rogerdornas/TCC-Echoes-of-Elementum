@@ -595,6 +595,7 @@ Texture* Renderer::GetTexture(const std::string& fileName, bool smooth)
         if (tex->Load(fileName, smooth))
         {
             mTextures.emplace(fileName, tex);
+            // SDL_Log(fileName.c_str());
             return tex;
         }
         else
@@ -768,4 +769,10 @@ void Renderer::BeginUIDraw()
     // Como o mUIFBO ainda está "bindado", qualquer menu desenhado a partir de
     // agora cairá no FBO 2, nítido, sobrepondo o fundo embaçado!
     mBaseShader->SetActive();
+}
+
+void Renderer::PrintUsedTextures() {
+    for (const auto& [key, texturePtr] : mTextures) {
+        SDL_Log(key.c_str());
+    }
 }

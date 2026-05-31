@@ -2156,6 +2156,37 @@
  "nextlayerid":13,
  "nextobjectid":79,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"BackgroundLayers",
+         "type":"string",
+         "value":"DarkForest\/4.png,DarkForest\/3.png,DarkForest\/2.png,DarkForest\/1.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff2c4645"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
  "tileheight":32,

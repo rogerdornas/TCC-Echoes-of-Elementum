@@ -2891,7 +2891,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Level2"
+                         "value":"2-Run\/Run"
                         }, 
                         {
                          "name":"Target",
@@ -3002,7 +3002,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room0"
+                         "value":"Room0\/Room0"
                         }, 
                         {
                          "name":"Target",
@@ -3589,6 +3589,37 @@
  "nextlayerid":14,
  "nextobjectid":273,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"BackgroundLayers",
+         "type":"string",
+         "value":"DarkForest\/4.png,DarkForest\/3.png,DarkForest\/2.png,DarkForest\/1.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff3a9359"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":false
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
  "tileheight":32,

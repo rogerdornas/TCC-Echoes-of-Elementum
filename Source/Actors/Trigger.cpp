@@ -168,79 +168,8 @@ void Trigger::SetEvent(std::string event) {
     }
 }
 
-void Trigger::SetScene(std::string scene) {
-    if (scene == "LevelTeste") {
-        mScene = Game::GameScene::LevelTeste;
-        return;
-    }
-    if (scene == "Room0") {
-        mScene = Game::GameScene::Room0;
-        return;
-    }
-    if (scene == "Room1") {
-        mScene = Game::GameScene::Room1;
-        return;
-    }
-    if (scene == "Room2") {
-        mScene = Game::GameScene::Room2;
-        return;
-    }
-    if (scene == "Room3") {
-        mScene = Game::GameScene::Room3;
-        return;
-    }
-    if (scene == "Room4") {
-        mScene = Game::GameScene::Room4;
-        return;
-    }
-    if (scene == "Room5") {
-        mScene = Game::GameScene::Room5;
-        return;
-    }
-    if (scene == "Room6") {
-        mScene = Game::GameScene::Room6;
-        return;
-    }
-    if (scene == "Room7") {
-        mScene = Game::GameScene::Room7;
-        return;
-    }
-    if (scene == "Desafios") {
-        mScene = Game::GameScene::Desafios;
-        return;
-    }
-    if (scene == "Cave") {
-        mScene = Game::GameScene::Cave;
-        return;
-    }
-    if (scene == "MirrorBoss") {
-        mScene = Game::GameScene::MirrorBoss;
-        return;
-    }
-    if (scene == "Coliseu") {
-        mScene = Game::GameScene::Coliseu;
-        return;
-    }
-    if (scene == "Level1") {
-        mScene = Game::GameScene::Level1;
-        return;
-    }
-    if (scene == "Level2") {
-        mScene = Game::GameScene::Level2;
-        return;
-    }
-    if (scene == "Level3") {
-        mScene = Game::GameScene::Level3;
-        return;
-    }
-    if (scene == "Level4") {
-        mScene = Game::GameScene::Level4;
-        return;
-    }
-    if (scene == "Level5") {
-        mScene = Game::GameScene::Level5;
-        return;
-    }
+void Trigger::SetNextLevelPath(const std::string& path) {
+    mNextLevelPath = path;
 }
 
 void Trigger::SetWavesPath(const std::string &wavesPath) {
@@ -393,9 +322,9 @@ void Trigger::GroundTrigger() {
 void Trigger::GameTrigger() {
     switch (mEvent) {
         case Event::ChangeScene:
-            mGame->GetAudio()->StopAllSounds();
+            // mGame->GetAudio()->StopAllSounds();
             mGame->SetPlayerStartPositionId(mPlayerStartPositionId);
-            mGame->SetGameScene(mScene, 0.5f);
+            mGame->LoadNextLevel(mNextLevelPath, 0.5f);
             mGame->SetGoingToNextLevel();
             break;
 

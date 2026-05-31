@@ -48,7 +48,7 @@ void Checkpoint::OnProcessInput(const Uint8 *keyState, SDL_GameController &contr
     if (player->GetIsOnGround() && mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
         if (mGame->IsActionPressed(Game::Action::OpenStore, keyState, &controller)) {
             mGame->SetCheckPointPosition(GetPosition());
-            mGame->SetCheckpointGameScene(mGame->GetGameScene());
+            mGame->SetCheckpointGameScenePath(mGame->GetCurrentLevelPath());
             mGame->SetCheckPointMoney(player->GetMoney());
 
             new CheckPointMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");

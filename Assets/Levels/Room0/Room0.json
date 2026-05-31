@@ -925,7 +925,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Level1"
+                         "value":"1-Musgo\/Musgo"
                         }, 
                         {
                          "name":"Target",
@@ -962,7 +962,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Coliseu"
+                         "value":"Coliseu\/Coliseu"
                         }, 
                         {
                          "name":"Target",
@@ -999,7 +999,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"MirrorBoss"
+                         "value":"MirrorBoss\/MirrorBoss"
                         }, 
                         {
                          "name":"Target",
@@ -1679,6 +1679,37 @@
  "nextlayerid":17,
  "nextobjectid":83,
  "orientation":"orthogonal",
+ "properties":[
+        {
+         "name":"BackgroundLayers",
+         "type":"string",
+         "value":"Level2\/7.png,Level2\/6.png,Level2\/5.png,Level2\/4.png,Level2\/3.png,Level2\/2.png,Level2\/1.png"
+        }, 
+        {
+         "name":"GroundBehindPlayer",
+         "type":"bool",
+         "value":true
+        }, 
+        {
+         "name":"GroundParticleColor",
+         "type":"color",
+         "value":"#ff2a304e"
+        }, 
+        {
+         "name":"Music",
+         "type":"string",
+         "value":"Greenpath.wav"
+        }, 
+        {
+         "name":"UseGrassParticle",
+         "type":"bool",
+         "value":false
+        }, 
+        {
+         "name":"UseGroundPadding",
+         "type":"bool",
+         "value":false
+        }],
  "renderorder":"right-down",
  "tiledversion":"1.11.2",
  "tileheight":32,

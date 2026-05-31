@@ -9,8 +9,8 @@
             "x": 742.0,
             "y": 1780.0
         },
-        "scene": "Room2",
-        "total_play_time": 241.3150634765625
+        "scene": "Room2/Room2",
+        "total_play_time": 144.6559600830078
     },
     "player": {
         "can_dash": false,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 0,
-        "money": 12
+        "money": 6
     },
     "skill_tree": {
         "unlocked_nodes": []

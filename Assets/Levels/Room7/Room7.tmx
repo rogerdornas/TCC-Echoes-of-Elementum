@@ -4,7 +4,12 @@
   <export target="Room7.json" format="json"/>
  </editorsettings>
  <properties>
-  <property name="DecorationsPath" value="Sprites/BrownCave/BrownCaveDecorations"/>
+  <property name="BackgroundLayers" value="DarkForest/4.png,DarkForest/3.png,DarkForest/2.png,DarkForest/1.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff735951"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
  </properties>
  <tileset firstgid="1" source="../../Sprites/BrownCave/BrownCaveDecorations.tsx"/>
  <tileset firstgid="102" source="../../Sprites/BrownCavePlants2/BrownCavePlants.tsx"/>
@@ -398,7 +403,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room4"/>
+    <property name="Scene" value="Room4/Room4"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>

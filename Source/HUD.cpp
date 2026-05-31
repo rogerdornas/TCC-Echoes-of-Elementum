@@ -449,7 +449,7 @@ void HUD::RebuildTutorialLayout() {
 
     // Calcula a posição inicial (X) e a altura (Y)
     float startX = (mGame->GetRenderer()->GetVirtualWidth() - totalWidth) / 2.0f;
-    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.85f;
+    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.9f;
 
     float currentX = startX;
     for (auto* elem : layoutElements) {

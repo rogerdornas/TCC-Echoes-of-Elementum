@@ -24,16 +24,13 @@ public:
     void CaptureFromGame();
 
 private:
-    std::string GameSceneToString(Game::GameScene scene);
-    Game::GameScene StringToGameScene(const std::string& str);
-
     std::string ElementalModeToString(Player::ElementalMode elementalMode);
     Player::ElementalMode StringToElementalMode(const std::string& str);
 
     std::unordered_map<std::string, bool> mWorldState;
 
     class Game* mGame;
-    Game::GameScene mGameScene;
+    std::string mGameScenePath;
     float mTotalPlayTime;
 
     float mMasterAudio;

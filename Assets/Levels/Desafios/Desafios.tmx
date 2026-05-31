@@ -3,6 +3,14 @@
  <editorsettings>
   <export target="Desafios.json" format="json"/>
  </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="Level2/7.png,Level2/6.png,Level2/5.png,Level2/4.png,Level2/3.png,Level2/2.png,Level2/1.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff2a304e"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
+ </properties>
  <tileset firstgid="1" source="../../Tilesets/Volcano/VolcanoTileSet.tsx"/>
  <layer id="1" name="Camada de Blocos 1" width="250" height="200">
   <data encoding="csv">
@@ -412,7 +420,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="3" name="Camera" visible="0">
+ <objectgroup id="3" name="Camera">
   <object id="17" x="640" y="1696" width="3424" height="1504">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -434,19 +442,19 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="4" name="Triggers" visible="0">
+ <objectgroup id="4" name="Triggers">
   <object id="15" x="4960" y="1696" width="160" height="1120">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Desafios"/>
+    <property name="Scene" value="Desafios/Desafios"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="5" name="LightningBarrier" visible="0"/>
- <objectgroup id="6" name="SpawnPoint" visible="0"/>
+ <objectgroup id="5" name="LightningBarrier"/>
+ <objectgroup id="6" name="SpawnPoint"/>
  <objectgroup id="7" name="Grounds">
   <object id="1" x="640" y="3200" width="3200" height="224"/>
   <object id="10" x="320" y="1600" width="320" height="1824"/>
@@ -454,10 +462,10 @@
   <object id="13" x="3520" y="1600" width="1600" height="96"/>
   <object id="14" x="3840" y="2816" width="1280" height="608"/>
  </objectgroup>
- <objectgroup id="8" name="Checkpoint" visible="0">
+ <objectgroup id="8" name="Checkpoint">
   <object id="16" name="Checkpoint" x="704" y="3008" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="9" name="Enemies" visible="0">
+ <objectgroup id="9" name="Enemies">
   <object id="5" name="LaserShooter" x="3832" y="3136" width="32" height="32">
    <properties>
     <property name="CastDuration" type="float" value="1"/>
@@ -486,9 +494,9 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Levers" visible="0"/>
- <objectgroup id="11" name="HookPoints" visible="0"/>
- <objectgroup id="2" name="Player" visible="0">
+ <objectgroup id="10" name="Levers"/>
+ <objectgroup id="11" name="HookPoints"/>
+ <objectgroup id="2" name="Player">
   <object id="2" x="1024" y="3168" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>

@@ -107,6 +107,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mGroundBehindPlayer(true)
     ,mUseGroundPadding(false)
     ,mUseGrassParticle(false)
+    ,mGroundParticleColor({58, 147, 89, 255})
     ,mTileSheet(nullptr)
     ,mDecorationsTileSheet(nullptr)
     ,mController(nullptr)
@@ -126,7 +127,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mSaveManager(nullptr)
     ,mPlayerDeathCounter(0)
     ,mCheckpointPosition(Vector2::Zero)
-    ,mCheckpointGameScene(GameScene::Prologue)
+    ,mCheckpointGameScenePath("Room2/Room2")
     ,mLavaRespawnPosition(Vector2::Zero)
     ,mHitByLava(false)
     ,mPlayerStartPositionId(0)
@@ -159,6 +160,8 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mFadeAlpha(0)
     ,mGameScene(GameScene::MainMenu)
     ,mNextScene(GameScene::MainMenu)
+    ,mCurrentLevelPath("MainMenu")
+    ,mNextLevelPath("MainMenu")
 {
 }
 
@@ -235,13 +238,13 @@ bool Game::Initialize()
 
     // Load Final cutscenes
     mGoodCutscenes = {"ShowLevel2", "ShowLevel3", "ShowLevel4"};
-    mGoodCutsceneScenes = {GameScene::Level2, GameScene::Level3, GameScene::Level4};
+    // mGoodCutsceneScenes = {GameScene::Level2, GameScene::Level3, GameScene::Level4};
     mEvilCutscenes = {};
     mCutsceneIndex = 0;
 
     mTicksCount = SDL_GetTicks();
 
-    SetGameScene(GameScene::MainMenu);
+    LoadNextLevel("MainMenu");
 
     mSkillTreeManager = new SkillTreeManager();
 
@@ -251,51 +254,18 @@ bool Game::Initialize()
     return true;
 }
 
-void Game::SetGameScene(Game::GameScene scene, float transitionTime) {
-    // Verifica se o gerenciador de cenas está pronto para uma nova transição
+void Game::LoadNextLevel(const std::string &levelPath, float transitionTime) {
     if (mSceneManagerState == SceneManagerState::None) {
-        // Verifica se a cena é válida
-        if (scene == GameScene::MainMenu ||
-            scene == GameScene::LevelTeste ||
-            scene == GameScene::Coliseu ||
-            scene == GameScene::Prologue ||
-            scene == GameScene::Level1 ||
-            scene == GameScene::Level2 ||
-            scene == GameScene::Level3 ||
-            scene == GameScene::Level4 ||
-            scene == GameScene::Level5 ||
-            scene == GameScene::Room0 ||
-            scene == GameScene::Room1 ||
-            scene == GameScene::Room2 ||
-            scene == GameScene::Room3 ||
-            scene == GameScene::Room4 ||
-            scene == GameScene::Room5 ||
-            scene == GameScene::Room6 ||
-            scene == GameScene::Room7 ||
-            scene == GameScene::Desafios ||
-            scene == GameScene::Cave ||
-            scene == GameScene::MirrorBoss)
-        {
-            mNextScene = scene;
-            mSceneManagerState = SceneManagerState::Entering;
-            mSceneManagerTimer = transitionTime;
+        mNextLevelPath = levelPath;
+        if (levelPath == "MainMenu") {
+            mNextScene = GameScene::MainMenu;
         }
         else {
-            SDL_Log("SetGameScene: Cena inválida passada como parâmetro.");
-            return;
+            mNextScene = GameScene::Gameplay;
         }
+        mSceneManagerState = SceneManagerState::Entering;
+        mSceneManagerTimer = transitionTime;
     }
-    else {
-        SDL_Log("SetGameScene: Já há uma transição de cena em andamento.");
-        return;
-    }
-}
-
-void Game::ResetGameScene(float transitionTime)
-{
-    mIsAccelerated = false;
-    mIsSlowMotion = false;
-    SetGameScene(mGameScene, transitionTime);
 }
 
 void Game::ChangeScene()
@@ -315,8 +285,11 @@ void Game::ChangeScene()
     mIsAccelerated = false;
 
     if (mGamePlayState != GamePlayState::Cutscene) {
+        if (mGameScene == GameScene::MainMenu) {
+            mAudio->StopSound(mMusicHandle);
+        }
         // mAudio->StopAllSounds();
-        mAudio->StopSound(mMusicHandle);
+        // mAudio->StopSound(mMusicHandle);
         mAudio->StopSound(mBossMusic);
     }
 
@@ -359,12 +332,8 @@ void Game::ChangeScene()
             new Money(this, Money::MoneyType::Large);
         }
 
-        // não carrega companheiro na última fase
-        if (mNextScene != GameScene::Level5) {
-            // auto* fairy = new Fairy(this);
-        }
         // carrega companheiro só no prólogo
-        if (mNextScene == GameScene::Prologue) {
+        if (mNextLevelPath == "0-Prologue/Prologue") {
             auto* fairy = new Fairy(this);
         }
 
@@ -421,505 +390,74 @@ void Game::ChangeScene()
         mCutsceneIndex = 0;
         mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Menu6.png");
 
+        std::string musicFile = "HollowKnight.wav";
+
         // Initialize main menu actors
         auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
         background->AddImage("../Assets/Sprites/Background/Menu6.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
         new MainMenu(this, "../Assets/Fonts/K2D-Bold.ttf", false);
 
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("HollowKnight.wav", true, SoundCategory::Music);
+        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing || mCurrentMusic != musicFile) {
+            mAudio->StopSound(mMusicHandle);
+            mMusicHandle = mAudio->PlaySound(musicFile.c_str(), true, SoundCategory::Music);
+            mCurrentMusic = musicFile;
         }
         mBossMusic.Reset();
     }
+    else if (mNextScene == GameScene::Gameplay) {
+        // Carrega o JSON da fase para extrair as propriedades ANTES de instanciar os objetos
+        std::ifstream file(levelsAssets + mNextLevelPath + ".json");
+        if (file.is_open()) {
+            nlohmann::json mapData;
+            file >> mapData;
 
-    else if (mNextScene == GameScene::LevelTeste) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
+            // Valores Padrão
+            mGroundBehindPlayer = true;
+            mUseGroundPadding = false;
+            mUseGrassParticle = false;
+            mGroundParticleColor = {58, 147, 89, 255};
+            mUseParallaxBackground = true;
+            std::string musicFile = "Greenpath.wav";
 
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
-        // mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
+            if (mapData.contains("properties")) {
+                for (const auto& prop : mapData["properties"]) {
+                    std::string propName = prop["name"];
 
-        LoadLevel(levelsAssets + "Forest/Forest.json");
+                    if (propName == "GroundBehindPlayer") mGroundBehindPlayer = prop["value"];
+                    else if (propName == "UseGroundPadding") mUseGroundPadding = prop["value"];
+                    else if (propName == "UseGrassParticle") mUseGrassParticle = prop["value"];
+                    else if (propName == "GroundParticleColor") mGroundParticleColor = HexToColor(prop["value"]);
+                    else if (propName == "Music") musicFile = prop["value"];
+                    else if (propName == "BackgroundLayers") {
+                        std::string bgPaths = prop["value"];
+                        std::stringstream ss(bgPaths);
+                        std::string item;
+                        while (std::getline(ss, item, ',')) {
+                            mBackgroundLayers.emplace_back(mRenderer->GetTexture("../Assets/Sprites/Background/" + item));
+                        }
+                    }
+                }
+            }
+
+            // Toca a música se for diferente da atual
+            if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing || mCurrentMusic != musicFile) {
+                mAudio->StopSound(mMusicHandle);
+                mMusicHandle = mAudio->PlaySound(musicFile.c_str(), true, SoundCategory::Music);
+                mCurrentMusic = musicFile;
+            }
+
+            LoadLevel(levelsAssets + mNextLevelPath + ".json", mapData, true);
+        }
 
         mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
                                            mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
         mBossMusic.Reset();
     }
-
-    else if (mNextScene == GameScene::Coliseu) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
-
-        // mUseParallaxBackground = false;
-        // mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Coliseu2.png");
-
-        LoadLevel(levelsAssets + "Coliseu/Coliseu.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    else if (mNextScene == GameScene::Prologue) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png"));
-
-        LoadLevel(levelsAssets + "0-Prologue/Prologue.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    else if (mNextScene == GameScene::Level1) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
-
-        LoadLevel(levelsAssets + "1-Musgo/Musgo.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    else if (mNextScene == GameScene::Level2) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
-
-        LoadLevel(levelsAssets + "2-Run/Run.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    else if (mNextScene == GameScene::Level3) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/1.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/2.png"));
-        // mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level3/5.png"));
-
-        LoadLevel(levelsAssets + "3-Swamp/Swamp.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    else if (mNextScene == GameScene::Level4) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/8.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/9.png"));
-
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/7.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/6.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/5.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/4.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/3.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/2.png"));
-        // mBackgroundLayers.emplace_back(LoadTexture(backgroundAssets + "Level4/1.png"));
-
-        LoadLevel(levelsAssets + "4-Pain/Pain.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    else if (mNextScene == GameScene::Level5) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/7.png"));
-
-        LoadLevel(levelsAssets + "5-FinalLevel/Level5.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room0) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
-
-        LoadLevel(levelsAssets + "Room0/Room0.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room1) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
-
-        LoadLevel(levelsAssets + "Room1/Room1.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room2) {
-        mGroundBehindPlayer = false;
-        mUseGroundPadding = true;
-        mUseGrassParticle = true;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-
-        LoadLevel(levelsAssets + "Room2/Room2.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room3) {
-        mGroundBehindPlayer = false;
-        mUseGroundPadding = true;
-        mUseGrassParticle = true;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-
-        LoadLevel(levelsAssets + "Room3/Room3.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room4) {
-        mGroundBehindPlayer = false;
-        mUseGroundPadding = true;
-        mUseGrassParticle = true;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-
-        LoadLevel(levelsAssets + "Room4/Room4.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room5) {
-        mGroundBehindPlayer = false;
-        mUseGroundPadding = true;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level4/1.png"));
-
-        LoadLevel(levelsAssets + "Room5/Room5.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room6) {
-        mGroundBehindPlayer = false;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-
-        LoadLevel(levelsAssets + "Room6/Room6.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Room7) {
-        mGroundBehindPlayer = false;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
-
-        LoadLevel(levelsAssets + "Room7/Room7.json", false);
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Desafios) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "Level2/1.png"));
-
-        LoadLevel(levelsAssets + "Desafios/Desafios.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::Cave) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "DarkForest/1.png"));
-
-        LoadLevel(levelsAssets + "Cave/Cave.json");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-    else if (mNextScene == GameScene::MirrorBoss) {
-        mGroundBehindPlayer = true;
-        mUseGroundPadding = false;
-        mUseGrassParticle = false;
-        mUseParallaxBackground = true;
-
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/1.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/2.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/3.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/4.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/5.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/6.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/7.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/8.png"));
-        mBackgroundLayers.emplace_back(mRenderer->GetTexture(backgroundAssets + "FreezeCave/9.png"));
-
-        LoadLevel(levelsAssets + "MirrorBoss/MirrorBoss.json");
-
-        mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Free-Nature-Backgrounds-Pixel-Art5.png");
-
-        mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
-                                           mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
-
-        mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
-
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing) {
-            mMusicHandle = mAudio->PlaySound("Greenpath.wav", true, SoundCategory::Music);
-        }
-        mBossMusic.Reset();
-    }
-
-    // Verifica as 2 primeiras mortes do player para tocar cutscene
-    // if (mPlayerDeathCounter < 3 && mPlayer) {
-    //     if (mPlayerDeathCounter < mPlayer->GetDeathCounter() && mGamePlayState == GamePlayState::Playing) {
-    //         mPlayerDeathCounter = mPlayer->GetDeathCounter();
-    //         if (mPlayerDeathCounter == 1) {
-    //             mCurrentCutscene = new Cutscene(this, "primeiraMortePlayer", "../Assets/Cutscenes/Cutscenes.json");
-    //             mCurrentCutscene->Start();
-    //             SetCurrentCutscene(mCurrentCutscene);
-    //             SetGamePlayState(Game::GamePlayState::Cutscene);
-    //         }
-    //         if (mPlayerDeathCounter == 2) {
-    //             mCurrentCutscene = new Cutscene(this, "segundaMortePlayer", "../Assets/Cutscenes/Cutscenes.json");
-    //             mCurrentCutscene->Start();
-    //             SetCurrentCutscene(mCurrentCutscene);
-    //             SetGamePlayState(Game::GamePlayState::Cutscene);
-    //         }
-    //     }
-    // }
 
     // Set new scene
     mGameScene = mNextScene;
+    mCurrentLevelPath = mNextLevelPath;
 }
 
 void Game::LoadLevelSelectMenu() {
@@ -942,7 +480,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Prologue, 0.5f);
+            LoadNextLevel("0-Prologue/Prologue", 0.5f);
         });
 
     name = "   1 - FLORESTA";
@@ -951,7 +489,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Level1, 0.5f);
+            LoadNextLevel("1-Musgo/Musgo", 0.5f);
         });
 
     name = "   2 - FOGO";
@@ -960,7 +498,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Level2, 0.5f);
+            LoadNextLevel("2-Run/Run", 0.5f);
         });
 
     name = "   3 - PÂNTANO";
@@ -969,7 +507,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Level3, 0.5f);
+            LoadNextLevel("3-Swamp/Swamp", 0.5f);
         });
 
     name = "   4 - NEVE";
@@ -978,16 +516,16 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Level4, 0.5f);
+            LoadNextLevel("4-Pain/Pain", 0.5f);
         });
 
-    name = "   5 - FINAL";
+    name = "   ROOM 4";
     mLevelSelectMenu->AddButton(name, buttonPos + Vector2(0, 12 * 35),
         buttonSize, buttonPointSize, UIButton::TextPos::AlignLeft,
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Level5, 0.5f);
+            LoadNextLevel("Room4/Room4", 0.5f);
         });
 
     name = "   TESTE";
@@ -996,7 +534,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::LevelTeste, 0.5f);
+            LoadNextLevel("Forest/Forest", 0.5f);
         });
 
     name = "   COLISEU";
@@ -1005,7 +543,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Coliseu, 0.5f);
+            LoadNextLevel("Coliseu/Coliseu", 0.5f);
         });
 
     name = "   ROOM 0";
@@ -1014,7 +552,7 @@ void Game::LoadLevelSelectMenu() {
         [this]()
         {
             mGoingToNextLevel = true;
-            SetGameScene(GameScene::Room0, 0.5f);
+            LoadNextLevel("Room0/Room0", 0.5f);
         });
 
     name = "VOLTAR";
@@ -1025,7 +563,7 @@ void Game::LoadLevelSelectMenu() {
 
 void Game::BackToMenu() {
     SaveGame();
-    SetGameScene(GameScene::MainMenu, 0.5f);
+    LoadNextLevel("MainMenu", 0.5f);
 }
 
 void Game::ResetPlayerAndSkillTree() {
@@ -1227,14 +765,7 @@ void Game::SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameContro
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
 
-void Game::LoadObjects(const std::string &fileName) {
-    std::ifstream file(fileName);
-    if (!file.is_open()) {
-        SDL_Log("Erro ao abrir o arquivo");
-        return;
-    }
-    nlohmann::json mapData;
-    file >> mapData;
+void Game::LoadObjects(const nlohmann::json& mapData) {
     for (const auto &layer: mapData["layers"]) {
         if (layer["name"] == "Grounds") {
             for (const auto &obj: layer["objects"]) {
@@ -1749,7 +1280,7 @@ void Game::LoadObjects(const std::string &fileName) {
                 trigger->SetFixedCameraPosition(Vector2(fixedCameraPositionX, fixedCameraPositionY));
                 trigger->SetLimitMinCameraPosition(limitMinCameraPosition);
                 trigger->SetLimitMaxCameraPosition(limitMaxCameraPosition);
-                trigger->SetScene(scene);
+                trigger->SetNextLevelPath(scene);
                 trigger->SetPlayerStartPositionId(playerStartPositionId);
                 trigger->SetWavesPath(wavePath);
                 trigger->SetWorldState(worldState);
@@ -2433,16 +1964,7 @@ void Game::LoadObjects(const std::string &fileName) {
     }
 }
 
-void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
-    // Abre arquivo json
-    std::ifstream file(fileName);
-    if (!file.is_open()) {
-        SDL_Log("Erro ao abrir o arquivo");
-        return;
-    }
-    nlohmann::json mapData;
-    file >> mapData;
-
+void Game::LoadLevel(const std::string &fileName, const nlohmann::json& mapData, bool hasTileSet) {
     // Extrai o diretório base do arquivo de mapa atual
     std::string baseDirectory = "";
     size_t lastSlashPos = fileName.find_last_of("/\\");
@@ -2491,6 +2013,11 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
         newDecorationsPath = baseDirectory + sourceNoExt + ".png";
         newDecorationsJson = baseDirectory + sourceNoExt + ".json";
         newDecorationsGidToName = baseDirectory + sourceNoExt + "GidToName.json";
+
+        // Normaliza a string
+        newDecorationsPath = std::filesystem::path(newDecorationsPath).lexically_normal().string();
+        newDecorationsJson = std::filesystem::path(newDecorationsJson).lexically_normal().string();
+        newDecorationsGidToName = std::filesystem::path(newDecorationsGidToName).lexically_normal().string();
     }
     // Fallback: Mantém a lógica de properties para compatibilidade com mapas antigos
     else if (mapData.contains("properties")) {
@@ -2500,6 +2027,11 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
                 newDecorationsPath = "../Assets/" + prop["value"].get<std::string>() + ".png";
                 newDecorationsJson = "../Assets/" + prop["value"].get<std::string>() + ".json";
                 newDecorationsGidToName = "../Assets/" + prop["value"].get<std::string>() + "GidToName.json";
+
+                // Normaliza a string
+                newDecorationsPath = std::filesystem::path(newDecorationsPath).lexically_normal().string();
+                newDecorationsJson = std::filesystem::path(newDecorationsJson).lexically_normal().string();
+                newDecorationsGidToName = std::filesystem::path(newDecorationsGidToName).lexically_normal().string();
             }
         }
     }
@@ -2556,12 +2088,15 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
 
         std::string newTileSheetTexturePath = baseDirectory + sourceNoExt + ".png";
 
+        // Normaliza a string (ex: "Assets/Levels/Room2/../../Tilesets/Mossy.png" vira "Assets/Tilesets/Mossy.png")
+        std::string normalizedNewTileSheetTexturePath = std::filesystem::path(newTileSheetTexturePath).lexically_normal().string();
+
         // Verifica se o Tileset mudou
-        if (newTileSheetTexturePath != mCurrentTileSheetPath)
+        if (normalizedNewTileSheetTexturePath != mCurrentTileSheetPath)
         {
             // Limpa os dados antigos, pois o mapa mudou
             mTileSheetData.clear();
-            mCurrentTileSheetPath = newTileSheetTexturePath;
+            mCurrentTileSheetPath = normalizedNewTileSheetTexturePath;
 
             mTileSheet = mRenderer->GetTexture(mCurrentTileSheetPath);
 
@@ -2648,13 +2183,12 @@ void Game::LoadLevel(const std::string &fileName, bool hasTileSet) {
             }
         }
     }
-    else if (!newDecorationsPath.empty())
-    {
+    else if (!newDecorationsPath.empty()) {
         mDecorationsTileSheet = mRenderer->GetTexture(mCurrentDecorationsPath);
     }
 
     // Cria objetos
-    LoadObjects(fileName);
+    LoadObjects(mapData);
 }
 
 const std::string& Game::GetDecorationNameFromGid(int gid) const {
@@ -2674,6 +2208,35 @@ bool Game::ShouldLoadObject(const std::string &condition) {
 
     bool value = mWorldState[flag];
     return negate ? !value : value;
+}
+
+SDL_Color Game::HexToColor(std::string hex) {
+    SDL_Color color = {58, 147, 89, 255};
+
+    // Remove o símbolo '#'
+    if (!hex.empty() && hex[0] == '#') {
+        hex.erase(0, 1);
+    }
+
+    uint32_t hexValue = std::stoul(hex, nullptr, 16);
+
+    // Extrai os canais dependendo do tamanho da string
+    if (hex.length() == 8) {
+        // Formato ARGB (ex: ff3a9359)
+        color.a = (hexValue >> 24) & 0xFF;
+        color.r = (hexValue >> 16) & 0xFF;
+        color.g = (hexValue >> 8)  & 0xFF;
+        color.b = hexValue         & 0xFF;
+    }
+    else if (hex.length() == 6) {
+        // Formato RGB padrão (ex: 3a9359)
+        color.r = (hexValue >> 16) & 0xFF;
+        color.g = (hexValue >> 8)  & 0xFF;
+        color.b = hexValue         & 0xFF;
+        color.a = 255;
+    }
+
+    return color;
 }
 
 void Game::RunLoop()
@@ -2753,7 +2316,7 @@ void Game::ProcessInput()
                         // if (!mShowMap &&
                         //     mGameScene != GameScene::MainMenu &&
                         //     mGamePlayState != GamePlayState::Cutscene)
-                        if (mGameScene != GameScene::MainMenu &&
+                        if (mCurrentLevelPath != "MainMenu" &&
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
@@ -2768,7 +2331,7 @@ void Game::ProcessInput()
                                 mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
                             }
                         }
-                        else if (mGameScene == GameScene::MainMenu) {
+                        else if (mCurrentLevelPath == "MainMenu") {
                             for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
                                 if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
                                     (*iter)->Close();
@@ -2862,7 +2425,7 @@ void Game::ProcessInput()
                         // if (!mShowMap &&
                         //     mGameScene != GameScene::MainMenu &&
                         //     mGamePlayState != GamePlayState::Cutscene)
-                        if (mGameScene != GameScene::MainMenu &&
+                        if (mCurrentLevelPath != "MainMenu" &&
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
@@ -2879,7 +2442,7 @@ void Game::ProcessInput()
                     // Apertar B para sair dos menus
                     if (event.cbutton.button == SDL_CONTROLLER_BUTTON_B) {
                         if (!mShowMap &&
-                            mGameScene != GameScene::MainMenu &&
+                            mCurrentLevelPath != "MainMenu" &&
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
@@ -2891,7 +2454,7 @@ void Game::ProcessInput()
                                 }
                             }
                         }
-                        else if (mGameScene == GameScene::MainMenu) {
+                        else if (mCurrentLevelPath == "MainMenu") {
                             for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
                                 if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
                                     (*iter)->Close();
@@ -3161,7 +2724,7 @@ void Game::ProcessInput()
 }
 
 void Game::TogglePause() {
-    if (mGameScene != GameScene::MainMenu &&
+    if (mCurrentLevelPath != "MainMenu" &&
         mGamePlayState != GamePlayState::Cutscene)
     {
         mIsPaused = !mIsPaused;
@@ -3391,7 +2954,7 @@ void Game::UpdateGame()
     }
 
     if (mBackToCheckpoint) {
-        SetGameScene(mCheckpointGameScene, 1.5f);
+        LoadNextLevel(mCheckpointGameScenePath, 1.5f);
         mPlayer->ResetHealthPoints();
         mPlayer->ResetMana();
         mPlayer->ResetHealCount();
@@ -3730,7 +3293,7 @@ void Game::PlayFinalGoodCutscene() {
         mGamePlayState = GamePlayState::Cutscene;
         if (mCurrentCutscene == nullptr) {
             if (mGameScene != mGoodCutsceneScenes[mCutsceneIndex]) {
-                SetGameScene(mGoodCutsceneScenes[mCutsceneIndex], 1.5f);
+                // SetGameScene(mGoodCutsceneScenes[mCutsceneIndex], 1.5f);
             }
             else {
                 mCurrentCutscene = new Cutscene(this, mGoodCutscenes[mCutsceneIndex], "../Assets/Cutscenes/Cutscenes.json");
@@ -3740,7 +3303,7 @@ void Game::PlayFinalGoodCutscene() {
     }
     else {
         if (mCurrentCutscene == nullptr) {
-            SetGameScene(GameScene::MainMenu, 1.5f);
+            // SetGameScene(GameScene::MainMenu, 1.5f);
             // mGoingToNextLevel = true;
             mIsPlayingFinalCutscene = false;
         }
@@ -4095,7 +3658,8 @@ void Game::UnloadScene()
     }
 
     // Limpa todas as texturas, exceto as que estão na lista
-    mRenderer->UnloadUnusedTextures(texturesToKeep);
+    // mRenderer->UnloadUnusedTextures(texturesToKeep);
+    // mRenderer->PrintUsedTextures();
 
     mRenderer->ClearLights();
 

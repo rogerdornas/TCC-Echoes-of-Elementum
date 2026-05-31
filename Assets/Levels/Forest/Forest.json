@@ -3050,7 +3050,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3859,7 +3859,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -6823,8 +6823,39 @@
                  "y":18816
                 }],
          "opacity":1,
+         "properties":[
+                {
+                 "name":"BackgroundLayers",
+                 "type":"string",
+                 "value":"Level3\/1.png,Level3\/2.png,Level3\/3.png,Level3\/4.png,Level3\/5.png"
+                }, 
+                {
+                 "name":"GroundBehindPlayer",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"GroundParticleColor",
+                 "type":"color",
+                 "value":"#ff3a9359"
+                }, 
+                {
+                 "name":"Music",
+                 "type":"string",
+                 "value":"Greenpath.wav"
+                }, 
+                {
+                 "name":"UseGrassParticle",
+                 "type":"bool",
+                 "value":true
+                }, 
+                {
+                 "name":"UseGroundPadding",
+                 "type":"bool",
+                 "value":false
+                }],
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -6869,7 +6900,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7070,7 +7101,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7619,7 +7650,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7737,7 +7768,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -7748,7 +7779,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8049,7 +8080,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -8379,7 +8410,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],

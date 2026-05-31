@@ -6,18 +6,18 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 7920.0,
-            "y": 4256.0
+            "x": 742.0,
+            "y": 1780.0
         },
-        "scene": "Level1",
-        "total_play_time": 957.9857788085938
+        "scene": "Room2/Room2",
+        "total_play_time": 0.0
     },
     "player": {
         "can_dash": false,
         "can_hook": false,
         "can_wallslide": false,
         "death_counter": 0,
-        "elemental_mode": "Fire",
+        "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,39 +25,10 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 0,
-        "money": 374
+        "money": 0
     },
     "skill_tree": {
-        "unlocked_nodes": [
-            "earth_test_2",
-            "sword_range_lightning",
-            "earth_test_1",
-            "lightning_spear_chain_shock",
-            "fire_wisp",
-            "fire_wisp_attack",
-            "glide",
-            "frenzy_mode",
-            "sword_damage_fire",
-            "lightning_spear",
-            "ground_slam",
-            "mana_max_fire",
-            "lightning_spear_damage",
-            "frenzy_mode_duration",
-            "earth_test_3",
-            "freeze_duration",
-            "freeze",
-            "fire_ball",
-            "fire_ball_damage_2",
-            "fire_ball_damage_3",
-            "lightning_dash_damage",
-            "create_pillar",
-            "fire_ball_damage_1"
-        ]
+        "unlocked_nodes": []
     },
-    "world_state": {
-        "GolemDefeated": false,
-        "Level1ArenaDone": true,
-        "Level1Puzzle1Done": false,
-        "Level2Lever2Activated": false
-    }
+    "world_state": {}
 }
