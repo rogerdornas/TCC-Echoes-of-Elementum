@@ -2572,6 +2572,15 @@ void Player::OpenElementalMenu() {
         mRadialMenu->AddRadialOption("", [this]() { SetElementalMode(ElementalMode::Ice); });
 
         mRadialMenu->SetSelectedOption(static_cast<int>(mElementalMode));
+
+        SDL_Window* window = mGame->GetWindow();
+        if (window) {
+            int width, height;
+            SDL_GetWindowSize(window, &width, &height);
+
+            // Teleporta o cursor para o centro da tela
+            SDL_WarpMouseInWindow(window, width / 2, height / 2);
+        }
     }
 }
 

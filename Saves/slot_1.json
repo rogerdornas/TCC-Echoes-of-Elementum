@@ -10,14 +10,14 @@
             "y": 2866.181884765625
         },
         "scene": "Forest4/Forest4",
-        "total_play_time": 262518.53125
+        "total_play_time": 262518.8125
     },
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
         "death_counter": 906,
-        "elemental_mode": "Lightning",
+        "elemental_mode": "Earth",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
