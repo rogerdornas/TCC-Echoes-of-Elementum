@@ -113,6 +113,7 @@ HUD::HUD(class Game* game, const std::string& fontName)
     mTutorialTemplate = "";
     mTutorialNeedsRebuild = false;
     mLastInputMode = mGame->GetInputPlayerMode();
+    mLastController = mGame->GetInputController();
 
     mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
 
@@ -276,10 +277,12 @@ void HUD::Update(float deltaTime) {
     // Lógica de Atualização do Tutorial
     if (mTutorialState != TutorialState::Hidden) {
         Game::InputPlayerMode currentMode = mGame->GetInputPlayerMode();
+        Game::InputController currentController = mGame->GetInputController();
 
-        // Reconstrói as imagens se o player trocou de controle para teclado, ou se for um tutorial novo
-        if (mLastInputMode != currentMode || mTutorialNeedsRebuild) {
+        // Reconstrói as imagens se o player trocou de controle para teclado, se trocou de controles, ou se for um tutorial novo
+        if (mLastInputMode != currentMode || mLastController != currentController || mTutorialNeedsRebuild) {
             mLastInputMode = currentMode;
+            mLastController = currentController;
             RebuildTutorialLayout();
             mTutorialNeedsRebuild = false;
         }
@@ -351,9 +354,9 @@ void HUD::IncreaseHPBar() {
 }
 
 void HUD::IncreaseManaBar() {
-    mManaBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
-    mManaUsedBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
-    mManaRemainingBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5;
+    mManaBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5f;
+    mManaUsedBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5f;
+    mManaRemainingBar.w = mGame->GetPlayer()->GetMaxMana() * 2.5f;
     mNumOfSubManaBars = mGame->GetPlayer()->GetMaxMana() / 30.0f;
 }
 

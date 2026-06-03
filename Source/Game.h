@@ -262,13 +262,13 @@ public:
     int mCutsceneIndex;
 
     void SetCheckPointPosition(Vector2 pos) { mCheckpointPosition = pos; }
-    Vector2 GetCheckPointPosition() { return mCheckpointPosition; }
+    Vector2 GetCheckPointPosition() const { return mCheckpointPosition; }
     void SetCheckpointGameScenePath(std::string scene) { mCheckpointGameScenePath = scene; }
     std::string GetCheckpointGameScenePath() const { return mCheckpointGameScenePath; }
     void SetCheckPointMoney(int money) { mCheckPointMoney = money; }
     int GetCheckPointMoney() const { return mCheckPointMoney; }
     void SetGoingToNextLevel() { mGoingToNextLevel = true; }
-    bool GetGoingToNextLevel() { return mGoingToNextLevel; }
+    bool GetGoingToNextLevel() const { return mGoingToNextLevel; }
     void SetCurrentCutscene(Cutscene* cutscene) { mCurrentCutscene = cutscene; }
     void SetHitByLava() { mHitByLava = true; }
     void SetLavaRespawnPosition(Vector2 lavaRespawnPosition) { mLavaRespawnPosition = lavaRespawnPosition; }
@@ -370,7 +370,8 @@ private:
     std::vector<class HookPoint*> mHookPoints;
     std::vector<class LaserShooter*> mLaserShooters;
     std::vector<class Enemy*> mEnemies;
-    SDL_GameController *mController;
+    std::map<SDL_JoystickID, SDL_GameController*> mControllers;
+    SDL_GameController* mCurrentController;
 
     class HUD *mHUD;
     std::vector<class Checkpoint*> mCheckPoints;

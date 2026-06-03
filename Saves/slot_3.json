@@ -10,7 +10,7 @@
             "y": 1780.0
         },
         "scene": "Room2/Room2",
-        "total_play_time": 93.05846405029297
+        "total_play_time": 177.67904663085938
     },
     "player": {
         "can_dash": false,
@@ -25,10 +25,13 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 0,
-        "money": 18
+        "money": 36
     },
     "skill_tree": {
         "unlocked_nodes": []
     },
-    "world_state": {}
+    "world_state": {
+        "Forest4LeverActivated": true,
+        "Forest6PuzzleDone": false
+    }
 }

@@ -59,6 +59,7 @@ private:
 
     std::string mTutorialTemplate;
     Game::InputPlayerMode mLastInputMode;
+    Game::InputController mLastController;
     bool mTutorialNeedsRebuild;
 
     void RebuildTutorialLayout();

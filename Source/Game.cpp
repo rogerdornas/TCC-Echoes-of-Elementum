@@ -111,7 +111,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mGroundParticleColor({58, 147, 89, 255})
     ,mTileSheet(nullptr)
     ,mDecorationsTileSheet(nullptr)
-    ,mController(nullptr)
+    ,mCurrentController(nullptr)
     ,mHitstopActive(false)
     ,mHitstopDuration(0.15f)
     ,mHitstopTimer(0.0f)
@@ -215,17 +215,6 @@ bool Game::Initialize()
 
     mLogicalWindowWidth = mRenderer->GetVirtualWidth();
     mLogicalWindowHeight = mRenderer->GetVirtualHeight();
-
-    // Inicializa controle
-    for (int i = 0; i < SDL_NumJoysticks(); ++i)
-    {
-        if (SDL_IsGameController(i))
-        {
-            mController = SDL_GameControllerOpen(i);
-            if (mController)
-                break;
-        }
-    }
 
     LoadBindingsFromFile("../Assets/InputBindings/InputBindings.json");
 
@@ -760,11 +749,28 @@ std::string Game::GetIconStringForAction(Action action, bool forceKeyboard, bool
                 case SDL_SCANCODE_SPACE:        return Icons::KeySpace;
                 case SDL_SCANCODE_TAB:          return Icons::KeyTab;
                 case SDL_SCANCODE_LGUI:         return Icons::KeyWindows;
+                case SDL_SCANCODE_RALT:         return Icons::KeyAlt;
+                case SDL_SCANCODE_RCTRL:        return Icons::KeyCtrl;
+                case SDL_SCANCODE_RSHIFT:       return Icons::KeyShift;
+                case SDL_SCANCODE_KP_MINUS:     return "-";
+                case SDL_SCANCODE_KP_PLUS:      return "+";
+                case SDL_SCANCODE_KP_MULTIPLY:  return "*";
+                case SDL_SCANCODE_KP_DIVIDE:    return "/";
+                case SDL_SCANCODE_KP_PERIOD:    return ".";
+                case SDL_SCANCODE_KP_0:         return "0";
+                case SDL_SCANCODE_KP_1:         return "1";
+                case SDL_SCANCODE_KP_2:         return "2";
+                case SDL_SCANCODE_KP_3:         return "3";
+                case SDL_SCANCODE_KP_4:         return "4";
+                case SDL_SCANCODE_KP_5:         return "5";
+                case SDL_SCANCODE_KP_6:         return "6";
+                case SDL_SCANCODE_KP_7:         return "7";
+                case SDL_SCANCODE_KP_8:         return "8";
+                case SDL_SCANCODE_KP_9:         return "9";
 
-                // Fallback Inteligente para Letras (A-Z) e Números (0-9)
+                // Fallback Inteligente para teclado
                 default: {
                     std::string keyName = SDL_GetScancodeName(binding.key);
-
                     return keyName;
                 }
             }
@@ -2519,7 +2525,14 @@ void Game::ProcessInput()
                 }
                 break;
 
-            case SDL_CONTROLLERBUTTONDOWN:
+            case SDL_CONTROLLERBUTTONDOWN: {
+                SDL_JoystickID instanceID = event.cbutton.which;
+                if (mControllers.find(instanceID) != mControllers.end()) {
+                    if (mCurrentController != mControllers[instanceID]) {
+                        mCurrentController = mControllers[instanceID];
+                        DetectTControllerType();
+                    }
+                }
                 if (mWaitingForButton) {
                     auto button = event.cbutton.button;
                     if (!(button == SDL_CONTROLLER_BUTTON_A ||
@@ -2608,6 +2621,7 @@ void Game::ProcessInput()
                     }
                 }
                 break;
+            }
 
             case SDL_CONTROLLERBUTTONUP:
                 if (!mUIStack.empty()) {
@@ -2615,7 +2629,16 @@ void Game::ProcessInput()
                 }
                 break;
 
-            case SDL_CONTROLLERAXISMOTION:
+            case SDL_CONTROLLERAXISMOTION: {
+                if (Math::Abs(event.caxis.value) > DEAD_ZONE) {
+                    SDL_JoystickID instanceID = event.caxis.which;
+                    if (mControllers.find(instanceID) != mControllers.end()) {
+                        if (mCurrentController != mControllers[instanceID]) {
+                            mCurrentController = mControllers[instanceID];
+                            DetectTControllerType();
+                        }
+                    }
+                }
                 if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTX) {
                     mRawRightAxisX = event.caxis.value;
                 }
@@ -2753,6 +2776,7 @@ void Game::ProcessInput()
                     }
                 }
                 break;
+            }
 
             case SDL_MOUSEBUTTONDOWN:
                 if (mWaitingForKey) {
@@ -2776,13 +2800,13 @@ void Game::ProcessInput()
 
                     // Handle mouse for UI screens
                     if (!mUIStack.empty()) {
-                        // 1. Obter coordenadas da tela (física)
+                        // Obter coordenadas da tela (física)
                         Vector2 screenPos(static_cast<float>(event.button.x), static_cast<float>(event.button.y));
 
-                        // 2. Converter para coordenadas virtuais
+                        // Converter para coordenadas virtuais
                         Vector2 virtualPos = mRenderer->ScreenToVirtual(screenPos);
 
-                        // 3. Passar as coordenadas limpas para a UI
+                        // Passar as coordenadas limpas para a UI
                         mUIStack.back()->HandleMousePress(virtualPos);
                     }
                 }
@@ -2809,33 +2833,50 @@ void Game::ProcessInput()
 
                 // Handle mouse for UI screens
                 if (!mUIStack.empty()) {
-                    // 1. Obter coordenadas da tela (física)
+                    // Obter coordenadas da tela (física)
                     Vector2 screenPos(static_cast<float>(event.motion.x), static_cast<float>(event.motion.y));
 
-                    // 2. Converter para coordenadas virtuais
+                    // Converter para coordenadas virtuais
                     Vector2 virtualPos = mRenderer->ScreenToVirtual(screenPos);
 
-                    // 3. Passar as coordenadas limpas para a UI
+                    // Passar as coordenadas limpas para a UI
                     mUIStack.back()->HandleMouseMotion(virtualPos);
                 }
                 break;
 
-            case SDL_CONTROLLERDEVICEADDED:
-                mController = SDL_GameControllerOpen(event.cdevice.which);
-                if (mController) {
+            case SDL_CONTROLLERDEVICEADDED: {
+                SDL_GameController* newCtrl = SDL_GameControllerOpen(event.cdevice.which);
+                if (newCtrl) {
+                    SDL_JoystickID id = SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(newCtrl));
+                    mControllers[id] = newCtrl;
+
+                    if (!mCurrentController) {
+                        mCurrentController = newCtrl;
+                    }
                     DetectTControllerType();
                 }
                 break;
+            }
 
-            case SDL_CONTROLLERDEVICEREMOVED:
-                if (mController) {
-                    if (SDL_JoystickInstanceID(SDL_GameControllerGetJoystick(mController)) == event.cdevice.which) {
-                        SDL_GameControllerClose(mController);
-                        mController = nullptr;
-                        // SDL_Log("Controle removido!");
+            case SDL_CONTROLLERDEVICEREMOVED: {
+                SDL_JoystickID id = event.cdevice.which;
+                auto it = mControllers.find(id);
+
+                if (it != mControllers.end()) {
+                    if (mCurrentController == it->second) {
+                        mCurrentController = nullptr;
+                    }
+
+                    SDL_GameControllerClose(it->second);
+                    mControllers.erase(it);
+
+                    if (!mCurrentController && !mControllers.empty()) {
+                        mCurrentController = mControllers.begin()->second;
+                        DetectTControllerType();
                     }
                 }
                 break;
+            }
 
             default:
                 break;
@@ -2850,7 +2891,7 @@ void Game::ProcessInput()
             if (mHitstopActive) {}
             else {
                 for (auto actor: mActors) {
-                    actor->ProcessInput(state, *mController);
+                    actor->ProcessInput(state, *mCurrentController);
                 }
             }
         }
@@ -3421,7 +3462,7 @@ bool Game::GetWorldFlag(const std::string &key) const {
 
 void Game::DetectTControllerType() {
     // Retorna o tipo de controle mapeado pelo SDL
-    SDL_GameControllerType tipo = SDL_GameControllerGetType(mController);
+    SDL_GameControllerType tipo = SDL_GameControllerGetType(mCurrentController);
 
     switch (tipo) {
         case SDL_CONTROLLER_TYPE_XBOX360:
@@ -3849,9 +3890,14 @@ void Game::Shutdown()
         delete font.second;
     }
 
-    if (mController) {
-        SDL_GameControllerClose(mController);
+    for (auto& pair : mControllers) {
+        if (pair.second) {
+            SDL_GameControllerClose(pair.second);
+        }
     }
+
+    mControllers.clear();
+    mCurrentController = nullptr;
 
     mFonts.clear();
 
