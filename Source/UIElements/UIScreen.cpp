@@ -238,8 +238,6 @@ void UIScreen::HandleMouseMotion(const Vector2& virtualMousePos)
             mButtons[i]->SetHighlighted(static_cast<int>(i) == index);
         }
     }
-    // Nota: você pode querer um 'else' aqui para desmarcar
-    // se o mouse sair de todos os botões (index == -1)
 }
 
 void UIScreen::Close()
@@ -301,124 +299,69 @@ UISkillNodeButton* UIScreen::AddSkillNodeButton(const std::string& skillId, UISk
     return nodeBtn;
 }
 
-// Retorna true se há interseção no eixo perpendicular
-bool IntersectsY(UIButton* a, UIButton* b) {
-    float topA = a->GetPosition().y;
-    float bottomA = topA + a->GetSize().y;
-    float topB = b->GetPosition().y;
-    float bottomB = topB + b->GetSize().y;
-    return !(bottomA <= topB || bottomB <= topA);
-}
-
-bool IntersectsX(UIButton* a, UIButton* b) {
-    float leftA = a->GetPosition().x;
-    float rightA = leftA + a->GetSize().x;
-    float leftB = b->GetPosition().x;
-    float rightB = leftB + b->GetSize().x;
-    return !(rightA <= leftB || rightB <= leftA);
-}
-
 UIButton* UIScreen::FindNeighbor(UIButton *current, const Vector2 &dir) {
     UIButton* best = nullptr;
-    float bestDist = FLT_MAX;
+    float bestScore = FLT_MAX;
 
-    // ---- 1) Preferência: botões que intersectam no eixo perpendicular ----
+    Vector2 currentCenter = current->GetPosition() + (current->GetSize() * 0.5f);
+
     for (UIButton* b : mButtons) {
-        if (b == current) continue;
-
-        Vector2 delta = b->GetPosition() - current->GetPosition();
-
-        // Só considera se está na direção certa
-        if ((dir.x > 0 && delta.x <= 0) || (dir.x < 0 && delta.x >= 0) ||
-            (dir.y > 0 && delta.y <= 0) || (dir.y < 0 && delta.y >= 0))
-        {
+        if (b == current) {
             continue;
         }
 
-        bool intersects;
-        if (dir.x != 0) {
-            intersects = IntersectsY(current, b);
-        }
-        else {
-            intersects = IntersectsX(current, b);
-        }
+        Vector2 bCenter = b->GetPosition() + (b->GetSize() * 0.5f);
+        Vector2 delta = bCenter - currentCenter;
 
-        if (!intersects) continue;
+        // Produto escalar para verificar se o botão está na direção do input
+        float dotProduct = (delta.x * dir.x) + (delta.y * dir.y);
 
-        float dist = delta.LengthSq();
-        if (dist < bestDist) {
-            bestDist = dist;
+        // Se o dotProduct for <= 0, o botão está atrás ou exatamente perpendicular. Ignoramos.
+        if (dotProduct <= 0) continue;
+
+        // Distância primária (o quanto andamos na direção do input)
+        float primaryDist = dotProduct;
+
+        // Distância secundária (o quanto nos desviamos perpendicularmente do input)
+        float perpDist = std::abs((delta.x * dir.y) - (delta.y * dir.x));
+
+        // Heurística de Pontuação:
+        // Penalizamos fortemente a distância perpendicular para preferir botões alinhados.
+        // O multiplicador 3.0f dita a rigidez do "cone de visão".
+        float score = primaryDist + (perpDist * 3.0f);
+
+        if (score < bestScore) {
+            bestScore = score;
             best = b;
         }
     }
 
-    // ---- 2) Se não achou nenhum alinhado, pega o mais próximo "livre" na direção ----
+    // Lógica de Wrap
     if (!best) {
-        bestDist = FLT_MAX;
+        float worstScore = -FLT_MAX;
+
         for (UIButton* b : mButtons) {
             if (b == current) continue;
 
-            Vector2 delta = b->GetPosition() - current->GetPosition();
+            Vector2 bCenter = b->GetPosition() + (b->GetSize() * 0.5f);
+            Vector2 delta = bCenter - currentCenter;
 
-            if ((dir.x > 0 && delta.x <= 0) || (dir.x < 0 && delta.x >= 0) ||
-                (dir.y > 0 && delta.y <= 0) || (dir.y < 0 && delta.y >= 0))
-            {
+            float dotProduct = (delta.x * dir.x) + (delta.y * dir.y);
+
+            // Só consideramos botões que estão para TRÁS
+            if (dotProduct >= 0) {
                 continue;
             }
 
-            float dist = delta.LengthSq();
-            if (dist < bestDist) {
-                bestDist = dist;
-                best = b;
-            }
-        }
-    }
+            float perpDist = std::abs((delta.x * dir.y) - (delta.y * dir.x));
 
-    // ---- 3) Se ainda não achou, aplica wrap no mesmo eixo ----
-    if (!best) {
-        if (dir.x != 0) {
-            // Procurar botão MAIS distante no eixo X
-            float extremeX = (dir.x > 0 ? -FLT_MAX : FLT_MAX);
-
-            for (UIButton* b : mButtons) {
-                if (b == current) continue;
-
-                if (!IntersectsY(current, b)) continue;
-
-                float x = b->GetPosition().x;
-                if (dir.x > 0) { // indo para direita → pega o menor X
-                    if (x < extremeX || extremeX == -FLT_MAX) {
-                        extremeX = x;
-                        best = b;
-                    }
-                } else { // indo para esquerda → pega o maior X
-                    if (x > extremeX || extremeX == FLT_MAX) {
-                        extremeX = x;
-                        best = b;
-                    }
-                }
-            }
-        }
-        else if (dir.y != 0) {
-            // Procurar botão MAIS distante no eixo Y
-            float extremeY = (dir.y > 0 ? -FLT_MAX : FLT_MAX);
-
-            for (UIButton* b : mButtons) {
-                if (b == current) continue;
-
-                if (!IntersectsX(current, b)) continue;
-
-                float y = b->GetPosition().y;
-                if (dir.y > 0) { // indo para baixo → pega o menor Y
-                    if (y < extremeY || extremeY == -FLT_MAX) {
-                        extremeY = y;
-                        best = b;
-                    }
-                } else { // indo para cima → pega o maior Y
-                    if (y > extremeY || extremeY == FLT_MAX) {
-                        extremeY = y;
-                        best = b;
-                    }
+            // Exigimos que o botão esteja minimamente alinhado para o wrap funcionar
+            if (perpDist < current->GetSize().Length()) {
+                // Queremos a MAIOR distância para trás, minimizando o desalinhamento
+                float score = -dotProduct - (perpDist * 3.0f);
+                if (score > worstScore) {
+                    worstScore = score;
+                    best = b;
                 }
             }
         }
