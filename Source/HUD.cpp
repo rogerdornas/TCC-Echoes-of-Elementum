@@ -114,15 +114,18 @@ HUD::HUD(class Game* game, const std::string& fontName)
     mTutorialNeedsRebuild = false;
     mLastInputMode = mGame->GetInputPlayerMode();
 
+    mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
+
     for (int i = 0; i < MAX_TUTORIAL_PARTS; i++) {
         UIText* t = AddText("", Vector2::Zero, POINT_SIZE);
         t->SetIsVisible(false);
         mTutorialTexts.push_back(t);
 
-        // Inicia com um sprite qualquer
-        UIImage* img = AddImage("../Assets/Sprites/XboxButtons/A.png", Vector2::Zero, Vector2::Zero);
-        img->SetIsVisible(false);
-        mTutorialIcons.push_back(img);
+        UIText* iconTxt = new UIText("", mIconFont, POINT_SIZE + 10, 1024, Vector2::Zero, Color::White);
+        iconTxt->SetIsVisible(false);
+
+        mTexts.push_back(iconTxt);
+        mTutorialActionTexts.push_back(iconTxt);
     }
 }
 
@@ -298,12 +301,12 @@ void HUD::Update(float deltaTime) {
 
             // Esconde tudo no final do Fade Out
             for (auto* t : mTutorialTexts) t->SetIsVisible(false);
-            for (auto* i : mTutorialIcons) i->SetIsVisible(false);
+            for (auto* i : mTutorialActionTexts) i->SetIsVisible(false);
         }
     }
 
     for (auto* t : mTutorialTexts) t->SetAlpha(mTutorialAlpha);
-    for (auto* i : mTutorialIcons) i->SetAlpha(mTutorialAlpha);
+    for (auto* i : mTutorialActionTexts) i->SetAlpha(mTutorialAlpha);
 }
 
 void HUD::StartBossFight(class Enemy *boss) {
@@ -370,7 +373,7 @@ void HUD::HideTutorial() {
 
 void HUD::RebuildTutorialLayout() {
     for (auto* t : mTutorialTexts) t->SetIsVisible(false);
-    for (auto* i : mTutorialIcons) i->SetIsVisible(false);
+    for (auto* i : mTutorialActionTexts) i->SetIsVisible(false);
 
     if (mTutorialTemplate.empty()) return;
 
@@ -421,17 +424,12 @@ void HUD::RebuildTutorialLayout() {
         Game::Action action = mGame->StringToAction(actionStr);
 
         if (action != Game::Action::Invalid && activeIcons < MAX_TUTORIAL_PARTS) {
-            auto bindings = mGame->GetInputBinding();
-            Game::InputBinding binding = bindings[action];
-            auto inputMode = mGame->GetInputPlayerMode();
+            std::string iconString = mGame->GetIconStringForAction(action);
+            UIText* iconTxt = mTutorialActionTexts[activeIcons++];
+            iconTxt->SetText(iconString);
+            iconTxt->SetIsVisible(true);
 
-            std::string iconPath = GetButtonIconPath(binding, inputMode);
-
-            UIImage* icon = mTutorialIcons[activeIcons++];
-            icon->SetImage(iconPath);
-            icon->SetSize(Vector2(64.0f, 64.0f));
-            icon->SetIsVisible(true);
-            layoutElements.push_back(icon);
+            layoutElements.push_back(iconTxt);
         }
 
         pos = tagEnd + 1;
@@ -449,7 +447,7 @@ void HUD::RebuildTutorialLayout() {
 
     // Calcula a posição inicial (X) e a altura (Y)
     float startX = (mGame->GetRenderer()->GetVirtualWidth() - totalWidth) / 2.0f;
-    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.9f;
+    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.95f;
 
     float currentX = startX;
     for (auto* elem : layoutElements) {
@@ -458,46 +456,6 @@ void HUD::RebuildTutorialLayout() {
 
         currentX += elem->GetSize().x + padding;
     }
-}
-
-std::string HUD::GetButtonIconPath(const Game::InputBinding& binding, Game::InputPlayerMode mode) {
-    if (mode == Game::InputPlayerMode::Keyboard ||
-        mode == Game::InputPlayerMode::Mouse)
-    {
-        if (binding.key != SDL_SCANCODE_UNKNOWN) {
-            // Usa o nome da tecla da SDL
-            // Ex: "Space", "Return", "A"
-            std::string keyName = SDL_GetScancodeName(binding.key);
-            // return "../Assets/Sprites/UI/Keys/" + keyName + ".png";
-            return "../Assets/Sprites/XboxButtons/A.png";
-        }
-
-        switch(binding.mouseButton) {
-            case SDL_BUTTON_LEFT: return "../Assets/Sprites/XboxButtons/A.png";
-            case SDL_BUTTON_RIGHT: return "../Assets/Sprites/XboxButtons/A.png";
-            case SDL_BUTTON_MIDDLE: return "../Assets/Sprites/XboxButtons/A.png";
-            case SDL_BUTTON_X1: return "../Assets/Sprites/XboxButtons/A.png";
-            case SDL_BUTTON_X2: return "../Assets/Sprites/XboxButtons/A.png";
-            default: return "../Assets/Sprites/XboxButtons/A.png";
-        }
-    }
-    else if (mode == Game::InputPlayerMode::Controller) {
-        // Mapeamento padrão do controle (Estilo Xbox, mas você pode detectar PS4/PS5 no futuro)
-        switch(binding.btn) {
-            case SDL_CONTROLLER_BUTTON_A: return "../Assets/Sprites/XboxButtons/A.png";
-            case SDL_CONTROLLER_BUTTON_B: return "../Assets/Sprites/XboxButtons/B.png";
-            case SDL_CONTROLLER_BUTTON_X: return "../Assets/Sprites/XboxButtons/X.png";
-            case SDL_CONTROLLER_BUTTON_Y: return "../Assets/Sprites/XboxButtons/Y.png";
-            case SDL_CONTROLLER_BUTTON_LEFTSHOULDER: return "../Assets/Sprites/XboxButtons/LB.png";
-            case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return "../Assets/Sprites/XboxButtons/RB.png";
-        }
-
-        if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT) return "../Assets/Sprites/XboxButtons/LT.png";
-        if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) return "../Assets/Sprites/XboxButtons/RT.png";
-    }
-
-    // Fallback caso a tecla não seja encontrada
-    return "../Assets/Sprites/XboxButtons/A.png";
 }
 
 void HUD::Draw(Renderer *renderer) {

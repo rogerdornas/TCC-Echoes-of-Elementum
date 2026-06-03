@@ -13,9 +13,11 @@ public:
     RemapControllerMenu(class Game* game, const std::string& fontName, bool isClosable = true);
     void Draw(class Renderer *renderer) override;
     void Close() override;
+
 private:
-    std::string GetBindingText(Game::Action action) const;
     void RefreshTexts() override;
+
+    class UIFont* mIconFont;
 
     Vector2 mButtonSize;
     Vector2 mButtonPos;

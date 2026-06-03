@@ -1031,6 +1031,16 @@
                          "name":"MinWidth",
                          "type":"float",
                          "value":320
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":320
                         }],
                  "rotation":0,
                  "type":"",
@@ -1071,6 +1081,16 @@
                         }, 
                         {
                          "name":"MinWidth",
+                         "type":"float",
+                         "value":320
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
                          "type":"float",
                          "value":320
                         }],
@@ -1247,6 +1267,16 @@
                          "name":"MinWidth",
                          "type":"float",
                          "value":160
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":160
                         }],
                  "rotation":0,
                  "type":"",
@@ -1287,6 +1317,16 @@
                         }, 
                         {
                          "name":"MinWidth",
+                         "type":"float",
+                         "value":160
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
                          "type":"float",
                          "value":160
                         }],
@@ -1331,6 +1371,16 @@
                          "name":"MinWidth",
                          "type":"float",
                          "value":160
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":160
                         }],
                  "rotation":0,
                  "type":"",
@@ -1371,6 +1421,16 @@
                         }, 
                         {
                          "name":"MinWidth",
+                         "type":"float",
+                         "value":160
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
                          "type":"float",
                          "value":160
                         }],
@@ -1415,6 +1475,16 @@
                          "name":"MinWidth",
                          "type":"float",
                          "value":160
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":160
                         }],
                  "rotation":0,
                  "type":"",
@@ -1455,6 +1525,16 @@
                         }, 
                         {
                          "name":"MinWidth",
+                         "type":"float",
+                         "value":160
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
                          "type":"float",
                          "value":160
                         }],
@@ -1537,6 +1617,16 @@
                          "name":"Spike",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":192
                         }],
                  "rotation":0,
                  "type":"",
@@ -1584,6 +1674,16 @@
                          "name":"Spike",
                          "type":"bool",
                          "value":true
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":192
                         }],
                  "rotation":0,
                  "type":"",
@@ -2188,6 +2288,7 @@
         {
          "draworder":"topdown",
          "id":12,
+         "locked":true,
          "name":"Camera",
          "objects":[
                 {

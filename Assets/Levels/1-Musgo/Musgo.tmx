@@ -678,6 +678,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="320"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="320"/>
    </properties>
   </object>
   <object id="14" name="DynamicGround" x="7168" y="3584" width="320" height="1152">
@@ -688,6 +690,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="320"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="320"/>
    </properties>
   </object>
   <object id="15" x="4224" y="3072" width="4896" height="512"/>
@@ -710,6 +714,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="160"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="160"/>
    </properties>
   </object>
   <object id="59" name="DynamicGround" x="11264" y="3328" width="160" height="448">
@@ -720,6 +726,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="160"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="160"/>
    </properties>
   </object>
   <object id="60" name="DynamicGround" x="12576" y="3328" width="160" height="448">
@@ -730,6 +738,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="160"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="160"/>
    </properties>
   </object>
   <object id="61" name="DynamicGround" x="11264" y="2752" width="160" height="448">
@@ -740,6 +750,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="160"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="160"/>
    </properties>
   </object>
   <object id="62" name="DynamicGround" x="12576" y="2752" width="160" height="448">
@@ -750,6 +762,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="160"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="160"/>
    </properties>
   </object>
   <object id="63" name="DynamicGround" x="11264" y="2144" width="160" height="480">
@@ -760,6 +774,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="160"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="160"/>
    </properties>
   </object>
   <object id="72" x="10144" y="1472" width="480" height="2432"/>
@@ -774,6 +790,8 @@
     <property name="MinWidth" type="float" value="192"/>
     <property name="Oscillate" type="bool" value="true"/>
     <property name="Spike" type="bool" value="true"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="192"/>
    </properties>
   </object>
   <object id="81" name="DynamicGround" x="8384" y="4064" width="192" height="288">
@@ -785,6 +803,8 @@
     <property name="MinWidth" type="float" value="192"/>
     <property name="Oscillate" type="bool" value="true"/>
     <property name="Spike" type="bool" value="true"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="192"/>
    </properties>
   </object>
   <object id="86" x="14816" y="608" width="1568" height="1728"/>
@@ -877,7 +897,7 @@
   <object id="250" x="704" y="4160" width="896" height="1056"/>
   <object id="263" x="27680" y="2848" width="4384" height="3136"/>
  </objectgroup>
- <objectgroup id="12" name="Camera">
+ <objectgroup id="12" name="Camera" locked="1">
   <object id="223" x="1600" y="3584" width="3808" height="768">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>

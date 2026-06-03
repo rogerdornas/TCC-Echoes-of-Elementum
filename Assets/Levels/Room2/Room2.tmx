@@ -19,7 +19,7 @@
   <object id="9" x="128" y="384" width="4480" height="1792">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="4152"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="4144"/>
     <property name="LimitMaxCameraPositionY" type="float" value="2102"/>
     <property name="LimitMinCameraPositionX" type="float" value="384"/>
     <property name="LimitMinCameraPositionY" type="float" value="768"/>
@@ -32,14 +32,14 @@
    <properties>
     <property name="Event" value="ShowTutorial"/>
     <property name="Target" value="HUD"/>
-    <property name="TutorialText" value="PRESSIONE&lt;Jump&gt;PARA PULAR"/>
+    <property name="TutorialText" value="PRESSIONE &lt;Jump&gt; PARA PULAR"/>
    </properties>
   </object>
   <object id="11" x="2432" y="1024" width="512" height="640">
    <properties>
     <property name="Event" value="ShowTutorial"/>
     <property name="Target" value="HUD"/>
-    <property name="TutorialText" value="SEGURE&lt;Jump&gt;PARA PULAR MAIS ALTO"/>
+    <property name="TutorialText" value="SEGURE &lt;Jump&gt; PARA PULAR MAIS ALTO"/>
    </properties>
   </object>
   <object id="15" x="4224" y="896" width="128" height="384">
@@ -117,11 +117,11 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,
+0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
+0,8,9,5,16,16,16,16,16,16,16,16,16,16,16,17,0,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,
 0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,3,0,0,0,0,0,
 0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,9,9,10,0,0,0,0,0,

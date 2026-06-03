@@ -14,8 +14,8 @@
 DynamicGround::DynamicGround(Game* game, float width, float height, bool isSpike, bool isMoving,
                              float movingDuration, Vector2 velocity, bool groundBehindPlayer, bool usePadding)
     :Ground(game, width, height, isSpike, isMoving, movingDuration, velocity, groundBehindPlayer, usePadding)
-    ,mMaxWidth(width)
-    ,mMaxHeight(height)
+    ,mStartWidth(width)
+    ,mStartHeight(height)
     ,mGrowSpeed(Vector2::Zero)
     ,mIsGrowing(false)
     ,mIsDecreasing(false)
@@ -28,7 +28,7 @@ DynamicGround::DynamicGround(Game* game, float width, float height, bool isSpike
             drawOrder = 100;
         }
         else {
-            drawOrder = 1004;
+            drawOrder = 1005;
         }
         mDrawComponent->SetDrawOrder(drawOrder);
     }

@@ -211,6 +211,14 @@ public:
 		return *this;
 	}
 
+	// Vector *=
+	Vector2& operator*=(const Vector2& right)
+	{
+		x *= right.x;
+		y *= right.y;
+		return *this;
+	}
+
 	// Vector +=
 	Vector2& operator+=(const Vector2& right)
 	{

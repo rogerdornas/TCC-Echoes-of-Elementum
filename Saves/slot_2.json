@@ -6,18 +6,18 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 742.0,
-            "y": 1780.0
+            "x": 3458.784423828125,
+            "y": 2866.181884765625
         },
-        "scene": "Room2/Room2",
-        "total_play_time": 348.63519287109375
+        "scene": "Forest4/Forest4",
+        "total_play_time": 531.1024780273438
     },
     "player": {
         "can_dash": false,
         "can_hook": false,
         "can_wallslide": false,
         "death_counter": 0,
-        "elemental_mode": "Earth",
+        "elemental_mode": "Ice",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -25,10 +25,13 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 0,
-        "money": 30
+        "money": 56
     },
     "skill_tree": {
         "unlocked_nodes": []
     },
-    "world_state": {}
+    "world_state": {
+        "Forest4LeverActivated": true,
+        "Forest6PuzzleDone": true
+    }
 }

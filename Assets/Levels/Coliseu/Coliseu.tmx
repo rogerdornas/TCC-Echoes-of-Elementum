@@ -389,6 +389,8 @@
     <property name="GrowthDirection" type="int" value="0"/>
     <property name="MinHeight" type="float" value="0"/>
     <property name="MinWidth" type="float" value="480"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="480"/>
    </properties>
   </object>
   <object id="27" name="DynamicGround" x="2304" y="2752" width="224" height="64">

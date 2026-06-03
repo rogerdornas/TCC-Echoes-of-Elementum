@@ -14,8 +14,9 @@ public:
     void Draw(class Renderer *renderer) override;
 
 private:
-    std::string GetBindingText(Game::Action action) const;
     void RefreshTexts() override;
+
+    class UIFont* mIconFont;
 
     Vector2 mButtonSize;
     Vector2 mButtonPos;

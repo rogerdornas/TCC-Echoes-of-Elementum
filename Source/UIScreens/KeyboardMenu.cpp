@@ -3,6 +3,7 @@
 //
 
 #include "KeyboardMenu.h"
+#include "../UIElements/UIText.h"
 
 KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool isClosable)
     :UIScreen(game, fontName, isClosable)
@@ -14,202 +15,205 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
     background->SetAlpha(0.6f);
 
     mButtonSize = Vector2(615, 58);
-    mButtonPos = Vector2(321, 385);
-    mButtonPos2 = Vector2(1013, 385);
+    mButtonPos = Vector2(321, 380);
+    mButtonPos2 = Vector2(1013, 380);
     mButtonTextOffset = Vector2(10, 0);
-    mTextPos = Vector2(835, 413);
-    mTextPos2 = Vector2(1527, 413);
+    mTextPos = Vector2(835, 408);
+    mTextPos2 = Vector2(1527, 408);
+
+    mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
 
     auto* text = AddText("TECLADO", Vector2::Zero,  34);
     text->SetPosition(Vector2(960, 290));
 
     AddImage("../Assets/Sprites/Menus/titulo_sublinhado.png", Vector2(960, 322), Vector2(360, 30));
 
+    // Função Lambda auxiliar para criar o texto com a fonte de ícones e manter a ordem do vetor
+    auto AddIconText = [&](Game::Action action, Vector2 pos) {
+        UIText* iconTxt = new UIText(mGame->GetIconStringForAction(action, true, false), mIconFont, 54, 1024, pos, Color::White);
+        mTexts.push_back(iconTxt);
+    };
+
+    // COLUNA 1
     auto* button = AddButton("CIMA", mButtonPos + Vector2(0, mButtonSize.y * 0), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[1]->SetFont(mFont);
         GetTexts()[1]->SetText("...");
         GetTexts()[1]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 0);
         mGame->RebindKeyboard(GetTexts()[1], Game::Action::Up);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Up), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 0);
+    AddIconText(Game::Action::Up, mTextPos + Vector2(0, mButtonSize.y) * 0);
 
 
-    button = AddButton("BAIXO", mButtonPos + Vector2(0, mButtonSize.y * 1), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("ESQUERDA", mButtonPos + Vector2(0, mButtonSize.y * 1), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[2]->SetFont(mFont);
         GetTexts()[2]->SetText("...");
         GetTexts()[2]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 1);
-        mGame->RebindKeyboard(GetTexts()[2], Game::Action::Down);
+        mGame->RebindKeyboard(GetTexts()[2], Game::Action::MoveLeft);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Down), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 1);
+    AddIconText(Game::Action::MoveLeft, mTextPos + Vector2(0, mButtonSize.y) * 1);
 
 
-    button = AddButton("PULO", mButtonPos + Vector2(0, mButtonSize.y * 2), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("BAIXO", mButtonPos + Vector2(0, mButtonSize.y * 2), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[3]->SetFont(mFont);
         GetTexts()[3]->SetText("...");
         GetTexts()[3]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 2);
-        mGame->RebindKeyboard(GetTexts()[3], Game::Action::Jump);
+        mGame->RebindKeyboard(GetTexts()[3], Game::Action::Down);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Jump), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 2);
+    AddIconText(Game::Action::Down, mTextPos + Vector2(0, mButtonSize.y) * 2);
 
 
-    button = AddButton("ATAQUE", mButtonPos + Vector2(0, mButtonSize.y * 3), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("DIREITA", mButtonPos + Vector2(0, mButtonSize.y * 3), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[4]->SetFont(mFont);
         GetTexts()[4]->SetText("...");
         GetTexts()[4]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 3);
-        mGame->RebindKeyboard(GetTexts()[4], Game::Action::Attack);
+        mGame->RebindKeyboard(GetTexts()[4], Game::Action::MoveRight);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Attack), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 3);
+    AddIconText(Game::Action::MoveRight, mTextPos + Vector2(0, mButtonSize.y) * 3);
 
 
-    button = AddButton("AVANÇO", mButtonPos + Vector2(0, mButtonSize.y * 4), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("PULO", mButtonPos + Vector2(0, mButtonSize.y * 4), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[5]->SetFont(mFont);
         GetTexts()[5]->SetText("...");
         GetTexts()[5]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 4);
-        mGame->RebindKeyboard(GetTexts()[5], Game::Action::Dash);
+        mGame->RebindKeyboard(GetTexts()[5], Game::Action::Jump);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Dash), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 4);
+    AddIconText(Game::Action::Jump, mTextPos + Vector2(0, mButtonSize.y) * 4);
 
 
-    button = AddButton("HABILIDADE 1", mButtonPos + Vector2(0, mButtonSize.y * 5), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("ATAQUE", mButtonPos + Vector2(0, mButtonSize.y * 5), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[6]->SetFont(mFont);
         GetTexts()[6]->SetText("...");
         GetTexts()[6]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 5);
-        mGame->RebindKeyboard(GetTexts()[6], Game::Action::Skill1);
+        mGame->RebindKeyboard(GetTexts()[6], Game::Action::Attack);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Skill1), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 5);
+    AddIconText(Game::Action::Attack, mTextPos + Vector2(0, mButtonSize.y) * 5);
 
 
-    button = AddButton("HABILIDADE 2", mButtonPos + Vector2(0, mButtonSize.y * 6), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("CURA", mButtonPos + Vector2(0, mButtonSize.y * 6), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[7]->SetFont(mFont);
         GetTexts()[7]->SetText("...");
         GetTexts()[7]->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 6);
-        mGame->RebindKeyboard(GetTexts()[7], Game::Action::Skill2);
+        mGame->RebindKeyboard(GetTexts()[7], Game::Action::Heal);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Skill2), Vector2::Zero, 34);
-    text->SetPosition(mTextPos + Vector2(0, mButtonSize.y) * 6);
+    AddIconText(Game::Action::Heal, mTextPos + Vector2(0, mButtonSize.y) * 6);
 
 
-    button = AddButton("ESQUERDA", mButtonPos2 + Vector2(0, mButtonSize.y * 0), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    // COLUNA 2
+    button = AddButton("AVANÇO", mButtonPos2 + Vector2(0, mButtonSize.y * 0), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[8]->SetFont(mFont);
         GetTexts()[8]->SetText("...");
         GetTexts()[8]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 0);
-        mGame->RebindKeyboard(GetTexts()[8], Game::Action::MoveLeft);
+        mGame->RebindKeyboard(GetTexts()[8], Game::Action::Dash);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::MoveLeft), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 0);
+    AddIconText(Game::Action::Dash, mTextPos2 + Vector2(0, mButtonSize.y) * 0);
 
 
-    button = AddButton("DIREITA", mButtonPos2 + Vector2(0, mButtonSize.y * 1), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("GANCHO", mButtonPos2 + Vector2(0, mButtonSize.y * 1), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[9]->SetFont(mFont);
         GetTexts()[9]->SetText("...");
         GetTexts()[9]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 1);
-        mGame->RebindKeyboard(GetTexts()[9], Game::Action::MoveRight);
+        mGame->RebindKeyboard(GetTexts()[9], Game::Action::Hook);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::MoveRight), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 1);
+    AddIconText(Game::Action::Hook, mTextPos2 + Vector2(0, mButtonSize.y) * 1);
 
 
-    button = AddButton("CURA", mButtonPos2 + Vector2(0, mButtonSize.y * 2), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("HABILIDADE 1", mButtonPos2 + Vector2(0, mButtonSize.y * 2), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[10]->SetFont(mFont);
         GetTexts()[10]->SetText("...");
         GetTexts()[10]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 2);
-        mGame->RebindKeyboard(GetTexts()[10], Game::Action::Heal);
+        mGame->RebindKeyboard(GetTexts()[10], Game::Action::Skill1);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Heal), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 2);
+    AddIconText(Game::Action::Skill1, mTextPos2 + Vector2(0, mButtonSize.y) * 2);
 
 
-    button = AddButton("GANCHO", mButtonPos2 + Vector2(0, mButtonSize.y * 3), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("HABILIDADE 2", mButtonPos2 + Vector2(0, mButtonSize.y * 3), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[11]->SetFont(mFont);
         GetTexts()[11]->SetText("...");
         GetTexts()[11]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 3);
-        mGame->RebindKeyboard(GetTexts()[11], Game::Action::Hook);
+        mGame->RebindKeyboard(GetTexts()[11], Game::Action::Skill2);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Hook), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 3);
+    AddIconText(Game::Action::Skill2, mTextPos2 + Vector2(0, mButtonSize.y) * 3);
 
 
-    button = AddButton("ABRIR LOJA", mButtonPos2 + Vector2(0, mButtonSize.y * 4), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("MAPA", mButtonPos2 + Vector2(0, mButtonSize.y * 4), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[12]->SetFont(mFont);
         GetTexts()[12]->SetText("...");
         GetTexts()[12]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 4);
-        mGame->RebindKeyboard(GetTexts()[12], Game::Action::OpenStore);
+        mGame->RebindKeyboard(GetTexts()[12], Game::Action::Map);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::OpenStore), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 4);
+    AddIconText(Game::Action::Map, mTextPos2 + Vector2(0, mButtonSize.y) * 4);
 
 
-    button = AddButton("MAPA", mButtonPos2 + Vector2(0, mButtonSize.y * 5), mButtonSize, 34, UIButton::TextPos::AlignLeft,
+    button = AddButton("DESCANSAR", mButtonPos2 + Vector2(0, mButtonSize.y * 5), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[13]->SetFont(mFont);
         GetTexts()[13]->SetText("...");
         GetTexts()[13]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 5);
-        mGame->RebindKeyboard(GetTexts()[13], Game::Action::Map);
+        mGame->RebindKeyboard(GetTexts()[13], Game::Action::OpenStore);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::Map), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 5);
+    AddIconText(Game::Action::OpenStore, mTextPos2 + Vector2(0, mButtonSize.y) * 5);
 
 
     button = AddButton("TROCAR MODO", mButtonPos2 + Vector2(0, mButtonSize.y * 6), mButtonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
+        GetTexts()[14]->SetFont(mFont);
         GetTexts()[14]->SetText("...");
         GetTexts()[14]->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 6);
         mGame->RebindKeyboard(GetTexts()[14], Game::Action::ChangeMode);
     }
     , false, mButtonTextOffset);
     button->UseBackGroundColor();
-
-    text = AddText(GetBindingText(Game::Action::ChangeMode), Vector2::Zero, 34);
-    text->SetPosition(mTextPos2 + Vector2(0, mButtonSize.y) * 6);
+    AddIconText(Game::Action::ChangeMode, mTextPos2 + Vector2(0, mButtonSize.y) * 6);
 
 
-    AddButton("VOLTAR AO PADRÃO", Vector2(788, 842), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("VOLTAR AO PADRÃO (TECLADO)", Vector2(725, 815), Vector2::Zero, 30, UIButton::TextPos::Center,
     [this]() {
         mGame->ResetKeyboardToDefault();
+        RefreshTexts();
+    }
+    , true);
+
+    AddButton("VOLTAR AO PADRÃO (TECLADO E MOUSE)", Vector2(655, 872), Vector2::Zero, 30, UIButton::TextPos::Center,
+    [this]() {
+        mGame->ResetKeyboardAndMouseToDefault();
         RefreshTexts();
     }
     , true);
@@ -219,25 +223,6 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
         Close();
     }
     , true);
-}
-
-std::string KeyboardMenu::GetBindingText(Game::Action action) const {
-    auto binding = mGame->GetInputBinding()[action];
-
-    if (binding.key != SDL_SCANCODE_UNKNOWN) {
-        return SDL_GetScancodeName(binding.key);
-    }
-    else if (binding.mouseButton != 0) {
-        switch(binding.mouseButton) {
-            case SDL_BUTTON_LEFT: return "Mouse Esq";
-            case SDL_BUTTON_RIGHT: return "Mouse Dir";
-            case SDL_BUTTON_MIDDLE: return "Mouse Meio";
-            case SDL_BUTTON_X1: return "Mouse X1";
-            case SDL_BUTTON_X2: return "Mouse X2";
-            default: return "Mouse " + std::to_string(binding.mouseButton);
-        }
-    }
-    return "N/A";
 }
 
 void KeyboardMenu::Draw(class Renderer *renderer) {
@@ -266,18 +251,45 @@ void KeyboardMenu::Draw(class Renderer *renderer) {
 }
 
 void KeyboardMenu::RefreshTexts() {
-    GetTexts()[1]->SetText(GetBindingText(Game::Action::Up));
-    GetTexts()[2]->SetText(GetBindingText(Game::Action::Down));
-    GetTexts()[3]->SetText(GetBindingText(Game::Action::Jump));
-    GetTexts()[4]->SetText(GetBindingText(Game::Action::Attack));
-    GetTexts()[5]->SetText(GetBindingText(Game::Action::Dash));
-    GetTexts()[6]->SetText(GetBindingText(Game::Action::Skill1));
-    GetTexts()[7]->SetText(GetBindingText(Game::Action::Skill2));
-    GetTexts()[8]->SetText(GetBindingText(Game::Action::MoveLeft));
-    GetTexts()[9]->SetText(GetBindingText(Game::Action::MoveRight));
-    GetTexts()[10]->SetText(GetBindingText(Game::Action::Heal));
-    GetTexts()[11]->SetText(GetBindingText(Game::Action::Hook));
-    GetTexts()[12]->SetText(GetBindingText(Game::Action::OpenStore));
-    GetTexts()[13]->SetText(GetBindingText(Game::Action::Map));
-    GetTexts()[14]->SetText(GetBindingText(Game::Action::ChangeMode));
+    GetTexts()[1]->SetFont(mIconFont);
+    GetTexts()[1]->SetText(mGame->GetIconStringForAction(Game::Action::Up, true, false));
+
+    GetTexts()[2]->SetFont(mIconFont);
+    GetTexts()[2]->SetText(mGame->GetIconStringForAction(Game::Action::MoveLeft, true, false));
+
+    GetTexts()[3]->SetFont(mIconFont);
+    GetTexts()[3]->SetText(mGame->GetIconStringForAction(Game::Action::Down, true, false));
+
+    GetTexts()[4]->SetFont(mIconFont);
+    GetTexts()[4]->SetText(mGame->GetIconStringForAction(Game::Action::MoveRight, true, false));
+
+    GetTexts()[5]->SetFont(mIconFont);
+    GetTexts()[5]->SetText(mGame->GetIconStringForAction(Game::Action::Jump, true, false));
+
+    GetTexts()[6]->SetFont(mIconFont);
+    GetTexts()[6]->SetText(mGame->GetIconStringForAction(Game::Action::Attack, true, false));
+
+    GetTexts()[7]->SetFont(mIconFont);
+    GetTexts()[7]->SetText(mGame->GetIconStringForAction(Game::Action::Heal, true, false));
+
+    GetTexts()[8]->SetFont(mIconFont);
+    GetTexts()[8]->SetText(mGame->GetIconStringForAction(Game::Action::Dash, true, false));
+
+    GetTexts()[9]->SetFont(mIconFont);
+    GetTexts()[9]->SetText(mGame->GetIconStringForAction(Game::Action::Hook, true, false));
+
+    GetTexts()[10]->SetFont(mIconFont);
+    GetTexts()[10]->SetText(mGame->GetIconStringForAction(Game::Action::Skill1, true, false));
+
+    GetTexts()[11]->SetFont(mIconFont);
+    GetTexts()[11]->SetText(mGame->GetIconStringForAction(Game::Action::Skill2, true, false));
+
+    GetTexts()[12]->SetFont(mIconFont);
+    GetTexts()[12]->SetText(mGame->GetIconStringForAction(Game::Action::Map, true, false));
+
+    GetTexts()[13]->SetFont(mIconFont);
+    GetTexts()[13]->SetText(mGame->GetIconStringForAction(Game::Action::OpenStore, true, false));
+
+    GetTexts()[14]->SetFont(mIconFont);
+    GetTexts()[14]->SetText(mGame->GetIconStringForAction(Game::Action::ChangeMode, true, false));
 }

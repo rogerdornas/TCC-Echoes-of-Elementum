@@ -1,6 +1,7 @@
 #include <algorithm>
 #include <vector>
 #include "Game.h"
+#include "IconDictionary.h"
 #include "Components/Drawing/DrawComponent.h"
 #include "Components/RigidBodyComponent.h"
 #include "Random.h"
@@ -589,38 +590,13 @@ void Game::RebindController(UIText *text, Action action) {
 
 void Game::CancelRebind() {
     if (mNewButtonText) {
-        std::string oldName = "N/A";
+        std::string oldIcon = GetIconStringForAction(mBindingAction, mWaitingForKey, mWaitingForButton);
 
-        if (mWaitingForKey) {
-            auto binding = mInputBindings[mBindingAction];
-            if (binding.key != SDL_SCANCODE_UNKNOWN) {
-                oldName = SDL_GetScancodeName(binding.key);
-            }
-            else if (binding.mouseButton != 0) {
-                switch(binding.mouseButton) {
-                    case SDL_BUTTON_LEFT: oldName = "Mouse Esq"; break;
-                    case SDL_BUTTON_RIGHT: oldName = "Mouse Dir"; break;
-                    case SDL_BUTTON_MIDDLE: oldName = "Mouse Meio"; break;
-                    case SDL_BUTTON_X1: oldName = "Mouse X1"; break;
-                    case SDL_BUTTON_X2: oldName = "Mouse X2"; break;
-                    default: oldName = "Mouse " + std::to_string(binding.mouseButton);
-                }
-            }
-        }
-        else if (mWaitingForButton) {
-            auto binding = mInputBindings[mBindingAction];
-            if (binding.btn != SDL_CONTROLLER_BUTTON_INVALID) {
-                const char* name = SDL_GameControllerGetStringForButton(binding.btn);
-                if (name) oldName = name;
-            }
-            else if (binding.axis != SDL_CONTROLLER_AXIS_INVALID) {
-                const char* name = SDL_GameControllerGetStringForAxis(binding.axis);
-                if (name) oldName = name;
-            }
-        }
+        mNewButtonText->SetFont(LoadFont("../Assets/Fonts/Buttons.ttf"));
 
-        mNewButtonText->SetPointSize(34);
-        mNewButtonText->SetText(oldName);
+        mNewButtonText->SetPointSize(54);
+        mNewButtonText->SetText(oldIcon);
+
         mNewButtonText = nullptr;
     }
 
@@ -652,6 +628,42 @@ void Game::ResetKeyboardToDefault() {
     mInputBindings[Action::Jump].mouseButton       = 0;
     mInputBindings[Action::Attack].mouseButton     = 0;
     mInputBindings[Action::Dash].mouseButton       = 0;
+    mInputBindings[Action::Skill1].mouseButton     = 0;
+    mInputBindings[Action::Skill2].mouseButton     = 0;
+    mInputBindings[Action::Heal].mouseButton       = 0;
+    mInputBindings[Action::Hook].mouseButton       = 0;
+    mInputBindings[Action::OpenStore].mouseButton  = 0;
+    mInputBindings[Action::Map].mouseButton        = 0;
+    mInputBindings[Action::Look].mouseButton       = 0;
+    mInputBindings[Action::ChangeMode].mouseButton = 0;
+
+    SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+}
+
+void Game::ResetKeyboardAndMouseToDefault() {
+    mInputBindings[Action::Up].key         = SDL_SCANCODE_W;
+    mInputBindings[Action::Down].key       = SDL_SCANCODE_S;
+    mInputBindings[Action::MoveLeft].key   = SDL_SCANCODE_A;
+    mInputBindings[Action::MoveRight].key  = SDL_SCANCODE_D;
+    mInputBindings[Action::Jump].key       = SDL_SCANCODE_SPACE;
+    mInputBindings[Action::Attack].key     = SDL_SCANCODE_UNKNOWN;
+    mInputBindings[Action::Dash].key       = SDL_SCANCODE_UNKNOWN;
+    mInputBindings[Action::Skill1].key     = SDL_SCANCODE_Q;
+    mInputBindings[Action::Skill2].key     = SDL_SCANCODE_E;
+    mInputBindings[Action::Heal].key       = SDL_SCANCODE_F;
+    mInputBindings[Action::Hook].key       = SDL_SCANCODE_R;
+    mInputBindings[Action::OpenStore].key  = SDL_SCANCODE_C;
+    mInputBindings[Action::Map].key        = SDL_SCANCODE_TAB;
+    mInputBindings[Action::Look].key       = SDL_SCANCODE_LCTRL;
+    mInputBindings[Action::ChangeMode].key = SDL_SCANCODE_LSHIFT;
+
+    mInputBindings[Action::Up].mouseButton         = 0;
+    mInputBindings[Action::Down].mouseButton       = 0;
+    mInputBindings[Action::MoveLeft].mouseButton   = 0;
+    mInputBindings[Action::MoveRight].mouseButton  = 0;
+    mInputBindings[Action::Jump].mouseButton       = 0;
+    mInputBindings[Action::Attack].mouseButton     = 1;
+    mInputBindings[Action::Dash].mouseButton       = 3;
     mInputBindings[Action::Skill1].mouseButton     = 0;
     mInputBindings[Action::Skill2].mouseButton     = 0;
     mInputBindings[Action::Heal].mouseButton       = 0;
@@ -699,6 +711,112 @@ void Game::ResetControllerToDefault() {
     mInputBindings[Action::ChangeMode].axis = SDL_CONTROLLER_AXIS_TRIGGERLEFT;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
+}
+
+std::string Game::GetIconStringForAction(Action action, bool forceKeyboard, bool forceController) {
+    InputBinding binding = mInputBindings[action];
+
+    InputPlayerMode currentMode = GetInputPlayerMode();
+
+    if (forceKeyboard) {
+        currentMode = InputPlayerMode::Keyboard;
+    }
+    else if (forceController) {
+        currentMode = InputPlayerMode::Controller;
+    }
+
+    if (currentMode == InputPlayerMode::Keyboard ||
+        currentMode == InputPlayerMode::Mouse)
+    {
+        if (binding.key != SDL_SCANCODE_UNKNOWN) {
+            switch(binding.key) {
+                // Teclas Especiais (mapeadas na Private Use Area do IcoMoon)
+                case SDL_SCANCODE_LALT:         return Icons::KeyAlt;
+                case SDL_SCANCODE_DOWN:         return Icons::KeyArrowDown;
+                case SDL_SCANCODE_LEFT:         return Icons::KeyArrowLeft;
+                case SDL_SCANCODE_RIGHT:        return Icons::KeyArrowRight;
+                case SDL_SCANCODE_UP:           return Icons::KeyArrowUp;
+                case SDL_SCANCODE_BACKSPACE:    return Icons::KeyBackSpace;
+                case SDL_SCANCODE_CAPSLOCK:     return Icons::KeyCapsLock;
+                case SDL_SCANCODE_LCTRL:        return Icons::KeyCtrl;
+                case SDL_SCANCODE_DELETE:       return Icons::KeyDelete;
+                case SDL_SCANCODE_RETURN:       return Icons::KeyEnter;
+                case SDL_SCANCODE_ESCAPE:       return Icons::KeyEscape;
+                case SDL_SCANCODE_F1:           return Icons::KeyF1;
+                case SDL_SCANCODE_F2:           return Icons::KeyF2;
+                case SDL_SCANCODE_F3:           return Icons::KeyF3;
+                case SDL_SCANCODE_F4:           return Icons::KeyF4;
+                case SDL_SCANCODE_F5:           return Icons::KeyF5;
+                case SDL_SCANCODE_F6:           return Icons::KeyF6;
+                case SDL_SCANCODE_F7:           return Icons::KeyF7;
+                case SDL_SCANCODE_F8:           return Icons::KeyF8;
+                case SDL_SCANCODE_F9:           return Icons::KeyF9;
+                case SDL_SCANCODE_F10:          return Icons::KeyF10;
+                case SDL_SCANCODE_F11:          return Icons::KeyF11;
+                case SDL_SCANCODE_F12:          return Icons::KeyF12;
+                case SDL_SCANCODE_NUMLOCKCLEAR: return Icons::KeyNumLock;
+                case SDL_SCANCODE_PRINTSCREEN:  return Icons::KeyPrintScreen;
+                case SDL_SCANCODE_LSHIFT:       return Icons::KeyShift;
+                case SDL_SCANCODE_SPACE:        return Icons::KeySpace;
+                case SDL_SCANCODE_TAB:          return Icons::KeyTab;
+                case SDL_SCANCODE_LGUI:         return Icons::KeyWindows;
+
+                // Fallback Inteligente para Letras (A-Z) e Números (0-9)
+                default: {
+                    std::string keyName = SDL_GetScancodeName(binding.key);
+
+                    return keyName;
+                }
+            }
+        }
+
+        switch(binding.mouseButton) {
+            case SDL_BUTTON_LEFT:   return Icons::MouseLeft;
+            case SDL_BUTTON_RIGHT:  return Icons::MouseRight;
+            case SDL_BUTTON_MIDDLE: return Icons::MouseMiddle;
+            default: return "?";
+        }
+    }
+    else if (currentMode == InputPlayerMode::Controller) {
+        if (mInputController == InputController::Xbox) {
+            switch(binding.btn) {
+                case SDL_CONTROLLER_BUTTON_A: return Icons::XboxA;
+                case SDL_CONTROLLER_BUTTON_B: return Icons::XboxB;
+                case SDL_CONTROLLER_BUTTON_X: return Icons::XboxX;
+                case SDL_CONTROLLER_BUTTON_Y: return Icons::XboxY;
+                case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:  return Icons::XboxLB;
+                case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return Icons::XboxRB;
+                case SDL_CONTROLLER_BUTTON_LEFTSTICK: return Icons::XboxL3;
+                case SDL_CONTROLLER_BUTTON_RIGHTSTICK: return Icons::XboxR3;
+                default: break;
+            }
+
+            if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT)  return Icons::XboxLT;
+            if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) return Icons::XboxRT;
+
+            return "?";
+        }
+        else if (mInputController == InputController::Playstation) {
+            switch(binding.btn) {
+                case SDL_CONTROLLER_BUTTON_A: return Icons::PlayCross;
+                case SDL_CONTROLLER_BUTTON_B: return Icons::PlayCircle;
+                case SDL_CONTROLLER_BUTTON_X: return Icons::PlaySquare;
+                case SDL_CONTROLLER_BUTTON_Y: return Icons::PlayTriangle;
+                case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:  return Icons::PlayL1;
+                case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return Icons::PlayR1;
+                case SDL_CONTROLLER_BUTTON_LEFTSTICK: return Icons::PlayL3;
+                case SDL_CONTROLLER_BUTTON_RIGHTSTICK: return Icons::PlayR3;
+                default: break;
+            }
+
+            if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT)  return Icons::PlayL2;
+            if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) return Icons::PlayR2;
+
+            return "?";
+        }
+    }
+
+    return "?";
 }
 
 void Game::SwapKeyboardBinding(SDL_Scancode newKey, Uint8 newMouseBtn) {
@@ -792,6 +910,8 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 int growthDirection = 0;
                 float minHeight = 0.0f;
                 float minWidth = 0.0f;
+                float startWidth = 0.0f;
+                float startHeight = 0.0f;
                 bool isOscillating = false;
                 std::string condition;
 
@@ -837,6 +957,12 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                         else if (propName == "MinWidth") {
                             minWidth = static_cast<float>(prop["value"]);
                         }
+                        else if (propName == "StartHeight") {
+                            startHeight = static_cast<float>(prop["value"]);
+                        }
+                        else if (propName == "StartWidth") {
+                            startWidth = static_cast<float>(prop["value"]);
+                        }
                         else if (propName == "Oscillate") {
                             isOscillating = static_cast<float>(prop["value"]);
                         }
@@ -851,7 +977,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 }
 
                 if (name == "DynamicGround") {
-                    auto* dynamicGround = new DynamicGround(this, minWidth, minHeight, isSpike, isMoving, movingDuration, Vector2(speedX, speedY), mGroundBehindPlayer, mUseGroundPadding);
+                    auto* dynamicGround = new DynamicGround(this, startWidth, startHeight, isSpike, isMoving, movingDuration, Vector2(speedX, speedY), mGroundBehindPlayer, mUseGroundPadding);
                     dynamicGround->SetId(id);
                     dynamicGround->SetIsBreakable(isBreakable);
                     dynamicGround->SetRespawnPosition(Vector2(respawnPositionX, respawnPositionY));
@@ -864,22 +990,22 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                     switch (growthDirection) {
                         case 0:
                             dynamicGround->SetGrowDirection(GrowthDirection::Up);
-                            dynamicGround->SetPosition(Vector2(x + width / 2, y + height - minHeight / 2));
+                            dynamicGround->SetPosition(Vector2(x + width / 2, y + height - startHeight / 2));
                         break;
 
                         case 1:
                             dynamicGround->SetGrowDirection(GrowthDirection::Down);
-                            dynamicGround->SetPosition(Vector2(x + width / 2, y + minHeight / 2));
+                            dynamicGround->SetPosition(Vector2(x + width / 2, y + startHeight / 2));
                         break;
 
                         case 2:
                             dynamicGround->SetGrowDirection(GrowthDirection::Left);
-                            dynamicGround->SetPosition(Vector2(x + width - minWidth / 2, y + height / 2));
+                            dynamicGround->SetPosition(Vector2(x + width - startWidth / 2, y + height / 2));
                         break;
 
                         case 3:
                             dynamicGround->SetGrowDirection(GrowthDirection::Right);
-                            dynamicGround->SetPosition(Vector2(x + minWidth / 2, y + height / 2));
+                            dynamicGround->SetPosition(Vector2(x + startWidth / 2, y + height / 2));
                         break;
                     }
                     dynamicGround->SetStartingPosition(Vector2(x + width / 2, y + height / 2));
@@ -1901,6 +2027,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 float y = obj["y"];
                 int playerStartPositionId = 0;
                 Vector2 enteringLevelVelocity(Vector2::Zero);
+                float enteringOffset = 0;
 
                 if (obj.contains("properties")) {
                     for (const auto &prop: obj["properties"]) {
@@ -1913,6 +2040,9 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                         }
                         if (propName == "EnteringLevelSpeedY") {
                             enteringLevelVelocity.y = static_cast<float>(prop["value"]);
+                        }
+                        if (propName == "EnteringOffset") {
+                            enteringOffset = prop["value"];
                         }
                     }
                 }
@@ -1937,7 +2067,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                     mPlayer->GetComponent<CombatBoxComponent>()->SetAllBoxesActive(true);
                     if (mGoingToNextLevel) {
                         mPlayer->SetPosition(Vector2(x, y));
-                        mPlayer->SetIsEnteringLevel(enteringLevelVelocity);
+                        mPlayer->SetIsEnteringLevel(enteringLevelVelocity, enteringOffset);
 
                         // Salva jogo
                         SaveGame();
@@ -1957,6 +2087,10 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                     mSaveData->ApplyToPlayer();
                     mCheckPointMoney = mPlayer->GetMoney();
                     mPlayer->SetIsGrassParticle(mUseGrassParticle);
+                    // Começa jogo com 80% da vida
+                    if (mSaveData->GetTotalPlayTime() == 0.0f) {
+                        mPlayer->SetHealthPoints(mPlayer->GetMaxHealthPoints() * 0.8f);
+                    }
                 }
             }
             mPlayerStartPositionId = 0;
@@ -2688,9 +2822,9 @@ void Game::ProcessInput()
 
             case SDL_CONTROLLERDEVICEADDED:
                 mController = SDL_GameControllerOpen(event.cdevice.which);
-                // if (mController) {
-                //     SDL_Log("Controle conectado!");
-                // }
+                if (mController) {
+                    DetectTControllerType();
+                }
                 break;
 
             case SDL_CONTROLLERDEVICEREMOVED:
@@ -3283,6 +3417,28 @@ bool Game::GetWorldFlag(const std::string &key) const {
     if (it != mWorldState.end())
         return it->second;
     return false; // padrão se não existe
+}
+
+void Game::DetectTControllerType() {
+    // Retorna o tipo de controle mapeado pelo SDL
+    SDL_GameControllerType tipo = SDL_GameControllerGetType(mController);
+
+    switch (tipo) {
+        case SDL_CONTROLLER_TYPE_XBOX360:
+        case SDL_CONTROLLER_TYPE_XBOXONE:
+            mInputController = InputController::Xbox;
+            break;
+
+        case SDL_CONTROLLER_TYPE_PS3:
+        case SDL_CONTROLLER_TYPE_PS4:
+        case SDL_CONTROLLER_TYPE_PS5:
+            mInputController = InputController::Playstation;
+            break;
+
+        default:
+            mInputController = InputController::Xbox;
+            break;
+    }
 }
 
 void Game::PlayFinalGoodCutscene() {

@@ -61,6 +61,11 @@ public:
         Controller
     };
 
+    enum class InputController {
+        Xbox,
+        Playstation
+    };
+
     enum class Action {
         Up,
         Down,
@@ -194,7 +199,9 @@ public:
     void RebindController(class UIText* text, Action action);
     void CancelRebind();
     void ResetKeyboardToDefault();
+    void ResetKeyboardAndMouseToDefault();
     void ResetControllerToDefault();
+    std::string GetIconStringForAction(Action action, bool forceKeyboard = false, bool forceController = false);
 
     int GetFPS() const { return mFPS; }
 
@@ -240,6 +247,8 @@ public:
     GamePlayState GetGamePlayState() const { return mGamePlayState; }
 
     InputPlayerMode GetInputPlayerMode() const { return mInputPlayerMode; }
+    InputController GetInputController() const { return mInputController; }
+    void DetectTControllerType();
 
     SkillTreeManager* GetSkillTreeManager() const { return mSkillTreeManager; }
 
@@ -362,6 +371,7 @@ private:
     std::vector<class LaserShooter*> mLaserShooters;
     std::vector<class Enemy*> mEnemies;
     SDL_GameController *mController;
+
     class HUD *mHUD;
     std::vector<class Checkpoint*> mCheckPoints;
     std::unordered_map<std::string, Vector2> mSpawnPoints;
@@ -471,6 +481,7 @@ private:
 
     // If is playing on controller or keyboard or mouse
     InputPlayerMode mInputPlayerMode;
+    InputController mInputController;
 
     // Track level state
     GameScene mGameScene;

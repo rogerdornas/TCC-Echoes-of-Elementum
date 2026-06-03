@@ -14,6 +14,8 @@ public:
     void Save(const std::string& filename);
     bool Load(const std::string& filename);
 
+    float GetTotalPlayTime() const { return mTotalPlayTime; }
+
     // injeta dados do save no jogo
     void ApplyToGame();
     void ApplyToPlayer();

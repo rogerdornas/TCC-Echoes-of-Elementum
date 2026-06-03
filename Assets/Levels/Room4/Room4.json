@@ -2113,6 +2113,16 @@
                          "name":"MinWidth",
                          "type":"float",
                          "value":512
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":512
                         }],
                  "rotation":0,
                  "type":"",
@@ -2148,6 +2158,16 @@
                         }, 
                         {
                          "name":"MinWidth",
+                         "type":"float",
+                         "value":512
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
                          "type":"float",
                          "value":512
                         }],

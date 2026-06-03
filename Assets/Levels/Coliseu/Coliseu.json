@@ -692,6 +692,16 @@
                          "name":"MinWidth",
                          "type":"float",
                          "value":480
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":480
                         }],
                  "rotation":0,
                  "type":"",

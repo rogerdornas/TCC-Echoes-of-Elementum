@@ -1,18 +1,60 @@
 {
     "maps": [
         {
-            "fileName": "2-Run/Run.tmx",
-            "height": 4160,
-            "width": 15680,
-            "x": 352,
-            "y": -96
+            "fileName": "Room2/Room2.tmx",
+            "height": 2560,
+            "width": 5120,
+            "x": -1024,
+            "y": 768
         },
         {
-            "fileName": "1-Musgo/Musgo.tmx",
-            "height": 8960,
-            "width": 34560,
-            "x": -34208,
-            "y": -768
+            "fileName": "Room3/Room3.tmx",
+            "height": 2944,
+            "width": 4864,
+            "x": 3200,
+            "y": 384
+        },
+        {
+            "fileName": "Forest3/Forest3.tmx",
+            "height": 2816,
+            "width": 9728,
+            "x": 2816,
+            "y": -1664
+        },
+        {
+            "fileName": "Forest4/Forest4.tmx",
+            "height": 3712,
+            "width": 5760,
+            "x": 768,
+            "y": -4608
+        },
+        {
+            "fileName": "BossFrogger/BossFrogger.tmx",
+            "height": 6400,
+            "width": 6400,
+            "x": -11136,
+            "y": 2176
+        },
+        {
+            "fileName": "Forest5/Forest5.tmx",
+            "height": 2688,
+            "width": 5120,
+            "x": -2176,
+            "y": -1536
+        },
+        {
+            "fileName": "Forest6/Forest6.tmx",
+            "height": 6400,
+            "width": 8960,
+            "x": 6400,
+            "y": -7296
+        },
+        {
+            "fileName": "Forest7/Forest7.tmx",
+            "height": 3840,
+            "width": 3840,
+            "x": 11776,
+            "y": -1920
         }
     ],
     "onlyShowAdjacentMaps": false,

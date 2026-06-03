@@ -122,7 +122,7 @@ public:
     void SetPrevSkill1Pressed(bool f) { mPrevSkill1Pressed = f; }
     void SetPrevSwordPressed(bool s) { mPrevSwordPressed = s; }
 
-    void SetIsEnteringLevel(Vector2 velocity);
+    void SetIsEnteringLevel(Vector2 velocity, float enteringOffset);
 
     void SetIsGrassParticle(bool isGrass) { mIsGrassParticle = isGrass; }
 

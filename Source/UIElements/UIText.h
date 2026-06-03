@@ -19,6 +19,7 @@ public:
     void SetText(const std::string& name);
     void SetPointSize(float pointSize) { mPointSize = pointSize; }
     void SetColor(const Vector3 &color) override;
+    void SetFont(class UIFont* font) { mFont = font; }
     void Draw(Renderer* renderer, const Vector2 &screenPos) override;
 
 protected:

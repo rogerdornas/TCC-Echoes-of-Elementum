@@ -1087,11 +1087,9 @@ void Player::OnUpdate(float deltaTime) {
         mIsGliding = false;
         if (mRigidBodyComponent->GetVelocity().y - mMovingGroundVelocity.y > 0) {
             if (mWallSlideSide == WallSlideSide::left) {
-                SetRotation(Math::Pi);
                 SetScale(Vector2(-1, 1));
             }
             if (mWallSlideSide == WallSlideSide::right) {
-                SetRotation(0);
                 SetScale(Vector2(1, 1));
             }
         }
@@ -2878,19 +2876,12 @@ bool Player::Died() {
     return false;
 }
 
-void Player::SetIsEnteringLevel(Vector2 velocity) {
+void Player::SetIsEnteringLevel(Vector2 velocity, float enteringOffset) {
     mIsEnteringLevel = true;
     mEnteringLevelTimer = 0;
-
+    if (velocity.y < 0) {
+        SetPosition(GetPosition() + Vector2(enteringOffset * -GetForward().x, 0));
+        velocity *= Vector2(GetForward().x, 1);
+    }
     mRigidBodyComponent->SetVelocity(velocity);
-    if (velocity.x > 0) {
-        mIsRunning = true;
-        SetRotation(0);
-        SetScale(Vector2(1, 1));
-    }
-    if (velocity.x < 0) {
-        mIsRunning = true;
-        SetRotation(Math::Pi);
-        SetScale(Vector2(-1, 1));
-    }
 }

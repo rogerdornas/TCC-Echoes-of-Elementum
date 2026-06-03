@@ -41,7 +41,7 @@
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":552
+                         "value":560
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
@@ -83,7 +83,7 @@
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":552
+                         "value":560
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
@@ -98,7 +98,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3456,
+                 "width":1536,
                  "x":1280,
                  "y":1152
                 }, 
@@ -140,8 +140,92 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3712,
+                 "width":1792,
                  "x":1024,
+                 "y":0
+                }, 
+                {
+                 "height":1408,
+                 "id":37,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":4366
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":2380
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":560
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":512
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1792,
+                 "x":2944,
+                 "y":1280
+                }, 
+                {
+                 "height":1152,
+                 "id":38,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":4366
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":2380
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":1152
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":512
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1792,
+                 "x":2944,
                  "y":0
                 }],
          "opacity":1,
@@ -193,7 +277,7 @@
                  "y":1280
                 }, 
                 {
-                 "height":297.333333333334,
+                 "height":256,
                  "id":15,
                  "name":"",
                  "properties":[
@@ -210,17 +294,17 @@
                         {
                          "name":"TutorialText",
                          "type":"string",
-                         "value":"PRESSIONE<Attack>PARA ATACAR"
+                         "value":"PRESSIONE <Attack> PARA ATACAR"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":604,
-                 "x":1764,
-                 "y":1895.75757575758
+                 "width":576,
+                 "x":1792,
+                 "y":1920
                 }, 
                 {
-                 "height":201.333333333334,
+                 "height":200,
                  "id":30,
                  "name":"",
                  "properties":[
@@ -253,8 +337,8 @@
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":1538.66666666667,
-                 "y":196.666666666666
+                 "x":1538.67,
+                 "y":197
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -353,7 +437,7 @@
                  "visible":true,
                  "width":63,
                  "x":2350,
-                 "y":2234.33333333333
+                 "y":2234.33
                 }, 
                 {
                  "gid":94,
@@ -375,8 +459,8 @@
                  "type":"",
                  "visible":true,
                  "width":98.2453,
-                 "x":2552.21333333333,
-                 "y":2222.93939393939
+                 "x":2552.21,
+                 "y":2222.94
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -397,7 +481,7 @@
             0, 0, 8, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 38, 23, 23, 23, 24, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
             0, 0, 15, 16, 16, 16, 16, 16, 16, 17, 0, 0, 22, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
-            0, 0, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 22, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
+            0, 0, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 22, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
             0, 0, 8, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 24, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
             0, 0, 8, 9, 9, 9, 9, 12, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0,
             0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 24, 0, 0, 0, 0, 8, 9, 10, 0, 0,
@@ -772,7 +856,7 @@
                  "type":"",
                  "visible":true,
                  "width":256,
-                 "x":1920,
+                 "x":2048,
                  "y":1536
                 }],
          "opacity":1,
@@ -838,7 +922,7 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1713,
+                 "x":1728,
                  "y":448
                 }],
          "opacity":1,
@@ -860,8 +944,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":2859.27272727273,
-                 "y":2164.36363636364
+                 "x":2859.27,
+                 "y":2164.36
                 }, 
                 {
                  "height":32,
@@ -871,8 +955,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":2942.66666666667,
-                 "y":1365.33333333333
+                 "x":2942.67,
+                 "y":1365.33
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -881,7 +965,7 @@
          "y":0
         }],
  "nextlayerid":22,
- "nextobjectid":36,
+ "nextobjectid":39,
  "orientation":"orthogonal",
  "properties":[
         {

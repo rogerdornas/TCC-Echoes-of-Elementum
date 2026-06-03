@@ -252,6 +252,7 @@ add_executable(${PROJECT_NAME}
         Source/Actors/AmbientParticleArea.h
         Source/Actors/Enemies/Frogger.cpp
         Source/Actors/Enemies/Frogger.h
+        Source/IconDictionary.h
 )
 
 

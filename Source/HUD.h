@@ -53,14 +53,15 @@ private:
     static const int MAX_TUTORIAL_PARTS = 5; // Suporta até 5 recortes (ex: [Texto] [Ícone] [Texto] [Ícone] [Texto])
 
     std::vector<UIText*> mTutorialTexts;
-    std::vector<UIImage*> mTutorialIcons;
+    std::vector<UIText*> mTutorialActionTexts;
+
+    class UIFont* mIconFont;
 
     std::string mTutorialTemplate;
     Game::InputPlayerMode mLastInputMode;
     bool mTutorialNeedsRebuild;
 
     void RebuildTutorialLayout();
-    std::string GetButtonIconPath(const Game::InputBinding& binding, Game::InputPlayerMode mode);
 
     struct BossLifeBar {
         RectF bossHPBar;

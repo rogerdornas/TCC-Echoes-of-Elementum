@@ -46,6 +46,8 @@ protected:
     float mMaxHeight;
     float mMinWidth;
     float mMinHeight;
+    float mStartWidth;
+    float mStartHeight;
     Vector2 mGrowSpeed;
     bool mIsGrowing;
     bool mIsDecreasing;

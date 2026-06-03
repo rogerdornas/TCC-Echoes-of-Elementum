@@ -256,9 +256,9 @@ UIText* UIScreen::AddText(const std::string &name, const Vector2 &pos, const int
     return t;
 }
 
-UIButton* UIScreen::AddButton(const std::string& name, const Vector2 &pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, bool useTextSize, Vector2 textPos, Vector3 textColor)
+UIButton* UIScreen::AddButton(const std::string& name, const Vector2 &pos, const Vector2& dims, const int pointSize, UIButton::TextPos alignText, std::function<void()> onClick, bool useTextSize, Vector2 textPos, Vector3 textColor, unsigned textWrapLength)
 {
-    UIButton* b = new UIButton(name, mFont, onClick, pos, dims, useTextSize, Vector3{1.0f, 0.5f, 0.0f}, pointSize, 1024, textPos, alignText, textColor, mGame->GetRenderer());
+    UIButton* b = new UIButton(name, mFont, onClick, pos, dims, useTextSize, Vector3{1.0f, 0.5f, 0.0f}, pointSize, textWrapLength, textPos, alignText, textColor, mGame->GetRenderer());
     mButtons.emplace_back(b);
 
     if (mButtons.size() == 1) {
