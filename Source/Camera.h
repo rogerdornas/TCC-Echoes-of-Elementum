@@ -22,6 +22,8 @@ public:
 
     void SetLimitMinCameraPosition(Vector2 pos);
     void SetLimitMaxCameraPosition(Vector2 pos);
+    void SetCameraMinBound(Vector2 minBound) { mCameraMinBound = minBound; }
+    void SetCameraMaxBound(Vector2 maxBound) { mCameraMaxBound = maxBound; }
 
     void Update(float deltaTime);
 
@@ -52,6 +54,8 @@ private:
     Vector2 mLimitMaxCameraPosition;
     Vector2 mCurrentLimitMinPosition;
     Vector2 mCurrentLimitMaxPosition;
+    Vector2 mCameraMinBound;
+    Vector2 mCameraMaxBound;
     float mCurrentOffsetX;
     float mInitPositionTimer;
     bool mIsAdjustingInitialPosition;

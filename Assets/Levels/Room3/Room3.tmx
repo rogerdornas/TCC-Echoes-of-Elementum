@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="38" height="23" tilewidth="128" tileheight="128" infinite="0" nextlayerid="22" nextobjectid="39">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="38" height="23" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="40">
  <editorsettings>
   <export target="Room3.json" format="json"/>
  </editorsettings>
@@ -237,5 +237,8 @@
  <objectgroup id="14" name="Enemies">
   <object id="14" name="Enemy Simple" x="2859.27" y="2164.36" width="32" height="32"/>
   <object id="31" name="Flying Enemy" x="2942.67" y="1365.33" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="22" name="CameraBounds" visible="0">
+  <object id="39" x="560" y="512" width="3915.33" height="1943.33"/>
  </objectgroup>
 </map>

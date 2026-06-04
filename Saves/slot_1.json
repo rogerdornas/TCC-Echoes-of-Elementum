@@ -10,7 +10,7 @@
             "y": 2866.181884765625
         },
         "scene": "Forest4/Forest4",
-        "total_play_time": 262518.8125
+        "total_play_time": 262519.8125
     },
     "player": {
         "can_dash": true,
@@ -25,7 +25,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 23450
+        "money": 23494
     },
     "skill_tree": {
         "unlocked_nodes": [
@@ -70,7 +70,7 @@
     "world_state": {
         "BushMonsterDefeated": false,
         "Forest4LeverActivated": true,
-        "Forest6PuzzleDone": false,
+        "Forest6PuzzleDone": true,
         "FoxDefeated": true,
         "FrogDefeated": true,
         "GolemDefeated": true,

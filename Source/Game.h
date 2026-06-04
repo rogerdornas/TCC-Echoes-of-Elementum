@@ -358,6 +358,8 @@ private:
     float mZoom;
     float mTargetZoom;
     float mZoomSpeed;
+    Vector2 mCameraMinBound;
+    Vector2 mCameraMaxBound;
 
     // Game-specific
     class Player *mPlayer;

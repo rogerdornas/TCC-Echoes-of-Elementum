@@ -116,6 +116,10 @@ void Camera::Update(float deltaTime) {
             playerPosOffset.y += mDistMove;
         }
 
+        // Aplica os Hard Bounds (Limites Absolutos do Mapa)
+        playerPosOffset.x = Math::Clamp(playerPosOffset.x, mCameraMinBound.x, mCameraMaxBound.x - screenW);
+        playerPosOffset.y = Math::Clamp(playerPosOffset.y, mCameraMinBound.y, mCameraMaxBound.y - screenH);
+
         // Interpola da posição atual até a posição alvo (já limitada)
         if (!mIsAdjustingInitialPosition) {
             mCameraLerpSpeed = mNormalSpeed;

@@ -56,8 +56,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1347.69696969697,
-                 "x":1822.30303030303,
+                 "width":1347.7,
+                 "x":1822.3,
                  "y":1664
                 }, 
                 {
@@ -187,7 +187,7 @@
                  "y":256
                 }, 
                 {
-                 "height":1359.51515151515,
+                 "height":1359.52,
                  "id":63,
                  "name":"",
                  "properties":[
@@ -224,8 +224,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1335.27272727273,
-                 "x":1828.36363636364,
+                 "width":1335.27,
+                 "x":1828.36,
                  "y":256
                 }],
          "opacity":1,
@@ -498,9 +498,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":343.294701986755,
-                 "x":4880.12121212121,
-                 "y":1986.69696969697
+                 "width":343.295,
+                 "x":4880.12,
+                 "y":1986.7
                 }, 
                 {
                  "gid":93,
@@ -511,7 +511,7 @@
                  "type":"",
                  "visible":true,
                  "width":343.295,
-                 "x":5068.3525,
+                 "x":5068.35,
                  "y":1982.5
                 }, 
                 {
@@ -523,7 +523,7 @@
                  "type":"",
                  "visible":true,
                  "width":343.295,
-                 "x":5256.3525,
+                 "x":5256.35,
                  "y":1984.5
                 }, 
                 {
@@ -535,7 +535,7 @@
                  "type":"",
                  "visible":true,
                  "width":343.295,
-                 "x":7328.45333333333,
+                 "x":7328.45,
                  "y":1988.7
                 }, 
                 {
@@ -547,8 +547,8 @@
                  "type":"",
                  "visible":true,
                  "width":343.295,
-                 "x":7508.01666666667,
-                 "y":1985.83333333333
+                 "x":7508.02,
+                 "y":1985.83
                 }, 
                 {
                  "gid":93,
@@ -559,8 +559,8 @@
                  "type":"",
                  "visible":true,
                  "width":343.295,
-                 "x":7680.01666666667,
-                 "y":1991.16666666667
+                 "x":7680.02,
+                 "y":1991.17
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1319,9 +1319,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":22,
+         "name":"CameraBounds",
+         "objects":[
+                {
+                 "height":1536,
+                 "id":71,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8927.09090909091,
+                 "x":283.575757575758,
+                 "y":640
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":22,
- "nextobjectid":71,
+ "nextlayerid":23,
+ "nextobjectid":72,
  "orientation":"orthogonal",
  "properties":[
         {

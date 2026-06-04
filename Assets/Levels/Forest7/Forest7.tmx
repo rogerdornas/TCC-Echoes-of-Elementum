@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="22" nextobjectid="16">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="17">
  <editorsettings>
   <export target="Forest7.json" format="json"/>
  </editorsettings>
@@ -182,4 +182,7 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies"/>
+ <objectgroup id="22" name="CameraBounds" visible="0">
+  <object id="16" x="477.212" y="828" width="3026.79" height="1298.91"/>
+ </objectgroup>
 </map>

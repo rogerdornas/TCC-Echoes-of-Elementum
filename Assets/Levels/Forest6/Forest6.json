@@ -631,8 +631,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":3903.33333333333,
-                 "y":3923.83333333333
+                 "x":3903.33,
+                 "y":3923.83
                 }, 
                 {
                  "height":64,
@@ -1404,7 +1404,7 @@
                  "visible":true,
                  "width":32,
                  "x":208,
-                 "y":5227.66666666667
+                 "y":5227.67
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1425,8 +1425,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3677.66666666667,
-                 "y":4974.66666666667
+                 "x":3677.67,
+                 "y":4974.67
                 }, 
                 {
                  "height":32,
@@ -1480,17 +1480,39 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1731.66666666667,
-                 "y":4354.66666666667
+                 "x":1731.67,
+                 "y":4354.67
                 }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":22,
+         "name":"CameraBounds",
+         "objects":[
+                {
+                 "height":2226,
+                 "id":49,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8536,
+                 "x":120,
+                 "y":3534
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":22,
- "nextobjectid":49,
+ "nextlayerid":23,
+ "nextobjectid":50,
  "orientation":"orthogonal",
  "properties":[
         {

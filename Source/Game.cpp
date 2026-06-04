@@ -441,6 +441,9 @@ void Game::ChangeScene()
 
         mCamera = new Camera(this, Vector2(mPlayer->GetPosition().x - mLogicalWindowWidth / 2,
                                            mPlayer->GetPosition().y - mLogicalWindowHeight / 2));
+        mCamera->SetCameraMinBound(mCameraMinBound);
+        mCamera->SetCameraMaxBound(mCameraMaxBound);
+
         mHUD = new HUD(this, "../Assets/Fonts/K2D-Bold.ttf");
         mBossMusic.Reset();
     }
@@ -1490,6 +1493,19 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 trigger->SetLimitMaxCameraPosition(limitMaxCameraPosition);
             }
         }
+
+        if (layer["name"] == "CameraBounds") {
+            for (const auto &obj: layer["objects"]) {
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
+
+                mCameraMinBound = Vector2(x, y);
+                mCameraMaxBound = Vector2(x + width, y + height);
+            }
+        }
+
         if (layer["name"] == "Levers") {
             for (const auto &obj: layer["objects"]) {
                 float x = obj["x"];

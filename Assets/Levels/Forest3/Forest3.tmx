@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="76" height="22" tilewidth="128" tileheight="128" infinite="0" nextlayerid="22" nextobjectid="71">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="76" height="22" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="72">
  <editorsettings>
   <export target="Forest3.json" format="json"/>
  </editorsettings>
@@ -286,5 +286,8 @@
   <object id="21" name="Flying Enemy" x="3064" y="1698" width="32" height="32"/>
   <object id="22" name="Enemy Simple" x="3009.27" y="2030.36" width="32" height="32"/>
   <object id="43" name="OrangeSlime" x="7908" y="1008" width="32" height="32"/>
+ </objectgroup>
+ <objectgroup id="22" name="CameraBounds" visible="0">
+  <object id="71" x="283.576" y="640" width="8927.09" height="1536"/>
  </objectgroup>
 </map>

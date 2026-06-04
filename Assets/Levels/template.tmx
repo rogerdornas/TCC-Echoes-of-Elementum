@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="22" nextobjectid="1">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="1">
  <properties>
   <property name="BackgroundLayers" value="DarkForest/4.png"/>
   <property name="GroundBehindPlayer" type="bool" value="false"/>
@@ -163,4 +163,5 @@
  <objectgroup id="12" name="Checkpoint"/>
  <objectgroup id="13" name="Player"/>
  <objectgroup id="14" name="Enemies"/>
+ <objectgroup id="22" name="CameraBounds"/>
 </map>
