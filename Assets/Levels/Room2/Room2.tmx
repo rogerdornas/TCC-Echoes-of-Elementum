@@ -27,7 +27,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="10" x="1024" y="1024" width="512" height="768">
    <properties>
     <property name="Event" value="ShowTutorial"/>

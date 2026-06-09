@@ -55,6 +55,32 @@ MapMenu::MapMenu(Game* game, const std::string& fontName, bool isClosable)
 }
 
 void MapMenu::Update(float deltaTime) {
+    UIScreen::Update(deltaTime);
+
+    // MOVIMENTO CONTÍNUO DO MAPA
+    float panSpeed = 600.0f;
+    Vector2 panInput = Vector2::Zero;
+
+    // Converte a direção segurada em um vetor de movimento
+    if (mHeldDirection == NavDirection::Up) {
+        panInput.y += 1.0f;
+    }
+    else if (mHeldDirection == NavDirection::Down) {
+        panInput.y -= 1.0f;
+    }
+    else if (mHeldDirection == NavDirection::Left) {
+        panInput.x += 1.0f;
+    }
+    else if (mHeldDirection == NavDirection::Right) {
+        panInput.x -= 1.0f;
+    }
+
+    // Se estiver segurando uma direção, move o TargetPan
+    if (panInput.LengthSq() > 0.0f) {
+        panInput.Normalize();
+        mTargetPan += panInput * panSpeed * deltaTime * (1.0f / mTargetZoom);
+    }
+
     // Lerp para suavizar o movimento da câmera
     mCurrentPan = Vector2::Lerp(mCurrentPan, mTargetPan, 10.0f * deltaTime);
     mCurrentZoom = Math::Lerp(mCurrentZoom, mTargetZoom, 15.0f * deltaTime);
@@ -148,33 +174,46 @@ void MapMenu::HandleKeyPress(int key, int controllerButton, int leftControllerAx
     }
 
     // Trava os limites do zoom
-    mTargetZoom = Math::Clamp(mTargetZoom, 0.35f, 2.2f);
+    mTargetZoom = Math::Clamp(mTargetZoom, 0.3f, 2.0f);
 
-    // MOVIMENTO (PAN)
-    // O movimento pelo HandleKeyPress é um "nudge" (um pequeno empurrão a cada clique na tecla).
-    // Para funcionar bem, aumentamos o valor do passo, já que não é multiplicado por deltaTime aqui.
-    float panStep = 50.0f;
-    Vector2 panInput = Vector2::Zero;
+    auto inputBinding = mGame->GetInputBinding();
 
-    // Teclado (Setas e WASD) usando SDLK_
-    if (key == SDLK_RIGHT || key == SDLK_d) panInput.x -= 1.0f;
-    if (key == SDLK_LEFT  || key == SDLK_a) panInput.x += 1.0f;
-    if (key == SDLK_DOWN  || key == SDLK_s) panInput.y -= 1.0f;
-    if (key == SDLK_UP    || key == SDLK_w) panInput.y += 1.0f;
-
-    // Controle (Analógico Esquerdo ou D-PAD)
-
-    int deadzone = 10000;
-    if (leftControllerAxisX > deadzone || controllerButton == SDL_CONTROLLER_BUTTON_DPAD_RIGHT) panInput.x -= 1.0f;
-    if (leftControllerAxisX < -deadzone || controllerButton == SDL_CONTROLLER_BUTTON_DPAD_LEFT) panInput.x += 1.0f;
-    if (leftControllerAxisY > deadzone || controllerButton == SDL_CONTROLLER_BUTTON_DPAD_DOWN) panInput.y -= 1.0f;
-    if (leftControllerAxisY < -deadzone || controllerButton == SDL_CONTROLLER_BUTTON_DPAD_UP) panInput.y += 1.0f;
-
-    // Se houve algum input direcional, aplicamos ao TargetPan compensando o Zoom
-    if (panInput.LengthSq() > 0.0f) {
-        // Normaliza para não mover mais rápido nas diagonais
-        panInput.Normalize();
-        mTargetPan += panInput * panStep * (1.0f / mTargetZoom);
+    // Registra a direção apenas no primeiro clique
+    if (key == SDLK_UP ||
+        key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Up].key) ||
+        controllerButton == SDL_CONTROLLER_BUTTON_DPAD_UP ||
+        leftControllerAxisY < 0 || rightControllerAxisY < 0)
+    {
+        if (mHeldDirection != NavDirection::Up) {
+            mHeldDirection = NavDirection::Up;
+        }
+    }
+    else if (key == SDLK_DOWN ||
+             key == SDL_GetKeyFromScancode(inputBinding[Game::Action::Down].key) ||
+             controllerButton == SDL_CONTROLLER_BUTTON_DPAD_DOWN ||
+             leftControllerAxisY > 0 || rightControllerAxisY > 0)
+    {
+        if (mHeldDirection != NavDirection::Down) {
+            mHeldDirection = NavDirection::Down;
+        }
+    }
+    else if (key == SDLK_LEFT ||
+             key == SDL_GetKeyFromScancode(inputBinding[Game::Action::MoveLeft].key) ||
+             controllerButton == SDL_CONTROLLER_BUTTON_DPAD_LEFT ||
+             leftControllerAxisX < 0 || rightControllerAxisX < 0)
+    {
+        if (mHeldDirection != NavDirection::Left) {
+            mHeldDirection = NavDirection::Left;
+        }
+    }
+    else if (key == SDLK_RIGHT ||
+             key == SDL_GetKeyFromScancode(inputBinding[Game::Action::MoveRight].key) ||
+             controllerButton == SDL_CONTROLLER_BUTTON_DPAD_RIGHT ||
+             leftControllerAxisX > 0 || rightControllerAxisX > 0)
+    {
+        if (mHeldDirection != NavDirection::Right) {
+            mHeldDirection = NavDirection::Right;
+        }
     }
 }
 

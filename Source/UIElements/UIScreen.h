@@ -14,11 +14,14 @@ class UIScreen
 {
 public:
     // Tracks if the UI is active or closing
-    enum class UIState
-    {
+    enum class UIState {
         Active,
         Closing
     };
+
+	enum class NavDirection {
+		None, Up, Down, Left, Right
+	};
 
 	UIScreen(class Game* game, const std::string& fontName, bool isClosable = true);
 	virtual ~UIScreen();
@@ -32,6 +35,8 @@ public:
 	virtual void HandleMousePress(const Vector2& virtualMousePos);
 	virtual void HandleMouseRelease(const Vector2& virtualMousePos);
 	virtual void HandleMouseMotion(const Vector2& virtualMousePos);
+
+	void CancelDirectionalHold(NavDirection dirToCancel = NavDirection::None);
 
 	void SetPosition(Vector2 position) { mPos = position; }
 	void SetSize(Vector2 size) { mSize = size; }
@@ -89,4 +94,12 @@ protected:
 	std::vector<UIButton *> mButtons;
     std::vector<UIText *> mTexts;
     std::vector<UIImage *> mImages;
+
+	NavDirection mHeldDirection;
+	float mHoldTimer;
+
+	float mRepeatDelay; // Tempo antes de começar a repetir
+	float mRepeatRate;  // Intervalo entre cada salto no menu
+
+	virtual void MoveSelection(NavDirection dir);
 };

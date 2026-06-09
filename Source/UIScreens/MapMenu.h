@@ -34,4 +34,6 @@ private:
     // Controle de Mouse Drag
     bool mIsDragging;
     Vector2 mLastMousePos;
+
+    void MoveSelection(NavDirection dir) override {}
 };

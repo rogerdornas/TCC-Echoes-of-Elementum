@@ -2752,7 +2752,15 @@ void Game::ProcessInput()
                             }
                             else {
                                 // Voltou à zona morta
-                                mLeftStickStateY = StickState::Neutral;
+                                if (mLeftStickStateY != StickState::Neutral) {
+                                    UIScreen::NavDirection releasedDir = (mLeftStickStateY == StickState::Up) ? UIScreen::NavDirection::Up : UIScreen::NavDirection::Down;
+
+                                    mLeftStickStateY = StickState::Neutral;
+
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->CancelDirectionalHold(releasedDir);
+                                    }
+                                }
                             }
                         }
 
@@ -2777,7 +2785,15 @@ void Game::ProcessInput()
                             }
                             else {
                                 // Voltou à zona morta
-                                mLeftStickStateX = StickState::Neutral;
+                                if (mLeftStickStateX != StickState::Neutral) {
+                                    UIScreen::NavDirection releasedDir = (mLeftStickStateX == StickState::Left) ? UIScreen::NavDirection::Left : UIScreen::NavDirection::Right;
+
+                                    mLeftStickStateX = StickState::Neutral;
+
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->CancelDirectionalHold(releasedDir);
+                                    }
+                                }
                             }
                         }
                         if (event.caxis.axis == SDL_CONTROLLER_AXIS_RIGHTY) {
@@ -2801,7 +2817,15 @@ void Game::ProcessInput()
                             }
                             else {
                                 // Voltou à zona morta
-                                mRightStickStateY = StickState::Neutral;
+                                if (mRightStickStateY != StickState::Neutral) {
+                                    UIScreen::NavDirection releasedDir = (mRightStickStateY == StickState::Up) ? UIScreen::NavDirection::Up : UIScreen::NavDirection::Down;
+
+                                    mRightStickStateY = StickState::Neutral;
+
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->CancelDirectionalHold(releasedDir);
+                                    }
+                                }
                             }
                         }
 
@@ -2826,7 +2850,15 @@ void Game::ProcessInput()
                             }
                             else {
                                 // Voltou à zona morta
-                                mRightStickStateX = StickState::Neutral;
+                                if (mRightStickStateX != StickState::Neutral) {
+                                    UIScreen::NavDirection releasedDir = (mRightStickStateX == StickState::Left) ? UIScreen::NavDirection::Left : UIScreen::NavDirection::Right;
+
+                                    mRightStickStateX = StickState::Neutral;
+
+                                    if (!mUIStack.empty()) {
+                                        mUIStack.back()->CancelDirectionalHold(releasedDir);
+                                    }
+                                }
                             }
                         }
                     }
