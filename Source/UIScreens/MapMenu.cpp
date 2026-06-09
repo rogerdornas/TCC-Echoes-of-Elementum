@@ -76,7 +76,13 @@ void MapMenu::Update(float deltaTime) {
 void MapMenu::Draw(Renderer* renderer) {
     UIScreen::Draw(renderer);
 
-    Vector2 screenCenter(renderer->GetVirtualWidth() / 2.0f, renderer->GetVirtualHeight() / 2.0f);
+    // INÍCIO DO CLIPPING
+    // Limita a renderização exatamente na área da imagem de 1700x900
+    renderer->EnableScissor(110.0f, 150.0f, 1700.0f, 900.0f);
+
+    // Ajusta o "Centro da Tela" para ser o centro da sua janela de mapa (960, 600)
+    // Isso garante que o zoom ocorra a partir do centro do Fundo Preto, e não do monitor
+    Vector2 mapWindowCenter(960.0f, 600.0f);
 
     unsigned int globalTexID = mGame->GetMapManager()->GetGlobalMapTexture();
     Vector2 canvasSize = mGame->GetMapManager()->GetGlobalMapSize();
@@ -86,7 +92,7 @@ void MapMenu::Draw(Renderer* renderer) {
         Vector2 canvasCenter = canvasSize * 0.5f;
 
         // Alinha o mCurrentPan (no Canvas) com o centro da Tela
-        Vector2 screenPos = screenCenter + (canvasCenter - mCurrentPan) * mCurrentZoom;
+        Vector2 screenPos = mapWindowCenter + (canvasCenter - mCurrentPan) * mCurrentZoom;
 
         Vector2 screenSize = canvasSize * mCurrentZoom;
 
@@ -115,7 +121,7 @@ void MapMenu::Draw(Renderer* renderer) {
             playerCanvasPos.y = room.mapCanvasPos.y + playerMapPos.y;
 
             // Aplica o Pan e o Zoom da UI
-            Vector2 iconScreenPos = screenCenter + (playerCanvasPos - mCurrentPan) * mCurrentZoom;
+            Vector2 iconScreenPos = mapWindowCenter + (playerCanvasPos - mCurrentPan) * mCurrentZoom;
 
             // Desenha o ícone
             Vector2 iconSize(90.0f, 100.0f);
@@ -124,6 +130,8 @@ void MapMenu::Draw(Renderer* renderer) {
             break;
         }
     }
+    // FIM DO CLIPPING
+    renderer->DisableScissor();
 }
 
 void MapMenu::HandleKeyPress(int key, int controllerButton, int leftControllerAxisY, int leftControllerAxisX, int rightControllerAxisY, int rightControllerAxisX) {

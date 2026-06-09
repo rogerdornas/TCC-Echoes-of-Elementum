@@ -120,6 +120,12 @@ public:
 
 	void DrawFogBrush(const Vector2& centerPos, float radius, class Texture* brush, const Vector2& fboSize);
 
+	// Liga o corte limitando a renderização a um retângulo virtual
+	void EnableScissor(float virtualX, float virtualY, float virtualWidth, float virtualHeight);
+
+	// Desliga o corte
+	void DisableScissor();
+
 	void PrintUsedTextures();
 
 private:

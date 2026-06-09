@@ -911,6 +911,32 @@ void Renderer::DrawFogBrush(const Vector2& centerPos, float radius, Texture* bru
     mBaseShader->SetActive();
 }
 
+void Renderer::EnableScissor(float virtualX, float virtualY, float virtualWidth, float virtualHeight) {
+    glEnable(GL_SCISSOR_TEST);
+
+    // Calcula a proporção entre a resolução física (janela) e a virtual (UI de 1920x1080)
+    float scaleX = static_cast<float>(mViewportWidth) / mVirtualWidth;
+    float scaleY = static_cast<float>(mViewportHeight) / mVirtualHeight;
+
+    // Converte o tamanho para pixels reais do monitor
+    int physicalW = static_cast<int>(virtualWidth * scaleX);
+    int physicalH = static_cast<int>(virtualHeight * scaleY);
+
+    // O OpenGL lê o eixo Y de baixo para cima! Invertemos a coordenada Y virtual.
+    float invertedY = mVirtualHeight - (virtualY + virtualHeight);
+
+    // Aplica o offset das barras pretas (ViewportX/Y) e a escala
+    int physicalX = mViewportX + static_cast<int>(virtualX * scaleX);
+    int physicalY = mViewportY + static_cast<int>(invertedY * scaleY);
+
+    // Corta a tela
+    glScissor(physicalX, physicalY, physicalW, physicalH);
+}
+
+void Renderer::DisableScissor() {
+    glDisable(GL_SCISSOR_TEST);
+}
+
 void Renderer::BeginGameDraw()
 {
     mDrawingUI = false;
