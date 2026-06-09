@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="150" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="16" nextobjectid="979">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="150" height="150" tilewidth="32" tileheight="32" infinite="0" nextlayerid="17" nextobjectid="980">
  <editorsettings>
   <export target="Coliseu.json" format="json"/>
  </editorsettings>
@@ -505,7 +505,7 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room4/Room4"/>
+    <property name="Scene" value="Cave1/Cave1"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -637,5 +637,8 @@
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="16" name="CameraBounds" visible="0">
+  <object id="979" x="32" y="1028" width="4416" height="2340"/>
  </objectgroup>
 </map>

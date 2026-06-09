@@ -16,6 +16,7 @@
 #include <SDL_ttf.h>
 #include <SDL_mixer.h>
 #include "HUD.h"
+#include "MapManager.h"
 #include "SaveData.h"
 #include "SaveManager.h"
 #include "Actors/AmbientParticleArea.h"
@@ -64,6 +65,7 @@
 #include "Components/Drawing/GhostTrailComponent.h"
 #include "Components/Drawing/RectComponent.h"
 #include "UIScreens/MainMenu.h"
+#include "UIScreens/MapMenu.h"
 #include "UIScreens/PauseMenu.h"
 
 std::vector<int> ParseIntList(const std::string& str) {
@@ -103,15 +105,20 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mPlayer(nullptr)
     ,mLevelData(nullptr)
     ,mLevelDataDynamicGrounds(nullptr)
-    ,mMap(nullptr)
-    ,mShowMap(false)
     ,mGroundBehindPlayer(true)
     ,mUseGroundPadding(false)
     ,mUseGrassParticle(false)
     ,mGroundParticleColor({58, 147, 89, 255})
+    ,mIsConnectingMapRoom(false)
+    ,mBrushRadius(400.0f)
     ,mTileSheet(nullptr)
     ,mDecorationsTileSheet(nullptr)
     ,mCurrentController(nullptr)
+    ,mMapManager(nullptr)
+    ,mLastMapOriginCanvasPos(0, 0)
+    ,mLastMapOriginBoundsMin(0, 0)
+    ,mLastMapOriginBoundsMax(0, 0)
+    ,mLastMapOriginTriggerPos(0, 0)
     ,mHitstopActive(false)
     ,mHitstopDuration(0.15f)
     ,mHitstopTimer(0.0f)
@@ -154,6 +161,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mHUD(nullptr)
     ,mLastTopUIScreen(nullptr)
     ,mPauseMenu(nullptr)
+    ,mMapMenu(nullptr)
     ,mLevelSelectMenu(nullptr)
     ,mSceneManagerState(SceneManagerState::None)
     ,mFadeDuration(0.4f)
@@ -361,11 +369,6 @@ void Game::ChangeScene()
             }
         }
         mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);
-        // Delete map
-        // if (mMap) {
-        //     delete mMap;
-        //     mMap = nullptr;
-        // }
     }
 
     // Reset gameplay state
@@ -566,6 +569,12 @@ void Game::ResetPlayerAndSkillTree() {
     delete mSkillTreeManager;
     mSkillTreeManager = nullptr;
     mSkillTreeManager = new SkillTreeManager();
+
+    if (mMapManager) {
+        delete mMapManager;
+        mMapManager = nullptr;
+    }
+    mMapManager = new MapManager(this, mRenderer);
 }
 
 void Game::RebindKeyboard(UIText *text, Action action) {
@@ -609,8 +618,8 @@ void Game::ResetKeyboardToDefault() {
     mInputBindings[Action::Heal].key       = SDL_SCANCODE_V;
     mInputBindings[Action::Hook].key       = SDL_SCANCODE_S;
     mInputBindings[Action::OpenStore].key  = SDL_SCANCODE_SPACE;
-    mInputBindings[Action::Map].key        = SDL_SCANCODE_M;
-    mInputBindings[Action::Look].key       = SDL_SCANCODE_LCTRL;
+    mInputBindings[Action::Map].key        = SDL_SCANCODE_LCTRL;
+    mInputBindings[Action::Look].key       = SDL_SCANCODE_LALT;
     mInputBindings[Action::ChangeMode].key = SDL_SCANCODE_LSHIFT;
 
     mInputBindings[Action::Up].mouseButton         = 0;
@@ -893,7 +902,26 @@ void Game::SwapControllerBinding(SDL_GameControllerButton newBtn, SDL_GameContro
 }
 
 void Game::LoadObjects(const nlohmann::json& mapData) {
+    // Carrega primeiro O CameraBounds
     for (const auto &layer: mapData["layers"]) {
+        if (layer["name"] == "CameraBounds") {
+            for (const auto &obj: layer["objects"]) {
+                float x = obj["x"];
+                float y = obj["y"];
+                float width = obj["width"];
+                float height = obj["height"];
+
+                mCameraMinBound = Vector2(x, y);
+                mCameraMaxBound = Vector2(x + width, y + height);
+            }
+        }
+    }
+
+    for (const auto &layer: mapData["layers"]) {
+        // Pula o CameraBounds pois já foi processado no Passo 1
+        if (layer["name"] == "CameraBounds") {
+            continue;
+        }
         if (layer["name"] == "Grounds") {
             for (const auto &obj: layer["objects"]) {
                 std::string name = obj["name"];
@@ -1491,18 +1519,6 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 trigger->SetFixedCameraPosition(Vector2(fixedCameraPositionX, fixedCameraPositionY));
                 trigger->SetLimitMinCameraPosition(limitMinCameraPosition);
                 trigger->SetLimitMaxCameraPosition(limitMaxCameraPosition);
-            }
-        }
-
-        if (layer["name"] == "CameraBounds") {
-            for (const auto &obj: layer["objects"]) {
-                float x = obj["x"];
-                float y = obj["y"];
-                float width = obj["width"];
-                float height = obj["height"];
-
-                mCameraMinBound = Vector2(x, y);
-                mCameraMaxBound = Vector2(x + width, y + height);
             }
         }
 
@@ -2114,6 +2130,41 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                         mPlayer->SetHealthPoints(mPlayer->GetMaxHealthPoints() * 0.8f);
                     }
                 }
+                // LÓGICA DO MAPA
+                if (mMapManager && mNextLevelPath != "MainMenu") {
+                    // Monta o caminho exato do PNG
+                    std::string mapImgPath = "../Assets/Levels/" + mNextLevelPath + "Map.png";
+
+                    if (mIsConnectingMapRoom) {
+                        // Acha o trigger mais perto de onde o jogador acabou de nascer
+                        Vector2 destTriggerPos = Vector2::Zero;
+                        float closestDist = 9999999.0f;
+
+                        for (Trigger* t : mTriggers) {
+                            if (t->GetEvent() == Trigger::Event::ChangeScene) {
+                                float dist = (t->GetPosition() - mPlayer->GetPosition()).LengthSq();
+                                if (dist < closestDist) {
+                                    closestDist = dist;
+                                    destTriggerPos = t->GetPosition();
+                                }
+                            }
+                        }
+
+                        mMapManager->LoadConnectedRoom(
+                            mNextLevelPath, mapImgPath, 0.25f,
+                            mCameraMinBound, mCameraMaxBound, destTriggerPos,
+                            mLastMapOriginCanvasPos, mLastMapOriginBoundsMin, mLastMapOriginBoundsMax, mLastMapOriginTriggerPos
+                        );
+
+                        mIsConnectingMapRoom = false; // Reset da transição
+                    } else {
+                        // Se não está transicionando (New Game ou Checkpoint), carrega como inicial.
+                        mMapManager->LoadInitialRoom(mNextLevelPath, mapImgPath, 0.25f, mCameraMinBound, mCameraMaxBound);
+                    }
+
+                    // Bake the map global
+                    mMapManager->BuildGlobalCanvas();
+                }
             }
             mPlayerStartPositionId = 0;
         }
@@ -2121,6 +2172,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
 }
 
 void Game::LoadLevel(const std::string &fileName, const nlohmann::json& mapData, bool hasTileSet) {
+    ClearTriggers();
     // Extrai o diretório base do arquivo de mapa atual
     std::string baseDirectory = "";
     size_t lastSlashPos = fileName.find_last_of("/\\");
@@ -2192,13 +2244,6 @@ void Game::LoadLevel(const std::string &fileName, const nlohmann::json& mapData,
         }
     }
 
-    if (mGoingToNextLevel) {
-        // Delete map
-        // if (mMap) {
-        //     delete mMap;
-        //     mMap = nullptr;
-        // }
-    }
     // Lê matrizes de tiles
     for (const auto& layer : mapData["layers"]) {
         if (layer["name"] == "Camada de Blocos 1") {
@@ -2221,18 +2266,6 @@ void Game::LoadLevel(const std::string &fileName, const nlohmann::json& mapData,
                 }
             }
             mLevelDataDynamicGrounds = matrix;
-        } else if (!mMap) {
-            if (layer["name"] == "Map") {
-                std::vector<int> data = layer["data"];
-                int** matrix = new int*[height];
-                for (int i = 0; i < height; ++i) {
-                    matrix[i] = new int[width];
-                    for (int j = 0; j < width; ++j) {
-                        matrix[i][j] = data[i * width + j];
-                    }
-                }
-                // mMap = new Map(this, matrix, mLevelWidth, mLevelHeight);
-            }
         }
     }
 
@@ -2469,9 +2502,6 @@ void Game::ProcessInput()
                     }
 
                     if (event.key.keysym.sym == SDLK_ESCAPE) {
-                        // if (!mShowMap &&
-                        //     mGameScene != GameScene::MainMenu &&
-                        //     mGamePlayState != GamePlayState::Cutscene)
                         if (mCurrentLevelPath != "MainMenu" &&
                             mGamePlayState != GamePlayState::Cutscene)
                         {
@@ -2498,13 +2528,21 @@ void Game::ProcessInput()
                     }
 
                     if (SDL_GetScancodeFromKey(event.key.keysym.sym) == mInputBindings[Action::Map].key) {
-                    // if (event.key.keysym.sym == SDLK_m) {
-                        // if (mMap) {
-                        //     if (!mIsPaused || (mIsPaused && mShowMap)) {
-                        //         mShowMap = !mShowMap;
-                        //         // TogglePause();
-                        //     }
-                        // }
+                        if (mCurrentLevelPath != "MainMenu" &&
+                            mGamePlayState != GamePlayState::Cutscene)
+                        {
+                            if (mIsPaused) {
+                                for (auto iter = mUIStack.rbegin(); iter != mUIStack.rend(); ++iter) {
+                                    if ((*iter)->IsClosable() && (*iter)->GetState() != UIScreen::UIState::Closing) {
+                                        (*iter)->Close();
+                                        break;
+                                    }
+                                }
+                            }
+                            else {
+                                mMapMenu = new MapMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                            }
+                        }
                     }
 
                     if (event.key.keysym.sym == SDLK_8) {
@@ -2585,9 +2623,6 @@ void Game::ProcessInput()
                     }
 
                     if (event.cbutton.button == SDL_CONTROLLER_BUTTON_START) {
-                        // if (!mShowMap &&
-                        //     mGameScene != GameScene::MainMenu &&
-                        //     mGamePlayState != GamePlayState::Cutscene)
                         if (mCurrentLevelPath != "MainMenu" &&
                             mGamePlayState != GamePlayState::Cutscene)
                         {
@@ -2604,8 +2639,7 @@ void Game::ProcessInput()
 
                     // Apertar B para sair dos menus
                     if (event.cbutton.button == SDL_CONTROLLER_BUTTON_B) {
-                        if (!mShowMap &&
-                            mCurrentLevelPath != "MainMenu" &&
+                        if (mCurrentLevelPath != "MainMenu" &&
                             mGamePlayState != GamePlayState::Cutscene)
                         {
                             if (mIsPaused) {
@@ -2628,12 +2662,18 @@ void Game::ProcessInput()
                     }
 
                     if (event.cbutton.button == mInputBindings[Action::Map].btn) {
-                        // if (mMap) {
-                        //     if (!mIsPaused || (mIsPaused && mShowMap)) {
-                        //         mShowMap = !mShowMap;
-                        //         // TogglePause();
-                        //     }
-                        // }
+                        if (mCurrentLevelPath != "MainMenu" &&
+                            mGamePlayState != GamePlayState::Cutscene)
+                        {
+                            if (mIsPaused) {
+                                if (mUIStack.back() == mMapMenu) {
+                                    mMapMenu->Close();
+                                }
+                            }
+                            else {
+                                mMapMenu = new MapMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                            }
+                        }
                     }
                 }
                 break;
@@ -2975,10 +3015,6 @@ void Game::UpdateGame()
         deltaTime *= 1.5;
     }
 
-    // if (mMap && mGamePlayState == GamePlayState::Playing) {
-    //     mMap->Update(deltaTime);
-    // }
-
     // SDL_SetRenderDrawColor(mRenderer, 0, 0, 0, 255); // Usado para deixar as bordas em preto
     // SDL_RenderClear(mRenderer);
 
@@ -3111,6 +3147,10 @@ void Game::UpdateGame()
     else {
         SDL_ShowCursor(SDL_ENABLE);
         SDL_SetWindowMouseGrab(mWindow, SDL_FALSE);
+    }
+
+    if (mMapManager && mCurrentLevelPath != "MainMenu" && mGamePlayState == GamePlayState::Playing) {
+        mMapManager->UpdateFogOfWar(mCurrentLevelPath, mPlayer->GetPosition(), mBrushRadius);
     }
 
     if (mIsCrossFading) {
@@ -3379,6 +3419,15 @@ Enemy* Game::GetEnemyById(int id) {
         }
     }
     return nullptr;
+}
+
+void Game::AddTrigger(class Trigger* t) { mTriggers.emplace_back(t); }
+
+void Game::RemoveTrigger(class Trigger* t) {
+    auto iter = std::find(mTriggers.begin(), mTriggers.end(), t);
+    if (iter != mTriggers.end()) {
+        mTriggers.erase(iter);
+    }
 }
 
 void Game::AddActor(Actor* actor) {
@@ -3739,11 +3788,6 @@ void Game::GenerateOutput()
     {
         ui->Draw(mRenderer);
     }
-    //
-    // if (mShowMap) {
-    //     mMap->Draw(mRenderer);
-    // }
-    //
 
     if (mSceneManagerState == SceneManagerState::Entering ||
         mSceneManagerState == SceneManagerState::Exiting ||
@@ -3893,11 +3937,7 @@ void Game::Shutdown()
     delete mSkillTreeManager;
     mSkillTreeManager = nullptr;
 
-    // Delete map
-    // if (mMap) {
-    //     delete mMap;
-    //     mMap = nullptr;
-    // }
+    delete mMapManager;
 
     UnloadScene();
 

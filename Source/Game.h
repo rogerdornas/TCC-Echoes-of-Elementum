@@ -13,8 +13,8 @@
 #include <unordered_map>
 #include "AudioSystem.h"
 #include "Cutscene.h"
-#include "Map.h"
 #include "SaveManager.h"
+#include "MapManager.h"
 #include "SkillTreeManager.h"
 #include "WaveManager.h"
 
@@ -133,6 +133,9 @@ public:
     void UpdateCamera(float deltaTime);
     class Camera* GetCamera() const { return mCamera; }
 
+    Vector2 GetCameraMinBound() const { return mCameraMinBound; }
+    Vector2 GetCameraMaxBound() const { return mCameraMaxBound; }
+
     void AddFireBall(class FireBall* f);
     void RemoveFireball(class FireBall* f);
     std::vector<class FireBall*> &GetFireBalls() { return mFireBalls; }
@@ -169,6 +172,11 @@ public:
     void RemoveEnemy(class Enemy* e);
     std::vector<class Enemy*> &GetEnemies() { return mEnemies; }
     Enemy* GetEnemyById(int id);
+
+    void AddTrigger(class Trigger* t);
+    void RemoveTrigger(class Trigger* t);
+    std::vector<class Trigger*> &GetTriggers() { return mTriggers; }
+    void ClearTriggers() { mTriggers.clear(); }
 
     void SetBackToCheckpoint() { mBackToCheckpoint = true; }
     void InitCrossFade(float duration);
@@ -281,6 +289,16 @@ public:
     SaveManager* GetSaveManager() { return mSaveManager; }
 
     SceneManagerState GetSceneManagerState() const { return mSceneManagerState; }
+    MapManager* GetMapManager() const { return mMapManager; }
+
+    // Controle de estado do mapa para transições
+    void SetLastMapOriginCanvasPos(Vector2 pos) { mLastMapOriginCanvasPos = pos; }
+    void SetLastMapOriginBoundsMin(Vector2 pos) { mLastMapOriginBoundsMin = pos; }
+    void SetLastMapOriginBoundsMax(Vector2 pos) { mLastMapOriginBoundsMax = pos; }
+    void SetLastMapOriginTriggerPos(Vector2 pos) { mLastMapOriginTriggerPos = pos; }
+    void SetIsConnectingMapRoom(bool isConnecting) { mIsConnectingMapRoom = isConnecting; }
+
+    float GetBrushRadius() const { return mBrushRadius; }
 
     void SaveGame();
     void LoadGame();
@@ -372,6 +390,7 @@ private:
     std::vector<class HookPoint*> mHookPoints;
     std::vector<class LaserShooter*> mLaserShooters;
     std::vector<class Enemy*> mEnemies;
+    std::vector<class Trigger*> mTriggers;
     std::map<SDL_JoystickID, SDL_GameController*> mControllers;
     SDL_GameController* mCurrentController;
 
@@ -425,12 +444,19 @@ private:
     int mLevelHeight;
     float mTileSize;
     int mOriginalTileSize = 32;
-    Map* mMap;
-    bool mShowMap;
     bool mGroundBehindPlayer;
     bool mUseGroundPadding;
     bool mUseGrassParticle;
     SDL_Color mGroundParticleColor;
+
+    class MapManager* mMapManager;
+    // Variáveis de Estado do Mapa
+    Vector2 mLastMapOriginCanvasPos;
+    Vector2 mLastMapOriginBoundsMin;
+    Vector2 mLastMapOriginBoundsMax;
+    Vector2 mLastMapOriginTriggerPos;
+    bool mIsConnectingMapRoom;
+    float mBrushRadius;
 
     bool mHitstopActive;
     float mHitstopDuration;
@@ -471,6 +497,7 @@ private:
     UIScreen* mLastTopUIScreen;
     std::unordered_map<std::string, class UIFont*> mFonts;
     UIScreen* mPauseMenu;
+    UIScreen* mMapMenu;
     UIScreen* mLevelSelectMenu;
 
     std::vector<Vector2> mResolutions = {

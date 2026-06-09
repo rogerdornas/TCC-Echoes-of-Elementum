@@ -66,6 +66,8 @@ void SaveData::Save(const std::string &filename) {
 
     j["skill_tree"]["unlocked_nodes"] = mUnlockedSkillNodes;
 
+    j["map_state"] = mMapState;
+
     std::string tempFilename = filename + ".tmp";
     std::ofstream file(tempFilename);
 
@@ -130,6 +132,12 @@ bool SaveData::Load(const std::string &filename) {
         }
     }
 
+    if (j.contains("map_state")) {
+        mMapState = j["map_state"];
+    } else {
+        mMapState.clear();
+    }
+
     return true;
 }
 
@@ -156,6 +164,43 @@ void SaveData::ApplyToGame() {
     mGame->SetCheckpointGameScenePath(mGameScenePath);
     mGame->LoadNextLevel(mGameScenePath, 0.5f);
     mGame->SetTotalPlayTime(mTotalPlayTime);
+
+    // Aplica os dados do mapa
+    if (auto* mapManager = mGame->GetMapManager()) {
+        for (auto& el : mMapState.items()) {
+            std::string levelID = el.key();
+            bool isDiscovered = el.value()["is_discovered"];
+
+            float canvasPosX = el.value()["canvas_pos_x"];
+            float canvasPosY = el.value()["canvas_pos_y"];
+            Vector2 canvasPos(canvasPosX, canvasPosY);
+
+            float boundsMinX = el.value()["bounds_min_x"];
+            float boundsMinY = el.value()["bounds_min_y"];
+            Vector2 boundsMin(boundsMinX, boundsMinY);
+
+            float scale = el.value()["scale"];
+
+            int gridCols = el.value().value("grid_cols", 1);
+            int gridRows = el.value().value("grid_rows", 1);
+
+            // Recria a sala nas posições absolutas salvas
+            std::string mapImgPath = "../Assets/Levels/" + levelID + "Map.png";
+
+            mapManager->RestoreSavedRoom(levelID, mapImgPath, scale, canvasPos, boundsMin, gridCols, gridRows);
+
+            // Resgata a matriz de células
+            std::string gridData = "";
+            if (isDiscovered && el.value().contains("grid_data")) {
+                gridData = el.value()["grid_data"];
+            }
+
+            // O MapManager vai traduzir a string de '1's e '0's de volta para FBO
+            mapManager->ApplyRoomGridData(levelID, isDiscovered, gridData);
+        }
+
+        mapManager->BakeGlobalMap();
+    }
 }
 
 void SaveData::ApplyToPlayer() {
@@ -218,4 +263,35 @@ void SaveData::CaptureFromGame() {
 
     // Captura a lista da árvore
     mUnlockedSkillNodes = mGame->GetSkillTreeManager()->GetUnlockedNodesIDs();
+
+    // Captura a nova matriz do mapa
+    mMapState.clear();
+    if (auto* mapManager = mGame->GetMapManager()) {
+        for (const auto& room : mapManager->GetRooms()) {
+            if (room.levelID == "MainMenu") continue;
+
+            nlohmann::json roomData;
+            roomData["is_discovered"] = room.isDiscovered;
+
+            roomData["canvas_pos_x"] = room.mapCanvasPos.x;
+            roomData["canvas_pos_y"] = room.mapCanvasPos.y;
+            roomData["bounds_min_x"] = room.boundsMin.x;
+            roomData["bounds_min_y"] = room.boundsMin.y;
+            roomData["scale"] = room.scaleFactor;
+            roomData["grid_cols"] = room.gridCols;
+            roomData["grid_rows"] = room.gridRows;
+
+            if (room.isDiscovered) {
+                std::string gridString = "";
+                // Lê a matriz booleana e transforma em string
+                for (int r = 0; r < room.gridRows; ++r) {
+                    for (int c = 0; c < room.gridCols; ++c) {
+                        gridString += room.discoveryGrid[r][c] ? '1' : '0';
+                    }
+                }
+                roomData["grid_data"] = gridString;
+            }
+            mMapState[room.levelID] = roomData;
+        }
+    }
 }

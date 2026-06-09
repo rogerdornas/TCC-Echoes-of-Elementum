@@ -12,6 +12,7 @@
         "scene": "Room2/Room2",
         "total_play_time": 0.0
     },
+    "map_state": null,
     "player": {
         "can_dash": false,
         "can_hook": false,

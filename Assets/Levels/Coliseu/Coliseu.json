@@ -1268,7 +1268,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Room4\/Room4"
+                         "value":"Cave1\/Cave1"
                         }, 
                         {
                          "name":"Target",
@@ -1769,9 +1769,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":16,
+         "name":"CameraBounds",
+         "objects":[
+                {
+                 "height":2340,
+                 "id":979,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":4416,
+                 "x":32,
+                 "y":1028
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":16,
- "nextobjectid":979,
+ "nextlayerid":17,
+ "nextobjectid":980,
  "orientation":"orthogonal",
  "properties":[
         {

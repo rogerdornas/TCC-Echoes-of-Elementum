@@ -56,11 +56,13 @@ public:
     };
 
     Trigger(class Game *game, float width, float height);
+    ~Trigger() override;
 
     void OnUpdate(float deltaTime) override;
 
     void SetTarget(std::string target);
     void SetEvent(std::string event);
+    Event GetEvent() const { return mEvent; }
     void SetDestroy(bool destroy) { mDestroy = destroy; }
     void SetGroundsIds(const std::vector<int>& ids) { mGroundsIds = ids; }
     void SetEnemiesIds(const std::vector<int>& ids) { mEnemiesIds = ids; }

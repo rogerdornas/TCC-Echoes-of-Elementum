@@ -38,6 +38,12 @@ Trigger::Trigger(class Game *game, float width, float height)
 
     // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, {160, 32, 240, 255});
     mAABBComponent = new AABBComponent(this, v1, v3);
+
+    mGame->AddTrigger(this);
+}
+
+Trigger::~Trigger() {
+    mGame->RemoveTrigger(this);
 }
 
 void Trigger::SetTarget(std::string target) {
@@ -322,6 +328,14 @@ void Trigger::GroundTrigger() {
 void Trigger::GameTrigger() {
     switch (mEvent) {
         case Event::ChangeScene:
+            if (mGame->GetMapManager() && mGame->GetCurrentLevelPath() != "MainMenu") {
+                mGame->SetLastMapOriginCanvasPos(mGame->GetMapManager()->GetRoomCanvasPosition(mGame->GetCurrentLevelPath()));
+                mGame->SetLastMapOriginBoundsMin(mGame->GetCameraMinBound());
+                mGame->SetLastMapOriginBoundsMax(mGame->GetCameraMaxBound());
+                mGame->SetLastMapOriginTriggerPos(mPosition);
+                mGame->SetIsConnectingMapRoom(true);
+            }
+
             // mGame->GetAudio()->StopAllSounds();
             mGame->SetPlayerStartPositionId(mPlayerStartPositionId);
             mGame->LoadNextLevel(mNextLevelPath, 0.5f);

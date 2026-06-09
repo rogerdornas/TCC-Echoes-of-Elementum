@@ -87,7 +87,7 @@ public:
 	bool CreateRenderTarget(int width, int height);
 	Vector2 GetResolution() const { return Vector2(mRenderWidth, mRenderHeight); }
 
-	// === Iluminação ===
+	// Iluminação
 	void SetAmbientLight(const Vector3& color, float intensity);
 	void AddLight(class Light* light);
 	void RemoveLight(class Light* light);
@@ -97,6 +97,28 @@ public:
 	void SetEffectIntensity(PostProcessEffect effect, float intensity);
 	void SetAberrationAngle(float angle) { mAberrationAngle = angle; }
 	void DeactivateAllEffects();
+
+	// Map
+	// Cria um FBO e uma textura específicos para a máscara de uma sala
+	void CreateMaskFBO(int width, int height, unsigned int& outFBO, unsigned int& outTexture);
+
+	// Muda o alvo da renderização para podermos "pintar" na máscara
+	void BindFramebuffer(unsigned int fboID, int width, int height);
+
+	// Restaura o alvo para o FBO da UI ou do Jogo
+	void RestoreDefaultFramebuffer();
+
+	void CreateColorFBO(int width, int height, unsigned int& outFBO, unsigned int& outTexture);
+
+	void DrawMapRoom(const Vector2& position, const Vector2& size, class Texture* mapTexture, unsigned int maskTextureID, float viewWidth, float viewHeight);
+
+	// Função para desenhar a textura final do FBO
+	void DrawTextureByID(const Vector2 &position, const Vector2 &size, float rotation,
+						const Vector3 &color, unsigned int textureID, const Vector4 &textureRect = Vector4::UnitRect,
+						const Vector2 &cameraPos = Vector2::Zero, Vector2 scale = Vector2::One, float textureFactor = 1.0f,
+						float alpha = 1.0f);
+
+	void DrawFogBrush(const Vector2& centerPos, float radius, class Texture* brush, const Vector2& fboSize);
 
 	void PrintUsedTextures();
 
@@ -119,6 +141,8 @@ private:
 	class Shader* mScreenShader;
 	class Shader* mPostProcessShader;
 	class Shader* mCircleShader;
+	class Shader* mMapShader;
+	class Shader* mBrushShader;
 
     // Sprite vertex array
     class VertexArray *mSpriteVerts;

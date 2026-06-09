@@ -54,5 +54,7 @@ private:
     bool mCanHook;
 
     std::vector<std::string> mUnlockedSkillNodes;
+
+    nlohmann::json mMapState;
 };
 

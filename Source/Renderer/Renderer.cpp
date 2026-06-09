@@ -12,6 +12,9 @@ Renderer::Renderer(SDL_Window *window, Game* game)
     ,mFadeShader(nullptr)
     ,mScreenShader(nullptr)
     ,mPostProcessShader(nullptr)
+    ,mCircleShader(nullptr)
+    ,mMapShader(nullptr)
+    ,mBrushShader(nullptr)
     ,mWindow(window)
     ,mContext(nullptr)
     ,mOrthoProjection(Matrix4::Identity)
@@ -172,6 +175,8 @@ void Renderer::Shutdown()
     if (mScreenShader) { mScreenShader->Unload(); delete mScreenShader; }
     if (mPostProcessShader) { mPostProcessShader->Unload(); delete mPostProcessShader; }
     if (mCircleShader) { mCircleShader->Unload(); delete mCircleShader; }
+    if (mMapShader) { mMapShader->Unload(); delete mMapShader; }
+    if (mBrushShader) { mBrushShader->Unload(); delete mBrushShader; }
 
     // Destroy Vertex Arrays
     delete mSpriteVerts;
@@ -471,6 +476,18 @@ bool Renderer::LoadShaders()
         return false;
     }
 
+    mMapShader = new Shader();
+    if (!mMapShader->Load("../Shaders/Map")) {
+        SDL_Log("Falha ao carregar Map shader.");
+        return false;
+    }
+
+    mBrushShader = new Shader();
+    if (!mBrushShader->Load("../Shaders/FogBrush")) {
+        SDL_Log("Falha ao carregar FogBrush shader.");
+        return false;
+    }
+
     return true;
 }
 
@@ -730,6 +747,170 @@ void Renderer::DeactivateAllEffects() {
     mEffectIntensities[static_cast<int>(PostProcessEffect::ChromaticAberration)] = 0.0f;
 }
 
+void Renderer::CreateMaskFBO(int width, int height, unsigned int& outFBO, unsigned int& outTexture) {
+    glGenFramebuffers(1, &outFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, outFBO);
+
+    glGenTextures(1, &outTexture);
+    glBindTexture(GL_TEXTURE_2D, outTexture);
+
+    // Usa GL_RED para economizar memória de vídeo
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RED, width, height, 0, GL_RED, GL_UNSIGNED_BYTE, NULL);
+
+    // Linear para a borda da névoa ficar suave
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, outTexture, 0);
+
+    // Limpa esse FBO para preto
+    glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    // Devolve para o FBO padrão da tela
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void Renderer::BindFramebuffer(unsigned int fboID, int width, int height) {
+    glBindFramebuffer(GL_FRAMEBUFFER, fboID);
+    glViewport(0, 0, width, height);
+}
+
+void Renderer::RestoreDefaultFramebuffer() {
+    if (mDrawingUI) {
+        glBindFramebuffer(GL_FRAMEBUFFER, mUIFBO);
+    } else {
+        glBindFramebuffer(GL_FRAMEBUFFER, mGameFBO);
+    }
+    // Restaura o viewport da tela
+    glViewport(0, 0, static_cast<int>(mRenderWidth), static_cast<int>(mRenderHeight));
+}
+
+void Renderer::CreateColorFBO(int width, int height, unsigned int& outFBO, unsigned int& outTexture) {
+    glGenFramebuffers(1, &outFBO);
+    glBindFramebuffer(GL_FRAMEBUFFER, outFBO);
+
+    glGenTextures(1, &outTexture);
+    glBindTexture(GL_TEXTURE_2D, outTexture);
+
+    // Usa GL_RGBA para manter a transparência nas áreas sem salas
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, NULL);
+
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, outTexture, 0);
+
+    // Limpa para totalmente transparente
+    glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+    glClear(GL_COLOR_BUFFER_BIT);
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
+void Renderer::DrawMapRoom(const Vector2& position, const Vector2& size, Texture* mapTexture, unsigned int maskTextureID, float viewWidth, float viewHeight) {
+    Matrix4 model = Matrix4::CreateScale(Vector3(size.x, size.y, 1.0f)) *
+                    Matrix4::CreateTranslation(Vector3(position.x, position.y, 0.0f));
+
+    mMapShader->SetActive();
+
+    Matrix4 uiProj = Matrix4::CreateOrtho(0.0f, viewWidth, viewHeight, 0.0f, -1.0f, 1.0f);
+    mMapShader->SetMatrixUniform("uOrthoProj", uiProj);
+    mMapShader->SetMatrixUniform("uWorldTransform", model);
+    mMapShader->SetFloatUniform("uAlpha", 1.0f); // Sempre 100% no Baking
+
+    glActiveTexture(GL_TEXTURE0);
+    mapTexture->SetActive();
+    mMapShader->SetIntUniform("uMapTexture", 0);
+
+    glActiveTexture(GL_TEXTURE1);
+    glBindTexture(GL_TEXTURE_2D, maskTextureID);
+    mMapShader->SetIntUniform("uMaskTexture", 1);
+
+    mSpriteVerts->SetActive();
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    glDrawElements(GL_TRIANGLES, mSpriteVerts->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+
+    glActiveTexture(GL_TEXTURE0);
+    mBaseShader->SetActive();
+}
+
+void Renderer::DrawTextureByID(const Vector2 &position, const Vector2 &size, float rotation, const Vector3 &color, unsigned int textureID, const Vector4 &textureRect, const Vector2 &cameraPos, Vector2 scale, float textureFactor, float alpha)
+{
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    Vector3 pos(std::floor(position.x), std::floor(position.y), 0.0f);
+
+    Matrix4 model = Matrix4::CreateScale(Vector3(size.x * scale.x, size.y * scale.y, 1.0f)) *
+                    Matrix4::CreateRotationZ(rotation) *
+                    Matrix4::CreateTranslation(pos);
+
+    Vector2 cameraInt(std::floor(cameraPos.x), std::floor(cameraPos.y));
+
+    if (mDrawingUI) {
+        mBaseShader->SetMatrixUniform("uOrthoProj", Matrix4::CreateOrtho(0.0f, mVirtualWidth, mVirtualHeight, 0.0f, -1.0f, 1.0f));
+        DeactivateLighting();
+    }
+    else {
+        mBaseShader->SetMatrixUniform("uOrthoProj", Matrix4::CreateOrtho(0.0f, mZoomedWidth, mZoomedHeight, 0.0f, -1.0f, 1.0f));
+        UploadLightingUniforms();
+    }
+
+    mBaseShader->SetMatrixUniform("uWorldTransform", model);
+    mBaseShader->SetVectorUniform("uColor", color);
+    mBaseShader->SetVectorUniform("uTexRect", textureRect);
+    mBaseShader->SetVectorUniform("uCameraPos", cameraInt);
+    mBaseShader->SetFloatUniform("uAlpha", alpha);
+    mBaseShader->SetFloatUniform("uFreezeLevel", 0.0f);
+
+    // Vincula a textura diretamente e desenha sem chamar o Draw()
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, textureID);
+    mBaseShader->SetFloatUniform("uTextureFactor", textureFactor);
+
+    mSpriteVerts->SetActive();
+    glDrawElements(GL_TRIANGLES, mSpriteVerts->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+}
+
+void Renderer::DrawFogBrush(const Vector2& centerPos, float radius, Texture* brush, const Vector2& fboSize) {
+    mBrushShader->SetActive();
+
+    Matrix4 ortho = Matrix4::CreateOrtho(0.0f, fboSize.x, fboSize.y, 0.0f, -1.0f, 1.0f);
+    mBrushShader->SetMatrixUniform("uOrthoProj", ortho);
+
+    float diameter = radius * 2.0f;
+    Matrix4 model = Matrix4::CreateScale(Vector3(diameter, diameter, 1.0f)) *
+                    Matrix4::CreateTranslation(Vector3(centerPos.x, centerPos.y, 0.0f));
+
+    mBrushShader->SetMatrixUniform("uWorldTransform", model);
+
+    // Aplica a textura do pincel
+    glActiveTexture(GL_TEXTURE0);
+    brush->SetActive();
+    mBrushShader->SetIntUniform("uTexture", 0);
+
+    mSpriteVerts->SetActive();
+
+    glEnable(GL_BLEND);
+    glBlendEquation(GL_MAX);
+    glBlendFunc(GL_ONE, GL_ONE);
+
+    glDrawElements(GL_TRIANGLES, mSpriteVerts->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
+
+    // RESTAURA O ESTADO DO OPENGL
+    glBlendEquation(GL_FUNC_ADD);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    // Restaura o shader
+    mBaseShader->SetActive();
+}
+
 void Renderer::BeginGameDraw()
 {
     mDrawingUI = false;
@@ -739,13 +920,12 @@ void Renderer::BeginUIDraw()
 {
     mDrawingUI = true;
 
-    // 1. Muda o alvo para o FBO da UI (FBO 2). AINDA estamos na resolução interna!
+    // Muda o alvo para o FBO da UI (FBO 2). AINDA estamos na resolução interna!
     glBindFramebuffer(GL_FRAMEBUFFER, mUIFBO);
 
-    // Opcional: Não precisa limpar (Clear) o FBO 2, porque vamos desenhar um Quad gigante cobrindo tudo
     glDisable(GL_BLEND);
 
-    // 2. Prepara o shader de pós-processamento
+    // Prepara o shader de pós-processamento
     mPostProcessShader->SetActive();
     mPostProcessShader->SetFloatUniform("uBlurIntensity", mEffectIntensities[static_cast<int>(PostProcessEffect::Blur)]);
     mPostProcessShader->SetFloatUniform("uGrayscaleIntensity", mEffectIntensities[static_cast<int>(PostProcessEffect::Grayscale)]);
@@ -757,17 +937,14 @@ void Renderer::BeginUIDraw()
 
     mScreenQuad->SetActive();
 
-    // 3. Pega a textura do FBO 1 (Jogo) como entrada
+    // Pega a textura do FBO 1 (Jogo) como entrada
     glBindTexture(GL_TEXTURE_2D, mGameFBOTexture);
 
-    // 4. Desenha! Agora o FBO 2 contém o jogo borrado.
+    // Desenha! Agora o FBO 2 contém o jogo borrado.
     glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
     glEnable(GL_BLEND);
 
-    // 5. Devolve o controle para o BaseShader.
-    // Como o mUIFBO ainda está "bindado", qualquer menu desenhado a partir de
-    // agora cairá no FBO 2, nítido, sobrepondo o fundo embaçado!
     mBaseShader->SetActive();
 }
 

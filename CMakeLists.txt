@@ -118,8 +118,6 @@ add_executable(${PROJECT_NAME}
         Source/Components/ColliderComponent.h
         Source/Components/OBBComponent.cpp
         Source/Components/OBBComponent.h
-        Source/Map.cpp
-        Source/Map.h
         Source/WaveManager.cpp
         Source/WaveManager.h
         Source/Actors/Lava.cpp
@@ -253,6 +251,10 @@ add_executable(${PROJECT_NAME}
         Source/Actors/Enemies/Frogger.cpp
         Source/Actors/Enemies/Frogger.h
         Source/IconDictionary.h
+        Source/MapManager.cpp
+        Source/MapManager.h
+        Source/UIScreens/MapMenu.cpp
+        Source/UIScreens/MapMenu.h
 )
 
 

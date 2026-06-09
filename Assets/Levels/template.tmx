@@ -11,7 +11,7 @@
  <objectgroup id="2" name="AmbientParticleArea"/>
  <objectgroup id="15" name="Camera"/>
  <objectgroup id="10" name="Triggers"/>
- <objectgroup id="3" name="Background1" parallaxx="0.95">
+ <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
    <property name="TextureColorG" type="int" value="65"/>
@@ -19,7 +19,7 @@
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
  </objectgroup>
- <objectgroup id="4" name="Background2">
+ <objectgroup draworder="index" id="4" name="Background2">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
@@ -27,7 +27,7 @@
    <property name="TextureFactor" type="float" value="0.5"/>
   </properties>
  </objectgroup>
- <objectgroup id="5" name="Decorations"/>
+ <objectgroup draworder="index" id="5" name="Decorations"/>
  <layer id="1" name="Camada de Blocos 1" width="50" height="50">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -136,7 +136,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="7" name="Foreground1">
+ <objectgroup draworder="index" id="7" name="Foreground1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -144,7 +144,7 @@
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
  </objectgroup>
- <objectgroup id="8" name="Foreground2" parallaxx="1.1">
+ <objectgroup draworder="index" id="8" name="Foreground2" parallaxx="1.1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -163,5 +163,5 @@
  <objectgroup id="12" name="Checkpoint"/>
  <objectgroup id="13" name="Player"/>
  <objectgroup id="14" name="Enemies"/>
- <objectgroup id="22" name="CameraBounds"/>
+ <objectgroup id="22" name="CameraBounds" visible="0"/>
 </map>

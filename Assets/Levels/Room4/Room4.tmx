@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="18" nextobjectid="182">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="183">
  <editorsettings>
   <export target="Room4.json" format="json"/>
  </editorsettings>
@@ -589,5 +589,8 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="18" name="CameraBounds" visible="0">
+  <object id="182" x="208" y="640" width="8688" height="4640"/>
  </objectgroup>
 </map>

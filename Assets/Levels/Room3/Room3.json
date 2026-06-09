@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -31,7 +31,7 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":4366
+                         "value":4370
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
@@ -73,7 +73,7 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":4366
+                         "value":4370
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
@@ -115,7 +115,7 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":4366
+                         "value":4370
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
@@ -157,7 +157,7 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":4366
+                         "value":4370
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
@@ -199,7 +199,7 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":4366
+                         "value":4370
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
@@ -230,7 +230,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -240,7 +240,7 @@
          "name":"Triggers",
          "objects":[
                 {
-                 "height":256,
+                 "height":384,
                  "id":9,
                  "name":"",
                  "properties":[
@@ -277,7 +277,7 @@
                  "y":1280
                 }, 
                 {
-                 "height":256,
+                 "height":384,
                  "id":15,
                  "name":"",
                  "properties":[
@@ -299,9 +299,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":576,
+                 "width":1024,
                  "x":1792,
-                 "y":1920
+                 "y":1792
                 }, 
                 {
                  "height":200,
@@ -336,8 +336,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":512,
-                 "x":1538.67,
+                 "width":384,
+                 "x":1536,
                  "y":197
                 }],
          "opacity":1,
@@ -375,7 +375,7 @@
                  "value":0.3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -407,7 +407,7 @@
                  "value":0.5
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -464,7 +464,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -531,7 +531,7 @@
          "name":"DynamicGrounds",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
+         "visible":false,
          "width":38,
          "x":0,
          "y":0
@@ -564,7 +564,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -597,7 +597,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -608,7 +608,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -619,7 +619,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -630,7 +630,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -641,7 +641,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -652,7 +652,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -663,7 +663,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -674,7 +674,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -861,7 +861,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -872,7 +872,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -960,34 +960,35 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
          "id":22,
+         "locked":true,
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":1943.33333333333,
+                 "height":1940,
                  "id":39,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3915.33333333333,
+                 "width":3812,
                  "x":560,
                  "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":40,
+ "nextobjectid":42,
  "orientation":"orthogonal",
  "properties":[
         {
