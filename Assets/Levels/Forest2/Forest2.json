@@ -19,7 +19,7 @@
          "name":"Camera",
          "objects":[
                 {
-                 "height":2304,
+                 "height":1452,
                  "id":31,
                  "name":"",
                  "properties":[
@@ -58,7 +58,7 @@
                  "visible":true,
                  "width":3072,
                  "x":768,
-                 "y":1536
+                 "y":2388
                 }, 
                 {
                  "height":948.969696969697,
@@ -99,8 +99,50 @@
                  "type":"",
                  "visible":true,
                  "width":3072,
-                 "x":640,
+                 "x":768,
                  "y":512
+                }, 
+                {
+                 "height":768,
+                 "id":42,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":3584
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":2560
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":768
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":640
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3072,
+                 "x":768,
+                 "y":1536
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -888,7 +930,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":42,
+ "nextobjectid":43,
  "orientation":"orthogonal",
  "properties":[
         {

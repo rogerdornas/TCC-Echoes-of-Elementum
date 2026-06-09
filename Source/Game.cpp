@@ -3318,6 +3318,14 @@ void Game::UpdateCamera(float deltaTime) {
     mCamera->Update(deltaTime);
 }
 
+void Game::PushUI(class UIScreen *screen) {
+    if (!mUIStack.empty()) {
+        mUIStack.back()->ResetInputState();
+    }
+
+    mUIStack.push_back(screen);
+}
+
 void Game::ActiveDamageFlash() {
     mDamageFlashActive = true;
     mDamageFlashTimer = 0.0f;

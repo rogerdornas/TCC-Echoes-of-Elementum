@@ -295,6 +295,16 @@ void UIScreen::CancelDirectionalHold(NavDirection dirToCancel) {
     }
 }
 
+void UIScreen::ResetInputState() {
+    mHeldDirection = NavDirection::None;
+    mHoldTimer = 0.0f;
+    mDraggedButton = nullptr;
+
+    for (UIButton* btn : mButtons) {
+        btn->SetBeingHeld(false);
+    }
+}
+
 void UIScreen::Close() {
 	mState = UIState::Closing;
 }

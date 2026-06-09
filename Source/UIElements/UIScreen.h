@@ -37,6 +37,7 @@ public:
 	virtual void HandleMouseMotion(const Vector2& virtualMousePos);
 
 	void CancelDirectionalHold(NavDirection dirToCancel = NavDirection::None);
+	void ResetInputState();
 
 	void SetPosition(Vector2 position) { mPos = position; }
 	void SetSize(Vector2 size) { mSize = size; }

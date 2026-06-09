@@ -239,7 +239,7 @@ public:
     void StopBossMusic();
 
     // UI functions
-    void PushUI(class UIScreen* screen) { mUIStack.emplace_back(screen); }
+    void PushUI(class UIScreen* screen);
     std::vector<class UIScreen*>& GetUIStack() { return mUIStack; }
     class HUD* GetHUD() const { return mHUD; }
 
