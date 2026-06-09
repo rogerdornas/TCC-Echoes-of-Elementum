@@ -14,17 +14,7 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera" visible="0">
-  <object id="5" x="1822.3" y="1664" width="1347.7" height="896">
-   <properties>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="9080"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2176"/>
-    <property name="LimitMinCameraPositionX" type="float" value="1536"/>
-    <property name="LimitMinCameraPositionY" type="float" value="640"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
+ <objectgroup id="15" name="Camera">
   <object id="14" x="3200" y="256" width="1112" height="2304">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -35,7 +25,7 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="15" x="128" y="256" width="1664" height="2304">
+  <object id="15" x="128" y="205.913" width="3020" height="2404.17">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="9080"/>
@@ -55,24 +45,14 @@
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="63" x="1828.36" y="256" width="1335.27" height="1359.52">
-   <properties>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="9080"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2176"/>
-    <property name="LimitMinCameraPositionX" type="float" value="512"/>
-    <property name="LimitMinCameraPositionY" type="float" value="640"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="3" x="1920" y="2276" width="384" height="156">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="1"/>
-    <property name="Scene" value="Room3/Room3"/>
+    <property name="Scene" value="Forest2/Forest2"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -153,8 +133,8 @@
 0,8,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,3,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,1,2,2,2,2,2,2,2,13,9,10,0,0,0,
 0,8,9,9,12,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,12,2,2,2,2,13,9,9,9,9,9,9,9,9,9,9,9,9,9,12,2,2,2,2,13,9,9,9,9,9,9,9,9,9,10,0,0,0,
 0,8,9,9,9,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,13,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,
-0,8,9,9,5,6,12,2,2,2,2,2,2,2,2,3,0,1,2,2,2,2,2,2,2,2,2,13,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,
-0,8,9,9,12,13,9,9,9,9,9,9,9,9,9,10,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,
+0,8,9,9,9,9,12,2,2,2,2,2,2,2,2,3,0,1,2,2,2,2,2,2,2,2,2,13,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,
 0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -210,7 +190,7 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="11" name="Grounds">
   <object id="1" x="896" y="2048" width="1152" height="384"/>
   <object id="2" x="2176" y="2048" width="1280" height="384"/>
   <object id="17" x="640" y="1792" width="256" height="640"/>
@@ -252,8 +232,8 @@
   <object id="62" x="4992" y="1024" width="256" height="128"/>
   <object id="66" x="5504" y="1152" width="128" height="128"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="12" name="Checkpoint"/>
+ <objectgroup id="13" name="Player">
   <object id="4" x="2112" y="2174" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -282,12 +262,12 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
+ <objectgroup id="14" name="Enemies">
   <object id="21" name="Flying Enemy" x="3064" y="1698" width="32" height="32"/>
   <object id="22" name="Enemy Simple" x="3009.27" y="2030.36" width="32" height="32"/>
   <object id="43" name="OrangeSlime" x="7908" y="1008" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds">
+ <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
   <object id="71" x="512" y="572" width="8568" height="1604"/>
  </objectgroup>
 </map>

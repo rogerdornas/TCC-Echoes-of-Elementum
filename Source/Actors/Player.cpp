@@ -249,7 +249,7 @@ Player::Player(Game* game)
 
     ,mRunningSoundIntervalDuration(0.3f)
     ,mRunningSoundIntervalTimer(0.0f)
-    ,mWasOnGround(false)
+    ,mWasOnGround(true)
     ,mDeathCounter(0)
     ,mDeathAnimationDuration(1.0f)
     ,mDeathAnimationTimer(0.0f)
@@ -1402,9 +1402,17 @@ void Player::ResolveGroundCollision() {
                         mMovingGroundVelocity = g->GetComponent<RigidBodyComponent>()->GetVelocity();
                         if (!mDashComponent->GetIsDashing()) {
                             mRigidBodyComponent->SetVelocity(mMovingGroundVelocity);
-                            SetPosition(Vector2(GetPosition().x,
-                                                g->GetPosition().y - g->GetHeight() / 2 - mHeight / 2 + 1));
-                            // Gambiarra (Ao detectar colisão por cima em moving ground, desce o ‘player’ 1 pixel para baixo para não ficar trepidando
+
+                            // Pega o topo do AABB do chão
+                            auto* groundCollider = g->GetComponent<ColliderComponent>();
+                            auto* groundAABB = dynamic_cast<AABBComponent*>(groundCollider);
+
+                            if (groundAABB) {
+                                float physicalGroundTop = g->GetPosition().y + groundAABB->GetOffset().y + groundAABB->GetMin().y;
+
+                                // Posiciona o player exatamente no topo físico, mais a margem de 1 pixel para não trepidar
+                                SetPosition(Vector2(GetPosition().x, physicalGroundTop - mHeight / 2 + 1));
+                            }
                         }
                     }
                 }

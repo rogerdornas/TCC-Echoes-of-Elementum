@@ -63,16 +63,16 @@ void MapMenu::Update(float deltaTime) {
 
     // Converte a direção segurada em um vetor de movimento
     if (mHeldDirection == NavDirection::Up) {
-        panInput.y += 1.0f;
-    }
-    else if (mHeldDirection == NavDirection::Down) {
         panInput.y -= 1.0f;
     }
+    else if (mHeldDirection == NavDirection::Down) {
+        panInput.y += 1.0f;
+    }
     else if (mHeldDirection == NavDirection::Left) {
-        panInput.x += 1.0f;
+        panInput.x -= 1.0f;
     }
     else if (mHeldDirection == NavDirection::Right) {
-        panInput.x -= 1.0f;
+        panInput.x += 1.0f;
     }
 
     // Se estiver segurando uma direção, move o TargetPan
