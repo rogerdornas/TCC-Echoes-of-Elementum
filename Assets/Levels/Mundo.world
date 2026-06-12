@@ -24,22 +24,22 @@
         {
             "fileName": "Forest4/Forest4.tmx",
             "height": 2048,
-            "width": 5760,
-            "x": 1536,
+            "width": 8320,
+            "x": -1024,
             "y": -6272
         },
         {
             "fileName": "BossFrogger/BossFrogger.tmx",
-            "height": 6400,
-            "width": 6400,
-            "x": -11136,
-            "y": 2176
+            "height": 1920,
+            "width": 5120,
+            "x": -5504,
+            "y": -6272
         },
         {
             "fileName": "Forest5/Forest5.tmx",
             "height": 2688,
-            "width": 5120,
-            "x": -1408,
+            "width": 8960,
+            "x": -5248,
             "y": -4864
         },
         {
@@ -90,6 +90,13 @@
             "width": 4480,
             "x": 10368,
             "y": -8576
+        },
+        {
+            "fileName": "Forest12/Forest12.tmx",
+            "height": 3968,
+            "width": 2816,
+            "x": -7808,
+            "y": -6272
         }
     ],
     "onlyShowAdjacentMaps": false,
