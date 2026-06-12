@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="184">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="20" nextobjectid="184">
  <editorsettings>
   <export target="Room4.json" format="json"/>
  </editorsettings>
@@ -366,6 +366,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="19" name="DecorationsForeground"/>
  <objectgroup id="5" name="Foreground1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
@@ -488,7 +489,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="2" x="768" y="2304" width="3072" height="256"/>
   <object id="3" x="2688" y="1536" width="256" height="768"/>
   <object id="4" x="3840" y="1536" width="640" height="1024"/>

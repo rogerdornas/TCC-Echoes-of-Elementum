@@ -56,9 +56,9 @@ DragonFly::DragonFly(Game *game)
     mWidth = 130;
     mHeight = 40;
     mMoveSpeed = 1300;
-    mHealthPoints = 80;
+    mHealthPoints = 65;
     mMaxHealthPoints = mHealthPoints;
-    mContactDamage = 10;
+    mContactDamage = 20;
     mMoneyDrop = 30;
     mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.15f;

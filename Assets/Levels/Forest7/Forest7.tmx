@@ -152,7 +152,7 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies"/>
- <objectgroup id="22" name="CameraBounds">
+ <objectgroup id="22" name="CameraBounds" visible="0">
   <object id="16" x="384" y="319" width="2944" height="1220"/>
  </objectgroup>
 </map>

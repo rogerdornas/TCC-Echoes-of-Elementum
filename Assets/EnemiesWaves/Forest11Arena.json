@@ -36,9 +36,9 @@
         },
         {
           "actionType": "SpawnEnemy", 
-          "type": "Mantis", 
-          "id": "RightBot", 
-          "delay": 2.5
+          "type": "FlyingShooterEnemy", 
+          "id": "RightTop", 
+          "delay": 3.5
         }
       ]
     },

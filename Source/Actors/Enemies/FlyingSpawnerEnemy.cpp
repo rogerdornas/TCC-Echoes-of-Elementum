@@ -18,7 +18,7 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
     :Enemy(game)
     ,mEnemyState(State::Fly)
 
-    ,mDistToSpotPlayer(400)
+    ,mDistToSpotPlayer(600)
     ,mFlyingAroundDuration(1.0f)
     ,mFlyingAroundTimer(0.0f)
     ,mFlyingAroundMoveSpeed(100.0f)

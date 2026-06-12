@@ -1318,6 +1318,17 @@
         }, 
         {
          "draworder":"topdown",
+         "id":19,
+         "name":"DecorationsForeground",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"topdown",
          "id":5,
          "name":"Foreground1",
          "objects":[
@@ -2213,7 +2224,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2504,7 +2515,7 @@
          "x":0,
          "y":0
         }],
- "nextlayerid":19,
+ "nextlayerid":20,
  "nextobjectid":184,
  "orientation":"orthogonal",
  "properties":[

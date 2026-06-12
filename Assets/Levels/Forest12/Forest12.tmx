@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="22" height="31" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="70">
+ <properties>
+  <property name="BackgroundLayers" value="DarkForest/4.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="false"/>
+  <property name="GroundParticleColor" type="color" value="#ff3a9359"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="true"/>
+  <property name="UseGroundPadding" type="bool" value="true"/>
+ </properties>
+ <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
+ <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
+ <objectgroup id="2" name="AmbientParticleArea"/>
+ <objectgroup id="15" name="Camera"/>
+ <objectgroup id="10" name="Triggers"/>
+ <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
+  <properties>
+   <property name="TextureColorB" type="int" value="69"/>
+   <property name="TextureColorG" type="int" value="65"/>
+   <property name="TextureColorR" type="int" value="22"/>
+   <property name="TextureFactor" type="float" value="0.3"/>
+  </properties>
+ </objectgroup>
+ <objectgroup draworder="index" id="4" name="Background2">
+  <properties>
+   <property name="TextureColorB" type="int" value="107"/>
+   <property name="TextureColorG" type="int" value="101"/>
+   <property name="TextureColorR" type="int" value="22"/>
+   <property name="TextureFactor" type="float" value="0.5"/>
+  </properties>
+ </objectgroup>
+ <objectgroup draworder="index" id="5" name="Decorations">
+  <object id="1" gid="2147483743" x="677" y="3253.94" width="277.011" height="132"/>
+  <object id="38" gid="95" x="1756" y="2878.73" width="277.011" height="132"/>
+  <object id="14" gid="93" x="524" y="2978" width="299.252" height="278.075" rotation="90"/>
+  <object id="15" gid="93" x="524" y="2803.63" width="299.252" height="278.075" rotation="90"/>
+  <object id="16" gid="93" x="524" y="2614.3" width="299.252" height="278.075" rotation="90"/>
+  <object id="39" gid="2147483743" x="677" y="2465.33" width="277.011" height="132"/>
+  <object id="17" gid="93" x="524" y="2430.3" width="299.252" height="278.075" rotation="90"/>
+  <object id="18" gid="93" x="524" y="2255.63" width="299.252" height="278.075" rotation="90"/>
+  <object id="19" gid="93" x="524" y="1744.96" width="299.252" height="278.075" rotation="90"/>
+  <object id="20" gid="93" x="524" y="1403.63" width="299.252" height="278.075" rotation="90"/>
+  <object id="21" gid="93" x="524" y="1230.3" width="299.252" height="278.075" rotation="90"/>
+  <object id="22" gid="93" x="524" y="1056.96" width="299.252" height="278.075" rotation="90"/>
+  <object id="23" gid="93" x="524" y="884.963" width="299.252" height="278.075" rotation="90"/>
+  <object id="24" gid="93" x="524" y="1571.63" width="299.252" height="278.075" rotation="90"/>
+  <object id="25" gid="93" x="524" y="1906.3" width="299.252" height="278.075" rotation="90"/>
+  <object id="26" gid="93" x="524" y="2078.3" width="299.252" height="278.075" rotation="90"/>
+  <object id="32" gid="93" x="2176" y="1614.96" width="299.252" height="278.075" rotation="270"/>
+  <object id="33" gid="93" x="2176" y="1786.96" width="299.252" height="278.075" rotation="270"/>
+  <object id="36" gid="93" x="2176" y="1962.96" width="299.252" height="278.075" rotation="270"/>
+  <object id="37" gid="93" x="2176" y="2138.96" width="299.252" height="278.075" rotation="270"/>
+  <object id="42" gid="2147483743" x="677" y="1697.33" width="277.011" height="132"/>
+  <object id="43" gid="95" x="1756" y="2110.73" width="277.011" height="132"/>
+  <object id="60" gid="93" x="2176" y="2470.96" width="299.252" height="278.075" rotation="270"/>
+  <object id="61" gid="93" x="2176" y="2629.63" width="299.252" height="278.075" rotation="270"/>
+  <object id="62" gid="93" x="2176" y="2781.63" width="299.252" height="278.075" rotation="270"/>
+  <object id="63" gid="93" x="2176" y="2933.63" width="299.252" height="278.075" rotation="270"/>
+  <object id="64" gid="93" x="2176" y="2305.63" width="299.252" height="278.075" rotation="270"/>
+  <object id="65" gid="93" x="524" y="710.96" width="299.252" height="278.075" rotation="90"/>
+  <object id="66" gid="93" x="524" y="543.96" width="299.252" height="278.075" rotation="90"/>
+  <object id="67" gid="93" x="524" y="370.96" width="299.252" height="278.075" rotation="90"/>
+ </objectgroup>
+ <layer id="1" name="Camada de Blocos 1" width="22" height="31">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,
+0,0,8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,8,9,10,0,0,0,0,22,23,23,23,23,23,23,32,2,2,3,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,21,23,23,23,23,23,23,24,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,22,23,23,23,23,23,23,14,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,21,23,23,23,23,23,23,24,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,22,23,23,23,23,23,23,14,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,
+0,0,8,9,12,2,2,2,2,2,2,2,2,3,0,0,15,16,16,17,0,0,
+0,0,8,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,
+0,0,8,9,9,9,9,9,9,9,9,9,9,12,2,2,2,2,2,3,0,0,
+0,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="6" name="DynamicGrounds" width="22" height="31">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup draworder="index" id="23" name="DecorationsForeground"/>
+ <objectgroup draworder="index" id="7" name="Foreground1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.2"/>
+  </properties>
+ </objectgroup>
+ <objectgroup draworder="index" id="8" name="Foreground2" parallaxx="1.1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.2"/>
+  </properties>
+ </objectgroup>
+ <objectgroup id="16" name="Light"/>
+ <objectgroup id="17" name="Brazier"/>
+ <objectgroup id="18" name="Lava"/>
+ <objectgroup id="19" name="LightningBarrier"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="20" name="Levers"/>
+ <objectgroup id="21" name="SpawnPoint"/>
+ <objectgroup id="11" name="Grounds">
+  <object id="8" x="2048" y="1280" width="512" height="2048"/>
+  <object id="9" x="256" y="256" width="384" height="3456"/>
+  <object id="45" x="1792" y="3456" width="768" height="256"/>
+  <object id="46" x="640" y="3200" width="1152" height="512"/>
+  <object id="47" x="1152" y="2816" width="896" height="128"/>
+  <object id="48" x="640" y="2432" width="896" height="128"/>
+  <object id="49" x="1152" y="2048" width="896" height="128"/>
+  <object id="50" x="640" y="1664" width="896" height="128"/>
+  <object id="51" x="1152" y="1280" width="896" height="128"/>
+  <object id="53" x="755.333" y="3119.33" width="174.667" height="82.6667"/>
+  <object id="54" x="640" y="2560" width="112" height="640">
+   <properties>
+    <property name="Spike" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="57" x="640" y="1792" width="112" height="640">
+   <properties>
+    <property name="Spike" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="59" x="640" y="512" width="112" height="1152">
+   <properties>
+    <property name="Spike" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="68" x="640" y="256" width="1920" height="256"/>
+ </objectgroup>
+ <objectgroup id="12" name="Checkpoint"/>
+ <objectgroup id="13" name="Player"/>
+ <objectgroup id="14" name="Enemies"/>
+ <objectgroup id="22" name="CameraBounds" visible="0"/>
+</map>

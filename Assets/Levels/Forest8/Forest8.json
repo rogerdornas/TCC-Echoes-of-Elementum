@@ -517,7 +517,7 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":3200,
+                 "x":3072,
                  "y":2176
                 }, 
                 {
@@ -549,7 +549,7 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":3200,
+                 "x":3072,
                  "y":768
                 }, 
                 {
@@ -581,7 +581,7 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":3200,
+                 "x":3072,
                  "y":1536
                 }, 
                 {
@@ -694,6 +694,38 @@
                  "width":128,
                  "x":3536,
                  "y":2176
+                }, 
+                {
+                 "height":128,
+                 "id":60,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeZoom"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }, 
+                        {
+                         "name":"TargetZoom",
+                         "type":"float",
+                         "value":0.8
+                        }, 
+                        {
+                         "name":"ZoomSpeed",
+                         "type":"float",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":512,
+                 "x":1920,
+                 "y":2304
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1729,7 +1761,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":59,
+ "nextobjectid":61,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="35" height="20" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="63">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="35" height="20" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="64">
  <editorsettings>
   <export target="Forest11.json" format="json"/>
  </editorsettings>
@@ -219,8 +219,13 @@
     <property name="id" value="LeftBot"/>
    </properties>
   </object>
+  <object id="63" x="2598" y="612" width="32" height="32">
+   <properties>
+    <property name="id" value="RightTop"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="1" x="128" y="0" width="384" height="1280"/>
   <object id="2" x="512" y="0" width="3072" height="384"/>
   <object id="3" x="3584" y="0" width="256" height="2432"/>
