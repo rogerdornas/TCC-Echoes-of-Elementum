@@ -324,7 +324,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -443,43 +443,6 @@
                  "width":128,
                  "x":5840,
                  "y":1152
-                }, 
-                {
-                 "height":768,
-                 "id":27,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeWorldState"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }, 
-                        {
-                         "name":"WorldState",
-                         "type":"string",
-                         "value":"Forest9ArenaDone"
-                        }, 
-                        {
-                         "name":"WorldStateFlag",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":160,
-                 "x":1664,
-                 "y":1408
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1318,7 +1281,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 

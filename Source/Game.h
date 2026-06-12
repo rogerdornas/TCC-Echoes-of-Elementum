@@ -165,7 +165,7 @@ public:
     Vector2 GetSpawnPointPosition(const std::string& id) const;
     std::vector<Vector2> GetSpawnPointsPositions();
 
-    void CreateWaveManager(std::string wavesFilePath);
+    void CreateWaveManager(const std::string& wavesFilePath, const std::string& arenaCondition);
     void RemoveWaveManager() { delete mWaveManager; mWaveManager = nullptr; }
 
     void AddEnemy(class Enemy* e);

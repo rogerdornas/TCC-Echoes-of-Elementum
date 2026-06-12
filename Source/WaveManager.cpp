@@ -204,43 +204,43 @@ void WaveManager::Update(float deltaTime) {
 
                     case ActionType::SpawnHookPoint:
                         pos = mGame->GetSpawnPointPosition(a.hookSpawnId);
-                    hookPoint = new HookPoint(mGame);
-                    hookPoint->SetPosition(pos);
-                    a.hookPoint = hookPoint;
-                    mHookPoints.emplace_back(hookPoint);
-                    break;
+                        hookPoint = new HookPoint(mGame);
+                        hookPoint->SetPosition(pos);
+                        a.hookPoint = hookPoint;
+                        mHookPoints.emplace_back(hookPoint);
+                        break;
 
                     case ActionType::RemoveHookPoint:
                         pos = mGame->GetSpawnPointPosition(a.hookSpawnId);
-                    for (auto it = mHookPoints.begin(); it != mHookPoints.end(); ++it) {
-                        if ((*it)->GetPosition() == pos) {
-                            auto hook = *it;
-                            mHookPoints.erase(it);
-                            hook->SetState(ActorState::Destroy);
-                            break;
+                        for (auto it = mHookPoints.begin(); it != mHookPoints.end(); ++it) {
+                            if ((*it)->GetPosition() == pos) {
+                                auto hook = *it;
+                                mHookPoints.erase(it);
+                                hook->SetState(ActorState::Destroy);
+                                break;
+                            }
                         }
-                    }
-                    break;
+                        break;
 
                     case ActionType::GrowGround:
                         g = mGame->GetGroundById(a.groundId);
-                    dynamicGround = dynamic_cast<DynamicGround*>(g);
-                    if (dynamicGround) {
-                        dynamicGround->SetIsGrowing(true);
-                    }
-                    break;
+                        dynamicGround = dynamic_cast<DynamicGround*>(g);
+                        if (dynamicGround) {
+                            dynamicGround->SetIsGrowing(true);
+                        }
+                        break;
 
                     case ActionType::DecreaseGround:
                         g = mGame->GetGroundById(a.groundId);
-                    dynamicGround = dynamic_cast<DynamicGround*>(g);
-                    if (dynamicGround) {
-                        dynamicGround->SetIsDecreasing(true);
-                    }
-                    break;
+                        dynamicGround = dynamic_cast<DynamicGround*>(g);
+                        if (dynamicGround) {
+                            dynamicGround->SetIsDecreasing(true);
+                        }
+                        break;
 
                     case ActionType::CreateSpawner:
                         CreateSpawner(a);
-                    break;
+                        break;
                 }
 
                 // marca como feito
@@ -266,6 +266,7 @@ void WaveManager::Update(float deltaTime) {
 
     if (IsCompleted()) {
         mGame->RemoveWaveManager();
+        mGame->SetWorldFlag(mArenaCondition, true);
     }
 }
 

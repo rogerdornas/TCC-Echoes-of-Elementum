@@ -15,7 +15,7 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea"/>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="16" x="2304" y="1444" width="1024" height="732">
    <properties>
     <property name="Condition" value="!Forest9ArenaDone"/>
@@ -115,15 +115,6 @@
     <property name="PlayerStartPositionId" type="int" value="2"/>
     <property name="Scene" value="Forest8/Forest8"/>
     <property name="Target" value="Game"/>
-   </properties>
-  </object>
-  <object id="27" x="1664" y="1408" width="160" height="768">
-   <properties>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Event" value="ChangeWorldState"/>
-    <property name="Target" value="Game"/>
-    <property name="WorldState" value="Forest9ArenaDone"/>
-    <property name="WorldStateFlag" type="bool" value="true"/>
    </properties>
   </object>
  </objectgroup>
@@ -261,7 +252,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="1" x="1024" y="2176" width="4992" height="384"/>
   <object id="2" x="5504" y="1408" width="512" height="640"/>
   <object id="3" x="4736" y="1408" width="768" height="384"/>

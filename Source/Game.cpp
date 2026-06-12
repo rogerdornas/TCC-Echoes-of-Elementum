@@ -1364,7 +1364,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 float ambientIntensity = 1;
                 std::string dialoguePath;
                 std::string cutsceneId;
-                std::string tutorialText = "";
+                std::string tutorialText;
                 std::string condition;
                 if (obj.contains("properties")) {
                     for (const auto &prop: obj["properties"]) {
@@ -1457,11 +1457,17 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 groundsIds = ParseIntList(grounds);
                 enemiesIds = ParseIntList(enemies);
 
+                std::string worldStateCondition = condition;
+                if (condition[0] == '!') {
+                    worldStateCondition = condition.substr(1);
+                }
+
                 auto* trigger = new Trigger(this, width, height);
                 trigger->SetPosition(Vector2(x + width / 2, y + height / 2));
                 trigger->SetTarget(target);
                 trigger->SetEvent(event);
                 trigger->SetDestroy(destroy);
+                trigger->SetCondition(worldStateCondition);
                 trigger->SetGroundsIds(groundsIds);
                 trigger->SetEnemiesIds(enemiesIds);
                 trigger->SetFixedCameraPosition(Vector2(fixedCameraPositionX, fixedCameraPositionY));
@@ -3458,10 +3464,11 @@ std::vector<Vector2> Game::GetSpawnPointsPositions() {
     return positions;
 }
 
-void Game::CreateWaveManager(std::string wavesFilePath) {
+void Game::CreateWaveManager(const std::string &wavesFilePath, const std::string &arenaCondition) {
     if (!mWaveManager) {
         mWaveManager = new WaveManager(this);
         mWaveManager->LoadFromJson(wavesFilePath);
+        mWaveManager->SetArenaCondition(arenaCondition);
         mWaveManager->Start();
     }
 }

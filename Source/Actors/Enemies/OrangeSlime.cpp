@@ -42,7 +42,7 @@ OrangeSlime::OrangeSlime(Game *game)
     mWidth = 50;
     mHeight = 50;
     mMoveSpeed = 550;
-    mHealthPoints = 70;
+    mHealthPoints = 45;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 28;

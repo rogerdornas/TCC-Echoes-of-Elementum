@@ -65,6 +65,8 @@ public:
     void Update(float deltaTime);
     bool CheckCondition(WaveAction& a);
 
+    void SetArenaCondition(const std::string& arenaCondition) { mArenaCondition = arenaCondition; }
+
     // iniciar as waves
     void Start();
 
@@ -73,6 +75,8 @@ public:
 
 private:
     class Game* mGame;
+
+    std::string mArenaCondition;
 
     std::vector<Wave> mWaves;
     int mCurrentWave;

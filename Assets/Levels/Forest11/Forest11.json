@@ -145,7 +145,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":838.424242424242,
+                 "width":640,
                  "x":512,
                  "y":256
                 }, 
@@ -443,47 +443,10 @@
                  "width":128,
                  "x":176,
                  "y":1920
-                }, 
-                {
-                 "height":768,
-                 "id":50,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeWorldState"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }, 
-                        {
-                         "name":"WorldState",
-                         "type":"string",
-                         "value":"Forest11ArenaDone"
-                        }, 
-                        {
-                         "name":"WorldStateFlag",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":3200,
-                 "y":384
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

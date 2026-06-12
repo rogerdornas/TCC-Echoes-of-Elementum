@@ -343,7 +343,7 @@ void Trigger::GameTrigger() {
             break;
 
         case Event::StartArena:
-            mGame->CreateWaveManager(mWavesPath);
+            mGame->CreateWaveManager(mWavesPath, mCondition);
             break;
 
         case Event::ChangeWorldState:
