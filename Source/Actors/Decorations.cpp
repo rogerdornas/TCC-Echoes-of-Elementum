@@ -31,6 +31,10 @@ Decorations::Decorations(Game *game, float width, float height, std::string imag
     ,mWindAmplitude(Math::ToRadians(5.0f))
     ,mWindSpeed(3.0f)
     ,mPositionInitialized(false)
+    ,mIsMoving(false)
+    ,mMovingDuration(0.0f)
+    ,mMovingTimer(0.0f)
+    ,mMoveVelocity(0, 0)
     ,mDrawComponent(nullptr)
     ,mColliderComponent(nullptr)
 {
@@ -117,6 +121,24 @@ void Decorations::OnUpdate(float deltaTime) {
     if (!mPositionInitialized) {
         mBasePosition = GetPosition();
         mPositionInitialized = true;
+    }
+
+    // LÓGICA DE MOVIMENTO
+    if (mIsMoving && mMovingDuration > 0.0f) {
+        mMovingTimer += deltaTime;
+
+        // Inverte a direção ao completar a duração
+        if (mMovingTimer > mMovingDuration) {
+            mMoveVelocity = mMoveVelocity * -1.0f;
+            mMovingTimer -= mMovingDuration;
+        }
+
+        // Curva de suavização
+        float progress = mMovingTimer / mMovingDuration;
+        float smoothMultiplier = Math::PiOver2 * std::sin(Math::Pi * progress);
+
+        mBasePosition.x += mMoveVelocity.x * smoothMultiplier * deltaTime;
+        mBasePosition.y += mMoveVelocity.y * smoothMultiplier * deltaTime;
     }
 
     // CÁLCULOS DE PROPORÇÃO DE TAMANHO
@@ -258,4 +280,11 @@ void Decorations::OnUpdate(float deltaTime) {
 
     // Move o centro do Actor para compensar a diferença
     SetPosition(Vector2(rootWorldAnchor.x - currentRotatedPivot.x, rootWorldAnchor.y - currentRotatedPivot.y));
+}
+
+void Decorations::SetMovement(bool isMoving, Vector2 velocity, float duration) {
+    mIsMoving = isMoving;
+    mMoveVelocity = velocity;
+    mMovingDuration = duration;
+    mMovingTimer = 0.0f;
 }

@@ -2034,6 +2034,39 @@
                  "width":106,
                  "x":2997.79,
                  "y":1876.86
+                }, 
+                {
+                 "gid":39,
+                 "height":186,
+                 "id":269,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Moving",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"MovingDuration",
+                         "type":"float",
+                         "value":3.2
+                        }, 
+                        {
+                         "name":"SpeedX",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"SpeedY",
+                         "type":"float",
+                         "value":-250
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":290,
+                 "x":4864,
+                 "y":2368
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2745,6 +2778,38 @@
                  "width":150.667,
                  "x":4244.67,
                  "y":2171.33
+                }, 
+                {
+                 "height":164.833333333333,
+                 "id":268,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Moving",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"MovingDuration",
+                         "type":"float",
+                         "value":3.2
+                        }, 
+                        {
+                         "name":"SpeedX",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"SpeedY",
+                         "type":"float",
+                         "value":-250
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":267,
+                 "x":4874.66666666667,
+                 "y":2193
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2855,9 +2920,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":17,
+         "name":"CameraBounds",
+         "objects":[
+                {
+                 "height":2878,
+                 "id":270,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":5428,
+                 "x":88,
+                 "y":10
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":17,
- "nextobjectid":268,
+ "nextlayerid":18,
+ "nextobjectid":271,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -13,8 +13,8 @@ MapMenu::MapMenu(Game* game, const std::string& fontName, bool isClosable)
     ,mPlayerIcon(nullptr)
     ,mIconFont(nullptr)
     ,mZoomTutorial(nullptr)
-    ,mTargetZoom(0.5f)
-    ,mCurrentZoom(0.5f)
+    ,mTargetZoom(0.45f)
+    ,mCurrentZoom(0.45f)
     ,mIsDragging(false)
 {
     mGame->TogglePause();
@@ -103,11 +103,9 @@ void MapMenu::Draw(Renderer* renderer) {
     UIScreen::Draw(renderer);
 
     // INÍCIO DO CLIPPING
-    // Limita a renderização exatamente na área da imagem de 1700x900
-    renderer->EnableScissor(110.0f, 150.0f, 1700.0f, 900.0f);
+    renderer->EnableScissor(160.0f, 250.0f, 1600.0f, 700.0f);
 
-    // Ajusta o "Centro da Tela" para ser o centro da sua janela de mapa (960, 600)
-    // Isso garante que o zoom ocorra a partir do centro do Fundo Preto, e não do monitor
+    // Ajusta o Centro da Tela para ser o centro da janela de mapa (960, 600)
     Vector2 mapWindowCenter(960.0f, 600.0f);
 
     unsigned int globalTexID = mGame->GetMapManager()->GetGlobalMapTexture();
@@ -166,15 +164,17 @@ void MapMenu::HandleKeyPress(int key, int controllerButton, int leftControllerAx
 
     // ZOOM
     // Teclado (Q e E) e Controle (Shoulders)
+    const float zoomFactor = 1.25f;
+
     if (key == SDLK_e || controllerButton == SDL_CONTROLLER_BUTTON_RIGHTSHOULDER) {
-        mTargetZoom += 0.2f;
+        mTargetZoom *= zoomFactor;
     }
     else if (key == SDLK_q || controllerButton == SDL_CONTROLLER_BUTTON_LEFTSHOULDER) {
-        mTargetZoom -= 0.2f;
+        mTargetZoom /= zoomFactor;
     }
 
     // Trava os limites do zoom
-    mTargetZoom = Math::Clamp(mTargetZoom, 0.3f, 2.0f);
+    mTargetZoom = Math::Clamp(mTargetZoom, 0.1f, 2.0f);
 
     auto inputBinding = mGame->GetInputBinding();
 

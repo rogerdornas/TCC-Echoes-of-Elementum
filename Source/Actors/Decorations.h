@@ -19,6 +19,8 @@ public:
 
     void SetWindBalance(bool windBalance) { mHasWindBalance = windBalance; mTimeActive = GetPosition().x * 0.05f; }
 
+    void SetMovement(bool isMoving, Vector2 velocity, float duration);
+
 private:
     float mWidth;
     float mHeight;
@@ -40,6 +42,12 @@ private:
 
     Vector2 mBasePosition;
     bool mPositionInitialized;
+
+    // Variáveis para o movimento
+    bool mIsMoving;
+    float mMovingDuration;
+    float mMovingTimer;
+    Vector2 mMoveVelocity;
 
     class AnimatorComponent* mDrawComponent;
     class ColliderComponent* mColliderComponent;

@@ -340,6 +340,39 @@
                  "width":686,
                  "x":2232.2,
                  "y":4995.51
+                }, 
+                {
+                 "gid":70,
+                 "height":161.641,
+                 "id":183,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Moving",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"MovingDuration",
+                         "type":"float",
+                         "value":3.2
+                        }, 
+                        {
+                         "name":"SpeedX",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"SpeedY",
+                         "type":"float",
+                         "value":-50
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":359.385,
+                 "x":3694.91,
+                 "y":3597.76
                 }],
          "opacity":0.44,
          "parallaxx":0.95,
@@ -2472,7 +2505,7 @@
          "y":0
         }],
  "nextlayerid":19,
- "nextobjectid":183,
+ "nextobjectid":184,
  "orientation":"orthogonal",
  "properties":[
         {

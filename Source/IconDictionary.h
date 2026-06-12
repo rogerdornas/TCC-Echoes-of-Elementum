@@ -17,6 +17,9 @@ namespace Icons {
     constexpr const char* XboxRT = u8"\uE907";
     constexpr const char* XboxL3 = u8"\uE908";
     constexpr const char* XboxR3 = u8"\uE909";
+    constexpr const char* XboxR3Vertical = u8"\uE91c";
+    constexpr const char* XboxMenu = u8"\uE91b";
+    constexpr const char* XboxView = u8"\uE91a";
 
     // Playstation
     constexpr const char* PlayCross = u8"\uE90c";
@@ -29,6 +32,9 @@ namespace Icons {
     constexpr const char* PlayR2 = u8"\uE918";
     constexpr const char* PlayL3 = u8"\uE90e";
     constexpr const char* PlayR3 = u8"\uE90f";
+    constexpr const char* PlayR3Vertical = u8"\uE920";
+    constexpr const char* PlayOptions = u8"\uE91e";
+    constexpr const char* PlayShare = u8"\uE91d";
 
     // Mouse
     constexpr const char* MouseRight = u8"\uE967";

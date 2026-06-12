@@ -1,0 +1,60 @@
+{
+  "waves": [
+    {
+      "actions": [
+        { 
+          "actionType": "GrowGround", 
+          "id": 10, 
+          "delay": 0.0 
+        },
+        { 
+          "actionType": "GrowGround", 
+          "id": 49, 
+          "delay": 0.0 
+        },
+        {
+          "actionType": "SpawnEnemy", 
+          "type": "Mushroom", 
+          "id": "RightBot", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Snake", 
+          "id": "LeftBot", 
+          "delay": 2.5
+        }
+      ]
+    },
+    {
+      "actions": [
+        {
+          "actionType": "SpawnEnemy", 
+          "type": "Mantis", 
+          "id": "LeftBot", 
+          "delay": 2.5
+        },
+        {
+          "actionType": "SpawnEnemy", 
+          "type": "Mantis", 
+          "id": "RightBot", 
+          "delay": 2.5
+        }
+      ]
+    },
+	{
+      "actions": [
+        { 
+          "actionType": "DecreaseGround", 
+          "id": 10, 
+          "delay": 0.5 
+        },
+        { 
+          "actionType": "DecreaseGround", 
+          "id": 49, 
+          "delay": 0.5 
+        }
+      ]
+    }
+  ]
+}

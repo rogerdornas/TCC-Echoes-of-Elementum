@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="38" height="23" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="42">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="38" height="23" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="43">
  <editorsettings>
   <export target="Room3.json" format="json"/>
  </editorsettings>
@@ -14,7 +14,7 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <tileset firstgid="63" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
+ <objectgroup id="2" name="AmbientParticleArea"/>
  <objectgroup id="15" name="Camera">
   <object id="10" x="256" y="1280" width="896" height="1280">
    <properties>
@@ -93,8 +93,15 @@
     <property name="Target" value="Game"/>
    </properties>
   </object>
+  <object id="42" x="2176" y="640" width="640" height="284">
+   <properties>
+    <property name="Event" value="ShowTutorial"/>
+    <property name="Target" value="HUD"/>
+    <property name="TutorialText" value="PRESSIONE &lt;Map&gt; PARA ABRIR O MAPA"/>
+   </properties>
+  </object>
  </objectgroup>
- <objectgroup id="3" name="Background1" visible="0" parallaxx="0.95">
+ <objectgroup id="3" name="Background1" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
    <property name="TextureColorG" type="int" value="65"/>
@@ -102,7 +109,7 @@
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
  </objectgroup>
- <objectgroup id="4" name="Background2" visible="0">
+ <objectgroup id="4" name="Background2">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
@@ -110,7 +117,7 @@
    <property name="TextureFactor" type="float" value="0.5"/>
   </properties>
  </objectgroup>
- <objectgroup id="5" name="Decorations" visible="0">
+ <objectgroup id="5" name="Decorations">
   <object id="16" gid="93" x="2350" y="2234.33" width="63" height="133.113">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
@@ -151,7 +158,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="DynamicGrounds" width="38" height="23" visible="0">
+ <layer id="6" name="DynamicGrounds" width="38" height="23">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -178,7 +185,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="7" name="Foreground1" visible="0">
+ <objectgroup id="7" name="Foreground1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -186,7 +193,7 @@
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
  </objectgroup>
- <objectgroup id="8" name="Foreground2" visible="0" parallaxx="1.1">
+ <objectgroup id="8" name="Foreground2" parallaxx="1.1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -194,14 +201,14 @@
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
  </objectgroup>
- <objectgroup id="16" name="Light" visible="0"/>
- <objectgroup id="17" name="Brazier" visible="0"/>
- <objectgroup id="18" name="Lava" visible="0"/>
- <objectgroup id="19" name="LightningBarrier" visible="0"/>
- <objectgroup id="9" name="HookPoints" visible="0"/>
- <objectgroup id="20" name="Levers" visible="0"/>
- <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="16" name="Light"/>
+ <objectgroup id="17" name="Brazier"/>
+ <objectgroup id="18" name="Lava"/>
+ <objectgroup id="19" name="LightningBarrier"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="20" name="Levers"/>
+ <objectgroup id="21" name="SpawnPoint"/>
+ <objectgroup id="11" name="Grounds">
   <object id="2" x="256" y="384" width="1024" height="1024"/>
   <object id="3" x="256" y="1536" width="768" height="1024"/>
   <object id="5" x="1408" y="2176" width="2816" height="384"/>
@@ -219,7 +226,7 @@
   <object id="33" x="1920" y="1024" width="128" height="128"/>
   <object id="34" x="2048" y="1536" width="256" height="128"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint" visible="0"/>
+ <objectgroup id="12" name="Checkpoint"/>
  <objectgroup id="13" name="Player">
   <object id="8" name="Player" x="512" y="1520" width="32" height="32">
    <properties>
@@ -238,7 +245,7 @@
   <object id="14" name="Enemy Simple" x="2859.27" y="2164.36" width="32" height="32"/>
   <object id="31" name="Flying Enemy" x="2942.67" y="1365.33" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds">
+ <objectgroup id="22" name="CameraBounds" visible="0">
   <object id="39" x="560" y="512" width="3812" height="1940"/>
  </objectgroup>
 </map>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="17" nextobjectid="268">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="64" tileheight="64" infinite="0" nextlayerid="18" nextobjectid="271">
  <editorsettings>
   <export target="Room7.json" format="json"/>
  </editorsettings>
@@ -246,6 +246,14 @@
   <object id="243" name="floor09" gid="2147483667" x="3067.67" y="1974.5" width="126" height="191"/>
   <object id="203" gid="26" x="2967" y="1890" width="185" height="122"/>
   <object id="208" gid="81" x="2997.79" y="1876.86" width="106" height="146" rotation="54.1096"/>
+  <object id="269" gid="39" x="4864" y="2368" width="290" height="186">
+   <properties>
+    <property name="Moving" type="bool" value="true"/>
+    <property name="MovingDuration" type="float" value="3.2"/>
+    <property name="SpeedX" type="float" value="0"/>
+    <property name="SpeedY" type="float" value="-250"/>
+   </properties>
+  </object>
  </objectgroup>
  <layer id="1" name="Camada de Blocos 1" width="100" height="50">
   <data encoding="csv">
@@ -458,6 +466,14 @@
    </properties>
   </object>
   <object id="231" x="4244.67" y="2171.33" width="150.667" height="31.3333"/>
+  <object id="268" x="4874.67" y="2193" width="267" height="164.833">
+   <properties>
+    <property name="Moving" type="bool" value="true"/>
+    <property name="MovingDuration" type="float" value="3.2"/>
+    <property name="SpeedX" type="float" value="0"/>
+    <property name="SpeedY" type="float" value="-250"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="14" name="Player">
   <object id="1" x="3594.7" y="2513.27" width="31.0303" height="31.0303">
@@ -478,5 +494,8 @@
     <property name="ShootDuration" type="float" value="1.5"/>
    </properties>
   </object>
+ </objectgroup>
+ <objectgroup id="17" name="CameraBounds" visible="0">
+  <object id="270" x="88" y="10" width="5428" height="2878"/>
  </objectgroup>
 </map>

@@ -22,7 +22,7 @@ Ground::Ground(Game* game, float width, float height, bool isSpike, bool isMovin
     ,mIsSpike(isSpike)
     ,mIsMoving(isMoving)
     ,mMovingDuration(movingDuration)
-    ,mMovingTimer(movingDuration)
+    ,mMovingTimer(0.0f)
     ,mIsBreakable(false)
     ,mUsePadding(usePadding)
     ,mVelocity(velocity)

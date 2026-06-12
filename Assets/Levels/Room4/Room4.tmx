@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="183">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="100" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="19" nextobjectid="184">
  <editorsettings>
   <export target="Room4.json" format="json"/>
  </editorsettings>
@@ -71,6 +71,14 @@
   <object id="164" gid="1073741889" x="6930.4" y="4264" width="421" height="319.513"/>
   <object id="165" gid="71" x="3013.2" y="5035.02" width="328" height="681.017"/>
   <object id="166" gid="68" x="2232.2" y="4995.51" width="686" height="691.513"/>
+  <object id="183" gid="70" x="3694.91" y="3597.76" width="359.385" height="161.641">
+   <properties>
+    <property name="Moving" type="bool" value="true"/>
+    <property name="MovingDuration" type="float" value="3.2"/>
+    <property name="SpeedX" type="float" value="0"/>
+    <property name="SpeedY" type="float" value="-50"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup id="17" name="Background2">
   <properties>

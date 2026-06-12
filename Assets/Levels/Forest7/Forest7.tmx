@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="17">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="15" tilewidth="128" tileheight="128" infinite="0" nextlayerid="23" nextobjectid="18">
  <editorsettings>
   <export target="Forest7.json" format="json"/>
  </editorsettings>
@@ -15,19 +15,19 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea"/>
  <objectgroup id="15" name="Camera">
-  <object id="7" x="128" y="640" width="1664" height="1152">
+  <object id="17" x="128" y="0" width="3072" height="1792">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="70000"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2104"/>
-    <property name="LimitMinCameraPositionX" type="float" value="640"/>
-    <property name="LimitMinCameraPositionY" type="float" value="828"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="1408"/>
+    <property name="LimitMinCameraPositionX" type="float" value="384"/>
+    <property name="LimitMinCameraPositionY" type="float" value="319"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="10" name="Triggers">
-  <object id="8" x="432" y="1024" width="128" height="384">
+  <object id="8" x="176" y="512" width="128" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
@@ -36,12 +36,12 @@
     <property name="Target" value="Game"/>
    </properties>
   </object>
-  <object id="14" x="1536" y="585" width="384" height="128">
+  <object id="14" x="1280" y="73" width="384" height="128">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="1"/>
-    <property name="Scene" value="Forest6/Forest6"/>
+    <property name="Scene" value="Forest10/Forest10"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -63,59 +63,29 @@
   </properties>
  </objectgroup>
  <objectgroup id="5" name="Decorations">
-  <object id="10" gid="2147483743" x="2088.67" y="1698.17" width="182.768" height="87.0919"/>
+  <object id="10" gid="2147483743" x="1832.67" y="1186.17" width="182.768" height="87.0919"/>
  </objectgroup>
- <layer id="1" name="Camada de Blocos 1" width="30" height="30">
+ <layer id="1" name="Camada de Blocos 1" width="30" height="15">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,2,2,2,2,2,2,2,3,0,1,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,
+0,8,9,9,9,5,16,16,16,16,17,0,8,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,
+0,8,9,9,9,10,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,
+0,15,16,16,16,17,0,0,0,0,0,22,39,16,16,16,16,16,16,16,16,17,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1,2,2,2,2,2,2,2,2,3,0,1,2,2,2,2,2,2,2,2,3,0,0,0,0,0,0,
-0,0,0,8,9,9,9,5,16,16,16,16,17,0,8,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,
-0,0,0,8,9,9,9,10,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,
-0,0,0,15,16,16,16,17,0,0,0,0,0,22,39,16,16,16,16,16,16,16,16,17,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,1,3,0,0,0,0,0,0,
-0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,10,0,0,0,0,0,0,
-0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,10,0,0,0,0,0,0,
-0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,12,2,2,2,2,2,13,10,0,0,0,0,0,0,
-0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,
-0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,
-0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,
-0,0,0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,1,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,12,2,2,2,2,2,13,10,0,0,0,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,
+0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,0,0,0,
+0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <layer id="6" name="DynamicGrounds" width="30" height="30">
+ <layer id="6" name="DynamicGrounds" width="30" height="15">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -157,32 +127,32 @@
  <objectgroup id="20" name="Levers"/>
  <objectgroup id="21" name="SpawnPoint"/>
  <objectgroup id="11" name="Grounds">
-  <object id="1" x="384" y="1280" width="1792" height="1024"/>
-  <object id="3" x="2176" y="1664" width="640" height="640"/>
-  <object id="4" x="2816" y="1280" width="256" height="1024"/>
-  <object id="5" x="1792" y="640" width="1280" height="512"/>
-  <object id="6" x="384" y="640" width="640" height="512"/>
-  <object id="11" x="2163.33" y="1607.5" width="93.1667" height="68.5"/>
-  <object id="12" x="1024" y="640" width="640" height="256"/>
-  <object id="13" x="1664" y="1024" width="128" height="128"/>
+  <object id="1" x="128" y="768" width="1792" height="1024"/>
+  <object id="3" x="1920" y="1152" width="640" height="640"/>
+  <object id="4" x="2560" y="768" width="256" height="1024"/>
+  <object id="5" x="1536" y="128" width="1280" height="512"/>
+  <object id="6" x="128" y="128" width="640" height="512"/>
+  <object id="11" x="1907.33" y="1095.5" width="93.1667" height="68.5"/>
+  <object id="12" x="768" y="128" width="640" height="256"/>
+  <object id="13" x="1408" y="512" width="128" height="128"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint"/>
  <objectgroup id="13" name="Player">
-  <object id="9" name="Player" x="592" y="1261" width="32" height="32">
+  <object id="9" name="Player" x="336" y="749" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
     <property name="EnteringLevelSpeedY" type="float" value="0"/>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
-  <object id="15" name="Player" x="1728" y="763" width="32" height="32">
+  <object id="15" name="Player" x="1472" y="251" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="1"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies"/>
- <objectgroup id="22" name="CameraBounds" visible="0">
-  <object id="16" x="477.212" y="828" width="3026.79" height="1298.91"/>
+ <objectgroup id="22" name="CameraBounds">
+  <object id="16" x="384" y="319" width="2944" height="1220"/>
  </objectgroup>
 </map>

@@ -42,7 +42,7 @@ Mushroom::Mushroom(Game *game)
     mWidth = 80;
     mHeight = 110;
     mMoveSpeed = 300;
-    mHealthPoints = 55;
+    mHealthPoints = 45;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 20;

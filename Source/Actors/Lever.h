@@ -20,7 +20,7 @@ public:
 
     void OnUpdate(float deltaTime) override;
 
-    void Activate() { mActivate = true; }
+    void Activate() { mActivate = true; mActivatingTimer = mActivatingDuration; }
 
 private:
     void EnemyTrigger() override;

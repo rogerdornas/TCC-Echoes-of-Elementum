@@ -806,6 +806,8 @@ std::string Game::GetIconStringForAction(Action action, bool forceKeyboard, bool
                 case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return Icons::XboxRB;
                 case SDL_CONTROLLER_BUTTON_LEFTSTICK: return Icons::XboxL3;
                 case SDL_CONTROLLER_BUTTON_RIGHTSTICK: return Icons::XboxR3;
+                case SDL_CONTROLLER_BUTTON_START: return Icons::XboxMenu;
+                case SDL_CONTROLLER_BUTTON_BACK: return Icons::XboxView;
                 default: break;
             }
 
@@ -824,6 +826,8 @@ std::string Game::GetIconStringForAction(Action action, bool forceKeyboard, bool
                 case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return Icons::PlayR1;
                 case SDL_CONTROLLER_BUTTON_LEFTSTICK: return Icons::PlayL3;
                 case SDL_CONTROLLER_BUTTON_RIGHTSTICK: return Icons::PlayR3;
+                case SDL_CONTROLLER_BUTTON_START: return Icons::PlayOptions;
+                case SDL_CONTROLLER_BUTTON_BACK: return Icons::PlayShare;
                 default: break;
             }
 
@@ -1059,7 +1063,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 }
             }
         }
-        if (layer["name"] == "Background1" || layer["name"] == "Background2" || layer["name"] == "Decorations" || layer["name"] == "Foreground1" || layer["name"] == "Foreground2") {
+        if (layer["name"] == "Background1" || layer["name"] == "Background2" || layer["name"] == "Decorations" || layer["name"] == "DecorationsForeground" || layer["name"] == "Foreground1" || layer["name"] == "Foreground2") {
             float parallaxX = 1.0f;
             float parallaxY = 1.0f;
             if (layer.contains("parallaxx")) {
@@ -1125,6 +1129,10 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 bool animated = false;
                 bool destructible = false;
                 bool windBalance = false;
+                bool isMoving = false;
+                float movingDuration = 0.0f;
+                float speedX = 0.0f;
+                float speedY = 0.0f;
 
                 if (obj.contains("properties")) {
                     for (const auto &prop: obj["properties"]) {
@@ -1147,6 +1155,18 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                         if (propName == "WindBalance") {
                             windBalance = prop["value"];
                         }
+                        else if (propName == "Moving") {
+                            isMoving = prop["value"];
+                        }
+                        else if (propName == "MovingDuration") {
+                            movingDuration = prop["value"];
+                        }
+                        else if (propName == "SpeedX") {
+                            speedX = prop["value"];
+                        }
+                        else if (propName == "SpeedY") {
+                            speedY = prop["value"];
+                        }
                     }
                 }
                 int drawOrder;
@@ -1158,6 +1178,9 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 }
                 if (layer["name"] == "Decorations") {
                     drawOrder = 200;
+                }
+                if (layer["name"] == "DecorationsForeground") {
+                    drawOrder = 1005;
                 }
                 if (layer["name"] == "Foreground1") {
                     drawOrder = 6000;
@@ -1175,6 +1198,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 auto* decoration = new Decorations(this, width, height, imagePath, decorationName, fps, numFrames, animated, rawGid, rotation, drawOrder, Vector2(parallaxX, parallaxY), textureColor, textureFactor, destructible);
                 decoration->SetPosition(Vector2(x + rotatedDx, y + rotatedDy));
                 decoration->SetWindBalance(windBalance);
+                decoration->SetMovement(isMoving, Vector2(speedX, speedY), movingDuration);
             }
         }
         if (layer["name"] == "Light") {

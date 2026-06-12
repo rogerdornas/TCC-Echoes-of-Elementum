@@ -41,7 +41,7 @@ FlyingShooterEnemy::FlyingShooterEnemy(Game* game)
     mWidth = 70;
     mHeight = 35;
     mMoveSpeed = 300;
-    mHealthPoints = 35;
+    mHealthPoints = 30;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 6;
