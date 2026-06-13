@@ -1535,8 +1535,8 @@
                  "type":"",
                  "visible":true,
                  "width":73.7415,
-                 "x":1343.52,
-                 "y":2257.07
+                 "x":1344.52,
+                 "y":2221.07
                 }, 
                 {
                  "gid":61,
@@ -1547,7 +1547,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"Moving",
@@ -1578,8 +1578,8 @@
                  "type":"",
                  "visible":true,
                  "width":85.0748,
-                 "x":1434.04,
-                 "y":2246.9
+                 "x":1435.04,
+                 "y":2210.9
                 }, 
                 {
                  "gid":61,
@@ -1590,7 +1590,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"Moving",
@@ -1621,8 +1621,8 @@
                  "type":"",
                  "visible":true,
                  "width":85.0748,
-                 "x":1387.25,
-                 "y":2248.9
+                 "x":1388.25,
+                 "y":2212.9
                 }, 
                 {
                  "gid":61,
@@ -1633,7 +1633,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"Moving",
@@ -1664,8 +1664,8 @@
                  "type":"",
                  "visible":true,
                  "width":85.0748,
-                 "x":1300.68,
-                 "y":2250.57
+                 "x":1301.68,
+                 "y":2214.57
                 }, 
                 {
                  "gid":2147483755,
@@ -1681,7 +1681,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -1722,8 +1722,8 @@
                  "type":"",
                  "visible":true,
                  "width":172,
-                 "x":1542.02,
-                 "y":2230.09
+                 "x":1543.02,
+                 "y":2194.09
                 }, 
                 {
                  "gid":107,
@@ -3476,7 +3476,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

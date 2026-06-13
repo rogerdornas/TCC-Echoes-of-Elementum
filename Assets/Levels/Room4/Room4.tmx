@@ -489,7 +489,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="11" name="Grounds">
   <object id="2" x="768" y="2304" width="3072" height="256"/>
   <object id="3" x="2688" y="1536" width="256" height="768"/>
   <object id="4" x="3840" y="1536" width="640" height="1024"/>
@@ -577,7 +577,7 @@
   <object id="173" name="OrangeSlime" x="2773.33" y="4200" width="32" height="32"/>
   <object id="180" name="Enemy Simple" x="3133.33" y="4202.67" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="15" name="Camera">
   <object id="1" x="640" y="2480" width="5000" height="2944">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>

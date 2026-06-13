@@ -17,10 +17,52 @@
          "draworder":"topdown",
          "id":15,
          "name":"Camera",
-         "objects":[],
+         "objects":[
+                {
+                 "height":3712,
+                 "id":73,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":2296
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":3712
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":376
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":456
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2432,
+                 "x":128,
+                 "y":128
+                }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -28,7 +70,44 @@
          "draworder":"topdown",
          "id":10,
          "name":"Triggers",
-         "objects":[],
+         "objects":[
+                {
+                 "height":384,
+                 "id":70,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest5\/Forest5"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":3200
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -501,8 +580,8 @@
             0, 0, 8, 9, 12, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 15, 16, 16, 17, 0, 0,
             0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 2, 3, 0, 0,
+            0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0,
             0, 0, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
             0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
          "height":31,
          "id":1,
@@ -726,7 +805,7 @@
                  "y":1280
                 }, 
                 {
-                 "height":3456,
+                 "height":3584,
                  "id":9,
                  "name":"",
                  "rotation":0,
@@ -737,7 +816,7 @@
                  "y":256
                 }, 
                 {
-                 "height":256,
+                 "height":384,
                  "id":45,
                  "name":"",
                  "rotation":0,
@@ -748,7 +827,7 @@
                  "y":3456
                 }, 
                 {
-                 "height":512,
+                 "height":640,
                  "id":46,
                  "name":"",
                  "rotation":0,
@@ -814,15 +893,15 @@
                  "y":1280
                 }, 
                 {
-                 "height":82.6666666666661,
+                 "height":79.6666666666661,
                  "id":53,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":174.666666666667,
+                 "width":172,
                  "x":755.333333333333,
-                 "y":3119.33333333333
+                 "y":3122.33333333333
                 }, 
                 {
                  "height":640,
@@ -907,7 +986,34 @@
          "draworder":"topdown",
          "id":13,
          "name":"Player",
-         "objects":[],
+         "objects":[
+                {
+                 "height":32,
+                 "id":71,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":0
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":3435
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -930,7 +1036,18 @@
          "draworder":"topdown",
          "id":22,
          "name":"CameraBounds",
-         "objects":[],
+         "objects":[
+                {
+                 "height":3256,
+                 "id":76,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1920,
+                 "x":376,
+                 "y":456
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -938,7 +1055,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":70,
+ "nextobjectid":77,
  "orientation":"orthogonal",
  "properties":[
         {

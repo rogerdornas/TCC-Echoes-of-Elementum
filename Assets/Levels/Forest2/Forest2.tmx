@@ -321,7 +321,7 @@
     <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
    </properties>
   </object>
-  <object id="84" gid="2147483709" x="1343.52" y="2257.07" width="73.7415" height="227.945" rotation="180">
+  <object id="84" gid="2147483709" x="1344.52" y="2221.07" width="73.7415" height="227.945" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="Moving" type="bool" value="true"/>
@@ -331,9 +331,9 @@
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="87" gid="61" x="1434.04" y="2246.9" width="85.0748" height="262.978" rotation="180">
+  <object id="87" gid="61" x="1435.04" y="2210.9" width="85.0748" height="262.978" rotation="180">
    <properties>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="Moving" type="bool" value="true"/>
     <property name="MovingDuration" type="float" value="3.2"/>
     <property name="SpeedX" type="float" value="0"/>
@@ -341,9 +341,9 @@
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="88" gid="61" x="1387.25" y="2248.9" width="85.0748" height="262.978" rotation="180">
+  <object id="88" gid="61" x="1388.25" y="2212.9" width="85.0748" height="262.978" rotation="180">
    <properties>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="Moving" type="bool" value="true"/>
     <property name="MovingDuration" type="float" value="3.2"/>
     <property name="SpeedX" type="float" value="0"/>
@@ -351,9 +351,9 @@
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="89" gid="61" x="1300.68" y="2250.57" width="85.0748" height="262.978" rotation="180">
+  <object id="89" gid="61" x="1301.68" y="2214.57" width="85.0748" height="262.978" rotation="180">
    <properties>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="Moving" type="bool" value="true"/>
     <property name="MovingDuration" type="float" value="3.2"/>
     <property name="SpeedX" type="float" value="0"/>
@@ -361,10 +361,10 @@
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="90" gid="2147483755" x="1542.02" y="2230.09" width="172" height="172" rotation="180">
+  <object id="90" gid="2147483755" x="1543.02" y="2194.09" width="172" height="172" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="30"/>
     <property name="Moving" type="bool" value="true"/>
     <property name="MovingDuration" type="float" value="3.2"/>
@@ -745,7 +745,7 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="11" name="Grounds">
   <object id="6" x="896" y="3456" width="384" height="384"/>
   <object id="7" x="1408" y="3456" width="2048" height="384"/>
   <object id="8" x="384" y="512" width="512" height="3328"/>
