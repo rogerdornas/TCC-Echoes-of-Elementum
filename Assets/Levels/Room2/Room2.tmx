@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="20" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="147">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="32" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="149">
  <editorsettings>
   <export target="Room2.json" format="json"/>
  </editorsettings>
@@ -14,8 +14,8 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea" visible="0">
-  <object id="102" x="128" y="384" width="4352" height="1792">
+ <objectgroup id="2" name="AmbientParticleArea">
+  <object id="102" x="0" y="0" width="4096" height="1536">
    <properties>
     <property name="ColorB" type="int" value="200"/>
     <property name="ColorG" type="int" value="255"/>
@@ -24,48 +24,48 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="15" name="Camera" visible="0">
-  <object id="9" x="128" y="640" width="4480" height="1540">
+ <objectgroup id="15" name="Camera">
+  <object id="9" x="0" y="0" width="4096" height="1540">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="4144"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2010"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
-    <property name="LimitMinCameraPositionY" type="float" value="768"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3968"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="1370"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionY" type="float" value="128"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="10" name="Triggers">
-  <object id="10" x="1024" y="1024" width="512" height="768">
+  <object id="10" x="768" y="384" width="512" height="768">
    <properties>
     <property name="Event" value="ShowTutorial"/>
     <property name="Target" value="HUD"/>
     <property name="TutorialText" value="PRESSIONE &lt;Jump&gt; PARA PULAR"/>
    </properties>
   </object>
-  <object id="11" x="2432" y="1024" width="512" height="640">
+  <object id="11" x="2176" y="384" width="512" height="640">
    <properties>
     <property name="Event" value="ShowTutorial"/>
     <property name="Target" value="HUD"/>
     <property name="TutorialText" value="SEGURE &lt;Jump&gt; PARA PULAR MAIS ALTO"/>
    </properties>
   </object>
-  <object id="15" x="4224" y="896" width="128" height="384">
-   <properties>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Event" value="ChangeScene"/>
-    <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room3/Room3"/>
-    <property name="Target" value="Game"/>
-   </properties>
-  </object>
-  <object id="44" x="894.667" y="1742.67" width="128" height="130.667">
+  <object id="44" x="638.667" y="1102.67" width="128" height="130.667">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
     <property name="Scene" value="Room2/Room2"/>
+    <property name="Target" value="Game"/>
+   </properties>
+  </object>
+  <object id="147" x="4048" y="256" width="48" height="384">
+   <properties>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Event" value="ChangeScene"/>
+    <property name="PlayerStartPositionId" type="int" value="0"/>
+    <property name="Scene" value="Room3/Room3"/>
     <property name="Target" value="Game"/>
    </properties>
   </object>
@@ -77,16 +77,16 @@
    <property name="TextureColorR" type="int" value="22"/>
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
-  <object id="113" gid="91" x="1751.33" y="1109.33" width="247.88" height="108"/>
-  <object id="51" gid="1073741899" x="1908.69" y="1167.02" width="482.292" height="216.99"/>
-  <object id="49" gid="69" x="1010.33" y="1090.33" width="130.228" height="90.5027" rotation="180"/>
-  <object id="47" gid="86" x="921.101" y="1250.67" width="57.6626" height="186.966" rotation="159.606"/>
-  <object id="45" gid="81" x="906.866" y="1434.56" width="82.3147" height="103.055" rotation="111.87"/>
-  <object id="48" gid="86" x="790.09" y="1440.51" width="57.6626" height="186.966" rotation="212.661"/>
-  <object id="55" gid="86" x="830.016" y="1103.89" width="57.6626" height="186.966" rotation="212.661"/>
-  <object id="42" gid="50" x="699.452" y="1876.34" width="276.256" height="910.432"/>
-  <object id="67" gid="95" x="567" y="1855" width="521.318" height="248.416"/>
-  <object id="68" gid="103" x="490" y="1848" width="256" height="256">
+  <object id="113" gid="91" x="1495.33" y="469.33" width="247.88" height="108"/>
+  <object id="51" gid="1073741899" x="1652.69" y="527.02" width="482.292" height="216.99"/>
+  <object id="49" gid="69" x="754.33" y="450.33" width="130.228" height="90.5027" rotation="180"/>
+  <object id="47" gid="86" x="665.101" y="610.67" width="57.6626" height="186.966" rotation="159.606"/>
+  <object id="45" gid="81" x="650.866" y="794.56" width="82.3147" height="103.055" rotation="111.87"/>
+  <object id="48" gid="86" x="534.09" y="800.51" width="57.6626" height="186.966" rotation="212.661"/>
+  <object id="55" gid="86" x="574.016" y="463.89" width="57.6626" height="186.966" rotation="212.661"/>
+  <object id="42" gid="50" x="443.452" y="1236.34" width="276.256" height="910.432"/>
+  <object id="67" gid="95" x="311" y="1215" width="521.318" height="248.416"/>
+  <object id="68" gid="103" x="234" y="1208" width="256" height="256">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -95,7 +95,7 @@
     <property name="Path" value="Sprites/Plants/Plant3/Plant3"/>
    </properties>
   </object>
-  <object id="69" gid="103" x="588" y="1856" width="210" height="210">
+  <object id="69" gid="103" x="332" y="1216" width="210" height="210">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -104,11 +104,11 @@
     <property name="Path" value="Sprites/Plants/Plant3/Plant3"/>
    </properties>
   </object>
-  <object id="112" gid="99" x="1215.85" y="1864.64" width="129.424" height="413.52"/>
-  <object id="105" gid="58" x="1231.98" y="1566.85" width="195.365" height="405.631"/>
-  <object id="56" gid="96" x="1602.74" y="1735.73" width="439.367" height="376.146"/>
-  <object id="106" gid="53" x="1853" y="1757.33" width="539" height="539"/>
-  <object id="108" gid="1073741899" x="2510.85" y="1493.31" width="480.355" height="216.119" rotation="180"/>
+  <object id="112" gid="99" x="959.85" y="1224.64" width="129.424" height="413.52"/>
+  <object id="105" gid="58" x="975.98" y="926.85" width="195.365" height="405.631"/>
+  <object id="56" gid="96" x="1346.74" y="1095.73" width="439.367" height="376.146"/>
+  <object id="106" gid="53" x="1597" y="1117.33" width="539" height="539"/>
+  <object id="108" gid="1073741899" x="2254.85" y="853.31" width="480.355" height="216.119" rotation="180"/>
  </objectgroup>
  <objectgroup draworder="index" id="4" name="Background2" opacity="0.76">
   <properties>
@@ -117,14 +117,14 @@
    <property name="TextureColorR" type="int" value="22"/>
    <property name="TextureFactor" type="float" value="0.5"/>
   </properties>
-  <object id="53" gid="2147483709" x="4059.13" y="915.344" width="70.4081" height="217.641" rotation="180">
+  <object id="53" gid="2147483709" x="3803.13" y="275.344" width="70.4081" height="217.641" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="57" gid="77" x="3423.52" y="1476.3" width="511.879" height="184.939"/>
-  <object id="116" gid="2147483761" x="3130.72" y="1413.65" width="125.625" height="125.625" rotation="148.792">
+  <object id="57" gid="77" x="3167.52" y="836.3" width="511.879" height="184.939"/>
+  <object id="116" gid="2147483761" x="2874.72" y="773.65" width="125.625" height="125.625" rotation="148.792">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -133,16 +133,16 @@
     <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
    </properties>
   </object>
-  <object id="60" gid="99" x="3250.22" y="1738.06" width="309.343" height="988.373" rotation="307.681"/>
-  <object id="61" gid="58" x="773.606" y="908.042" width="195.365" height="405.631" rotation="90"/>
-  <object id="92" gid="74" x="1917.66" y="930" width="292.789" height="235.772" rotation="180"/>
-  <object id="99" gid="2147483709" x="3928.27" y="913.011" width="73.7415" height="227.945" rotation="180">
+  <object id="60" gid="99" x="2994.22" y="1098.06" width="309.343" height="988.373" rotation="307.681"/>
+  <object id="61" gid="58" x="517.606" y="268.042" width="195.365" height="405.631" rotation="90"/>
+  <object id="92" gid="74" x="1661.66" y="290" width="292.789" height="235.772" rotation="180"/>
+  <object id="99" gid="2147483709" x="3672.27" y="273.011" width="73.7415" height="227.945" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="109" gid="2147483760" x="3177.21" y="1177.42" width="79.833" height="79.833" rotation="180">
+  <object id="109" gid="2147483760" x="2921.21" y="537.42" width="79.833" height="79.833" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -151,13 +151,13 @@
     <property name="Path" value="Sprites/Plants/BlueFlower2/BlueFlower2"/>
    </properties>
   </object>
-  <object id="104" gid="58" x="3073.67" y="1063.74" width="153.866" height="246.356" rotation="90"/>
-  <object id="110" gid="66" x="2524.67" y="1703.33" width="173" height="478.333"/>
-  <object id="82" gid="85" x="747.114" y="981.114" width="101.551" height="105.079" rotation="152.123"/>
-  <object id="81" gid="85" x="564.088" y="1267.73" width="101.551" height="105.079" rotation="325.012"/>
-  <object id="73" gid="97" x="316.497" y="1469.97" width="177.481" height="726.066" rotation="35.1708"/>
-  <object id="118" gid="78" x="2984.67" y="1321.5" width="54.7076" height="49.7805"/>
-  <object id="125" gid="111" x="2927.58" y="1835.42" width="75.6667" height="75.6667">
+  <object id="104" gid="58" x="2817.67" y="423.74" width="153.866" height="246.356" rotation="90"/>
+  <object id="110" gid="66" x="2268.67" y="1063.33" width="173" height="478.333"/>
+  <object id="82" gid="85" x="491.114" y="341.114" width="101.551" height="105.079" rotation="152.123"/>
+  <object id="81" gid="85" x="308.088" y="627.73" width="101.551" height="105.079" rotation="325.012"/>
+  <object id="73" gid="97" x="60.497" y="829.97" width="177.481" height="726.066" rotation="35.1708"/>
+  <object id="118" gid="78" x="2728.67" y="681.5" width="54.7076" height="49.7805"/>
+  <object id="125" gid="111" x="2671.58" y="1195.42" width="75.6667" height="75.6667">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -166,13 +166,13 @@
     <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
    </properties>
   </object>
-  <object id="128" gid="2147483709" x="3840.13" y="884.511" width="77.7415" height="240.31" rotation="180">
+  <object id="128" gid="2147483709" x="3584.13" y="244.511" width="77.7415" height="240.31" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="127" gid="2147483761" x="3798.79" y="959.188" width="112" height="112" rotation="166.565">
+  <object id="127" gid="2147483761" x="3542.79" y="319.188" width="112" height="112" rotation="166.565">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -181,7 +181,7 @@
     <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
    </properties>
   </object>
-  <object id="145" gid="2147483709" x="4197.13" y="879.845" width="77.7415" height="240.31" rotation="180">
+  <object id="145" gid="2147483709" x="3941.13" y="239.845" width="77.7415" height="240.31" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
@@ -189,34 +189,25 @@
   </object>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
-  <object id="29" gid="101" x="848" y="288" width="256" height="256">
+  <object id="76" gid="107" x="454" y="298" width="172" height="172" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
     <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant1/Plant1"/>
+    <property name="NumFrames" type="int" value="60"/>
+    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
    </properties>
   </object>
-  <object id="30" gid="102" x="1312" y="300" width="256" height="256">
+  <object id="78" gid="2147483755" x="384" y="276" width="172" height="172" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
     <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
+    <property name="NumFrames" type="int" value="60"/>
+    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
    </properties>
   </object>
-  <object id="31" gid="103" x="1724" y="320" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="90"/>
-    <property name="Path" value="Sprites/Plants/Plant3/Plant3"/>
-   </properties>
-  </object>
-  <object id="32" gid="104" x="2176" y="300" width="256" height="256">
+  <object id="79" gid="1073741928" x="190" y="462" width="178" height="174">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -225,106 +216,7 @@
     <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
    </properties>
   </object>
-  <object id="33" gid="105" x="2524" y="300" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant5/Plant5"/>
-   </properties>
-  </object>
-  <object id="34" gid="106" x="2952" y="320" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant6/Plant6"/>
-   </properties>
-  </object>
-  <object id="35" gid="107" x="3288" y="332" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
-   </properties>
-  </object>
-  <object id="36" gid="108" x="3604" y="376" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="30"/>
-    <property name="Path" value="Sprites/Plants/Plant8/Plant8"/>
-   </properties>
-  </object>
-  <object id="37" gid="109" x="3856" y="292" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="30"/>
-    <property name="Path" value="Sprites/Plants/Plant9/Plant9"/>
-   </properties>
-  </object>
-  <object id="38" gid="110" x="4108" y="332" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/Plants/PlantJump1/PlantJump1"/>
-   </properties>
-  </object>
-  <object id="39" gid="111" x="612" y="304" width="256" height="256">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
-   </properties>
-  </object>
-  <object id="40" gid="112" x="0" y="348" width="384" height="384">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower2/BlueFlower2"/>
-   </properties>
-  </object>
-  <object id="41" gid="113" x="320" y="336" width="384" height="384">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
-   </properties>
-  </object>
-  <object id="76" gid="107" x="710" y="938" width="172" height="172" rotation="180">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
-   </properties>
-  </object>
-  <object id="78" gid="2147483755" x="640" y="916" width="172" height="172" rotation="180">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
-   </properties>
-  </object>
-  <object id="79" gid="1073741928" x="446" y="1102" width="178" height="174">
+  <object id="80" gid="1073741928" x="291" y="419" width="118.667" height="116">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -333,16 +225,7 @@
     <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
    </properties>
   </object>
-  <object id="80" gid="1073741928" x="547" y="1059" width="118.667" height="116">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
-   </properties>
-  </object>
-  <object id="83" gid="107" x="3035.32" y="919.443" width="214.557" height="214.557" rotation="180">
+  <object id="83" gid="107" x="2779.32" y="279.443" width="214.557" height="214.557" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -351,7 +234,7 @@
     <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
    </properties>
   </object>
-  <object id="84" gid="2147483755" x="2948" y="892" width="214.557" height="214.557" rotation="180">
+  <object id="84" gid="2147483755" x="2692" y="252" width="214.557" height="214.557" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -360,7 +243,7 @@
     <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
    </properties>
   </object>
-  <object id="85" gid="1073741928" x="2706" y="1124.02" width="222.041" height="217.052">
+  <object id="85" gid="1073741928" x="2450" y="484.02" width="222.041" height="217.052">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -369,7 +252,7 @@
     <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
    </properties>
   </object>
-  <object id="86" gid="1073741928" x="2831.99" y="1070.38" width="148.028" height="144.701">
+  <object id="86" gid="1073741928" x="2575.99" y="430.38" width="148.028" height="144.701">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -378,7 +261,7 @@
     <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
    </properties>
   </object>
-  <object id="115" gid="113" x="1952" y="1670" width="85.5" height="85.5">
+  <object id="115" gid="113" x="1696" y="1030" width="85.5" height="85.5">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -387,7 +270,7 @@
     <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
    </properties>
   </object>
-  <object id="114" gid="111" x="1944.3" y="1720.48" width="116" height="116">
+  <object id="114" gid="111" x="1688.3" y="1080.48" width="116" height="116">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -396,7 +279,7 @@
     <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
    </properties>
   </object>
-  <object id="117" gid="101" x="2949.76" y="1842.36" width="115.333" height="115.333">
+  <object id="117" gid="101" x="2693.76" y="1202.36" width="115.333" height="115.333">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -405,7 +288,7 @@
     <property name="Path" value="Sprites/Plants/Plant1/Plant1"/>
    </properties>
   </object>
-  <object id="132" gid="102" x="514.485" y="1845.24" width="143" height="143">
+  <object id="132" gid="102" x="258.485" y="1205.24" width="143" height="143">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -414,7 +297,7 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="59" gid="103" x="3089.14" y="1835.03" width="102.97" height="102.97">
+  <object id="59" gid="103" x="2833.14" y="1195.03" width="102.97" height="102.97">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -424,70 +307,54 @@
    </properties>
   </object>
  </objectgroup>
- <layer id="1" name="Camada de Blocos 1" width="40" height="20">
+ <layer id="1" name="Camada de Blocos 1" width="32" height="12">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,2,3,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,9,9,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,13,9,9,9,9,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,3,0,0,8,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,12,2,2,2,2,2,2,2,2,13,9,9,9,9,9,9,9,9,9,12,2,2,13,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,3,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,9,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,2,2,13,9,9,9,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,10,
+8,10,0,0,0,0,0,0,0,0,1,2,2,2,2,2,2,2,2,2,3,0,0,8,9,9,9,9,9,9,9,10,
+8,12,2,2,2,2,2,2,2,2,13,9,9,9,9,9,9,9,9,9,12,2,2,13,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17
 </data>
  </layer>
- <layer id="6" name="DynamicGrounds" width="40" height="20">
+ <layer id="6" name="DynamicGrounds" width="32" height="12">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup draworder="index" id="23" name="DecorationsForeground">
-  <object id="52" gid="61" x="4097.03" y="901.348" width="85.0748" height="262.978" rotation="180">
+  <object id="52" gid="61" x="3841.03" y="261.348" width="85.0748" height="262.978" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="54" gid="61" x="4018.79" y="902.844" width="85.0748" height="262.978" rotation="180">
+  <object id="54" gid="61" x="3762.79" y="262.844" width="85.0748" height="262.978" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="62" gid="75" x="909" y="1978.14" width="451.502" height="203.138"/>
-  <object id="70" gid="77" x="1077" y="936" width="467.762" height="169" rotation="180"/>
-  <object id="89" gid="102" x="3048.8" y="2028.6" width="215.95" height="215.95" rotation="331.301">
+  <object id="62" gid="75" x="653" y="1338.14" width="451.502" height="203.138"/>
+  <object id="70" gid="77" x="821" y="296" width="467.762" height="169" rotation="180"/>
+  <object id="89" gid="102" x="2792.8" y="1388.6" width="215.95" height="215.95" rotation="331.301">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -496,9 +363,9 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="87" gid="75" x="3062.35" y="1945.96" width="451.502" height="203.138"/>
-  <object id="96" gid="75" x="1566.24" y="804.694" width="518.387" height="233.231" rotation="180"/>
-  <object id="97" gid="102" x="1504" y="800.366" width="247.941" height="247.941" rotation="180">
+  <object id="87" gid="75" x="2806.35" y="1305.96" width="451.502" height="203.138"/>
+  <object id="96" gid="75" x="1310.24" y="164.694" width="518.387" height="233.231" rotation="180"/>
+  <object id="97" gid="102" x="1248" y="160.366" width="247.941" height="247.941" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -507,7 +374,7 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="98" gid="102" x="1590.38" y="806.864" width="247.941" height="247.941" rotation="180">
+  <object id="98" gid="102" x="1334.38" y="166.864" width="247.941" height="247.941" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -516,19 +383,19 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="100" gid="61" x="3972" y="904.848" width="85.0748" height="262.978" rotation="180">
+  <object id="100" gid="61" x="3716" y="264.848" width="85.0748" height="262.978" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="101" gid="61" x="3885.43" y="906.511" width="85.0748" height="262.978" rotation="180">
+  <object id="101" gid="61" x="3629.43" y="266.511" width="85.0748" height="262.978" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="122" gid="105" x="1398" y="1854" width="108.833" height="108.833">
+  <object id="122" gid="105" x="1142" y="1214" width="108.833" height="108.833">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -537,7 +404,7 @@
     <property name="Path" value="Sprites/Plants/Plant5/Plant5"/>
    </properties>
   </object>
-  <object id="124" gid="102" x="3594.82" y="921.484" width="247.941" height="247.941" rotation="180">
+  <object id="124" gid="102" x="3338.82" y="281.484" width="247.941" height="247.941" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -546,13 +413,13 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="126" gid="61" x="4158.13" y="902.511" width="85.0748" height="262.978" rotation="180">
+  <object id="126" gid="61" x="3902.13" y="262.511" width="85.0748" height="262.978" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="131" gid="105" x="1360.83" y="1847.83" width="85.8333" height="85.8333">
+  <object id="131" gid="105" x="1104.83" y="1207.83" width="85.8333" height="85.8333">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -561,7 +428,7 @@
     <property name="Path" value="Sprites/Plants/Plant5/Plant5"/>
    </properties>
   </object>
-  <object id="137" gid="112" x="3644.06" y="1478.06" width="268" height="268">
+  <object id="137" gid="112" x="3388.06" y="838.06" width="268" height="268">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -570,7 +437,7 @@
     <property name="Path" value="Sprites/Plants/BlueFlower2/BlueFlower2"/>
    </properties>
   </object>
-  <object id="139" gid="2147483701" x="3829.2" y="1739" width="625" height="625"/>
+  <object id="139" gid="2147483701" x="3573.2" y="1099" width="625" height="625"/>
  </objectgroup>
  <objectgroup draworder="index" id="7" name="Foreground1">
   <properties>
@@ -579,7 +446,7 @@
    <property name="TextureColorR" type="int" value="0"/>
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
-  <object id="130" gid="64" x="2595.83" y="905.58" width="120" height="302.578" rotation="180">
+  <object id="130" gid="64" x="2339.83" y="265.58" width="120" height="302.578" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
@@ -593,14 +460,14 @@
    <property name="TextureColorR" type="int" value="0"/>
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
-  <object id="91" gid="77" x="2117.55" y="2072.67" width="1186.45" height="428.66"/>
-  <object id="94" gid="64" x="1941.83" y="885.333" width="203.692" height="513.608" rotation="180">
+  <object id="91" gid="77" x="1861.55" y="1432.67" width="1186.45" height="428.66"/>
+  <object id="94" gid="64" x="1685.83" y="245.333" width="203.692" height="513.608" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="63" gid="102" x="858.791" y="1964.37" width="215.95" height="215.95" rotation="28.3286">
+  <object id="63" gid="102" x="602.791" y="1324.37" width="215.95" height="215.95" rotation="28.3286">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -609,7 +476,7 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="66" gid="102" x="878.025" y="2018.03" width="215.95" height="215.95" rotation="28.3286">
+  <object id="66" gid="102" x="622.025" y="1378.03" width="215.95" height="215.95" rotation="28.3286">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -618,9 +485,9 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="65" gid="75" x="332.03" y="2120.43" width="741.94" height="333.811"/>
-  <object id="90" gid="75" x="1671.03" y="2029.09" width="759.721" height="341.811"/>
-  <object id="135" gid="102" x="3672.02" y="1695.71" width="215.95" height="215.95" rotation="345.677">
+  <object id="65" gid="75" x="76.03" y="1480.43" width="741.94" height="333.811"/>
+  <object id="90" gid="75" x="1415.03" y="1389.09" width="759.721" height="341.811"/>
+  <object id="135" gid="102" x="3416.02" y="1055.71" width="215.95" height="215.95" rotation="345.677">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="false"/>
@@ -629,31 +496,31 @@
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
   </object>
-  <object id="133" gid="75" x="3668.81" y="1773.09" width="759.721" height="341.811"/>
+  <object id="133" gid="75" x="3412.81" y="1133.09" width="759.721" height="341.811"/>
  </objectgroup>
- <objectgroup id="16" name="Light" visible="0"/>
- <objectgroup id="17" name="Brazier" visible="0"/>
- <objectgroup id="18" name="Lava" visible="0"/>
- <objectgroup id="19" name="LightningBarrier" visible="0"/>
- <objectgroup id="9" name="HookPoints" visible="0"/>
- <objectgroup id="20" name="Levers" visible="0"/>
- <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
-  <object id="6" x="512" y="1792" width="2688" height="384"/>
-  <object id="7" x="1536" y="1664" width="1408" height="128"/>
-  <object id="8" x="3200" y="1408" width="512" height="768"/>
-  <object id="12" x="3712" y="1152" width="768" height="1024"/>
-  <object id="13" x="128" y="384" width="384" height="1792"/>
-  <object id="28" x="512" y="384" width="3968" height="640"/>
+ <objectgroup id="16" name="Light"/>
+ <objectgroup id="17" name="Brazier"/>
+ <objectgroup id="18" name="Lava"/>
+ <objectgroup id="19" name="LightningBarrier"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="20" name="Levers"/>
+ <objectgroup id="21" name="SpawnPoint"/>
+ <objectgroup id="11" name="Grounds">
+  <object id="6" x="256" y="1152" width="2688" height="384"/>
+  <object id="7" x="1280" y="1024" width="1408" height="128"/>
+  <object id="8" x="2944" y="768" width="512" height="768"/>
+  <object id="12" x="3456" y="512" width="640" height="1024"/>
+  <object id="13" x="0" y="0" width="256" height="1536"/>
+  <object id="28" x="256" y="0" width="3840" height="384"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint" visible="0"/>
+ <objectgroup id="12" name="Checkpoint"/>
  <objectgroup id="13" name="Player">
-  <object id="4" name="Player" x="722" y="1780" width="38" height="40">
+  <object id="4" name="Player" x="466" y="1140" width="38" height="40">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
-  <object id="16" name="Player" x="4192" y="1131" width="32" height="32">
+  <object id="148" name="Player" x="4016" y="491" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="-700"/>
     <property name="EnteringLevelSpeedY" type="float" value="0"/>
@@ -661,8 +528,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0"/>
- <objectgroup id="22" name="CameraBounds">
-  <object id="27" x="384" y="768" width="3760" height="1340"/>
+ <objectgroup id="14" name="Enemies"/>
+ <objectgroup id="22" name="CameraBounds" locked="1">
+  <object id="27" x="128" y="128" width="3840" height="1340"/>
  </objectgroup>
 </map>

@@ -330,8 +330,8 @@ void Trigger::GameTrigger() {
         case Event::ChangeScene:
             if (mGame->GetMapManager() && mGame->GetCurrentLevelPath() != "MainMenu") {
                 mGame->SetLastMapOriginCanvasPos(mGame->GetMapManager()->GetRoomCanvasPosition(mGame->GetCurrentLevelPath()));
-                mGame->SetLastMapOriginBoundsMin(mGame->GetCameraMinBound());
-                mGame->SetLastMapOriginBoundsMax(mGame->GetCameraMaxBound());
+                // mGame->SetLastMapOriginBoundsMin(Vector2::Zero);
+                mGame->SetLastMapOriginBoundsMax(mGame->GetMapMaxBound());
                 mGame->SetLastMapOriginTriggerPos(mPosition);
                 mGame->SetIsConnectingMapRoom(true);
             }

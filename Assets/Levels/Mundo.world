@@ -2,24 +2,24 @@
     "maps": [
         {
             "fileName": "Room2/Room2.tmx",
-            "height": 2560,
-            "width": 5120,
-            "x": -1024,
-            "y": 768
+            "height": 1536,
+            "width": 4096,
+            "x": -5376,
+            "y": 7424
         },
         {
             "fileName": "Room3/Room3.tmx",
-            "height": 2944,
-            "width": 4864,
-            "x": 3200,
-            "y": 384
+            "height": 2176,
+            "width": 4224,
+            "x": -1280,
+            "y": 6784
         },
         {
             "fileName": "Forest3/Forest3.tmx",
-            "height": 2816,
-            "width": 9728,
-            "x": 3584,
-            "y": -4992
+            "height": 1792,
+            "width": 8832,
+            "x": -896,
+            "y": 1792
         },
         {
             "fileName": "Forest4/Forest4.tmx",
@@ -58,10 +58,10 @@
         },
         {
             "fileName": "Forest2/Forest2.tmx",
-            "height": 3840,
-            "width": 3840,
-            "x": 3584,
-            "y": -3072
+            "height": 3200,
+            "width": 3072,
+            "x": -640,
+            "y": 3584
         },
         {
             "fileName": "Forest8/Forest8.tmx",

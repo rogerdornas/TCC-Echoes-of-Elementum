@@ -298,6 +298,8 @@ public:
     void SetLastMapOriginTriggerPos(Vector2 pos) { mLastMapOriginTriggerPos = pos; }
     void SetIsConnectingMapRoom(bool isConnecting) { mIsConnectingMapRoom = isConnecting; }
 
+    Vector2 GetMapMaxBound() const { return Vector2(mLevelWidth * mTileSize, mLevelHeight * mTileSize); }
+
     float GetBrushRadius() const { return mBrushRadius; }
 
     void SaveGame();

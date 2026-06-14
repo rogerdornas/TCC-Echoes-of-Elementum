@@ -18,7 +18,7 @@ SaveData::SaveData(class Game *game)
     ,mMusicAudio(1.0f)
     ,mSFXAudio(1.0f)
 
-    ,mLastCheckpointPosition(Vector2(742, 1780))
+    ,mLastCheckpointPosition(Vector2(466, 1140))
 
     ,mHasEarthMode(false)
     ,mHasFireMode(false)

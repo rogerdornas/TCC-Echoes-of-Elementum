@@ -75,7 +75,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="16" x="560" y="2816" width="128" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -396,7 +396,7 @@
   </object>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="13" name="Player">
   <object id="17" name="Player" x="720" y="3053" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>

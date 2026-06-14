@@ -2165,6 +2165,8 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                     // Monta o caminho exato do PNG
                     std::string mapImgPath = "../Assets/Levels/" + mNextLevelPath + "Map.png";
 
+                    Vector2 mapMaxBound(mLevelWidth * mTileSize, mLevelHeight * mTileSize);
+
                     if (mIsConnectingMapRoom) {
                         // Acha o trigger mais perto de onde o jogador acabou de nascer
                         Vector2 destTriggerPos = Vector2::Zero;
@@ -2182,14 +2184,14 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
 
                         mMapManager->LoadConnectedRoom(
                             mNextLevelPath, mapImgPath, 0.25f,
-                            mCameraMinBound, mCameraMaxBound, destTriggerPos,
-                            mLastMapOriginCanvasPos, mLastMapOriginBoundsMin, mLastMapOriginBoundsMax, mLastMapOriginTriggerPos
+                            Vector2::Zero, mapMaxBound, destTriggerPos,
+                            mLastMapOriginCanvasPos, Vector2::Zero, mLastMapOriginBoundsMax, mLastMapOriginTriggerPos
                         );
 
                         mIsConnectingMapRoom = false; // Reset da transição
                     } else {
                         // Se não está transicionando (New Game ou Checkpoint), carrega como inicial.
-                        mMapManager->LoadInitialRoom(mNextLevelPath, mapImgPath, 0.25f, mCameraMinBound, mCameraMaxBound);
+                        mMapManager->LoadInitialRoom(mNextLevelPath, mapImgPath, 0.25f, Vector2::Zero, mapMaxBound);
                     }
 
                     // Bake the map global
