@@ -250,6 +250,43 @@
                  "width":128,
                  "x":8016,
                  "y":640
+                }, 
+                {
+                 "height":384,
+                 "id":52,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":6
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":432,
+                 "y":1024
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -590,7 +627,7 @@
                  "y":256
                 }, 
                 {
-                 "height":1408,
+                 "height":896,
                  "id":23,
                  "name":"",
                  "rotation":0,
@@ -640,8 +677,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2688,
-                 "x":768,
+                 "width":3072,
+                 "x":384,
                  "y":1280
                 }, 
                 {
@@ -822,6 +859,33 @@
                  "width":32,
                  "x":7984,
                  "y":875
+                }, 
+                {
+                 "height":32,
+                 "id":53,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":592,
+                 "y":1261
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -863,7 +927,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":52,
+ "nextobjectid":54,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -58,7 +58,7 @@ Frogger::Frogger(Game *game)
     mWidth = 145;
     mHeight = 145;
     mMoveSpeed = 500;
-    mHealthPoints = 500;
+    mHealthPoints = 200;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 18;
     mMoneyDrop = 100;
@@ -68,6 +68,10 @@ Frogger::Frogger(Game *game)
     mFreezeMax = 1000;
     mFrozenDecayRate = mFreezeMax / 3.0f;
     mEnemyCollision = false;
+
+    SetRotation(Math::Pi);
+    SetTransformRotation(0.0f);
+    SetScale(Vector2(-1,1));
 
     SetSize(mWidth, mHeight);
 
@@ -231,7 +235,7 @@ void Frogger::Sleep(float deltaTime) {
 
     // Testa se spotted player
     Vector2 dist = GetPosition() - GetGame()->GetPlayer()->GetPosition();
-    if (dist.Length() < mDistToSpotPlayer) {
+    if (mPlayerSpotted || dist.Length() < mDistToSpotPlayer) {
         mPlayerSpotted = true;
         mFroggerState = State::Stop;
     }

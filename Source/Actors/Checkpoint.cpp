@@ -34,7 +34,7 @@ Checkpoint::Checkpoint(class Game *game, float width, float height, Vector2 posi
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/CheckPoint/CheckPoint.png", \
                                             "../Assets/Sprites/CheckPoint/CheckPoint.json",
-                                            mWidth * 1.1f, mHeight * 1.1f, 1);
+                                            mWidth * 1.1f, mHeight * 1.1f, 201);
 
     std::vector<int> idle = {0, 1, 2, 3, 4, 5};
     mDrawComponent->AddAnimation("idle", idle);

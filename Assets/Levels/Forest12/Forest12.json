@@ -19,7 +19,7 @@
          "name":"Camera",
          "objects":[
                 {
-                 "height":3712,
+                 "height":2432,
                  "id":73,
                  "name":"",
                  "properties":[
@@ -37,6 +37,48 @@
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
                          "value":3712
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":376
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":456
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2432,
+                 "x":128,
+                 "y":1408
+                }, 
+                {
+                 "height":1152,
+                 "id":92,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":2296
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":1536
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
@@ -107,6 +149,228 @@
                  "width":128,
                  "x":2376,
                  "y":3200
+                }, 
+                {
+                 "height":128,
+                 "id":94,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":1152
+                }, 
+                {
+                 "height":128,
+                 "id":100,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":1024
+                }, 
+                {
+                 "height":128,
+                 "id":101,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":896
+                }, 
+                {
+                 "height":128,
+                 "id":102,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":768
+                }, 
+                {
+                 "height":128,
+                 "id":103,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":4
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":640
+                }, 
+                {
+                 "height":128,
+                 "id":104,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":5
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"BossFrogger\/BossFrogger"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2376,
+                 "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -205,8 +469,8 @@
                  "type":"",
                  "visible":true,
                  "width":277.011,
-                 "x":1756,
-                 "y":2878.72727272727
+                 "x":1735,
+                 "y":2863.22727272727
                 }, 
                 {
                  "gid":93,
@@ -247,14 +511,14 @@
                 {
                  "gid":2147483743,
                  "height":132,
-                 "id":39,
+                 "id":90,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":277.011,
                  "x":677,
-                 "y":2465.33333333333
+                 "y":2485.94
                 }, 
                 {
                  "gid":93,
@@ -291,6 +555,18 @@
                  "width":299.252,
                  "x":524,
                  "y":1744.9625
+                }, 
+                {
+                 "gid":2147483743,
+                 "height":132,
+                 "id":91,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":277.011,
+                 "x":677,
+                 "y":1717.94
                 }, 
                 {
                  "gid":93,
@@ -413,6 +689,18 @@
                  "y":1962.9625
                 }, 
                 {
+                 "gid":95,
+                 "height":132,
+                 "id":87,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":277.011,
+                 "x":1735,
+                 "y":2095.23
+                }, 
+                {
                  "gid":93,
                  "height":278.075,
                  "id":37,
@@ -423,30 +711,6 @@
                  "width":299.252,
                  "x":2176,
                  "y":2138.9625
-                }, 
-                {
-                 "gid":2147483743,
-                 "height":132,
-                 "id":42,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":277.011,
-                 "x":677,
-                 "y":1697.33
-                }, 
-                {
-                 "gid":95,
-                 "height":132,
-                 "id":43,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":277.011,
-                 "x":1756,
-                 "y":2110.73
                 },
             
                 {
@@ -893,7 +1157,7 @@
                  "y":1280
                 }, 
                 {
-                 "height":79.6666666666661,
+                 "height":81.4166666666661,
                  "id":53,
                  "name":"",
                  "rotation":0,
@@ -901,7 +1165,7 @@
                  "visible":true,
                  "width":172,
                  "x":755.333333333333,
-                 "y":3122.33333333333
+                 "y":3120.58333333333
                 }, 
                 {
                  "height":640,
@@ -964,6 +1228,84 @@
                  "width":1920,
                  "x":640,
                  "y":256
+                }, 
+                {
+                 "height":640,
+                 "id":77,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Spike",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":107,
+                 "x":1941,
+                 "y":2176
+                }, 
+                {
+                 "height":640,
+                 "id":78,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Spike",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":107,
+                 "x":1941,
+                 "y":1408
+                }, 
+                {
+                 "height":84.0000333333335,
+                 "id":81,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":181,
+                 "x":1759.75,
+                 "y":2731.66666666667
+                }, 
+                {
+                 "height":81.4167,
+                 "id":82,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":172,
+                 "x":755.333,
+                 "y":2352.58
+                }, 
+                {
+                 "height":81.4167,
+                 "id":83,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":172,
+                 "x":755.333,
+                 "y":1584.58
+                }, 
+                {
+                 "height":84,
+                 "id":89,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":181,
+                 "x":1759.75,
+                 "y":1963.67
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1013,6 +1355,168 @@
                  "width":32,
                  "x":2344,
                  "y":3435
+                }, 
+                {
+                 "height":32,
+                 "id":95,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":1
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":1259
+                }, 
+                {
+                 "height":32,
+                 "id":105,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":2
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":1131
+                }, 
+                {
+                 "height":32,
+                 "id":106,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":1003
+                }, 
+                {
+                 "height":32,
+                 "id":107,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":875
+                }, 
+                {
+                 "height":32,
+                 "id":108,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":747
+                }, 
+                {
+                 "height":32,
+                 "id":109,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":6
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":2344,
+                 "y":619
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1024,7 +1528,84 @@
          "draworder":"topdown",
          "id":14,
          "name":"Enemies",
-         "objects":[],
+         "objects":[
+                {
+                 "height":32,
+                 "id":110,
+                 "name":"Mushroom",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1145.33,
+                 "y":3187.39
+                }, 
+                {
+                 "height":32,
+                 "id":111,
+                 "name":"Snake",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1427.99666666667,
+                 "y":2799.39
+                }, 
+                {
+                 "height":32,
+                 "id":112,
+                 "name":"OrangeSlime",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1230,
+                 "y":2414.39
+                }, 
+                {
+                 "height":32,
+                 "id":114,
+                 "name":"Enemy Simple",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1382.60333333333,
+                 "y":2031.69333333333
+                }, 
+                {
+                 "height":32,
+                 "id":115,
+                 "name":"Flying Enemy",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1536,
+                 "y":1805
+                }, 
+                {
+                 "height":32,
+                 "id":117,
+                 "name":"Mantis",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1021,
+                 "y":1643
+                }, 
+                {
+                 "height":32,
+                 "id":118,
+                 "name":"FlyingShooterEnemy",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":878.667,
+                 "y":1358
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":true,
@@ -1055,7 +1636,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":77,
+ "nextobjectid":119,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -577,7 +577,7 @@
   <object id="173" name="OrangeSlime" x="2773.33" y="4200" width="32" height="32"/>
   <object id="180" name="Enemy Simple" x="3133.33" y="4202.67" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="1" x="640" y="2480" width="5000" height="2944">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>

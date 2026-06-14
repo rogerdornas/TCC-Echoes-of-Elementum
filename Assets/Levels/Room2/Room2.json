@@ -94,7 +94,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -233,7 +233,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -256,87 +256,87 @@
                 }, 
                 {
                  "gid":1073741899,
-                 "height":230.188,
+                 "height":216.99,
                  "id":51,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":511.625,
+                 "width":482.292,
                  "x":1908.69,
-                 "y":1180.22
+                 "y":1167.02
                 }, 
                 {
                  "gid":69,
-                 "height":75.9955,
+                 "height":90.5027,
                  "id":49,
                  "name":"",
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":109.353,
-                 "x":999.333,
-                 "y":1105.26
+                 "width":130.228,
+                 "x":1010.33,
+                 "y":1090.33
                 }, 
                 {
                  "gid":86,
-                 "height":156.996,
+                 "height":186.966,
                  "id":47,
                  "name":"",
                  "rotation":159.606,
                  "type":"",
                  "visible":true,
-                 "width":48.4195,
-                 "x":905.091,
-                 "y":1103.86
+                 "width":57.6626,
+                 "x":921.101,
+                 "y":1250.67
                 }, 
                 {
                  "gid":81,
-                 "height":86.5361,
+                 "height":103.055,
                  "id":45,
                  "name":"",
                  "rotation":111.87,
                  "type":"",
                  "visible":true,
-                 "width":69.12,
-                 "x":896.497,
-                 "y":1341.41
-                }, 
-                {
-                 "gid":50,
-                 "height":712.432,
-                 "id":42,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":196.023,
-                 "x":747.522,
-                 "y":1686.34
+                 "width":82.3147,
+                 "x":906.866,
+                 "y":1434.56
                 }, 
                 {
                  "gid":86,
-                 "height":156.996,
+                 "height":186.966,
                  "id":48,
                  "name":"",
                  "rotation":212.661,
                  "type":"",
                  "visible":true,
-                 "width":48.4195,
-                 "x":821.112,
-                 "y":1331.29
+                 "width":57.6626,
+                 "x":790.09,
+                 "y":1440.51
                 }, 
                 {
                  "gid":86,
-                 "height":156.996,
+                 "height":186.966,
                  "id":55,
                  "name":"",
                  "rotation":212.661,
                  "type":"",
                  "visible":true,
-                 "width":48.4195,
-                 "x":851.279,
-                 "y":1099.01
+                 "width":57.6626,
+                 "x":830.016,
+                 "y":1103.89
+                }, 
+                {
+                 "gid":50,
+                 "height":910.432,
+                 "id":42,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":276.256,
+                 "x":699.452,
+                 "y":1876.34
                 }, 
                 {
                  "gid":95,
@@ -452,15 +452,15 @@
                 }, 
                 {
                  "gid":96,
-                 "height":482.908,
+                 "height":376.146,
                  "id":56,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":564.073,
-                 "x":1452.03,
-                 "y":1737.73
+                 "width":439.367,
+                 "x":1602.74,
+                 "y":1735.73
                 }, 
                 {
                  "gid":53,
@@ -476,15 +476,15 @@
                 }, 
                 {
                  "gid":1073741899,
-                 "height":242.786,
+                 "height":216.119,
                  "id":108,
                  "name":"",
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":539.625,
-                 "x":2570.12,
-                 "y":1466.64
+                 "width":480.355,
+                 "x":2510.85,
+                 "y":1493.31
                 }],
          "opacity":0.7,
          "parallaxx":0.95,
@@ -519,18 +519,6 @@
          "id":4,
          "name":"Background2",
          "objects":[
-                {
-                 "gid":1073741896,
-                 "height":162.557,
-                 "id":50,
-                 "name":"",
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":165.858,
-                 "x":3418.71,
-                 "y":1298.01
-                }, 
                 {
                  "gid":2147483709,
                  "height":217.641,
@@ -665,7 +653,7 @@
                 }, 
                 {
                  "gid":2147483760,
-                 "height":117.833,
+                 "height":79.833,
                  "id":109,
                  "name":"",
                  "properties":[
@@ -697,21 +685,21 @@
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":117.833,
-                 "x":3175.21,
-                 "y":1148.42
+                 "width":79.833,
+                 "x":3177.21,
+                 "y":1177.42
                 }, 
                 {
                  "gid":58,
-                 "height":322.356,
+                 "height":246.356,
                  "id":104,
                  "name":"",
                  "rotation":90,
                  "type":"",
                  "visible":true,
-                 "width":201.333,
-                 "x":3065.67,
-                 "y":1024.74
+                 "width":153.866,
+                 "x":3073.67,
+                 "y":1063.74
                 }, 
                 {
                  "gid":66,
@@ -722,8 +710,8 @@
                  "type":"",
                  "visible":true,
                  "width":173,
-                 "x":2550,
-                 "y":1706
+                 "x":2524.67,
+                 "y":1703.33
                 }, 
                 {
                  "gid":85,
@@ -1978,7 +1966,7 @@
          "name":"DynamicGrounds",
          "opacity":1,
          "type":"tilelayer",
-         "visible":false,
+         "visible":true,
          "width":40,
          "x":0,
          "y":0
@@ -2047,82 +2035,6 @@
                  "y":1978.14
                 }, 
                 {
-                 "gid":102,
-                 "height":215.95,
-                 "id":63,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":90
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
-                        }],
-                 "rotation":28.3286,
-                 "type":"",
-                 "visible":true,
-                 "width":215.95,
-                 "x":854.791,
-                 "y":1974.37
-                }, 
-                {
-                 "gid":102,
-                 "height":215.95,
-                 "id":66,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":90
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
-                        }],
-                 "rotation":28.3286,
-                 "type":"",
-                 "visible":true,
-                 "width":215.95,
-                 "x":930.025,
-                 "y":1980.03
-                }, 
-                {
                  "gid":77,
                  "height":169,
                  "id":70,
@@ -2133,56 +2045,6 @@
                  "width":467.762,
                  "x":1077,
                  "y":936
-                }, 
-                {
-                 "gid":75,
-                 "height":203.138,
-                 "id":87,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":451.502,
-                 "x":3062.35,
-                 "y":1945.96
-                }, 
-                {
-                 "gid":102,
-                 "height":215.95,
-                 "id":88,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":90
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
-                        }],
-                 "rotation":28.3286,
-                 "type":"",
-                 "visible":true,
-                 "width":215.95,
-                 "x":3008.14,
-                 "y":1942.19
                 }, 
                 {
                  "gid":102,
@@ -2215,12 +2077,24 @@
                          "type":"string",
                          "value":"Sprites\/Plants\/Plant2\/Plant2"
                         }],
-                 "rotation":28.3286,
+                 "rotation":331.301,
                  "type":"",
                  "visible":true,
                  "width":215.95,
-                 "x":3083.38,
-                 "y":1947.85
+                 "x":3048.8,
+                 "y":2028.6
+                }, 
+                {
+                 "gid":75,
+                 "height":203.138,
+                 "id":87,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":451.502,
+                 "x":3062.35,
+                 "y":1945.96
                 }, 
                 {
                  "gid":75,
@@ -2494,114 +2368,6 @@
                  "y":1847.83
                 }, 
                 {
-                 "gid":2147483701,
-                 "height":625,
-                 "id":139,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":625,
-                 "x":3829.2,
-                 "y":1739
-                }],
-         "opacity":1,
-         "type":"objectgroup",
-         "visible":true,
-         "x":0,
-         "y":0
-        }, 
-        {
-         "draworder":"index",
-         "id":7,
-         "name":"Foreground1",
-         "objects":[
-                {
-                 "gid":75,
-                 "height":333.811,
-                 "id":65,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":741.94,
-                 "x":270.03,
-                 "y":2140.43
-                }, 
-                {
-                 "gid":75,
-                 "height":341.811,
-                 "id":90,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":759.721,
-                 "x":1575.03,
-                 "y":2059.09
-                }, 
-                {
-                 "gid":64,
-                 "height":403.438,
-                 "id":130,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":160,
-                 "x":2605.83,
-                 "y":891.58
-                }, 
-                {
-                 "gid":102,
-                 "height":215.95,
-                 "id":135,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":90
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
-                        }],
-                 "rotation":345.677,
-                 "type":"",
-                 "visible":true,
-                 "width":215.95,
-                 "x":3382.02,
-                 "y":1695.71
-                }, 
-                {
                  "gid":112,
                  "height":268,
                  "id":137,
@@ -2636,20 +2402,54 @@
                  "type":"",
                  "visible":true,
                  "width":268,
-                 "x":3570.06,
-                 "y":1540.06
+                 "x":3644.06,
+                 "y":1478.06
                 }, 
                 {
-                 "gid":75,
-                 "height":341.811,
-                 "id":133,
+                 "gid":2147483701,
+                 "height":625,
+                 "id":139,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":759.721,
-                 "x":3378.81,
-                 "y":1773.09
+                 "width":625,
+                 "x":3829.2,
+                 "y":1739
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":true,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"index",
+         "id":7,
+         "name":"Foreground1",
+         "objects":[
+                {
+                 "gid":64,
+                 "height":302.578,
+                 "id":130,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":120,
+                 "x":2595.83,
+                 "y":905.58
                 }],
          "opacity":1,
          "properties":[
@@ -2692,7 +2492,7 @@
                  "type":"",
                  "visible":true,
                  "width":1186.45,
-                 "x":2061.55,
+                 "x":2117.55,
                  "y":2072.67
                 }, 
                 {
@@ -2717,6 +2517,156 @@
                  "width":203.692,
                  "x":1941.83,
                  "y":885.333
+                }, 
+                {
+                 "gid":102,
+                 "height":215.95,
+                 "id":63,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":30
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                        }],
+                 "rotation":28.3286,
+                 "type":"",
+                 "visible":true,
+                 "width":215.95,
+                 "x":858.791,
+                 "y":1964.37
+                }, 
+                {
+                 "gid":102,
+                 "height":215.95,
+                 "id":66,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":30
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                        }],
+                 "rotation":28.3286,
+                 "type":"",
+                 "visible":true,
+                 "width":215.95,
+                 "x":878.025,
+                 "y":2018.03
+                }, 
+                {
+                 "gid":75,
+                 "height":333.811,
+                 "id":65,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":741.94,
+                 "x":332.03,
+                 "y":2120.43
+                }, 
+                {
+                 "gid":75,
+                 "height":341.811,
+                 "id":90,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":759.721,
+                 "x":1671.03,
+                 "y":2029.09
+                }, 
+                {
+                 "gid":102,
+                 "height":215.95,
+                 "id":135,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":30
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                        }],
+                 "rotation":345.677,
+                 "type":"",
+                 "visible":true,
+                 "width":215.95,
+                 "x":3672.02,
+                 "y":1695.71
+                }, 
+                {
+                 "gid":75,
+                 "height":341.811,
+                 "id":133,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":759.721,
+                 "x":3668.81,
+                 "y":1773.09
                 }],
          "opacity":1,
          "parallaxx":1.1,
@@ -3001,7 +2951,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":146,
+ "nextobjectid":147,
  "orientation":"orthogonal",
  "properties":[
         {
