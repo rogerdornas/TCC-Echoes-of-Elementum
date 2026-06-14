@@ -72,10 +72,10 @@
         },
         {
             "fileName": "Forest9/Forest9.tmx",
-            "height": 2560,
-            "width": 6400,
-            "x": 1152,
-            "y": -8576
+            "height": 2304,
+            "width": 5632,
+            "x": -8064,
+            "y": 4480
         },
         {
             "fileName": "Forest10/Forest10.tmx",
