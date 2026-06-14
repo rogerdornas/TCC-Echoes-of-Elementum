@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -146,7 +146,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -295,7 +295,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -390,13 +390,13 @@
                 }, 
                 {
                  "gid":52,
-                 "height":552.947,
+                 "height":628.841,
                  "id":79,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":728.58,
+                 "width":828.58,
                  "x":1413.33,
                  "y":3120.67
                 }, 
@@ -1519,7 +1519,7 @@
                 }, 
                 {
                  "gid":99,
-                 "height":261.572,
+                 "height":344.572,
                  "id":180,
                  "name":"",
                  "rotation":0,
@@ -1527,7 +1527,7 @@
                  "visible":true,
                  "width":101.333,
                  "x":2421,
-                 "y":940
+                 "y":1023
                 }, 
                 {
                  "gid":1073741923,
@@ -2945,7 +2945,7 @@
                  "visible":true,
                  "width":621.762,
                  "x":785.44,
-                 "y":185.593
+                 "y":177.593
                 }, 
                 {
                  "gid":102,
@@ -2987,7 +2987,7 @@
                 }, 
                 {
                  "gid":102,
-                 "height":201.167,
+                 "height":178.367,
                  "id":167,
                  "name":"",
                  "properties":[
@@ -3019,21 +3019,21 @@
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":201.167,
+                 "width":178.367,
                  "x":2479.72,
-                 "y":129.386
+                 "y":157.186
                 }, 
                 {
                  "gid":75,
-                 "height":189.232,
+                 "height":167.784,
                  "id":165,
                  "name":"",
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":420.593,
-                 "x":2460.13,
-                 "y":127.625
+                 "width":372.923,
+                 "x":2462.35,
+                 "y":155.625
                 }, 
                 {
                  "gid":77,
@@ -3433,7 +3433,7 @@
                  "type":"",
                  "visible":true,
                  "width":691,
-                 "x":-128.166666666667,
+                 "x":-128.167,
                  "y":3386.5
                 }, 
                 {
@@ -3545,7 +3545,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3556,7 +3556,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3567,7 +3567,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3578,7 +3578,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3589,7 +3589,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3600,7 +3600,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3611,7 +3611,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3830,7 +3830,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 

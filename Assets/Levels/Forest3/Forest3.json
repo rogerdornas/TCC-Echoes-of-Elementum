@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -146,7 +146,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -369,7 +369,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1115,6 +1115,18 @@
                  "width":154.954,
                  "x":2195.22,
                  "y":1594.83
+                }, 
+                {
+                 "gid":1073741899,
+                 "height":308.969,
+                 "id":141,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":735.625,
+                 "x":4620.96,
+                 "y":452.694
                 }],
          "opacity":1,
          "parallaxx":0.95,
@@ -1149,18 +1161,6 @@
          "id":4,
          "name":"Background2",
          "objects":[
-                {
-                 "gid":1073741899,
-                 "height":308.969,
-                 "id":141,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":735.625,
-                 "x":4742.17,
-                 "y":510.27
-                }, 
                 {
                  "gid":112,
                  "height":87.899,
@@ -3184,6 +3184,44 @@
                  "width":100,
                  "x":8406,
                  "y":570
+                }, 
+                {
+                 "gid":103,
+                 "height":210,
+                 "id":318,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":30
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/Plant3\/Plant3"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":210,
+                 "x":2434.39,
+                 "y":1595
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3347,7 +3385,7 @@
                  "y":565.97
                 }, 
                 {
-                 "gid":112,
+                 "gid":1073741936,
                  "height":208,
                  "id":256,
                  "name":"",
@@ -3377,12 +3415,12 @@
                          "type":"string",
                          "value":"Sprites\/Plants\/BlueFlower2\/BlueFlower2"
                         }],
-                 "rotation":180,
+                 "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":208,
-                 "x":4276.67,
-                 "y":162
+                 "x":4085.76,
+                 "y":377.152
                 }, 
                 {
                  "gid":102,
@@ -3509,15 +3547,15 @@
                 }, 
                 {
                  "gid":75,
-                 "height":296.867,
+                 "height":257.329,
                  "id":306,
                  "name":"",
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":659.827,
-                 "x":3583.1,
-                 "y":19.869
+                 "width":571.948,
+                 "x":3564.92,
+                 "y":119.869
                 }, 
                 {
                  "gid":77,
@@ -3557,15 +3595,27 @@
                 }, 
                 {
                  "gid":75,
-                 "height":238.231,
+                 "height":165.972,
                  "id":183,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":529.502,
-                 "x":265.144,
-                 "y":1773.83
+                 "width":368.896,
+                 "x":507.568,
+                 "y":1695.51
+                }, 
+                {
+                 "gid":1073741899,
+                 "height":242.786,
+                 "id":319,
+                 "name":"",
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":539.625,
+                 "x":8699.88,
+                 "y":1121.03
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3801,7 +3851,7 @@
                  "type":"",
                  "visible":true,
                  "width":1186.45,
-                 "x":8001.68,
+                 "x":8003.68,
                  "y":1606.03
                 }, 
                 {
@@ -3932,15 +3982,15 @@
                 }, 
                 {
                  "gid":75,
-                 "height":341.811,
+                 "height":308.478,
                  "id":197,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":759.721,
-                 "x":-116.826,
-                 "y":1623.69
+                 "width":685.633,
+                 "x":-138.038,
+                 "y":1615.21
                 }, 
                 {
                  "gid":75,
@@ -4024,7 +4074,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4035,7 +4085,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4046,7 +4096,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4057,7 +4107,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4068,7 +4118,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4079,7 +4129,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4090,7 +4140,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4454,7 +4504,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4465,7 +4515,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4579,7 +4629,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4634,7 +4684,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4657,12 +4707,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":318,
+ "nextobjectid":320,
  "orientation":"orthogonal",
  "properties":[
         {

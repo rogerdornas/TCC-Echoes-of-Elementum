@@ -41,7 +41,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -131,7 +131,7 @@
                  "type":"",
                  "visible":true,
                  "width":1536,
-                 "x":896,
+                 "x":899,
                  "y":768
                 }, 
                 {
@@ -262,7 +262,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -438,7 +438,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -602,6 +602,68 @@
                  "width":137.535,
                  "x":825.77,
                  "y":1080.82
+                }, 
+                {
+                 "gid":79,
+                 "height":939.155,
+                 "id":107,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":339.667,
+                 "x":2817.43,
+                 "y":1853.92
+                }, 
+                {
+                 "gid":2147483709,
+                 "height":268,
+                 "id":86,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":30
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":60
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/BlueFlower2\/BlueFlower2"
+                        }],
+                 "rotation":335.955,
+                 "type":"",
+                 "visible":true,
+                 "width":268,
+                 "x":3608.04,
+                 "y":1703.57
+                }, 
+                {
+                 "gid":109,
+                 "height":482.908,
+                 "id":66,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":564.073,
+                 "x":3189.78,
+                 "y":1850.27
                 }],
          "opacity":1,
          "parallaxx":0.95,
@@ -718,56 +780,6 @@
                  "y":869.84
                 }, 
                 {
-                 "gid":2147483709,
-                 "height":268,
-                 "id":86,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower2\/BlueFlower2"
-                        }],
-                 "rotation":335.955,
-                 "type":"",
-                 "visible":true,
-                 "width":268,
-                 "x":3701.98,
-                 "y":1697.51
-                }, 
-                {
-                 "gid":109,
-                 "height":482.908,
-                 "id":66,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":564.073,
-                 "x":3283.72,
-                 "y":1844.21
-                }, 
-                {
                  "gid":71,
                  "height":322.356,
                  "id":75,
@@ -801,18 +813,6 @@
                  "width":195.667,
                  "x":3036.85,
                  "y":130.667
-                }, 
-                {
-                 "gid":79,
-                 "height":939.155,
-                 "id":107,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":339.667,
-                 "x":2868.95,
-                 "y":1850.89
                 }, 
                 {
                  "gid":108,
@@ -2045,8 +2045,8 @@
                  "type":"",
                  "visible":true,
                  "width":117.833,
-                 "x":2392.41,
-                 "y":252.416
+                 "x":2395.44,
+                 "y":225.143
                 }, 
                 {
                  "gid":51,
@@ -2096,7 +2096,7 @@
                  "visible":true,
                  "width":518.387,
                  "x":2820.91,
-                 "y":166.97
+                 "y":124.546
                 }],
          "opacity":1,
          "properties":[
@@ -2403,7 +2403,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2414,7 +2414,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2425,7 +2425,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2436,7 +2436,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2447,7 +2447,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2458,7 +2458,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2469,7 +2469,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2656,7 +2656,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2667,7 +2667,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2722,7 +2722,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2755,7 +2755,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2778,7 +2778,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
