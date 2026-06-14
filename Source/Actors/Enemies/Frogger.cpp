@@ -11,6 +11,7 @@
 #include "../../HUD.h"
 #include "../../Random.h"
 #include "../ParticleSystem.h"
+#include "../Skill.h"
 #include "../../Components/RigidBodyComponent.h"
 #include "../../Components/Drawing/AnimatorComponent.h"
 #include "../../Components/CombatBoxComponent.h"
@@ -199,6 +200,16 @@ void Frogger::OnUpdate(float deltaTime) {
 }
 
 void Frogger::TriggerBossDefeat() {
+    // Player ganha dash
+    if (!mGame->GetPlayer()->GetSkillManager()->CanDash()) {
+        auto* skill = new Skill(mGame, Skill::SkillType::Dash);
+        skill->SetPosition(GetPosition());
+        if (skill->GetPosition().y < mArenaMaxPos.y - 320) {
+            skill->SetPosition(Vector2(GetPosition().x, mArenaMaxPos.y - 320));
+        }
+    }
+
+    mGame->SetWorldFlag("FroggerDefeated", true);
     mGame->StopBossMusic();
 }
 

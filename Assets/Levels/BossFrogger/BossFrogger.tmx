@@ -16,6 +16,7 @@
  <objectgroup id="15" name="Camera">
   <object id="10" x="1408" y="0" width="1792" height="1536">
    <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="3264"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
@@ -45,9 +46,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" id="10" name="Triggers">
+ <objectgroup draworder="index" id="10" name="Triggers" visible="0">
   <object id="5" name="Boss Battle" x="1408" y="256" width="1792" height="768">
    <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
     <property name="Enemies" value="9"/>
     <property name="Event" value="SetIsDecreasingAfterKillingEnemies"/>
     <property name="Grounds" value="3,4"/>
@@ -56,6 +58,7 @@
   </object>
   <object id="7" x="1792" y="256" width="1280" height="768">
    <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Enemies" value="9"/>
     <property name="Event" value="SpotPlayer"/>
@@ -64,6 +67,7 @@
   </object>
   <object id="8" name="Close Wall" x="1792" y="256" width="512" height="768">
    <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="SetIsGrowing"/>
     <property name="Grounds" value="3,4"/>
@@ -300,6 +304,7 @@
  <objectgroup id="14" name="Enemies">
   <object id="9" name="Frogger" x="2407.78" y="999.859" width="37.766" height="38.766">
    <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
     <property name="MaxPosX" type="float" value="3200"/>
     <property name="MaxPosY" type="float" value="1024"/>
     <property name="MinPosX" type="float" value="1408"/>

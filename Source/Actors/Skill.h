@@ -12,7 +12,6 @@ class Skill : public Actor
 public:
     enum class SkillType {
         Dash,
-        FireBall,
         WallSlide,
         DoubleJump,
         Hook,
@@ -30,7 +29,6 @@ private:
     UIScreen* mSkillMessage;
 
     void SetPlayerSkill();
-    void LoadSkillMessage();
 
     class RectComponent* mRectComponent;
     class AnimatorComponent* mDrawComponent;

@@ -3,7 +3,6 @@
 //
 
 #include "CheckPointMenu.h"
-
 #include "SkillMenu.h"
 #include "../Game.h"
 

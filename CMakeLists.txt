@@ -255,6 +255,8 @@ add_executable(${PROJECT_NAME}
         Source/MapManager.h
         Source/UIScreens/MapMenu.cpp
         Source/UIScreens/MapMenu.h
+        Source/UIScreens/NewSkillMenu.cpp
+        Source/UIScreens/NewSkillMenu.h
 )
 
 

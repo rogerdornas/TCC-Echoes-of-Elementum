@@ -24,6 +24,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"Condition",
+                         "type":"string",
+                         "value":"!FroggerDefeated"
+                        }, 
+                        {
                          "name":"Event",
                          "type":"string",
                          "value":"FollowPlayerLimited"
@@ -161,6 +166,11 @@
                  "name":"Boss Battle",
                  "properties":[
                         {
+                         "name":"Condition",
+                         "type":"string",
+                         "value":"!FroggerDefeated"
+                        }, 
+                        {
                          "name":"Enemies",
                          "type":"string",
                          "value":"9"
@@ -193,6 +203,11 @@
                  "name":"",
                  "properties":[
                         {
+                         "name":"Condition",
+                         "type":"string",
+                         "value":"!FroggerDefeated"
+                        }, 
+                        {
                          "name":"Destroy",
                          "type":"bool",
                          "value":true
@@ -224,6 +239,11 @@
                  "id":8,
                  "name":"Close Wall",
                  "properties":[
+                        {
+                         "name":"Condition",
+                         "type":"string",
+                         "value":"!FroggerDefeated"
+                        }, 
                         {
                          "name":"Destroy",
                          "type":"bool",
@@ -539,7 +559,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1190,6 +1210,11 @@
                  "id":9,
                  "name":"Frogger",
                  "properties":[
+                        {
+                         "name":"Condition",
+                         "type":"string",
+                         "value":"!FroggerDefeated"
+                        }, 
                         {
                          "name":"MaxPosX",
                          "type":"float",
