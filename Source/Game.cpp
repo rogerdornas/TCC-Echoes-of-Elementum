@@ -4127,54 +4127,58 @@ void Game::DrawParallaxLayer(Texture* texture, float parallaxFactor, int y, int 
     }
 }
 
-void Game::DrawParallaxLayers(std::vector<Texture*> layers)
-{
+void Game::DrawParallaxLayers(std::vector<Texture*> layers) {
     const float minParallax = 0.1f;
     const float maxParallax = 0.8f;
 
-    // 1. Pegamos a câmera REAL
+    // Pegamos a câmera REAL
     Vector2 realCameraPos = mCamera->GetPosCamera();
 
-    for (size_t i = 0; i < layers.size(); ++i)
-    {
+    // Pegamos a largura e altura reais da visão da câmera afetadas pelo zoom
+    float viewWidth = mRenderer->GetZoomedWidth();
+    float viewHeight = mRenderer->GetZoomedHeight();
+
+    for (size_t i = 0; i < layers.size(); ++i) {
         Texture* tex = layers[i];
         if (!tex) continue;
 
         float t = (layers.size() > 1) ? static_cast<float>(i) / (layers.size() - 1) : 0.0f;
         float parallaxFactor = minParallax + t * (maxParallax - minParallax);
 
-        float texW = static_cast<float>(tex->GetWidth());
-        // float texW = static_cast<float>(mRenderer->GetZoomedWidth() / 2);
-        float texH = static_cast<float>(mRenderer->GetZoomedHeight());
+        // Ajustamos a escala da textura para manter a proporção (Aspect Ratio) correta com o Zoom
+        float scale = viewHeight / static_cast<float>(tex->GetHeight());
+        float texW = static_cast<float>(tex->GetWidth()) * scale;
+        float texH = viewHeight;
 
         // Cálculo do offset visual (Onde deve aparecer na tela)
         float scrollOffset = std::fmod(realCameraPos.x * parallaxFactor, texW);
         if (scrollOffset < 0) scrollOffset += texW;
 
-        for (float screenX = -scrollOffset; screenX < mLogicalWindowWidth; screenX += texW)
-        {
-            // 2. Primeiro calculamos a posição na TELA (Screen Space)
-            // Ajustando pelo centro da textura
+        for (float screenX = -scrollOffset; screenX < viewWidth + texW; screenX += texW) {
+            // Primeiro calculamos a posição na TELA (Screen Space)
             Vector2 screenPos(
                 screenX + (texW / 2.0f),
                 texH / 2.0f
             );
 
-            // 3. TRUQUE: Convertemos de volta para "World Space" Falso
-            // Somamos a câmera real.
-            // Quando o shader fizer (WorldPos - CameraPos), ele resultará em ScreenPos.
+            // Convertemos de volta para "World Space" Falso
             Vector2 worldPos = screenPos + realCameraPos;
 
-            Vector2 size(texW, texH);
+            // CORREÇÃO 1: Micro-sobreposição (Overlap)
+            // Adicionamos 1.5f (ou 2.0f) pixels na largura na hora de desenhar.
+            // O laço de repetição continua avançando de 'texW' em 'texW', mas o desenho
+            // sangra minimamente para a direita. Como o background é repetitivo,
+            // isso é imperceptível e aniquila as linhas pretas (seams) geradas pelo std::floor.
+            Vector2 size(texW + 1.5f, texH);
 
             mRenderer->DrawTexture(
-                worldPos,           // Posição no "Mundo" (ajustada para cair no lugar certo)
+                worldPos,
                 size,
                 0.0f,
                 Color::White,
                 tex,
                 Vector4::UnitRect,
-                realCameraPos       // <--- Agora passamos a câmera REAL!
+                realCameraPos
             );
         }
     }
