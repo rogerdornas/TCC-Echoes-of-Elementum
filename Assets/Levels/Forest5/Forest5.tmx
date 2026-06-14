@@ -349,7 +349,7 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies">
-  <object id="26" name="Enemy Simple" x="7313.27" y="494.36" width="32" height="32"/>
+  <object id="26" name="Enemy Simple" x="7346.6" y="366.36" width="32" height="32"/>
   <object id="27" name="Enemy Simple" x="7885.27" y="749.03" width="32" height="32"/>
   <object id="28" name="Mantis" x="6475.33" y="1393.39" width="32" height="32"/>
   <object id="54" name="Mushroom" x="5369.33" y="1651.39" width="32" height="32"/>
