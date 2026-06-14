@@ -23,10 +23,10 @@
         },
         {
             "fileName": "Forest4/Forest4.tmx",
-            "height": 2048,
-            "width": 8320,
-            "x": -1024,
-            "y": -6272
+            "height": 1280,
+            "width": 7808,
+            "x": -5504,
+            "y": 512
         },
         {
             "fileName": "BossFrogger/BossFrogger.tmx",
@@ -39,8 +39,8 @@
             "fileName": "Forest5/Forest5.tmx",
             "height": 2688,
             "width": 8960,
-            "x": -5248,
-            "y": -4864
+            "x": -18560,
+            "y": -128
         },
         {
             "fileName": "Forest6/Forest6.tmx",
@@ -74,8 +74,8 @@
             "fileName": "Forest9/Forest9.tmx",
             "height": 2304,
             "width": 5632,
-            "x": -8064,
-            "y": 4480
+            "x": -17792,
+            "y": 6656
         },
         {
             "fileName": "Forest10/Forest10.tmx",
