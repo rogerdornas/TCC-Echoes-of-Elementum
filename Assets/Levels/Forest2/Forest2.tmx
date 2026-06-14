@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="204">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="204">
  <editorsettings>
   <export target="Forest2.json" format="json"/>
  </editorsettings>
@@ -851,8 +851,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
-  <object id="4" name="Flying Enemy" x="2405" y="1926" width="32" height="32"/>
+ <objectgroup id="14" name="Enemies">
   <object id="38" name="Snake" x="2440" y="2287" width="32" height="32"/>
   <object id="39" name="Mushroom" x="2486" y="3442" width="32" height="32"/>
  </objectgroup>

@@ -12,8 +12,8 @@
   <property name="UseGroundPadding" type="bool" value="true"/>
  </properties>
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea"/>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="4" x="3269.7" y="128" width="4922.3" height="1536">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -35,7 +35,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers">
+ <objectgroup id="10" name="Triggers" visible="0">
   <object id="3" x="5758.78" y="1125.18" width="384" height="156">
    <properties>
     <property name="Event" value="ShowTutorial"/>
@@ -80,7 +80,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="3" name="Background1" parallaxx="0.95">
+ <objectgroup id="3" name="Background1" visible="0" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
    <property name="TextureColorG" type="int" value="65"/>
@@ -88,7 +88,7 @@
    <property name="TextureFactor" type="float" value="0.3"/>
   </properties>
  </objectgroup>
- <objectgroup id="4" name="Background2">
+ <objectgroup id="4" name="Background2" visible="0">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
@@ -96,7 +96,7 @@
    <property name="TextureFactor" type="float" value="0.5"/>
   </properties>
  </objectgroup>
- <objectgroup id="5" name="Decorations"/>
+ <objectgroup id="5" name="Decorations" visible="0"/>
  <layer id="1" name="Camada de Blocos 1" width="65" height="16">
   <data encoding="csv">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -137,7 +137,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup id="7" name="Foreground1">
+ <objectgroup id="7" name="Foreground1" visible="0">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -145,7 +145,7 @@
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
  </objectgroup>
- <objectgroup id="8" name="Foreground2" parallaxx="1.1">
+ <objectgroup id="8" name="Foreground2" visible="0" parallaxx="1.1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -153,14 +153,14 @@
    <property name="TextureFactor" type="float" value="0.2"/>
   </properties>
  </objectgroup>
- <objectgroup id="16" name="Light"/>
- <objectgroup id="17" name="Brazier"/>
- <objectgroup id="18" name="Lava"/>
- <objectgroup id="19" name="LightningBarrier"/>
- <objectgroup id="9" name="HookPoints"/>
- <objectgroup id="20" name="Levers"/>
- <objectgroup id="21" name="SpawnPoint"/>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="16" name="Light" visible="0"/>
+ <objectgroup id="17" name="Brazier" visible="0"/>
+ <objectgroup id="18" name="Lava" visible="0"/>
+ <objectgroup id="19" name="LightningBarrier" visible="0"/>
+ <objectgroup id="9" name="HookPoints" visible="0"/>
+ <objectgroup id="20" name="Levers" visible="0"/>
+ <objectgroup id="21" name="SpawnPoint" visible="0"/>
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="5" x="7808" y="256" width="384" height="512"/>
   <object id="6" x="6784" y="1280" width="512" height="384"/>
   <object id="7" x="4736" y="1280" width="1920" height="384"/>
@@ -177,10 +177,10 @@
   <object id="49" x="896" y="1024" width="128" height="128"/>
   <object id="51" x="2816" y="1024" width="128" height="128"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint">
+ <objectgroup id="12" name="Checkpoint" visible="0">
   <object id="2" name="Checkpoint" x="5744.78" y="1110.18" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="13" name="Player">
+ <objectgroup id="13" name="Player" visible="0">
   <object id="12" x="6720" y="1406" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -212,8 +212,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies"/>
- <objectgroup id="22" name="CameraBounds" visible="0">
-  <object id="33" x="640" y="349" width="7380.85" height="1059"/>
+ <objectgroup id="14" name="Enemies" visible="0"/>
+ <objectgroup id="22" name="CameraBounds" locked="1">
+  <object id="33" x="640" y="328" width="7296" height="1080"/>
  </objectgroup>
 </map>

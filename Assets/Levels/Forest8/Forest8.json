@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -36,7 +36,7 @@
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3586
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
@@ -162,7 +162,7 @@
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3586
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
@@ -204,7 +204,7 @@
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3586
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
@@ -246,7 +246,7 @@
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3586
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
@@ -272,7 +272,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -729,7 +729,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -762,7 +762,7 @@
                  "value":0.3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -794,7 +794,7 @@
                  "value":0.5
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -805,7 +805,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -919,7 +919,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -952,7 +952,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -963,7 +963,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -974,7 +974,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -985,7 +985,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -996,7 +996,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1007,7 +1007,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1102,7 +1102,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1113,7 +1113,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1539,7 +1539,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1550,7 +1550,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1723,7 +1723,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1734,7 +1734,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1744,19 +1744,19 @@
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":2944,
+                 "height":2816,
                  "id":24,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2816,
+                 "width":2688,
                  "x":768,
                  "y":768
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],

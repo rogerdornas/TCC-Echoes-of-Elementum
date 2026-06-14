@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.1" orientation="orthogonal" renderorder="right-down" width="76" height="22" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="308">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="76" height="22" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="308">
  <editorsettings>
   <export target="Forest3.json" format="json"/>
  </editorsettings>
@@ -101,7 +101,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
+ <objectgroup draworder="index" id="3" name="Background1" visible="0" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
    <property name="TextureColorG" type="int" value="65"/>
@@ -230,7 +230,7 @@
   <object id="292" gid="58" x="1946.02" y="1155.18" width="105.365" height="218.766" rotation="90"/>
   <object id="304" gid="66" x="2579.22" y="2106.83" width="154.954" height="428.437"/>
  </objectgroup>
- <objectgroup draworder="index" id="4" name="Background2">
+ <objectgroup draworder="index" id="4" name="Background2" visible="0">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
@@ -327,7 +327,7 @@
   <object id="247" gid="87" x="8845.34" y="1691.93" width="163" height="73.2624"/>
   <object id="248" gid="87" x="8829.84" y="1689.37" width="163" height="73.2624"/>
  </objectgroup>
- <objectgroup draworder="index" id="5" name="Decorations">
+ <objectgroup draworder="index" id="5" name="Decorations" visible="0">
   <object id="29" gid="93" x="4880.12" y="1986.7" width="343.295" height="319"/>
   <object id="31" gid="93" x="5068.35" y="1982.5" width="343.295" height="319"/>
   <object id="32" gid="93" x="5256.35" y="1984.5" width="343.295" height="319"/>
@@ -725,7 +725,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup draworder="index" id="23" name="DecorationsForeground">
+ <objectgroup draworder="index" id="23" name="DecorationsForeground" visible="0">
   <object id="186" gid="77" x="1844.48" y="695.546" width="561.095" height="217.721" rotation="180"/>
   <object id="274" gid="2147483755" x="8997.78" y="1123.03" width="172" height="172" rotation="180">
    <properties>
@@ -787,7 +787,7 @@
   <object id="202" gid="77" x="5873.51" y="2070.48" width="1186.45" height="428.66"/>
   <object id="183" gid="75" x="649.144" y="2285.83" width="529.502" height="238.231"/>
  </objectgroup>
- <objectgroup draworder="index" id="7" name="Foreground1">
+ <objectgroup draworder="index" id="7" name="Foreground1" visible="0">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -801,7 +801,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" id="8" name="Foreground2" parallaxx="1.1">
+ <objectgroup draworder="index" id="8" name="Foreground2" visible="0" parallaxx="1.1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -926,8 +926,8 @@
   <object id="62" x="4992" y="1024" width="256" height="128"/>
   <object id="66" x="5504" y="1152" width="128" height="128"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint"/>
- <objectgroup id="13" name="Player">
+ <objectgroup id="12" name="Checkpoint" visible="0"/>
+ <objectgroup id="13" name="Player" visible="0">
   <object id="4" x="2112" y="2174" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -956,13 +956,13 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies">
+ <objectgroup id="14" name="Enemies" visible="0">
   <object id="21" name="Flying Enemy" x="3064" y="1698" width="32" height="32"/>
   <object id="22" name="Enemy Simple" x="3009.27" y="2030.36" width="32" height="32"/>
   <object id="43" name="OrangeSlime" x="7908" y="1008" width="32" height="32"/>
   <object id="72" name="Mushroom" x="4173.33" y="1008.67" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds" visible="0">
-  <object id="71" x="512" y="572" width="8568" height="1604"/>
+ <objectgroup id="22" name="CameraBounds">
+  <object id="71" x="512" y="640" width="8568" height="1536"/>
  </objectgroup>
 </map>

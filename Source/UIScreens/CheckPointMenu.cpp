@@ -41,7 +41,7 @@ CheckPointMenu::CheckPointMenu(class Game *game, const std::string &fontName, bo
     }
     , true);
 
-    AddButton("VOLTAR", Vector2(894, 590), Vector2::Zero, 30, UIButton::TextPos::Center,
+    AddButton("VOLTAR", Vector2(890, 590), Vector2::Zero, 30, UIButton::TextPos::Center,
     [this]() {
         Close();
     }

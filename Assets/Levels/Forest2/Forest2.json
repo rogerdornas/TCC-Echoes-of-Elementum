@@ -3971,17 +3971,6 @@
          "objects":[
                 {
                  "height":32,
-                 "id":4,
-                 "name":"Flying Enemy",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":2405,
-                 "y":1926
-                }, 
-                {
-                 "height":32,
                  "id":38,
                  "name":"Snake",
                  "rotation":0,
@@ -4004,7 +3993,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

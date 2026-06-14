@@ -627,7 +627,7 @@
                  "value":0.3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -887,7 +887,7 @@
                  "value":0.5
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1767,7 +1767,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2001,7 +2001,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2133,7 +2133,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2404,7 +2404,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2774,7 +2774,6 @@
         {
          "draworder":"topdown",
          "id":22,
-         "locked":true,
          "name":"CameraBounds",
          "objects":[
                 {
