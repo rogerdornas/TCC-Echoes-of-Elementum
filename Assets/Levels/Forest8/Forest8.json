@@ -1,5 +1,5 @@
 { "compressionlevel":-1,
- "height":30,
+ "height":27,
  "infinite":false,
  "layers":[
         {
@@ -19,48 +19,6 @@
          "name":"Camera",
          "objects":[
                 {
-                 "height":1152,
-                 "id":23,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"FollowPlayerLimited"
-                        }, 
-                        {
-                         "name":"LimitMaxCameraPositionX",
-                         "type":"float",
-                         "value":3456
-                        }, 
-                        {
-                         "name":"LimitMaxCameraPositionY",
-                         "type":"float",
-                         "value":3584
-                        }, 
-                        {
-                         "name":"LimitMinCameraPositionX",
-                         "type":"float",
-                         "value":768
-                        }, 
-                        {
-                         "name":"LimitMinCameraPositionY",
-                         "type":"float",
-                         "value":768
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Camera"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":3328,
-                 "x":384,
-                 "y":2176
-                }, 
-                {
                  "height":468,
                  "id":48,
                  "name":"",
@@ -73,22 +31,22 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":3456
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":2304
+                         "value":1792
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":768
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
                          "type":"float",
-                         "value":768
+                         "value":256
                         }, 
                         {
                          "name":"Target",
@@ -98,12 +56,12 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1371.63636363636,
-                 "x":384,
-                 "y":1664
+                 "width":1487.63636363636,
+                 "x":0,
+                 "y":1152
                 }, 
                 {
-                 "height":468,
+                 "height":384,
                  "id":49,
                  "name":"",
                  "properties":[
@@ -115,22 +73,22 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":3456
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":2432
+                         "value":1792
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":768
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
                          "type":"float",
-                         "value":768
+                         "value":256
                         }, 
                         {
                          "name":"Target",
@@ -140,12 +98,12 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":719.515151515152,
-                 "x":2992.48484848485,
-                 "y":1664
+                 "width":1219.51515151515,
+                 "x":2492.48484848485,
+                 "y":1152
                 }, 
                 {
-                 "height":1280,
+                 "height":1664,
                  "id":50,
                  "name":"",
                  "properties":[
@@ -157,22 +115,22 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":3456
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3584
+                         "value":3328
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":768
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
                          "type":"float",
-                         "value":768
+                         "value":256
                         }, 
                         {
                          "name":"Target",
@@ -183,11 +141,11 @@
                  "type":"",
                  "visible":true,
                  "width":896,
-                 "x":1920,
-                 "y":896
+                 "x":1536,
+                 "y":0
                 }, 
                 {
-                 "height":384,
+                 "height":768,
                  "id":51,
                  "name":"",
                  "properties":[
@@ -199,22 +157,22 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":3456
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3584
+                         "value":3328
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":768
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
                          "type":"float",
-                         "value":768
+                         "value":256
                         }, 
                         {
                          "name":"Target",
@@ -224,12 +182,12 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1536,
-                 "x":384,
-                 "y":896
+                 "width":729.454545454545,
+                 "x":0,
+                 "y":0
                 }, 
                 {
-                 "height":384,
+                 "height":768,
                  "id":58,
                  "name":"",
                  "properties":[
@@ -241,22 +199,22 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":3456
+                         "value":3584
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":3584
+                         "value":3328
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":768
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
                          "type":"float",
-                         "value":768
+                         "value":256
                         }, 
                         {
                          "name":"Target",
@@ -266,13 +224,139 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":896,
-                 "x":2816,
-                 "y":896
+                 "width":1236,
+                 "x":2476,
+                 "y":0
+                }, 
+                {
+                 "height":1792,
+                 "id":77,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":3584
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":3328
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":128
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":256
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3328,
+                 "x":0,
+                 "y":1664
+                }, 
+                {
+                 "height":1792,
+                 "id":78,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":3584
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":3328
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":128
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":1920
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":324,
+                 "x":3388,
+                 "y":1664
+                }, 
+                {
+                 "height":768,
+                 "id":80,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":3584
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":3328
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":640
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":256
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":725.818181818182,
+                 "x":768,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -281,117 +365,6 @@
          "id":10,
          "name":"Triggers",
          "objects":[
-                {
-                 "height":384,
-                 "id":16,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":2
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest4\/Forest4"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":560,
-                 "y":2816
-                }, 
-                {
-                 "height":384,
-                 "id":18,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest9\/Forest9"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":560,
-                 "y":1792
-                }, 
-                {
-                 "height":384,
-                 "id":21,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest9\/Forest9"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":560,
-                 "y":1024
-                }, 
                 {
                  "height":640,
                  "id":25,
@@ -420,9 +393,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
-                 "x":2457.09090909091,
-                 "y":2185.81818181818
+                 "width":100,
+                 "x":2076,
+                 "y":1664
                 }, 
                 {
                  "height":640,
@@ -453,8 +426,8 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":1024,
-                 "y":768
+                 "x":640,
+                 "y":256
                 }, 
                 {
                  "height":640,
@@ -485,8 +458,8 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":1024,
-                 "y":1536
+                 "x":640,
+                 "y":1024
                 }, 
                 {
                  "height":512,
@@ -517,8 +490,8 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":3072,
-                 "y":2176
+                 "x":2688,
+                 "y":1664
                 }, 
                 {
                  "height":640,
@@ -549,11 +522,11 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":3072,
-                 "y":768
+                 "x":2688,
+                 "y":256
                 }, 
                 {
-                 "height":640,
+                 "height":512,
                  "id":46,
                  "name":"",
                  "properties":[
@@ -581,119 +554,8 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":3072,
-                 "y":1536
-                }, 
-                {
-                 "height":384,
-                 "id":52,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest11\/Forest11"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":3536,
+                 "x":2688,
                  "y":1024
-                }, 
-                {
-                 "height":384,
-                 "id":54,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest11\/Forest11"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":3536,
-                 "y":1792
-                }, 
-                {
-                 "height":512,
-                 "id":56,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest10\/Forest10"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":3536,
-                 "y":2176
                 }, 
                 {
                  "height":128,
@@ -724,12 +586,266 @@
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":1920,
-                 "y":2304
+                 "x":1536,
+                 "y":1792
+                }, 
+                {
+                 "height":384,
+                 "id":61,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest4\/Forest4"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":0,
+                 "y":2560
+                }, 
+                {
+                 "height":384,
+                 "id":64,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest9\/Forest9"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":0,
+                 "y":1280
+                }, 
+                {
+                 "height":384,
+                 "id":66,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest9\/Forest9"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":0,
+                 "y":512
+                }, 
+                {
+                 "height":512,
+                 "id":68,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest10\/Forest10"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":3664,
+                 "y":1920
+                }, 
+                {
+                 "height":384,
+                 "id":72,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest11\/Forest11"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":3664,
+                 "y":512
+                }, 
+                {
+                 "height":384,
+                 "id":73,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest11\/Forest11"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":3664,
+                 "y":1152
+                }, 
+                {
+                 "height":128,
+                 "id":76,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeZoom"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }, 
+                        {
+                         "name":"TargetZoom",
+                         "type":"float",
+                         "value":0.8
+                        }, 
+                        {
+                         "name":"ZoomSpeed",
+                         "type":"float",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":256,
+                 "x":2176,
+                 "y":1664
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -762,7 +878,7 @@
                  "value":0.3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -794,7 +910,7 @@
                  "value":0.5
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -805,89 +921,83 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 6, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0, 0,
-            0, 0, 0, 15, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 17, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 3, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 22, 24, 0, 8, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 6, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 10, 0, 0, 0,
-            0, 0, 0, 15, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 17, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 3, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 16, 16, 17, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 22, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 15, 16, 16, 17, 0, 0, 0, 1, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0,
-            0, 0, 0, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0, 0],
-         "height":30,
+         "data":[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 6, 9, 9, 9, 9, 10,
+            8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 10,
+            15, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 16, 17,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 22, 24, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 6, 9, 9, 9, 9, 10,
+            8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 16, 17,
+            15, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3,
+            1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 16, 6, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 22, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 16, 16, 16, 17,
+            8, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 17, 0, 0, 0, 0, 1, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0,
+            8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0,
+            8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 2, 2, 13, 9, 9, 9, 9, 12, 2, 2, 2, 2, 2, 2, 3,
+            8, 9, 9, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            15, 16, 16, 17, 0, 0, 0, 1, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            1, 2, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17],
+         "height":27,
          "id":1,
          "name":"Camada de Blocos 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":32,
+         "width":29,
          "x":0,
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":30,
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":27,
          "id":6,
          "name":"DynamicGrounds",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":32,
+         "width":29,
          "x":0,
          "y":0
         }, 
@@ -919,7 +1029,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -952,7 +1062,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -963,7 +1073,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -974,7 +1084,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -985,7 +1095,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -996,7 +1106,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1007,7 +1117,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1055,8 +1165,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":1522.66666666667,
-                 "y":1238.66666666667
+                 "x":1138.66666666667,
+                 "y":726.666666666667
                 }, 
                 {
                  "height":64,
@@ -1097,8 +1207,8 @@
                  "type":"",
                  "visible":true,
                  "width":64,
-                 "x":3106.66666666667,
-                 "y":1998.66333333333
+                 "x":2743.66666666667,
+                 "y":1363.66333333333
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1113,7 +1223,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1123,48 +1233,48 @@
          "name":"Grounds",
          "objects":[
                 {
-                 "height":768,
+                 "height":640,
                  "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1664,
-                 "x":384,
-                 "y":3072
+                 "width":896,
+                 "x":0,
+                 "y":2816
                 }, 
                 {
-                 "height":1024,
+                 "height":1152,
                  "id":2,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":384,
-                 "x":2048,
-                 "y":2816
+                 "x":1664,
+                 "y":2304
                 }, 
                 {
-                 "height":1280,
+                 "height":1408,
                  "id":3,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1280,
-                 "x":2432,
-                 "y":2560
+                 "width":768,
+                 "x":2048,
+                 "y":2048
                 }, 
                 {
-                 "height":896,
+                 "height":1152,
                  "id":4,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":384,
-                 "y":2048
+                 "x":0,
+                 "y":1536
                 }, 
                 {
                  "height":640,
@@ -1174,8 +1284,8 @@
                  "type":"",
                  "visible":true,
                  "width":1024,
-                 "x":896,
-                 "y":2048
+                 "x":512,
+                 "y":1536
                 }, 
                 {
                  "height":640,
@@ -1185,8 +1295,8 @@
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":384,
-                 "y":1280
+                 "x":0,
+                 "y":768
                 }, 
                 {
                  "height":384,
@@ -1196,8 +1306,8 @@
                  "type":"",
                  "visible":true,
                  "width":1024,
-                 "x":896,
-                 "y":1280
+                 "x":512,
+                 "y":768
                 }, 
                 {
                  "height":640,
@@ -1207,8 +1317,8 @@
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":384,
-                 "y":512
+                 "x":0,
+                 "y":0
                 }, 
                 {
                  "height":384,
@@ -1218,8 +1328,8 @@
                  "type":"",
                  "visible":true,
                  "width":2432,
-                 "x":896,
-                 "y":512
+                 "x":512,
+                 "y":0
                 }, 
                 {
                  "height":640,
@@ -1228,20 +1338,20 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":384,
-                 "x":3328,
-                 "y":512
+                 "width":768,
+                 "x":2944,
+                 "y":0
                 }, 
                 {
-                 "height":640,
+                 "height":512,
                  "id":11,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":384,
-                 "x":3328,
-                 "y":1280
+                 "width":768,
+                 "x":2944,
+                 "y":768
                 }, 
                 {
                  "height":384,
@@ -1251,8 +1361,8 @@
                  "type":"",
                  "visible":true,
                  "width":512,
-                 "x":2816,
-                 "y":1280
+                 "x":2432,
+                 "y":768
                 }, 
                 {
                  "height":256,
@@ -1261,9 +1371,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":896,
-                 "x":2816,
-                 "y":2048
+                 "width":640,
+                 "x":2432,
+                 "y":1408
                 }, 
                 {
                  "height":128,
@@ -1294,8 +1404,8 @@
                  "type":"",
                  "visible":true,
                  "width":256,
-                 "x":2432,
-                 "y":1408
+                 "x":2048,
+                 "y":896
                 }, 
                 {
                  "height":128,
@@ -1326,8 +1436,8 @@
                  "type":"",
                  "visible":true,
                  "width":256,
-                 "x":2048,
-                 "y":2304
+                 "x":1664,
+                 "y":1792
                 }, 
                 {
                  "height":512,
@@ -1378,8 +1488,8 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":1664,
-                 "y":896
+                 "x":1280,
+                 "y":384
                 }, 
                 {
                  "height":512,
@@ -1430,64 +1540,12 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":2944,
-                 "y":896
-                }, 
-                {
-                 "height":512,
-                 "id":35,
-                 "name":"DynamicGround",
-                 "properties":[
-                        {
-                         "name":"Condition",
-                         "type":"string",
-                         "value":"!Forest8Ground2Decrease"
-                        }, 
-                        {
-                         "name":"GrowSpeedX",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"GrowSpeedY",
-                         "type":"float",
-                         "value":600
-                        }, 
-                        {
-                         "name":"GrowthDirection",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"MinHeight",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"MinWidth",
-                         "type":"float",
-                         "value":128
-                        }, 
-                        {
-                         "name":"StartHeight",
-                         "type":"float",
-                         "value":512
-                        }, 
-                        {
-                         "name":"StartWidth",
-                         "type":"float",
-                         "value":128
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":2944,
-                 "y":1664
+                 "x":2560,
+                 "y":384
                 }, 
                 {
                  "height":384,
-                 "id":37,
+                 "id":35,
                  "name":"DynamicGround",
                  "properties":[
                         {
@@ -1534,12 +1592,108 @@
                  "type":"",
                  "visible":true,
                  "width":128,
+                 "x":2560,
+                 "y":1152
+                }, 
+                {
+                 "height":512,
+                 "id":37,
+                 "name":"DynamicGround",
+                 "properties":[
+                        {
+                         "name":"Condition",
+                         "type":"string",
+                         "value":"!Forest8Ground2Decrease"
+                        }, 
+                        {
+                         "name":"GrowSpeedX",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"GrowSpeedY",
+                         "type":"float",
+                         "value":600
+                        }, 
+                        {
+                         "name":"GrowthDirection",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"MinHeight",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"MinWidth",
+                         "type":"float",
+                         "value":128
+                        }, 
+                        {
+                         "name":"StartHeight",
+                         "type":"float",
+                         "value":512
+                        }, 
+                        {
+                         "name":"StartWidth",
+                         "type":"float",
+                         "value":128
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":2560,
+                 "y":1664
+                }, 
+                {
+                 "height":896,
+                 "id":62,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":768,
+                 "x":896,
+                 "y":2560
+                }, 
+                {
+                 "height":1152,
+                 "id":74,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":384,
+                 "x":3328,
+                 "y":2304
+                }, 
+                {
+                 "height":640,
+                 "id":75,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":640,
                  "x":3072,
+                 "y":1408
+                }, 
+                {
+                 "height":1152,
+                 "id":79,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":512,
+                 "x":2816,
                  "y":2304
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1550,7 +1704,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1561,7 +1715,7 @@
          "objects":[
                 {
                  "height":32,
-                 "id":17,
+                 "id":63,
                  "name":"Player",
                  "properties":[
                         {
@@ -1583,12 +1737,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":720,
-                 "y":3053
+                 "x":80,
+                 "y":2797
                 }, 
                 {
                  "height":32,
-                 "id":19,
+                 "id":65,
                  "name":"Player",
                  "properties":[
                         {
@@ -1610,12 +1764,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":720,
-                 "y":2029
+                 "x":80,
+                 "y":1517
                 }, 
                 {
                  "height":32,
-                 "id":20,
+                 "id":67,
                  "name":"Player",
                  "properties":[
                         {
@@ -1637,66 +1791,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":720,
-                 "y":1261
+                 "x":80,
+                 "y":749
                 }, 
                 {
                  "height":32,
-                 "id":53,
-                 "name":"Player",
-                 "properties":[
-                        {
-                         "name":"EnteringLevelSpeedX",
-                         "type":"float",
-                         "value":-700
-                        }, 
-                        {
-                         "name":"EnteringLevelSpeedY",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"StartPositionId",
-                         "type":"int",
-                         "value":3
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":3504,
-                 "y":1259
-                }, 
-                {
-                 "height":32,
-                 "id":55,
-                 "name":"Player",
-                 "properties":[
-                        {
-                         "name":"EnteringLevelSpeedX",
-                         "type":"float",
-                         "value":-700
-                        }, 
-                        {
-                         "name":"EnteringLevelSpeedY",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"StartPositionId",
-                         "type":"int",
-                         "value":4
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":3504,
-                 "y":2027
-                }, 
-                {
-                 "height":32,
-                 "id":57,
+                 "id":69,
                  "name":"Player",
                  "properties":[
                         {
@@ -1718,12 +1818,66 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3504,
-                 "y":2539
+                 "x":3632,
+                 "y":2283
+                }, 
+                {
+                 "height":32,
+                 "id":70,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":4
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":3632,
+                 "y":1387
+                }, 
+                {
+                 "height":32,
+                 "id":71,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":3632,
+                 "y":747
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1734,7 +1888,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1745,15 +1899,15 @@
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":2816,
+                 "height":3072,
                  "id":24,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2688,
-                 "x":768,
-                 "y":768
+                 "width":3456,
+                 "x":128,
+                 "y":256
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1762,7 +1916,7 @@
          "y":0
         }],
  "nextlayerid":23,
- "nextobjectid":61,
+ "nextobjectid":81,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -1806,5 +1960,5 @@
  "tilewidth":128,
  "type":"map",
  "version":"1.10",
- "width":32
+ "width":29
 }

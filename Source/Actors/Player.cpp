@@ -458,8 +458,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         return;
     }
 
-    bool left = (mGame->IsActionPressed(Game::Action::MoveLeft, state, &controller) &&
-                !mGame->IsActionPressed(Game::Action::Look, state, &controller)) ||
+    bool left = mGame->IsActionPressed(Game::Action::MoveLeft, state, &controller) ||
                 SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < -10000;
 
     bool leftSlow = false;
@@ -468,8 +467,7 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
     //                 (SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) < -10000 &&
     //                 SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > -20000);
 
-    bool right = (mGame->IsActionPressed(Game::Action::MoveRight, state, &controller) &&
-                 !mGame->IsActionPressed(Game::Action::Look, state, &controller)) ||
+    bool right = mGame->IsActionPressed(Game::Action::MoveRight, state, &controller) ||
                  SDL_GameControllerGetAxis(&controller, SDL_CONTROLLER_AXIS_LEFTX) > 10000;
 
     bool rightSlow = false;

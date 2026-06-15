@@ -51,10 +51,10 @@
         },
         {
             "fileName": "Forest7/Forest7.tmx",
-            "height": 1920,
-            "width": 3840,
-            "x": 10368,
-            "y": -3968
+            "height": 1280,
+            "width": 3584,
+            "x": 7936,
+            "y": 1792
         },
         {
             "fileName": "Forest2/Forest2.tmx",
@@ -65,10 +65,10 @@
         },
         {
             "fileName": "Forest8/Forest8.tmx",
-            "height": 3840,
-            "width": 4096,
+            "height": 3456,
+            "width": 3712,
             "x": 2304,
-            "y": -2176
+            "y": -1664
         },
         {
             "fileName": "Forest9/Forest9.tmx",
@@ -79,17 +79,17 @@
         },
         {
             "fileName": "Forest10/Forest10.tmx",
-            "height": 2048,
+            "height": 1664,
             "width": 5120,
-            "x": 8064,
-            "y": -5760
+            "x": 6016,
+            "y": 128
         },
         {
             "fileName": "Forest11/Forest11.tmx",
-            "height": 2560,
-            "width": 4480,
-            "x": 7936,
-            "y": -7808
+            "height": 2432,
+            "width": 3712,
+            "x": 6016,
+            "y": -2304
         },
         {
             "fileName": "Forest12/Forest12.tmx",

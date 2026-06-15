@@ -16,6 +16,7 @@ Skill::Skill(class Game *game, SkillType skill)
     ,mWidth(64)
     ,mHeight(64)
     ,mSkillMessage(nullptr)
+    ,mNoCollisionTimer(1.0f)
     ,mDrawComponent(nullptr)
     ,mRectComponent(nullptr)
 {
@@ -33,6 +34,7 @@ Skill::Skill(class Game *game, SkillType skill)
 
     // mDrawPolygonComponent = new DrawPolygonComponent(this, vertices, SDL_Color{255, 255, 0, 255}, 5000);
     mAABBComponent = new AABBComponent(this, v1, v3);
+    mAABBComponent->SetActive(false);
 
     mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Skill/Skill.png",
                                                     "../Assets/Sprites/Skill/Skill.json",
@@ -46,12 +48,17 @@ Skill::Skill(class Game *game, SkillType skill)
 }
 
 void Skill::OnUpdate(float deltaTime) {
-    Player* player = mGame->GetPlayer();
+    mNoCollisionTimer -= deltaTime;
 
-    if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
-        SetPlayerSkill();
-        new NewSkillMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", true, mSkill);
-        SetState(ActorState::Destroy);
+    if (mNoCollisionTimer < 0) {
+        mAABBComponent->SetActive(true);
+        Player* player = mGame->GetPlayer();
+
+        if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
+            SetPlayerSkill();
+            new NewSkillMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", true, mSkill);
+            SetState(ActorState::Destroy);
+        }
     }
 }
 

@@ -27,6 +27,7 @@ private:
     float mWidth;
     float mHeight;
     UIScreen* mSkillMessage;
+    float mNoCollisionTimer;
 
     void SetPlayerSkill();
 

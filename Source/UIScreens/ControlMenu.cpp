@@ -126,7 +126,7 @@ std::string ControlMenu::TranslateAction(Game::Action action) {
         case Game::Action::MoveRight:  return "DIREITA";
         case Game::Action::Jump:       return "PULO";
         case Game::Action::Attack:     return "ATAQUE";
-        case Game::Action::Dash:       return "AVANCO";
+        case Game::Action::Dash:       return "AVANÇO";
         case Game::Action::Skill1:     return "HABILIDADE 1";
         case Game::Action::Skill2:     return "HABILIDADE 2";
         case Game::Action::Heal:       return "CURA";

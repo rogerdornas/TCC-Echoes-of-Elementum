@@ -59,7 +59,7 @@ Frogger::Frogger(Game *game)
     mWidth = 145;
     mHeight = 145;
     mMoveSpeed = 500;
-    mHealthPoints = 200;
+    mHealthPoints = 150;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 18;
     mMoneyDrop = 100;
@@ -203,10 +203,7 @@ void Frogger::TriggerBossDefeat() {
     // Player ganha dash
     if (!mGame->GetPlayer()->GetSkillManager()->CanDash()) {
         auto* skill = new Skill(mGame, Skill::SkillType::Dash);
-        skill->SetPosition(GetPosition());
-        if (skill->GetPosition().y < mArenaMaxPos.y - 320) {
-            skill->SetPosition(Vector2(GetPosition().x, mArenaMaxPos.y - 320));
-        }
+        skill->SetPosition(Vector2(mArenaMinPos.x + (mArenaMaxPos.x - mArenaMinPos.x) * 0.5f, mArenaMinPos.y + (mArenaMaxPos.y - mArenaMinPos.y) * 0.7f));
     }
 
     mGame->SetWorldFlag("FroggerDefeated", true);

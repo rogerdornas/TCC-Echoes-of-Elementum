@@ -1,5 +1,5 @@
 { "compressionlevel":-1,
- "height":15,
+ "height":10,
  "infinite":false,
  "layers":[
         {
@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -19,7 +19,7 @@
          "name":"Camera",
          "objects":[
                 {
-                 "height":1792,
+                 "height":1280,
                  "id":17,
                  "name":"",
                  "properties":[
@@ -31,22 +31,22 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":70000
+                         "value":3456
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
                          "type":"float",
-                         "value":1408
+                         "value":1140
                         }, 
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":384
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
                          "type":"float",
-                         "value":319
+                         "value":60
                         }, 
                         {
                          "name":"Target",
@@ -56,13 +56,55 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":3072,
-                 "x":128,
+                 "width":1010,
+                 "x":0,
+                 "y":0
+                }, 
+                {
+                 "height":1280,
+                 "id":23,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"FollowPlayerLimited"
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionX",
+                         "type":"float",
+                         "value":3456
+                        }, 
+                        {
+                         "name":"LimitMaxCameraPositionY",
+                         "type":"float",
+                         "value":1208
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionX",
+                         "type":"float",
+                         "value":128
+                        }, 
+                        {
+                         "name":"LimitMinCameraPositionY",
+                         "type":"float",
+                         "value":128
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Camera"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2560,
+                 "x":1024,
                  "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -73,7 +115,7 @@
          "objects":[
                 {
                  "height":384,
-                 "id":8,
+                 "id":19,
                  "name":"",
                  "properties":[
                         {
@@ -104,13 +146,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
-                 "x":176,
-                 "y":512
+                 "width":48,
+                 "x":0,
+                 "y":256
                 }, 
                 {
-                 "height":128,
-                 "id":14,
+                 "height":13,
+                 "id":21,
                  "name":"",
                  "properties":[
                         {
@@ -142,17 +184,54 @@
                  "type":"",
                  "visible":true,
                  "width":384,
-                 "x":1280,
-                 "y":73
+                 "x":1664,
+                 "y":0
+                }, 
+                {
+                 "height":384,
+                 "id":24,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeScene"
+                        }, 
+                        {
+                         "name":"PlayerStartPositionId",
+                         "type":"int",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Scene",
+                         "type":"string",
+                         "value":"Forest7\/Forest7"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Game"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":48,
+                 "x":3536,
+                 "y":384
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
          "id":3,
          "name":"Background1",
          "objects":[],
@@ -180,12 +259,12 @@
                  "value":0.3
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
          "id":4,
          "name":"Background2",
          "objects":[],
@@ -212,12 +291,12 @@
                  "value":0.5
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
          "id":5,
          "name":"Decorations",
          "objects":[
@@ -230,8 +309,8 @@
                  "type":"",
                  "visible":true,
                  "width":182.768,
-                 "x":1832.67,
-                 "y":1186.17
+                 "x":1704.67,
+                 "y":1058.17
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -240,59 +319,60 @@
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0,
-            0, 8, 9, 9, 9, 5, 16, 16, 16, 16, 17, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 8, 9, 9, 9, 10, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 15, 16, 16, 16, 17, 0, 0, 0, 0, 0, 22, 39, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 3, 0,
-            0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0,
-            0, 15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":15,
+         "data":[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
+            8, 9, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            15, 16, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 39, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17,
+            1, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            8, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 3,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 10,
+            15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17],
+         "height":10,
          "id":1,
          "name":"Camada de Blocos 1",
          "opacity":1,
          "type":"tilelayer",
          "visible":true,
-         "width":30,
+         "width":28,
          "x":0,
          "y":0
         }, 
         {
-         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-         "height":15,
+         "data":[0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+         "height":10,
          "id":6,
          "name":"DynamicGrounds",
          "opacity":1,
          "type":"tilelayer",
-         "visible":true,
-         "width":30,
+         "visible":false,
+         "width":28,
          "x":0,
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
+         "id":23,
+         "name":"DecorationsForeground",
+         "objects":[],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
+        }, 
+        {
+         "draworder":"index",
          "id":7,
          "name":"Foreground1",
          "objects":[],
@@ -319,12 +399,12 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
-         "draworder":"topdown",
+         "draworder":"index",
          "id":8,
          "name":"Foreground2",
          "objects":[],
@@ -352,7 +432,7 @@
                  "value":0.2
                 }],
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -363,7 +443,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -374,7 +454,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -385,7 +465,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -396,7 +476,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -407,7 +487,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -418,7 +498,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -429,7 +509,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -439,37 +519,37 @@
          "name":"Grounds",
          "objects":[
                 {
-                 "height":1024,
+                 "height":640,
                  "id":1,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1792,
-                 "x":128,
-                 "y":768
+                 "width":640,
+                 "x":1152,
+                 "y":640
                 }, 
                 {
-                 "height":640,
+                 "height":256,
                  "id":3,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":640,
-                 "x":1920,
-                 "y":1152
+                 "x":1792,
+                 "y":1024
                 }, 
                 {
-                 "height":1024,
+                 "height":640,
                  "id":4,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":1152,
-                 "x":2560,
-                 "y":768
+                 "x":2432,
+                 "y":640
                 }, 
                 {
                  "height":512,
@@ -478,20 +558,20 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2176,
-                 "x":1536,
-                 "y":128
+                 "width":1664,
+                 "x":1920,
+                 "y":0
                 }, 
                 {
-                 "height":512,
+                 "height":384,
                  "id":6,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":640,
-                 "x":128,
-                 "y":128
+                 "x":0,
+                 "y":0
                 }, 
                 {
                  "height":68.5,
@@ -501,8 +581,8 @@
                  "type":"",
                  "visible":true,
                  "width":93.1667,
-                 "x":1907.33,
-                 "y":1095.5
+                 "x":1779.33,
+                 "y":967.5
                 }, 
                 {
                  "height":256,
@@ -511,9 +591,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":640,
-                 "x":768,
-                 "y":128
+                 "width":1152,
+                 "x":640,
+                 "y":0
                 }, 
                 {
                  "height":128,
@@ -523,12 +603,23 @@
                  "type":"",
                  "visible":true,
                  "width":128,
-                 "x":1408,
+                 "x":1792,
+                 "y":384
+                }, 
+                {
+                 "height":768,
+                 "id":18,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":1152,
+                 "x":0,
                  "y":512
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -539,7 +630,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -550,7 +641,7 @@
          "objects":[
                 {
                  "height":32,
-                 "id":9,
+                 "id":20,
                  "name":"Player",
                  "properties":[
                         {
@@ -572,12 +663,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":336,
-                 "y":749
+                 "x":80,
+                 "y":493
                 }, 
                 {
                  "height":32,
-                 "id":15,
+                 "id":22,
                  "name":"Player",
                  "properties":[
                         {
@@ -589,12 +680,39 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1472,
-                 "y":251
+                 "x":1856,
+                 "y":63
+                }, 
+                {
+                 "height":32,
+                 "id":25,
+                 "name":"Player",
+                 "properties":[
+                        {
+                         "name":"EnteringLevelSpeedX",
+                         "type":"float",
+                         "value":-700
+                        }, 
+                        {
+                         "name":"EnteringLevelSpeedY",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"StartPositionId",
+                         "type":"int",
+                         "value":3
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":3504,
+                 "y":619
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -605,7 +723,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -615,24 +733,24 @@
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":1220,
+                 "height":1148,
                  "id":16,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2944,
-                 "x":384,
-                 "y":319
+                 "width":3328,
+                 "x":128,
+                 "y":60
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
- "nextlayerid":23,
- "nextobjectid":18,
+ "nextlayerid":24,
+ "nextobjectid":26,
  "orientation":"orthogonal",
  "properties":[
         {
@@ -680,5 +798,5 @@
  "tilewidth":128,
  "type":"map",
  "version":"1.10",
- "width":30
+ "width":28
 }

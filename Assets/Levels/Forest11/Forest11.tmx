@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="35" height="20" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="64">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="29" height="19" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="71">
  <editorsettings>
   <export target="Forest11.json" format="json"/>
  </editorsettings>
@@ -15,81 +15,81 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
  <objectgroup id="15" name="Camera" visible="0">
-  <object id="36" x="1664" y="384" width="768" height="768">
+  <object id="36" x="1536" y="384" width="768" height="768">
    <properties>
     <property name="Condition" value="!Forest11ArenaDone"/>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3072"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="2944"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1408"/>
-    <property name="LimitMinCameraPositionX" type="float" value="1152"/>
+    <property name="LimitMinCameraPositionX" type="float" value="1024"/>
     <property name="LimitMinCameraPositionY" type="float" value="328"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="37" x="0" y="1200.48" width="1152" height="307.685">
+  <object id="37" x="0" y="1200.48" width="1024" height="307.685">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3712"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3584"/>
     <property name="LimitMaxCameraPositionY" type="float" value="2432"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
     <property name="LimitMinCameraPositionY" type="float" value="896"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="38" x="512" y="256" width="640" height="870.17">
+  <object id="38" x="0" y="0" width="1024" height="1126.17">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3712"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3584"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1408"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
     <property name="LimitMinCameraPositionY" type="float" value="328"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
-  <object id="39" x="1408" y="256" width="1536" height="870.17">
+  <object id="40" x="1152" y="1224.73" width="1725.33" height="1207.27">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3584"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="2432"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionY" type="float" value="328"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+  <object id="41" x="0" y="1664" width="1152" height="768">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3584"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="2432"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionY" type="float" value="328"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+  <object id="51" x="2880.36" y="0" width="831.636" height="2432">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3584"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="2432"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionY" type="float" value="328"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+  <object id="70" x="1152" y="0" width="1664" height="1126.17">
    <properties>
     <property name="Condition" value="Forest11ArenaDone"/>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3712"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3584"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1408"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
-    <property name="LimitMinCameraPositionY" type="float" value="328"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
-  <object id="40" x="1280" y="1224.73" width="1792" height="1079.27">
-   <properties>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3712"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2560"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
-    <property name="LimitMinCameraPositionY" type="float" value="328"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
-  <object id="41" x="0" y="1664" width="1280" height="640">
-   <properties>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3712"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2560"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
-    <property name="LimitMinCameraPositionY" type="float" value="328"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
-  <object id="51" x="3072" y="256" width="896" height="1920">
-   <properties>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3712"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="2560"/>
-    <property name="LimitMinCameraPositionX" type="float" value="384"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
     <property name="LimitMinCameraPositionY" type="float" value="328"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="10" name="Triggers" visible="0">
-  <object id="12" x="1792" y="384" width="512" height="768">
+  <object id="12" x="1664" y="384" width="512" height="768">
    <properties>
     <property name="Condition" value="!Forest11ArenaDone"/>
     <property name="Destroy" type="bool" value="true"/>
@@ -98,7 +98,7 @@
     <property name="Waves" value="Forest11Arena"/>
    </properties>
   </object>
-  <object id="44" x="176" y="1152" width="128" height="384">
+  <object id="64" x="0" y="1152" width="48" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
@@ -107,7 +107,7 @@
     <property name="Target" value="Game"/>
    </properties>
   </object>
-  <object id="46" x="176" y="1920" width="128" height="384">
+  <object id="66" x="0" y="1792" width="48" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
@@ -134,55 +134,53 @@
   </properties>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations" visible="0">
-  <object id="52" gid="2147483739" x="2561.12" y="2278.77" width="336.197" height="146.48" rotation="269.524"/>
-  <object id="53" gid="91" x="2202.36" y="1997.12" width="404.809" height="176.374" rotation="269.524"/>
+  <object id="52" gid="2147483739" x="2433.12" y="2151" width="336.197" height="146.48" rotation="269.524"/>
+  <object id="53" gid="91" x="2074.36" y="1869" width="404.809" height="176.374" rotation="269.524"/>
  </objectgroup>
- <layer id="1" name="Camada de Blocos 1" width="35" height="20">
+ <layer id="1" name="Camada de Blocos 1" width="29" height="19">
   <data encoding="csv">
-0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,0,0,0,
-0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,
-0,8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,6,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,15,16,17,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,8,10,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,8,10,0,0,0,0,0,
-0,1,2,2,2,2,2,2,13,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,8,10,0,0,0,0,0,
-0,8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
-0,8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,13,10,0,0,0,0,0,
-0,15,16,17,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,25,0,0,0,0,0,0,8,9,9,10,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,0,0,0,0,0,
-0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,13,9,9,10,0,0,0,0,0,
-0,15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,6,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+15,16,17,0,0,0,0,1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,0,0,8,10,
+0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,21,24,0,8,10,
+1,2,2,2,2,2,2,13,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,8,10,
+8,9,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,22,14,10,
+8,9,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+15,16,17,0,0,0,0,0,0,0,0,0,0,0,0,25,0,0,25,0,0,0,0,0,0,1,2,13,10,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,9,9,10,
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,13,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10
 </data>
  </layer>
- <layer id="6" name="DynamicGrounds" width="35" height="20">
+ <layer id="6" name="DynamicGrounds" width="29" height="19">
   <data encoding="csv">
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,8,12,0,0,0,0,0,0,0,0,0,0,0,0,0,13,12,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,1,3,0,0,0,0,0,0,0,0,0,0,0,0,0,1,3,0,0,0,0,0,
+0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
+0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
+0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
+0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
+0,0,0,0,0,0,0,8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,0,0,0,0,0,
+0,0,0,0,0,0,0,8,12,0,0,0,0,0,0,0,0,0,0,0,0,0,13,12,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
  <objectgroup draworder="index" id="23" name="DecorationsForeground" visible="0"/>
@@ -209,32 +207,32 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0">
-  <object id="14" x="2564" y="1120" width="32" height="32">
+  <object id="14" x="2436" y="1120" width="32" height="32">
    <properties>
     <property name="id" value="RightBot"/>
    </properties>
   </object>
-  <object id="15" x="1666" y="1122" width="32" height="32">
+  <object id="15" x="1538" y="1122" width="32" height="32">
    <properties>
     <property name="id" value="LeftBot"/>
    </properties>
   </object>
-  <object id="63" x="2598" y="612" width="32" height="32">
+  <object id="63" x="2470" y="612" width="32" height="32">
    <properties>
     <property name="id" value="RightTop"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="11" name="Grounds" visible="0">
-  <object id="1" x="128" y="0" width="384" height="1280"/>
-  <object id="2" x="512" y="0" width="3072" height="384"/>
-  <object id="3" x="3584" y="0" width="256" height="2432"/>
-  <object id="4" x="128" y="2176" width="3200" height="256"/>
-  <object id="5" x="128" y="1408" width="384" height="640"/>
-  <object id="6" x="512" y="1408" width="512" height="256"/>
-  <object id="7" x="1024" y="1152" width="256" height="512"/>
-  <object id="8" x="1280" y="1152" width="2048" height="512"/>
-  <object id="10" name="DynamicGround" x="1024" y="384" width="256" height="896">
+  <object id="1" x="0" y="0" width="384" height="1280"/>
+  <object id="2" x="384" y="0" width="3072" height="384"/>
+  <object id="3" x="3456" y="0" width="256" height="2432"/>
+  <object id="4" x="0" y="2048" width="3200" height="384"/>
+  <object id="5" x="0" y="1408" width="384" height="512"/>
+  <object id="6" x="384" y="1408" width="512" height="256"/>
+  <object id="7" x="896" y="1152" width="256" height="512"/>
+  <object id="8" x="1152" y="1152" width="2048" height="512"/>
+  <object id="10" name="DynamicGround" x="896" y="384" width="256" height="896">
    <properties>
     <property name="Condition" value="!Forest11ArenaDone"/>
     <property name="GrowSpeedX" type="float" value="0"/>
@@ -246,12 +244,7 @@
     <property name="StartWidth" type="float" value="256"/>
    </properties>
   </object>
-  <object id="28" x="2109.33" y="1661.3" width="48" height="92.0605">
-   <properties>
-    <property name="Spike" type="bool" value="true"/>
-   </properties>
-  </object>
-  <object id="49" name="DynamicGround" x="2944" y="384" width="256" height="896">
+  <object id="49" name="DynamicGround" x="2816" y="384" width="256" height="896">
    <properties>
     <property name="Condition" value="!Forest11ArenaDone"/>
     <property name="GrowSpeedX" type="float" value="0"/>
@@ -263,45 +256,47 @@
     <property name="StartWidth" type="float" value="256"/>
    </properties>
   </object>
-  <object id="55" x="2050.67" y="1729.33" width="69.3337" height="118.727">
+  <object id="55" x="1922.67" y="1601" width="69.3337" height="118.727">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="56" x="2100" y="1829.97" width="53.3337" height="101.394">
+  <object id="56" x="1972" y="1702" width="53.3337" height="101.394">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="57" x="2477.67" y="2022.64" width="49.3337" height="63.727">
+  <object id="57" x="2349.67" y="1895" width="49.3337" height="63.727">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="58" x="2439.33" y="2065.14" width="49.3337" height="82.727">
+  <object id="58" x="2311.33" y="1937" width="49.3337" height="82.727">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="59" x="2467.33" y="2148.64" width="49.3337" height="30.727">
+  <object id="59" x="2339.33" y="2021" width="49.3337" height="30.727">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="60" x="2432" y="1920" width="128" height="128"/>
-  <object id="61" x="2048" y="1920" width="128" height="128"/>
-  <object id="62" x="3328" y="1792" width="256" height="640"/>
+  <object id="60" x="2304" y="1792" width="128" height="128"/>
+  <object id="61" x="1920" y="1792" width="128" height="128"/>
+  <object id="62" x="3200" y="1792" width="256" height="640"/>
+  <object id="68" x="3328" y="1536" width="128" height="128"/>
+  <object id="69" x="3200" y="1280" width="128" height="128"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
  <objectgroup id="13" name="Player" visible="0">
-  <object id="45" name="Player" x="336" y="1389" width="32" height="32">
+  <object id="65" name="Player" x="80" y="1389" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
     <property name="EnteringLevelSpeedY" type="float" value="0"/>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
-  <object id="47" name="Player" x="336" y="2157" width="32" height="32">
+  <object id="67" name="Player" x="80" y="2029" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
     <property name="EnteringLevelSpeedY" type="float" value="0"/>
@@ -310,9 +305,9 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies" visible="0">
-  <object id="25" name="OrangeSlime" x="1277.76" y="2156.18" width="32" height="32"/>
+  <object id="25" name="OrangeSlime" x="1456.76" y="2029" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="22" name="CameraBounds">
-  <object id="48" x="384" y="328" width="3328" height="2232"/>
+  <object id="48" x="128" y="328" width="3456" height="2104"/>
  </objectgroup>
 </map>

@@ -15,8 +15,8 @@ NewSkillMenu::NewSkillMenu(class Game *game, const std::string &fontName, bool i
 
     mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
 
-    auto* background = AddImage("../Assets/Sprites/Menus/FundoPreto.png", Vector2(1920, 1080) * 0.5f, Vector2(1920, 1080));
-    background->SetAlpha(0.6f);
+    auto* background = AddImage("../Assets/Sprites/Menus/FundoPretoArredondado.png", Vector2(960, 490), Vector2(600, 330));
+    background->SetAlpha(0.3f);
 
     auto* text = AddText("NOVA HABILIDADE ADQUIRIDA!", Vector2::Zero,  34);
     text->SetPosition(Vector2(960, 375));
@@ -37,11 +37,11 @@ NewSkillMenu::NewSkillMenu(class Game *game, const std::string &fontName, bool i
     mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
 
     for (int i = 0; i < MAX_MESSAGE_PARTS; i++) {
-        UIText* t = AddText("", Vector2::Zero, 30);
+        UIText* t = AddText("", Vector2::Zero, 34);
         t->SetIsVisible(false);
         mMessageTexts.push_back(t);
 
-        UIText* iconTxt = new UIText("", mIconFont, 30 + 10, 1024, Vector2::Zero, Color::White);
+        UIText* iconTxt = new UIText("", mIconFont, 34 + 10, 1024, Vector2::Zero, Color::White);
         iconTxt->SetIsVisible(false);
 
         mTexts.push_back(iconTxt);

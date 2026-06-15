@@ -14,8 +14,8 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="2" name="AmbientParticleArea"/>
+ <objectgroup id="15" name="Camera">
   <object id="14" x="2816" y="0" width="1112" height="1792">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -47,7 +47,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="42" x="7680" y="896" width="768" height="256">
    <properties>
     <property name="Event" value="ShowTutorial"/>
@@ -271,7 +271,7 @@
   <object id="277" gid="2147483755" x="7858" y="622.67" width="172" height="172" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="60"/>
     <property name="Path" value="Sprites/Plants/Plant7/Plant7"/>
@@ -280,7 +280,7 @@
   <object id="278" gid="1073741928" x="7775.67" y="763.67" width="118.667" height="116">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="60"/>
     <property name="Path" value="Sprites/Plants/Plant4/Plant4"/>
@@ -326,6 +326,18 @@
   <object id="288" gid="87" x="8134.32" y="1197.42" width="163" height="73.2624"/>
   <object id="247" gid="87" x="8461.34" y="1179.93" width="163" height="73.2624"/>
   <object id="248" gid="87" x="8445.84" y="1177.37" width="163" height="73.2624"/>
+  <object id="239" gid="2147483709" x="8396.28" y="606.68" width="73.7415" height="227.945" rotation="180">
+   <properties>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="240" gid="2147483709" x="8308.14" y="578.18" width="77.7415" height="240.31" rotation="180">
+   <properties>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
   <object id="29" gid="93" x="4496.12" y="1474.7" width="343.295" height="319"/>
@@ -556,12 +568,6 @@
     <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
    </properties>
   </object>
-  <object id="239" gid="2147483709" x="8396.28" y="606.68" width="73.7415" height="227.945" rotation="180">
-   <properties>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="241" gid="2147483761" x="8624" y="625.25" width="112" height="112" rotation="183.876">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -569,12 +575,6 @@
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="60"/>
     <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
-   </properties>
-  </object>
-  <object id="240" gid="2147483709" x="8308.14" y="578.18" width="77.7415" height="240.31" rotation="180">
-   <properties>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
   <object id="242" gid="61" x="8486.8" y="596.51" width="85.0748" height="262.978" rotation="180">
@@ -870,14 +870,14 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="16" name="Light" visible="0"/>
- <objectgroup id="17" name="Brazier" visible="0"/>
- <objectgroup id="18" name="Lava" visible="0"/>
- <objectgroup id="19" name="LightningBarrier" visible="0"/>
- <objectgroup id="9" name="HookPoints" visible="0"/>
- <objectgroup id="20" name="Levers" visible="0"/>
- <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="16" name="Light"/>
+ <objectgroup id="17" name="Brazier"/>
+ <objectgroup id="18" name="Lava"/>
+ <objectgroup id="19" name="LightningBarrier"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="20" name="Levers"/>
+ <objectgroup id="21" name="SpawnPoint"/>
+ <objectgroup id="11" name="Grounds">
   <object id="1" x="512" y="1536" width="1152" height="256"/>
   <object id="2" x="1792" y="1536" width="1280" height="256"/>
   <object id="17" x="256" y="1280" width="256" height="512"/>
@@ -918,8 +918,8 @@
   <object id="62" x="4608" y="512" width="256" height="128"/>
   <object id="66" x="5120" y="640" width="128" height="128"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="12" name="Checkpoint"/>
+ <objectgroup id="13" name="Player">
   <object id="310" x="1728" y="1662" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -948,13 +948,13 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
+ <objectgroup id="14" name="Enemies">
   <object id="21" name="Flying Enemy" x="2680" y="1186" width="32" height="32"/>
   <object id="22" name="Enemy Simple" x="2625.27" y="1518.36" width="32" height="32"/>
   <object id="43" name="OrangeSlime" x="7524" y="496" width="32" height="32"/>
   <object id="72" name="Mushroom" x="3789.33" y="496.67" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
+ <objectgroup id="22" name="CameraBounds" locked="1">
   <object id="71" x="128" y="60" width="8576" height="1604"/>
  </objectgroup>
 </map>
