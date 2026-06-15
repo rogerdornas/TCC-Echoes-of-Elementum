@@ -8,6 +8,7 @@
 
 CheckPointMenu::CheckPointMenu(class Game *game, const std::string &fontName, bool isClosable)
     :UIScreen(game, fontName, isClosable)
+    ,mDelayToCanClose(0.3f)
 {
     mGame->SaveGame();
     mGame->TogglePause();
@@ -52,8 +53,31 @@ CheckPointMenu::CheckPointMenu(class Game *game, const std::string &fontName, bo
     , true);
 }
 
+void CheckPointMenu::Update(float deltaTime) {
+    UIScreen::Update(deltaTime);
+
+    if (mDelayToCanClose > 0) {
+        mDelayToCanClose -= deltaTime;
+    }
+}
+
+
 void CheckPointMenu::Close() {
     UIScreen::Close();
     mGame->SaveGame();
     mGame->TogglePause();
+}
+
+void CheckPointMenu::HandleKeyRelease(int key, int controllerButton) {
+    UIScreen::HandleKeyRelease(key, controllerButton);
+
+    if (mDelayToCanClose <= 0) {
+        auto inputBinding = mGame->GetInputBinding();
+
+        if (key == SDL_GetKeyFromScancode(inputBinding[Game::Action::OpenStore].key) ||
+            controllerButton == SDL_CONTROLLER_BUTTON_RIGHTSTICK)
+        {
+            Close();
+        }
+    }
 }

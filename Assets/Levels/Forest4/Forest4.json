@@ -41,7 +41,7 @@
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":2432
+                         "value":128
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
@@ -146,7 +146,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

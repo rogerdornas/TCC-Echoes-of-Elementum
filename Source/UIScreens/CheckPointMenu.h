@@ -10,6 +10,12 @@ class CheckPointMenu : public UIScreen
 {
 public:
     CheckPointMenu(class Game* game, const std::string& fontName, bool isClosable = true);
+    void Update(float deltaTime) override;
     void Close() override;
+
+    void HandleKeyRelease(int key, int controllerButton) override;
+
+private:
+    float mDelayToCanClose;
 };
 

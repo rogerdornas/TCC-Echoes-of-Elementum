@@ -15,7 +15,7 @@ NewSkillMenu::NewSkillMenu(class Game *game, const std::string &fontName, bool i
 
     mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
 
-    auto* background = AddImage("../Assets/Sprites/Menus/FundoPretoArredondado.png", Vector2(960, 490), Vector2(600, 330));
+    auto* background = AddImage("../Assets/Sprites/Menus/FundoPretoArredondado.png", Vector2(960, 495), Vector2(600, 330));
     background->SetAlpha(0.3f);
 
     auto* text = AddText("NOVA HABILIDADE ADQUIRIDA!", Vector2::Zero,  34);

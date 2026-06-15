@@ -15,13 +15,13 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="15" name="Camera">
   <object id="4" x="3072" y="0" width="4736" height="1536">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="7680"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1408"/>
-    <property name="LimitMinCameraPositionX" type="float" value="2432"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
     <property name="LimitMinCameraPositionY" type="float" value="328"/>
     <property name="Target" value="Camera"/>
    </properties>
