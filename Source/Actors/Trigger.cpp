@@ -107,6 +107,10 @@ void Trigger::SetEvent(std::string event) {
         mEvent = Event::SetIsDecreasingAfterKillingEnemies;
         return;
     }
+    if (event == "SetIsDecreasingAfterGettingSkill") {
+        mEvent = Event::SetIsDecreasingAfterGettingSkill;
+        return;
+    }
 
     if (event == "SetIsMoving") {
         mEvent = Event::SetIsMoving;
@@ -303,6 +307,41 @@ void Trigger::DynamicGroundTrigger() {
                 }
             }
             break;
+
+        case Event::SetIsDecreasingAfterGettingSkill: {
+            bool decreaseGrounds = false;
+            if (mSkillName == "Dash") {
+                if (mGame->GetPlayer()->GetSkillManager()->CanDash()) {
+                    decreaseGrounds = true;
+                }
+            }
+            if (mSkillName == "Hook") {
+                if (mGame->GetPlayer()->GetSkillManager()->CanHook()) {
+                    decreaseGrounds = true;
+                }
+            }
+            if (mSkillName == "WallSlide") {
+                if (mGame->GetPlayer()->GetSkillManager()->CanWallSlide()) {
+                    decreaseGrounds = true;
+                }
+            }
+            if (mSkillName == "DoubleJump") {
+                if (mGame->GetPlayer()->GetSkillManager()->MaxJumpsInAir() > 0) {
+                    decreaseGrounds = true;
+                }
+            }
+
+            if (decreaseGrounds) {
+                for (int id : mGroundsIds) {
+                    Ground *g = mGame->GetGroundById(id);
+                    DynamicGround* dynamicGround = dynamic_cast<DynamicGround*>(g);
+                    if (dynamicGround) {
+                        dynamicGround->SetIsDecreasing(true);
+                    }
+                }
+            }
+            break;
+        }
 
         default:
             break;

@@ -1347,6 +1347,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 std::string event;
                 std::string grounds;
                 std::string enemies;
+                std::string skillName;
                 std::vector<int> groundsIds;
                 std::vector<int> enemiesIds;
                 float fixedCameraPositionX = 0;
@@ -1383,6 +1384,9 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                         }
                         else if (propName == "Enemies") {
                             enemies = prop["value"];
+                        }
+                        else if (propName == "SkillName") {
+                            skillName = prop["value"];
                         }
                         else if (propName == "FixedCameraPositionX") {
                             fixedCameraPositionX = prop["value"];
@@ -1470,6 +1474,7 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                 trigger->SetCondition(worldStateCondition);
                 trigger->SetGroundsIds(groundsIds);
                 trigger->SetEnemiesIds(enemiesIds);
+                trigger->SetSkillName(skillName);
                 trigger->SetFixedCameraPosition(Vector2(fixedCameraPositionX, fixedCameraPositionY));
                 trigger->SetLimitMinCameraPosition(limitMinCameraPosition);
                 trigger->SetLimitMaxCameraPosition(limitMaxCameraPosition);

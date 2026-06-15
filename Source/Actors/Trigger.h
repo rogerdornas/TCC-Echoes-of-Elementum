@@ -31,6 +31,7 @@ public:
         SetIsGrowing,
         SetIsDecreasing,
         SetIsDecreasingAfterKillingEnemies,
+        SetIsDecreasingAfterGettingSkill,
 
         SetIsMoving,
 
@@ -67,6 +68,7 @@ public:
     void SetCondition(const std::string &condition) { mCondition = condition; }
     void SetGroundsIds(const std::vector<int>& ids) { mGroundsIds = ids; }
     void SetEnemiesIds(const std::vector<int>& ids) { mEnemiesIds = ids; }
+    void SetSkillName(const std::string &skillName) { mSkillName = skillName; }
     void SetFixedCameraPosition(Vector2 pos) { mFixedCameraPosition = pos; }
     void SetLimitMinCameraPosition(Vector2 pos) { mLimitMinCameraPosition = pos; }
     void SetLimitMaxCameraPosition(Vector2 pos) { mLimitMaxCameraPosition = pos; }
@@ -104,6 +106,7 @@ protected:
 
     std::vector<int> mGroundsIds;
     std::vector<int> mEnemiesIds;
+    std::string mSkillName;
     Vector2 mFixedCameraPosition;
     Vector2 mLimitMinCameraPosition;
     Vector2 mLimitMaxCameraPosition;
