@@ -836,6 +836,26 @@ std::string Game::GetIconStringForAction(Action action, bool forceKeyboard, bool
 
             return "?";
         }
+        else {
+            switch(binding.btn) {
+                case SDL_CONTROLLER_BUTTON_A: return Icons::XboxA;
+                case SDL_CONTROLLER_BUTTON_B: return Icons::XboxB;
+                case SDL_CONTROLLER_BUTTON_X: return Icons::XboxX;
+                case SDL_CONTROLLER_BUTTON_Y: return Icons::XboxY;
+                case SDL_CONTROLLER_BUTTON_LEFTSHOULDER:  return Icons::XboxLB;
+                case SDL_CONTROLLER_BUTTON_RIGHTSHOULDER: return Icons::XboxRB;
+                case SDL_CONTROLLER_BUTTON_LEFTSTICK: return Icons::XboxL3;
+                case SDL_CONTROLLER_BUTTON_RIGHTSTICK: return Icons::XboxR3;
+                case SDL_CONTROLLER_BUTTON_START: return Icons::XboxMenu;
+                case SDL_CONTROLLER_BUTTON_BACK: return Icons::XboxView;
+                default: break;
+            }
+
+            if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERLEFT)  return Icons::XboxLT;
+            if (binding.axis == SDL_CONTROLLER_AXIS_TRIGGERRIGHT) return Icons::XboxRT;
+
+            return "?";
+        }
     }
 
     return "?";

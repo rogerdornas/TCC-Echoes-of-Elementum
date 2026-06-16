@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -472,6 +472,12 @@
                  "height":478.333,
                  "id":147,
                  "name":"",
+                 "properties":[
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -754,6 +760,29 @@
                  "width":240.12,
                  "x":848.019,
                  "y":1421.43
+                }, 
+                {
+                 "gid":2147483709,
+                 "height":240.31,
+                 "id":182,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":77.7415,
+                 "x":712.879,
+                 "y":2237.68
                 }],
          "opacity":1,
          "properties":[
@@ -1349,29 +1378,6 @@
                  "width":85.0748,
                  "x":1612.92,
                  "y":2617.51
-                }, 
-                {
-                 "gid":2147483709,
-                 "height":240.31,
-                 "id":182,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":77.7415,
-                 "x":712.879,
-                 "y":2237.68
                 }, 
                 {
                  "gid":61,

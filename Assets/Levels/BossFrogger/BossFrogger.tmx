@@ -52,9 +52,9 @@
   <object id="5" name="Boss Battle" x="1408" y="256" width="1792" height="768">
    <properties>
     <property name="Condition" value="!FroggerDefeated"/>
-    <property name="Enemies" value="9"/>
-    <property name="Event" value="SetIsDecreasingAfterKillingEnemies"/>
+    <property name="Event" value="SetIsDecreasingAfterGettingSkill"/>
     <property name="Grounds" value="3,4"/>
+    <property name="SkillName" value="Dash"/>
     <property name="Target" value="DynamicGround"/>
    </properties>
   </object>

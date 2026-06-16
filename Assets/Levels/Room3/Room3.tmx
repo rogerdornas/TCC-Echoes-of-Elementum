@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="33" height="17" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="146">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="33" height="17" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="147">
  <editorsettings>
   <export target="Room3.json" format="json"/>
  </editorsettings>
@@ -100,15 +100,6 @@
     <property name="TutorialText" value="PRESSIONE &lt;Map&gt; PARA ABRIR O MAPA"/>
    </properties>
   </object>
-  <object id="53" x="1188" y="1726.67" width="128" height="130.667">
-   <properties>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Event" value="ChangeScene"/>
-    <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room3/Room3"/>
-    <property name="Target" value="Game"/>
-   </properties>
-  </object>
   <object id="144" x="0" y="896" width="48" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -116,6 +107,13 @@
     <property name="PlayerStartPositionId" type="int" value="1"/>
     <property name="Scene" value="Room2/Room2"/>
     <property name="Target" value="Game"/>
+   </properties>
+  </object>
+  <object id="146" x="2816" y="1408" width="1024" height="384">
+   <properties>
+    <property name="Event" value="ShowTutorial"/>
+    <property name="Target" value="HUD"/>
+    <property name="TutorialText" value="SEGURE &lt;Heal&gt; PARA CURAR"/>
    </properties>
   </object>
  </objectgroup>
@@ -194,6 +192,24 @@
     <property name="Path" value="Sprites/Plants/Plant8/Plant8"/>
    </properties>
   </object>
+  <object id="129" gid="62" x="2514.53" y="779.26" width="85.5" height="85.5">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="30"/>
+    <property name="NumFrames" type="int" value="60"/>
+    <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
+   </properties>
+  </object>
+  <object id="130" gid="60" x="2506.83" y="829.74" width="116" height="116">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="30"/>
+    <property name="NumFrames" type="int" value="20"/>
+    <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
   <object id="16" gid="93" x="1966" y="1850.33" width="63" height="133.113">
@@ -209,7 +225,11 @@
    </properties>
   </object>
   <object id="72" gid="112" x="1292.76" y="1045.64" width="202.24" height="646.171" rotation="297.098"/>
-  <object id="77" gid="91" x="2285.03" y="1816.65" width="54.7076" height="49.7805"/>
+  <object id="77" gid="91" x="2285.03" y="1816.65" width="54.7076" height="49.7805">
+   <properties>
+    <property name="Destructible" type="bool" value="true"/>
+   </properties>
+  </object>
   <object id="78" gid="56" x="2466.07" y="839.43" width="195.052" height="195.052" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -249,7 +269,7 @@
   <object id="83" gid="51" x="1274.51" y="1838.63" width="130.608" height="130.608">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
+    <property name="Destructible" type="bool" value="true"/>
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="90"/>
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
@@ -343,24 +363,6 @@
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="90"/>
     <property name="Path" value="Sprites/Plants/Plant3/Plant3"/>
-   </properties>
-  </object>
-  <object id="129" gid="62" x="2515.03" y="772.76" width="85.5" height="85.5">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/BlueFlower1/BlueFlower"/>
-   </properties>
-  </object>
-  <object id="130" gid="60" x="2507.33" y="823.24" width="116" height="116">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
    </properties>
   </object>
   <object id="131" gid="52" x="2260.67" y="549.333" width="98.0003" height="98.0003">

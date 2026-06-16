@@ -171,19 +171,19 @@
                          "value":"!FroggerDefeated"
                         }, 
                         {
-                         "name":"Enemies",
-                         "type":"string",
-                         "value":"9"
-                        }, 
-                        {
                          "name":"Event",
                          "type":"string",
-                         "value":"SetIsDecreasingAfterKillingEnemies"
+                         "value":"SetIsDecreasingAfterGettingSkill"
                         }, 
                         {
                          "name":"Grounds",
                          "type":"string",
                          "value":"3,4"
+                        }, 
+                        {
+                         "name":"SkillName",
+                         "type":"string",
+                         "value":"Dash"
                         }, 
                         {
                          "name":"Target",

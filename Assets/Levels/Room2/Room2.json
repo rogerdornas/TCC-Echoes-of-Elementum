@@ -158,43 +158,6 @@
                  "y":384
                 }, 
                 {
-                 "height":130.667,
-                 "id":44,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Room2\/Room2"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":128,
-                 "x":638.667,
-                 "y":1102.67
-                }, 
-                {
                  "height":384,
                  "id":147,
                  "name":"",
@@ -1739,17 +1702,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":10
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":15
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant5\/Plant5"
+                         "value":"Sprites\/MossyPlants2\/Plant05\/Plant05"
                         }],
                  "rotation":0,
                  "type":"",
@@ -2347,7 +2310,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2402,7 +2365,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2413,7 +2376,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -2436,7 +2399,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],

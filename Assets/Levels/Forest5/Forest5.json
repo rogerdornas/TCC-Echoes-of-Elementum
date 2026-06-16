@@ -1228,7 +1228,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -2501,8 +2501,8 @@
                  "type":"",
                  "visible":true,
                  "width":95.6667,
-                 "x":1210.21,
-                 "y":1711.08
+                 "x":1211.21,
+                 "y":1716.08
                 }, 
                 {
                  "gid":111,
@@ -2518,7 +2518,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"FPS",
@@ -2540,7 +2540,7 @@
                  "visible":true,
                  "width":75.6667,
                  "x":1297.44,
-                 "y":1702.65
+                 "y":1703.98333333333
                 }, 
                 {
                  "gid":101,
@@ -2822,12 +2822,12 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
@@ -2860,12 +2860,12 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":40
                         }, 
                         {
                          "name":"NumFrames",
@@ -3104,29 +3104,6 @@
                  "width":116,
                  "x":8438,
                  "y":569.24
-                }, 
-                {
-                 "gid":2147483709,
-                 "height":217.641,
-                 "id":328,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":70.4081,
-                 "x":7167.72,
-                 "y":286.581
                 }, 
                 {
                  "gid":113,
@@ -4004,6 +3981,29 @@
                  "y":274.081
                 }, 
                 {
+                 "gid":2147483709,
+                 "height":217.641,
+                 "id":328,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":70.4081,
+                 "x":7167.72,
+                 "y":286.581
+                }, 
+                {
                  "gid":77,
                  "height":168.533,
                  "id":308,
@@ -4443,8 +4443,8 @@
                  "type":"",
                  "visible":true,
                  "width":136.065,
-                 "x":9201.47666666667,
-                 "y":561.604333333333
+                 "x":9201.48,
+                 "y":561.604
                 }, 
                 {
                  "gid":77,

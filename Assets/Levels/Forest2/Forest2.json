@@ -220,43 +220,6 @@
                  "y":748.03
                 }, 
                 {
-                 "height":70,
-                 "id":177,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":1
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest2\/Forest2"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":86,
-                 "x":1175.7,
-                 "y":850.18
-                }, 
-                {
                  "height":13,
                  "id":204,
                  "name":"",
@@ -1073,7 +1036,7 @@
                  "type":"",
                  "visible":true,
                  "width":137.535,
-                 "x":2439.01666666667,
+                 "x":2439.02,
                  "y":444.805
                 }, 
                 {
@@ -3830,7 +3793,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3852,7 +3815,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3912,7 +3875,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3940,8 +3903,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1846,
-                 "y":2930
+                 "x":1432.24242424242,
+                 "y":2536.9696969697
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3968,7 +3931,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],

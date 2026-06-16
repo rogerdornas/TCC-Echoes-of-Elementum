@@ -9,7 +9,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -146,7 +146,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -155,70 +155,6 @@
          "id":10,
          "name":"Triggers",
          "objects":[
-                {
-                 "height":256,
-                 "id":42,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ShowTutorial"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"HUD"
-                        }, 
-                        {
-                         "name":"TutorialText",
-                         "type":"string",
-                         "value":"SEGURE <Heal> PARA CURAR"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":768,
-                 "x":7680,
-                 "y":896
-                }, 
-                {
-                 "height":141,
-                 "id":74,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ChangeScene"
-                        }, 
-                        {
-                         "name":"PlayerStartPositionId",
-                         "type":"int",
-                         "value":0
-                        }, 
-                        {
-                         "name":"Scene",
-                         "type":"string",
-                         "value":"Forest3\/Forest3"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Game"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":102.667,
-                 "x":2069.58,
-                 "y":1442.83
-                }, 
                 {
                  "height":28,
                  "id":308,
@@ -718,7 +654,7 @@
                 }, 
                 {
                  "gid":80,
-                 "height":133.113,
+                 "height":105.645238095238,
                  "id":258,
                  "name":"",
                  "properties":[
@@ -735,7 +671,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":63,
+                 "width":50,
                  "x":1977.83,
                  "y":913.44
                 }, 
@@ -1127,6 +1063,44 @@
                  "width":735.625,
                  "x":4620.96,
                  "y":452.694
+                }, 
+                {
+                 "gid":102,
+                 "height":143,
+                 "id":181,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":30
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":90
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":143,
+                 "x":572.629,
+                 "y":1588.51
                 }],
          "opacity":1,
          "parallaxx":0.95,
@@ -1821,7 +1795,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"FPS",
@@ -2300,44 +2274,6 @@
                  "width":115.333,
                  "x":3144.9,
                  "y":1452.96
-                }, 
-                {
-                 "gid":102,
-                 "height":143,
-                 "id":181,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":90
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":143,
-                 "x":572.629,
-                 "y":1588.51
                 }, 
                 {
                  "gid":103,
@@ -2868,7 +2804,7 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":40
                         }, 
                         {
                          "name":"NumFrames",
@@ -2884,12 +2820,12 @@
                  "type":"",
                  "visible":true,
                  "width":102.97,
-                 "x":669.85,
-                 "y":547.18
+                 "x":670.183333333333,
+                 "y":550.18
                 }, 
                 {
                  "gid":103,
-                 "height":102.97,
+                 "height":79.3033333333333,
                  "id":255,
                  "name":"",
                  "properties":[
@@ -2921,9 +2857,9 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":102.97,
-                 "x":588.515,
-                 "y":547.18
+                 "width":79.3033333333333,
+                 "x":611.515,
+                 "y":549.513333333333
                 }, 
                 {
                  "gid":80,
@@ -4074,7 +4010,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4085,7 +4021,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4096,7 +4032,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4107,7 +4043,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4118,7 +4054,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4129,7 +4065,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4140,7 +4076,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4504,7 +4440,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4515,7 +4451,7 @@
          "objects":[],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4629,7 +4565,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -4684,14 +4620,13 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
          "id":22,
-         "locked":true,
          "name":"CameraBounds",
          "objects":[
                 {
@@ -4707,7 +4642,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],

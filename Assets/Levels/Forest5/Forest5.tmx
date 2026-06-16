@@ -247,7 +247,7 @@
   <object id="223" gid="111" x="2650.13" y="1721" width="116" height="116">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="20"/>
     <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
@@ -466,7 +466,7 @@
   <object id="123" gid="93" x="3929" y="770.46" width="151.11" height="140.416" rotation="270"/>
   <object id="124" gid="93" x="3929" y="846.62" width="151.11" height="140.416" rotation="270"/>
   <object id="125" gid="93" x="3929" y="934.62" width="151.11" height="140.416" rotation="270"/>
-  <object id="180" gid="108" x="1210.21" y="1711.08" width="95.6667" height="95.6667">
+  <object id="180" gid="108" x="1211.21" y="1716.08" width="95.6667" height="95.6667">
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
@@ -475,10 +475,10 @@
     <property name="Path" value="Sprites/Plants/Plant8/Plant8"/>
    </properties>
   </object>
-  <object id="226" gid="111" x="1297.44" y="1702.65" width="75.6667" height="75.6667">
+  <object id="226" gid="111" x="1297.44" y="1703.98" width="75.6667" height="75.6667">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
+    <property name="Destructible" type="bool" value="true"/>
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="20"/>
     <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
@@ -550,8 +550,8 @@
   <object id="254" gid="2147483750" x="3445.27" y="568.166" width="104.336" height="104.336" rotation="356.491">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="30"/>
+    <property name="Destructible" type="bool" value="true"/>
+    <property name="FPS" type="float" value="15"/>
     <property name="NumFrames" type="int" value="90"/>
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
@@ -559,8 +559,8 @@
   <object id="256" gid="2147483750" x="3512.29" y="570.329" width="126.662" height="126.662" rotation="354.896">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="30"/>
+    <property name="Destructible" type="bool" value="true"/>
+    <property name="FPS" type="float" value="40"/>
     <property name="NumFrames" type="int" value="90"/>
     <property name="Path" value="Sprites/Plants/Plant2/Plant2"/>
    </properties>
@@ -617,12 +617,6 @@
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="20"/>
     <property name="Path" value="Sprites/Plants/PlantJump2/PlantJump2"/>
-   </properties>
-  </object>
-  <object id="328" gid="2147483709" x="7167.72" y="286.581" width="70.4081" height="217.641" rotation="180">
-   <properties>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
   <object id="329" gid="113" x="7203.38" y="270.431" width="112" height="112" rotation="166.565">
@@ -833,6 +827,12 @@
   <object id="330" gid="61" x="7127.38" y="274.081" width="85.0748" height="262.978" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="true"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="328" gid="2147483709" x="7167.72" y="286.581" width="70.4081" height="217.641" rotation="180">
+   <properties>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>

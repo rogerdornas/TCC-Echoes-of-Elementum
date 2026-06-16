@@ -200,7 +200,7 @@ Player::Player(Game* game)
     ,mHealCount(mMaxHealCount)
     ,mHealAmount(30.0f)
     ,mIsHealing(false)
-    ,mHealAnimationDuration(0.9f)
+    ,mHealAnimationDuration(0.8f)
     ,mHealAnimationTimer(0.0f)
 
     ,mIFramesTimer(0.0f)
@@ -364,7 +364,7 @@ Player::Player(Game* game)
     mDashComponent = new DashComponent(this, mLightningDashSpeed, mLightningDashDuration, mLightningDashCooldown);
 
     mCombatBoxComponent = new CombatBoxComponent(this);
-    // mCombatBoxComponent->AddAABBBox("body", false, v1, v3);
+    mCombatBoxComponent->AddAABBBox("body", false, v1, v3);
     mCombatBoxComponent->AddAABBBox("lightningDash", true, Vector2(-80, -40), Vector2(80, 40));
     mCombatBoxComponent->AddAABBBox("groundSlam", true, Vector2(-35, -60), Vector2(35, 60));
     // mCombatBoxComponent->SetDebugDraw(true);

@@ -15,7 +15,7 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="16" x="2048" y="1188" width="1024" height="732">
    <properties>
     <property name="Condition" value="!Forest9ArenaDone"/>
@@ -335,7 +335,7 @@
   <object id="264" gid="58" x="3789.07" y="408.155" width="127.634" height="204.356" rotation="90"/>
   <object id="270" gid="75" x="3779.48" y="169.385" width="537.044" height="241.625" rotation="180"/>
  </objectgroup>
- <objectgroup draworder="index" id="4" name="Background2" visible="0">
+ <objectgroup draworder="index" id="4" name="Background2">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
@@ -1111,7 +1111,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="1" x="768" y="1920" width="4864" height="384"/>
   <object id="2" x="5248" y="1152" width="384" height="640"/>
   <object id="3" x="4480" y="1152" width="768" height="384"/>
@@ -1165,7 +1165,7 @@
   </object>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player">
+ <objectgroup id="13" name="Player" visible="0">
   <object id="90" name="Player" x="5552" y="1899" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="-700"/>

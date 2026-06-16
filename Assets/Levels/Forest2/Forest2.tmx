@@ -64,15 +64,6 @@
     <property name="TutorialText" value="PRESSIONE &lt;OpenStore&gt; PARA DESCANSAR"/>
    </properties>
   </object>
-  <object id="177" x="1175.7" y="850.18" width="86" height="70">
-   <properties>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Event" value="ChangeScene"/>
-    <property name="PlayerStartPositionId" type="int" value="1"/>
-    <property name="Scene" value="Forest2/Forest2"/>
-    <property name="Target" value="Game"/>
-   </properties>
-  </object>
   <object id="204" x="1280" y="0" width="384" height="13">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -788,7 +779,7 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="11" name="Grounds">
   <object id="6" x="256" y="2944" width="384" height="256"/>
   <object id="7" x="768" y="2944" width="2048" height="256"/>
   <object id="8" x="0" y="0" width="256" height="3200"/>
@@ -814,10 +805,10 @@
   <object id="36" x="1280" y="384" width="896" height="128"/>
   <object id="37" x="2176" y="384" width="128" height="384"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint">
+ <objectgroup id="12" name="Checkpoint" visible="0">
   <object id="1" name="Checkpoint" x="1544.78" y="730.18" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="13" name="Player">
+ <objectgroup id="13" name="Player" visible="0">
   <object id="27" x="704" y="3070" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -834,9 +825,9 @@
  </objectgroup>
  <objectgroup id="14" name="Enemies">
   <object id="38" name="Snake" x="1509" y="1777" width="32" height="32"/>
-  <object id="39" name="Mushroom" x="1846" y="2930" width="32" height="32"/>
+  <object id="39" name="Mushroom" x="1432.24" y="2536.97" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds" locked="1">
+ <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
   <object id="33" x="128" y="128" width="2816" height="2944"/>
  </objectgroup>
 </map>

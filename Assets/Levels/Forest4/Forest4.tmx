@@ -15,7 +15,7 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="4" x="3072" y="0" width="4736" height="1536">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -914,7 +914,7 @@
   <object id="49" x="0" y="1024" width="1408" height="512"/>
   <object id="51" x="2432" y="1024" width="128" height="128"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint">
+ <objectgroup id="12" name="Checkpoint" visible="0">
   <object id="2" name="Checkpoint" x="5361.78" y="1110.18" width="416" height="192"/>
  </objectgroup>
  <objectgroup id="13" name="Player" visible="0">

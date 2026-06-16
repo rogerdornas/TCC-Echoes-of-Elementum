@@ -51,15 +51,6 @@
     <property name="TutorialText" value="SEGURE &lt;Jump&gt; PARA PULAR MAIS ALTO"/>
    </properties>
   </object>
-  <object id="44" x="638.667" y="1102.67" width="128" height="130.667">
-   <properties>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Event" value="ChangeScene"/>
-    <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Room2/Room2"/>
-    <property name="Target" value="Game"/>
-   </properties>
-  </object>
   <object id="147" x="4048" y="256" width="48" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -399,9 +390,9 @@
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="30"/>
-    <property name="NumFrames" type="int" value="60"/>
-    <property name="Path" value="Sprites/Plants/Plant5/Plant5"/>
+    <property name="FPS" type="float" value="10"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant05/Plant05"/>
    </properties>
   </object>
   <object id="124" gid="102" x="3338.82" y="281.484" width="247.941" height="247.941" rotation="180">
@@ -513,8 +504,8 @@
   <object id="13" x="0" y="0" width="256" height="1536"/>
   <object id="28" x="256" y="0" width="3840" height="384"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint"/>
- <objectgroup id="13" name="Player">
+ <objectgroup id="12" name="Checkpoint" visible="0"/>
+ <objectgroup id="13" name="Player" visible="0">
   <object id="4" name="Player" x="466" y="1140" width="38" height="40">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
@@ -528,8 +519,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies"/>
- <objectgroup id="22" name="CameraBounds" locked="1">
+ <objectgroup id="14" name="Enemies" visible="0"/>
+ <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
   <object id="27" x="128" y="128" width="3840" height="1340"/>
  </objectgroup>
 </map>
