@@ -10,15 +10,15 @@
             "y": 1135.0
         },
         "scene": "ModoAvancado/Golem de Cristal",
-        "total_play_time": 331.5793151855469
+        "total_play_time": 793.2129516601563
     },
     "map_state": null,
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 908,
-        "elemental_mode": "Ice",
+        "death_counter": 909,
+        "elemental_mode": "Lightning",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -26,7 +26,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 0
+        "money": 62
     },
     "skill_tree": {
         "unlocked_nodes": [

@@ -624,17 +624,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower2\/BlueFlower2"
+                         "value":"Sprites\/MossyPlants2\/Plant12\/Plant12"
                         }],
                  "rotation":335.955,
                  "type":"",
@@ -835,17 +835,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant8\/Plant8"
+                         "value":"Sprites\/MossyPlants2\/Plant08\/Plant08"
                         }],
                  "rotation":0,
                  "type":"",
@@ -873,17 +873,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower1\/BlueFlower"
+                         "value":"Sprites\/MossyPlants2\/Plant13\/Plant13"
                         }],
                  "rotation":0,
                  "type":"",
@@ -921,7 +921,7 @@
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/PlantJump2\/PlantJump2"
+                         "value":"Sprites\/MossyPlants2\/Plant10\/Plant10"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1039,158 +1039,6 @@
                  "y":1816.65
                 }, 
                 {
-                 "gid":56,
-                 "height":195.052,
-                 "id":78,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant7\/Plant7"
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":195.052,
-                 "x":2466.07,
-                 "y":839.43
-                }, 
-                {
-                 "gid":2147483704,
-                 "height":195.052,
-                 "id":79,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant7\/Plant7"
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":195.052,
-                 "x":2386.69,
-                 "y":814.48
-                }, 
-                {
-                 "gid":1073741877,
-                 "height":197.32,
-                 "id":80,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant4\/Plant4"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":201.855,
-                 "x":2166.69,
-                 "y":1025.41
-                }, 
-                {
-                 "gid":1073741877,
-                 "height":131.546,
-                 "id":81,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant4\/Plant4"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":134.571,
-                 "x":2281.23,
-                 "y":976.64
-                }, 
-                {
                  "gid":51,
                  "height":130.608,
                  "id":83,
@@ -1209,17 +1057,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1282,17 +1130,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower1\/BlueFlower"
+                         "value":"Sprites\/MossyPlants2\/Plant13\/Plant13"
                         }],
                  "rotation":148.792,
                  "type":"",
@@ -1344,17 +1192,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower1\/BlueFlower"
+                         "value":"Sprites\/MossyPlants2\/Plant13\/Plant13"
                         }],
                  "rotation":124.964,
                  "type":"",
@@ -1362,158 +1210,6 @@
                  "width":146.551,
                  "x":738.21,
                  "y":959.99
-                }, 
-                {
-                 "gid":56,
-                 "height":195.052,
-                 "id":103,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant7\/Plant7"
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":195.052,
-                 "x":3896.16,
-                 "y":202.825
-                }, 
-                {
-                 "gid":2147483704,
-                 "height":195.052,
-                 "id":104,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant7\/Plant7"
-                        }],
-                 "rotation":180,
-                 "type":"",
-                 "visible":true,
-                 "width":195.052,
-                 "x":3816.78,
-                 "y":177.875
-                }, 
-                {
-                 "gid":1073741877,
-                 "height":197.32,
-                 "id":105,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant4\/Plant4"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":201.855,
-                 "x":3596.78,
-                 "y":388.805
-                }, 
-                {
-                 "gid":1073741877,
-                 "height":131.546,
-                 "id":106,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":30
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":60
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/Plants\/Plant4\/Plant4"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":134.571,
-                 "x":3711.32,
-                 "y":340.035
                 }, 
                 {
                  "gid":52,
@@ -1534,17 +1230,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant3\/Plant3"
+                         "value":"Sprites\/MossyPlants2\/Plant03\/Plant03"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1572,17 +1268,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant3\/Plant3"
+                         "value":"Sprites\/MossyPlants2\/Plant03\/Plant03"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1610,17 +1306,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant3\/Plant3"
+                         "value":"Sprites\/MossyPlants2\/Plant03\/Plant03"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1648,17 +1344,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant3\/Plant3"
+                         "value":"Sprites\/MossyPlants2\/Plant03\/Plant03"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1686,17 +1382,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant1\/Plant1"
+                         "value":"Sprites\/MossyPlants2\/Plant01\/Plant01"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1742,17 +1438,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant8\/Plant8"
+                         "value":"Sprites\/MossyPlants2\/Plant08\/Plant08"
                         }],
                  "rotation":0,
                  "type":"",
@@ -1760,6 +1456,190 @@
                  "width":110.667,
                  "x":1318.17,
                  "y":1844.17
+                }, 
+                {
+                 "gid":93,
+                 "height":167.624,
+                 "id":148,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":79.3333,
+                 "x":3855.67,
+                 "y":194.275
+                }, 
+                {
+                 "gid":2147483741,
+                 "height":167.624,
+                 "id":149,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":79.3333,
+                 "x":3787,
+                 "y":164.172
+                }, 
+                {
+                 "gid":97,
+                 "height":173.098,
+                 "id":150,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":52.6667,
+                 "x":3734.33,
+                 "y":174.518
+                }, 
+                {
+                 "gid":97,
+                 "height":163.92,
+                 "id":151,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":49.8743,
+                 "x":3827.54,
+                 "y":155.435
+                }, 
+                {
+                 "gid":93,
+                 "height":167.624,
+                 "id":152,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":79.3333,
+                 "x":2398.00335,
+                 "y":851.608
+                }, 
+                {
+                 "gid":2147483741,
+                 "height":167.624,
+                 "id":153,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":79.3333,
+                 "x":2329.33335,
+                 "y":821.505
+                }, 
+                {
+                 "gid":97,
+                 "height":173.098,
+                 "id":154,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":52.6667,
+                 "x":2276.66335,
+                 "y":831.851
+                }, 
+                {
+                 "gid":97,
+                 "height":163.92,
+                 "id":155,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":180,
+                 "type":"",
+                 "visible":true,
+                 "width":49.8743,
+                 "x":2369.87335,
+                 "y":812.768
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1916,17 +1796,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower2\/BlueFlower2"
+                         "value":"Sprites\/MossyPlants2\/Plant12\/Plant12"
                         }],
                  "rotation":180,
                  "type":"",
@@ -2025,17 +1905,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower2\/BlueFlower2"
+                         "value":"Sprites\/MossyPlants2\/Plant12\/Plant12"
                         }],
                  "rotation":180,
                  "type":"",
@@ -2063,17 +1943,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
                         }],
                  "rotation":180,
                  "type":"",
@@ -2145,17 +2025,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
                         }],
                  "rotation":28.3286,
                  "type":"",
@@ -2183,17 +2063,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
                         }],
                  "rotation":342.491,
                  "type":"",
@@ -2233,17 +2113,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":15
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":60
+                         "value":30
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/BlueFlower1\/BlueFlower"
+                         "value":"Sprites\/MossyPlants2\/Plant13\/Plant13"
                         }],
                  "rotation":0,
                  "type":"",
@@ -2271,17 +2151,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
                         }],
                  "rotation":342.491,
                  "type":"",
@@ -2333,17 +2213,17 @@
                         {
                          "name":"FPS",
                          "type":"float",
-                         "value":30
+                         "value":9
                         }, 
                         {
                          "name":"NumFrames",
                          "type":"int",
-                         "value":90
+                         "value":18
                         }, 
                         {
                          "name":"Path",
                          "type":"string",
-                         "value":"Sprites\/Plants\/Plant2\/Plant2"
+                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
                         }],
                  "rotation":331.751,
                  "type":"",
@@ -2779,7 +2659,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":148,
+ "nextobjectid":156,
  "orientation":"orthogonal",
  "properties":[
         {

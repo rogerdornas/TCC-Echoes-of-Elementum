@@ -104,7 +104,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -210,7 +210,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Forest7\/Forest7"
+                         "value":"Cave1\/Cave1"
                         }, 
                         {
                          "name":"Target",
@@ -226,7 +226,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -564,8 +564,8 @@
                  "type":"",
                  "visible":true,
                  "width":65.4611,
-                 "x":3230.39,
-                 "y":456.811
+                 "x":3198.39,
+                 "y":460.811
                 }, 
                 {
                  "gid":2147483709,
@@ -587,8 +587,8 @@
                  "type":"",
                  "visible":true,
                  "width":69.012,
-                 "x":3152.15,
-                 "y":431.511
+                 "x":3120.15,
+                 "y":435.511
                 }, 
                 {
                  "gid":2147483755,
@@ -625,8 +625,8 @@
                  "type":"",
                  "visible":true,
                  "width":115.686,
-                 "x":3386.47,
-                 "y":460.672
+                 "x":3354.47,
+                 "y":464.672
                 }, 
                 {
                  "gid":2147483709,
@@ -648,8 +648,32 @@
                  "type":"",
                  "visible":true,
                  "width":69.012,
-                 "x":3086.8,
-                 "y":437.511
+                 "x":3054.8,
+                 "y":441.511
+                }, 
+                {
+                 "gid":99,
+                 "height":435.052,
+                 "id":97,
+                 "name":"",
+                 "rotation":67.6818,
+                 "type":"",
+                 "visible":true,
+                 "width":136.164,
+                 "x":2931.49,
+                 "y":800.319
+                }, 
+                {
+                 "gid":99,
+                 "height":319.686,
+                 "id":99,
+                 "name":"",
+                 "rotation":45.509,
+                 "type":"",
+                 "visible":true,
+                 "width":100.056,
+                 "x":2958.22,
+                 "y":1201.63
                 }],
          "opacity":1,
          "properties":[
@@ -981,8 +1005,8 @@
                  "type":"",
                  "visible":true,
                  "width":75.5218,
-                 "x":3310.75,
-                 "y":447.783
+                 "x":3278.75,
+                 "y":451.783
                 }, 
                 {
                  "gid":61,
@@ -1004,8 +1028,8 @@
                  "type":"",
                  "visible":true,
                  "width":75.5218,
-                 "x":3269.21,
-                 "y":449.558
+                 "x":3237.21,
+                 "y":453.558
                 }, 
                 {
                  "gid":61,
@@ -1027,8 +1051,8 @@
                  "type":"",
                  "visible":true,
                  "width":75.5218,
-                 "x":3192.36,
-                 "y":451.041
+                 "x":3160.36,
+                 "y":455.041
                 }, 
                 {
                  "gid":113,
@@ -1164,8 +1188,8 @@
                  "type":"",
                  "visible":true,
                  "width":75.5218,
-                 "x":3125.68,
-                 "y":436.374
+                 "x":3093.68,
+                 "y":440.374
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1415,7 +1439,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":false
+                         "value":true
                         }, 
                         {
                          "name":"WindBalance",
@@ -1428,6 +1452,18 @@
                  "width":114.333,
                  "x":2089.93,
                  "y":431.489
+                }, 
+                {
+                 "gid":77,
+                 "height":157.598,
+                 "id":94,
+                 "name":"",
+                 "rotation":270,
+                 "type":"",
+                 "visible":true,
+                 "width":436.202,
+                 "x":3345.9,
+                 "y":1129.2
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1439,7 +1475,55 @@
          "draworder":"index",
          "id":7,
          "name":"Foreground1",
-         "objects":[],
+         "objects":[
+                {
+                 "gid":77,
+                 "height":185.598,
+                 "id":89,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":480.202,
+                 "x":2533.23,
+                 "y":822.534
+                }, 
+                {
+                 "gid":99,
+                 "height":390.164,
+                 "id":91,
+                 "name":"",
+                 "rotation":303.324,
+                 "type":"",
+                 "visible":true,
+                 "width":113.701,
+                 "x":3248.25,
+                 "y":1125.72
+                }, 
+                {
+                 "gid":77,
+                 "height":122.578,
+                 "id":95,
+                 "name":"",
+                 "rotation":90,
+                 "type":"",
+                 "visible":true,
+                 "width":382.202,
+                 "x":2946.92,
+                 "y":781.201
+                }, 
+                {
+                 "gid":77,
+                 "height":120.598,
+                 "id":98,
+                 "name":"",
+                 "rotation":270,
+                 "type":"",
+                 "visible":true,
+                 "width":326.202,
+                 "x":3341.9,
+                 "y":1291.2
+                }],
          "opacity":1,
          "properties":[
                 {
@@ -1663,12 +1747,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3271.33333333333,
-                 "y":1174.66666666667
+                 "x":3271.33,
+                 "y":1174.67
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1783,7 +1867,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1408,
+                 "width":1536,
                  "x":1920,
                  "y":0
                 }, 
@@ -1849,7 +1933,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":128,
+                 "width":256,
                  "x":3200,
                  "y":640
                 }, 
@@ -1953,7 +2037,7 @@
                         {
                          "name":"StartPositionId",
                          "type":"int",
-                         "value":3
+                         "value":2
                         }],
                  "rotation":0,
                  "type":"",
@@ -1964,7 +2048,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1998,12 +2082,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":89,
+ "nextobjectid":100,
  "orientation":"orthogonal",
  "properties":[
         {

@@ -33,42 +33,42 @@ ScenarioSelectorMenu::ScenarioSelectorMenu(class Game *game, const std::string &
     AddButton("GOLEM DE FOGO", buttonPos + Vector2(0, 1 * distanceBetweenButtons),
              buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("2-Run/Run", Vector2(256, 3184));
+        LoadScenario("ModoAvancado/Golem de Fogo", Vector2(598, 1903));
     }
     , false);
 
     AddButton("RAPOSA GUERREIRA", buttonPos + Vector2(0, 2 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("4-Pain/Pain", Vector2(1344, 6224));
+        LoadScenario("ModoAvancado/Raposa Guerreira", Vector2(1344, 6224));
     }
     , false);
 
     AddButton("FANTASMA ESPELHADO", buttonPos + Vector2(0, 3 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("MirrorBoss/MirrorBoss", Vector2(320, 2260));
+        LoadScenario("ModoAvancado/Fantasma Espelhado", Vector2(320, 2260));
     }
     , false);
 
     AddButton("ESPREITADOR VERDE", buttonPos + Vector2(0, 4 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("3-Swamp/Swamp", Vector2(1088, 1810));
+        LoadScenario("ModoAvancado/Espreitador Verde", Vector2(1088, 1810));
     }
     , false);
 
     AddButton("IRMÃOS GANCHO", buttonPos + Vector2(0, 5 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("Forest/Forest", Vector2(15744, 15968));
+        LoadScenario("ModoAvancado/Irmaos Gancho", Vector2(918, 1133));
     }
     , false);
 
     AddButton("ARENA DOS ESQUECIDOS", buttonPos + Vector2(0, 6 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("Coliseu/Coliseu", Vector2(384, 3180));
+        LoadScenario("ModoAvancado/Arena dos Esquecidos", Vector2(384, 3180));
     }
     , false);
 
