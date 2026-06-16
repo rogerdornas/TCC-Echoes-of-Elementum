@@ -505,7 +505,7 @@
   <object id="28" x="256" y="0" width="3840" height="384"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="13" name="Player">
   <object id="4" name="Player" x="466" y="1140" width="38" height="40">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>

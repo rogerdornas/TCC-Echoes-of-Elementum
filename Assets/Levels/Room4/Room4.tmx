@@ -470,7 +470,7 @@
     <property name="Target" value="Enemy"/>
    </properties>
   </object>
-  <object id="32" x="5677.21" y="3338.98" width="340" height="484">
+  <object id="32" x="5659.21" y="3338.98" width="340" height="484">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>

@@ -15,7 +15,7 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="15" name="Camera">
   <object id="14" x="0" y="0" width="5120" height="1664">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -27,7 +27,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="24" x="0" y="128" width="48" height="512">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -638,7 +638,7 @@
   <object id="29" x="2688" y="1024" width="128" height="256"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="13" name="Player">
   <object id="25" name="Player" x="80" y="493" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -659,7 +659,7 @@
   <object id="17" name="DragonFly" x="2180.36" y="1139.64" width="32" height="32"/>
   <object id="21" name="FlyingSpawnerEnemy" x="3182.91" y="1054.36" width="32" height="32"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds" visible="0">
+ <objectgroup id="22" name="CameraBounds">
   <object id="15" x="128" y="128" width="4864" height="1408"/>
  </objectgroup>
 </map>

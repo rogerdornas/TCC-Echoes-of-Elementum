@@ -13,7 +13,7 @@
  </properties>
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="48" x="0" y="1152" width="1487.64" height="468">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
