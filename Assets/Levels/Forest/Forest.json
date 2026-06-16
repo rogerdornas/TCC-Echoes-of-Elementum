@@ -8413,9 +8413,31 @@
          "visible":true,
          "x":0,
          "y":0
+        }, 
+        {
+         "draworder":"topdown",
+         "id":14,
+         "name":"CameraBounds",
+         "objects":[
+                {
+                 "height":22592,
+                 "id":537,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":30912,
+                 "x":512,
+                 "y":5056
+                }],
+         "opacity":1,
+         "type":"objectgroup",
+         "visible":false,
+         "x":0,
+         "y":0
         }],
- "nextlayerid":14,
- "nextobjectid":537,
+ "nextlayerid":15,
+ "nextobjectid":538,
  "orientation":"orthogonal",
  "renderorder":"right-down",
  "tiledversion":"1.11.2",

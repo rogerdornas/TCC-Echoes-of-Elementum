@@ -66,6 +66,7 @@
 #include "Components/Drawing/RectComponent.h"
 #include "UIScreens/MainMenu.h"
 #include "UIScreens/MapMenu.h"
+#include "UIScreens/PauseAdvancedMenu.h"
 #include "UIScreens/PauseMenu.h"
 
 std::vector<int> ParseIntList(const std::string& str) {
@@ -141,6 +142,7 @@ Game::Game(int windowWidth, int windowHeight, int FPS)
     ,mPlayerStartPositionId(0)
     ,mCheckPointMoney(0)
     ,mGoingToNextLevel(false)
+    ,mIsPlayingAdvancedMode(false)
     ,mInputPlayerMode(InputPlayerMode::Keyboard)
     ,mLeftStickStateY(StickState::Neutral)
     ,mLeftStickStateX(StickState::Neutral)
@@ -2169,6 +2171,9 @@ void Game::LoadObjects(const nlohmann::json& mapData) {
                     }
                     else {
                         mPlayer->SetPosition(mCheckpointPosition);
+
+                        // Salva jogo
+                        SaveGame();
                     }
 
                     // Faz isso para o player ser sempre o último a ser atualizado a cada frame
@@ -2571,7 +2576,12 @@ void Game::ProcessInput()
                                 }
                             }
                             else {
-                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                if (mIsPlayingAdvancedMode) {
+                                    mPauseMenu = new PauseAdvancedMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                }
+                                else {
+                                    mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                }
                             }
                         }
                         else if (mCurrentLevelPath == "MainMenu") {
@@ -2689,7 +2699,12 @@ void Game::ProcessInput()
                                 }
                             }
                             else {
-                                mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                if (mIsPlayingAdvancedMode) {
+                                    mPauseMenu = new PauseAdvancedMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                }
+                                else {
+                                    mPauseMenu = new PauseMenu(this, "../Assets/Fonts/K2D-Bold.ttf");
+                                }
                             }
                         }
                     }
@@ -3608,6 +3623,17 @@ void Game::SaveGame() {
 void Game::LoadGame() {
     mSaveData = mSaveManager->LoadGame(mSaveSlot);
     mSaveData->ApplyToGame();
+    mSaveData->ApplyWorldState();
+    mSaveData->ApplyConfigs();
+}
+
+void Game::LoadAdvancedModeGame(const std::string &gameScenePath, Vector2 lastCheckpointPosition) {
+    mSaveData = mSaveManager->LoadGame(mSaveSlot);
+    mSaveData->SetGameScenePath(gameScenePath);
+    mSaveData->SetLastCheckpointPosition(lastCheckpointPosition);
+
+    mSaveData->ApplyToGame();
+
     mSaveData->ApplyWorldState();
     mSaveData->ApplyConfigs();
 }

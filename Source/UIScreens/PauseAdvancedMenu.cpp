@@ -1,14 +1,14 @@
 //
-// Created by roger on 12/03/2026.
+// Created by roger on 16/06/2026.
 //
 
-#include "PauseMenu.h"
+#include "PauseAdvancedMenu.h"
 #include "ConfirmBackToMenu.h"
 #include "OptionsMenu.h"
 #include "ScenarioSelectorMenu.h"
 #include "../Game.h"
 
-PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosable)
+PauseAdvancedMenu::PauseAdvancedMenu(class Game *game, const std::string &fontName, bool isClosable)
     :UIScreen(game, fontName, isClosable)
 {
     mGame->TogglePause();
@@ -37,7 +37,14 @@ PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosa
     }
     , true);
 
-    AddButton("VOLTAR AO MENU", Vector2(811, 593), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("SELECIONAR FASE", Vector2(805, 593), Vector2::Zero, 34, UIButton::TextPos::Center,
+    [this]() {
+        new ScenarioSelectorMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
+        mIsVisible = false;
+    }
+    , true);
+
+    AddButton("VOLTAR AO MENU", Vector2(811, 667), Vector2::Zero, 34, UIButton::TextPos::Center,
     [this]() {
         new ConfirmBackToMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
         mIsVisible = false;
@@ -45,7 +52,7 @@ PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosa
     , true);
 }
 
-void PauseMenu::Close() {
+void PauseAdvancedMenu::Close() {
     UIScreen::Close();
     mGame->TogglePause();
 }

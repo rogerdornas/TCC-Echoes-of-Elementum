@@ -1,0 +1,90 @@
+{
+    "configs": {
+        "master_audio": 1.0,
+        "music_audio": 1.0,
+        "sfx_audio": 1.0
+    },
+    "game": {
+        "last_checkpoint": {
+            "x": 598.0,
+            "y": 1135.0
+        },
+        "scene": "ModoAvancado/Golem de Cristal",
+        "total_play_time": 331.5793151855469
+    },
+    "map_state": null,
+    "player": {
+        "can_dash": true,
+        "can_hook": true,
+        "can_wallslide": true,
+        "death_counter": 908,
+        "elemental_mode": "Ice",
+        "elemental_modes": {
+            "has_earth": false,
+            "has_fire": false,
+            "has_ice": false,
+            "has_lightning": false
+        },
+        "max_jumps_in_air": 1,
+        "money": 0
+    },
+    "skill_tree": {
+        "unlocked_nodes": [
+            "sword_damage_4",
+            "sword_damage_3",
+            "sword_damage_2",
+            "sword_damage_1",
+            "earth_test_4",
+            "earth_test_2",
+            "sword_range_lightning",
+            "earth_test_1",
+            "lightning_spear_chain_shock",
+            "fire_wisp",
+            "fire_wisp_attack",
+            "glide",
+            "frenzy_mode",
+            "sword_damage_fire",
+            "lightning_spear",
+            "ground_slam",
+            "mana_max_fire",
+            "lightning_spear_damage",
+            "heal_amount_earth",
+            "max_health_points_lightning",
+            "ice_test_1",
+            "frenzy_mode_duration",
+            "earth_test_3",
+            "freeze_duration",
+            "freeze",
+            "fire_ball",
+            "ice_test_2",
+            "sword_attack_speed_ice",
+            "fire_ball_damage_2",
+            "fire_ball_damage_3",
+            "heal_count_ice",
+            "ice_test_3",
+            "lightning_dash_damage",
+            "create_pillar",
+            "fire_ball_damage_1",
+            "sword_damage_earth"
+        ]
+    },
+    "world_state": {
+        "BushMonsterDefeated": false,
+        "Forest11ArenaDone": true,
+        "Forest4LeverActivated": true,
+        "Forest6PuzzleDone": true,
+        "Forest8Ground1Decrease": true,
+        "Forest8Ground2Decrease": true,
+        "Forest9ArenaDone": true,
+        "FoxDefeated": true,
+        "FrogDefeated": true,
+        "GolemDefeated": true,
+        "HookEnemyDefeated": true,
+        "Level1ArenaDone": true,
+        "Level1Puzzle1Done": false,
+        "Level2Lever2Activated": true,
+        "Level4ArenaDone": true,
+        "MirrorBossDefeated": false,
+        "MothDefeated": false
+    }
+}

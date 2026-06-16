@@ -3,6 +3,8 @@
 //
 
 #include "MainMenu.h"
+
+#include "AdvancedModeMenu.h"
 #include "ConfirmQuitGame.h"
 #include "OptionsMenu.h"
 #include "SelectProfileMenu.h"
@@ -21,14 +23,21 @@ MainMenu::MainMenu(class Game *game, const std::string &fontName, bool isClosabl
         }
     , true);
 
-    AddButton("OPÇÕES", Vector2(888, 713), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("MODO AVANÇADO", Vector2(806, 713), Vector2::Zero, 34, UIButton::TextPos::Center,
+        [this]() {
+            new AdvancedModeMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
+            mIsVisible = false;
+        }
+    , true);
+
+    AddButton("OPÇÕES", Vector2(888, 787), Vector2::Zero, 34, UIButton::TextPos::Center,
         [this]() {
             new OptionsMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf");
             mIsVisible = false;
         }
     , true);
 
-    AddButton("SAIR", Vector2(916, 787), Vector2::Zero, 34, UIButton::TextPos::Center,
+    AddButton("SAIR", Vector2(920, 861), Vector2::Zero, 34, UIButton::TextPos::Center,
         [this]() {
             new ConfirmQuitGame(mGame, "../Assets/Fonts/K2D-Bold.ttf");
             mIsVisible = false;

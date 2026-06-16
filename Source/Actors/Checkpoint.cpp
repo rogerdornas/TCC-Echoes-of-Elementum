@@ -32,14 +32,14 @@ Checkpoint::Checkpoint(class Game *game, float width, float height, Vector2 posi
 
     mAABBComponent = new AABBComponent(this, v1, v3);
 
+    mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/CheckPoint/checkpointKaren.png", \
+                                    "",
+                                    mWidth * 1.1f, mHeight * 1.1f, 201);
+
     // mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/CheckPoint/CheckPoint.png", \
     //                                         "../Assets/Sprites/CheckPoint/CheckPoint.json",
     //                                         mWidth * 1.1f, mHeight * 1.1f, 201);
-
-    mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/CheckPoint/checkpointKaren.png", \
-                                        "",
-                                        mWidth * 1.1f, mHeight * 1.1f, 201);
-
+    //
     // std::vector<int> idle = {0, 1, 2, 3, 4, 5};
     // mDrawComponent->AddAnimation("idle", idle);
     //

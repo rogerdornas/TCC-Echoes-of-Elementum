@@ -254,6 +254,8 @@ public:
     void SetGamePlayState(GamePlayState state) { mGamePlayState = state; }
     GamePlayState GetGamePlayState() const { return mGamePlayState; }
 
+    void SetIsPlayingAdvancedMode(bool playingAdvancedMode) { mIsPlayingAdvancedMode = playingAdvancedMode; }
+
     InputPlayerMode GetInputPlayerMode() const { return mInputPlayerMode; }
     InputController GetInputController() const { return mInputController; }
     void DetectTControllerType();
@@ -304,6 +306,7 @@ public:
 
     void SaveGame();
     void LoadGame();
+    void LoadAdvancedModeGame(const std::string &gameScenePath, Vector2 lastCheckpointPosition);
     void SetWorldState(const std::unordered_map<std::string, bool> &worldState) { mWorldState = worldState; }
     std::unordered_map<std::string, bool> GetWorldState() { return mWorldState; }
     void SetWorldFlag(const std::string& key, bool value);
@@ -510,6 +513,7 @@ private:
     };
 
     GamePlayState mGamePlayState;
+    bool mIsPlayingAdvancedMode;
 
     // If is playing on controller or keyboard or mouse
     InputPlayerMode mInputPlayerMode;

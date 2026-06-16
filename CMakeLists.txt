@@ -257,6 +257,12 @@ add_executable(${PROJECT_NAME}
         Source/UIScreens/MapMenu.h
         Source/UIScreens/NewSkillMenu.cpp
         Source/UIScreens/NewSkillMenu.h
+        Source/UIScreens/AdvancedModeMenu.cpp
+        Source/UIScreens/AdvancedModeMenu.h
+        Source/UIScreens/ScenarioSelectorMenu.cpp
+        Source/UIScreens/ScenarioSelectorMenu.h
+        Source/UIScreens/PauseAdvancedMenu.cpp
+        Source/UIScreens/PauseAdvancedMenu.h
 )
 
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="28" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="84">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="28" height="10" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="89">
  <editorsettings>
   <export target="Forest7.json" format="json"/>
  </editorsettings>
@@ -15,7 +15,7 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="15" name="Camera">
   <object id="17" x="0" y="0" width="1010" height="1280">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -37,7 +37,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="19" x="0" y="256" width="48" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -56,7 +56,7 @@
     <property name="Target" value="Game"/>
    </properties>
   </object>
-  <object id="24" x="3536" y="384" width="48" height="384">
+  <object id="86" x="2944" y="1252" width="384" height="28">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
@@ -275,13 +275,13 @@
 1,2,2,2,2,2,2,2,2,2,2,2,2,3,0,1,2,2,2,2,2,2,2,2,2,2,2,3,
 8,9,9,9,5,16,16,16,16,16,16,16,16,17,0,8,9,9,9,9,9,9,9,9,9,9,9,10,
 15,16,16,16,17,0,0,0,0,0,0,0,0,0,0,8,9,9,9,9,9,9,9,9,9,9,9,10,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,39,16,16,16,16,16,16,16,16,16,16,16,17,
-1,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-8,9,9,9,9,9,9,9,12,2,2,2,2,3,0,0,0,0,0,1,2,2,2,2,2,2,2,3,
-8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,9,9,9,9,9,9,9,10,
-8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,9,9,9,9,9,9,9,10,
-8,9,9,9,9,9,9,9,9,9,9,9,9,12,2,2,2,2,2,13,9,9,9,9,9,9,9,10,
-15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,22,39,16,16,16,16,16,16,16,16,16,16,6,10,
+1,2,2,2,2,2,2,2,3,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,9,9,9,9,9,9,9,12,2,2,2,2,3,0,0,0,0,0,1,2,2,2,3,0,1,13,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,9,9,9,10,0,8,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,10,0,0,0,0,0,8,9,9,9,10,0,8,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,12,2,2,2,2,2,13,9,9,9,10,0,8,9,10,
+15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17,0,15,16,17
 </data>
  </layer>
  <layer id="6" name="DynamicGrounds" width="28" height="10">
@@ -376,10 +376,18 @@
   <object id="36" gid="75" x="955.571" y="816.194" width="451.502" height="203.138"/>
   <object id="35" gid="77" x="1089.41" y="1023.01" width="666.485" height="240.798"/>
   <object id="53" gid="1073741899" x="1312.87" y="314.431" width="380.378" height="171.138"/>
-  <object id="60" gid="77" x="2736.66" y="883.601" width="666.485" height="240.798"/>
-  <object id="61" gid="52" x="3242.37" y="1064.96" width="564.559" height="428.465"/>
  </objectgroup>
- <objectgroup id="16" name="Light" visible="0"/>
+ <objectgroup id="16" name="Light">
+  <object id="88" x="3271.33" y="1174.67" width="32" height="32">
+   <properties>
+    <property name="ColorB" type="float" value="58"/>
+    <property name="ColorG" type="float" value="106"/>
+    <property name="ColorR" type="float" value="122"/>
+    <property name="Intensity" type="float" value="0.6"/>
+    <property name="Radius" type="float" value="750"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="17" name="Brazier" visible="0"/>
  <objectgroup id="18" name="Lava" visible="0"/>
  <objectgroup id="19" name="LightningBarrier" visible="0"/>
@@ -389,16 +397,18 @@
  <objectgroup id="11" name="Grounds" visible="0">
   <object id="1" x="1152" y="640" width="640" height="640"/>
   <object id="3" x="1792" y="1024" width="640" height="256"/>
-  <object id="4" x="2432" y="640" width="1152" height="640"/>
-  <object id="5" x="1920" y="0" width="1664" height="512"/>
+  <object id="4" x="2432" y="640" width="640" height="640"/>
+  <object id="5" x="1920" y="0" width="1408" height="512"/>
   <object id="6" x="0" y="0" width="640" height="384"/>
   <object id="11" x="1779.33" y="967.5" width="93.1667" height="68.5"/>
   <object id="12" x="640" y="0" width="1152" height="256"/>
   <object id="13" x="1792" y="384" width="128" height="128"/>
   <object id="18" x="0" y="512" width="1152" height="768"/>
+  <object id="84" x="3200" y="640" width="128" height="640"/>
+  <object id="85" x="3328" y="0" width="256" height="1280"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="13" name="Player">
   <object id="20" name="Player" x="80" y="493" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>
@@ -411,16 +421,17 @@
     <property name="StartPositionId" type="int" value="1"/>
    </properties>
   </object>
-  <object id="25" name="Player" x="3504" y="619" width="32" height="32">
+  <object id="87" x="3136" y="1150" width="32" height="32">
    <properties>
-    <property name="EnteringLevelSpeedX" type="float" value="-700"/>
-    <property name="EnteringLevelSpeedY" type="float" value="0"/>
+    <property name="EnteringLevelSpeedX" type="float" value="700"/>
+    <property name="EnteringLevelSpeedY" type="float" value="-1200"/>
+    <property name="EnteringOffset" type="float" value="64"/>
     <property name="StartPositionId" type="int" value="3"/>
    </properties>
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies" visible="0"/>
- <objectgroup id="22" name="CameraBounds" visible="0">
-  <object id="16" x="128" y="60" width="3328" height="1148"/>
+ <objectgroup id="22" name="CameraBounds" locked="1">
+  <object id="16" x="128" y="60" width="3328" height="1092"/>
  </objectgroup>
 </map>

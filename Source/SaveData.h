@@ -22,6 +22,10 @@ public:
     void ApplyWorldState();
     void ApplyConfigs();
 
+    // Para advanced mode game
+    void SetGameScenePath(const std::string &gameScenePath) { mGameScenePath = gameScenePath; }
+    void SetLastCheckpointPosition(const Vector2 position) { mLastCheckpointPosition = position; }
+
     // captura dados atuais do jogo para o save
     void CaptureFromGame();
 

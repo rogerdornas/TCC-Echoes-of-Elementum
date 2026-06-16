@@ -101,9 +101,9 @@
         {
             "fileName": "Cave1/Cave1.tmx",
             "height": 6400,
-            "width": 6400,
-            "x": 11520,
-            "y": -640
+            "width": 3840,
+            "x": 8832,
+            "y": 3072
         }
     ],
     "onlyShowAdjacentMaps": false,

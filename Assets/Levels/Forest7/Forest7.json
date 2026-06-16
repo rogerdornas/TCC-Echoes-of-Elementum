@@ -104,7 +104,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -188,8 +188,8 @@
                  "y":0
                 }, 
                 {
-                 "height":384,
-                 "id":24,
+                 "height":28,
+                 "id":86,
                  "name":"",
                  "properties":[
                         {
@@ -220,13 +220,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":48,
-                 "x":3536,
-                 "y":384
+                 "width":384,
+                 "x":2944,
+                 "y":1252
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1177,13 +1177,13 @@
          "data":[1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3, 0, 1, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 3,
             8, 9, 9, 9, 5, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
             15, 16, 16, 16, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10,
-            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 39, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17,
-            1, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-            8, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 1, 2, 2, 2, 2, 2, 2, 2, 3,
-            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10,
-            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 9, 9, 9, 9, 10,
-            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 2, 13, 9, 9, 9, 9, 9, 9, 9, 10,
-            15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17],
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 39, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 6, 10,
+            1, 2, 2, 2, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 3, 0, 0, 0, 0, 0, 1, 2, 2, 2, 3, 0, 1, 13, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 10, 0, 8, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 10, 0, 0, 0, 0, 0, 8, 9, 9, 9, 10, 0, 8, 9, 10,
+            8, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 9, 12, 2, 2, 2, 2, 2, 13, 9, 9, 9, 10, 0, 8, 9, 10,
+            15, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 16, 17, 0, 15, 16, 17],
          "height":10,
          "id":1,
          "name":"Camada de Blocos 1",
@@ -1595,30 +1595,6 @@
                  "width":380.378,
                  "x":1312.87,
                  "y":314.431
-                }, 
-                {
-                 "gid":77,
-                 "height":240.798,
-                 "id":60,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":666.485,
-                 "x":2736.66,
-                 "y":883.601
-                }, 
-                {
-                 "gid":52,
-                 "height":428.465,
-                 "id":61,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":564.559,
-                 "x":3242.37,
-                 "y":1064.96
                 }],
          "opacity":1,
          "parallaxx":1.1,
@@ -1652,10 +1628,47 @@
          "draworder":"topdown",
          "id":16,
          "name":"Light",
-         "objects":[],
+         "objects":[
+                {
+                 "height":32,
+                 "id":88,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"float",
+                         "value":58
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"float",
+                         "value":106
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"float",
+                         "value":122
+                        }, 
+                        {
+                         "name":"Intensity",
+                         "type":"float",
+                         "value":0.6
+                        }, 
+                        {
+                         "name":"Radius",
+                         "type":"float",
+                         "value":750
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":3271.33333333333,
+                 "y":1174.66666666667
+                }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1759,7 +1772,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1152,
+                 "width":640,
                  "x":2432,
                  "y":640
                 }, 
@@ -1770,7 +1783,7 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1664,
+                 "width":1408,
                  "x":1920,
                  "y":0
                 }, 
@@ -1828,6 +1841,28 @@
                  "width":1152,
                  "x":0,
                  "y":512
+                }, 
+                {
+                 "height":640,
+                 "id":84,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":128,
+                 "x":3200,
+                 "y":640
+                }, 
+                {
+                 "height":1280,
+                 "id":85,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":256,
+                 "x":3328,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1897,18 +1932,23 @@
                 }, 
                 {
                  "height":32,
-                 "id":25,
-                 "name":"Player",
+                 "id":87,
+                 "name":"",
                  "properties":[
                         {
                          "name":"EnteringLevelSpeedX",
                          "type":"float",
-                         "value":-700
+                         "value":700
                         }, 
                         {
                          "name":"EnteringLevelSpeedY",
                          "type":"float",
-                         "value":0
+                         "value":-1200
+                        }, 
+                        {
+                         "name":"EnteringOffset",
+                         "type":"float",
+                         "value":64
                         }, 
                         {
                          "name":"StartPositionId",
@@ -1919,12 +1959,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":3504,
-                 "y":619
+                 "x":3136,
+                 "y":1150
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1942,10 +1982,11 @@
         {
          "draworder":"topdown",
          "id":22,
+         "locked":true,
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":1148,
+                 "height":1092,
                  "id":16,
                  "name":"",
                  "rotation":0,
@@ -1957,12 +1998,12 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":84,
+ "nextobjectid":89,
  "orientation":"orthogonal",
  "properties":[
         {

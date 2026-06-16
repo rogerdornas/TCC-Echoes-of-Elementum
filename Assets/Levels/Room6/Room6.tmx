@@ -13,7 +13,7 @@
  </properties>
  <tileset firstgid="1" source="../../Sprites/BrownCave/BrownCaveDecorations.tsx"/>
  <tileset firstgid="102" source="../../Sprites/BrownCavePlants2/BrownCavePlants.tsx"/>
- <objectgroup id="3" name="AmbientParticleArea" locked="1">
+ <objectgroup id="3" name="AmbientParticleArea">
   <object id="139" x="1502" y="2594" width="2752" height="1448">
    <properties>
     <property name="ColorB" type="int" value="10"/>
@@ -428,14 +428,14 @@
  </objectgroup>
  <objectgroup id="12" name="Brazier"/>
  <objectgroup id="13" name="Checkpoint"/>
- <objectgroup id="14" name="Grounds">
+ <objectgroup id="14" name="Grounds" visible="0">
   <object id="77" x="2036" y="3691" width="1782.67" height="329"/>
   <object id="78" x="1654.67" y="2684.67" width="384" height="1335.33"/>
   <object id="79" x="3816.33" y="2685.67" width="392.909" height="1333.33"/>
   <object id="80" x="2040" y="2683.17" width="1777.34" height="321"/>
  </objectgroup>
  <objectgroup id="15" name="Player">
-  <object id="81" x="2344.36" y="3661.09" width="31.0303" height="31.0303">
+  <object id="81" x="2330" y="3676" width="31.0303" height="31.0303">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>

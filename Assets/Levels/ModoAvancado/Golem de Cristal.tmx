@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="258">
+ <editorsettings>
+  <export target="Golem de Cristal.json" format="json"/>
+ </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="FundoMarromEscuro.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="true"/>
+  <property name="GroundParticleColor" type="color" value="#ff735951"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="false"/>
+  <property name="UseGroundPadding" type="bool" value="false"/>
+ </properties>
+ <tileset firstgid="1" source="../../Sprites/BrownCave2/BrownCaveDecorations.tsx"/>
+ <tileset firstgid="102" source="../../Sprites/BrownCavePlants2/BrownCavePlants.tsx"/>
+ <objectgroup id="2" name="AmbientParticleArea" visible="0">
+  <object id="249" x="0" y="0" width="1920" height="1536">
+   <properties>
+    <property name="ColorB" type="int" value="10"/>
+    <property name="ColorG" type="int" value="56"/>
+    <property name="ColorR" type="int" value="61"/>
+    <property name="EmitRate" type="float" value="5"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="Camera" visible="0">
+  <object id="248" x="0" y="0" width="1920" height="1536">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="1920"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="1336"/>
+    <property name="LimitMinCameraPositionX" type="float" value="0"/>
+    <property name="LimitMinCameraPositionY" type="float" value="256"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="10" name="Triggers"/>
+ <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
+  <properties>
+   <property name="TextureColorB" type="int" value="9"/>
+   <property name="TextureColorG" type="int" value="32"/>
+   <property name="TextureColorR" type="int" value="33"/>
+   <property name="TextureFactor" type="float" value="0.4"/>
+  </properties>
+ </objectgroup>
+ <objectgroup draworder="index" id="4" name="Background2">
+  <properties>
+   <property name="TextureColorB" type="int" value="14"/>
+   <property name="TextureColorG" type="int" value="49"/>
+   <property name="TextureColorR" type="int" value="51"/>
+   <property name="TextureFactor" type="float" value="0.5"/>
+  </properties>
+  <object id="229" gid="57" x="821.726" y="458.235" width="420.548" height="231.531" rotation="111.245"/>
+  <object id="228" gid="57" x="889.245" y="231.419" width="420.548" height="231.531" rotation="108.345"/>
+  <object id="230" gid="56" x="717.043" y="728.161" width="369.762" height="245.685" rotation="110.467"/>
+  <object id="231" gid="49" x="809.806" y="604.545" width="295.096" height="181.395" rotation="296.521"/>
+  <object id="254" gid="15" x="229.667" y="921.333" width="434" height="151"/>
+  <object id="232" gid="54" x="733.992" y="889.297" width="406.138" height="249.206" rotation="290.984"/>
+  <object id="246" gid="59" x="1023.53" y="1155.76" width="276.934" height="280.485"/>
+  <object id="244" gid="59" x="894.624" y="1073.21" width="148.281" height="150.182"/>
+  <object id="245" gid="52" x="939" y="1153" width="190.043" height="168"/>
+  <object id="247" gid="51" x="967" y="1209" width="158.162" height="132"/>
+  <object id="242" gid="59" x="683.03" y="1130.06" width="276.934" height="280.485"/>
+  <object id="233" gid="57" x="597.384" y="1270.99" width="495.871" height="273" rotation="292.863"/>
+  <object id="234" gid="49" x="689.852" y="948.87" width="312.779" height="192.265" rotation="128.647"/>
+  <object id="238" gid="45" x="1235.24" y="1201.45" width="321.667" height="208.333"/>
+  <object id="237" gid="7" x="1067.15" y="1229.64" width="365.477" height="207.121"/>
+  <object id="239" gid="1073741883" x="884.97" y="647.636" width="624" height="632"/>
+  <object id="240" gid="58" x="123.697" y="515.576" width="493" height="380"/>
+  <object id="243" gid="57" x="604.364" y="1235.33" width="418.262" height="230.273"/>
+  <object id="253" gid="89" x="103.364" y="607.212" width="411" height="275" rotation="90"/>
+ </objectgroup>
+ <objectgroup draworder="index" id="5" name="Decorations">
+  <object id="162" gid="16" x="721.333" y="1200" width="552.444" height="58.6667"/>
+  <object id="225" gid="23" x="1716" y="1280" width="114.5" height="181.5"/>
+  <object id="163" gid="16" x="1233.33" y="1200" width="552.444" height="58.6667"/>
+  <object id="250" gid="103" x="1365.33" y="1192" width="104.381" height="91.3333">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant02/Plant02"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="119" gid="25" x="1664" y="1280" width="184.5" height="117.5"/>
+  <object id="160" gid="16" x="209.333" y="1200" width="552.444" height="58.6667"/>
+  <object id="252" gid="2147483750" x="419.333" y="1188" width="73" height="95">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="0"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant01/Plant01"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="70" gid="22" x="103" y="1280" width="114.5" height="181"/>
+  <object id="38" gid="25" x="0" y="1280" width="184.5" height="117.5"/>
+  <object id="53" gid="25" x="128" y="1280" width="184.5" height="117.5"/>
+  <object id="54" gid="25" x="256" y="1280" width="184.5" height="117.5"/>
+  <object id="55" gid="25" x="384" y="1280" width="184.5" height="117.5"/>
+  <object id="257" gid="107" x="597.333" y="1194" width="152" height="107">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="56" gid="25" x="512" y="1280" width="184.5" height="117.5"/>
+  <object id="57" gid="25" x="640" y="1280" width="184.5" height="117.5"/>
+  <object id="58" gid="25" x="768" y="1280" width="184.5" height="117.5"/>
+  <object id="59" gid="25" x="896" y="1280" width="184.5" height="117.5"/>
+  <object id="60" gid="25" x="1024" y="1280" width="184.5" height="117.5"/>
+  <object id="61" gid="25" x="1152" y="1280" width="184.5" height="117.5"/>
+  <object id="62" gid="25" x="1280" y="1280" width="184.5" height="117.5"/>
+  <object id="63" gid="25" x="1408" y="1280" width="184.5" height="117.5"/>
+  <object id="71" gid="22" x="103" y="1152" width="114.5" height="181"/>
+  <object id="72" gid="22" x="103" y="1024" width="114.5" height="181"/>
+  <object id="74" gid="22" x="103" y="899" width="114.5" height="181"/>
+  <object id="235" gid="96" x="391" y="474" width="286.58" height="139"/>
+  <object id="93" gid="24" x="256" y="384" width="187.5" height="120"/>
+  <object id="94" gid="24" x="384" y="384" width="187.5" height="120"/>
+  <object id="95" gid="24" x="512" y="384" width="187.5" height="120"/>
+  <object id="96" gid="24" x="640" y="384" width="187.5" height="120"/>
+  <object id="97" gid="24" x="768" y="384" width="187.5" height="120"/>
+  <object id="98" gid="24" x="896" y="384" width="187.5" height="120"/>
+  <object id="99" gid="24" x="1024" y="384" width="187.5" height="120"/>
+  <object id="100" gid="24" x="1152" y="384" width="187.5" height="120"/>
+  <object id="101" gid="24" x="1280" y="384" width="187.5" height="120"/>
+  <object id="102" gid="24" x="1408" y="384" width="187.5" height="120"/>
+  <object id="103" gid="101" x="0" y="1536" width="1920" height="280"/>
+  <object id="213" gid="22" x="103" y="387" width="114.5" height="181"/>
+  <object id="113" gid="101" x="0" y="1265.09" width="128.394" height="1009.09"/>
+  <object id="118" gid="25" x="1536" y="1280" width="184.5" height="117.5"/>
+  <object id="136" gid="24" x="1664" y="384" width="187.5" height="120"/>
+  <object id="135" gid="24" x="1536" y="384" width="187.5" height="120"/>
+  <object id="148" gid="101" x="0" y="279.33" width="1920" height="279.333"/>
+  <object id="153" gid="101" x="98" y="1272" width="64" height="64"/>
+  <object id="207" gid="22" x="103" y="771" width="114.5" height="181"/>
+  <object id="208" gid="22" x="103" y="643" width="114.5" height="181"/>
+  <object id="210" gid="24" x="128" y="384" width="187.5" height="120"/>
+  <object id="212" gid="22" x="103" y="515" width="114.5" height="181"/>
+  <object id="214" gid="23" x="1716" y="1152" width="114.5" height="181.5"/>
+  <object id="217" gid="23" x="1716" y="1024" width="114.5" height="181.5"/>
+  <object id="218" gid="23" x="1716" y="896" width="114.5" height="181.5"/>
+  <object id="219" gid="23" x="1716" y="640" width="114.5" height="181.5"/>
+  <object id="220" gid="23" x="1716" y="768" width="114.5" height="181.5"/>
+  <object id="222" gid="101" x="1814" y="1408" width="106" height="1152"/>
+  <object id="221" gid="23" x="1716" y="512" width="114.5" height="181.5"/>
+  <object id="227" gid="48" x="1692.22" y="1368.62" width="318.834" height="205.298" rotation="318.015"/>
+  <object id="241" gid="5" x="1909.47" y="391.382" width="257" height="213" rotation="223.348"/>
+ </objectgroup>
+ <layer id="1" name="Camada de Blocos 1" width="15" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <layer id="6" name="DynamicGrounds" width="15" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup draworder="index" id="24" name="DecorationsForeground">
+  <object id="152" gid="50" x="70.7932" y="1198.23" width="152.816" height="151.08" rotation="43.0066"/>
+ </objectgroup>
+ <objectgroup draworder="index" id="7" name="Foreground1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.1"/>
+  </properties>
+  <object id="223" gid="57" x="1452.01" y="1359.88" width="478.808" height="263.606"/>
+  <object id="236" gid="91" x="15.3333" y="1302.42" width="265.762" height="257.749"/>
+  <object id="251" gid="102" x="1465.21" y="1399.7" width="233.856" height="304.333">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="0"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant01/Plant01"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="256" gid="1073741883" x="1108" y="522.692" width="456.835" height="462.692"/>
+ </objectgroup>
+ <objectgroup draworder="index" id="8" name="Foreground2" parallaxx="1.1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.1"/>
+  </properties>
+ </objectgroup>
+ <objectgroup id="16" name="Light"/>
+ <objectgroup id="17" name="Brazier"/>
+ <objectgroup id="18" name="Lava"/>
+ <objectgroup id="19" name="LightningBarrier"/>
+ <objectgroup id="9" name="HookPoints"/>
+ <objectgroup id="20" name="Levers"/>
+ <objectgroup id="21" name="SpawnPoint"/>
+ <objectgroup id="11" name="Grounds" visible="0">
+  <object id="117" x="208" y="1154" width="1514.48" height="380"/>
+  <object id="195" x="0" y="-2.60606" width="208.667" height="1538.61"/>
+  <object id="200" x="1725.48" y="0.966364" width="195" height="1532"/>
+  <object id="201" x="208.258" y="0.67" width="1516.78" height="372"/>
+ </objectgroup>
+ <objectgroup id="12" name="Checkpoint"/>
+ <objectgroup id="13" name="Player">
+  <object id="65" name="Player" x="598" y="1135" width="32" height="32">
+   <properties>
+    <property name="StartPositionId" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="14" name="Enemies"/>
+ <objectgroup id="22" name="CameraBounds" visible="0">
+  <object id="36" x="0" y="0" width="1920" height="1536"/>
+ </objectgroup>
+</map>

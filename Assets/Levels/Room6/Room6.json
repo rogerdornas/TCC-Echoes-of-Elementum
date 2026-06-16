@@ -5,7 +5,6 @@
         {
          "draworder":"topdown",
          "id":3,
-         "locked":true,
          "name":"AmbientParticleArea",
          "objects":[
                 {
@@ -1699,7 +1698,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1722,8 +1721,8 @@
                  "type":"",
                  "visible":true,
                  "width":31.0303,
-                 "x":2344.36,
-                 "y":3661.09
+                 "x":2330,
+                 "y":3676
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2835,15 +2834,15 @@
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":1293.93939393939,
+                 "height":1293.94,
                  "id":158,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":2539.39393939394,
-                 "x":1654.54545454545,
-                 "y":2706.06060606061
+                 "width":2539.39,
+                 "x":1654.55,
+                 "y":2706.06
                 }],
          "opacity":1,
          "type":"objectgroup",

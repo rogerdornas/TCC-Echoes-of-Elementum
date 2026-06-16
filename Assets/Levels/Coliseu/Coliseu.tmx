@@ -632,7 +632,7 @@
     <property name="StartPositionId" type="int" value="1"/>
    </properties>
   </object>
-  <object id="58" x="384" y="3168" width="32" height="32">
+  <object id="58" x="384" y="3180" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>

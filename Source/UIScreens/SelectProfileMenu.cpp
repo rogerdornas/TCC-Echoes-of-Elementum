@@ -42,6 +42,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
             mGame->ResetPlayerAndSkillTree();
             mGame->SetSaveSlot(1);
             mGame->LoadGame();
+            mGame->SetIsPlayingAdvancedMode(false);
         }
     }
     , false);
@@ -53,6 +54,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
             mGame->ResetPlayerAndSkillTree();
             mGame->SetSaveSlot(2);
             mGame->LoadGame();
+            mGame->SetIsPlayingAdvancedMode(false);
         }
     }
     , false);
@@ -64,6 +66,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
             mGame->ResetPlayerAndSkillTree();
             mGame->SetSaveSlot(3);
             mGame->LoadGame();
+            mGame->SetIsPlayingAdvancedMode(false);
         }
     }
     , false);
@@ -75,6 +78,7 @@ SelectProfileMenu::SelectProfileMenu(class Game *game, const std::string &fontNa
             mGame->ResetPlayerAndSkillTree();
             mGame->SetSaveSlot(4);
             mGame->LoadGame();
+            mGame->SetIsPlayingAdvancedMode(false);
         }
     }
     , false);
