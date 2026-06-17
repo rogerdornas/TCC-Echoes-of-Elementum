@@ -318,6 +318,7 @@ void HookEnemy::Stop(float deltaTime) {
             for (Enemy* e: enemies) {
                 if (e != this) {
                     if (auto* hookEnemy = dynamic_cast<HookEnemy*>(e)) {
+                        hookEnemy->SetSpottedPlayer(true);
                         if (hookEnemy->GetHookEnemyState() == State::Stop) {
                            hookProbability = 0.5f;
                         }

@@ -3663,8 +3663,8 @@
                  "type":"",
                  "visible":true,
                  "width":195.777,
-                 "x":6680.1115,
-                 "y":1481.174
+                 "x":6680.11,
+                 "y":1481.17
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -4096,8 +4096,8 @@
                  "type":"",
                  "visible":true,
                  "width":635.485,
-                 "x":7956.3575,
-                 "y":1203.201
+                 "x":7956.36,
+                 "y":1203.2
                 }],
          "opacity":1,
          "parallaxx":1.1,
@@ -4555,7 +4555,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":372,
+ "nextobjectid":373,
  "orientation":"orthogonal",
  "properties":[
         {

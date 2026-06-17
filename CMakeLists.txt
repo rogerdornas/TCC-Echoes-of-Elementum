@@ -263,6 +263,8 @@ add_executable(${PROJECT_NAME}
         Source/UIScreens/ScenarioSelectorMenu.h
         Source/UIScreens/PauseAdvancedMenu.cpp
         Source/UIScreens/PauseAdvancedMenu.h
+        Source/UIScreens/ThankYouScreen.cpp
+        Source/UIScreens/ThankYouScreen.h
 )
 
 

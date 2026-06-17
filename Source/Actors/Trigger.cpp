@@ -367,18 +367,18 @@ void Trigger::GroundTrigger() {
 void Trigger::GameTrigger() {
     switch (mEvent) {
         case Event::ChangeScene:
-            if (mGame->GetMapManager() && mGame->GetCurrentLevelPath() != "MainMenu") {
+            if (mGame->GetMapManager() && mGame->GetGameScene() != Game::GameScene::MainMenu) {
                 mGame->SetLastMapOriginCanvasPos(mGame->GetMapManager()->GetRoomCanvasPosition(mGame->GetCurrentLevelPath()));
                 // mGame->SetLastMapOriginBoundsMin(Vector2::Zero);
                 mGame->SetLastMapOriginBoundsMax(mGame->GetMapMaxBound());
                 mGame->SetLastMapOriginTriggerPos(mPosition);
                 mGame->SetIsConnectingMapRoom(true);
             }
-
-            // mGame->GetAudio()->StopAllSounds();
-            mGame->SetPlayerStartPositionId(mPlayerStartPositionId);
+            if (mNextLevelPath != "MainMenu" && mNextLevelPath != "ThankYouScreen") {
+                mGame->SetPlayerStartPositionId(mPlayerStartPositionId);
+                mGame->SetGoingToNextLevel();
+            }
             mGame->LoadNextLevel(mNextLevelPath, 0.5f);
-            mGame->SetGoingToNextLevel();
             break;
 
         case Event::StartArena:

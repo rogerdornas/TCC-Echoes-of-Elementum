@@ -68,6 +68,7 @@
 #include "UIScreens/MapMenu.h"
 #include "UIScreens/PauseAdvancedMenu.h"
 #include "UIScreens/PauseMenu.h"
+#include "UIScreens/ThankYouScreen.h"
 
 std::vector<int> ParseIntList(const std::string& str) {
     std::vector<int> result;
@@ -257,7 +258,7 @@ bool Game::Initialize()
 void Game::LoadNextLevel(const std::string &levelPath, float transitionTime) {
     if (mSceneManagerState == SceneManagerState::None) {
         mNextLevelPath = levelPath;
-        if (levelPath == "MainMenu") {
+        if (levelPath == "MainMenu" || levelPath == "ThankYouScreen") {
             mNextScene = GameScene::MainMenu;
         }
         else {
@@ -380,24 +381,44 @@ void Game::ChangeScene()
 
     // Scene Manager FSM: using if/else instead of switch
     if (mNextScene == GameScene::MainMenu) {
-        mUseParallaxBackground = false;
-        mGamePlayState = GamePlayState::Menu;
-        mCutsceneIndex = 0;
-        mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Menu6.png");
+        if (mNextLevelPath == "MainMenu") {
+            mUseParallaxBackground = false;
+            mGamePlayState = GamePlayState::Menu;
+            mCutsceneIndex = 0;
+            mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Menu6.png");
 
-        std::string musicFile = "HollowKnight.wav";
+            std::string musicFile = "HollowKnight.wav";
 
-        // Initialize main menu actors
-        auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
-        background->AddImage("../Assets/Sprites/Background/Menu6.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
-        new MainMenu(this, "../Assets/Fonts/K2D-Bold.ttf", false);
+            // Initialize main menu actors
+            auto* background = new UIScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
+            background->AddImage("../Assets/Sprites/Background/Menu6.png", Vector2(mOriginalWindowWidth, mOriginalWindowHeight) * 0.5f, Vector2(mOriginalWindowWidth, mOriginalWindowHeight));
+            new MainMenu(this, "../Assets/Fonts/K2D-Bold.ttf", false);
 
-        if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing || mCurrentMusic != musicFile) {
-            mAudio->StopSound(mMusicHandle);
-            mMusicHandle = mAudio->PlaySound(musicFile.c_str(), true, SoundCategory::Music);
-            mCurrentMusic = musicFile;
+            if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing || mCurrentMusic != musicFile) {
+                mAudio->StopSound(mMusicHandle);
+                mMusicHandle = mAudio->PlaySound(musicFile.c_str(), true, SoundCategory::Music);
+                mCurrentMusic = musicFile;
+            }
+            mBossMusic.Reset();
         }
-        mBossMusic.Reset();
+        else if (mNextLevelPath == "ThankYouScreen") {
+            mUseParallaxBackground = false;
+            mGamePlayState = GamePlayState::Menu;
+            mCutsceneIndex = 0;
+            mBackGroundTexture = mRenderer->GetTexture(backgroundAssets + "Menu6.png");
+
+            std::string musicFile = "HollowKnight.wav";
+
+            // Initialize main menu actors
+            new ThankYouScreen(this, "../Assets/Fonts/K2D-Bold.ttf", false);
+
+            if (mAudio->GetSoundState(mMusicHandle) != SoundState::Playing || mCurrentMusic != musicFile) {
+                mAudio->StopSound(mMusicHandle);
+                mMusicHandle = mAudio->PlaySound(musicFile.c_str(), true, SoundCategory::Music);
+                mCurrentMusic = musicFile;
+            }
+            mBossMusic.Reset();
+        }
     }
     else if (mNextScene == GameScene::Gameplay) {
         // Carrega o JSON da fase para extrair as propriedades ANTES de instanciar os objetos
@@ -3631,6 +3652,10 @@ void Game::LoadAdvancedModeGame(const std::string &gameScenePath, Vector2 lastCh
     mSaveData = mSaveManager->LoadGame(mSaveSlot);
     mSaveData->SetGameScenePath(gameScenePath);
     mSaveData->SetLastCheckpointPosition(lastCheckpointPosition);
+
+    // if (mGameScene != GameScene::MainMenu) {
+    //     SaveGame();
+    // }
 
     mSaveData->ApplyToGame();
 

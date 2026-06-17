@@ -6,19 +6,19 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 598.0,
-            "y": 1903.0
+            "x": 1622.0,
+            "y": 3439.0
         },
-        "scene": "ModoAvancado/Golem de Fogo",
-        "total_play_time": 1768.54833984375
+        "scene": "ModoAvancado/Fantasma Espelhado",
+        "total_play_time": 2370.641357421875
     },
     "map_state": null,
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 915,
-        "elemental_mode": "Earth",
+        "death_counter": 927,
+        "elemental_mode": "Ice",
         "elemental_modes": {
             "has_earth": false,
             "has_fire": false,
@@ -26,7 +26,7 @@
             "has_lightning": false
         },
         "max_jumps_in_air": 1,
-        "money": 379
+        "money": 629
     },
     "skill_tree": {
         "unlocked_nodes": [

@@ -88,9 +88,15 @@ void ScenarioSelectorMenu::LoadScenario(const std::string &scenarioName, Vector2
         }
     }
     else {
+        if (mGame->GetPlayer())
+        mGame->GetPlayer()->ResetHealthPoints();
+        mGame->GetPlayer()->ResetMana();
+        mGame->GetPlayer()->ResetHealCount();
         mGame->SetGoingToNextLevel();
         mGame->LoadNextLevel(scenarioName, 0.5f);
     }
 
     mGame->SetIsPlayingAdvancedMode(true);
+    mGame->SetCheckpointGameScenePath(scenarioName);
+    mGame->SetCheckPointPosition(startPosition);
 }

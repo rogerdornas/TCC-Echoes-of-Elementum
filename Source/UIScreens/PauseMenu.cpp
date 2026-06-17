@@ -5,7 +5,6 @@
 #include "PauseMenu.h"
 #include "ConfirmBackToMenu.h"
 #include "OptionsMenu.h"
-#include "ScenarioSelectorMenu.h"
 #include "../Game.h"
 
 PauseMenu::PauseMenu(class Game *game, const std::string &fontName, bool isClosable)

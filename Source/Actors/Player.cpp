@@ -200,7 +200,7 @@ Player::Player(Game* game)
     ,mHealCount(mMaxHealCount)
     ,mHealAmount(30.0f)
     ,mIsHealing(false)
-    ,mHealAnimationDuration(0.65f)
+    ,mHealAnimationDuration(0.7f)
     ,mHealAnimationTimer(0.0f)
 
     ,mIFramesTimer(0.0f)

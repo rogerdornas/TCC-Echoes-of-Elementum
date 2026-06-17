@@ -66,10 +66,9 @@ void Camera::SetLimitMaxCameraPosition(Vector2 pos) {
 }
 
 void Camera::Update(float deltaTime) {
-    // Ajuste rápido de câmera no início de cenas
+    // Timer de início de cena
     if (mInitPositionTimer > 0) {
         mInitPositionTimer -= deltaTime;
-        mCameraLerpSpeed = mInitPositionSpeed;
         mIsAdjustingInitialPosition = true;
     }
     else {
@@ -77,38 +76,39 @@ void Camera::Update(float deltaTime) {
     }
 
     if (mCameraMode == CameraMode::FollowPlayerLimited) {
-        // Atualiza limites suavizados
-        if (!mIsAdjustingInitialPosition) {
-            mCameraLerpSpeed = mSlowTransitionSpeed;
-        }
-
         float screenW = mGame->GetRenderer()->GetZoomedWidth();
         float screenH = mGame->GetRenderer()->GetZoomedHeight();
 
-        mCurrentLimitMinPosition = Vector2::Lerp(mCurrentLimitMinPosition, mLimitMinCameraPosition, mCameraLerpSpeed * deltaTime);
-        mCurrentLimitMaxPosition = Vector2::Lerp(mCurrentLimitMaxPosition, mLimitMaxCameraPosition, mCameraLerpSpeed * deltaTime);
-
-        // OFFSET HORIZONTAL BASEADO NA ROTAÇÃO
+        // Calcula o offset alvo
         float desiredOffsetX = mGame->GetPlayer()->GetWidth() * 2.5f * mGame->GetPlayer()->GetForward().x;
 
-        // Suaviza a transição do offset
-        if (!mIsAdjustingInitialPosition) {
+        // Limites e Offsets: Snap vs Suavidade
+        if (mIsAdjustingInitialPosition) {
+            // SNAP (TELEPORTE): Aplica tudo instantaneamente no começo da cena
+            mCurrentLimitMinPosition = mLimitMinCameraPosition;
+            mCurrentLimitMaxPosition = mLimitMaxCameraPosition;
+            mCurrentOffsetX = desiredOffsetX;
+        } else {
+            // LERP: Comportamento suave normal do jogo
             mCameraLerpSpeed = mSlowTransitionSpeed;
-        }
-        mCurrentOffsetX = Math::Lerp(mCurrentOffsetX, desiredOffsetX, mCameraLerpSpeed * deltaTime);
 
-        // Calcula posição alvo do player
+            mCurrentLimitMinPosition = Vector2::Lerp(mCurrentLimitMinPosition, mLimitMinCameraPosition, mCameraLerpSpeed * deltaTime);
+            mCurrentLimitMaxPosition = Vector2::Lerp(mCurrentLimitMaxPosition, mLimitMaxCameraPosition, mCameraLerpSpeed * deltaTime);
+            mCurrentOffsetX = Math::Lerp(mCurrentOffsetX, desiredOffsetX, mCameraLerpSpeed * deltaTime);
+        }
+
+        // Calcula posição alvo base baseada no jogador + offset
         Vector2 playerPos = mGame->GetPlayer()->GetPosition();
         Vector2 playerPosOffset(
             playerPos.x - screenW * 0.5f + mCurrentOffsetX,
             playerPos.y - screenH * 0.5f
         );
 
-        // Aplica limites já suavizados ao alvo
+        // Aplica limites (agora com valores corretos dependendo se foi snap ou lerp)
         playerPosOffset.x = Math::Clamp(playerPosOffset.x, mCurrentLimitMinPosition.x, mCurrentLimitMaxPosition.x - screenW);
         playerPosOffset.y = Math::Clamp(playerPosOffset.y, mCurrentLimitMinPosition.y, mCurrentLimitMaxPosition.y - screenH);
 
-        // Aplica deslocamento vertical se estiver olhando para cima ou para baixo
+        // Aplica deslocamento vertical (LookUp/LookDown)
         if (mLookUp) {
             playerPosOffset.y -= mDistMove;
         }
@@ -116,15 +116,17 @@ void Camera::Update(float deltaTime) {
             playerPosOffset.y += mDistMove;
         }
 
-        // Aplica os Hard Bounds (Limites Absolutos do Mapa)
+        // Hard Bounds do Mapa
         playerPosOffset.x = Math::Clamp(playerPosOffset.x, mCameraMinBound.x, mCameraMaxBound.x - screenW);
         playerPosOffset.y = Math::Clamp(playerPosOffset.y, mCameraMinBound.y, mCameraMaxBound.y - screenH);
 
-        // Interpola da posição atual até a posição alvo (já limitada)
-        if (!mIsAdjustingInitialPosition) {
+        // Posição da Câmera: Snap vs Suavidade
+        if (mIsAdjustingInitialPosition) {
+            mPos = playerPosOffset; // A câmera é teleportada para o alvo exato.
+        } else {
             mCameraLerpSpeed = mNormalSpeed;
+            mPos = Vector2::Lerp(mPos, playerPosOffset, mCameraLerpSpeed * deltaTime);
         }
-        mPos = Vector2::Lerp(mPos, playerPosOffset, mCameraLerpSpeed * deltaTime);
 
         // Camera Shake
         if (mShakeTimer < mShakeDuration) {
@@ -144,10 +146,11 @@ void Camera::Update(float deltaTime) {
                 shakeOffsetY = 0;
             }
         }
+
         mPos.x += shakeOffsetX * mCameraLerpSpeed * deltaTime;
         mPos.y += shakeOffsetY * mCameraLerpSpeed * deltaTime;
 
-        // Reset flags para o próximo frame
+        // Reset flags
         mLookUp = false;
         mLookDown = false;
 

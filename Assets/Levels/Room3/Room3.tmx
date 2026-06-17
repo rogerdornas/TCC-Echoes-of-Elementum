@@ -76,7 +76,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="15" x="1408" y="1408" width="896" height="384">
    <properties>
     <property name="Event" value="ShowTutorial"/>
@@ -102,7 +102,7 @@
     <property name="Target" value="Game"/>
    </properties>
   </object>
-  <object id="146" x="2816" y="1408" width="1024" height="384">
+  <object id="146" x="2746.3" y="1408" width="1093.7" height="384">
    <properties>
     <property name="Event" value="ShowTutorial"/>
     <property name="Target" value="HUD"/>
