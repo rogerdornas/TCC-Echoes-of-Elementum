@@ -41,7 +41,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -94,7 +94,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -911,7 +911,7 @@
                  "visible":true,
                  "width":493,
                  "x":43.697,
-                 "y":531.576
+                 "y":607.576
                 }, 
                 {
                  "gid":1073741883,
@@ -923,7 +923,7 @@
                  "visible":true,
                  "width":268.835,
                  "x":1080,
-                 "y":547.59
+                 "y":623.59
                 }, 
                 {
                  "gid":3221225533,
@@ -1110,49 +1110,6 @@
          "name":"Decorations",
          "objects":[
                 {
-                 "gid":107,
-                 "height":107,
-                 "id":257,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":8
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant06\/Plant06"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":152,
-                 "x":1239.33,
-                 "y":1172.67
-                }, 
-                {
                  "gid":16,
                  "height":58.6667,
                  "id":162,
@@ -1237,49 +1194,6 @@
                  "y":1200
                 }, 
                 {
-                 "gid":2147483750,
-                 "height":95,
-                 "id":252,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant01\/Plant01"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":73,
-                 "x":645.333,
-                 "y":1184
-                }, 
-                {
                  "gid":101,
                  "height":1009.09,
                  "id":113,
@@ -1350,8 +1264,7 @@
                  "width":184.5,
                  "x":640,
                  "y":1280
-                },
-            
+                }, 
                 {
                  "gid":25,
                  "height":117.5,
@@ -1375,7 +1288,8 @@
                  "width":184.5,
                  "x":896,
                  "y":1280
-                }, 
+                },
+            
                 {
                  "gid":25,
                  "height":117.5,
@@ -1470,7 +1384,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":256,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1482,7 +1396,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":384,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1494,7 +1408,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":512,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1506,7 +1420,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":640,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1518,7 +1432,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":768,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1530,9 +1444,8 @@
                  "visible":true,
                  "width":187.5,
                  "x":896,
-                 "y":384
-                },
-            
+                 "y":460
+                }, 
                 {
                  "gid":24,
                  "height":120,
@@ -1543,7 +1456,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":1024,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1555,8 +1468,9 @@
                  "visible":true,
                  "width":187.5,
                  "x":1152,
-                 "y":384
-                }, 
+                 "y":460
+                },
+            
                 {
                  "gid":24,
                  "height":120,
@@ -1567,7 +1481,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":1280,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1579,7 +1493,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":1408,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":101,
@@ -1615,7 +1529,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":1664,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":24,
@@ -1627,11 +1541,11 @@
                  "visible":true,
                  "width":187.5,
                  "x":1536,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":101,
-                 "height":279.333,
+                 "height":355.33,
                  "id":148,
                  "name":"",
                  "rotation":0,
@@ -1639,7 +1553,7 @@
                  "visible":true,
                  "width":1920,
                  "x":0,
-                 "y":279.33
+                 "y":355.33
                 }, 
                 {
                  "gid":101,
@@ -1687,7 +1601,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":128,
-                 "y":384
+                 "y":460
                 }, 
                 {
                  "gid":22,
@@ -1712,8 +1626,7 @@
                  "width":114.5,
                  "x":1800,
                  "y":1152
-                },
-            
+                }, 
                 {
                  "gid":23,
                  "height":181.5,
@@ -1737,7 +1650,8 @@
                  "width":114.5,
                  "x":1800,
                  "y":896
-                }, 
+                },
+            
                 {
                  "gid":23,
                  "height":181.5,
@@ -1820,62 +1734,7 @@
                  "visible":true,
                  "width":187.5,
                  "x":58.25,
-                 "y":384
-                }, 
-                {
-                 "gid":22,
-                 "height":181,
-                 "id":261,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":114.5,
-                 "x":5,
-                 "y":379.5
-                }, 
-                {
-                 "gid":103,
-                 "height":95.7083,
-                 "id":301,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":7
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant02\/Plant02"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":109.381,
-                 "x":318.81,
-                 "y":1164.33
+                 "y":460
                 }, 
                 {
                  "gid":2147483696,
@@ -1899,7 +1758,7 @@
                  "visible":true,
                  "width":262.038,
                  "x":-9.54116,
-                 "y":437.495
+                 "y":513.495
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -1968,7 +1827,7 @@
                  "visible":true,
                  "width":309.944,
                  "x":759.444,
-                 "y":250.135
+                 "y":306.135
                 }, 
                 {
                  "gid":55,
@@ -1980,7 +1839,7 @@
                  "visible":true,
                  "width":443,
                  "x":1045,
-                 "y":184
+                 "y":237.333333333333
                 }, 
                 {
                  "gid":3221225520,
@@ -1992,7 +1851,62 @@
                  "visible":true,
                  "width":182.774,
                  "x":1115.05,
-                 "y":389.22
+                 "y":457.22
+                }, 
+                {
+                 "gid":107,
+                 "height":107,
+                 "id":257,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":8
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":15
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/BrownCavePlants2\/Plant06\/Plant06"
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":152,
+                 "x":1237.33,
+                 "y":1174.67
+                }, 
+                {
+                 "gid":63,
+                 "height":135,
+                 "id":385,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":114.950495049505,
+                 "x":1242,
+                 "y":1285
                 }, 
                 {
                  "gid":22,
@@ -2016,7 +1930,105 @@
                  "visible":true,
                  "width":182.774,
                  "x":1210.61,
-                 "y":354.156
+                 "y":430.156
+                }, 
+                {
+                 "gid":2147483750,
+                 "height":95,
+                 "id":252,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":15
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/BrownCavePlants2\/Plant01\/Plant01"
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":true
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":73,
+                 "x":645.333,
+                 "y":1183
+                }, 
+                {
+                 "gid":67,
+                 "height":131,
+                 "id":384,
+                 "name":"",
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":113.486631016043,
+                 "x":612,
+                 "y":1278
+                }, 
+                {
+                 "gid":103,
+                 "height":95.7083,
+                 "id":301,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":7
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":15
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/BrownCavePlants2\/Plant02\/Plant02"
+                        }, 
+                        {
+                         "name":"WindBalance",
+                         "type":"bool",
+                         "value":false
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":109.381,
+                 "x":318.81,
+                 "y":1164.33
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2118,7 +2130,7 @@
                  "visible":true,
                  "width":200.224,
                  "x":1972.18,
-                 "y":312.409
+                 "y":388.409
                 }, 
                 {
                  "gid":57,
@@ -2129,8 +2141,8 @@
                  "type":"",
                  "visible":true,
                  "width":398.904,
-                 "x":253.263,
-                 "y":1391.19
+                 "x":185.263,
+                 "y":1358.19
                 }, 
                 {
                  "gid":57,
@@ -2357,7 +2369,7 @@
                  "y":0.966364
                 }, 
                 {
-                 "height":372,
+                 "height":448,
                  "id":201,
                  "name":"",
                  "rotation":0,
@@ -2369,7 +2381,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2420,8 +2432,13 @@
                 {
                  "height":32,
                  "id":286,
-                 "name":"Golem",
+                 "name":"StoneGolem",
                  "properties":[
+                        {
+                         "name":"LeftLaserShooters",
+                         "type":"string",
+                         "value":"361,362,363,364,365"
+                        }, 
                         {
                          "name":"MaxPosX",
                          "type":"float",
@@ -2441,17 +2458,1014 @@
                          "name":"MinPosY",
                          "type":"float",
                          "value":384
+                        }, 
+                        {
+                         "name":"RightLaserShooters",
+                         "type":"string",
+                         "value":"366,367,368,369,370"
+                        }, 
+                        {
+                         "name":"TopLaserShooters",
+                         "type":"string",
+                         "value":"371,372,373,374,375,376,377,378,379,380,381,382,383,387,388,389,390,391"
                         }],
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1095.62,
-                 "y":1136.62
+                 "x":1093.62,
+                 "y":998.62
+                }, 
+                {
+                 "height":32,
+                 "id":361,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":118,
+                 "y":1079
+                }, 
+                {
+                 "height":32,
+                 "id":362,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":118,
+                 "y":947.25
+                }, 
+                {
+                 "height":32,
+                 "id":363,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":118,
+                 "y":815.5
+                }, 
+                {
+                 "height":32,
+                 "id":364,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":118,
+                 "y":683.75
+                }, 
+                {
+                 "height":32,
+                 "id":365,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":3
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":118,
+                 "y":552
+                }, 
+                {
+                 "height":32,
+                 "id":366,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1798,
+                 "y":1079
+                }, 
+                {
+                 "height":32,
+                 "id":367,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1798,
+                 "y":947.25
+                }, 
+                {
+                 "height":32,
+                 "id":368,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1798,
+                 "y":815.5
+                }, 
+                {
+                 "height":32,
+                 "id":369,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1798,
+                 "y":683.75
+                }, 
+                {
+                 "height":32,
+                 "id":370,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1798,
+                 "y":552
+                }, 
+                {
+                 "height":32,
+                 "id":371,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":175,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":372,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":267.3,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":373,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":359.6,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":374,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":451.9,
+                 "y":460.33
+                },
+            
+                {
+                 "height":32,
+                 "id":375,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":544.2,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":376,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":636.5,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":377,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":728.8,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":378,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":821.1,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":379,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":913.4,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":380,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1005.7,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":381,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1098,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":382,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1190.3,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":383,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1282.6,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":387,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1374.9,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":388,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1467.2,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":389,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1559.5,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":390,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1651.8,
+                 "y":460.33
+                }, 
+                {
+                 "height":32,
+                 "id":391,
+                 "name":"LaserShooter",
+                 "properties":[
+                        {
+                         "name":"CastDuration",
+                         "type":"float",
+                         "value":2
+                        }, 
+                        {
+                         "name":"ContinuousShooting",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Cooldown",
+                         "type":"float",
+                         "value":0
+                        }, 
+                        {
+                         "name":"Direction",
+                         "type":"int",
+                         "value":1
+                        }, 
+                        {
+                         "name":"ShootDuration",
+                         "type":"float",
+                         "value":1.5
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":32,
+                 "x":1744,
+                 "y":460.33
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2478,7 +3492,7 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":357,
+ "nextobjectid":392,
  "orientation":"orthogonal",
  "properties":[
         {

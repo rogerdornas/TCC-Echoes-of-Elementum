@@ -79,7 +79,7 @@ StoneGolem::StoneGolem(Game *game)
     mWidth = 110;
     mHeight = 110;
     mMoveSpeed = 300;
-    mHealthPoints = 800;
+    mHealthPoints = 1100;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 100;
@@ -264,10 +264,10 @@ void StoneGolem::Sleep(float deltaTime) {
     mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
 
     // Testa se spotted player
-    Vector2 dist = GetPosition() - GetGame()->GetPlayer()->GetPosition();
-    if (dist.Length() < mDistToSpotPlayer) {
-        mPlayerSpotted = true;
-    }
+    // Vector2 dist = GetPosition() - GetGame()->GetPlayer()->GetPosition();
+    // if (dist.Length() < mDistToSpotPlayer) {
+    //     mPlayerSpotted = true;
+    // }
 
     if (mPlayerSpotted) {
         mTargetHeight = GetPosition().y + mHeight * 0.4f;

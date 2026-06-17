@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="357">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="392">
  <editorsettings>
   <export target="Golem de Cristal.json" format="json"/>
  </editorsettings>
@@ -13,7 +13,7 @@
  </properties>
  <tileset firstgid="1" source="../../Sprites/BrownCave2/BrownCaveDecorations.tsx"/>
  <tileset firstgid="102" source="../../Sprites/BrownCavePlants2/BrownCavePlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea">
+ <objectgroup id="2" name="AmbientParticleArea" visible="0">
   <object id="249" x="0" y="0" width="1920" height="1536">
    <properties>
     <property name="ColorB" type="int" value="94"/>
@@ -23,7 +23,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="15" name="Camera">
   <object id="248" x="0" y="0" width="1920" height="1536">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
@@ -165,8 +165,8 @@
   </object>
   <object id="315" gid="35" x="1478.33" y="1208.33" width="364.222" height="150"/>
   <object id="350" gid="19" x="249.695" y="271.64" width="280.611" height="81.5524" rotation="90"/>
-  <object id="240" gid="58" x="43.697" y="531.576" width="493" height="380"/>
-  <object id="256" gid="1073741883" x="1080" y="547.59" width="268.835" height="272.282"/>
+  <object id="240" gid="58" x="43.697" y="607.576" width="493" height="380"/>
+  <object id="256" gid="1073741883" x="1080" y="623.59" width="268.835" height="272.282"/>
   <object id="335" gid="3221225533" x="851.026" y="802.874" width="91.5068" height="159.132"/>
   <object id="336" gid="1073741885" x="924.506" y="802.494" width="91.5068" height="159.132"/>
   <object id="337" gid="3221225533" x="891.85" y="796.334" width="91.5068" height="159.132"/>
@@ -188,16 +188,6 @@
   <object id="344" gid="72" x="826.554" y="687.994" width="76.8918" height="68.0909"/>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
-  <object id="257" gid="107" x="1239.33" y="1172.67" width="152" height="107">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="8"/>
-    <property name="NumFrames" type="int" value="15"/>
-    <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
-    <property name="WindBalance" type="bool" value="false"/>
-   </properties>
-  </object>
   <object id="162" gid="16" x="721.333" y="1200" width="552.444" height="58.6667"/>
   <object id="222" gid="101" x="1814" y="1408" width="106" height="1152"/>
   <object id="225" gid="23" x="1730.33" y="1281.33" width="114.5" height="181.5"/>
@@ -205,16 +195,6 @@
   <object id="119" gid="25" x="1664" y="1280" width="184.5" height="117.5"/>
   <object id="260" gid="16" x="-328.222" y="1201.67" width="552.444" height="58.6667"/>
   <object id="160" gid="16" x="209.333" y="1200" width="552.444" height="58.6667"/>
-  <object id="252" gid="2147483750" x="645.333" y="1184" width="73" height="95">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="0"/>
-    <property name="NumFrames" type="int" value="15"/>
-    <property name="Path" value="Sprites/BrownCavePlants2/Plant01/Plant01"/>
-    <property name="WindBalance" type="bool" value="true"/>
-   </properties>
-  </object>
   <object id="113" gid="101" x="0" y="1265.09" width="103.394" height="1009.09"/>
   <object id="53" gid="25" x="128" y="1280" width="184.5" height="117.5"/>
   <object id="54" gid="25" x="256" y="1280" width="184.5" height="117.5"/>
@@ -230,25 +210,25 @@
   <object id="71" gid="22" x="5" y="1152" width="114.5" height="181"/>
   <object id="72" gid="22" x="5" y="1024" width="114.5" height="181"/>
   <object id="74" gid="22" x="5" y="899" width="114.5" height="181"/>
-  <object id="93" gid="24" x="256" y="384" width="187.5" height="120"/>
-  <object id="94" gid="24" x="384" y="384" width="187.5" height="120"/>
-  <object id="95" gid="24" x="512" y="384" width="187.5" height="120"/>
-  <object id="96" gid="24" x="640" y="384" width="187.5" height="120"/>
-  <object id="97" gid="24" x="768" y="384" width="187.5" height="120"/>
-  <object id="98" gid="24" x="896" y="384" width="187.5" height="120"/>
-  <object id="99" gid="24" x="1024" y="384" width="187.5" height="120"/>
-  <object id="100" gid="24" x="1152" y="384" width="187.5" height="120"/>
-  <object id="101" gid="24" x="1280" y="384" width="187.5" height="120"/>
-  <object id="102" gid="24" x="1408" y="384" width="187.5" height="120"/>
+  <object id="93" gid="24" x="256" y="460" width="187.5" height="120"/>
+  <object id="94" gid="24" x="384" y="460" width="187.5" height="120"/>
+  <object id="95" gid="24" x="512" y="460" width="187.5" height="120"/>
+  <object id="96" gid="24" x="640" y="460" width="187.5" height="120"/>
+  <object id="97" gid="24" x="768" y="460" width="187.5" height="120"/>
+  <object id="98" gid="24" x="896" y="460" width="187.5" height="120"/>
+  <object id="99" gid="24" x="1024" y="460" width="187.5" height="120"/>
+  <object id="100" gid="24" x="1152" y="460" width="187.5" height="120"/>
+  <object id="101" gid="24" x="1280" y="460" width="187.5" height="120"/>
+  <object id="102" gid="24" x="1408" y="460" width="187.5" height="120"/>
   <object id="103" gid="101" x="0" y="1536" width="1920" height="280"/>
   <object id="118" gid="25" x="1536" y="1280" width="184.5" height="117.5"/>
-  <object id="136" gid="24" x="1664" y="384" width="187.5" height="120"/>
-  <object id="135" gid="24" x="1536" y="384" width="187.5" height="120"/>
-  <object id="148" gid="101" x="0" y="279.33" width="1920" height="279.333"/>
+  <object id="136" gid="24" x="1664" y="460" width="187.5" height="120"/>
+  <object id="135" gid="24" x="1536" y="460" width="187.5" height="120"/>
+  <object id="148" gid="101" x="0" y="355.33" width="1920" height="355.33"/>
   <object id="153" gid="101" x="98" y="1272" width="64" height="64"/>
   <object id="207" gid="22" x="5" y="771" width="114.5" height="181"/>
   <object id="208" gid="22" x="5" y="643" width="114.5" height="181"/>
-  <object id="210" gid="24" x="128" y="384" width="187.5" height="120"/>
+  <object id="210" gid="24" x="128" y="460" width="187.5" height="120"/>
   <object id="212" gid="22" x="5" y="515" width="114.5" height="181"/>
   <object id="214" gid="23" x="1800" y="1152" width="114.5" height="181.5"/>
   <object id="217" gid="23" x="1800" y="1024" width="114.5" height="181.5"/>
@@ -259,20 +239,9 @@
   <object id="227" gid="48" x="1786.89" y="1327.29" width="262.038" height="168.727" rotation="318.015"/>
   <object id="38" gid="25" x="88" y="1280" width="184.5" height="117.5"/>
   <object id="259" gid="22" x="5" y="1295.5" width="114.5" height="181"/>
-  <object id="271" gid="24" x="58.25" y="384" width="187.5" height="120"/>
-  <object id="261" gid="22" x="5" y="379.5" width="114.5" height="181"/>
-  <object id="301" gid="103" x="318.81" y="1164.33" width="109.381" height="95.7083">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="7"/>
-    <property name="NumFrames" type="int" value="15"/>
-    <property name="Path" value="Sprites/BrownCavePlants2/Plant02/Plant02"/>
-    <property name="WindBalance" type="bool" value="false"/>
-   </properties>
-  </object>
+  <object id="271" gid="24" x="58.25" y="460" width="187.5" height="120"/>
   <object id="329" gid="2147483696" x="-87.5068" y="1193.52" width="262.038" height="168.727" rotation="41.3005"/>
-  <object id="330" gid="3221225520" x="-9.54116" y="437.495" width="262.038" height="168.727" rotation="338.341"/>
+  <object id="330" gid="3221225520" x="-9.54116" y="513.495" width="262.038" height="168.727" rotation="338.341"/>
  </objectgroup>
  <layer id="1" name="Camada de Blocos 1" width="15" height="12">
   <data encoding="csv">
@@ -307,11 +276,43 @@
 </data>
  </layer>
  <objectgroup draworder="index" id="24" name="DecorationsForeground">
-  <object id="306" gid="55" x="759.444" y="250.135" width="309.944" height="160.731" rotation="180"/>
-  <object id="305" gid="55" x="1045" y="184" width="443" height="229.731" rotation="180"/>
-  <object id="278" gid="3221225520" x="1115.05" y="389.22" width="182.774" height="117.688"/>
+  <object id="306" gid="55" x="759.444" y="306.135" width="309.944" height="160.731" rotation="180"/>
+  <object id="305" gid="55" x="1045" y="237.333" width="443" height="229.731" rotation="180"/>
+  <object id="278" gid="3221225520" x="1115.05" y="457.22" width="182.774" height="117.688"/>
+  <object id="257" gid="107" x="1237.33" y="1174.67" width="152" height="107">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="385" gid="63" x="1242" y="1285" width="114.95" height="135"/>
   <object id="280" gid="22" x="1374.42" y="1325.17" width="114.5" height="181" rotation="270"/>
-  <object id="307" gid="3221225520" x="1210.61" y="354.156" width="182.774" height="117.688"/>
+  <object id="307" gid="3221225520" x="1210.61" y="430.156" width="182.774" height="117.688"/>
+  <object id="252" gid="2147483750" x="645.333" y="1183" width="73" height="95">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="0"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant01/Plant01"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="384" gid="67" x="612" y="1278" width="113.487" height="131"/>
+  <object id="301" gid="103" x="318.81" y="1164.33" width="109.381" height="95.7083">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="7"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant02/Plant02"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
  </objectgroup>
  <objectgroup draworder="index" id="7" name="Foreground1">
   <properties>
@@ -333,8 +334,8 @@
   <object id="283" gid="22" x="1494.09" y="1322.06" width="88.1961" height="139.419" rotation="270"/>
   <object id="223" gid="57" x="1546.68" y="1343.88" width="373.475" height="205.615"/>
   <object id="236" gid="2147483739" x="27.3333" y="1348.42" width="265.762" height="257.749"/>
-  <object id="241" gid="5" x="1972.18" y="312.409" width="200.224" height="165.944" rotation="223.348"/>
-  <object id="324" gid="57" x="253.263" y="1391.19" width="398.904" height="219.615"/>
+  <object id="241" gid="5" x="1972.18" y="388.409" width="200.224" height="165.944" rotation="223.348"/>
+  <object id="324" gid="57" x="185.263" y="1358.19" width="398.904" height="219.615"/>
   <object id="325" gid="57" x="579.263" y="1385.19" width="373.475" height="205.615"/>
   <object id="328" gid="51" x="871" y="1325" width="179.73" height="150"/>
   <object id="326" gid="57" x="865.263" y="1405.19" width="373.475" height="205.615"/>
@@ -355,11 +356,11 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="11" name="Grounds">
   <object id="117" x="112" y="1154" width="1693.15" height="380"/>
   <object id="195" x="0" y="-2.60606" width="111.334" height="1538.61"/>
   <object id="200" x="1806.81" y="0.966364" width="113.667" height="1532"/>
-  <object id="201" x="112.258" y="0.67" width="1694.11" height="372"/>
+  <object id="201" x="112.258" y="0.67" width="1694.11" height="448"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
  <objectgroup id="13" name="Player" visible="0">
@@ -369,13 +370,258 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
-  <object id="286" name="Golem" x="1095.62" y="1136.62" width="32" height="32">
+ <objectgroup id="14" name="Enemies">
+  <object id="286" name="StoneGolem" x="1093.62" y="998.62" width="32" height="32">
    <properties>
+    <property name="LeftLaserShooters" value="361,362,363,364,365"/>
     <property name="MaxPosX" type="float" value="1792"/>
     <property name="MaxPosY" type="float" value="1152"/>
     <property name="MinPosX" type="float" value="128"/>
     <property name="MinPosY" type="float" value="384"/>
+    <property name="RightLaserShooters" value="366,367,368,369,370"/>
+    <property name="TopLaserShooters" value="371,372,373,374,375,376,377,378,379,380,381,382,383,387,388,389,390,391"/>
+   </properties>
+  </object>
+  <object id="361" name="LaserShooter" x="118" y="1079" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="3"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="362" name="LaserShooter" x="118" y="947.25" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="3"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="363" name="LaserShooter" x="118" y="815.5" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="3"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="364" name="LaserShooter" x="118" y="683.75" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="3"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="365" name="LaserShooter" x="118" y="552" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="3"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="366" name="LaserShooter" x="1798" y="1079" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="2"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="367" name="LaserShooter" x="1798" y="947.25" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="2"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="368" name="LaserShooter" x="1798" y="815.5" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="2"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="369" name="LaserShooter" x="1798" y="683.75" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="2"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="370" name="LaserShooter" x="1798" y="552" width="32" height="32">
+   <properties>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="2"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="371" name="LaserShooter" x="175" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="372" name="LaserShooter" x="267.3" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="373" name="LaserShooter" x="359.6" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="374" name="LaserShooter" x="451.9" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="375" name="LaserShooter" x="544.2" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="376" name="LaserShooter" x="636.5" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="377" name="LaserShooter" x="728.8" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="378" name="LaserShooter" x="821.1" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="379" name="LaserShooter" x="913.4" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="380" name="LaserShooter" x="1005.7" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="381" name="LaserShooter" x="1098" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="382" name="LaserShooter" x="1190.3" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="383" name="LaserShooter" x="1282.6" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="387" name="LaserShooter" x="1374.9" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="388" name="LaserShooter" x="1467.2" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="389" name="LaserShooter" x="1559.5" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="390" name="LaserShooter" x="1651.8" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
+   </properties>
+  </object>
+  <object id="391" name="LaserShooter" x="1744" y="460.33" width="32" height="32">
+   <properties>
+    <property name="CastDuration" type="float" value="2"/>
+    <property name="ContinuousShooting" type="bool" value="false"/>
+    <property name="Cooldown" type="float" value="0"/>
+    <property name="Direction" type="int" value="1"/>
+    <property name="ShootDuration" type="float" value="1.5"/>
    </properties>
   </object>
  </objectgroup>
