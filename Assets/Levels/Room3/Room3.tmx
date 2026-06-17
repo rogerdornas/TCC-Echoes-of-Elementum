@@ -93,13 +93,6 @@
     <property name="Target" value="Game"/>
    </properties>
   </object>
-  <object id="42" x="1792" y="256" width="640" height="284">
-   <properties>
-    <property name="Event" value="ShowTutorial"/>
-    <property name="Target" value="HUD"/>
-    <property name="TutorialText" value="PRESSIONE &lt;Map&gt; PARA ABRIR O MAPA"/>
-   </properties>
-  </object>
   <object id="144" x="0" y="896" width="48" height="384">
    <properties>
     <property name="Destroy" type="bool" value="true"/>

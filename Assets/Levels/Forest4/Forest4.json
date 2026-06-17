@@ -1465,6 +1465,44 @@
                  "y":1317.57
                 }, 
                 {
+                 "gid":103,
+                 "height":47.3343,
+                 "id":279,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Animated",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"Destructible",
+                         "type":"bool",
+                         "value":true
+                        }, 
+                        {
+                         "name":"FPS",
+                         "type":"float",
+                         "value":9
+                        }, 
+                        {
+                         "name":"NumFrames",
+                         "type":"int",
+                         "value":18
+                        }, 
+                        {
+                         "name":"Path",
+                         "type":"string",
+                         "value":"Sprites\/MossyPlants2\/Plant03\/Plant03"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":47.3343,
+                 "x":6598.53,
+                 "y":1208.39
+                }, 
+                {
                  "gid":2147483703,
                  "height":504.881,
                  "id":276,
@@ -1475,7 +1513,8 @@
                  "width":500.855,
                  "x":6313,
                  "y":1332.8
-                }, 
+                },
+            
                 {
                  "gid":112,
                  "height":144.37,
@@ -1513,8 +1552,7 @@
                  "width":144.37,
                  "x":6136.29,
                  "y":1184.11
-                },
-            
+                }, 
                 {
                  "gid":2147483702,
                  "height":228.195,
@@ -1538,44 +1576,6 @@
                  "width":96.9621,
                  "x":6428.65,
                  "y":1314.35
-                }, 
-                {
-                 "gid":103,
-                 "height":47.3343,
-                 "id":279,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":9
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":18
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants2\/Plant03\/Plant03"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":47.3343,
-                 "x":6598.53,
-                 "y":1208.39
                 }, 
                 {
                  "gid":77,

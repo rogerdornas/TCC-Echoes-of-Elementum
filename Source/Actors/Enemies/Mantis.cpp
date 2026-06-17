@@ -35,7 +35,7 @@ Mantis::Mantis(Game *game)
     mMoveSpeed = 250;
     mHealthPoints = 50;
     mMaxHealthPoints = mHealthPoints;
-    mContactDamage = 25;
+    mContactDamage = 15;
     mMoneyDrop = 10;
     mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.1f;

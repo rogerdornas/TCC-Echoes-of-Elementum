@@ -28,6 +28,7 @@ private:
     float mHeight;
     UIScreen* mSkillMessage;
     float mNoCollisionTimer;
+    std::string mWorldStateChange;
 
     void SetPlayerSkill();
 

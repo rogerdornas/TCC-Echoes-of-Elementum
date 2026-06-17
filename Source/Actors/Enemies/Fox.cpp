@@ -75,6 +75,10 @@ Fox::Fox(Game* game)
     mFreezeMax = 1000;
     mFrozenDecayRate = mFreezeMax / 3.0f;
 
+    SetRotation(Math::Pi);
+    SetTransformRotation(0.0f);
+    SetScale(Vector2(-1,1));
+
     SetSize(mWidth, mHeight);
 
     std::string foxAssets = "../Assets/Sprites/Raposa/";

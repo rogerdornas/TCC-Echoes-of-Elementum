@@ -56,9 +56,9 @@ DragonFly::DragonFly(Game *game)
     mWidth = 130;
     mHeight = 40;
     mMoveSpeed = 1300;
-    mHealthPoints = 65;
+    mHealthPoints = 50;
     mMaxHealthPoints = mHealthPoints;
-    mContactDamage = 20;
+    mContactDamage = 10;
     mMoneyDrop = 30;
     mKnockBackSpeed = 700.0f;
     mKnockBackDuration = 0.15f;
@@ -171,7 +171,7 @@ void DragonFly::ResolveGroundCollision() {
                     collisionNormal = mColliderComponent->ResolveCollision(*g->GetComponent<ColliderComponent>());
                     if (mDragonFlyState != State::Attack && mDragonFlyState != State::FlyingAround) {
                         if (collisionNormal == Vector2::NegUnitX && mDragonFlyState != State::Stum) {
-                            if (GetRotation() > Math::ToRadians(330) || GetRotation() < Math::ToRadians(30)) {
+                            if (GetRotation() > Math::ToRadians(320) || GetRotation() < Math::ToRadians(40)) {
                                 // if (mDrawAnimatedComponent) {
                                 //     mDrawAnimatedComponent->ResetAnimationTimer();
                                 // }
@@ -179,7 +179,7 @@ void DragonFly::ResolveGroundCollision() {
                             }
                         }
                         if (collisionNormal == Vector2::UnitX && mDragonFlyState != State::Stum) {
-                            if (GetRotation() > Math::ToRadians(150) && GetRotation() < Math::ToRadians(210)) {
+                            if (GetRotation() > Math::ToRadians(140) && GetRotation() < Math::ToRadians(220)) {
                                 // if (mDrawAnimatedComponent) {
                                 //     mDrawAnimatedComponent->ResetAnimationTimer();
                                 // }

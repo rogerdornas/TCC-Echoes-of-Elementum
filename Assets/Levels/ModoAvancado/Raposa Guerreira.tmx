@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="18" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="142">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="18" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="142">
  <editorsettings>
   <export target="Raposa Guerreira.json" format="json"/>
  </editorsettings>
@@ -16,67 +16,18 @@
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
  <objectgroup id="15" name="Camera" visible="0">
-  <object id="10" x="256" y="0" width="1792" height="1536">
-   <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="3264"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
-    <property name="LimitMinCameraPositionX" type="float" value="1344"/>
-    <property name="LimitMinCameraPositionY" type="float" value="200"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
-  <object id="16" x="-1152" y="0" width="1355.76" height="1536">
+  <object id="10" x="0" y="0" width="2304" height="1536">
    <properties>
     <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="4224"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="2112"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
-    <property name="LimitMinCameraPositionX" type="float" value="128"/>
-    <property name="LimitMinCameraPositionY" type="float" value="200"/>
-    <property name="Target" value="Camera"/>
-   </properties>
-  </object>
-  <object id="21" x="2106.3" y="0" width="965.697" height="1536">
-   <properties>
-    <property name="Event" value="FollowPlayerLimited"/>
-    <property name="LimitMaxCameraPositionX" type="float" value="4224"/>
-    <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
-    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionX" type="float" value="192"/>
     <property name="LimitMinCameraPositionY" type="float" value="200"/>
     <property name="Target" value="Camera"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" id="10" name="Triggers" visible="0">
-  <object id="5" name="Boss Battle" x="256" y="256" width="1792" height="768">
-   <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
-    <property name="Event" value="SetIsDecreasingAfterGettingSkill"/>
-    <property name="Grounds" value="3,4"/>
-    <property name="SkillName" value="Dash"/>
-    <property name="Target" value="DynamicGround"/>
-   </properties>
-  </object>
-  <object id="7" x="640" y="256" width="1280" height="768">
-   <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Enemies" value="9"/>
-    <property name="Event" value="SpotPlayer"/>
-    <property name="Target" value="Enemy"/>
-   </properties>
-  </object>
-  <object id="8" name="Close Wall" x="640" y="256" width="512" height="768">
-   <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
-    <property name="Destroy" type="bool" value="true"/>
-    <property name="Event" value="SetIsGrowing"/>
-    <property name="Grounds" value="3,4"/>
-    <property name="Target" value="DynamicGround"/>
-   </properties>
-  </object>
- </objectgroup>
+ <objectgroup draworder="index" id="10" name="Triggers" visible="0"/>
  <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
@@ -275,7 +226,7 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds" visible="0">
+ <objectgroup id="11" name="Grounds">
   <object id="1" x="256" y="1024" width="1792" height="512"/>
   <object id="2" x="256" y="0" width="1792" height="256"/>
   <object id="3" x="0" y="0" width="256" height="1536">
@@ -302,25 +253,17 @@
   </object>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
-  <object id="141" name="Player" x="650.203" y="1013.74" width="32" height="32">
+ <objectgroup id="13" name="Player">
+  <object id="141" name="Player" x="650" y="1014" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
-  <object id="9" name="Frogger" x="1255.78" y="999.859" width="37.766" height="38.766">
-   <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
-    <property name="MaxPosX" type="float" value="3200"/>
-    <property name="MaxPosY" type="float" value="1024"/>
-    <property name="MinPosX" type="float" value="1408"/>
-    <property name="MinPosY" type="float" value="256"/>
-   </properties>
-  </object>
+ <objectgroup id="14" name="Enemies">
+  <object id="9" name="Fox" x="1255.78" y="999.859" width="37.766" height="38.766"/>
  </objectgroup>
- <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
-  <object id="18" x="-1024" y="200" width="4096" height="1080"/>
+ <objectgroup id="22" name="CameraBounds" visible="0">
+  <object id="18" x="0" y="0" width="2304" height="1536"/>
  </objectgroup>
 </map>

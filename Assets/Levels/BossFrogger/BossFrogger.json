@@ -26,7 +26,7 @@
                         {
                          "name":"Condition",
                          "type":"string",
-                         "value":"!FroggerDefeated"
+                         "value":"!PlayerHasDash"
                         }, 
                         {
                          "name":"Event",
@@ -151,7 +151,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -168,7 +168,7 @@
                         {
                          "name":"Condition",
                          "type":"string",
-                         "value":"!FroggerDefeated"
+                         "value":"!PlayerHasDash"
                         }, 
                         {
                          "name":"Event",
@@ -205,7 +205,7 @@
                         {
                          "name":"Condition",
                          "type":"string",
-                         "value":"!FroggerDefeated"
+                         "value":"!PlayerHasDash"
                         }, 
                         {
                          "name":"Destroy",
@@ -242,7 +242,7 @@
                         {
                          "name":"Condition",
                          "type":"string",
-                         "value":"!FroggerDefeated"
+                         "value":"!PlayerHasDash"
                         }, 
                         {
                          "name":"Destroy",
@@ -295,8 +295,8 @@
                  "type":"",
                  "visible":true,
                  "width":384,
-                 "x":380.333,
-                 "y":871.667
+                 "x":701.333,
+                 "y":880.667
                 }, 
                 {
                  "height":128,
@@ -1748,8 +1748,8 @@
                  "type":"",
                  "visible":true,
                  "width":168.504,
-                 "x":1005.62,
-                 "y":1167.78
+                 "x":358.953333333333,
+                 "y":1193.11333333333
                 }, 
                 {
                  "gid":1073741899,
@@ -2103,12 +2103,12 @@
                  "type":"",
                  "visible":true,
                  "width":416,
-                 "x":366.333,
-                 "y":850.667
+                 "x":687.333,
+                 "y":864
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2325,7 +2325,7 @@
                         {
                          "name":"Condition",
                          "type":"string",
-                         "value":"!FroggerDefeated"
+                         "value":"!PlayerHasDash"
                         }, 
                         {
                          "name":"MaxPosX",
@@ -2356,7 +2356,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

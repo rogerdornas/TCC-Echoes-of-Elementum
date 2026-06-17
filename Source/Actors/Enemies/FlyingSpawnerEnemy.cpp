@@ -55,7 +55,7 @@ FlyingSpawnerEnemy::FlyingSpawnerEnemy(Game *game)
     mWidth = 75;
     mHeight = 96;
     mMoveSpeed = 400;
-    mHealthPoints = 75;
+    mHealthPoints = 50;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 14;

@@ -297,6 +297,15 @@
     <property name="Path" value="Sprites/MossyPlants2/Plant10/Plant10"/>
    </properties>
   </object>
+  <object id="279" gid="103" x="6598.53" y="1208.39" width="47.3343" height="47.3343">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="true"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
+   </properties>
+  </object>
   <object id="276" gid="2147483703" x="6313" y="1332.8" width="500.855" height="504.881"/>
   <object id="282" gid="112" x="6136.29" y="1184.11" width="144.37" height="144.37" rotation="13.4714">
    <properties>
@@ -309,15 +318,6 @@
   </object>
   <object id="274" gid="2147483702" x="6169.5" y="1309.5" width="413.735" height="228.195"/>
   <object id="191" gid="71" x="6428.65" y="1314.35" width="96.9621" height="119.797"/>
-  <object id="279" gid="103" x="6598.53" y="1208.39" width="47.3343" height="47.3343">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="9"/>
-    <property name="NumFrames" type="int" value="18"/>
-    <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
-   </properties>
-  </object>
   <object id="301" gid="77" x="5371.51" y="1300.42" width="385.177" height="139.162"/>
   <object id="302" gid="94" x="568.418" y="1067.69" width="536.287" height="308.395"/>
   <object id="303" gid="77" x="919.414" y="1061.88" width="330.523" height="126.91"/>

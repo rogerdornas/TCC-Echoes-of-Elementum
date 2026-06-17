@@ -613,7 +613,7 @@ void Frogger::ManageCombatBox() {
         }
     }
     else if (mFroggerState == State::Spit) {
-        if (mSpitTimer > 0.615f * mSpitDuration && mSpitTimer < 0.73f * mSpitDuration) {
+        if (mSpitTimer > 0.625f * mSpitDuration && mSpitTimer < 0.73f * mSpitDuration) {
             mCombatBoxComponent->SetBoxActive("spit", true);
             mCombatBoxComponent->SetBoxHalfSize("spit", Vector2(mWidth * 1.0f, mHeight * 0.18f));
             mCombatBoxComponent->SetBoxOffset("spit", Vector2(mWidth * 1.7f, mHeight * 0.15f) * Vector2(GetForward().x, 1));

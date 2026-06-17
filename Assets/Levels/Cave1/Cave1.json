@@ -279,7 +279,7 @@
                         {
                          "name":"Scene",
                          "type":"string",
-                         "value":"Forest7\/Forest7"
+                         "value":"MainMenu"
                         }, 
                         {
                          "name":"Target",
@@ -292,10 +292,57 @@
                  "width":47.625,
                  "x":370.667,
                  "y":3480.26
+                }, 
+                {
+                 "height":346,
+                 "id":648,
+                 "name":"Light",
+                 "properties":[
+                        {
+                         "name":"AmbientColorB",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"AmbientColorG",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"AmbientColorR",
+                         "type":"float",
+                         "value":1
+                        }, 
+                        {
+                         "name":"AmbientIntensity",
+                         "type":"float",
+                         "value":0.75
+                        }, 
+                        {
+                         "name":"Destroy",
+                         "type":"bool",
+                         "value":false
+                        }, 
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ChangeAmbientLight"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"Renderer"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":596,
+                 "x":1920,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -998,7 +1045,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -1041,7 +1088,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -1084,7 +1131,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -1127,7 +1174,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -1362,7 +1409,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -4166,7 +4213,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -4539,13 +4586,13 @@
          "y":0
         }],
  "nextlayerid":25,
- "nextobjectid":648,
+ "nextobjectid":649,
  "orientation":"orthogonal",
  "properties":[
         {
          "name":"BackgroundLayers",
          "type":"string",
-         "value":"fundo4_CinzaPreto1.png"
+         "value":"FundoCinzaKaren.png"
         }, 
         {
          "name":"GroundBehindPlayer",

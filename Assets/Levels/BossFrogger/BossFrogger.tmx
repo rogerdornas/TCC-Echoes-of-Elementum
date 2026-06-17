@@ -15,10 +15,10 @@
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea"/>
- <objectgroup id="15" name="Camera" visible="0">
+ <objectgroup id="15" name="Camera">
   <object id="10" x="1408" y="0" width="1792" height="1536">
    <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Condition" value="!PlayerHasDash"/>
     <property name="Event" value="FollowPlayerLimited"/>
     <property name="LimitMaxCameraPositionX" type="float" value="3264"/>
     <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
@@ -51,7 +51,7 @@
  <objectgroup draworder="index" id="10" name="Triggers" visible="0">
   <object id="5" name="Boss Battle" x="1408" y="256" width="1792" height="768">
    <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Condition" value="!PlayerHasDash"/>
     <property name="Event" value="SetIsDecreasingAfterGettingSkill"/>
     <property name="Grounds" value="3,4"/>
     <property name="SkillName" value="Dash"/>
@@ -60,7 +60,7 @@
   </object>
   <object id="7" x="1792" y="256" width="1280" height="768">
    <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Condition" value="!PlayerHasDash"/>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Enemies" value="9"/>
     <property name="Event" value="SpotPlayer"/>
@@ -69,14 +69,14 @@
   </object>
   <object id="8" name="Close Wall" x="1792" y="256" width="512" height="768">
    <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Condition" value="!PlayerHasDash"/>
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="SetIsGrowing"/>
     <property name="Grounds" value="3,4"/>
     <property name="Target" value="DynamicGround"/>
    </properties>
   </object>
-  <object id="11" x="380.333" y="871.667" width="384" height="156">
+  <object id="11" x="701.333" y="880.667" width="384" height="156">
    <properties>
     <property name="Event" value="ShowTutorial"/>
     <property name="Target" value="HUD"/>
@@ -414,7 +414,7 @@
   <object id="83" gid="75" x="1461" y="1303.13" width="632.29" height="284.478"/>
   <object id="86" gid="1073741890" x="263.776" y="756.52" width="218.836" height="605.066"/>
   <object id="87" gid="1073741890" x="175.57" y="595.99" width="153.503" height="424.424"/>
-  <object id="96" gid="100" x="1005.62" y="1167.78" width="168.504" height="1034.65" rotation="351.369"/>
+  <object id="96" gid="100" x="358.953" y="1193.11" width="168.504" height="1034.65" rotation="351.369"/>
   <object id="101" gid="1073741899" x="3298.5" y="292.37" width="390.885" height="175.865"/>
   <object id="64" gid="65" x="3027.54" y="156.805" width="156.333" height="478.979" rotation="180">
    <properties>
@@ -465,8 +465,8 @@
   </object>
   <object id="13" x="3840" y="0" width="512" height="896"/>
  </objectgroup>
- <objectgroup id="12" name="Checkpoint" visible="0">
-  <object id="12" name="Checkpoint" x="366.333" y="850.667" width="416" height="192"/>
+ <objectgroup id="12" name="Checkpoint">
+  <object id="12" name="Checkpoint" x="687.333" y="864" width="416" height="192"/>
  </objectgroup>
  <objectgroup id="13" name="Player" visible="0">
   <object id="40" name="Player" x="80" y="1005" width="32" height="32">
@@ -519,10 +519,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
+ <objectgroup id="14" name="Enemies">
   <object id="9" name="Frogger" x="2407.78" y="999.859" width="37.766" height="38.766">
    <properties>
-    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Condition" value="!PlayerHasDash"/>
     <property name="MaxPosX" type="float" value="3200"/>
     <property name="MaxPosY" type="float" value="1024"/>
     <property name="MinPosX" type="float" value="1408"/>

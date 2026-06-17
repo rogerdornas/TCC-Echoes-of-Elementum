@@ -3531,7 +3531,7 @@
          "name":"Levers",
          "objects":[
                 {
-                 "height":64,
+                 "height":100,
                  "id":32,
                  "name":"",
                  "properties":[
@@ -3568,12 +3568,12 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":64,
-                 "x":1138.67,
-                 "y":726.667
+                 "width":100,
+                 "x":1105.33666666667,
+                 "y":686.667
                 }, 
                 {
-                 "height":64,
+                 "height":100,
                  "id":36,
                  "name":"",
                  "properties":[
@@ -3610,13 +3610,13 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":64,
-                 "x":2743.67,
-                 "y":1363.66
+                 "width":100,
+                 "x":2744.67,
+                 "y":1328.66
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

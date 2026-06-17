@@ -24,11 +24,6 @@
                  "name":"",
                  "properties":[
                         {
-                         "name":"Condition",
-                         "type":"string",
-                         "value":"!FroggerDefeated"
-                        }, 
-                        {
                          "name":"Event",
                          "type":"string",
                          "value":"FollowPlayerLimited"
@@ -36,7 +31,7 @@
                         {
                          "name":"LimitMaxCameraPositionX",
                          "type":"float",
-                         "value":3264
+                         "value":2112
                         }, 
                         {
                          "name":"LimitMaxCameraPositionY",
@@ -46,7 +41,7 @@
                         {
                          "name":"LimitMinCameraPositionX",
                          "type":"float",
-                         "value":1344
+                         "value":192
                         }, 
                         {
                          "name":"LimitMinCameraPositionY",
@@ -61,92 +56,8 @@
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":1792,
-                 "x":256,
-                 "y":0
-                }, 
-                {
-                 "height":1536,
-                 "id":16,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"FollowPlayerLimited"
-                        }, 
-                        {
-                         "name":"LimitMaxCameraPositionX",
-                         "type":"float",
-                         "value":4224
-                        }, 
-                        {
-                         "name":"LimitMaxCameraPositionY",
-                         "type":"float",
-                         "value":1280
-                        }, 
-                        {
-                         "name":"LimitMinCameraPositionX",
-                         "type":"float",
-                         "value":128
-                        }, 
-                        {
-                         "name":"LimitMinCameraPositionY",
-                         "type":"float",
-                         "value":200
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Camera"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1355.76,
-                 "x":-1152,
-                 "y":0
-                }, 
-                {
-                 "height":1536,
-                 "id":21,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"FollowPlayerLimited"
-                        }, 
-                        {
-                         "name":"LimitMaxCameraPositionX",
-                         "type":"float",
-                         "value":4224
-                        }, 
-                        {
-                         "name":"LimitMaxCameraPositionY",
-                         "type":"float",
-                         "value":1280
-                        }, 
-                        {
-                         "name":"LimitMinCameraPositionX",
-                         "type":"float",
-                         "value":128
-                        }, 
-                        {
-                         "name":"LimitMinCameraPositionY",
-                         "type":"float",
-                         "value":200
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Camera"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":965.697,
-                 "x":2106.3,
+                 "width":2304,
+                 "x":0,
                  "y":0
                 }],
          "opacity":1,
@@ -159,118 +70,7 @@
          "draworder":"index",
          "id":10,
          "name":"Triggers",
-         "objects":[
-                {
-                 "height":768,
-                 "id":5,
-                 "name":"Boss Battle",
-                 "properties":[
-                        {
-                         "name":"Condition",
-                         "type":"string",
-                         "value":"!FroggerDefeated"
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"SetIsDecreasingAfterGettingSkill"
-                        }, 
-                        {
-                         "name":"Grounds",
-                         "type":"string",
-                         "value":"3,4"
-                        }, 
-                        {
-                         "name":"SkillName",
-                         "type":"string",
-                         "value":"Dash"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"DynamicGround"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1792,
-                 "x":256,
-                 "y":256
-                }, 
-                {
-                 "height":768,
-                 "id":7,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Condition",
-                         "type":"string",
-                         "value":"!FroggerDefeated"
-                        }, 
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Enemies",
-                         "type":"string",
-                         "value":"9"
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"SpotPlayer"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"Enemy"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":1280,
-                 "x":640,
-                 "y":256
-                }, 
-                {
-                 "height":768,
-                 "id":8,
-                 "name":"Close Wall",
-                 "properties":[
-                        {
-                         "name":"Condition",
-                         "type":"string",
-                         "value":"!FroggerDefeated"
-                        }, 
-                        {
-                         "name":"Destroy",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"SetIsGrowing"
-                        }, 
-                        {
-                         "name":"Grounds",
-                         "type":"string",
-                         "value":"3,4"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"DynamicGround"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":512,
-                 "x":640,
-                 "y":256
-                }],
+         "objects":[],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -1340,7 +1140,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1374,12 +1174,12 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":650.203,
-                 "y":1013.74
+                 "x":650,
+                 "y":1014
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -1391,33 +1191,7 @@
                 {
                  "height":38.766,
                  "id":9,
-                 "name":"Frogger",
-                 "properties":[
-                        {
-                         "name":"Condition",
-                         "type":"string",
-                         "value":"!FroggerDefeated"
-                        }, 
-                        {
-                         "name":"MaxPosX",
-                         "type":"float",
-                         "value":3200
-                        }, 
-                        {
-                         "name":"MaxPosY",
-                         "type":"float",
-                         "value":1024
-                        }, 
-                        {
-                         "name":"MinPosX",
-                         "type":"float",
-                         "value":1408
-                        }, 
-                        {
-                         "name":"MinPosY",
-                         "type":"float",
-                         "value":256
-                        }],
+                 "name":"Fox",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -1427,26 +1201,25 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
         {
          "draworder":"topdown",
          "id":22,
-         "locked":true,
          "name":"CameraBounds",
          "objects":[
                 {
-                 "height":1080,
+                 "height":1536,
                  "id":18,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":4096,
-                 "x":-1024,
-                 "y":200
+                 "width":2304,
+                 "x":0,
+                 "y":0
                 }],
          "opacity":1,
          "type":"objectgroup",

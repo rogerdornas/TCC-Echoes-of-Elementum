@@ -118,11 +118,11 @@ HUD::HUD(class Game* game, const std::string& fontName)
     mIconFont = mGame->LoadFont("../Assets/Fonts/Buttons.ttf");
 
     for (int i = 0; i < MAX_TUTORIAL_PARTS; i++) {
-        UIText* t = AddText("", Vector2::Zero, POINT_SIZE);
+        UIText* t = AddText("", Vector2::Zero, 34);
         t->SetIsVisible(false);
         mTutorialTexts.push_back(t);
 
-        UIText* iconTxt = new UIText("", mIconFont, POINT_SIZE + 10, 1024, Vector2::Zero, Color::White);
+        UIText* iconTxt = new UIText("", mIconFont, 34 + 10, 1024, Vector2::Zero, Color::White);
         iconTxt->SetIsVisible(false);
 
         mTexts.push_back(iconTxt);
@@ -450,7 +450,7 @@ void HUD::RebuildTutorialLayout() {
 
     // Calcula a posição inicial (X) e a altura (Y)
     float startX = (mGame->GetRenderer()->GetVirtualWidth() - totalWidth) / 2.0f;
-    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.95f;
+    float centerY = mGame->GetRenderer()->GetVirtualHeight() * 0.9f;
 
     float currentX = startX;
     for (auto* elem : layoutElements) {

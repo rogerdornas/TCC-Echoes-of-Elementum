@@ -56,6 +56,7 @@ void Skill::OnUpdate(float deltaTime) {
 
         if (mAABBComponent->Intersect(*player->GetComponent<ColliderComponent>())) {
             SetPlayerSkill();
+            mGame->SetWorldFlag(mWorldStateChange, true);
             new NewSkillMenu(mGame, "../Assets/Fonts/K2D-Bold.ttf", true, mSkill);
             SetState(ActorState::Destroy);
         }
@@ -69,21 +70,25 @@ void Skill::SetPlayerSkill() {
         case SkillType::Dash:
             player->GetSkillManager()->UnlockMechanic("dash");
             mSkill = SkillType::Dash;
+            mWorldStateChange = "PlayerHasDash";
             break;
 
         case SkillType::WallSlide:
             player->GetSkillManager()->UnlockMechanic("wall_slide");
             mSkill = SkillType::WallSlide;
+            mWorldStateChange = "PlayerHasWallSlide";
             break;
 
         case SkillType::DoubleJump:
             player->GetSkillManager()->UnlockMechanic("double_jump");
             mSkill = SkillType::DoubleJump;
+            mWorldStateChange = "PlayerHasDoubleJump";
             break;
 
         case SkillType::Hook:
             player->GetSkillManager()->UnlockMechanic("hook");
             mSkill = SkillType::Hook;
+            mWorldStateChange = "PlayerHasHook";
         break;
 
         case SkillType::TimeControl:

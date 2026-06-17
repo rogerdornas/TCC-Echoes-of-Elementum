@@ -336,33 +336,6 @@
                  "y":0
                 }, 
                 {
-                 "height":284,
-                 "id":42,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Event",
-                         "type":"string",
-                         "value":"ShowTutorial"
-                        }, 
-                        {
-                         "name":"Target",
-                         "type":"string",
-                         "value":"HUD"
-                        }, 
-                        {
-                         "name":"TutorialText",
-                         "type":"string",
-                         "value":"PRESSIONE <Map> PARA ABRIR O MAPA"
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":640,
-                 "x":1792,
-                 "y":256
-                }, 
-                {
                  "height":384,
                  "id":144,
                  "name":"",

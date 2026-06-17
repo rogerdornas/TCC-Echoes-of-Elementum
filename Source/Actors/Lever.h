@@ -16,7 +16,7 @@ public:
         Mirror
     };
 
-    Lever(class Game *game, float width = 64, float height = 64.0f, LeverType leverType = LeverType::Lever);
+    Lever(class Game *game, float width = 100.0f, float height = 100.0f, LeverType leverType = LeverType::Lever);
 
     void OnUpdate(float deltaTime) override;
 

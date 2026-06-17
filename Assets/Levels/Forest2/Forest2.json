@@ -255,10 +255,37 @@
                  "width":384,
                  "x":1280,
                  "y":0
+                }, 
+                {
+                 "height":640,
+                 "id":217,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"Event",
+                         "type":"string",
+                         "value":"ShowTutorial"
+                        }, 
+                        {
+                         "name":"Target",
+                         "type":"string",
+                         "value":"HUD"
+                        }, 
+                        {
+                         "name":"TutorialText",
+                         "type":"string",
+                         "value":"PRESSIONE <Map> PARA ABRIR O MAPA"
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2560,
+                 "x":256,
+                 "y":2304
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -2897,94 +2924,6 @@
                  "y":1931.68
                 }, 
                 {
-                 "gid":2147483750,
-                 "height":164.224,
-                 "id":109,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":18
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
-                        }],
-                 "rotation":42.4442,
-                 "type":"",
-                 "visible":true,
-                 "width":164.224,
-                 "x":1763.68,
-                 "y":982.82
-                }, 
-                {
-                 "gid":2147483750,
-                 "height":164.224,
-                 "id":110,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":6
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":18
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/MossyPlants2\/Plant02\/Plant02"
-                        }],
-                 "rotation":44.0398,
-                 "type":"",
-                 "visible":true,
-                 "width":164.224,
-                 "x":1797.98,
-                 "y":1026.47
-                }, 
-                {
-                 "gid":76,
-                 "height":371.243,
-                 "id":178,
-                 "name":"",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":527.49,
-                 "x":1394.25,
-                 "y":1266.46
-                }, 
-                {
                  "gid":75,
                  "height":269.232,
                  "id":179,
@@ -3643,7 +3582,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -3786,7 +3725,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":217,
+ "nextobjectid":218,
  "orientation":"orthogonal",
  "properties":[
         {

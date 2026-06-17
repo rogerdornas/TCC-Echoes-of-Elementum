@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="648">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="30" height="50" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="649">
  <editorsettings>
   <export target="Cave1.json" format="json"/>
  </editorsettings>
  <properties>
-  <property name="BackgroundLayers" value="fundo4_CinzaPreto1.png"/>
+  <property name="BackgroundLayers" value="FundoCinzaKaren.png"/>
   <property name="GroundBehindPlayer" type="bool" value="true"/>
   <property name="GroundParticleColor" type="color" value="#ff735951"/>
   <property name="Music" value="Greenpath.wav"/>
@@ -63,7 +63,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers" visible="0">
+ <objectgroup id="10" name="Triggers">
   <object id="245" x="2048" y="0" width="384" height="13">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -78,8 +78,19 @@
     <property name="Destroy" type="bool" value="true"/>
     <property name="Event" value="ChangeScene"/>
     <property name="PlayerStartPositionId" type="int" value="0"/>
-    <property name="Scene" value="Forest7/Forest7"/>
+    <property name="Scene" value="MainMenu"/>
     <property name="Target" value="Game"/>
+   </properties>
+  </object>
+  <object id="648" name="Light" x="1920" y="0" width="596" height="346">
+   <properties>
+    <property name="AmbientColorB" type="float" value="1"/>
+    <property name="AmbientColorG" type="float" value="1"/>
+    <property name="AmbientColorR" type="float" value="1"/>
+    <property name="AmbientIntensity" type="float" value="0.75"/>
+    <property name="Destroy" type="bool" value="false"/>
+    <property name="Event" value="ChangeAmbientLight"/>
+    <property name="Target" value="Renderer"/>
    </properties>
   </object>
  </objectgroup>
@@ -167,7 +178,7 @@
   <object id="476" gid="2147483750" x="2870.36" y="3165.24" width="73" height="95">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="0"/>
     <property name="NumFrames" type="int" value="15"/>
     <property name="Path" value="Sprites/BrownCavePlants2/Plant01/Plant01"/>
@@ -177,7 +188,7 @@
   <object id="467" gid="107" x="3165.02" y="3561.24" width="127.742" height="89.9236">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="8"/>
     <property name="NumFrames" type="int" value="15"/>
     <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
@@ -187,7 +198,7 @@
   <object id="523" gid="2147483751" x="2170.03" y="3564.21" width="129.473" height="113.289">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="7"/>
     <property name="NumFrames" type="int" value="15"/>
     <property name="Path" value="Sprites/BrownCavePlants2/Plant02/Plant02"/>
@@ -197,7 +208,7 @@
   <object id="575" gid="103" x="1088.54" y="3566.33" width="117.714" height="103">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="7"/>
     <property name="NumFrames" type="int" value="15"/>
     <property name="Path" value="Sprites/BrownCavePlants2/Plant02/Plant02"/>
@@ -223,7 +234,7 @@
   <object id="580" gid="107" x="419.718" y="3561.04" width="156.153" height="109.924">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="8"/>
     <property name="NumFrames" type="int" value="15"/>
     <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
@@ -575,7 +586,7 @@
   <object id="647" gid="107" x="2718.38" y="3541.7" width="184.564" height="129.924">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="8"/>
     <property name="NumFrames" type="int" value="15"/>
     <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
