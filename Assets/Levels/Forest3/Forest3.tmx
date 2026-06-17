@@ -47,7 +47,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="10" name="Triggers">
+ <objectgroup id="10" name="Triggers" visible="0">
   <object id="308" x="1536" y="1764" width="384" height="28">
    <properties>
     <property name="Destroy" type="bool" value="true"/>
@@ -770,7 +770,7 @@
   <object id="218" gid="54" x="6955.4" y="1750" width="1002.64" height="553"/>
   <object id="217" gid="77" x="5194.18" y="1721.67" width="1186.45" height="428.66"/>
   <object id="161" gid="74" x="4056.65" y="1601.04" width="365.516" height="294.337"/>
-  <object id="229" gid="62" x="6979.3" y="162.605" width="178" height="453.945" rotation="180">
+  <object id="229" gid="62" x="6981.97" y="110.605" width="178" height="453.945" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
     <property name="WindBalance" type="bool" value="true"/>

@@ -38,9 +38,19 @@ public:
     float GetHeight() override { return mHeight; }
 
 private:
+    enum class GrassEffectType {
+        Run,
+        Jump,
+        Land,
+        WallJump,
+        Dash
+    };
+
     void ResolveGroundCollision() override;
     void ResolvePlayerCollision();
     void ManageAnimations();
+
+    void StartGrassEffect(GrassEffectType type);
 
     std::vector<InputCommand> mInputCommands;
 
@@ -111,6 +121,11 @@ private:
     bool mBlink;
     float mBlinkDuration;
     float mBlinkTimer;
+
+    // Efeitos de grama ao correr
+    float mRunningGrassParticleIntervalDuration;
+    float mRunningGrassParticleIntervalTimer;
+    bool mIsGrassParticle;
 
     // Atributos para sounds
     float mRunningSoundIntervalDuration;

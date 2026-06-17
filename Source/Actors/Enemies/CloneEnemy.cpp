@@ -78,6 +78,10 @@ CloneEnemy::CloneEnemy(Game *game)
     ,mBlinkDuration(0.03f)
     ,mBlinkTimer(mBlinkDuration)
 
+    ,mRunningGrassParticleIntervalDuration(0.05f)
+    ,mRunningGrassParticleIntervalTimer(0.0f)
+    ,mIsGrassParticle(false)
+
     ,mRunningSoundIntervalDuration(0.3f)
     ,mRunningSoundIntervalTimer(0.0f)
     ,mWasOnGround(false)
@@ -104,16 +108,16 @@ CloneEnemy::CloneEnemy(Game *game)
                                                    "../Assets/Sprites/Esquilo5/Esquilo.json",
                                                    mWidth * 4.93f, mWidth * 4.93f * 1.11f, 1002);
 
-    std::vector idle = {27, 28, 29, 30};
+    std::vector idle = {32, 33, 34, 35};
     mDrawComponent->AddAnimation("idle", idle);
 
-    std::vector attackFront = {27, 2, 3};
+    std::vector attackFront = {32, 2, 3};
     mDrawComponent->AddAnimation("attackFront", attackFront);
 
-    std::vector attackUp = {27, 4, 5};
+    std::vector attackUp = {32, 4, 5};
     mDrawComponent->AddAnimation("attackUp", attackUp);
 
-    std::vector attackDown = {27, 0, 1};
+    std::vector attackDown = {32, 0, 1};
     mDrawComponent->AddAnimation("attackDown", attackDown);
 
     std::vector fireball = {12, 13};
@@ -128,32 +132,41 @@ CloneEnemy::CloneEnemy(Game *game)
     std::vector freezeUp = {18, 19};
     mDrawComponent->AddAnimation("freezeUp", freezeUp);
 
+    std::vector groundSlam = {20, 21, 22, 23, 24, 24, 24};
+    mDrawComponent->AddAnimation("groundSlam", groundSlam);
+
     std::vector dash = {6, 7, 7, 7, 8};
     mDrawComponent->AddAnimation("dash", dash);
 
-    std::vector run = {34, 35, 36, 37, 38, 39};
+    std::vector run = {46, 47, 48, 49, 50, 51};
     mDrawComponent->AddAnimation("run", run);
 
-    std::vector heal = {20, 21, 22, 23, 24, 24, 23, 22, 21, 20};
+    std::vector heal = {25, 26, 27, 28, 29, 29, 28, 27, 26, 25};
     mDrawComponent->AddAnimation("heal", heal);
 
-    std::vector wallSlide = {40};
+    std::vector wallSlide = {52};
     mDrawComponent->AddAnimation("wallSlide", wallSlide);
 
-    std::vector hurt = {25, 26};
+    std::vector hurt = {30, 31};
     mDrawComponent->AddAnimation("hurt", hurt);
 
-    std::vector die = {25, 9, 10, 11, 11, 11};
+    std::vector die = {30, 9, 10, 11, 11, 11};
     mDrawComponent->AddAnimation("die", die);
 
-    std::vector jumpUp = {31};
+    std::vector jumpUp = {36};
     mDrawComponent->AddAnimation("jumpUp", jumpUp);
 
-    std::vector jumpApex = {32};
+    std::vector jumpApex = {37};
     mDrawComponent->AddAnimation("jumpApex", jumpApex);
 
-    std::vector falling = {33};
+    std::vector falling = {38};
     mDrawComponent->AddAnimation("falling", falling);
+
+    std::vector lightningDash = {7, 39, 40, 40, 41, 41, 42, 42, 8};
+    mDrawComponent->AddAnimation("lightningDash", lightningDash);
+
+    std::vector pillar = {43, 44, 45, 45, 45, 45, 45, 45, 45, 45};
+    mDrawComponent->AddAnimation("pillar", pillar);
 
     mDrawComponent->SetAnimation("idle");
     mDrawComponent->SetAnimFPS(10.0f);
@@ -355,6 +368,7 @@ void CloneEnemy::OnProcessInput(const uint8_t* state, SDL_GameController &contro
             if (mCanDash) {
                 if (it->dash && !mIsFireAttacking) {
                     if (mDashComponent->UseDash(mIsOnGround) && mIsOnGround) {
+                        StartGrassEffect(GrassEffectType::Dash);
                         for (JumpEffect* j: mJumpEffects) {
                             if (j->GetState() == ActorState::Paused) {
                                 j->SetState(ActorState::Active);
@@ -378,6 +392,7 @@ void CloneEnemy::OnProcessInput(const uint8_t* state, SDL_GameController &contro
                         mJumpTimer = 0.0f;
                         mTimerOutOfGroundToJump = mMaxTimeOutOfGroundToJump;
                         mGame->GetAudio()->PlaySound("Jump/Jump1.wav");
+                        StartGrassEffect(GrassEffectType::Jump);
                         for (JumpEffect* j: mJumpEffects) {
                             if (j->GetState() == ActorState::Paused) {
                                 j->SetState(ActorState::Active);
@@ -615,6 +630,14 @@ void CloneEnemy::OnUpdate(float deltaTime) {
         }
     }
 
+    if (mIsRunning && mIsOnGround) {
+        mRunningGrassParticleIntervalTimer += deltaTime;
+        if (mRunningGrassParticleIntervalTimer >= mRunningGrassParticleIntervalDuration) {
+            mRunningGrassParticleIntervalTimer -= mRunningGrassParticleIntervalDuration;
+            StartGrassEffect(GrassEffectType::Run);
+        }
+    }
+
     mWasOnGround = mTimerOutOfGroundToJump < mMaxTimeOutOfGroundToJump;
 
     if (Died()) {
@@ -832,5 +855,279 @@ void CloneEnemy::ManageAnimations() {
     else {
         mDrawComponent->SetAnimation("idle");
         mDrawComponent->SetAnimFPS(6.0f);
+    }
+}
+
+void CloneEnemy::StartGrassEffect(GrassEffectType type) {
+        if (mIsGrassParticle) {
+        ParticleSystem* grass = nullptr;
+        switch (type) {
+            case GrassEffectType::Run:
+                grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+                  12.17f,
+                  5.5f,
+                  20.0f,
+                  0.9f,
+                  0.1f);
+
+                grass->SetEmitArea(Vector2(mWidth * 0.8f, mHeight * 0.8f));
+                grass->SetParticleGravity(true);
+                grass->SetParticleGravityForce(450.0f);
+                grass->SetEmitDirection(Vector2::NegUnitY);
+                grass->SetGroundCollision(false);
+                grass->SetConeSpread(20.0f);
+                grass->SetParticleSpeedScale(0.16f);
+                grass->SetParticleTextureFactor(1.0f);
+                grass->SetParticleAutoRotate(true);
+                grass->SetParticleRotationSpeed(1.0f);
+                grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+                grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
+                break;
+
+            case GrassEffectType::Jump:
+                grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+                  12.17f,
+                  5.5f,
+                  220.0f,
+                  0.9f,
+                  0.1f);
+
+                grass->SetEmitArea(Vector2(mWidth, mHeight));
+                grass->SetParticleGravity(true);
+                grass->SetParticleGravityForce(450.0f);
+                grass->SetEmitDirection(Vector2::NegUnitY);
+                grass->SetGroundCollision(false);
+                grass->SetConeSpread(180.0f);
+                grass->SetParticleSpeedScale(0.30f);
+                grass->SetParticleTextureFactor(1.0f);
+                grass->SetParticleAutoRotate(true);
+                grass->SetParticleRotationSpeed(1.0f);
+                grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+                grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+                break;
+
+            case GrassEffectType::Land:
+                grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+                  12.17f,
+                  5.5f,
+                  180.0f,
+                  0.9f,
+                  0.1f);
+
+                grass->SetEmitArea(Vector2(mWidth, mHeight));
+                grass->SetParticleGravity(true);
+                grass->SetParticleGravityForce(450.0f);
+                grass->SetEmitDirection(Vector2::NegUnitY);
+                grass->SetGroundCollision(false);
+                grass->SetConeSpread(360.0f);
+                grass->SetParticleSpeedScale(0.18f);
+                grass->SetParticleTextureFactor(1.0f);
+                grass->SetParticleAutoRotate(true);
+                grass->SetParticleRotationSpeed(1.0f);
+                grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+                grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+                break;
+
+            case GrassEffectType::WallJump:
+                grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+                  12.17f,
+                  5.5f,
+                  180.0f,
+                  0.6f,
+                  0.1f);
+
+                grass->SetEmitArea(Vector2(mWidth, mHeight));
+                grass->SetParticleGravity(true);
+                grass->SetParticleGravityForce(450.0f);
+                grass->SetGroundCollision(false);
+                grass->SetConeSpread(30.0f);
+                grass->SetParticleSpeedScale(0.38f);
+                grass->SetParticleTextureFactor(1.0f);
+                grass->SetParticleAutoRotate(true);
+                grass->SetParticleRotationSpeed(1.0f);
+                grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+                if (GetForward().x == 1) {
+                    grass->SetEmitDirection(Vector2(0.71f, -0.81f));
+                    grass->SetPosition(GetPosition() + Vector2(mWidth * -0.6f, mHeight * 0.3f));
+                }
+                else {
+                    grass->SetEmitDirection(Vector2(-0.71f, -0.81f));
+                    grass->SetPosition(GetPosition() + Vector2(mWidth * 0.6f, mHeight * 0.3f));
+                }
+                break;
+
+            case GrassEffectType::Dash:
+                grass = new ParticleSystem(mGame, Particle::ParticleType::Grass,
+                  12.17f,
+                  5.5f,
+                  380.0f,
+                  0.9f,
+                  0.1f);
+
+                grass->SetEmitArea(Vector2(mWidth * 4.0f, mHeight * 2.0f));
+                grass->SetParticleGravity(true);
+                grass->SetParticleGravityForce(450.0f);
+                grass->SetGroundCollision(false);
+                grass->SetConeSpread(30.0f);
+                grass->SetParticleSpeedScale(0.58f);
+                grass->SetParticleTextureFactor(1.0f);
+                grass->SetParticleAutoRotate(true);
+                grass->SetParticleRotationSpeed(1.0f);
+                grass->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+                if (GetForward().x == 1) {
+                    grass->SetEmitDirection(Vector2(-0.71f, -0.71f));
+                }
+                else {
+                    grass->SetEmitDirection(Vector2(0.71f, -0.71f));
+                }
+                grass->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+                break;
+        }
+    }
+    else {
+        ParticleSystem* dust = nullptr;
+        ParticleSystem* dustAux = nullptr;
+        switch (type) {
+            case GrassEffectType::Run:
+                dust = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                  40.0f * 1.2f,
+                  40.0f,
+                  80.0f,
+                  0.5f,
+                  0.1f);
+
+                dust->SetEmitArea(Vector2(mWidth * 0.3f, mHeight * 0.3f));
+                dust->SetParticleGravity(false);
+                dust->SetEmitDirection(Vector2::NegUnitY);
+                dust->SetGroundCollision(false);
+                dust->SetConeSpread(20.0f);
+                dust->SetParticleSpeedScale(0.07f);
+                dust->SetParticleTextureFactor(0.0f);
+                dust->SetParticleColor(SDL_Color{97, 80, 73, 40});
+                dust->SetParticleAutoRotate(true);
+                dust->SetParticleRotationSpeed(1.0f);
+                dust->SetParticleDrawOrder(98);
+                dust->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
+                break;
+
+            case GrassEffectType::Jump:
+                dustAux = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                30.0f * 1.2f,
+                30.0f,
+                200.0f,
+                0.5f,
+                0.1f);
+
+                dustAux->SetEmitArea(Vector2(mWidth, mHeight));
+                dustAux->SetParticleGravity(false);
+                dustAux->SetEmitDirection(Vector2::NegUnitY);
+                dustAux->SetGroundCollision(false);
+                dustAux->SetConeSpread(180.0f);
+                dustAux->SetParticleSpeedScale(0.05f);
+                dustAux->SetParticleTextureFactor(0.0f);
+                dustAux->SetParticleColor(SDL_Color{97, 80, 73, 40});
+                dustAux->SetParticleAutoRotate(true);
+                dustAux->SetParticleRotationSpeed(1.0f);
+                dustAux->SetParticleDrawOrder(98);
+                dustAux->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+
+                dust = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                30.0f * 1.2f,
+                30.0f,
+                100.0f,
+                0.4f,
+                0.3f);
+
+                dust->SetEmitArea(Vector2(mWidth * 0.3f, mHeight * 0.3f));
+                dust->SetParticleGravity(false);
+                dust->SetEmitDirection(Vector2::Normalize(mRigidBodyComponent->GetVelocity()));
+                dust->SetGroundCollision(false);
+                dust->SetConeSpread(10.0f);
+                dust->SetParticleSpeedScale(0.45f);
+                dust->SetParticleTextureFactor(0.0f);
+                dust->SetParticleColor(SDL_Color{97, 80, 73, 40});
+                dust->SetParticleAutoRotate(true);
+                dust->SetParticleRotationSpeed(1.0f);
+                dust->SetParticleDrawOrder(98);
+                dust->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+                break;
+
+            case GrassEffectType::Land:
+                dust = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                30.0f * 1.2f,
+                30.0f,
+                400.0f,
+                0.5f,
+                0.1f);
+
+                dust->SetEmitArea(Vector2(mWidth, mHeight));
+                dust->SetParticleGravity(false);
+                dust->SetEmitDirection(Vector2::NegUnitY);
+                dust->SetGroundCollision(false);
+                dust->SetConeSpread(360.0f);
+                dust->SetParticleSpeedScale(0.08f);
+                dust->SetParticleTextureFactor(0.0f);
+                dust->SetParticleColor(SDL_Color{97, 80, 73, 40});
+                dust->SetParticleAutoRotate(true);
+                dust->SetParticleRotationSpeed(1.0f);
+                dust->SetParticleDrawOrder(98);
+                dust->SetPosition(GetPosition() + Vector2(0, mHeight * 0.5f));
+                break;
+
+            case GrassEffectType::WallJump:
+                dust = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                35.0f * 1.2f,
+                35.0f,
+                150.0f,
+                0.4f,
+                0.3f);
+
+                dust->SetEmitArea(Vector2(mWidth * 0.3f, mHeight * 0.3f));
+                dust->SetParticleGravity(false);
+                dust->SetGroundCollision(false);
+                dust->SetConeSpread(20.0f);
+                dust->SetParticleSpeedScale(0.45f);
+                dust->SetParticleTextureFactor(0.0f);
+                dust->SetParticleColor(SDL_Color{97, 80, 73, 40});
+                dust->SetParticleAutoRotate(true);
+                dust->SetParticleRotationSpeed(1.0f);
+                dust->SetParticleDrawOrder(98);
+                if (GetForward().x == 1) {
+                    dust->SetEmitDirection(Vector2(0.71f, -0.81f));
+                    dust->SetPosition(GetPosition() + Vector2(mWidth * -0.6f, mHeight * 0.3f));
+                }
+                else {
+                    dust->SetEmitDirection(Vector2(-0.71f, -0.81f));
+                    dust->SetPosition(GetPosition() + Vector2(mWidth * 0.6f, mHeight * 0.3f));
+                }
+                break;
+
+            case GrassEffectType::Dash:
+                dust = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                60.0f * 1.2f,
+                60.0f,
+                600.0f,
+                0.5f,
+                0.1f);
+
+                dust->SetEmitArea(Vector2(mWidth * 3.5f, mHeight * 1.6f));
+                dust->SetParticleGravity(false);
+                dust->SetGroundCollision(false);
+                dust->SetConeSpread(30.0f);
+                dust->SetParticleSpeedScale(0.58f);
+                dust->SetParticleTextureFactor(0.0f);
+                dust->SetParticleColor(SDL_Color{97, 80, 73, 40});
+                dust->SetParticleAutoRotate(true);
+                dust->SetParticleRotationSpeed(1.0f);
+                dust->SetParticleDrawOrder(98);
+                if (GetForward().x == 1) {
+                    dust->SetEmitDirection(Vector2(-0.87f, -0.50f));
+                }
+                else {
+                    dust->SetEmitDirection(Vector2(0.87f, -0.50f));
+                }
+                dust->SetPosition(GetPosition() + Vector2(0, mHeight * 0.3f));
+                break;
+        }
     }
 }

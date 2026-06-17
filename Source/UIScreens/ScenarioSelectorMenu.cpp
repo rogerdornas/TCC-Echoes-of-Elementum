@@ -40,14 +40,14 @@ ScenarioSelectorMenu::ScenarioSelectorMenu(class Game *game, const std::string &
     AddButton("RAPOSA GUERREIRA", buttonPos + Vector2(0, 2 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("ModoAvancado/Raposa Guerreira", Vector2(1344, 6224));
+        LoadScenario("ModoAvancado/Raposa Guerreira", Vector2(650, 1014));
     }
     , false);
 
     AddButton("FANTASMA ESPELHADO", buttonPos + Vector2(0, 3 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("ModoAvancado/Fantasma Espelhado", Vector2(320, 2260));
+        LoadScenario("ModoAvancado/Fantasma Espelhado", Vector2(1622, 3439));
     }
     , false);
 

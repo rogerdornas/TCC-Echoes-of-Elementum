@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="335">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="15" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="357">
  <editorsettings>
   <export target="Golem de Cristal.json" format="json"/>
  </editorsettings>
@@ -125,16 +125,20 @@
     <property name="WindBalance" type="bool" value="false"/>
    </properties>
   </object>
-  <object id="292" gid="2147483709" x="846.566" y="689.816" width="87.3001" height="151.817"/>
-  <object id="294" gid="61" x="916.668" y="689.45" width="87.3001" height="151.817"/>
-  <object id="293" gid="2147483709" x="885.514" y="683.572" width="87.3001" height="151.817"/>
-  <object id="70" gid="2147483670" x="843.334" y="606.925" width="100.968" height="159.609" rotation="90"/>
   <object id="284" gid="56" x="1349.4" y="891.52" width="330.542" height="219.626" rotation="110.467"/>
-  <object id="295" gid="72" x="880.334" y="709.667" width="83.1882" height="73.6667"/>
-  <object id="296" gid="72" x="940.656" y="709.5" width="73.3569" height="64.9607"/>
-  <object id="297" gid="2147483720" x="831.737" y="711.5" width="83.1882" height="73.6667"/>
+  <object id="345" gid="19" x="265.175" y="1049.13" width="203.795" height="59.2281" rotation="90"/>
+  <object id="346" gid="19" x="262.175" y="888.135" width="203.795" height="59.2281" rotation="90"/>
+  <object id="347" gid="19" x="259.805" y="739.173" width="203.795" height="59.2281" rotation="90"/>
+  <object id="351" gid="19" x="184.86" y="951.711" width="133.825" height="38.8929" rotation="90"/>
+  <object id="352" gid="19" x="182.89" y="845.991" width="133.825" height="38.8929" rotation="90"/>
+  <object id="353" gid="19" x="181.333" y="748.173" width="133.825" height="38.8929" rotation="90"/>
+  <object id="354" gid="19" x="178.726" y="653.147" width="151.777" height="44.1102" rotation="90"/>
+  <object id="355" gid="19" x="176.829" y="544.294" width="167.903" height="48.7969" rotation="90"/>
+  <object id="356" gid="19" x="174.695" y="441.161" width="184.267" height="53.5524" rotation="90"/>
   <object id="331" gid="81" x="108" y="1174" width="188" height="144"/>
+  <object id="348" gid="19" x="255.835" y="594.462" width="231.134" height="67.1733" rotation="90"/>
   <object id="300" gid="74" x="228.694" y="1172.67" width="109.972" height="71.3333"/>
+  <object id="349" gid="19" x="252.945" y="428.696" width="255.692" height="74.3105" rotation="90"/>
   <object id="299" gid="73" x="162.667" y="1179.33" width="131.768" height="94"/>
   <object id="302" gid="74" x="110.014" y="1172.33" width="109.972" height="71.3333"/>
   <object id="308" gid="54" x="727.116" y="1202" width="236.311" height="145"/>
@@ -160,8 +164,28 @@
    </properties>
   </object>
   <object id="315" gid="35" x="1478.33" y="1208.33" width="364.222" height="150"/>
+  <object id="350" gid="19" x="249.695" y="271.64" width="280.611" height="81.5524" rotation="90"/>
   <object id="240" gid="58" x="43.697" y="531.576" width="493" height="380"/>
   <object id="256" gid="1073741883" x="1080" y="547.59" width="268.835" height="272.282"/>
+  <object id="335" gid="3221225533" x="851.026" y="802.874" width="91.5068" height="159.132"/>
+  <object id="336" gid="1073741885" x="924.506" y="802.494" width="91.5068" height="159.132"/>
+  <object id="337" gid="3221225533" x="891.85" y="796.334" width="91.5068" height="159.132"/>
+  <object id="338" gid="107" x="872.285" y="633.114" width="140.495" height="98.9013">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="15"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant06/Plant06"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="339" gid="72" x="948.554" y="688.494" width="76.8918" height="68.0909"/>
+  <object id="340" gid="2147483670" x="847.637" y="605.994" width="105.834" height="167.3" rotation="90"/>
+  <object id="341" gid="72" x="841.167" y="708.294" width="76.8918" height="68.0909"/>
+  <object id="342" gid="72" x="944.757" y="714.914" width="76.8918" height="68.0909"/>
+  <object id="343" gid="2147483720" x="892.377" y="716.764" width="76.8918" height="68.0909"/>
+  <object id="344" gid="72" x="826.554" y="687.994" width="76.8918" height="68.0909"/>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
   <object id="257" gid="107" x="1239.33" y="1172.67" width="152" height="107">
@@ -331,21 +355,21 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="117" x="112" y="1154" width="1693.15" height="380"/>
   <object id="195" x="0" y="-2.60606" width="111.334" height="1538.61"/>
   <object id="200" x="1806.81" y="0.966364" width="113.667" height="1532"/>
   <object id="201" x="112.258" y="0.67" width="1694.11" height="372"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player">
+ <objectgroup id="13" name="Player" visible="0">
   <object id="65" name="Player" x="598" y="1135" width="32" height="32">
    <properties>
     <property name="StartPositionId" type="int" value="0"/>
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies">
+ <objectgroup id="14" name="Enemies" visible="0">
   <object id="286" name="Golem" x="1095.62" y="1136.62" width="32" height="32">
    <properties>
     <property name="MaxPosX" type="float" value="1792"/>

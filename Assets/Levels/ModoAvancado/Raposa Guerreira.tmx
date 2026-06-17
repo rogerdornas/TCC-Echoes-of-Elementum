@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.12.2" orientation="orthogonal" renderorder="right-down" width="18" height="12" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="142">
+ <editorsettings>
+  <export target="Raposa Guerreira.json" format="json"/>
+ </editorsettings>
+ <properties>
+  <property name="BackgroundLayers" value="DarkForest/4.png"/>
+  <property name="GroundBehindPlayer" type="bool" value="false"/>
+  <property name="GroundParticleColor" type="color" value="#ff3a9359"/>
+  <property name="Music" value="Greenpath.wav"/>
+  <property name="UseGrassParticle" type="bool" value="true"/>
+  <property name="UseGroundPadding" type="bool" value="true"/>
+ </properties>
+ <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
+ <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
+ <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
+ <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
+ <objectgroup id="15" name="Camera" visible="0">
+  <object id="10" x="256" y="0" width="1792" height="1536">
+   <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="3264"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
+    <property name="LimitMinCameraPositionX" type="float" value="1344"/>
+    <property name="LimitMinCameraPositionY" type="float" value="200"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+  <object id="16" x="-1152" y="0" width="1355.76" height="1536">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="4224"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionY" type="float" value="200"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+  <object id="21" x="2106.3" y="0" width="965.697" height="1536">
+   <properties>
+    <property name="Event" value="FollowPlayerLimited"/>
+    <property name="LimitMaxCameraPositionX" type="float" value="4224"/>
+    <property name="LimitMaxCameraPositionY" type="float" value="1280"/>
+    <property name="LimitMinCameraPositionX" type="float" value="128"/>
+    <property name="LimitMinCameraPositionY" type="float" value="200"/>
+    <property name="Target" value="Camera"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" id="10" name="Triggers" visible="0">
+  <object id="5" name="Boss Battle" x="256" y="256" width="1792" height="768">
+   <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Event" value="SetIsDecreasingAfterGettingSkill"/>
+    <property name="Grounds" value="3,4"/>
+    <property name="SkillName" value="Dash"/>
+    <property name="Target" value="DynamicGround"/>
+   </properties>
+  </object>
+  <object id="7" x="640" y="256" width="1280" height="768">
+   <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Enemies" value="9"/>
+    <property name="Event" value="SpotPlayer"/>
+    <property name="Target" value="Enemy"/>
+   </properties>
+  </object>
+  <object id="8" name="Close Wall" x="640" y="256" width="512" height="768">
+   <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="Destroy" type="bool" value="true"/>
+    <property name="Event" value="SetIsGrowing"/>
+    <property name="Grounds" value="3,4"/>
+    <property name="Target" value="DynamicGround"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
+  <properties>
+   <property name="TextureColorB" type="int" value="69"/>
+   <property name="TextureColorG" type="int" value="65"/>
+   <property name="TextureColorR" type="int" value="22"/>
+   <property name="TextureFactor" type="float" value="0.3"/>
+  </properties>
+  <object id="97" gid="99" x="570.442" y="700.378" width="176.864" height="575.321" rotation="325.247"/>
+  <object id="49" gid="55" x="1330.65" y="1273.14" width="945.372" height="952.97"/>
+  <object id="51" gid="2147483761" x="124.831" y="400.809" width="410.545" height="410.545" rotation="85.7012">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="FPS" type="float" value="11"/>
+    <property name="NumFrames" type="int" value="30"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant13/Plant13"/>
+   </properties>
+  </object>
+  <object id="55" gid="51" x="954.047" y="1228.47" width="402.667" height="1101.69"/>
+  <object id="135" gid="59" x="1471.82" y="451" width="253.34" height="78.4987"/>
+  <object id="54" gid="66" x="1362.63" y="1081.7" width="218.543" height="604.258">
+   <properties>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="134" gid="77" x="747.827" y="1069.2" width="458.345" height="165.598"/>
+  <object id="58" gid="98" x="509.34" y="879.118" width="220.998" height="708.346"/>
+  <object id="138" gid="52" x="130.187" y="1056.11" width="334.293" height="253.708"/>
+  <object id="123" gid="77" x="113.327" y="1059.87" width="458.345" height="165.598"/>
+  <object id="57" gid="95" x="339.793" y="1120.81" width="695.325" height="331.333"/>
+  <object id="61" gid="103" x="1501.26" y="1151.81" width="183" height="183">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="FPS" type="float" value="7"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="70" gid="52" x="1659.8" y="1083.04" width="572.96" height="434.841"/>
+  <object id="71" gid="66" x="1215.48" y="1096.07" width="271.127" height="749.647">
+   <properties>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="72" gid="73" x="14.89" y="1104.4" width="200.362" height="197"/>
+  <object id="133" gid="77" x="1625.63" y="1050.53" width="458.345" height="165.598"/>
+  <object id="137" gid="58" x="792.667" y="759.333" width="116" height="240.847"/>
+ </objectgroup>
+ <objectgroup draworder="index" id="4" name="Background2">
+  <properties>
+   <property name="TextureColorB" type="int" value="107"/>
+   <property name="TextureColorG" type="int" value="101"/>
+   <property name="TextureColorR" type="int" value="22"/>
+   <property name="TextureFactor" type="float" value="0.5"/>
+  </properties>
+ </objectgroup>
+ <objectgroup draworder="index" id="5" name="Decorations">
+  <object id="62" gid="113" x="1773.21" y="1118.84" width="398.667" height="398.667">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="FPS" type="float" value="16"/>
+    <property name="NumFrames" type="int" value="30"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant13/Plant13"/>
+   </properties>
+  </object>
+  <object id="113" gid="103" x="1283.59" y="1065.59" width="128.828" height="128.828">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
+   </properties>
+  </object>
+  <object id="139" gid="103" x="556.919" y="1066.25" width="128.828" height="128.828">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="Camada de Blocos 1" width="18" height="12">
+  <data encoding="csv">
+1,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,2,3,
+8,5,16,16,16,16,16,16,16,16,16,16,16,16,16,16,6,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,10,0,0,0,0,0,0,0,0,0,0,0,0,0,0,8,10,
+8,12,2,2,2,2,2,2,2,2,2,2,2,2,2,2,13,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+8,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,10,
+15,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,16,17
+</data>
+ </layer>
+ <layer id="6" name="DynamicGrounds" width="18" height="12">
+  <data encoding="csv">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</data>
+ </layer>
+ <objectgroup draworder="index" id="23" name="DecorationsForeground">
+  <object id="124" gid="80" x="578.34" y="209.275" width="79.3333" height="167.624" rotation="180">
+   <properties>
+    <property name="Destructible" type="bool" value="true"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="127" gid="84" x="550.21" y="170.435" width="49.8743" height="163.92" rotation="180">
+   <properties>
+    <property name="Destructible" type="bool" value="true"/>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="79" gid="1073741901" x="-1.12" y="390.321" width="588.125" height="235.221"/>
+  <object id="100" gid="1073741901" x="1089.97" y="294.389" width="338.094" height="135.221"/>
+  <object id="111" gid="2147483713" x="1129.59" y="83.7834" width="163.541" height="501.064" rotation="180">
+   <properties>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" id="7" name="Foreground1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.2"/>
+  </properties>
+  <object id="122" gid="1073741927" x="1451.59" y="311.586" width="128.828" height="128.828">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup draworder="index" id="8" name="Foreground2" parallaxx="1.1">
+  <properties>
+   <property name="TextureColorB" type="int" value="0"/>
+   <property name="TextureColorG" type="int" value="0"/>
+   <property name="TextureColorR" type="int" value="0"/>
+   <property name="TextureFactor" type="float" value="0.2"/>
+  </properties>
+  <object id="81" gid="102" x="787.44" y="1188.4" width="215.95" height="215.95" rotation="28.3286">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant02/Plant02"/>
+   </properties>
+  </object>
+  <object id="82" gid="102" x="806.68" y="1242.06" width="215.95" height="215.95" rotation="28.3286">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="9"/>
+    <property name="NumFrames" type="int" value="18"/>
+    <property name="Path" value="Sprites/MossyPlants2/Plant02/Plant02"/>
+   </properties>
+  </object>
+  <object id="112" gid="96" x="120.987" y="1420.09" width="502.273" height="430"/>
+  <object id="83" gid="75" x="309" y="1303.13" width="632.29" height="284.478"/>
+  <object id="101" gid="1073741899" x="2146.5" y="292.37" width="390.885" height="175.865"/>
+  <object id="64" gid="65" x="2068.87" y="115.472" width="124.333" height="380.936" rotation="180">
+   <properties>
+    <property name="WindBalance" type="bool" value="true"/>
+   </properties>
+  </object>
+  <object id="84" gid="77" x="1352" y="1303.69" width="635.485" height="229.598"/>
+  <object id="80" gid="75" x="1029.65" y="1227.51" width="451.502" height="203.138"/>
+  <object id="85" gid="77" x="1948.08" y="1273.38" width="635.485" height="229.598"/>
+ </objectgroup>
+ <objectgroup id="16" name="Light" visible="0"/>
+ <objectgroup id="17" name="Brazier" visible="0"/>
+ <objectgroup id="18" name="Lava" visible="0"/>
+ <objectgroup id="19" name="LightningBarrier" visible="0"/>
+ <objectgroup id="9" name="HookPoints" visible="0"/>
+ <objectgroup id="20" name="Levers" visible="0"/>
+ <objectgroup id="21" name="SpawnPoint" visible="0"/>
+ <objectgroup id="11" name="Grounds" visible="0">
+  <object id="1" x="256" y="1024" width="1792" height="512"/>
+  <object id="2" x="256" y="0" width="1792" height="256"/>
+  <object id="3" x="0" y="0" width="256" height="1536">
+   <properties>
+    <property name="GrowSpeedX" type="float" value="0"/>
+    <property name="GrowSpeedY" type="float" value="1000"/>
+    <property name="GrowthDirection" type="int" value="0"/>
+    <property name="MinHeight" type="float" value="0"/>
+    <property name="MinWidth" type="float" value="256"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="256"/>
+   </properties>
+  </object>
+  <object id="4" x="2048" y="0" width="256" height="1536">
+   <properties>
+    <property name="GrowSpeedX" type="float" value="0"/>
+    <property name="GrowSpeedY" type="float" value="1000"/>
+    <property name="GrowthDirection" type="int" value="0"/>
+    <property name="MinHeight" type="float" value="0"/>
+    <property name="MinWidth" type="float" value="256"/>
+    <property name="StartHeight" type="float" value="0"/>
+    <property name="StartWidth" type="float" value="256"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="12" name="Checkpoint" visible="0"/>
+ <objectgroup id="13" name="Player" visible="0">
+  <object id="141" name="Player" x="650.203" y="1013.74" width="32" height="32">
+   <properties>
+    <property name="StartPositionId" type="int" value="0"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="14" name="Enemies" visible="0">
+  <object id="9" name="Frogger" x="1255.78" y="999.859" width="37.766" height="38.766">
+   <properties>
+    <property name="Condition" value="!FroggerDefeated"/>
+    <property name="MaxPosX" type="float" value="3200"/>
+    <property name="MaxPosY" type="float" value="1024"/>
+    <property name="MinPosX" type="float" value="1408"/>
+    <property name="MinPosY" type="float" value="256"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
+  <object id="18" x="-1024" y="200" width="4096" height="1080"/>
+ </objectgroup>
+</map>
