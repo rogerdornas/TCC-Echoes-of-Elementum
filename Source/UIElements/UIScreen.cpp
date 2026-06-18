@@ -329,8 +329,8 @@ UIButton* UIScreen::AddButton(const std::string& name, const Vector2 &pos, const
     return b;
 }
 
-UIImage* UIScreen::AddImage(const std::string &imagePath, const Vector2 &pos, const Vector2 &dims, const Vector3 &color) {
-    UIImage* img = new UIImage(imagePath, pos, dims, color, mGame->GetRenderer());
+UIImage* UIScreen::AddImage(const std::string &imagePath, const Vector2 &pos, const Vector2 &dims, const Vector3 &color, bool smooth) {
+    UIImage* img = new UIImage(imagePath, pos, dims, color, mGame->GetRenderer(), smooth);
 
     mImages.emplace_back(img);
 

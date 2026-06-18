@@ -104,6 +104,7 @@ private:
     Vector3 mLightningColor;
     Vector3 mIceColor;
     Vector3 mEarthColor;
+    Vector3 mNeutralColor;
 
     Vector2 mFireIconSize;
     Vector2 mLightningIconSize;

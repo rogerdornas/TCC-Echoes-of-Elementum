@@ -45,7 +45,7 @@ FlyingGolem::FlyingGolem(Game *game)
     mWidth = 100;
     mHeight = 100;
     mMoveSpeed = 420;
-    mHealthPoints = 80;
+    mHealthPoints = 70;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 20;

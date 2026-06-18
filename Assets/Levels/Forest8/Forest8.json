@@ -6,7 +6,39 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":3456,
+                 "id":221,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":13
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3712,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -1581,7 +1613,7 @@
                         {
                          "name":"Destructible",
                          "type":"bool",
-                         "value":true
+                         "value":false
                         }, 
                         {
                          "name":"FPS",
@@ -2640,7 +2672,7 @@
                 }, 
                 {
                  "gid":80,
-                 "height":135.148798512089,
+                 "height":135.149,
                  "id":209,
                  "name":"",
                  "properties":[
@@ -2657,13 +2689,13 @@
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":63.9633953192808,
-                 "x":666.291574581525,
-                 "y":2124.08320148791
+                 "width":63.9634,
+                 "x":666.292,
+                 "y":2124.08
                 }, 
                 {
                  "gid":2147483728,
-                 "height":135.148798512089,
+                 "height":135.149,
                  "id":210,
                  "name":"",
                  "properties":[
@@ -2680,13 +2712,13 @@
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":63.9633953192808,
-                 "x":610.925588840669,
-                 "y":2099.81230781153
+                 "width":63.9634,
+                 "x":610.926,
+                 "y":2099.81
                 }, 
                 {
                  "gid":84,
-                 "height":139.562274643521,
+                 "height":139.562,
                  "id":211,
                  "name":"",
                  "properties":[
@@ -2703,13 +2735,13 @@
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":42.4631390886547,
-                 "x":568.459789088654,
-                 "y":2108.15389057657
+                 "width":42.4631,
+                 "x":568.46,
+                 "y":2108.15
                 }, 
                 {
                  "gid":84,
-                 "height":132.162405455673,
+                 "height":132.162,
                  "id":212,
                  "name":"",
                  "properties":[
@@ -2726,9 +2758,9 @@
                  "rotation":180,
                  "type":"",
                  "visible":true,
-                 "width":40.2117341289523,
-                 "x":643.611435089894,
-                 "y":2092.768
+                 "width":40.2117,
+                 "x":643.611,
+                 "y":2092.77
                 }, 
                 {
                  "gid":80,
@@ -2750,8 +2782,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":2916.00335,
-                 "y":1589.608
+                 "x":2916,
+                 "y":1589.61
                 }, 
                 {
                  "gid":2147483728,
@@ -2773,8 +2805,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":2847.33335,
-                 "y":1559.505
+                 "x":2847.33,
+                 "y":1559.5
                 }, 
                 {
                  "gid":84,
@@ -2796,8 +2828,8 @@
                  "type":"",
                  "visible":true,
                  "width":52.6667,
-                 "x":2794.66335,
-                 "y":1569.851
+                 "x":2794.66,
+                 "y":1569.85
                 },
             
                 {
@@ -2820,8 +2852,8 @@
                  "type":"",
                  "visible":true,
                  "width":49.8743,
-                 "x":2887.87335,
-                 "y":1550.768
+                 "x":2887.87,
+                 "y":1550.77
                 }, 
                 {
                  "gid":80,
@@ -2843,8 +2875,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":856.00335,
-                 "y":1095.608
+                 "x":856.003,
+                 "y":1095.61
                 }, 
                 {
                  "gid":2147483728,
@@ -2866,8 +2898,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":787.33335,
-                 "y":1065.505
+                 "x":787.333,
+                 "y":1065.5
                 }, 
                 {
                  "gid":84,
@@ -2889,8 +2921,8 @@
                  "type":"",
                  "visible":true,
                  "width":52.6667,
-                 "x":734.66335,
-                 "y":1075.851
+                 "x":734.663,
+                 "y":1075.85
                 }, 
                 {
                  "gid":84,
@@ -2912,8 +2944,8 @@
                  "type":"",
                  "visible":true,
                  "width":49.8743,
-                 "x":827.87335,
-                 "y":1056.768
+                 "x":827.873,
+                 "y":1056.77
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3569,7 +3601,7 @@
                  "type":"",
                  "visible":true,
                  "width":100,
-                 "x":1105.33666666667,
+                 "x":1105.34,
                  "y":686.667
                 }, 
                 {
@@ -4320,7 +4352,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":221,
+ "nextobjectid":222,
  "orientation":"orthogonal",
  "properties":[
         {

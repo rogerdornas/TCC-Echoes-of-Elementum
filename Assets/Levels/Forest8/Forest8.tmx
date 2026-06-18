@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="29" height="27" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="221">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="29" height="27" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="222">
  <editorsettings>
   <export target="Forest8.json" format="json"/>
  </editorsettings>
@@ -14,7 +14,16 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
+ <objectgroup id="2" name="AmbientParticleArea" visible="0">
+  <object id="221" x="0" y="0" width="3712" height="3456">
+   <properties>
+    <property name="ColorB" type="int" value="200"/>
+    <property name="ColorG" type="int" value="255"/>
+    <property name="ColorR" type="int" value="200"/>
+    <property name="EmitRate" type="float" value="13"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="15" name="Camera" visible="0">
   <object id="48" x="0" y="1152" width="1487.64" height="468">
    <properties>
@@ -347,7 +356,7 @@
   <object id="208" gid="111" x="2467.03" y="1848.23" width="91.2693" height="91.2693">
    <properties>
     <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
     <property name="FPS" type="float" value="30"/>
     <property name="NumFrames" type="int" value="20"/>
     <property name="Path" value="Sprites/MossyPlants2/Plant10/Plant10"/>

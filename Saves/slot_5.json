@@ -6,27 +6,27 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 598.0,
-            "y": 1903.0
+            "x": 641.0,
+            "y": 3439.0
         },
-        "scene": "ModoAvancado/Golem de Fogo",
-        "total_play_time": 3002.838623046875
+        "scene": "ModoAvancado/Tutorial Habilidades",
+        "total_play_time": 4416.07958984375
     },
     "map_state": null,
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 929,
-        "elemental_mode": "Earth",
+        "death_counter": 930,
+        "elemental_mode": "Ice",
         "elemental_modes": {
-            "has_earth": false,
-            "has_fire": false,
-            "has_ice": false,
-            "has_lightning": false
+            "has_earth": true,
+            "has_fire": true,
+            "has_ice": true,
+            "has_lightning": true
         },
         "max_jumps_in_air": 1,
-        "money": 679
+        "money": 6
     },
     "skill_tree": {
         "unlocked_nodes": [

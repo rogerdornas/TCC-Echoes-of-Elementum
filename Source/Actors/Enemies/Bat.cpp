@@ -41,7 +41,7 @@ Bat::Bat(Game *game)
     mWidth = 30;
     mHeight = 30;
     mMoveSpeed = 500;
-    mHealthPoints = 40;
+    mHealthPoints = 30;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 7;

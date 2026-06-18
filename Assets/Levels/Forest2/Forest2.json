@@ -6,7 +6,39 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":3200,
+                 "id":218,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":10
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":3072,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -2437,7 +2469,7 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":2790.00335,
+                 "x":2790,
                  "y":196.608
                 }, 
                 {
@@ -2460,7 +2492,7 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":2721.33335,
+                 "x":2721.33,
                  "y":166.505
                 },
             
@@ -2484,7 +2516,7 @@
                  "type":"",
                  "visible":true,
                  "width":52.6667,
-                 "x":2668.66335,
+                 "x":2668.66,
                  "y":176.851
                 }, 
                 {
@@ -2507,12 +2539,12 @@
                  "type":"",
                  "visible":true,
                  "width":49.8743,
-                 "x":2761.87335,
+                 "x":2761.87,
                  "y":157.768
                 }, 
                 {
                  "gid":84,
-                 "height":94.9000839310025,
+                 "height":94.9001,
                  "id":211,
                  "name":"",
                  "properties":[
@@ -2530,12 +2562,12 @@
                  "type":"",
                  "visible":true,
                  "width":28.8743,
-                 "x":2825.06285,
+                 "x":2825.06,
                  "y":191.04
                 }, 
                 {
                  "gid":2147483728,
-                 "height":123.252922533161,
+                 "height":123.253,
                  "id":212,
                  "name":"",
                  "properties":[
@@ -2573,8 +2605,8 @@
                  "type":"",
                  "visible":true,
                  "width":58.3333,
-                 "x":837.33335,
-                 "y":1722.188
+                 "x":837.333,
+                 "y":1722.19
                 }, 
                 {
                  "gid":80,
@@ -2596,8 +2628,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":2841.00335,
-                 "y":1224.608
+                 "x":2841,
+                 "y":1224.61
                 }, 
                 {
                  "gid":2147483728,
@@ -2619,8 +2651,8 @@
                  "type":"",
                  "visible":true,
                  "width":79.3333,
-                 "x":2772.33335,
-                 "y":1194.505
+                 "x":2772.33,
+                 "y":1194.51
                 }, 
                 {
                  "gid":84,
@@ -2642,8 +2674,8 @@
                  "type":"",
                  "visible":true,
                  "width":52.6667,
-                 "x":2719.66335,
-                 "y":1204.851
+                 "x":2719.66,
+                 "y":1204.85
                 }, 
                 {
                  "gid":84,
@@ -2665,8 +2697,8 @@
                  "type":"",
                  "visible":true,
                  "width":49.8743,
-                 "x":2812.87335,
-                 "y":1185.768
+                 "x":2812.87,
+                 "y":1185.77
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -3600,11 +3632,11 @@
                  "visible":true,
                  "width":416,
                  "x":1544.78,
-                 "y":730.18
+                 "y":740.18
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -3725,7 +3757,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":218,
+ "nextobjectid":219,
  "orientation":"orthogonal",
  "properties":[
         {

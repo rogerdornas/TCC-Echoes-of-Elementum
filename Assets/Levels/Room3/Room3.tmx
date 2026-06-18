@@ -15,7 +15,7 @@
  <tileset firstgid="50" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
  <tileset firstgid="63" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <objectgroup id="2" name="AmbientParticleArea" visible="0">
-  <object id="143" x="0" y="20" width="4208" height="2080">
+  <object id="143" x="3" y="20" width="4208" height="2080">
    <properties>
     <property name="ColorB" type="int" value="200"/>
     <property name="ColorG" type="int" value="255"/>
@@ -567,7 +567,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
+ <objectgroup id="14" name="Enemies">
   <object id="14" name="Enemy Simple" x="2475.27" y="1780.36" width="32" height="32"/>
   <object id="31" name="Flying Enemy" x="2558.67" y="981.33" width="32" height="32"/>
  </objectgroup>

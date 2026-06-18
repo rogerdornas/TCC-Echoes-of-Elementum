@@ -5,12 +5,13 @@
 #include "UIImage.h"
 #include "../Renderer/Renderer.h"
 
-UIImage::UIImage(const std::string &imagePath, const Vector2 &pos, const Vector2 &size, const Vector3 &color, Renderer* renderer)
+UIImage::UIImage(const std::string &imagePath, const Vector2 &pos, const Vector2 &size, const Vector3 &color, Renderer* renderer, bool smooth)
     :UIElement(pos, size, color)
     ,mTexture(nullptr)
     ,mRenderer(renderer)
+    ,mIsSmooth(smooth)
 {
-    mTexture = mRenderer->GetTexture(imagePath);
+    mTexture = mRenderer->GetTexture(imagePath, mIsSmooth);
 }
 
 UIImage::~UIImage()
@@ -28,7 +29,7 @@ UIImage::~UIImage()
 
 void UIImage::SetImage(const std::string& imagePath)
 {
-    mTexture = mRenderer->GetTexture(imagePath);
+    mTexture = mRenderer->GetTexture(imagePath, mIsSmooth);
 
     // if (mTexture != nullptr) {
     //     SDL_DestroyTexture(mTexture);

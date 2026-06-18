@@ -6,10 +6,42 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":1536,
+                 "id":132,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":11
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":4352,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -151,7 +183,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":true,
+         "visible":false,
          "x":0,
          "y":0
         }, 
@@ -1748,8 +1780,8 @@
                  "type":"",
                  "visible":true,
                  "width":168.504,
-                 "x":358.953333333333,
-                 "y":1193.11333333333
+                 "x":358.953,
+                 "y":1193.11
                 }, 
                 {
                  "gid":1073741899,
@@ -2104,7 +2136,7 @@
                  "visible":true,
                  "width":416,
                  "x":687.333,
-                 "y":864
+                 "y":868
                 }],
          "opacity":1,
          "type":"objectgroup",
@@ -2384,7 +2416,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":132,
+ "nextobjectid":133,
  "orientation":"orthogonal",
  "properties":[
         {

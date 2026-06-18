@@ -159,7 +159,7 @@
   </object>
   <object id="79" gid="1073741901" x="-1.12" y="390.321" width="588.125" height="235.221"/>
   <object id="100" gid="1073741901" x="1089.97" y="294.389" width="338.094" height="135.221"/>
-  <object id="111" gid="2147483713" x="1129.59" y="83.7834" width="163.541" height="501.064" rotation="180">
+  <object id="111" gid="2147483713" x="653.814" y="103.783" width="115.765" height="354.684" rotation="180">
    <properties>
     <property name="WindBalance" type="bool" value="true"/>
    </properties>

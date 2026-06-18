@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="29" height="19" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="237">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="29" height="19" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="238">
  <editorsettings>
   <export target="Forest11.json" format="json"/>
  </editorsettings>
@@ -14,7 +14,16 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
+ <objectgroup id="2" name="AmbientParticleArea" visible="0">
+  <object id="237" x="0" y="0" width="3712" height="2432">
+   <properties>
+    <property name="ColorB" type="int" value="200"/>
+    <property name="ColorG" type="int" value="255"/>
+    <property name="ColorR" type="int" value="200"/>
+    <property name="EmitRate" type="float" value="10"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="15" name="Camera" visible="0">
   <object id="36" x="1536" y="384" width="768" height="768">
    <properties>

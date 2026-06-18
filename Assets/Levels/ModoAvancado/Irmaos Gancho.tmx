@@ -181,6 +181,36 @@
   <object id="340" gid="72" x="1074.76" y="786.914" width="76.8918" height="68.0909"/>
   <object id="341" gid="2147483720" x="1022.38" y="788.764" width="76.8918" height="68.0909"/>
   <object id="342" gid="72" x="956.554" y="759.994" width="76.8918" height="68.0909"/>
+  <object id="352" gid="19" x="1240.92" y="687.203" width="139.77" height="40.6208" rotation="91.2451"/>
+  <object id="353" gid="19" x="1240.24" y="921.625" width="148.159" height="41.9812" rotation="91.2451"/>
+  <object id="354" gid="19" x="1240.55" y="800.946" width="145.83" height="42.4429" rotation="91.2451"/>
+  <object id="356" gid="19" x="1240.4" y="1040.86" width="139.77" height="40.6208" rotation="91.2454"/>
+  <object id="358" gid="19" x="1241.03" y="451.124" width="148.159" height="41.9812" rotation="91.2452"/>
+  <object id="359" gid="19" x="1241.35" y="330.437" width="145.83" height="42.4429" rotation="91.2452"/>
+  <object id="360" gid="19" x="1241.19" y="570.364" width="139.77" height="40.6208" rotation="91.2454"/>
+  <object id="303" gid="2147483754" x="1209.89" y="393.666" width="74.8783" height="86.0139" rotation="180">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="20"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant05/Plant05"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="269" gid="1073741872" x="1124.21" y="445.682" width="182.774" height="117.689"/>
+  <object id="277" gid="1073741872" x="1213.18" y="418.577" width="182.774" height="117.688"/>
+  <object id="304" gid="106" x="1371.22" y="377.659" width="54.2116" height="62.2738" rotation="180">
+   <properties>
+    <property name="Animated" type="bool" value="true"/>
+    <property name="Destructible" type="bool" value="false"/>
+    <property name="FPS" type="float" value="8"/>
+    <property name="NumFrames" type="int" value="20"/>
+    <property name="Path" value="Sprites/BrownCavePlants2/Plant05/Plant05"/>
+    <property name="WindBalance" type="bool" value="false"/>
+   </properties>
+  </object>
+  <object id="307" gid="3221225520" x="1210.61" y="354.156" width="182.774" height="117.688"/>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
   <object id="257" gid="107" x="591.333" y="1164.67" width="152" height="107">
@@ -316,38 +346,7 @@
   <object id="270" gid="1073741839" x="-71" y="366" width="434" height="151"/>
   <object id="273" gid="1073741839" x="147" y="360.5" width="434" height="151"/>
   <object id="305" gid="55" x="1109" y="230" width="443" height="229.731" rotation="180"/>
-  <object id="303" gid="2147483754" x="1209.89" y="393.666" width="74.8783" height="86.0139" rotation="180">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="8"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/BrownCavePlants2/Plant05/Plant05"/>
-    <property name="WindBalance" type="bool" value="false"/>
-   </properties>
-  </object>
-  <object id="352" gid="19" x="1240.92" y="687.203" width="139.77" height="40.6208" rotation="91.2451"/>
-  <object id="353" gid="19" x="1240.24" y="921.625" width="148.159" height="41.9812" rotation="91.2451"/>
-  <object id="354" gid="19" x="1240.55" y="800.946" width="145.83" height="42.4429" rotation="91.2451"/>
-  <object id="356" gid="19" x="1240.4" y="1040.86" width="139.77" height="40.6208" rotation="91.2454"/>
-  <object id="357" gid="19" x="1218.37" y="270.695" width="139.77" height="40.6208" rotation="91.2452"/>
-  <object id="358" gid="19" x="1241.03" y="451.124" width="148.159" height="41.9812" rotation="91.2452"/>
-  <object id="359" gid="19" x="1241.35" y="330.437" width="145.83" height="42.4429" rotation="91.2452"/>
-  <object id="360" gid="19" x="1241.19" y="570.364" width="139.77" height="40.6208" rotation="91.2454"/>
-  <object id="269" gid="1073741872" x="1124.21" y="445.682" width="182.774" height="117.689"/>
-  <object id="277" gid="1073741872" x="1213.18" y="418.577" width="182.774" height="117.688"/>
   <object id="278" gid="3221225520" x="1115.05" y="389.22" width="182.774" height="117.688"/>
-  <object id="304" gid="106" x="1371.22" y="377.659" width="54.2116" height="62.2738" rotation="180">
-   <properties>
-    <property name="Animated" type="bool" value="true"/>
-    <property name="Destructible" type="bool" value="false"/>
-    <property name="FPS" type="float" value="8"/>
-    <property name="NumFrames" type="int" value="20"/>
-    <property name="Path" value="Sprites/BrownCavePlants2/Plant05/Plant05"/>
-    <property name="WindBalance" type="bool" value="false"/>
-   </properties>
-  </object>
-  <object id="307" gid="3221225520" x="1210.61" y="354.156" width="182.774" height="117.688"/>
  </objectgroup>
  <objectgroup draworder="index" id="7" name="Foreground1">
   <properties>

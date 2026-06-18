@@ -72,7 +72,7 @@ MirrorBoss::MirrorBoss(Game *game)
     mWidth = 120;
     mHeight = 250;
     mMoveSpeed = 500;
-    mHealthPoints = 700;
+    mHealthPoints = 500;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 20;
     mMoneyDrop = 200;

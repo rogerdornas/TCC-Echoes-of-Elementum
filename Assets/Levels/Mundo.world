@@ -51,7 +51,7 @@
         },
         {
             "fileName": "Forest7/Forest7.tmx",
-            "height": 1280,
+            "height": 1408,
             "width": 3584,
             "x": 7936,
             "y": 1792
@@ -101,9 +101,9 @@
         {
             "fileName": "Cave1/Cave1.tmx",
             "height": 6400,
-            "width": 3840,
-            "x": 8832,
-            "y": 3072
+            "width": 3968,
+            "x": 8704,
+            "y": 3200
         }
     ],
     "onlyShowAdjacentMaps": false,

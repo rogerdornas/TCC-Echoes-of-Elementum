@@ -6,7 +6,39 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":3584,
+                 "id":203,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":11
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":2176,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -2265,7 +2297,7 @@
                  "y":1024
                 }, 
                 {
-                 "height":128.083366666667,
+                 "height":128.083,
                  "id":53,
                  "name":"",
                  "rotation":0,
@@ -2372,7 +2404,7 @@
                  "y":1152
                 }, 
                 {
-                 "height":142.666666666667,
+                 "height":142.667,
                  "id":81,
                  "name":"",
                  "rotation":0,
@@ -2384,7 +2416,7 @@
                 },
             
                 {
-                 "height":137.4167,
+                 "height":137.417,
                  "id":82,
                  "name":"",
                  "rotation":0,
@@ -2395,7 +2427,7 @@
                  "y":2096.58
                 }, 
                 {
-                 "height":137.4167,
+                 "height":137.417,
                  "id":83,
                  "name":"",
                  "rotation":0,
@@ -2406,7 +2438,7 @@
                  "y":1328.58
                 }, 
                 {
-                 "height":137.333333333333,
+                 "height":137.333,
                  "id":89,
                  "name":"",
                  "rotation":0,
@@ -2745,7 +2777,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":203,
+ "nextobjectid":204,
  "orientation":"orthogonal",
  "properties":[
         {

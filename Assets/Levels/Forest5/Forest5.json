@@ -6,7 +6,39 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":2048,
+                 "id":364,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":14
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":8960,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -4542,7 +4574,7 @@
                  "y":1408
                 }, 
                 {
-                 "height":33,
+                 "height":31.3333333333333,
                  "id":40,
                  "name":"",
                  "properties":[
@@ -4556,7 +4588,7 @@
                  "visible":true,
                  "width":212,
                  "x":6962.7,
-                 "y":1023.95
+                 "y":1025.61666666667
                 }, 
                 {
                  "height":97,
@@ -4576,7 +4608,7 @@
                  "y":1028.95
                 }, 
                 {
-                 "height":99,
+                 "height":95.95,
                  "id":42,
                  "name":"",
                  "properties":[
@@ -4590,7 +4622,7 @@
                  "visible":true,
                  "width":346,
                  "x":7171.7,
-                 "y":1022.95
+                 "y":1026
                 }, 
                 {
                  "height":128,
@@ -5058,7 +5090,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
@@ -5234,7 +5266,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":364,
+ "nextobjectid":365,
  "orientation":"orthogonal",
  "properties":[
         {

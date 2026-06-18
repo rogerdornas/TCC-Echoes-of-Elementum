@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="34" height="13" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="132">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="34" height="13" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="133">
  <editorsettings>
   <export target="BossFrogger.json" format="json"/>
  </editorsettings>
@@ -14,8 +14,17 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea"/>
- <objectgroup id="15" name="Camera">
+ <objectgroup id="2" name="AmbientParticleArea" visible="0">
+  <object id="132" x="0" y="0" width="4352" height="1536">
+   <properties>
+    <property name="ColorB" type="int" value="200"/>
+    <property name="ColorG" type="int" value="255"/>
+    <property name="ColorR" type="int" value="200"/>
+    <property name="EmitRate" type="float" value="11"/>
+   </properties>
+  </object>
+ </objectgroup>
+ <objectgroup id="15" name="Camera" visible="0">
   <object id="10" x="1408" y="0" width="1792" height="1536">
    <properties>
     <property name="Condition" value="!PlayerHasDash"/>
@@ -466,7 +475,7 @@
   <object id="13" x="3840" y="0" width="512" height="896"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint">
-  <object id="12" name="Checkpoint" x="687.333" y="864" width="416" height="192"/>
+  <object id="12" name="Checkpoint" x="687.333" y="868" width="416" height="192"/>
  </objectgroup>
  <objectgroup id="13" name="Player" visible="0">
   <object id="40" name="Player" x="80" y="1005" width="32" height="32">

@@ -16,7 +16,7 @@ Skill::Skill(class Game *game, SkillType skill)
     ,mWidth(64)
     ,mHeight(64)
     ,mSkillMessage(nullptr)
-    ,mNoCollisionTimer(1.0f)
+    ,mNoCollisionTimer(0.7f)
     ,mDrawComponent(nullptr)
     ,mRectComponent(nullptr)
 {

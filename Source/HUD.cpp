@@ -17,6 +17,7 @@ HUD::HUD(class Game* game, const std::string& fontName)
     ,mLightningColor(215.0f / 255.0f, 195.0f / 255.0f, 20.0f / 255.0f)
     ,mIceColor(16.0f / 255.0f, 101.0f / 255.0f, 137.0f / 255.0f)
     ,mEarthColor(141.0f / 255.0f, 82.0f / 255.0f, 68.0f / 255.0f)
+    ,mNeutralColor(0.5f, 0.5f, 0.5f)
     ,mFireIconSize(Vector2(37, 46))
     ,mLightningIconSize(Vector2(36, 46))
     ,mIceIconSize(Vector2(47, 60))
@@ -90,23 +91,31 @@ HUD::HUD(class Game* game, const std::string& fontName)
     Vector2 elementalIconSize(38, 48);
     switch (player->GetElementalMode()) {
         case Player::ElementalMode::Fire:
-            mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
+            if (player->GetSkillManager()->HasFireMode()) {
+                mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
+            }
         break;
 
         case Player::ElementalMode::Ice:
-            mElementalMode = AddImage("../Assets/Sprites/HUD/Ice.png", mSlowMotionBarPos, mIceIconSize);
+            if (player->GetSkillManager()->HasIceMode()) {
+                mElementalMode = AddImage("../Assets/Sprites/HUD/Ice.png", mSlowMotionBarPos, mIceIconSize);
+            }
         break;
 
         case Player::ElementalMode::Earth:
-            mElementalMode = AddImage("../Assets/Sprites/HUD/Earth.png", mSlowMotionBarPos, mEarthIconSize);
+            if (player->GetSkillManager()->HasEarthMode()) {
+                mElementalMode = AddImage("../Assets/Sprites/HUD/Earth.png", mSlowMotionBarPos, mEarthIconSize);
+            }
         break;
 
         case Player::ElementalMode::Lightning:
-            mElementalMode = AddImage("../Assets/Sprites/HUD/Lightning.png", mSlowMotionBarPos, mLightningIconSize);
+            if (player->GetSkillManager()->HasLightningMode()) {
+                mElementalMode = AddImage("../Assets/Sprites/HUD/Lightning.png", mSlowMotionBarPos, mLightningIconSize);
+            }
         break;
 
         default:
-            mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
+            // mElementalMode = AddImage("../Assets/Sprites/HUD/Fire.png", mSlowMotionBarPos, mFireIconSize);
         break;
     }
 
@@ -119,6 +128,7 @@ HUD::HUD(class Game* game, const std::string& fontName)
 
     for (int i = 0; i < MAX_TUTORIAL_PARTS; i++) {
         UIText* t = AddText("", Vector2::Zero, 34);
+        t->SetWrapLength(1500);
         t->SetIsVisible(false);
         mTutorialTexts.push_back(t);
 
@@ -177,28 +187,36 @@ void HUD::Update(float deltaTime) {
 
         switch (player->GetElementalMode()) {
             case Player::ElementalMode::Fire:
-                mElementalMode->SetImage("../Assets/Sprites/HUD/Fire.png");
-                mElementalMode->SetSize(mFireIconSize);
+                if (player->GetSkillManager()->HasFireMode()) {
+                    mElementalMode->SetImage("../Assets/Sprites/HUD/Fire.png");
+                    mElementalMode->SetSize(mFireIconSize);
+                }
             break;
 
             case Player::ElementalMode::Ice:
-                mElementalMode->SetImage("../Assets/Sprites/HUD/Ice.png");
-                mElementalMode->SetSize(mIceIconSize);
+                if (player->GetSkillManager()->HasIceMode()) {
+                    mElementalMode->SetImage("../Assets/Sprites/HUD/Ice.png");
+                    mElementalMode->SetSize(mIceIconSize);
+                }
             break;
 
             case Player::ElementalMode::Earth:
-                mElementalMode->SetImage("../Assets/Sprites/HUD/Earth.png");
-                mElementalMode->SetSize(mEarthIconSize);
+                if (player->GetSkillManager()->HasEarthMode()) {
+                    mElementalMode->SetImage("../Assets/Sprites/HUD/Earth.png");
+                    mElementalMode->SetSize(mEarthIconSize);
+                }
             break;
 
             case Player::ElementalMode::Lightning:
-                mElementalMode->SetImage("../Assets/Sprites/HUD/Lightning.png");
-                mElementalMode->SetSize(mLightningIconSize);
+                if (player->GetSkillManager()->HasLightningMode()) {
+                    mElementalMode->SetImage("../Assets/Sprites/HUD/Lightning.png");
+                    mElementalMode->SetSize(mLightningIconSize);
+                }
             break;
 
             default:
-                mElementalMode->SetImage("../Assets/Sprites/HUD/Fire.png");
-                mElementalMode->SetSize(mFireIconSize);
+                // mElementalMode->SetImage("../Assets/Sprites/HUD/Fire.png");
+                // mElementalMode->SetSize(mFireIconSize);
             break;
         }
 
@@ -625,20 +643,40 @@ void HUD::DrawSlowMotionBar(Renderer* renderer) {
 
     switch (player->GetElementalMode()) {
         case Player::ElementalMode::Fire:
-            fillColor = mFireColor;
-        break;
+            if (player->GetSkillManager()->HasFireMode()) {
+                fillColor = mFireColor;
+            }
+            else {
+                fillColor = mNeutralColor;
+            }
+            break;
 
         case Player::ElementalMode::Lightning:
-            fillColor = mLightningColor;
-        break;
+            if (player->GetSkillManager()->HasLightningMode()) {
+                fillColor = mLightningColor;
+            }
+            else {
+                fillColor = mNeutralColor;
+            }
+            break;
 
         case Player::ElementalMode::Ice:
-            fillColor = mIceColor;
-        break;
+            if (player->GetSkillManager()->HasIceMode()) {
+                fillColor = mIceColor;
+            }
+            else {
+                fillColor = mNeutralColor;
+            }
+            break;
 
         case Player::ElementalMode::Earth:
-            fillColor = mEarthColor;
-        break;
+            if (player->GetSkillManager()->HasEarthMode()) {
+                fillColor = mEarthColor;
+            }
+            else {
+                fillColor = mNeutralColor;
+            }
+            break;
     }
 
     if (isCharging) {

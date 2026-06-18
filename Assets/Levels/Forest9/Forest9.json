@@ -6,7 +6,39 @@
          "draworder":"topdown",
          "id":2,
          "name":"AmbientParticleArea",
-         "objects":[],
+         "objects":[
+                {
+                 "height":2304,
+                 "id":286,
+                 "name":"",
+                 "properties":[
+                        {
+                         "name":"ColorB",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"ColorG",
+                         "type":"int",
+                         "value":255
+                        }, 
+                        {
+                         "name":"ColorR",
+                         "type":"int",
+                         "value":200
+                        }, 
+                        {
+                         "name":"EmitRate",
+                         "type":"float",
+                         "value":12
+                        }],
+                 "rotation":0,
+                 "type":"",
+                 "visible":true,
+                 "width":5632,
+                 "x":0,
+                 "y":0
+                }],
          "opacity":1,
          "type":"objectgroup",
          "visible":false,
@@ -1324,8 +1356,8 @@
                  "type":"",
                  "visible":true,
                  "width":73,
-                 "x":2966.66666666667,
-                 "y":515.333333333333
+                 "x":2966.67,
+                 "y":515.333
                 }, 
                 {
                  "gid":81,
@@ -1342,8 +1374,8 @@
                  "type":"",
                  "visible":true,
                  "width":107,
-                 "x":2926.66666666667,
-                 "y":506.175666666667
+                 "x":2926.67,
+                 "y":506.176
                 }, 
                 {
                  "gid":2147483760,
@@ -5506,7 +5538,7 @@
          "y":0
         }],
  "nextlayerid":24,
- "nextobjectid":286,
+ "nextobjectid":287,
  "orientation":"orthogonal",
  "properties":[
         {

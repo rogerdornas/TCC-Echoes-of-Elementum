@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="69" height="14" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="341">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="69" height="14" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="342">
  <editorsettings>
   <export target="Forest3.json" format="json"/>
  </editorsettings>
@@ -14,7 +14,16 @@
  <tileset firstgid="1" source="../../Tilesets/Mossy/MossyTileSet.tsx"/>
  <tileset firstgid="50" source="../../Sprites/MossyBackgrounds3/MossyDecorations.tsx"/>
  <tileset firstgid="101" source="../../Sprites/MossyPlants2/MossyPlants.tsx"/>
- <objectgroup id="2" name="AmbientParticleArea" visible="0"/>
+ <objectgroup id="2" name="AmbientParticleArea" visible="0">
+  <object id="341" x="0" y="0" width="8832" height="1792">
+   <properties>
+    <property name="ColorB" type="int" value="200"/>
+    <property name="ColorG" type="int" value="255"/>
+    <property name="ColorR" type="int" value="200"/>
+    <property name="EmitRate" type="float" value="13"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup id="15" name="Camera" visible="0">
   <object id="14" x="2816" y="0" width="1112" height="1792">
    <properties>
@@ -506,7 +515,7 @@
    <properties>
     <property name="Animated" type="bool" value="true"/>
     <property name="Destructible" type="bool" value="true"/>
-    <property name="FPS" type="float" value="9"/>
+    <property name="FPS" type="float" value="15"/>
     <property name="NumFrames" type="int" value="18"/>
     <property name="Path" value="Sprites/MossyPlants2/Plant03/Plant03"/>
    </properties>
@@ -864,7 +873,7 @@
   <object id="66" x="5120" y="640" width="128" height="128"/>
  </objectgroup>
  <objectgroup id="12" name="Checkpoint" visible="0"/>
- <objectgroup id="13" name="Player" visible="0">
+ <objectgroup id="13" name="Player">
   <object id="310" x="1728" y="1662" width="32" height="32">
    <properties>
     <property name="EnteringLevelSpeedX" type="float" value="700"/>

@@ -159,34 +159,30 @@ void TileMapComponent::BakeTilesToTexture(Renderer* renderer)
             //     1.0f
             // );
 
-            // ===============================================================
-            // SUBSTITUA A CHAMADA DrawTexture POR ESTE BLOCO:
-            // --- INÍCIO DO DESENHO MANUAL ---
+            // INÍCIO DO DESENHO MANUAL
             
-            // 1. Cria a matriz de modelo
+            // Cria a matriz de modelo
             Matrix4 model = Matrix4::CreateScale(Vector3((float)tileSize, (float)tileSize, 1.0f)) *
                             Matrix4::CreateTranslation(Vector3(pos.x, pos.y, 0.0f));
 
-            // 2. Define os uniforms (exceto uOrthoProj, que já está correto)
+            // Define os uniforms (exceto uOrthoProj, que já está correto)
             shader->SetMatrixUniform("uWorldTransform", model);
             shader->SetVectorUniform("uColor", Vector3(1.0f, 1.0f, 1.0f)); // Cor branca
             shader->SetVectorUniform("uTexRect", texRect);
             shader->SetVectorUniform("uCameraPos", Vector2(0, 0)); // Câmera não se aplica
             shader->SetFloatUniform("uAlpha", 1.0f);
 
-            // 3. Define a textura
+            // Define a textura
             tileSheet->SetActive();
             shader->SetFloatUniform("uTextureFactor", 1.0f); // 1.0f = 100% textura
 
-            // 4. Desenha!
+            // Desenha
             glDrawElements(GL_TRIANGLES, spriteVerts->GetNumIndices(), GL_UNSIGNED_INT, nullptr);
-            
-            // --- FIM DO DESENHO MANUAL ---
-            // ===============================================================
+
         }
     }
 
-    // --- Finaliza bake: desbind FBO e restaura viewport e shader ortho para a janela ---
+    // Finaliza bake: desbind FBO e restaura viewport e shader ortho para a janela
     glBindTexture(GL_TEXTURE_2D, 0);
     glBindFramebuffer(GL_FRAMEBUFFER, 0);
 

@@ -1,0 +1,265 @@
+{
+  "waves": [
+    {
+      "actions": [
+        {
+          "actionType": "SpawnEnemy", 
+          "type": "FlyingSpawnerEnemy", 
+          "id": "LeftMid", 
+          "delay": 2.0
+        },
+		{
+          "actionType": "SpawnEnemy", 
+          "type": "OrangeSlime", 
+          "id": "RightBot", 
+          "delay": 4.0
+        }
+      ]
+    },
+    {
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Enemy Simple", 
+          "id": "LeftBot", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Enemy Simple", 
+          "id": "RightBot", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Flying Enemy", 
+          "id": "LeftMid", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Snake", 
+          "id": "CenterBot", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnHookPoint", 
+          "id": "LeftMid", 
+          "delay": 2.0 
+        },
+        { 
+          "actionType": "SpawnHookPoint", 
+          "id": "RightMid", 
+          "delay": 2.0 
+        }
+      ]
+    },
+    {
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Mushroom", 
+          "id": "LeftBot", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Snake", 
+          "id": "RightBot", 
+          "delay": 2.5
+        }
+      ]
+    },
+    {
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "FlyingGolem", 
+          "id": "LeftMid", 
+          "delay": 2.5
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Mantis", 
+          "id": "LeftBot", 
+          "delay": 3.0
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "FlyingShooterEnemy", 
+          "id": "RightMid", 
+          "delay": 3.5
+        },
+        { 
+          "actionType": "GrowGround", 
+          "id": 27, 
+          "delay": 3.0 
+        },
+        { 
+          "actionType": "GrowGround", 
+          "id": 28, 
+          "delay": 4.0 
+        },
+        {
+          "actionType": "RemoveHookPoint",
+          "id": "LeftMid",
+          "delay": 1.0
+        }
+      ]
+    },
+    {
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "DragonFly", 
+          "id": "LeftMid", 
+          "delay": 3.0
+        },
+        { 
+          "actionType": "DecreaseGround", 
+          "id": 27, 
+          "delay": 0.0 
+        },
+        { 
+          "actionType": "DecreaseGround", 
+          "id": 28, 
+          "delay": 0.0 
+        },
+        {
+          "actionType": "RemoveHookPoint",
+          "id": "RightMid",
+          "delay": 0.5
+        }
+      ]
+    },
+	{
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Flying Enemy", 
+          "id": "LeftTop", 
+          "delay": 3.0
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Flying Enemy", 
+          "id": "RightTop", 
+          "delay": 3.0
+        },
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Flying Enemy", 
+          "id": "CenterTop", 
+          "delay": 3.0
+        },
+        { 
+          "actionType": "GrowGround", 
+          "id": 30, 
+          "delay": 0.5 
+        },
+        { 
+          "actionType": "GrowGround", 
+          "id": 31, 
+          "delay": 0.5 
+        }
+      ]
+    },
+    {
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "Fox", 
+          "id": "CenterBot", 
+          "delay": 3.5
+        },
+        { 
+          "actionType": "GrowGround", 
+          "id": 29, 
+          "delay": 0.0 
+        },
+        { 
+          "actionType": "DecreaseGround", 
+          "id": 30, 
+          "delay": 0.0 
+        },
+        { 
+          "actionType": "DecreaseGround", 
+          "id": 31, 
+          "delay": 0.0 
+        }
+      ]
+    },
+	{
+      "actions": [
+        {
+          "actionType": "SpawnEnemy", 
+          "type": "Golem", 
+          "id": "CenterBot",
+		  "enemyId": "Golem1",
+		  "arenaMinPos": [2048, 2400],
+		  "arenaMaxPos": [3712, 3168],
+          "delay": 3.5
+        },
+        {
+          "actionType": "GrowGround", 
+          "id": 27, 
+          "delay": 1.5,
+		  "condition": {
+		    "type": "EnemyHealthBelow",
+			"enemyId": "Golem1",
+			"value": 0.6
+		  }
+        },
+        {
+          "actionType": "DecreaseGround", 
+          "id": 27, 
+          "delay": 1.5,
+		  "condition": {
+		    "type": "EnemyHealthBelow",
+			"enemyId": "Golem1",
+			"value": 0.3
+		  }
+        }
+      ]
+    },
+	{
+      "actions": [
+        {
+          "actionType": "SpawnEnemy", 
+          "type": "Frog", 
+          "id": "RightBot", 
+		  "arenaMinPos": [2016, 2368],
+		  "arenaMaxPos": [3744, 3200],
+          "delay": 3.5
+        }
+      ]
+    },
+    {
+      "actions": [
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "HookEnemy", 
+          "id": "LeftBot", 
+          "delay": 3.5
+        },
+		
+        { 
+          "actionType": "SpawnEnemy", 
+          "type": "HookEnemy", 
+          "id": "RightBot", 
+          "delay": 3.5
+        },
+        { 
+          "actionType": "SpawnHookPoint", 
+          "id": "LeftMid1", 
+          "delay": 1.0 
+        },
+        { 
+          "actionType": "SpawnHookPoint", 
+          "id": "RightMid1", 
+          "delay": 1.0 
+        }
+      ]
+    }
+  ]
+}

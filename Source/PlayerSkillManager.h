@@ -15,6 +15,8 @@ public:
 
     void UnlockMechanic(const std::string& mechanicId);
 
+    void UnlockElement(const std::string& elementId);
+
     // Getters
     bool HasEarthMode() const { return mHasEarthMode; }
     bool HasFireMode() const { return mHasFireMode; }
@@ -51,7 +53,6 @@ public:
     float GetFreezeDurationMultiplier() const { return mFreezeDurationMultiplier; }
 
 private:
-    void UnlockElement(const std::string& elementId);
     void ApplyStatModifier(const std::string& statData);
 
     class Player* mPlayer;

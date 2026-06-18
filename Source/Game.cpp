@@ -351,6 +351,8 @@ void Game::ChangeScene()
             }
         }
 
+        mAudio->SetCategoryModifier(SoundCategory::Music, 1.0f);
+
         // Guarda último level que o player estava
         mIsPaused = false;
         mRenderer->DeactivateAllEffects();
@@ -2633,31 +2635,31 @@ void Game::ProcessInput()
                         }
                     }
 
-                    if (event.key.keysym.sym == SDLK_8) {
-                        Quit();
-                    }
-
-                    if (event.key.keysym.sym == SDLK_5) {
-                        mIsSlowMotion = !mIsSlowMotion;
-                        mIsAccelerated = false;
-                    }
-
-                    if (event.key.keysym.sym == SDLK_6) {
-                        mIsAccelerated = !mIsAccelerated;
-                        mIsSlowMotion = false;
-                    }
-
-                    if (event.key.keysym.sym == SDLK_1) {
-                        // mTargetZoom = 1.5f;
-                        mTargetZoom += 0.05f;
-                    }
-                    if (event.key.keysym.sym == SDLK_2) {
-                        // mTargetZoom = 0.5f;
-                        mTargetZoom -= 0.2f;
-                    }
-                    if (event.key.keysym.sym == SDLK_3) {
-                        mTargetZoom = 1.0f;
-                    }
+                    // if (event.key.keysym.sym == SDLK_8) {
+                    //     Quit();
+                    // }
+                    //
+                    // if (event.key.keysym.sym == SDLK_5) {
+                    //     mIsSlowMotion = !mIsSlowMotion;
+                    //     mIsAccelerated = false;
+                    // }
+                    //
+                    // if (event.key.keysym.sym == SDLK_6) {
+                    //     mIsAccelerated = !mIsAccelerated;
+                    //     mIsSlowMotion = false;
+                    // }
+                    //
+                    // if (event.key.keysym.sym == SDLK_1) {
+                    //     // mTargetZoom = 1.5f;
+                    //     mTargetZoom += 0.05f;
+                    // }
+                    // if (event.key.keysym.sym == SDLK_2) {
+                    //     // mTargetZoom = 0.5f;
+                    //     mTargetZoom -= 0.2f;
+                    // }
+                    // if (event.key.keysym.sym == SDLK_3) {
+                    //     mTargetZoom = 1.0f;
+                    // }
                 }
                 break;
 

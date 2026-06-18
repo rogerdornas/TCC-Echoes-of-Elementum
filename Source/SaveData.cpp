@@ -218,6 +218,11 @@ void SaveData::ApplyToPlayer() {
     if (mCanWallSlide) psm->UnlockMechanic("wall_slide");
     if (mCanHook) psm->UnlockMechanic("hook");
 
+    if (mHasEarthMode) psm->UnlockElement("earth");
+    if (mHasFireMode) psm->UnlockElement("fire");
+    if (mHasIceMode) psm->UnlockElement("ice");
+    if (mHasLightningMode) psm->UnlockElement("lightning");
+
     mGame->GetSkillTreeManager()->LoadUnlockedNodes(mUnlockedSkillNodes, psm);
 }
 

@@ -33,13 +33,33 @@ RadialMenu::RadialMenu(class Game *game, const std::string &fontName, float radi
     mSlowMotionBarRadius = 120.0f;
     mSlowMotionBarThickness = 25.0f;
 
-    AddImage("../Assets/Sprites/HUD/Fire.png", Vector2(960, 310), Vector2(73, 92));
+    if (mGame->GetPlayer()->GetSkillManager()->HasFireMode()) {
+        AddImage("../Assets/Sprites/HUD/Fire.png", Vector2(960, 310), Vector2(73, 92));
+    }
+    else {
+        AddImage("../Assets/Sprites/HUD/BlockIcon.png", Vector2(960, 310), Vector2(80, 80), Color::White, true);
+    }
 
-    AddImage("../Assets/Sprites/HUD/Lightning.png", Vector2(1185, 540), Vector2(77, 99));
+    if (mGame->GetPlayer()->GetSkillManager()->HasLightningMode()) {
+        AddImage("../Assets/Sprites/HUD/Lightning.png", Vector2(1185, 540), Vector2(77, 99));
+    }
+    else {
+        AddImage("../Assets/Sprites/HUD/BlockIcon.png", Vector2(1185, 540), Vector2(80, 80), Color::White, true);
+    }
 
-    AddImage("../Assets/Sprites/HUD/Ice.png", Vector2(732, 540), Vector2(81, 103));
+    if (mGame->GetPlayer()->GetSkillManager()->HasIceMode()) {
+        AddImage("../Assets/Sprites/HUD/Ice.png", Vector2(732, 540), Vector2(81, 103));
+    }
+    else {
+        AddImage("../Assets/Sprites/HUD/BlockIcon.png", Vector2(732, 540), Vector2(80, 80), Color::White, true);
+    }
 
-    AddImage("../Assets/Sprites/HUD/Earth.png", Vector2(960, 765), Vector2(87, 110));
+    if (mGame->GetPlayer()->GetSkillManager()->HasEarthMode()) {
+        AddImage("../Assets/Sprites/HUD/Earth.png", Vector2(960, 765), Vector2(87, 110));
+    }
+    else {
+        AddImage("../Assets/Sprites/HUD/BlockIcon.png", Vector2(960, 765), Vector2(80, 80), Color::White, true);
+    }
 }
 
 RadialMenu::~RadialMenu() {
