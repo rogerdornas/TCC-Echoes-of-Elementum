@@ -299,7 +299,7 @@
  <objectgroup id="10" name="Checkpoint">
   <object id="45" name="Checkpoint" x="448" y="2080" width="416" height="192"/>
  </objectgroup>
- <objectgroup id="5" name="Triggers">
+ <objectgroup id="5" name="Triggers" visible="0">
   <object id="42" name="Spot Player" x="1824" y="640" width="1760" height="1664">
    <properties>
     <property name="Enemies" value="41"/>

@@ -646,6 +646,7 @@ void Game::ResetKeyboardToDefault() {
     mInputBindings[Action::Map].key        = SDL_SCANCODE_LCTRL;
     mInputBindings[Action::Look].key       = SDL_SCANCODE_LALT;
     mInputBindings[Action::ChangeMode].key = SDL_SCANCODE_LSHIFT;
+    mInputBindings[Action::Pause].key      = SDL_SCANCODE_ESCAPE;
 
     mInputBindings[Action::Up].mouseButton         = 0;
     mInputBindings[Action::Down].mouseButton       = 0;
@@ -662,6 +663,7 @@ void Game::ResetKeyboardToDefault() {
     mInputBindings[Action::Map].mouseButton        = 0;
     mInputBindings[Action::Look].mouseButton       = 0;
     mInputBindings[Action::ChangeMode].mouseButton = 0;
+    mInputBindings[Action::Pause].mouseButton      = 0;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
@@ -682,6 +684,7 @@ void Game::ResetKeyboardAndMouseToDefault() {
     mInputBindings[Action::Map].key        = SDL_SCANCODE_TAB;
     mInputBindings[Action::Look].key       = SDL_SCANCODE_LCTRL;
     mInputBindings[Action::ChangeMode].key = SDL_SCANCODE_LSHIFT;
+    mInputBindings[Action::Pause].key      = SDL_SCANCODE_ESCAPE;
 
     mInputBindings[Action::Up].mouseButton         = 0;
     mInputBindings[Action::Down].mouseButton       = 0;
@@ -698,6 +701,7 @@ void Game::ResetKeyboardAndMouseToDefault() {
     mInputBindings[Action::Map].mouseButton        = 0;
     mInputBindings[Action::Look].mouseButton       = 0;
     mInputBindings[Action::ChangeMode].mouseButton = 0;
+    mInputBindings[Action::Pause].mouseButton      = 0;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
@@ -735,6 +739,9 @@ void Game::ResetControllerToDefault() {
 
     mInputBindings[Action::ChangeMode].btn  = SDL_CONTROLLER_BUTTON_INVALID;
     mInputBindings[Action::ChangeMode].axis = SDL_CONTROLLER_AXIS_TRIGGERLEFT;
+
+    mInputBindings[Action::Pause].btn  = SDL_CONTROLLER_BUTTON_START;
+    mInputBindings[Action::Pause].axis = SDL_CONTROLLER_AXIS_INVALID;
 
     SaveBindingsToFile("../Assets/InputBindings/InputBindings.json");
 }
@@ -3744,6 +3751,7 @@ std::string Game::ActionToString(Action action) {
         case Action::Map:        return "Map";
         case Action::Look:       return "Look";
         case Action::ChangeMode: return "ChangeMode";
+        case Action::Pause:      return "Pause";
         default:                 return "Unknown";
     }
 }
@@ -3764,6 +3772,7 @@ Game::Action Game::StringToAction(const std::string &str) {
     if (str == "Map")        return Action::Map;
     if (str == "Look")       return Action::Look;
     if (str == "ChangeMode") return Action::ChangeMode;
+    if (str == "Pause")      return Action::Pause;
 
     return Action::Invalid;
 }

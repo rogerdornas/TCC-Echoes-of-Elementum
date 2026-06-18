@@ -82,6 +82,7 @@ public:
         Map,
         Look,
         ChangeMode,
+        Pause,
         Invalid
     };
 

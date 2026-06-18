@@ -26,7 +26,7 @@ ScenarioSelectorMenu::ScenarioSelectorMenu(class Game *game, const std::string &
     AddButton("TUTORIAL DE HABILIDADES", buttonPos + Vector2(0, 0 * distanceBetweenButtons),
                  buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("ModoAvancado/Tutorial Habilidades", Vector2(641, 3439));
+        LoadScenario("ModoAvancado/Tutorial Habilidades", Vector2(540, 1261));
     }
     , false);
 
@@ -54,25 +54,18 @@ ScenarioSelectorMenu::ScenarioSelectorMenu(class Game *game, const std::string &
     AddButton("FANTASMA ESPELHADO", buttonPos + Vector2(0, 4 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
-        LoadScenario("ModoAvancado/Fantasma Espelhado", Vector2(1622, 3439));
+        LoadScenario("ModoAvancado/Fantasma Espelhado", Vector2(597, 1770));
     }
     , false);
 
-    AddButton("ESPREITADOR VERDE", buttonPos + Vector2(0, 5 * distanceBetweenButtons),
-            buttonSize, 34, UIButton::TextPos::AlignLeft,
-    [this]() {
-        LoadScenario("ModoAvancado/Espreitador Verde", Vector2(1088, 1810));
-    }
-    , false);
-
-    AddButton("IRMÃOS GANCHO", buttonPos + Vector2(0, 6 * distanceBetweenButtons),
+    AddButton("IRMÃOS GANCHO", buttonPos + Vector2(0, 5 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
         LoadScenario("ModoAvancado/Irmaos Gancho", Vector2(918, 1133));
     }
     , false);
 
-    AddButton("ARENA DOS ESQUECIDOS", buttonPos + Vector2(0, 7 * distanceBetweenButtons),
+    AddButton("ARENA DOS ESQUECIDOS", buttonPos + Vector2(0, 6 * distanceBetweenButtons),
             buttonSize, 34, UIButton::TextPos::AlignLeft,
     [this]() {
         LoadScenario("ModoAvancado/Arena dos Esquecidos", Vector2(2560, 3187));

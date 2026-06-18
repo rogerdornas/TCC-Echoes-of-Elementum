@@ -124,6 +124,13 @@ void Frog::OnUpdate(float deltaTime) {
     ManageFreezing(deltaTime);
     ManageStun(deltaTime);
 
+    // Gravidade
+    if (!mIsOnGround && mFrogState != State::JumpCombo) {
+        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
+                                                 mRigidBodyComponent->GetVelocity().y
+                                                 + mGravity * deltaTime));
+    }
+
     Vector2 v1;
     Vector2 v2;
     Vector2 v3;

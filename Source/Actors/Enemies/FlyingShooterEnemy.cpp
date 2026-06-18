@@ -18,7 +18,7 @@ FlyingShooterEnemy::FlyingShooterEnemy(Game* game)
     ,mState(State::Fly)
 
     ,mDistToSpotPlayer(400)
-    ,mFlyingAroundDuration(1.0f)
+    ,mFlyingAroundDuration(0.7f)
     ,mFlyingAroundTimer(0.0f)
     ,mFlyingAroundMoveSpeed(100.0f)
 

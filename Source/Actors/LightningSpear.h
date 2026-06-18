@@ -24,11 +24,14 @@ private:
     void ProcessChainLightning(class Enemy* firstTarget);
     void SpawnChainVisual(Vector2 startPos, Vector2 endPos);
 
+    bool IsOnScreen();
+
     float mWidth;
     float mHeight;
     float mSpeed;
     float mDuration;
     float mTimer;
+    float mOffscreenLimit;
     float mDamage;
     std::vector<class Enemy*> mEnemiesHit;
     int mNumEnemiesHit;

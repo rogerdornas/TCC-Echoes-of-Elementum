@@ -659,7 +659,7 @@
  </objectgroup>
  <objectgroup id="12" name="Decorations"/>
  <objectgroup id="10" name="HookPoints"/>
- <objectgroup id="18" name="CameraBounds">
+ <objectgroup id="18" name="CameraBounds" visible="0">
   <object id="84" x="64" y="2120" width="6480" height="3624"/>
  </objectgroup>
 </map>

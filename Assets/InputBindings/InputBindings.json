@@ -19,7 +19,7 @@
     },
     "Down": {
         "axis": -1,
-        "btn": 12,
+        "btn": -1,
         "key": 81,
         "mouse": 0
     },
@@ -55,13 +55,13 @@
     },
     "MoveLeft": {
         "axis": -1,
-        "btn": 13,
+        "btn": -1,
         "key": 80,
         "mouse": 0
     },
     "MoveRight": {
         "axis": -1,
-        "btn": 14,
+        "btn": -1,
         "key": 79,
         "mouse": 0
     },
@@ -69,6 +69,12 @@
         "axis": -1,
         "btn": 8,
         "key": 44,
+        "mouse": 0
+    },
+    "Pause": {
+        "axis": -1,
+        "btn": 6,
+        "key": 41,
         "mouse": 0
     },
     "Skill1": {
@@ -85,7 +91,7 @@
     },
     "Up": {
         "axis": -1,
-        "btn": 11,
+        "btn": -1,
         "key": 82,
         "mouse": 0
     }

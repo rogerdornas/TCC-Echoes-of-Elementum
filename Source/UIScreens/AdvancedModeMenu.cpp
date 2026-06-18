@@ -19,7 +19,7 @@ AdvancedModeMenu::AdvancedModeMenu(class Game *game, const std::string &fontName
     background = AddImage("../Assets/Sprites/Menus/FundoPretoArredondado.png", Vector2(960, 600), Vector2(1300, 650));
     background->SetAlpha(0.4f);
 
-    std::string textMessage = "ESTE MODO DE JOGO É PARA TESTES DE CENÁRIOS DO FINAL DO JOGO, ONDE TODAS AS HABILIDADES ESTÃO LIBERADAS E SÃO NECESSÁRIAS PARA DERROTAR OS INIMIGOS.";
+    std::string textMessage = "ESSE MODO DE JOGO É PARA TESTES DE CENÁRIOS DO FINAL DO JOGO, ONDE TODAS AS HABILIDADES ESTÃO LIBERADAS E SÃO NECESSÁRIAS PARA DERROTAR OS INIMIGOS.";
 
     auto* text = AddText(textMessage, Vector2::Zero,  34, Color::White, 1080);
     text->SetPosition(Vector2(960, 390));

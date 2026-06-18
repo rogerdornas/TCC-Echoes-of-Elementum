@@ -372,264 +372,6 @@
                  "y":1948
                 }, 
                 {
-                 "gid":102,
-                 "height":95,
-                 "id":262,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant01\/Plant01"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":73,
-                 "x":2214.58,
-                 "y":825.507
-                }, 
-                {
-                 "gid":103,
-                 "height":84,
-                 "id":263,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":8
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant02\/Plant02"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":96,
-                 "x":2330.58,
-                 "y":815.507
-                }, 
-                {
-                 "gid":104,
-                 "height":153,
-                 "id":264,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":0
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant03\/Plant03"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":true
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":122,
-                 "x":2517.58,
-                 "y":834.507
-                }, 
-                {
-                 "gid":105,
-                 "height":184,
-                 "id":265,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":8
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant04\/Plant04"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":123,
-                 "x":2709.58,
-                 "y":849.507
-                }, 
-                {
-                 "gid":106,
-                 "height":158,
-                 "id":266,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":8
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":20
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant05\/Plant05"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":137.545,
-                 "x":2915.58,
-                 "y":858.507
-                }, 
-                {
-                 "gid":107,
-                 "height":107,
-                 "id":267,
-                 "name":"",
-                 "properties":[
-                        {
-                         "name":"Animated",
-                         "type":"bool",
-                         "value":true
-                        }, 
-                        {
-                         "name":"Destructible",
-                         "type":"bool",
-                         "value":false
-                        }, 
-                        {
-                         "name":"FPS",
-                         "type":"float",
-                         "value":8
-                        }, 
-                        {
-                         "name":"NumFrames",
-                         "type":"int",
-                         "value":15
-                        }, 
-                        {
-                         "name":"Path",
-                         "type":"string",
-                         "value":"Sprites\/BrownCavePlants2\/Plant06\/Plant06"
-                        }, 
-                        {
-                         "name":"WindBalance",
-                         "type":"bool",
-                         "value":false
-                        }],
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":152,
-                 "x":3126.1,
-                 "y":829.568
-                }, 
-                {
                  "gid":3221225533,
                  "height":159.132,
                  "id":292,
@@ -755,8 +497,7 @@
                  "width":76.8918,
                  "x":171.667,
                  "y":1315.75
-                },
-            
+                }, 
                 {
                  "gid":72,
                  "height":68.0909,
@@ -828,7 +569,8 @@
                  "width":236.311,
                  "x":337.116,
                  "y":1968
-                }, 
+                },
+            
                 {
                  "gid":2147483739,
                  "height":310,
@@ -936,8 +678,7 @@
                  "width":177.02,
                  "x":1139.48,
                  "y":1226.83
-                },
-            
+                }, 
                 {
                  "gid":60,
                  "height":150.837,
@@ -1009,7 +750,8 @@
                  "width":109.972,
                  "x":1088.01,
                  "y":1936.33
-                }, 
+                },
+            
                 {
                  "gid":56,
                  "height":247.136,
@@ -1117,8 +859,7 @@
                  "width":93.5493,
                  "x":797.113,
                  "y":1346.56
-                },
-            
+                }, 
                 {
                  "gid":73,
                  "height":64.6761,
@@ -1190,7 +931,8 @@
                  "width":78.5352,
                  "x":736.479,
                  "y":1345.99
-                }, 
+                },
+            
                 {
                  "gid":66,
                  "height":77.3803,
@@ -1298,8 +1040,7 @@
                  "width":177.02,
                  "x":1140.44,
                  "y":655.691
-                },
-            
+                }, 
                 {
                  "gid":19,
                  "height":49.3086,
@@ -1371,7 +1112,8 @@
                  "width":124.297,
                  "x":1450.71,
                  "y":718.56
-                }, 
+                },
+            
                 {
                  "gid":19,
                  "height":34.6227,
@@ -1479,8 +1221,7 @@
                  "width":78.5352,
                  "x":925.113,
                  "y":1041.47
-                },
-            
+                }, 
                 {
                  "gid":78,
                  "height":54.2817,
@@ -1563,15 +1304,15 @@
                 }, 
                 {
                  "gid":101,
-                 "height":2188.74,
+                 "height":2322.07,
                  "id":222,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":106,
+                 "width":206,
                  "x":1814,
-                 "y":2176
+                 "y":2309.33
                 }, 
                 {
                  "gid":16,
@@ -1709,15 +1450,15 @@
                 }, 
                 {
                  "gid":101,
-                 "height":2049.47,
+                 "height":2319.17,
                  "id":113,
                  "name":"",
                  "rotation":0,
                  "type":"",
                  "visible":true,
-                 "width":103.394,
-                 "x":0,
-                 "y":2033.09
+                 "width":239.758,
+                 "x":-136.364,
+                 "y":2302.79
                 }, 
                 {
                  "gid":25,
@@ -2042,8 +1783,8 @@
                  "type":"",
                  "visible":true,
                  "width":262.038,
-                 "x":1797.72333333333,
-                 "y":2103.12333333333
+                 "x":1797.72,
+                 "y":2103.12
                 }, 
                 {
                  "gid":25,
@@ -3090,7 +2831,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 

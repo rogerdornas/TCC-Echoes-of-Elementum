@@ -226,7 +226,7 @@
       "actions": [
         {
           "actionType": "SpawnEnemy", 
-          "type": "Frog", 
+          "type": "Frogger", 
           "id": "RightBot", 
 		  "arenaMinPos": [2016, 2368],
 		  "arenaMaxPos": [3744, 3200],

@@ -277,7 +277,7 @@
             "id": "frenzy_mode_duration",
             "name": "AUMENTA DURAÇÃO DO MODO FRENÉTICO",
             "skillType": "HABILIDADE DE RAIO",
-            "description": "AUMENTA O TEMPO DE DURAÇÃO DO MODO FRENÉTICO EM 50%",
+            "description": "AUMENTA O TEMPO DE DURAÇÃO DO MODO FRENÉTICO EM 25%",
             "howToUse": "EFEITO PASSIVO",
             "costs": {
                 "gold": 2,
@@ -291,7 +291,7 @@
 			],
             "effect": {
                 "type": "stat_boost",
-                "value": "frenzy_mode_duration:0.5"
+                "value": "frenzy_mode_duration:0.25"
             }
         },
         {
@@ -365,7 +365,7 @@
             "id": "freeze_duration",
             "name": "FRIO INTENSO",
             "skillType": "HABILIDADE DE GELO",
-            "description": "AUMENTA O TEMPO QUE OS INIMIGOS FICAM CONGELADOS EM 50%",
+            "description": "AUMENTA O TEMPO QUE OS INIMIGOS FICAM CONGELADOS EM 20%",
             "howToUse": "EFEITO PASSIVO",
             "costs": {
                 "gold": 500,
@@ -379,7 +379,7 @@
             ],
             "effect": {
                 "type": "stat_boost",
-                "value": "freeze_duration:0.5"
+                "value": "freeze_duration:0.2"
             }
         },
         {

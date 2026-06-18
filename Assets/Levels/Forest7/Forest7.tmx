@@ -75,7 +75,7 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup draworder="index" id="3" name="Background1" visible="0" parallaxx="0.95">
+ <objectgroup draworder="index" id="3" name="Background1" parallaxx="0.95">
   <properties>
    <property name="TextureColorB" type="int" value="69"/>
    <property name="TextureColorG" type="int" value="65"/>
@@ -127,7 +127,7 @@
   <object id="77" gid="1073741917" x="1685.71" y="292.29" width="55.8246" height="43.9889" rotation="180"/>
   <object id="78" gid="57" x="1624.18" y="380.09" width="147.695" height="66.4289"/>
  </objectgroup>
- <objectgroup draworder="index" id="4" name="Background2" visible="0">
+ <objectgroup draworder="index" id="4" name="Background2">
   <properties>
    <property name="TextureColorB" type="int" value="107"/>
    <property name="TextureColorG" type="int" value="101"/>
@@ -155,7 +155,7 @@
   <object id="97" gid="99" x="2931.49" y="800.319" width="136.164" height="435.052" rotation="67.6818"/>
   <object id="99" gid="99" x="2958.22" y="1201.63" width="100.056" height="319.686" rotation="45.509"/>
  </objectgroup>
- <objectgroup draworder="index" id="5" name="Decorations" visible="0">
+ <objectgroup draworder="index" id="5" name="Decorations">
   <object id="42" gid="103" x="1985.15" y="1053.85" width="102.97" height="102.97">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -304,7 +304,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
- <objectgroup draworder="index" id="23" name="DecorationsForeground" visible="0">
+ <objectgroup draworder="index" id="23" name="DecorationsForeground">
   <object id="26" gid="113" x="756.414" y="315.543" width="187.831" height="187.831" rotation="183.876">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -353,7 +353,7 @@
   <object id="94" gid="77" x="3345.9" y="1129.2" width="436.202" height="157.598" rotation="270"/>
   <object id="89" gid="77" x="2595.23" y="802.656" width="433.947" height="167.72"/>
  </objectgroup>
- <objectgroup draworder="index" id="7" name="Foreground1" visible="0">
+ <objectgroup draworder="index" id="7" name="Foreground1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -364,7 +364,7 @@
   <object id="95" gid="77" x="2946.92" y="781.201" width="382.202" height="122.578" rotation="90"/>
   <object id="98" gid="77" x="3341.9" y="1291.2" width="326.202" height="120.598" rotation="270"/>
  </objectgroup>
- <objectgroup draworder="index" id="8" name="Foreground2" visible="0" parallaxx="1.1">
+ <objectgroup draworder="index" id="8" name="Foreground2" parallaxx="1.1">
   <properties>
    <property name="TextureColorB" type="int" value="0"/>
    <property name="TextureColorG" type="int" value="0"/>
@@ -448,7 +448,7 @@
   </object>
  </objectgroup>
  <objectgroup id="14" name="Enemies" visible="0"/>
- <objectgroup id="22" name="CameraBounds">
+ <objectgroup id="22" name="CameraBounds" visible="0">
   <object id="16" x="128" y="60" width="3328" height="1220"/>
  </objectgroup>
 </map>

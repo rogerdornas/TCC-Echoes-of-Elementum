@@ -20,6 +20,7 @@ LightningSpear::LightningSpear(Game *game)
     ,mSpeed(3500.0f)
     ,mDuration(3.0f)
     ,mTimer(mDuration)
+    ,mOffscreenLimit(0.2f)
     ,mDamage(15.0f)
     ,mLightningEffect(nullptr)
     ,mLightningEffectWidth(250.0f)
@@ -80,6 +81,21 @@ void LightningSpear::OnUpdate(float deltaTime) {
 
     ResolveGroundCollision();
     ResolveEnemyCollision();
+
+    if (!IsOnScreen()) {
+        Vector2 startPosition(GetPosition() + GetForward() * Vector2(mWidth * 0.35f, 0) - Vector2(40.0f, 0.0f));
+        Vector2 endPosition(GetPosition() + GetForward() * Vector2(mWidth * 0.35f, 0) + Vector2(40.0f, 0.0f));
+        auto* explosion = new LightningEffect(mGame, this, 0.2f);
+        explosion->StartEffect(startPosition, endPosition);
+        explosion->SetLightningGenerationIntervalDuration(0.05f);
+        explosion->SetNumBolts(8);
+        explosion->SetSpeadRadius(5.0f);
+        explosion->SetGenerations(4);
+        explosion->SetMaxOffset(50.0f);
+        explosion->SetGlowThickness(5.0f);
+        explosion->SetCoreThickness(1.0f);
+        Deactivate();
+    }
 }
 
 void LightningSpear::Activate() {
@@ -228,4 +244,11 @@ Enemy* LightningSpear::FindClosestEnemy(const Vector2& fromPos) {
         }
     }
     return closestEnemy;
+}
+
+bool LightningSpear::IsOnScreen() {
+    return (GetPosition().x < mGame->GetCamera()->GetPosCamera().x + mGame->GetRenderer()->GetZoomedWidth()  + mGame->GetRenderer()->GetZoomedWidth() * mOffscreenLimit &&
+            GetPosition().x > mGame->GetCamera()->GetPosCamera().x  - mGame->GetRenderer()->GetZoomedWidth() * mOffscreenLimit &&
+            GetPosition().y > mGame->GetCamera()->GetPosCamera().y - mGame->GetRenderer()->GetZoomedHeight() * mOffscreenLimit &&
+            GetPosition().y < mGame->GetCamera()->GetPosCamera().y + mGame->GetRenderer()->GetZoomedHeight() + mGame->GetRenderer()->GetZoomedHeight() * mOffscreenLimit);
 }
