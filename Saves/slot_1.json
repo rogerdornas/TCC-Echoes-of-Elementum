@@ -10,19 +10,20 @@
             "y": 4795.64013671875
         },
         "scene": "Room4/Room4",
-        "total_play_time": 262584.59375
+        "total_play_time": 262586.09375
     },
+    "map_state": null,
     "player": {
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
         "death_counter": 908,
-        "elemental_mode": "Lightning",
+        "elemental_mode": "Fire",
         "elemental_modes": {
-            "has_earth": false,
-            "has_fire": false,
-            "has_ice": false,
-            "has_lightning": false
+            "has_earth": true,
+            "has_fire": true,
+            "has_ice": true,
+            "has_lightning": true
         },
         "max_jumps_in_air": 1,
         "money": 26047

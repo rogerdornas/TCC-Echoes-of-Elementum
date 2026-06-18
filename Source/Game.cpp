@@ -707,6 +707,18 @@ void Game::ResetKeyboardAndMouseToDefault() {
 }
 
 void Game::ResetControllerToDefault() {
+    mInputBindings[Action::Up].btn  = SDL_CONTROLLER_BUTTON_DPAD_UP;
+    mInputBindings[Action::Up].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::Down].btn  = SDL_CONTROLLER_BUTTON_DPAD_DOWN;
+    mInputBindings[Action::Down].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::MoveLeft].btn  = SDL_CONTROLLER_BUTTON_DPAD_LEFT;
+    mInputBindings[Action::MoveLeft].axis = SDL_CONTROLLER_AXIS_INVALID;
+
+    mInputBindings[Action::MoveRight].btn  = SDL_CONTROLLER_BUTTON_DPAD_RIGHT;
+    mInputBindings[Action::MoveRight].axis = SDL_CONTROLLER_AXIS_INVALID;
+
     mInputBindings[Action::Jump].btn  = SDL_CONTROLLER_BUTTON_A;
     mInputBindings[Action::Jump].axis = SDL_CONTROLLER_AXIS_INVALID;
 

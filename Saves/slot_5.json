@@ -6,11 +6,11 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 597.0,
-            "y": 1770.0
+            "x": 540.0,
+            "y": 1261.0
         },
-        "scene": "ModoAvancado/Fantasma Espelhado",
-        "total_play_time": 7565.36474609375
+        "scene": "ModoAvancado/Tutorial Habilidades",
+        "total_play_time": 1
     },
     "map_state": null,
     "player": {
@@ -26,7 +26,7 @@
             "has_lightning": true
         },
         "max_jumps_in_air": 1,
-        "money": 2265
+        "money": 0
     },
     "skill_tree": {
         "unlocked_nodes": [

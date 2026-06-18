@@ -19,7 +19,7 @@
     },
     "Down": {
         "axis": -1,
-        "btn": -1,
+        "btn": 12,
         "key": 81,
         "mouse": 0
     },
@@ -55,13 +55,13 @@
     },
     "MoveLeft": {
         "axis": -1,
-        "btn": -1,
+        "btn": 13,
         "key": 80,
         "mouse": 0
     },
     "MoveRight": {
         "axis": -1,
-        "btn": -1,
+        "btn": 14,
         "key": 79,
         "mouse": 0
     },
@@ -91,7 +91,7 @@
     },
     "Up": {
         "axis": -1,
-        "btn": -1,
+        "btn": 11,
         "key": 82,
         "mouse": 0
     }
