@@ -223,6 +223,10 @@ KeyboardMenu::KeyboardMenu(class Game *game, const std::string &fontName, bool i
         Close();
     }
     , true);
+
+    text = AddText("Clique nos comandos para alterar", Vector2::Zero,  24);
+    text->SetPosition(Vector2(960, 348));
+    text->SetColor(Vector3(0.5f, 0.5f, 0.5f));
 }
 
 void KeyboardMenu::Draw(class Renderer *renderer) {

@@ -18,7 +18,7 @@ set(GLEW_LIBRARIES "C:/Arquivos de Programas/Glew/lib/Release/x64/glew32.lib")
 include_directories(${GLEW_INCLUDE_DIRS})
 link_libraries(${GLEW_LIBRARIES})
 
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} WIN32
         Source/Main.cpp
         Source/Math.cpp
         Source/Random.cpp
@@ -265,9 +265,7 @@ add_executable(${PROJECT_NAME}
         Source/UIScreens/PauseAdvancedMenu.h
         Source/UIScreens/ThankYouScreen.cpp
         Source/UIScreens/ThankYouScreen.h
+        Source/resources.rc
 )
 
-
-#target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES})
-#target_link_libraries(${PROJECT_NAME} PRIVATE SDL2::SDL2 SDL2_image::SDL2_image)
-target_link_libraries(${PROJECT_NAME} PRIVATE ${GLEW_LIBRARIES} SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_mixer::SDL2_mixer OpenGL::GL)
+target_link_libraries(${PROJECT_NAME} PRIVATE ${GLEW_LIBRARIES} SDL2::SDL2main SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_mixer::SDL2_mixer OpenGL::GL)

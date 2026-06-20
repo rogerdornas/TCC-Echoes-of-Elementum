@@ -6,10 +6,10 @@
     },
     "game": {
         "last_checkpoint": {
-            "x": 918.0,
-            "y": 1133.0
+            "x": 540.0,
+            "y": 1261.0
         },
-        "scene": "ModoAvancado/Irmaos Gancho",
+        "scene": "ModoAvancado/Tutorial Habilidades",
         "total_play_time": 1
     },
     "map_state": null,
@@ -17,7 +17,7 @@
         "can_dash": true,
         "can_hook": true,
         "can_wallslide": true,
-        "death_counter": 938,
+        "death_counter": 0,
         "elemental_mode": "Fire",
         "elemental_modes": {
             "has_earth": true,
