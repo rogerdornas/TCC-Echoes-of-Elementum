@@ -51,7 +51,7 @@ MapMenu::MapMenu(Game* game, const std::string& fontName, bool isClosable)
     }
     mCurrentPan = mTargetPan;
 
-    mPlayerIcon = game->GetRenderer()->GetTexture("../Assets/Sprites/EsquiloFire/Idle01.png");
+    mPlayerIcon = game->GetRenderer()->GetTexture("../Assets/Sprites/PlayerIconMap/PlayerIconMap.png");
 }
 
 void MapMenu::Update(float deltaTime) {
@@ -148,7 +148,7 @@ void MapMenu::Draw(Renderer* renderer) {
             Vector2 iconScreenPos = mapWindowCenter + (playerCanvasPos - mCurrentPan) * mCurrentZoom;
 
             // Desenha o ícone
-            Vector2 iconSize(90.0f, 100.0f);
+            Vector2 iconSize(52.0f, 52.0f);
 
             renderer->DrawTexture(iconScreenPos, iconSize, 0.0f, Vector3(1.0f, 1.0f, 1.0f), mPlayerIcon);
             break;
