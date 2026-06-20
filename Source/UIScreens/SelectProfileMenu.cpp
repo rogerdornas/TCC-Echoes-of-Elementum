@@ -224,7 +224,16 @@ void SelectProfileMenu::GetProfileData() {
         nlohmann::json j;
         file >> j;
 
-        mProfilesData[i].location = j["game"]["scene"];
+        std::string fullLocation = j["game"]["scene"];
+
+        size_t slashPos = fullLocation.find_last_of('/');
+
+        if (slashPos != std::string::npos) {
+            mProfilesData[i].location = fullLocation.substr(slashPos + 1);
+        } else {
+            mProfilesData[i].location = fullLocation;
+        }
+
         mProfilesData[i].totalPlayTime = j["game"]["total_play_time"];
         mProfilesData[i].money = j["player"]["money"];
 
