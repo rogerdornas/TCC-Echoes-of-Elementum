@@ -1371,6 +1371,8 @@ void Player::ResolveGroundCollision() {
 
                 // colidiu top
                 if (collisionNormal == Vector2::NegUnitY) {
+                    bool wasOnGround = mIsOnGround;
+                    bool wasJumping = mIsJumping;
                     mIsOnGround = true;
                     mIsJumping = false;
                     // Resetar dash no ar
@@ -1394,35 +1396,47 @@ void Player::ResolveGroundCollision() {
                         }
                     }
 
-                    // Move o player junto ao ground em movimento
-                    if (g->GetIsMoving()) {
-                        mIsOnMovingGround = true;
-                        mMovingGroundVelocity = g->GetComponent<RigidBodyComponent>()->GetVelocity();
-                        if (!mDashComponent->GetIsDashing()) {
-                            mRigidBodyComponent->SetVelocity(mMovingGroundVelocity);
+                    Vector2 playerVel = mRigidBodyComponent->GetVelocity();
+                    Vector2 platformVel = g->GetComponent<RigidBodyComponent>()->GetVelocity();
 
-                            // Pega o topo do AABB do chão
-                            auto* groundCollider = g->GetComponent<ColliderComponent>();
-                            auto* groundAABB = dynamic_cast<AABBComponent*>(groundCollider);
+                    if (playerVel.y >= 0 || playerVel.y >= platformVel.y) {
+                        // Move o player junto ao ground em movimento
+                        if (g->GetIsMoving()) {
+                            mIsOnMovingGround = true;
+                            mMovingGroundVelocity = platformVel;
 
-                            if (groundAABB) {
-                                float physicalGroundTop = g->GetPosition().y + groundAABB->GetOffset().y + groundAABB->GetMin().y;
+                            if (!mDashComponent->GetIsDashing()) {
+                                mRigidBodyComponent->SetVelocity(mMovingGroundVelocity);
 
-                                // Posiciona o player exatamente no topo físico, mais a margem de 1 pixel para não trepidar
-                                SetPosition(Vector2(GetPosition().x, physicalGroundTop - mHeight / 2 + 1));
+                                // Pega o topo do AABB do chão
+                                auto* groundCollider = g->GetComponent<ColliderComponent>();
+                                auto* groundAABB = dynamic_cast<AABBComponent*>(groundCollider);
+
+                                if (groundAABB) {
+                                    float physicalGroundTop = g->GetPosition().y + groundAABB->GetOffset().y + groundAABB->GetMin().y;
+
+                                    // Posiciona o player exatamente no topo físico, mais a margem de 1 pixel para não trepidar
+                                    SetPosition(Vector2(GetPosition().x, physicalGroundTop - mHeight / 2 + 1));
+                                }
                             }
                         }
+                    }
+                    else {
+                        mIsOnGround = wasOnGround;
+                        mIsJumping = wasJumping;
                     }
                 }
 
                 // colidiu bot
                 if (collisionNormal == Vector2::UnitY) {
-                    mJumpTimer = mMaxJumpTime;
-                    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 1.0f));
-                    if (g->GetIsMoving()) {
-                        if (g->GetComponent<RigidBodyComponent>()->GetVelocity().y > 0) {
-                            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, g->GetComponent<RigidBodyComponent>()->GetVelocity().y * 1.5f));
-                            // Para não grudar quando pular por baixo de uma plataforma movel
+                    if (mRigidBodyComponent->GetVelocity().y < 0) {
+                        mJumpTimer = mMaxJumpTime;
+                        mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, 1.0f));
+                        if (g->GetIsMoving()) {
+                            if (g->GetComponent<RigidBodyComponent>()->GetVelocity().y > 0) {
+                                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, g->GetComponent<RigidBodyComponent>()->GetVelocity().y * 1.5f));
+                                // Para não grudar quando pular por baixo de uma plataforma movel
+                            }
                         }
                     }
                 }

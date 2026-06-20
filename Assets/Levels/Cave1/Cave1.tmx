@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="31" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="695">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="31" height="30" tilewidth="128" tileheight="128" infinite="0" nextlayerid="25" nextobjectid="697">
  <editorsettings>
   <export target="Cave1.json" format="json"/>
  </editorsettings>
@@ -231,9 +231,9 @@
   <object id="166" gid="16" x="2513.33" y="3595.26" width="552.444" height="58.6667"/>
   <object id="328" gid="16" x="3537.33" y="3595.26" width="552.444" height="58.6667"/>
   <object id="167" gid="16" x="3025.33" y="3595.26" width="552.444" height="58.6667"/>
+  <object id="190" gid="2147483671" x="3042.76" y="3461.26" width="114.5" height="181.55"/>
   <object id="680" gid="25" x="3098" y="3491.26" width="184.5" height="117.5"/>
   <object id="679" gid="2147483671" x="3170.76" y="3589.26" width="114.5" height="181.55"/>
-  <object id="190" gid="2147483671" x="3042.76" y="3461.26" width="114.5" height="181.55"/>
   <object id="580" gid="107" x="547.718" y="3561.04" width="156.153" height="109.924">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -433,10 +433,11 @@
   <object id="660" gid="25" x="256" y="3163.26" width="184.5" height="117.5"/>
   <object id="662" gid="24" x="122" y="2912" width="187.5" height="120"/>
   <object id="665" gid="24" x="250" y="2912" width="187.5" height="120"/>
-  <object id="667" gid="44" x="1790" y="3457.32" width="128" height="130.32"/>
   <object id="691" gid="24" x="-6" y="2912" width="187.5" height="120"/>
   <object id="688" gid="2147483671" x="-29.24" y="3077.26" width="114.5" height="181.55"/>
   <object id="690" gid="25" x="0" y="3163.26" width="184.5" height="117.5"/>
+  <object id="695" gid="63" x="3120.21" y="3461.89" width="97.0693" height="114" rotation="39.28"/>
+  <object id="696" gid="46" x="1914.58" y="3453" width="134.66" height="125"/>
  </objectgroup>
  <layer id="1" name="Camada de Blocos 1" width="31" height="30">
   <data encoding="csv">
@@ -596,7 +597,7 @@
   <object id="354" x="2820" y="3129.33" width="326.667" height="418.667"/>
   <object id="671" x="0" y="2767.33" width="451.333" height="131.333"/>
   <object id="672" x="448.667" y="2769.33" width="88.667" height="91.333"/>
-  <object id="668" x="1795.5" y="3331" width="116.5" height="122"/>
+  <object id="668" x="1918.77" y="3331" width="127.591" height="118.545"/>
   <object id="683" x="3148" y="3381.5" width="129.5" height="166"/>
   <object id="694" x="0" y="2902.67" width="76" height="150.667"/>
  </objectgroup>

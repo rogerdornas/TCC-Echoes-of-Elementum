@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="70" height="16" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="365">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="70" height="16" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="368">
  <editorsettings>
   <export target="Forest5.json" format="json"/>
  </editorsettings>
@@ -395,9 +395,6 @@
    <property name="TextureFactor" type="float" value="0.5"/>
   </properties>
   <object id="261" gid="77" x="5370.51" y="1709.04" width="537.212" height="206.272"/>
-  <object id="286" gid="91" x="2085.88" y="1027.08" width="855.726" height="183.243" rotation="62.0318"/>
-  <object id="287" gid="3221225563" x="1964.87" y="142.911" width="614.294" height="164.739" rotation="76.9801"/>
-  <object id="288" gid="1073741915" x="2101.94" y="602.199" width="471.133" height="190.643" rotation="99.0627"/>
   <object id="295" gid="2147483709" x="5514.18" y="1223.34" width="70.4081" height="217.641" rotation="180">
    <properties>
     <property name="Destructible" type="bool" value="false"/>
@@ -431,6 +428,9 @@
     <property name="WindBalance" type="bool" value="true"/>
    </properties>
   </object>
+  <object id="365" gid="2147483747" x="2329.84" y="1872.77" width="182.81" height="845.89" rotation="344.878"/>
+  <object id="366" gid="99" x="2209.64" y="682.295" width="157.117" height="502" rotation="337.512"/>
+  <object id="367" gid="2147483746" x="2013.27" y="1113.06" width="180.811" height="582.364" rotation="13.323"/>
  </objectgroup>
  <objectgroup draworder="index" id="5" name="Decorations">
   <object id="48" gid="1073741916" x="7365.67" y="1171.33" width="417.333" height="280.948"/>
@@ -438,7 +438,7 @@
   <object id="47" gid="3221225564" x="6561.58" y="1209.36" width="475.857" height="320.346" rotation="355.198"/>
   <object id="45" gid="1073741915" x="6923.65" y="1211.74" width="651.613" height="283.905" rotation="354.679"/>
   <object id="46" gid="1073741917" x="6726.33" y="1186.33" width="318.863" height="296.297"/>
-  <object id="57" gid="91" x="2071.43" y="522.074" width="741.327" height="322.993" rotation="94.023"/>
+  <object id="57" gid="91" x="2268.43" y="1274.04" width="741.327" height="322.993" rotation="275.399"/>
   <object id="59" gid="93" x="2169.97" y="594.624" width="141.909" height="131.866"/>
   <object id="60" gid="93" x="2195.36" y="1222.05" width="141.909" height="131.866" rotation="201.11"/>
   <object id="115" gid="93" x="3843.45" y="588.125" width="124.443" height="115.637"/>
@@ -888,7 +888,7 @@
  <objectgroup id="9" name="HookPoints" visible="0"/>
  <objectgroup id="20" name="Levers" visible="0"/>
  <objectgroup id="21" name="SpawnPoint" visible="0"/>
- <objectgroup id="11" name="Grounds">
+ <objectgroup id="11" name="Grounds" visible="0">
   <object id="4" x="8064" y="0" width="896" height="384"/>
   <object id="5" x="7936" y="512" width="512" height="128"/>
   <object id="7" x="8448" y="512" width="512" height="1536"/>
@@ -965,27 +965,27 @@
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="80" x="2143" y="637.25" width="67" height="182.5">
+  <object id="80" x="2164" y="640.75" width="100.5" height="117.5">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="81" x="2093.5" y="1035.75" width="61" height="120.5">
+  <object id="81" x="2117.83" y="1030.25" width="79.3333" height="120.5">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="82" x="2223.5" y="831.75" width="74" height="158.5">
+  <object id="82" x="2057.5" y="812.75" width="75.3333" height="150.5">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="83" x="2187" y="776.75" width="62" height="96.5">
+  <object id="83" x="2057" y="750.614" width="158.5" height="61.6364">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
   </object>
-  <object id="84" x="2132.5" y="985.083" width="118.333" height="79.8333">
+  <object id="84" x="2110.5" y="930.75" width="86.6663" height="99.1666">
    <properties>
     <property name="Spike" type="bool" value="true"/>
    </properties>
@@ -1044,10 +1044,10 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
+ <objectgroup id="14" name="Enemies">
   <object id="26" name="Enemy Simple" x="7346.6" y="366.36" width="32" height="32"/>
   <object id="27" name="Enemy Simple" x="7885.27" y="749.03" width="32" height="32"/>
-  <object id="28" name="Mantis" x="6475.33" y="1393.39" width="32" height="32"/>
+  <object id="28" name="Mantis" x="6786.33" y="1393.39" width="32" height="32"/>
   <object id="54" name="Mushroom" x="5369.33" y="1651.39" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
