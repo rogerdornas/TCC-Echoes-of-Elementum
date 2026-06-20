@@ -277,6 +277,8 @@
   <object id="205" gid="57" x="2934.05" y="765.264" width="219.141" height="98.5633"/>
   <object id="207" gid="57" x="704.013" y="697.385" width="219.141" height="98.5633"/>
   <object id="211" gid="74" x="2279.79" y="1218.28" width="242.696" height="195.434"/>
+  <object id="100" gid="99" x="1537.23" y="1387.27" width="203.171" height="1041.59"/>
+  <object id="115" gid="75" x="1875.45" y="290.274" width="358.378" height="157.634" rotation="180"/>
  </objectgroup>
  <objectgroup draworder="index" id="4" name="Background2">
   <properties>
@@ -625,7 +627,6 @@
   </object>
   <object id="118" gid="74" x="2431.59" y="1369.63" width="242.696" height="195.434"/>
   <object id="121" gid="75" x="1871.95" y="1435.97" width="635.253" height="285.811"/>
-  <object id="100" gid="99" x="1734.2" y="1393.33" width="203.171" height="1041.59"/>
   <object id="99" gid="76" x="1590.18" y="1585.39" width="422.086" height="297.061"/>
   <object id="107" gid="66" x="626.457" y="299.229" width="194.287" height="567.542" rotation="180">
    <properties>
@@ -635,7 +636,6 @@
   <object id="113" gid="77" x="315.745" y="1569.19" width="416.511" height="161.618"/>
   <object id="114" gid="77" x="717.745" y="1567.19" width="416.511" height="161.618"/>
   <object id="140" gid="52" x="946.533" y="1580" width="567.899" height="431"/>
-  <object id="115" gid="75" x="2072.42" y="296.335" width="358.378" height="157.634" rotation="180"/>
   <object id="123" gid="52" x="2524.95" y="1615.75" width="652.438" height="495.16"/>
   <object id="192" gid="65" x="2357.05" y="258.511" width="147.75" height="452.681" rotation="180">
    <properties>

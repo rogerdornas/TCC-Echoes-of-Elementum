@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="13" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="257">
+<map version="1.10" tiledversion="1.11.2" orientation="orthogonal" renderorder="right-down" width="40" height="13" tilewidth="128" tileheight="128" infinite="0" nextlayerid="24" nextobjectid="258">
  <editorsettings>
   <export target="Forest10.json" format="json"/>
  </editorsettings>
@@ -556,9 +556,9 @@
   <object id="209" gid="74" x="3656.24" y="1744.91" width="335.516" height="270.179"/>
   <object id="202" gid="74" x="3465.24" y="1702.83" width="335.516" height="270.179"/>
   <object id="199" gid="54" x="2825.77" y="1798.05" width="738.09" height="407.089"/>
-  <object id="232" gid="99" x="3217.9" y="733.372" width="212.874" height="634.078" rotation="29.4183"/>
-  <object id="210" gid="99" x="3248.83" y="742.367" width="212.874" height="634.078" rotation="314.25"/>
-  <object id="108" gid="100" x="3174.17" y="1547.18" width="195.028" height="1407.67"/>
+  <object id="232" gid="99" x="4841.78" y="725.251" width="212.874" height="634.078" rotation="29.4183"/>
+  <object id="210" gid="99" x="4872.71" y="734.246" width="212.874" height="634.078" rotation="314.25"/>
+  <object id="108" gid="100" x="4798.05" y="1539.06" width="195.028" height="1407.67"/>
   <object id="171" gid="102" x="365.03" y="136.029" width="247.941" height="247.941" rotation="180">
    <properties>
     <property name="Animated" type="bool" value="true"/>
@@ -591,8 +591,9 @@
   <object id="194" gid="96" x="289.293" y="1810.83" width="502.273" height="430"/>
   <object id="195" gid="75" x="555.973" y="1673.88" width="632.29" height="284.478"/>
   <object id="197" gid="77" x="335.512" y="615.966" width="620.176" height="224.067" rotation="90"/>
-  <object id="200" gid="77" x="4779.28" y="1704.19" width="873.402" height="315.557"/>
+  <object id="200" gid="77" x="4664.13" y="1704.19" width="873.402" height="315.557"/>
   <object id="230" gid="77" x="3951.88" y="169.139" width="506.429" height="196.509" rotation="180"/>
+  <object id="257" gid="77" x="4617.69" y="169.533" width="271.91" height="105.509" rotation="180"/>
  </objectgroup>
  <objectgroup id="16" name="Light" visible="0"/>
  <objectgroup id="17" name="Brazier" visible="0"/>
