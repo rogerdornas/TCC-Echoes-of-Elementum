@@ -66,7 +66,6 @@ public:
 
     void ResetCooldown();
 
-
     void ResetHealthPoints() { mHealthPoints = mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier(); }
     float GetHealthPoints() const { return mHealthPoints; }
     void SetHealthPoints(float HP) { mHealthPoints = HP; }
@@ -160,6 +159,7 @@ private:
     void UseFreeze(bool up, bool down);
     void UsePillar();
     void UseHeal();
+    void HealEffects();
     void UseHook(HookPoint* nearestHookPoint);
 
     void StartGrassEffect(GrassEffectType type);
@@ -351,6 +351,9 @@ private:
     bool mIsHealing;
     float mHealAnimationDuration;
     float mHealAnimationTimer;
+    bool mHasAppliedHeal;
+    ParticleSystem* mWhiteHealParticles;
+    ParticleSystem* mGreenHealParticles;
 
     float mIFramesTimer;
 

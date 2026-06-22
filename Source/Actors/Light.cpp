@@ -19,6 +19,11 @@ Light::Light(Game* game)
     ,mActivateTimer(0.0f)
     ,mDeactivateDuration(0.0f)
     ,mDeactivateTimer(0.0f)
+    ,mAutoDeactivate(false)
+    ,mActiveDuration(0.0f)
+    ,mActiveTimer(0.0f)
+    ,mPendingDeactivateDuration(0.0f)
+
 {
     mGame->GetRenderer()->AddLight(this);
 }
@@ -59,9 +64,20 @@ void Light::OnUpdate(float deltaTime)
             mIsDeactivating = false;
         }
     }
+
+    if (mAutoDeactivate && !mIsActivating) {
+        mActiveTimer += deltaTime;
+
+        // Se o tempo de espera acabou, inicia a desativação
+        if (mActiveTimer >= mActiveDuration) {
+            mAutoDeactivate = false;
+            Deactivate(mPendingDeactivateDuration);
+        }
+    }
 }
 
 void Light::Activate(float activateDuration) {
+    mAutoDeactivate = false;
     if (mIsActivating) {
         return;
     }
@@ -72,7 +88,17 @@ void Light::Activate(float activateDuration) {
     mActivateDuration = activateDuration;
 }
 
+void Light::ActivateFor(float duration, float activateDuration, float deactivateDuration) {
+    Activate(activateDuration);
+
+    mAutoDeactivate = true;
+    mActiveDuration = duration;
+    mActiveTimer = 0.0f;
+    mPendingDeactivateDuration = deactivateDuration;
+}
+
 void Light::Deactivate(float deactivateDuration) {
+    mAutoDeactivate = false;
     if (mIsDeactivating) {
         return;
     }

@@ -20,9 +20,10 @@ public:
     void SetEffect(TargetEffect targetEffect);
     void SetSize(float size) { mSize = size; }
     void SetColor(SDL_Color color) { mColor = color; }
-    void SetEnemy(Enemy &enemy) { mEnemy = &enemy; }
+    void SetActor(Actor &actor) { mActor = &actor; }
     void SetDuration(float duration) { mDuration = duration; }
-    void EnemyDestroyed() { mEnemy = nullptr; };
+    void ActorDestroyed() { mActor = nullptr; }
+    void SetFadeIn(bool fadeIn) { mFadeIn = fadeIn; }
 
     void OnUpdate(float deltaTime) override;
 
@@ -35,9 +36,10 @@ private:
     float mDuration;
     float mDurationTimer;
     float mSize;
-    Enemy* mEnemy;
+    Actor* mActor;
 
     SDL_Color mColor;
+    bool mFadeIn;
 
     class RectComponent* mRectComponent;
     class AnimatorComponent* mDrawComponent;

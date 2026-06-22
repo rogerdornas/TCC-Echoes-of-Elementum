@@ -32,6 +32,7 @@ public:
     float GetRadius() const { return mRadius; }
 
     void Activate(float activateDuration = 0);
+    void ActivateFor(float duration, float activateDuration = 0, float deactivateDuration = 0);
     void Deactivate(float deactivateDuration = 0);
     bool IsActivate() const { return mActivate; }
 
@@ -48,4 +49,8 @@ private:
     float mActivateTimer;
     float mDeactivateDuration;
     float mDeactivateTimer;
+    bool mAutoDeactivate;
+    float mActiveDuration;
+    float mActiveTimer;
+    float mPendingDeactivateDuration;
 };

@@ -109,7 +109,7 @@ void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
     auto* circleBlur = new Effect(mGame);
     circleBlur->SetDuration(0.3);
     circleBlur->SetSize((GetWidth() + GetHeight()) / 2 * 3.5f);
-    circleBlur->SetEnemy(*this);
+    circleBlur->SetActor(*this);
     circleBlur->SetColor(SDL_Color{226, 90, 70, 150});
     circleBlur->SetEffect(TargetEffect::Circle);
 
@@ -272,10 +272,10 @@ bool Enemy::Died() {
             auto* circleBlur = new Effect(mGame);
             circleBlur->SetDuration(1.0);
             circleBlur->SetSize((GetWidth() + GetHeight()) / 2 * 5.5f);
-            circleBlur->SetEnemy(*this);
+            circleBlur->SetActor(*this);
             circleBlur->SetColor(SDL_Color{226, 90, 70, 150});
             circleBlur->SetEffect(TargetEffect::Circle);
-            circleBlur->EnemyDestroyed();
+            circleBlur->ActorDestroyed();
 
             std::vector<Money*> moneys = mGame->GetMoneys();
 

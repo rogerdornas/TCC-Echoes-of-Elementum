@@ -13,8 +13,9 @@ Effect::Effect(class Game* game)
     ,mDuration(0.1f)
     ,mDurationTimer(0.0f)
     ,mSize(50)
-    ,mEnemy(nullptr)
+    ,mActor(nullptr)
     ,mColor(SDL_Color{200, 200, 200, 255})
+    ,mFadeIn(false)
     ,mRectComponent(nullptr)
     ,mDrawComponent(nullptr)
 {
@@ -31,7 +32,7 @@ void Effect::SetEffect(TargetEffect targetEffect) {
                                                                 size * 2, size / 2, 5000);
         break;
         case TargetEffect::Circle:
-            SetPosition(mEnemy->GetPosition());
+            SetPosition(mActor->GetPosition());
             mDrawComponent = new AnimatorComponent(this, "../Assets/Sprites/Effects/ImperfectCircleBlur.png", "",
                                                         mSize, mSize, 5000);
         break;
@@ -40,6 +41,9 @@ void Effect::SetEffect(TargetEffect targetEffect) {
     if (mDrawComponent) {
         mDrawComponent->SetColor(Vector3(mColor.r / 255.0f, mColor.g / 255.0f, mColor.b / 255.0f));
         mDrawComponent->SetTextureFactor(0.0f);
+
+        float startAlpha = mFadeIn ? 0.0f : (mColor.a / 255.0f);
+        mDrawComponent->SetAlpha(startAlpha);
     }
 }
 
@@ -56,9 +60,9 @@ void Effect::OnUpdate(float deltaTime) {
 }
 
 void Effect::CircleEffect(float deltaTime) {
-    if (mDrawComponent) {
-        float alpha = (1 - mDurationTimer / mDuration) * mColor.a;
-        mDrawComponent->SetAlpha(alpha / 255.0f);
+    if (!mActor) {
+        SetState(ActorState::Destroy);
+        return;
     }
 
     mDurationTimer += deltaTime;
@@ -67,9 +71,31 @@ void Effect::CircleEffect(float deltaTime) {
         return;
     }
 
-    if (mEnemy) {
-        SetPosition(mEnemy->GetPosition());
+    if (mDrawComponent) {
+        float progress = mDurationTimer / mDuration;
+        float alphaMultiplier = 0.0f;
+
+        if (mFadeIn) {
+            // Ponto de virada: aos 25% da vida, ele atinge o brilho máximo
+            const float fadeInThreshold = 0.25f;
+
+            if (progress <= fadeInThreshold) {
+                // RETA DE SUBIDA (0.0 até 1.0)
+                alphaMultiplier = progress / fadeInThreshold;
+            } else {
+                // RETA DE DESCIDA (1.0 até 0.0)
+                alphaMultiplier = (1.0f - progress) / (1.0f - fadeInThreshold);
+            }
+        } else {
+            // Comportamento original: já nasce no 1.0 e vem caindo até 0.0
+            alphaMultiplier = 1.0f - progress;
+        }
+
+        float currentAlpha = alphaMultiplier * mColor.a;
+        mDrawComponent->SetAlpha(currentAlpha / 255.0f);
     }
+
+    SetPosition(mActor->GetPosition());
 }
 
 void Effect::SwordHitEffect(float deltaTime) {

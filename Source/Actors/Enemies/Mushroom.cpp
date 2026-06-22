@@ -156,7 +156,7 @@ void Mushroom::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBa
     auto* circleBlur = new Effect(mGame);
     circleBlur->SetDuration(0.3);
     circleBlur->SetSize((GetWidth() + GetHeight()) / 2 * 3.5f);
-    circleBlur->SetEnemy(*this);
+    circleBlur->SetActor(*this);
     circleBlur->SetColor(SDL_Color{226, 90, 70, 150});
     circleBlur->SetEffect(TargetEffect::Circle);
 

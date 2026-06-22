@@ -200,8 +200,11 @@ Player::Player(Game* game)
     ,mHealCount(mMaxHealCount)
     ,mHealAmount(30.0f)
     ,mIsHealing(false)
-    ,mHealAnimationDuration(0.7f)
+    ,mHealAnimationDuration(1.0f)
     ,mHealAnimationTimer(0.0f)
+    ,mHasAppliedHeal(false)
+    ,mWhiteHealParticles(nullptr)
+    ,mGreenHealParticles(nullptr)
 
     ,mIFramesTimer(0.0f)
 
@@ -417,6 +420,48 @@ void Player::SetJumpEffects() {
 
     // VineRope
     mVineRope = new VineRope(mGame, mVineRopeThickness);
+
+    // Heal Effects
+    mWhiteHealParticles = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle,
+                                      4.5f * 2.0f,
+                                      4.5f,
+                                      6.0f,
+                                      0.5f,
+                                      -1);
+
+    mWhiteHealParticles->SetEmitArea(Vector2(mWidth * 1.8f, mHeight));
+    mWhiteHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.7f));
+    mWhiteHealParticles->SetEmitDirection(Vector2::NegUnitY);
+    mWhiteHealParticles->SetParticleGravity(false);
+    mWhiteHealParticles->SetGroundCollision(false);
+    mWhiteHealParticles->SetConeSpread(5.0f);
+    mWhiteHealParticles->SetParticleSpeedScale(0.3f);
+    mWhiteHealParticles->SetParticleColor(SDL_Color{255, 255, 255, 200});
+    mWhiteHealParticles->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+    mWhiteHealParticles->SetAdditiveBlending(false);
+    mWhiteHealParticles->SetParticleFadeIn(true);
+    mWhiteHealParticles->SetState(ActorState::Paused);
+
+    mGreenHealParticles = new ParticleSystem(mGame, Particle::ParticleType::BlurParticle,
+                                  13.0f,
+                                  13.0f * 1.2f,
+                                  15.0f,
+                                  0.9f,
+                                  -1);
+
+    mGreenHealParticles->SetEmitArea(Vector2(mWidth * 0.2f, mHeight * 0.05f));
+    mGreenHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.6f));
+    mGreenHealParticles->SetEmitDirection(Vector2::NegUnitY);
+    mGreenHealParticles->SetParticleGravity(false);
+    mGreenHealParticles->SetGroundCollision(false);
+    mGreenHealParticles->SetConeSpread(70.0f);
+    mGreenHealParticles->SetParticleSpeedScale(0.18f);
+    mGreenHealParticles->SetParticleAutoRotate(false);
+    mGreenHealParticles->SetParticleColor(SDL_Color{54, 247, 171, 140});
+    mGreenHealParticles->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+    mGreenHealParticles->SetAdditiveBlending(true);
+    mGreenHealParticles->SetParticleFadeIn(true);
+    mGreenHealParticles->SetState(ActorState::Paused);
 
     // Reset Radial Menu
     mRadialMenu = nullptr;
@@ -745,6 +790,12 @@ void Player::OnProcessInput(const uint8_t* state, SDL_GameController &controller
         UseHeal();
     }
     else {
+        if (mWhiteHealParticles) {
+            mWhiteHealParticles->SetState(ActorState::Paused);
+        }
+        if (mGreenHealParticles) {
+            mGreenHealParticles->SetState(ActorState::Paused);
+        }
         mIsHealing = false;
         mHealAnimationTimer = 0;
     }
@@ -880,6 +931,43 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mIsHealing) {
         mHealAnimationTimer += deltaTime;
+
+        // Define o momento exato em que a cura entra
+        float timeToHeal = mHealAnimationDuration * 0.65f;
+
+        // Aplica a cura se passou o tempo e ainda não curou
+        if (mHealAnimationTimer >= timeToHeal && !mHasAppliedHeal) {
+            float maxHealth = mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier();
+
+            mHealthPoints += mHealAmount * mSkillManager->GetHealAmountMultiplier();
+            mHealCount--;
+
+            if (mHealthPoints > maxHealth) {
+                mHealthPoints = maxHealth;
+            }
+
+            mHasAppliedHeal = true;
+
+            auto* circleBlur = new Effect(mGame);
+            circleBlur->SetDuration(1.0);
+            circleBlur->SetSize((GetWidth() + GetHeight()) / 2 * 3.5f);
+            circleBlur->SetActor(*this);
+            circleBlur->SetColor(SDL_Color{35, 232, 131, 80});\
+            circleBlur->SetFadeIn(true);
+            circleBlur->SetEffect(TargetEffect::Circle);
+        }
+
+        // Finaliza a animação quando o timer atingir o tempo total
+        if (mHealAnimationTimer >= mHealAnimationDuration) {
+            mIsHealing = false;
+            mHealAnimationTimer = 0.0f;
+            if (mWhiteHealParticles) {
+                mWhiteHealParticles->SetState(ActorState::Paused);
+            }
+            if (mGreenHealParticles) {
+                mGreenHealParticles->SetState(ActorState::Paused);
+            }
+        }
     }
 
     if (mRadialMenu) {
@@ -1352,6 +1440,19 @@ void Player::OnUpdate(float deltaTime) {
 
     if (mLight) {
         mLight->SetPosition(GetPosition());
+    }
+
+    if (mWhiteHealParticles) {
+        mWhiteHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.7f));
+    }
+    if (mGreenHealParticles) {
+        mGreenHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.6f));
+        if (Random::GetFloat() < 0.5f) {
+            mGreenHealParticles->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
+        }
+        else {
+            mGreenHealParticles->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() - 1);
+        }
     }
 }
 
@@ -2225,21 +2326,19 @@ void Player::UsePillar() {
 }
 
 void Player::UseHeal() {
-    if (mHealCount > 0 && mHealthPoints < mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier() && mIsOnGround) {
+    float maxHealth = mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier();
+
+    if (!mIsHealing && mHealCount > 0 && mHealthPoints < maxHealth && mIsOnGround) {
+        HealEffects();
         mIsHealing = true;
-        if (mHealAnimationTimer >= mHealAnimationDuration) {
-            mHealAnimationTimer = 0;
-            mHealthPoints += mHealAmount * mSkillManager->GetHealAmountMultiplier();
-            mHealCount--;
-            if (mHealthPoints > mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier()) {
-                mHealthPoints = mBaseMaxHealthPoints * mSkillManager->GetMaxHealthPointsMultiplier();
-            }
-        }
+        mHealAnimationTimer = 0.0f;
+        mHasAppliedHeal = false;
     }
-    else {
-        mIsHealing = false;
-        mHealAnimationTimer = 0;
-    }
+}
+
+void Player::HealEffects() {
+    mWhiteHealParticles->SetState(ActorState::Active);
+    mGreenHealParticles->SetState(ActorState::Active);
 }
 
 void Player::UseHook(HookPoint* nearestHookPoint) {

@@ -268,4 +268,5 @@ add_executable(${PROJECT_NAME} WIN32
         Source/resources.rc
 )
 
+#target_link_libraries(${PROJECT_NAME} PRIVATE ${GLEW_LIBRARIES} SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_mixer::SDL2_mixer OpenGL::GL)
 target_link_libraries(${PROJECT_NAME} PRIVATE ${GLEW_LIBRARIES} SDL2::SDL2main SDL2::SDL2 SDL2_image::SDL2_image SDL2_ttf::SDL2_ttf SDL2_mixer::SDL2_mixer OpenGL::GL)
