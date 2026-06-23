@@ -60,11 +60,6 @@ void Effect::OnUpdate(float deltaTime) {
 }
 
 void Effect::CircleEffect(float deltaTime) {
-    if (!mActor) {
-        SetState(ActorState::Destroy);
-        return;
-    }
-
     mDurationTimer += deltaTime;
     if (mDurationTimer >= mDuration) {
         SetState(ActorState::Destroy);
@@ -95,7 +90,9 @@ void Effect::CircleEffect(float deltaTime) {
         mDrawComponent->SetAlpha(currentAlpha / 255.0f);
     }
 
-    SetPosition(mActor->GetPosition());
+    if (mActor) {
+        SetPosition(mActor->GetPosition());
+    }
 }
 
 void Effect::SwordHitEffect(float deltaTime) {
