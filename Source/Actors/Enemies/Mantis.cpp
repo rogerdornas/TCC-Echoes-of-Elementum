@@ -33,7 +33,7 @@ Mantis::Mantis(Game *game)
     mWidth = 60;
     mHeight = 120;
     mMoveSpeed = 250;
-    mHealthPoints = 50;
+    mHealthPoints = 35;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 10;
@@ -147,6 +147,10 @@ void Mantis::MovementAfterPlayerSpotted(float deltaTime) {
         case State::Attack:
             Attack(deltaTime);
             break;
+
+        case State::Hurt:
+            Hurt(deltaTime);
+            break;
     }
 }
 
@@ -224,6 +228,14 @@ void Mantis::Attack(float deltaTime) {
     }
 }
 
+void Mantis::Hurt(float deltaTime) {
+    if (mKnockBackTimer >= mKnockBackDuration) {
+        mMantisState = State::WalkBack;
+        mWalkBackTimer = mWalkBackDuration * 0.6f;
+        mAttackTimer = 0;
+    }
+}
+
 void Mantis::ManageAnimations() {
     if (mIsFlashing) {
         mDrawComponent->SetAnimation("hit");
@@ -249,5 +261,17 @@ void Mantis::ManageCombatBox() {
     }
     else {
         mCombatBoxComponent->SetBoxActive("claw", false);
+    }
+}
+
+void Mantis::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {
+    Enemy::ReceiveHit(damage, knockBackDirection, knockBack);
+
+    if (knockBack && !mIsFrozen && (mMantisState == State::Attack || mMantisState == State::WalkForward)) {
+        mMantisState = State::Hurt;
+
+        if (mCombatBoxComponent) {
+            mCombatBoxComponent->SetBoxActive("claw", false);
+        }
     }
 }

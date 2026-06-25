@@ -86,8 +86,11 @@ void Enemy::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack)
     mHealthPoints -= damage;
     if (knockBack) {
         Vector2 knockBackSpeed(knockBackDirection * mKnockBackSpeed);
+
+        float currentY = mRigidBodyComponent->GetVelocity().y;
+
         if (mKnockBackXActive) {
-            mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + Vector2(knockBackSpeed.x, 0));
+            mRigidBodyComponent->SetVelocity(Vector2(knockBackSpeed.x, currentY));
         }
         if (mKnockBackYActive) {
             mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + Vector2(0, knockBackSpeed.y));

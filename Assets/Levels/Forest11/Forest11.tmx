@@ -749,8 +749,8 @@
    </properties>
   </object>
  </objectgroup>
- <objectgroup id="14" name="Enemies" visible="0">
-  <object id="25" name="OrangeSlime" x="1456.76" y="2029" width="32" height="32"/>
+ <objectgroup id="14" name="Enemies">
+  <object id="25" name="Snake" x="1456.76" y="2029" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="22" name="CameraBounds" visible="0">
   <object id="48" x="128" y="328" width="3456" height="2104"/>

@@ -28,11 +28,11 @@ Snake::Snake(Game *game)
     mWidth = 100;
     mHeight = 25;
     mMoveSpeed = 300;
-    mHealthPoints = 35;
+    mHealthPoints = 25;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 7;
-    mKnockBackSpeed = 700.0f;
+    mKnockBackSpeed = 750.0f;
     mKnockBackDuration = 0.1f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
@@ -137,15 +137,19 @@ void Snake::MovementAfterPlayerSpotted(float deltaTime) {
     switch (mSnakeState) {
         case State::WalkForward:
             WalkForward(deltaTime);
-        break;
+            break;
 
         case State::Stop:
             Stop(deltaTime);
-        break;
+            break;
 
         case State::Attack:
             Attack(deltaTime);
-        break;
+            break;
+
+        case State::Hurt:
+            Hurt(deltaTime);
+            break;
     }
 }
 
@@ -207,6 +211,14 @@ void Snake::Attack(float deltaTime) {
     }
 }
 
+void Snake::Hurt(float deltaTime) {
+    if (mKnockBackTimer >= mKnockBackDuration) {
+        mSnakeState = State::Stop;
+        mStopTimer = mStopDuration * 0.6f;
+        mAttackTimer = 0;
+    }
+}
+
 void Snake::ManageAnimations() {
     if (mSnakeState == State::Attack) {
         mDrawComponent->SetAnimation("attack");
@@ -235,6 +247,24 @@ void Snake::ManageCombatBox() {
         else {
             mWidth = mIdleWidth;
             mHeight = mIdleHeight;
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2::Zero);
+        }
+    }
+}
+
+void Snake::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack) {
+    Enemy::ReceiveHit(damage, knockBackDirection, knockBack);
+
+    if (knockBack && !mIsFrozen && (mSnakeState == State::Attack || mSnakeState == State::WalkForward)) {
+        mSnakeState = State::Hurt;
+
+        mWidth = mIdleWidth;
+        mHeight = mIdleHeight;
+
+        if (mCombatBoxComponent) {
             mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2, mHeight / 2));
             mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2, mHeight / 2));
             mCombatBoxComponent->SetBoxOffset("hitbox", Vector2::Zero);

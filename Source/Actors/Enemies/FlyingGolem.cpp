@@ -45,7 +45,7 @@ FlyingGolem::FlyingGolem(Game *game)
     mWidth = 100;
     mHeight = 100;
     mMoveSpeed = 420;
-    mHealthPoints = 70;
+    mHealthPoints = 45;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 20;
@@ -373,7 +373,7 @@ void FlyingGolem::ManageCombatBox() {
     }
 
     if (mFlyingGolemState == State::TeleportOut) {
-        if (mTeleportOutTimer > 0.1f * mTeleportDuration) {
+        if (mTeleportOutTimer > 0.5f * mTeleportDuration) {
             mCombatBoxComponent->GetBox("hitbox")->collider->SetActive(true);
             mCombatBoxComponent->GetBox("hurtbox")->collider->SetActive(true);
         }

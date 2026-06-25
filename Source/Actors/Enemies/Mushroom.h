@@ -16,7 +16,8 @@ public:
         WalkForward,
         WalkAway,
         Attack,
-        StunState
+        StunState,
+        Hurt
     };
 
     Mushroom(Game* game);
@@ -34,6 +35,7 @@ private:
     void WalkAway(float deltaTime);
     void Attack(float deltaTime);
     void StunState(float deltaTime);
+    void Hurt(float deltaTime);
 
     void ManageAnimations();
     void ManageCombatBox();

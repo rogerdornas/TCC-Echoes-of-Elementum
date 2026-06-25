@@ -70,11 +70,12 @@ Player::Player(Game* game)
     ,mJumpTimer(0.0f)
     ,mMaxJumpTime(0.33f)
     ,mJumpForce(-750.0f)
+    ,mPogoForce(mJumpForce * 1.15f)
     ,mCanJump(true)
     ,mJumpCountInAir(0)
     ,mLowGravity(50.0f)
     ,mMediumGravity(3300.0f)
-    ,mHighGravity(4500.0f)
+    ,mHighGravity(5000.0f)
 
     ,mDashSpeed(1500)
     ,mDashDuration(0.2f)
@@ -127,7 +128,7 @@ Player::Player(Game* game)
 
     ,mPrevSwordPressed(false)
     ,mSwordCooldownTimer(0.0f)
-    ,mSwordCooldownDuration(0.4f)
+    ,mSwordCooldownDuration(0.33f)
     ,mSwordWidth(mWidth * 3.0f)
     ,mSwordHeight(mHeight * 1.3f)
     ,mSwordDuration(0.15f)
@@ -423,19 +424,19 @@ void Player::SetJumpEffects() {
 
     // Heal Effects
     mWhiteHealParticles = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle,
-                                      4.5f * 2.0f,
-                                      4.5f,
+                                      5.5f * 2.0f,
+                                      5.5f,
                                       6.0f,
-                                      0.5f,
+                                      0.6f,
                                       -1);
 
     mWhiteHealParticles->SetEmitArea(Vector2(mWidth * 1.8f, mHeight));
-    mWhiteHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.7f));
+    mWhiteHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.85f));
     mWhiteHealParticles->SetEmitDirection(Vector2::NegUnitY);
     mWhiteHealParticles->SetParticleGravity(false);
     mWhiteHealParticles->SetGroundCollision(false);
     mWhiteHealParticles->SetConeSpread(5.0f);
-    mWhiteHealParticles->SetParticleSpeedScale(0.3f);
+    mWhiteHealParticles->SetParticleSpeedScale(0.33f);
     mWhiteHealParticles->SetParticleColor(SDL_Color{255, 255, 255, 200});
     mWhiteHealParticles->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
     mWhiteHealParticles->SetAdditiveBlending(false);
@@ -446,7 +447,7 @@ void Player::SetJumpEffects() {
                                   13.0f,
                                   13.0f * 1.2f,
                                   15.0f,
-                                  0.9f,
+                                  0.7f,
                                   -1);
 
     mGreenHealParticles->SetEmitArea(Vector2(mWidth * 0.2f, mHeight * 0.05f));
@@ -1098,7 +1099,7 @@ void Player::OnUpdate(float deltaTime) {
     else {
         // So aplica gravidade se nao estiver dashando e nao estiver tacando fireball
         if (!mDashComponent->GetIsDashing() && !mIsFireAttacking && !mIsOnMovingGround && !mIsOnGround && !mIsHooking && !mIsGliding) {
-            if (mRigidBodyComponent->GetVelocity().y < 0) {
+            if (mRigidBodyComponent->GetVelocity().y < -50) {
                 mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x,
                                                          mRigidBodyComponent->GetVelocity().y
                                                          + mMediumGravity * deltaTime));
@@ -1443,11 +1444,11 @@ void Player::OnUpdate(float deltaTime) {
     }
 
     if (mWhiteHealParticles) {
-        mWhiteHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.7f));
+        mWhiteHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.85f));
     }
     if (mGreenHealParticles) {
         mGreenHealParticles->SetPosition(GetPosition() + Vector2(0, mHeight * 0.6f));
-        if (Random::GetFloat() < 0.5f) {
+        if (Random::GetFloat() < 0.7f) {
             mGreenHealParticles->SetParticleDrawOrder(mDrawComponent->GetDrawOrder() + 1);
         }
         else {
@@ -1719,7 +1720,7 @@ void Player::ResolveGroundCollision() {
 
                     if (mSword->GetRotation() == Math::Pi / 2) {
                         if (!mDashComponent->GetIsDashing()) {
-                            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce));
+                            mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mPogoForce));
                         }
                         // Resetar dash no ar
                         mDashComponent->SetHasDashedInAir(false);
@@ -1785,15 +1786,17 @@ void Player::ResolveEnemyCollision() {
                     if (mSword->GetRotation() == Math::Pi / 2) {
                         if (!mDashComponent->GetIsDashing()) {
                             if (auto* mushroom = dynamic_cast<Mushroom*>(e)) {
-                                if (mushroom->GetMushroomState() != Mushroom::State::Attack) {
+                                if (mushroom->GetMushroomState() != Mushroom::State::Attack &&
+                                    mushroom->GetMushroomState() != Mushroom::State::Hurt)
+                                {
                                     mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce * 1.75f));
                                 }
                                 else {
-                                    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce));
+                                    mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mPogoForce));
                                 }
                             }
                             else {
-                                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mJumpForce));
+                                mRigidBodyComponent->SetVelocity(Vector2(mRigidBodyComponent->GetVelocity().x, mPogoForce));
                             }
                         }
                         // Resetar dash no ar

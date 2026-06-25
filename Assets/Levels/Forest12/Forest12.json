@@ -2695,24 +2695,13 @@
                 {
                  "height":32,
                  "id":112,
-                 "name":"OrangeSlime",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":974,
-                 "y":2158.39
-                }, 
-                {
-                 "height":32,
-                 "id":114,
                  "name":"Enemy Simple",
                  "rotation":0,
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1126.6,
-                 "y":1775.69
+                 "x":852,
+                 "y":2159.39
                 }, 
                 {
                  "height":32,
@@ -2722,8 +2711,8 @@
                  "type":"",
                  "visible":true,
                  "width":32,
-                 "x":1280,
-                 "y":1549
+                 "x":1108,
+                 "y":1633
                 }, 
                 {
                  "height":32,
@@ -2735,17 +2724,6 @@
                  "width":32,
                  "x":765,
                  "y":1387
-                }, 
-                {
-                 "height":32,
-                 "id":118,
-                 "name":"FlyingShooterEnemy",
-                 "rotation":0,
-                 "type":"",
-                 "visible":true,
-                 "width":32,
-                 "x":622.667,
-                 "y":1102
                 }],
          "opacity":1,
          "type":"objectgroup",

@@ -580,11 +580,9 @@
  <objectgroup id="14" name="Enemies">
   <object id="110" name="Mushroom" x="889.33" y="2931.39" width="32" height="32"/>
   <object id="111" name="Snake" x="1172" y="2543.39" width="32" height="32"/>
-  <object id="112" name="OrangeSlime" x="974" y="2158.39" width="32" height="32"/>
-  <object id="114" name="Enemy Simple" x="1126.6" y="1775.69" width="32" height="32"/>
-  <object id="115" name="Flying Enemy" x="1280" y="1549" width="32" height="32"/>
+  <object id="112" name="Enemy Simple" x="852" y="2159.39" width="32" height="32"/>
+  <object id="115" name="Flying Enemy" x="1108" y="1633" width="32" height="32"/>
   <object id="117" name="Mantis" x="765" y="1387" width="32" height="32"/>
-  <object id="118" name="FlyingShooterEnemy" x="622.667" y="1102" width="32" height="32"/>
  </objectgroup>
  <objectgroup id="22" name="CameraBounds" visible="0" locked="1">
   <object id="76" x="128" y="200" width="1920" height="3256"/>

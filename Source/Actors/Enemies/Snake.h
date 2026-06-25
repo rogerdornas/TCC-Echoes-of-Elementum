@@ -17,8 +17,11 @@ private:
     {
         WalkForward,
         Stop,
-        Attack
+        Attack,
+        Hurt
     };
+
+    void ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBack = true) override;
 
     void MovementAfterPlayerSpotted(float deltaTime);
     void MovementBeforePlayerSpotted();
@@ -26,6 +29,7 @@ private:
     void WalkForward(float deltaTime);
     void Stop(float deltaTime);
     void Attack(float deltaTime);
+    void Hurt(float deltaTime);
 
     void ManageAnimations();
     void ManageCombatBox();

@@ -25,7 +25,7 @@ EnemySimple::EnemySimple(Game* game)
     mWidth = 53;
     mHeight = 45;
     mMoveSpeed = 200;
-    mHealthPoints = 30;
+    mHealthPoints = 20;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 10;
     mMoneyDrop = 2;

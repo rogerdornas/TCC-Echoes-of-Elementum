@@ -210,6 +210,7 @@ private:
     float mJumpTimer;    // Quanto tempo já pulou
     float mMaxJumpTime;  // Tempo máximo de pulo sustentado
     float mJumpForce;    // Força contínua durante o pulo
+    float mPogoForce;
     bool mCanJump;       // Usado para não continuar pulando ao segurar botão de pular
     int mJumpCountInAir; // Numero de pulos realizados no ar
     float mLowGravity;

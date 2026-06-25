@@ -42,12 +42,12 @@ Mushroom::Mushroom(Game *game)
     mWidth = 80;
     mHeight = 110;
     mMoveSpeed = 300;
-    mHealthPoints = 45;
+    mHealthPoints = 30;
     mMaxHealthPoints = mHealthPoints;
     mContactDamage = 15;
     mMoneyDrop = 20;
-    mKnockBackSpeed = 700.0f;
-    mKnockBackDuration = 0.1f;
+    mKnockBackSpeed = 750.0f;
+    mKnockBackDuration = 0.13f;
     mKnockBackTimer = mKnockBackDuration;
     mIdleWidth = mWidth;
     mIdleHeight = mHeight;
@@ -136,32 +136,20 @@ void Mushroom::ReceiveHit(float damage, Vector2 knockBackDirection, bool knockBa
         return;
     }
 
-    mHealthPoints -= damage;
-    if (knockBack) {
-        mRigidBodyComponent->SetVelocity(mRigidBodyComponent->GetVelocity() + knockBackDirection * mKnockBackSpeed);
-        mKnockBackTimer = 0;
-    }
-    mIsFlashing = true;
-    mFlashTimer = 0;
-    mPlayerSpotted = true;
+    Enemy::ReceiveHit(damage, knockBackDirection, knockBack);
 
-    auto* blood = new ParticleSystem(mGame, Particle::ParticleType::SolidParticle, 10.0f * 1.2f, 10.0f, 170.0, 3.0, 0.07f);
-    blood->SetPosition(GetPosition());
-    blood->SetEmitDirection(knockBackDirection);
-    blood->SetParticleSpeedScale(1);
-    blood->SetParticleColor(SDL_Color{226, 90, 70, 255});
-    blood->SetParticleGravity(true);
-    blood->SetConeSpread(65.0f);
+    if (knockBack && !mIsFrozen && (mMushroomState == State::Attack || mMushroomState == State::WalkForward)) {
+        mMushroomState = State::Hurt;
 
-    auto* circleBlur = new Effect(mGame);
-    circleBlur->SetDuration(0.3);
-    circleBlur->SetSize((GetWidth() + GetHeight()) / 2 * 3.5f);
-    circleBlur->SetActor(*this);
-    circleBlur->SetColor(SDL_Color{226, 90, 70, 150});
-    circleBlur->SetEffect(TargetEffect::Circle);
+        mWidth = mIdleWidth;
+        mHeight = mIdleHeight;
 
-    if (IsOnScreen()) {
-        mGame->GetAudio()->PlayVariantSound("HitEnemy/HitEnemy.wav", 4);
+        if (mCombatBoxComponent) {
+            mCombatBoxComponent->SetBoxHalfSize("hitbox", Vector2(mWidth / 2.0f, mHeight / 2.0f));
+            mCombatBoxComponent->SetBoxHalfSize("hurtbox", Vector2(mWidth / 2.0f, mHeight / 2.0f));
+            mCombatBoxComponent->SetBoxOffset("hitbox", Vector2(0, mHeight * 0.12f));
+            mCombatBoxComponent->SetBoxOffset("hurtbox", Vector2(0, mHeight * 0.12f));
+        }
     }
 }
 
@@ -190,23 +178,27 @@ void Mushroom::MovementAfterPlayerSpotted(float deltaTime) {
     switch (mMushroomState) {
         case State::Stop:
             Stop(deltaTime);
-        break;
+            break;
 
         case State::WalkForward:
             WalkForward(deltaTime);
-        break;
+            break;
 
         case State::WalkAway:
             WalkAway(deltaTime);
-        break;
+            break;
 
         case State::Attack:
             Attack(deltaTime);
-        break;
+            break;
 
         case State::StunState:
             StunState(deltaTime);
-        break;
+            break;
+
+        case State::Hurt:
+            Hurt(deltaTime);
+            break;
     }
 }
 
@@ -250,6 +242,7 @@ void Mushroom::WalkForward(float deltaTime) {
 
     if (Math::Abs(dist) < mDistToAttack) {
         mRigidBodyComponent->SetVelocity(Vector2(GetForward().x * mMoveSpeed * 2.5f, mJumpForce));
+        mAttackTimer = 0.0f;
         mMushroomState = State::Attack;
     }
 }
@@ -306,6 +299,16 @@ void Mushroom::StunState(float deltaTime) {
 
     if (mKnockBackTimer >= mKnockBackDuration) {
         mRigidBodyComponent->SetVelocity(Vector2(0, mRigidBodyComponent->GetVelocity().y));
+    }
+}
+
+void Mushroom::Hurt(float deltaTime) {
+    if (mKnockBackTimer >= mKnockBackDuration) {
+
+        mMushroomState = State::WalkAway;
+        mWalkAwayTimer = mWalkAwayDuration * 0.2f;
+        mStopTimer = mStopDuration * 0.7f;
+        mAttackTimer = 0;
     }
 }
 

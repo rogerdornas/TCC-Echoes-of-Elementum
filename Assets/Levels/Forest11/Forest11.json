@@ -1303,8 +1303,8 @@
                  "type":"",
                  "visible":true,
                  "width":203.171,
-                 "x":1537.2303030303,
-                 "y":1387.26939393939
+                 "x":1537.23,
+                 "y":1387.27
                 }, 
                 {
                  "gid":75,
@@ -1315,8 +1315,8 @@
                  "type":"",
                  "visible":true,
                  "width":358.378,
-                 "x":1875.4503030303,
-                 "y":290.274393939394
+                 "x":1875.45,
+                 "y":290.274
                 }],
          "opacity":1,
          "parallaxx":0.95,
@@ -3486,7 +3486,7 @@
                 {
                  "height":32,
                  "id":25,
-                 "name":"OrangeSlime",
+                 "name":"Snake",
                  "rotation":0,
                  "type":"",
                  "visible":true,
@@ -3496,7 +3496,7 @@
                 }],
          "opacity":1,
          "type":"objectgroup",
-         "visible":false,
+         "visible":true,
          "x":0,
          "y":0
         }, 
